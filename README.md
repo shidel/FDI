@@ -6,4 +6,11 @@ utilities.
 
 * * *
 
-## File List
+### File List
+
+    README.md   - This file.
+    LICENSE     - GNU GPL v2.
+    LOGIC.txt   - Basic outline of install process.
+
+    mkClean.bat - Cleanup utility.
+    mkFDI.bat   - Create the Floppy installation tree.
