@@ -168,6 +168,7 @@ goto DoneBatch
 :AbortBatch
 vcls /fGray /bBlack
 vecho /fWhite /bRed " Installation of %TITLE% %VERSION% was aborted." /e /fGray
+vecho
 goto CleanUpBatch
 
 :DoneBatch

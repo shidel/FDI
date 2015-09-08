@@ -1,5 +1,8 @@
 @echo off
 
+REM Install Disk Options.
+set VOLUMEID=FD_SETUP
+
 REM Source file input settings.
 set IDRV=C:
 set IDOS=%IDRV%\FDOS
@@ -8,13 +11,11 @@ set IINS=INSFILES
 set IV8P=V8Power
 
 REM Output to file system tree structure.
-set ODIR=FLOPPY
+set ODRV=A:
+set ODIR=%ODRV%
 set ODOS=%ODIR%\FreeDOS
 set OBIN=%ODOS%\BIN
 set OV8P=%ODOS%\V8Power
-
-REM Output to floppy disk.
-set ODRV=A:
 
 if "%1" == "" call mkClean.bat
 if not "%1" == "" goto %1
@@ -25,8 +26,16 @@ echo.
 if not exist %IV8P%\VERRLVL.COM goto MissingV8
 V8Power\verrlvl 0
 
+:FormatDisk
+%IDRV%
+pause Press a key to Format disk in drive %ODRV%
+echo.
+format %ODRV% /V:%VOLUMEID% /U
+if errorlevel 1 goto Error
+sys a:
+if errorlevel 1 goto Error
+
 :MakeTree
-if not exist %ODIR%\NUL mkdir %ODIR%
 if not exist %ODOS%\NUL mkdir %ODOS%
 if not exist %OBIN%\NUL mkdir %OBIN%
 if not exist %ODOS%\CPI\NUL mkdir %ODOS%\CPI
@@ -188,12 +197,12 @@ if not "%1" == "" goto VeryEnd
 echo Copying config files.
 
 set CPFILE=AUTOEXEC.BAT
-copy %IINS%\%CPFILE% %ODIR%
+copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
 set CPFILE=FDCONFIG.SYS
-copy %IINS%\%CPFILE% %ODIR%
+copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
@@ -204,7 +213,7 @@ if not "%1" == "" goto VeryEnd
 echo Copying setup installer files.
 
 set CPFILE=SETUP.BAT
-copy %IINS%\%CPFILE% %ODIR%
+copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
