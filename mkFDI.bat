@@ -4,6 +4,7 @@ REM Source file input settings.
 set IDRV=C:
 set IDOS=%IDRV%\FDOS
 set IBIN=%IDOS%\BIN
+set IINS=INSFILES
 set IV8P=V8Power
 
 REM Output to file system tree structure.
@@ -61,6 +62,11 @@ copy %IBIN%\%CPFILE% %OBIN% >NUL
 if errorlevel 1 goto ErrorCopy
 if not exist %OBIN%\%CPFILE% goto ErrorCopy
 
+set CPFILE=COUNTRY.SYS
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
 set CPFILE=DEVLOAD.COM
 copy %IBIN%\%CPFILE% %OBIN% >NUL
 if errorlevel 1 goto ErrorCopy
@@ -70,6 +76,126 @@ set CPFILE=DOSLFN.COM
 copy %IBIN%\%CPFILE% %OBIN% >NUL
 if errorlevel 1 goto ErrorCopy
 if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDAPM.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDISK.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDISK.INI
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDISK131.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDISKPT.INI
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FORMAT.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=HIMEMX.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=JEMM386.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=JEMMEX.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=MEM.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=MOUSE.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SHSUCDHD.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SHSUCDRD.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SHSUCDX.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SHSUFDRV.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SHSURDRV.EXE
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=SYS.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=UIDE.SYS
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=XMGR.SYS
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+if not "%1" == "" goto VeryEnd
+
+:CopyCFG
+echo Copying config files.
+
+set CPFILE=AUTOEXEC.BAT
+copy %IINS%\%CPFILE% %ODIR% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %ODIR%\%CPFILE% goto ErrorCopy
+
+set CPFILE=FDCONFIG.SYS
+copy %IINS%\%CPFILE% %ODIR% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %ODIR%\%CPFILE% goto ErrorCopy
+
+if not "%1" == "" goto VeryEnd
+
+:CopyINS
+echo Copying setup installer files.
+
+set CPFILE=SETUP.BAT
+copy %IINS%\%CPFILE% %ODIR% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
 if not "%1" == "" goto VeryEnd
 
