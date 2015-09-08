@@ -32,4 +32,6 @@ if exist %ODOS% rmdir %ODOS%
 if exist %ODIR%\NUL del %ODIR%\*.*
 if exist %ODIR% rmdir %ODIR%
 
+echo.
+
 :Done

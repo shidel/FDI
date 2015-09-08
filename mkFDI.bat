@@ -34,8 +34,44 @@ if not "%1" == "" goto VeryEnd
 
 :CopyV8
 if not exist %IV8P% goto MissingV8
+echo Copying V8Power Tools.
+
+set CPFILE=LICENSE
+copy %IV8P%\%CPFILE% %OV8P% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=V8POWER.TXT
+copy %IV8P%\%CPFILE% %OV8P% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=*.COM
+copy %IV8P%\%CPFILE% %OV8P% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
 if not "%1" == "" goto VeryEnd
 
+:CopyBIN
+echo Copying basic FreeDOS binaries.
+
+set CPFILE=COMMAND.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=DEVLOAD.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+set CPFILE=DOSLFN.COM
+copy %IBIN%\%CPFILE% %OBIN% >NUL
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
+if not "%1" == "" goto VeryEnd
 
 goto Done
 
@@ -48,13 +84,17 @@ echo '%IV8P%' directory.
 echo Then run this batch file again.
 goto Error
 
+:ErrorCopy
+echo.
+echo ERROR: Copying '%CPFILE%'.
+
 :Error
 echo.
 echo Aborted.
 goto VeryEnd
 
 :Done
-
+echo.
 echo Finished.
 
 :VeryEnd
