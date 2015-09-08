@@ -39,11 +39,13 @@ alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
 alias cfg=edit %cfgfile%
 alias auto=edit %0
-echo Done processing startup files %cfgfile% and %0
+
+vecho "Done processing startup files %cfgfile% and %0"
+
+CALL SETUP.BAT /CheckState
+
 vecho /n "Type " /fWhite HELP
 vecho /fGray " to get support on commands and navigation"
 vecho
 vecho /n "Welcome to the " /fCyan "FreeDOS 1.1"
 vecho /fGray " operating system (http://www.freedos.org)" /e
-
-SETUP.BAT
