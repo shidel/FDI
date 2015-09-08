@@ -117,6 +117,11 @@ copy %IBIN%\%CPFILE% %OBIN%
 if errorlevel 1 goto ErrorCopy
 if not exist %OBIN%\%CPFILE% goto ErrorCopy
 
+set CPFILE=LBACACHE.COM
+copy %IBIN%\%CPFILE% %OBIN%
+if errorlevel 1 goto ErrorCopy
+if not exist %OBIN%\%CPFILE% goto ErrorCopy
+
 set CPFILE=MEM.EXE
 copy %IBIN%\%CPFILE% %OBIN%
 if errorlevel 1 goto ErrorCopy
