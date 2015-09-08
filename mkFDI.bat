@@ -17,7 +17,6 @@ set ODOS=%ODIR%\FreeDOS
 set OBIN=%ODOS%\BIN
 set OV8P=%ODOS%\V8Power
 
-if "%1" == "" call mkClean.bat
 if not "%1" == "" goto %1
 
 echo FreeDOS install creator.
