@@ -1,7 +1,7 @@
 @echo off
 
 REM Install Disk Options.
-set VOLUMEID=FD_SETUP
+set VOLUMEID=FD-SETUP
 
 REM Source file input settings.
 set IDRV=C:
