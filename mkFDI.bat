@@ -26,4 +26,6 @@ if not "%1" == "" goto VeryEnd
 
 :Done
 
+echo Finished.
+
 :VeryEnd
