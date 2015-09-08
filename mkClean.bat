@@ -2,6 +2,7 @@
 
 set ODIR=FLOPPY
 set ODOS=%ODIR%\FreeDOS
+set OV8P=%ODOS%\V8Power
 
 if not exist %ODIR% goto Done
 
@@ -21,6 +22,9 @@ if exist %ODOS%\HELP rmdir %ODOS%\HELP
 
 if exist %ODOS%\TEMP\NUL del %ODOS%\TEMP\*.*
 if exist %ODOS%\TEMP rmdir %ODOS%\TEMP
+
+if exist %OV8P%\NUL del %OV8P%\*.*
+if exist %OV8P% rmdir %OV8P%
 
 if exist %ODOS%\NUL del %ODOS%\*.*
 if exist %ODOS% rmdir %ODOS%
