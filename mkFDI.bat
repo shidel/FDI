@@ -18,10 +18,17 @@ if not "%1" == "" goto %1
 
 echo FreeDOS install creator.
 
-:Tree
+:MakeTree
 if not exist %ODIR% mkdir %ODIR%
 if not exist %ODOS% mkdir %ODOS%
 if not exist %OBIN% mkdir %OBIN%
+if not exist %ODOS%\CPI mkdir %ODOS%\CPI
+if not exist %ODOS%\NLS mkdir %ODOS%\NLS
+if not exist %ODOS%\HELP mkdir %ODOS%\HELP
+if not exist %ODOS%\TEMP mkdir %ODOS%\TEMP
+if not "%1" == "" goto VeryEnd
+
+:CopyFDOS
 if not "%1" == "" goto VeryEnd
 
 :Done

@@ -1,18 +1,31 @@
 @echo off
 
-set OUT=FLOPPY
+set ODIR=FLOPPY
+set ODOS=%ODIR%\FreeDOS
 
-if not exist %OUT% goto Done
+if not exist %ODIR% goto Done
 
 echo Performing cleanup.
 
-if exist %OUT%\FreeDOS\BIN\NUL del %OUT%\FreeDOS\BIN\*.*
-if exist %OUT%\FreeDOS\BIN rmdir %OUT%\FreeDOS\BIN
+if exist %ODOS%\BIN\NUL del %ODOS%\BIN\*.*
+if exist %ODOS%\BIN rmdir %ODOS%\BIN
 
-if exist %OUT%\FreeDOS\NUL del %OUT%\FreeDOS\*.*
-if exist %OUT%\FreeDOS rmdir %OUT%\FreeDOS
+if exist %ODOS%\CPI\NUL del %ODOS%\CPI\*.*
+if exist %ODOS%\CPI rmdir %ODOS%\CPI
 
-if exist %OUT%\NUL del %OUT%\*.*
-if exist %OUT% rmdir %OUT%
+if exist %ODOS%\NLS\NUL del %ODOS%\NLS\*.*
+if exist %ODOS%\NLS rmdir %ODOS%\NLS
+
+if exist %ODOS%\HELP\NUL del %ODOS%\HELP\*.*
+if exist %ODOS%\HELP rmdir %ODOS%\HELP
+
+if exist %ODOS%\TEMP\NUL del %ODOS%\TEMP\*.*
+if exist %ODOS%\TEMP rmdir %ODOS%\TEMP
+
+if exist %ODOS%\NUL del %ODOS%\*.*
+if exist %ODOS% rmdir %ODOS%
+
+if exist %ODIR%\NUL del %ODIR%\*.*
+if exist %ODIR% rmdir %ODIR%
 
 :Done
