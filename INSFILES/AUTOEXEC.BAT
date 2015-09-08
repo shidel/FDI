@@ -47,5 +47,6 @@ CALL SETUP.BAT /CheckState
 vecho /n "Type " /fWhite HELP
 vecho /fGray " to get support on commands and navigation"
 vecho
-vecho /n "Welcome to the " /fCyan "FreeDOS 1.1"
-vecho /fGray " operating system (http://www.freedos.org)" /e
+vecho /n "Welcome to the " /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%"
+vecho /fGray " operating system (" /fYellow "http://www.freedos.org" /fGray ")" /e
+vecho

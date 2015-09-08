@@ -1,7 +1,7 @@
 @echo off
 
-set TITLE=FreeDOS
-set VERSION=1.2
+set OS_NAME=FreeDOS
+set OS_VERSION=1.2
 
 REM Test for Presence of V8Power Tools
 if errorlevel 255 goto ClearError
@@ -45,7 +45,7 @@ REM Draw the Title Bar
 vgotoxy /x1 /y1
 vcls /bGray /fBlack EOL
 vgotoxy /x30 /y1
-vecho /fBlack "%TITLE% " /fRed "%VERSION%" /fBlack " Installer"
+vecho /fBlack "%OS_NAME% " /fRed "%OS_VERSION%" /fBlack " Installer"
 
 REM Move cursor to end of the page, then column 1. You should use this
 REM method to prevent issues if the screen is not using 25 rows of text.
@@ -58,7 +58,7 @@ rem vcls /bGray /fBlack /c0 EOL
 vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
 vframe /bGray /fBlack /w58 /h10 /c /y7 single
 vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
-vecho "Welcome to the installation program for " /fRed "%TITLE% %VERSION%" /fBlack "."
+vecho "Welcome to the installation program for " /fRed "%OS_NAME% %OS_VERSION%" /fBlack "."
 vecho
 vecho "Do you wish to proceed?"
 vframe /w40 /h4 /c /y12 hidden
@@ -105,7 +105,7 @@ vcursor hide
 vcls /fGray /bBlue
 vcls /bGray /fBlack EOL
 vgotoxy /x30
-vecho /fBlack "%TITLE% " /fRed "%VERSION%" /fBlack " Installer"
+vecho /fBlack "%OS_NAME% " /fRed "%OS_VERSION%" /fBlack " Installer"
 vframe /bGray /fBlack /w60 /h11 /c /y7 hidden shadow
 vframe /bGray /fBlack /w58 /h11 /c /y7 single
 vframe /bGray /fBlack /w56 /h9 /c /y8 hidden
@@ -167,7 +167,7 @@ goto DoneBatch
 
 :AbortBatch
 vcls /fGray /bBlack
-vecho /fWhite /bRed " Installation of %TITLE% %VERSION% was aborted." /e /fGray
+vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho
 goto CleanUpBatch
 
