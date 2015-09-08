@@ -1,6 +1,6 @@
 @echo off
 
-set OUT=FLOPPY`
+set OUT=FLOPPY
 
 if not exist %OUT% goto Done
 
