@@ -5,8 +5,12 @@ set OS_NAME=FreeDOS
 set OS_VERSION=1.2
 
 REM Set other installer options. Cleared at exit.
+
 REM Drive C Formatting options.
 set FMTCOPTS=/Q /U
+
+REM Pause duration after Format and System file transfers.
+set PAUSING=30
 
 REM When booting /CheckStatus switch is provided. This way the installer knows
 REM it wasn't the user requesting the installer and the disk is being used
@@ -149,7 +153,7 @@ if errorlevel 2 goto AbortBatch
 
 vcls /fWhite /bBlue /y2 /h24
 vgotoxy down
-vecho /fYellow "Formatting Drive " /fLightRed C /fYellow "..."
+vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 
 REM **** Launch Formatting Program
 vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% %FMTCOPTS%
@@ -157,21 +161,21 @@ REM **** Returned from Formatting
 
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t 10
+vpause /fLightCyan /t %PAUSING%
 
 goto StartBatch
 
 :BeginInstall
 vcls /fWhite /bBlue /y2 /h24
 vgotoxy down down
-vecho /fYellow "Transferring " /fLightGreen %OS_NAME% /fYellow " boot files..."
+vecho /fGray "Transferring " /fLightGreen %OS_NAME% /fGray " boot files..."
 vecho
 
 REM sys C:
 
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t 10
+vpause /fLightCyan /t %PAUSING%
 vgotoxy eop sor
 vcls /fGray /bBlue eol
 
@@ -201,3 +205,4 @@ set EXIT_CURSOR=
 :DontDoAnything
 set SETP_TEST=
 set FMTCOPTS=
+set PAUSING=

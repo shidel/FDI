@@ -189,10 +189,75 @@ copy %IV8P%\%CPFILE% %OV8P%
 if errorlevel 1 goto ErrorCopy
 if not exist %OV8P%\%CPFILE% goto ErrorCopy
 
-set CPFILE=*.COM
+set CPFILE=VECHO.COM
 copy %IV8P%\%CPFILE% %OV8P%
 if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\VINFO.COM goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VCLS.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VPAUSE.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VGOTOXY.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VINFO.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VERRLVL.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VCHOICE.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VFRAME.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VLINE.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VCURSOR.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VPROGRES.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VSTR.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VVIEW.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
+
+set CPFILE=VVER.COM
+copy %IV8P%\%CPFILE% %OV8P%
+if errorlevel 1 goto ErrorCopy
+if not exist %OV8P%\%CPFILE% goto ErrorCopy
 
 echo.
 if not "%1" == "" goto VeryEnd
