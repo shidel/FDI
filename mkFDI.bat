@@ -128,6 +128,14 @@ echo.
 echo Finished.
 
 :VeryEnd
+set IDRV=
+set IDOS=
+set IINS=
+set IV8P=
+set ODRV=
+set ODIR=
+set ODOS=
+set OV8P=
 set COUNTER=
 set CPFILE=
 set CPLST=
