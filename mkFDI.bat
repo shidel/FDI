@@ -6,7 +6,6 @@ set VOLUMEID=FD-SETUP
 REM Source file input settings.
 set IDRV=C:
 set IDOS=%IDRV%\FDOS
-set IBIN=%IDOS%\BIN
 set IINS=INSFILES
 set IV8P=V8Power
 
@@ -14,10 +13,7 @@ REM Output to file system tree structure.
 set ODRV=A:
 set ODIR=%ODRV%
 set ODOS=%ODIR%\FreeDOS
-set OBIN=%ODOS%\BIN
 set OV8P=%ODOS%\V8Power
-
-if not "%1" == "" goto %1
 
 echo FreeDOS install creator.
 echo.
@@ -36,7 +32,7 @@ if errorlevel 1 goto Error
 
 :MakeTree
 if not exist %ODOS%\NUL mkdir %ODOS%
-if not exist %OBIN%\NUL mkdir %OBIN%
+if not exist %ODOS%\BIN\NUL mkdir %ODOS%\BIN
 if not exist %ODOS%\CPI\NUL mkdir %ODOS%\CPI
 if not exist %ODOS%\NLS\NUL mkdir %ODOS%\NLS
 if not exist %ODOS%\HELP\NUL mkdir %ODOS%\HELP
@@ -44,225 +40,48 @@ if not exist %ODOS%\TEMP\NUL mkdir %ODOS%\TEMP
 if not exist %OV8P%\NUL mkdir %OV8P%
 if not "%1" == "" goto VeryEnd
 
+goto CopyBIN
+
+:CopyList
+set COUNTER=0
+:CopyLoop
+type %IINS%\%CPLST% | V8Power\vstr /L %COUNTER% | set /p CPFILE=
+if "%CPFILE%" == "" goto %CPRET%
+copy %CPSRC%\%CPFILE% %CPDST%
+if errorlevel 1 goto ErrorCopy
+if not exist %CPDST%\%CPFILE% goto ErrorCopy
+V8power\vmath %COUNTER% + 1 | set /p COUNTER=
+goto CopyLoop
+
 :CopyBIN
-echo Copying basic FreeDOS binaries.
-
-set CPFILE=COMMAND.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=COUNTRY.SYS
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=DELTREE.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=DEVLOAD.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=DOSLFN.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDAPM.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDISK.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDISK.INI
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDISK131.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDISKPT.INI
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FORMAT.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=HIMEMX.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=JEMM386.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=JEMMEX.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=LBACACHE.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=MEM.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=MOUSE.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SHSUCDHD.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SHSUCDRD.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SHSUCDX.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SHSUFDRV.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SHSURDRV.EXE
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=SYS.COM
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=UIDE.SYS
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
-set CPFILE=XMGR.SYS
-copy %IBIN%\%CPFILE% %OBIN%
-if errorlevel 1 goto ErrorCopy
-if not exist %OBIN%\%CPFILE% goto ErrorCopy
-
 echo.
-if not "%1" == "" goto VeryEnd
+echo Copying basic FreeDOS binaries.
+set CPLST=FDBIN.lst
+set CPSRC=%IDOS%\BIN
+set CPDST=%ODOS%\BIN
+set CPRET=CopyHelp
+goto CopyList
+
+:CopyHelp
+echo.
+echo Copying some FreeDOS Help files.
+set CPLST=FDHELP.lst
+set CPSRC=%IDOS%\HELP
+set CPDST=%ODOS%\HELP
+set CPRET=CopyV8
+goto CopyList
 
 :CopyV8
-if not exist %IV8P%\NUL goto MissingV8
-echo Copying V8Power Tools.
-
-set CPFILE=LICENSE
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=V8POWER.TXT
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VECHO.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VCLS.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VPAUSE.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VGOTOXY.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VINFO.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VERRLVL.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VCHOICE.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VFRAME.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VLINE.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VCURSOR.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VPROGRES.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VSTR.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VVIEW.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
-set CPFILE=VVER.COM
-copy %IV8P%\%CPFILE% %OV8P%
-if errorlevel 1 goto ErrorCopy
-if not exist %OV8P%\%CPFILE% goto ErrorCopy
-
 echo.
-if not "%1" == "" goto VeryEnd
+echo Copying required V8Power Tools.
+set CPLST=V8Power.lst
+set CPSRC=%IV8P%
+set CPDST=%OV8P%
+set CPRET=CopyCFG
+goto CopyList
 
 :CopyCFG
+echo.
 echo Copying config files.
 
 set CPFILE=AUTOEXEC.BAT
@@ -275,19 +94,14 @@ copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
-echo.
-if not "%1" == "" goto VeryEnd
-
 :CopyINS
+echo.
 echo Copying setup installer files.
 
 set CPFILE=SETUP.BAT
 copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
-
-echo.
-if not "%1" == "" goto VeryEnd
 
 goto Done
 
@@ -310,6 +124,13 @@ echo Aborted.
 goto VeryEnd
 
 :Done
+echo.
 echo Finished.
 
 :VeryEnd
+set COUNTER=
+set CPFILE=
+set CPLST=
+set CPSRC=
+set CPDST=
+set CPRET=

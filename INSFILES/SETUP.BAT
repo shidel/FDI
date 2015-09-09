@@ -93,7 +93,7 @@ if errorlevel 2 goto WrongTypeDrive
 
 REM We are OK.
 
-goto BeginInstall
+goto FindSourceMedia
 
 :NoSuchDrive
 :WrongTypeDrive
@@ -164,6 +164,12 @@ vecho /n /fLightGreen "Press a key... " /e
 vpause /fLightCyan /t %PAUSING%
 
 goto StartBatch
+
+:FindSourceMedia
+
+:AcceptLicense
+
+:MakeBackup
 
 :BeginInstall
 vcls /fWhite /bBlue /y2 /h24
