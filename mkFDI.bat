@@ -29,7 +29,7 @@ V8Power\verrlvl 0
 %IDRV%
 pause Press a key to Format disk in drive %ODRV%
 echo.
-vstr /c89/c69/c83/c13/c78/c13 | format %ODRV% /V:%VOLUMEID% /U
+V8Power\vstr /c13/c78/c13 | format %ODRV% /V:%VOLUMEID% /U
 if errorlevel 1 goto Error
 sys a:
 if errorlevel 1 goto Error

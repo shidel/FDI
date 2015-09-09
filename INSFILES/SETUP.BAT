@@ -1,8 +1,12 @@
 @echo off
 
-REM Set Operating System Title and Version for installer.
+REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
 set OS_VERSION=1.2
+
+REM Set other installer options. Cleared at exit.
+REM Drive C Formatting options.
+set FMTCOPTS=/Q /U
 
 REM When booting /CheckStatus switch is provided. This way the installer knows
 REM it wasn't the user requesting the installer and the disk is being used
@@ -143,17 +147,15 @@ vchoice /fYellow /bBlue /d 2
 
 if errorlevel 2 goto AbortBatch
 
-REM vcls /a0x07
-REM vcursor %EXIT_CURSOR%
 vcls /fWhite /bBlue /y2 /h24
-vgotoxy down down
+vgotoxy down
+vecho /fYellow "Formatting Drive " /fLightRed C /fYellow "..."
 
 REM **** Launch Formatting Program
-vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% /U
+vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% %FMTCOPTS%
 REM **** Returned from Formatting
 
-REM vcursor hide
-
+vecho
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... "
 vpause /fLightCyan /t 10
@@ -166,8 +168,8 @@ goto StartBatch
 
 :BeginInstall
 vcls /fWhite /bBlue /y2 /h24
-vgotoxy down down down
-vecho /fYellow "Transferring system boot files..."
+vgotoxy down down
+vecho /fYellow "Transferring " /fLightGreen %OS_NAME% /fYellow " boot files..."
 vecho
 
 REM sys C:
@@ -203,3 +205,4 @@ set EXIT_CURSOR=
 
 :DontDoAnything
 set SETP_TEST=
+set FMTCOPTS=
