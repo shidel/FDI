@@ -19,7 +19,10 @@ REM NOTE: This test may be moved to somewhere after the V8Present label.
 if not "%1" == "/CheckStatus" goto SkipChecking
 
 REM **** Check if it is already installed ****
+REM Test should "set FDINSSTATUS=INSTALLED" if the OS is installed.
 REM **** End of checking ****
+
+if "%FDINSSTATUS%" == "INSTALLED" goto DontDoAnything
 
 :SkipChecking
 
@@ -155,9 +158,9 @@ vcls /fWhite /bBlue /y2 /h24
 vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 
-REM **** Launch Formatting Program
+REM **** Launch Formatting Program ****
 vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% %FMTCOPTS%
-REM **** Returned from Formatting
+REM **** Returned from Formatting ****
 
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
@@ -177,7 +180,9 @@ vgotoxy down down
 vecho /fGray "Transferring " /fLightGreen %OS_NAME% /fGray " boot files..."
 vecho
 
+REM **** Launch transfer system files ****
 REM sys C:
+REM **** Returned from transfering system files ****
 
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
@@ -209,6 +214,7 @@ vcursor %EXIT_CURSOR%
 set EXIT_CURSOR=
 
 :DontDoAnything
+set FDINSSTATUS=
 set SETP_TEST=
 set FMTCOPTS=
 set PAUSING=
