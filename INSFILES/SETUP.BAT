@@ -143,14 +143,25 @@ vchoice /fYellow /bBlue /d 2
 
 if errorlevel 2 goto AbortBatch
 
-vcls /a0x07
-vcursor %EXIT_CURSOR%
+REM vcls /a0x07
+REM vcursor %EXIT_CURSOR%
+vcls /fWhite /bBlue /y2 /h24
+vgotoxy down down
 
 REM **** Launch Formatting Program
 vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% /U
 REM **** Returned from Formatting
 
-vcursor hide
+REM vcursor hide
+
+vgotoxy eop sor
+vecho /n /fLightGreen "Press a key... "
+vpause /fLightCyan /t 10
+vgotoxy eop sor
+vcls /fGray /bBlue eol
+
+vcls /fGray /bBlue /y2 /h24
+
 goto StartBatch
 
 :BeginInstall
@@ -164,6 +175,8 @@ REM sys C:
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... "
 vpause /fLightCyan /t 10
+vgotoxy eop sor
+vcls /fGray /bBlue eol
 
 vcls /fGray /bBlue /y2 /h24
 
