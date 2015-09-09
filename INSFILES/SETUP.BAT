@@ -155,14 +155,9 @@ REM **** Launch Formatting Program
 vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% %FMTCOPTS%
 REM **** Returned from Formatting
 
-vecho
 vgotoxy eop sor
-vecho /n /fLightGreen "Press a key... "
+vecho /n /fLightGreen "Press a key... " /e
 vpause /fLightCyan /t 10
-vgotoxy eop sor
-vcls /fGray /bBlue eol
-
-vcls /fGray /bBlue /y2 /h24
 
 goto StartBatch
 
@@ -175,7 +170,7 @@ vecho
 REM sys C:
 
 vgotoxy eop sor
-vecho /n /fLightGreen "Press a key... "
+vecho /n /fLightGreen "Press a key... " /e
 vpause /fLightCyan /t 10
 vgotoxy eop sor
 vcls /fGray /bBlue eol
