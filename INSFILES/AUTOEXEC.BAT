@@ -42,7 +42,7 @@ vecho "Done processing startup files %cfgfile% and %0"
 
 CALL SETUP.BAT /CheckStatus
 
-vecho /n "Type " /fWhite HELP /fGray " to get support on commands and navigation"
+vecho "Type " /fWhite HELP /fGray " to get support on commands and navigation"
 vecho
 vecho /n "Welcome to the " /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%"
 vecho /fGray " operating system (" /fYellow "http://www.freedos.org" /fGray ")" /e

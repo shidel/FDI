@@ -172,7 +172,12 @@ vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
 vpause /fLightCyan /t %PAUSING%
 
-goto StartBatch
+vinfo /dC
+
+REM **** May want to say, we still cannot read C and offer to reboot. ****
+if errorlevel 2 goto StartBatch
+
+goto FindSourceMedia
 
 :FindSourceMedia
 
