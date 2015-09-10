@@ -3,6 +3,7 @@
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
 set OS_VERSION=1.2
+set VOL_NAME=FreeDOS2015
 
 REM Set other installer options. Cleared at exit.
 
@@ -16,7 +17,7 @@ REM When booting /CheckStatus switch is provided. This way the installer knows
 REM it wasn't the user requesting the installer and the disk is being used
 REM for recovery or booting.
 REM NOTE: This test may be moved to somewhere after the V8Present label.
-if not "%1" == "/CheckStatus" goto SkipChecking
+if not "%1" == "/CheckStatus" goto SkipCheckingStatus
 
 REM **** Check if it is already installed ****
 REM Test should "set FDINSSTATUS=INSTALLED" if the OS is installed.
@@ -24,7 +25,7 @@ REM **** End of checking ****
 
 if "%FDINSSTATUS%" == "INSTALLED" goto DontDoAnything
 
-:SkipChecking
+:SkipCheckingStatus
 
 REM Test for Presence of V8Power Tools
 if errorlevel 255 goto ClearError
@@ -47,15 +48,17 @@ verrlvl 0
 REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
 REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
 REM later versions of Windows DOS support it.
-set SETP_TEST=failed
-echo. | set /p SETP_TEST=
-if "%SETP_TEST%" == "failed" goto NoSetPSupport
-echo YES| set /p SETP_TEST=
-if not "%SETP_TEST%" == "YES" goto NoSetPSupport
+
+set PIPES_OK=NO
+if "%TEMP%" == "" goto NoPipeSupport
+echo. | set /p PIPES_OK=
+if "%PIPES_OK%" == "NO" goto NoPipeSupport
+echo YES| set /p PIPES_OK=
+if not "%PIPES_OK%" == "YES" goto NoPipeSupport
 vcursor | set /p EXIT_CURSOR=
 goto StartBatch
 
-:NoSetPSupport
+:NoPipeSupport
 set EXIT_CURSOR=small
 
 REM **** Start of the installer ****
@@ -159,7 +162,14 @@ vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 
 REM **** Launch Formatting Program ****
-vstr /c89/c69/c83/c13 | format C: /V:%OS_NAME% %FMTCOPTS%
+if "%PIPES_OK%" == "NO" goto NoPipeFormat
+vstr /c89/c69/c83/c13 | format C: /V:%VOL_NAME% %FMTCOPTS%
+goto FormatDone
+:NoPipeFormat
+vcursor %EXIT_CURSOR%
+format C: /V:%VOL_NAME% %FMTCOPTS%
+vcursor hide
+:FormatDone
 REM **** Returned from Formatting ****
 
 vgotoxy eop sor
@@ -215,6 +225,7 @@ set EXIT_CURSOR=
 
 :DontDoAnything
 set FDINSSTATUS=
-set SETP_TEST=
+set VOL_NAME=
+set PIPES_OK=
 set FMTCOPTS=
 set PAUSING=
