@@ -2,13 +2,13 @@
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
-set OS_VERSION=1.2
+set OS_VERSION=1.1a
 set VOL_NAME=FreeDOS2015
 
 REM Set other installer options. Cleared at exit.
 
 REM Drive C Formatting options.
-set FMTCOPTS=/Q /U
+set FMTCOPTS=/Q /U /Z:seriously
 
 REM Pause duration after Format and System file transfers.
 set PAUSING=30
@@ -160,18 +160,14 @@ if errorlevel 2 goto AbortBatch
 vcls /fWhite /bBlue /y2 /h24
 vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
+vecho
+vcursor %EXIT_CURSOR%
 
 REM **** Launch Formatting Program ****
-if "%PIPES_OK%" == "NO" goto NoPipeFormat
-vstr /c89/c69/c83/c13 | format C: /V:%VOL_NAME% %FMTCOPTS%
-goto FormatDone
-:NoPipeFormat
-vcursor %EXIT_CURSOR%
 format C: /V:%VOL_NAME% %FMTCOPTS%
-vcursor hide
-:FormatDone
 REM **** Returned from Formatting ****
 
+vcursor hide
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
 vpause /fLightCyan /t %PAUSING%
