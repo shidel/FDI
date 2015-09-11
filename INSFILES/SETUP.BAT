@@ -13,20 +13,6 @@ set FMTCOPTS=/Q /U /Z:seriously
 REM Pause duration after Format and System file transfers.
 set PAUSING=30
 
-REM When booting /CheckStatus switch is provided. This way the installer knows
-REM it wasn't the user requesting the installer and the disk is being used
-REM for recovery or booting.
-REM NOTE: This test may be moved to somewhere after the V8Present label.
-if not "%1" == "/CheckStatus" goto SkipCheckingStatus
-
-REM **** Check if it is already installed ****
-REM Test should "set FDINSSTATUS=INSTALLED" if the OS is installed.
-REM **** End of checking ****
-
-if "%FDINSSTATUS%" == "INSTALLED" goto DontDoAnything
-
-:SkipCheckingStatus
-
 REM Test for Presence of V8Power Tools
 if errorlevel 255 goto ClearError
 
@@ -44,6 +30,19 @@ if errorlevel 1 goto V8Missing
 
 :V8Present
 verrlvl 0
+
+REM When booting /CheckStatus switch is provided. This way the installer knows
+REM it wasn't the user requesting the installer and the disk is being used
+REM for recovery or booting.
+if not "%1" == "/CheckStatus" goto SkipCheckingStatus
+
+REM **** Check if it is already installed ****
+REM Test should "set FDINSSTATUS=INSTALLED" if the OS is installed.
+REM **** End of checking ****
+
+if "%FDINSSTATUS%" == "INSTALLED" goto DontDoAnything
+
+:SkipCheckingStatus
 
 REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
 REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
@@ -103,6 +102,9 @@ goto FindSourceMedia
 
 :NoSuchDrive
 :WrongTypeDrive
+vcls /fGray /bBlue /y2 /h24
+vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
+vframe /bGray /fBlack /w58 /h10 /c /y7 single
 vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
 vecho "Drive " /fRed C /fBlack " does not appear to be partitioned."
 vecho
@@ -146,6 +148,9 @@ reboot
 goto AbortBatch
 
 :NotFormatted
+vcls /fGray /bBlue /y2 /h24
+vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
+vframe /bGray /fBlack /w58 /h10 /c /y7 single
 vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
 vecho "Drive " /fRed C /fBlack " does not appear to be formatted."
 vecho
@@ -180,6 +185,7 @@ if errorlevel 2 goto StartBatch
 goto FindSourceMedia
 
 :FindSourceMedia
+vcls /fGray /bBlue /y2 /h24
 
 :AcceptLicense
 
