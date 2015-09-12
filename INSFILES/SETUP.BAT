@@ -62,6 +62,7 @@ set EXIT_CURSOR=small
 
 REM **** Start of the installer ****
 :StartBatch
+set ReturnFromC=StartBatch
 vcursor hide
 
 REM Clear entire screen.
@@ -83,8 +84,9 @@ vecho "Do you wish to proceed?"
 vframe /w40 /h4 /c /y12 hidden
 vecho /fGreen "  Yes " /fBlack "- Continue with Installation"
 vecho /fRed "  No  " /fBlack "- Return to DOS" /n
-vchoice /fYellow /bBlue
+vchoice /fYellow /bBlue Ctrl-C
 
+if errorlevel 200 goto ControlCPress
 if errorlevel 2 goto DoNotInstall
 
 vinfo /dC
@@ -102,6 +104,7 @@ goto FindSourceMedia
 
 :NoSuchDrive
 :WrongTypeDrive
+set ReturnFromC=WrongTypeDrive
 vcls /fGray /bBlue /y2 /h24
 vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
 vframe /bGray /fBlack /w58 /h10 /c /y7 single
@@ -112,8 +115,9 @@ vecho "Do you wish to partition your drive?"
 vframe /w40 /h4 /c /y12 hidden
 vecho /fGreen "  Yes " /fBlack "- Launch Partitioner."
 vecho /fRed "  No  " /fBlack "- Return to DOS" /n
-vchoice /fYellow /bBlue /d 2
+vchoice /fYellow /bBlue /d 2 Ctrl-C
 
+if errorlevel 200 goto ControlCPress
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
@@ -124,6 +128,9 @@ fdisk 1
 REM **** Returned from Partitioning ****
 
 vcursor hide
+:AfterPartitioned
+set ReturnFromC=AfterPartitioned
+
 vcls /fGray /bBlue
 vcls /bGray /fBlack EOL
 vgotoxy /x30
@@ -138,8 +145,9 @@ vecho "Do you wish to reboot now?"
 vframe /w40 /h4 /c /y13 hidden
 vecho /fGreen "  Yes " /fBlack "- Please reboot now."
 vecho /fRed "  No  " /fBlack "- Return to DOS" /n
-vchoice /fYellow /bBlue
+vchoice /fYellow /bBlue Ctrl-C
 
+if errorlevel 200 goto ControlCPress
 if errorlevel 2 goto AbortBatch
 vcls /a0x07
 vecho "The computer will now reboot."
@@ -148,6 +156,7 @@ reboot
 goto AbortBatch
 
 :NotFormatted
+set ReturnFromC=NotFormatted
 vcls /fGray /bBlue /y2 /h24
 vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
 vframe /bGray /fBlack /w58 /h10 /c /y7 single
@@ -158,8 +167,9 @@ vecho "Do you wish to format your drive?"
 vframe /w44 /h4 /c /y12 hidden
 vecho /fGreen "  Yes " /fBlack "- Please erase and format drive C."
 vecho /fRed "  No  " /fBlack "- Return to DOS" /n
-vchoice /fYellow /bBlue /d 2
+vchoice /fYellow /bBlue /d 2 Ctrl-C
 
+if errorlevel 200 goto ControlCPress
 if errorlevel 2 goto AbortBatch
 
 vcls /fWhite /bBlue /y2 /h24
@@ -172,11 +182,15 @@ REM **** Launch Formatting Program ****
 format C: /V:%VOL_NAME% %FMTCOPTS%
 REM **** Returned from Formatting ****
 
+set ReturnFromC=AfterFormat
 vcursor hide
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t %PAUSING%
+vpause /fLightCyan /t %PAUSING% CTRL-C
 
+if errorlevel 200 goto ControlCPress
+
+:AfterFormat
 vinfo /dC
 
 REM **** May want to say, we still cannot read C and offer to reboot. ****
@@ -201,9 +215,13 @@ REM **** Launch transfer system files ****
 REM sys C:
 REM **** Returned from transfering system files ****
 
+set ReturnFromC=AfterSysXfer
 vgotoxy eop sor
 vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t %PAUSING%
+vpause /fLightCyan /t %PAUSING% CTRL-C
+if errorlevel 200 goto ControlCPress
+
+:AfterSysXfer
 vgotoxy eop sor
 vcls /fGray /bBlue eol
 
@@ -212,6 +230,24 @@ vcls /fGray /bBlue /y2 /h24
 goto DoneBatch
 
 :DoNotInstall
+
+goto AbortBatch
+
+:ControlCPress
+vcls /fGray /bBlue /y2 /h24
+vframe /bRed /fWhite /w60 /h10 /c /y7 hidden shadow
+vframe /bRed /fWhite /w58 /h10 /c /y7 single
+vframe /bRed /fWhite /w56 /h8 /c /y8 hidden
+vecho "You have pressed " /fYellow "CTRL-C" /fWhite "."
+vecho
+vecho "Are you sure you wish to abort the installation?"
+vframe /w44 /h4 /c /y12 hidden
+vecho /fLightMagenta "  Yes " /fGray "- Please return to DOS."
+vecho /fLightGreen "  No  " /fGray "- I want to continue." /n
+vchoice /fYellow /bBlue /d 2 Ctrl-C
+
+if errorlevel 200 goto AbortBatch
+if errorlevel 2 goto %ReturnFromC%
 
 :AbortBatch
 vcls /fGray /bBlack
@@ -236,3 +272,4 @@ set VOL_NAME=
 set PIPES_OK=
 set FMTCOPTS=
 set PAUSING=
+set ReturnFromC=
