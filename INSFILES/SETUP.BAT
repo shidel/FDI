@@ -11,7 +11,7 @@ REM Drive C Formatting options.
 set FMTCOPTS=/Q /U /Z:seriously
 
 REM Pause duration after Format and System file transfers.
-set PAUSING=30
+set PAUSING=15
 
 REM Flag for remembering if drive was formatted.
 set WASFORMATED=NO
@@ -221,6 +221,12 @@ if exist C:\CONFIG.SYS goto QueryBackup
 if exist C:\FDCONFIG.SYS goto QueryBackup
 if exist C:\KERNEL.SYS goto QueryBackup
 if exist C:\COMMAND.COM goto QueryBackup
+if exist C:\DRDOS.386 goto QueryBackup
+if exist C:\WINA20.386 goto QueryBackup
+if exist C:\IBMBIO.COM goto QueryBackup
+if exist C:\IBMDOS.COM goto QueryBackup
+if exist C:\IO.SYS copy goto QueryBackup
+if exist C:\MSDOS.SYS goto QueryBackup
 if exist C:\FDOS\NUL goto QueryBackup
 goto SkipBackup
 
@@ -240,6 +246,62 @@ vchoice /fYellow /bBlue /d 1 Ctrl-C
 
 if errorlevel 200 goto ControlCPress
 if errorlevel 2 goto SkipBackup
+
+vcls /fGray /bBlue /y2 /h24
+vframe /bGray /fBlack /w60 /h8 /c /y7 hidden shadow
+vframe /bGray /fBlack /w58 /h8 /c /y7 single
+vframe /bGray /fBlack /w56 /h6 /c /y8 hidden
+vecho /n "Creating backup"
+vgotoxy /l eop sor
+vprogres /fBlack 0
+if not exist C:\FDBACKUP\NUL mkdir C:\FDBACKUP
+
+set BFILE=0
+:SetBFile
+if not exist C:\FDBACKUP\FDBAK%BFILE%.zip goto GoodBFile
+vmath %BFILE% + 1 | set /p BFILE=
+if not "%BFILE%" == "1000" goto SetBFile
+ERRORMSG="Too many backup files in '" /fWhite "C:\FDBACKUP\" /fGray "'".
+goto AbortBatch
+
+:GoodBFile
+set BLIST=C:\FDBACKUP\FDBAK%BFILE%.lst
+if exist %BLIST" goto SetBFile
+set BFILE=C:\FDBACKUP\FDBAK%BFILE%.zip
+date /d >%BLIST%
+vgotoxy /l sop eol right right
+vecho /n "'" /fBlue "%BFILE%" /fWhite "'"
+vgotoxy /l eop sor
+vprogres /fBlack 5
+
+if exist C:\FDAUTO.BAT echo C:\FDAUTO.BAT >>%BLIST%
+if exist C:\AUTOEXEC.BAT echo C:\AUTOEXEC.BAT >>%BLIST%
+if exist C:\CONFIG.SYS echo C:\CONFIG.SYS >>%BLIST%
+if exist C:\FDCONFIG.SYS echo C:\FDCONFIG.SYS >>%BLIST%
+if exist C:\KERNEL.SYS echo C:\KERNEL.SYS >>%BLIST%
+if exist C:\COMMAND.COM echo C:\COMMAND.COM >>%BLIST%
+
+REM EXTRAS
+if exist C:\DRDOS.386 echo C:\DRDOS.386 >>%BLIST%
+if exist C:\WINA20.386 echo C:\WINA20.386 >>%BLIST%
+if exist C:\IBMBIO.COM echo C:\IBMBIO.COM >>%BLIST%
+if exist C:\IBMDOS.COM echo C:\IBMDOS.COM >>%BLIST%
+if exist C:\IO.SYS echo C:\IO.SYS >>%BLIST%
+if exist C:\MSDOS.SYS echo C:\MSDOS.SYS >>%BLIST%
+
+vprogres /fBlack 10
+rem zip -q -9 -S -u -b %FDITEMP% %BFILE% C:\FDAUTO.BAT
+
+if not exist C:\FDOS\NUL goto BackupRun
+:BackupRun
+
+:BackupComplete
+vprogres /fBlack 100
+vdelay 1000
+set BLIST=
+set BFILE=
+
+vcls /fGray /bBlue /y2 /h24
 
 :SkipBackup
 
@@ -299,6 +361,8 @@ if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
 vcls /fGray /bBlack
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho
+if not "%ERRORMSG%" == "" vecho %ERRORMSG%
+if not "%ERRORMSG%" == "" vecho
 goto CleanUpBatch
 
 :DoneBatch
@@ -326,4 +390,7 @@ set FMTCOPTS=
 set PAUSING=
 set WASFORMATED=
 set FDITEMP=
+set BLIST=
+set BFILE=
+set ERRORMSG=
 set ReturnFromC=
