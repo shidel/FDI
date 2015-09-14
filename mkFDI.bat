@@ -12,7 +12,7 @@ set IV8P=V8Power
 REM Output to file system tree structure.
 set ODRV=A:
 set ODIR=%ODRV%
-set ODOS=%ODIR%\FreeDOS
+set ODOS=%ODIR%\FDSetup
 set OV8P=%ODOS%\V8Power
 
 echo FreeDOS install creator.

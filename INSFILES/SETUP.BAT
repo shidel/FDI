@@ -13,6 +13,9 @@ set FMTCOPTS=/Q /U /Z:seriously
 REM Pause duration after Format and System file transfers.
 set PAUSING=30
 
+REM Flag for remembering if drive was formatted.
+set WASFORMATED=NO
+
 REM Test for Presence of V8Power Tools
 if errorlevel 255 goto ClearError
 
@@ -100,7 +103,7 @@ if errorlevel 2 goto WrongTypeDrive
 
 REM We are OK.
 
-goto FindSourceMedia
+goto PrepForInstall
 
 :NoSuchDrive
 :WrongTypeDrive
@@ -182,6 +185,7 @@ REM **** Launch Formatting Program ****
 format C: /V:%VOL_NAME% %FMTCOPTS%
 REM **** Returned from Formatting ****
 
+set WASFORMATED=YES
 set ReturnFromC=AfterFormat
 vcursor hide
 vgotoxy eop sor
@@ -196,12 +200,24 @@ vinfo /dC
 REM **** May want to say, we still cannot read C and offer to reboot. ****
 if errorlevel 2 goto StartBatch
 
-goto FindSourceMedia
+goto PrepForInstall
+
+:PrepForInstall
+set FDITEMP=%TEMP%
+if "%FDITEMP%" == "" goto MakeTempDir
+if not exist "%FDITEMP%\NUL" MakeTempDir
+goto HaveTempDir
+
+:MakeTempDir
+set FDITEMP=C:\FDI-TEMP
+if exist "%FDITEMP%\NUL" set FDITEMP=C:\TEMP
+if not exist "%FDITEMP%\NUL" mkdir "%FDITEMP%
+
+:HaveTempDir
+if "%TEMP%" == "" set TEMP=%FDITEMP%
 
 :FindSourceMedia
 vcls /fGray /bBlue /y2 /h24
-
-:AcceptLicense
 
 :MakeBackup
 
@@ -256,6 +272,12 @@ vecho
 goto CleanUpBatch
 
 :DoneBatch
+if "%FDITEMP%" == "C:\FDI-TEMP" deltree -Y "%FDITEMP%\" >NUL
+if "%FDITEMP%" == "C:\FDI-TEMP" rmdir "%FDITEMP%"
+if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
+if not exist "%TEMP%\NUL" mkdir "%TEMP%
+set TMP=%TEMP%
+
 vecho /n "Press a key... "
 vpause /t 10
 vcls /fGray /bBlack
@@ -272,4 +294,6 @@ set VOL_NAME=
 set PIPES_OK=
 set FMTCOPTS=
 set PAUSING=
+set WASFORMATED=
+set FDITEMP=
 set ReturnFromC=
