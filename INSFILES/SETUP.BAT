@@ -94,14 +94,12 @@ if errorlevel 2 goto DoNotInstall
 
 vinfo /dC
 
-REM verrlvl 5
-
 if errorlevel 100 goto AbortBatch
 if errorlevel 15 goto NoSuchDrive
 if errorlevel 5 goto NotFormatted
 if errorlevel 2 goto WrongTypeDrive
 
-REM We are OK.
+REM Drive C is OK.
 
 goto PrepForInstall
 
@@ -205,16 +203,45 @@ goto PrepForInstall
 :PrepForInstall
 set FDITEMP=%TEMP%
 if "%FDITEMP%" == "" goto MakeTempDir
-if not exist "%FDITEMP%\NUL" MakeTempDir
+if not exist %FDITEMP%\NUL MakeTempDir
 goto HaveTempDir
 
 :MakeTempDir
 set FDITEMP=C:\FDI-TEMP
-if exist "%FDITEMP%\NUL" set FDITEMP=C:\TEMP
-if not exist "%FDITEMP%\NUL" mkdir "%FDITEMP%
+if exist %FDITEMP%\NUL set FDITEMP=C:\TEMP
+if not exist %FDITEMP%\NUL mkdir "%FDITEMP%
 
 :HaveTempDir
 if "%TEMP%" == "" set TEMP=%FDITEMP%
+
+if "%WASFORMATED%" == "YES" goto SkipBackup
+if exist C:\FDAUTO.BAT goto QueryBackup
+if exist C:\AUTOEXEC.BAT goto QueryBackup
+if exist C:\CONFIG.SYS goto QueryBackup
+if exist C:\FDCONFIG.SYS goto QueryBackup
+if exist C:\KERNEL.SYS goto QueryBackup
+if exist C:\COMMAND.COM goto QueryBackup
+if exist C:\FDOS\NUL goto QueryBackup
+goto SkipBackup
+
+:QueryBackup
+set ReturnFromC=QueryBackup
+vcls /fGray /bBlue /y2 /h24
+vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
+vframe /bGray /fBlack /w58 /h10 /c /y7 single
+vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
+vecho "A previous operating system was detected on drive " /fRed C /fBlack "."
+vecho
+vecho "Do you wish to backup the old files?"
+vframe /w44 /h4 /c /y12 hidden
+vecho /fGreen "  Yes " /fBlack "- Please backup first."
+vecho /fRed "  No  " /fBlack "- Install without backing up." /n
+vchoice /fYellow /bBlue /d 1 Ctrl-C
+
+if errorlevel 200 goto ControlCPress
+if errorlevel 2 goto SkipBackup
+
+:SkipBackup
 
 :FindSourceMedia
 vcls /fGray /bBlue /y2 /h24
@@ -228,7 +255,7 @@ vecho /fGray "Transferring " /fLightGreen %OS_NAME% /fGray " boot files..."
 vecho
 
 REM **** Launch transfer system files ****
-REM sys C:
+sys C:
 REM **** Returned from transfering system files ****
 
 set ReturnFromC=AfterSysXfer
@@ -266,6 +293,9 @@ if errorlevel 200 goto AbortBatch
 if errorlevel 2 goto %ReturnFromC%
 
 :AbortBatch
+if "%FDITEMP%" == "C:\FDI-TEMP" deltree -Y "%FDITEMP%\" >NUL
+if "%FDITEMP%" == "C:\FDI-TEMP" rmdir "%FDITEMP%"
+if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
 vcls /fGray /bBlack
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho
@@ -275,7 +305,7 @@ goto CleanUpBatch
 if "%FDITEMP%" == "C:\FDI-TEMP" deltree -Y "%FDITEMP%\" >NUL
 if "%FDITEMP%" == "C:\FDI-TEMP" rmdir "%FDITEMP%"
 if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
-if not exist "%TEMP%\NUL" mkdir "%TEMP%
+if not exist %TEMP%\NUL mkdir "%TEMP%
 set TMP=%TEMP%
 
 vecho /n "Press a key... "
