@@ -13,6 +13,9 @@ set FMTCOPTS=/Q /U /Z:seriously
 REM Pause duration after Format and System file transfers.
 set PAUSING=15
 
+REM Default Temp Directory.
+set FDTEMP=C:\FDTEMP
+
 REM Flag for remembering if drive was formatted.
 set WASFORMATED=NO
 
@@ -201,18 +204,9 @@ if errorlevel 2 goto StartBatch
 goto PrepForInstall
 
 :PrepForInstall
-set FDITEMP=%TEMP%
-if "%FDITEMP%" == "" goto MakeTempDir
-if not exist %FDITEMP%\NUL MakeTempDir
-goto HaveTempDir
-
-:MakeTempDir
-set FDITEMP=C:\FDI-TEMP
-if exist %FDITEMP%\NUL set FDITEMP=C:\TEMP
-if not exist %FDITEMP%\NUL mkdir "%FDITEMP%
-
-:HaveTempDir
-if "%TEMP%" == "" set TEMP=%FDITEMP%
+if "%TEMP%" == "" set TEMP=%FDTEMP%
+if "%TMP%" == "" set TEMP=%TEMP%
+if not exist %TEMP%\NUL mkdir "%TEMP%
 
 if "%WASFORMATED%" == "YES" goto SkipBackup
 if exist C:\FDAUTO.BAT goto QueryBackup
@@ -355,9 +349,6 @@ if errorlevel 200 goto AbortBatch
 if errorlevel 2 goto %ReturnFromC%
 
 :AbortBatch
-if "%FDITEMP%" == "C:\FDI-TEMP" deltree -Y "%FDITEMP%\" >NUL
-if "%FDITEMP%" == "C:\FDI-TEMP" rmdir "%FDITEMP%"
-if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
 vcls /fGray /bBlack
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho
@@ -366,11 +357,6 @@ if not "%ERRORMSG%" == "" vecho
 goto CleanUpBatch
 
 :DoneBatch
-if "%FDITEMP%" == "C:\FDI-TEMP" deltree -Y "%FDITEMP%\" >NUL
-if "%FDITEMP%" == "C:\FDI-TEMP" rmdir "%FDITEMP%"
-if "%TEMP%" == "C:\FDI-TEMP" set TEMP=C:\TEMP
-if not exist %TEMP%\NUL mkdir "%TEMP%
-set TMP=%TEMP%
 
 vecho /n "Press a key... "
 vpause /t 10
@@ -383,13 +369,13 @@ vcursor %EXIT_CURSOR%
 set EXIT_CURSOR=
 
 :DontDoAnything
+set FDTEMP=
 set FDINSSTATUS=
 set VOL_NAME=
 set PIPES_OK=
 set FMTCOPTS=
 set PAUSING=
 set WASFORMATED=
-set FDITEMP=
 set BLIST=
 set BFILE=
 set ERRORMSG=
