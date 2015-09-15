@@ -263,7 +263,8 @@ goto AbortBatch
 set BLIST=C:\FDBACKUP\FDBAK%BFILE%.LST
 if exist %BLIST% goto IncBFile
 set BFILE=C:\FDBACKUP\FDBAK%BFILE%.ZIP
-echo %BLIST% >%BLIST%
+date /d >%BLIST%
+echo %BLIST% >>%BLIST%
 vgotoxy /l sop eol right right
 vecho /n "'" /fBlue "%BFILE%" /fBlack "'"
 vgotoxy /l eop sor
@@ -285,13 +286,41 @@ if exist C:\IO.SYS echo C:\IO.SYS >>%BLIST%
 if exist C:\MSDOS.SYS echo C:\MSDOS.SYS >>%BLIST%
 
 vprogres /fBlack 10
-rem zip -q -9 -S -u -b %FDITEMP% %BFILE% C:\FDAUTO.BAT
 
 if not exist C:\FDOS\NUL goto BackupRun
+dir /A /B /P- C:\FDOS\*.* >> %BLIST%
+
 :BackupRun
+type %BLIST% | vstr /L TOTAL | set /p FDBAKMAX=
+set FDBAKLINE=1
+
+:BackupLoop
+REM vmath processes only from left to right!!!!!
+vmath %FDBAKLINE% mul 90 div %FDBAKMAX% + 10 | set /p FDBAKPER=
+
+vgotoxy /l eop sor
+vprogres /fBlack %FDBAKPER%
+
+type %BLIST% | vstr /L %FDBAKLINE% | set /p FDBAKFILE=
+
+REM kind of a kludge, but i still need to do string/line prefixing in vstr
+if exist C:\FDOS\%FDBAKFILE%\NUL set FDBAKFILE=C:\FDOS\%FDBAKFILE%
+if exist C:\FDOS\%FDBAKFILE% set FDBAKFILE=C:\FDOS\%FDBAKFILE%
+
+zip -q -9 -S -u -r -b %TEMP% %BFILE% %FDBAKFILE%
+
+if "%FDBAKLINE%" == "%FDBAKMAX%" goto BackupComplete
+vmath %FDBAKLINE% + 1 | set /p FDBAKLINE=
+goto BackupLoop
 
 :BackupComplete
-vprogres /fBlack 100
+if exist %BLIST% del %BLIST%
+set FDBAKMAX=
+set FDBAKFILE=
+set FDBAKPER=
+set FDBAKLINE=
+vgotoxy /l eop sor
+vecho /n /fBlack "Backup complete." /e
 vdelay 1000
 set BLIST=
 set BFILE=
@@ -312,7 +341,7 @@ vecho /fGray "Transferring " /fLightGreen %OS_NAME% /fGray " boot files..."
 vecho
 
 REM **** Launch transfer system files ****
-sys C:
+rem sys C:
 REM **** Returned from transfering system files ****
 
 set ReturnFromC=AfterSysXfer
@@ -381,3 +410,7 @@ set BLIST=
 set BFILE=
 set ERRORMSG=
 set ReturnFromC=
+set FDBAKMAX=
+set FDBAKLINE=
+set FDBAKPER=
+set FDBAKFILE=
