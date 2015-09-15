@@ -252,19 +252,20 @@ if not exist C:\FDBACKUP\NUL mkdir C:\FDBACKUP
 
 set BFILE=0
 :SetBFile
-if not exist C:\FDBACKUP\FDBAK%BFILE%.zip goto GoodBFile
+if not exist C:\FDBACKUP\FDBAK%BFILE%.ZIP goto GoodBFile
+:IncBFile
 vmath %BFILE% + 1 | set /p BFILE=
 if not "%BFILE%" == "1000" goto SetBFile
 ERRORMSG="Too many backup files in '" /fWhite "C:\FDBACKUP\" /fGray "'".
 goto AbortBatch
 
 :GoodBFile
-set BLIST=C:\FDBACKUP\FDBAK%BFILE%.lst
-if exist %BLIST" goto SetBFile
-set BFILE=C:\FDBACKUP\FDBAK%BFILE%.zip
-date /d >%BLIST%
+set BLIST=C:\FDBACKUP\FDBAK%BFILE%.LST
+if exist %BLIST% goto IncBFile
+set BFILE=C:\FDBACKUP\FDBAK%BFILE%.ZIP
+echo %BLIST% >%BLIST%
 vgotoxy /l sop eol right right
-vecho /n "'" /fBlue "%BFILE%" /fWhite "'"
+vecho /n "'" /fBlue "%BFILE%" /fBlack "'"
 vgotoxy /l eop sor
 vprogres /fBlack 5
 
