@@ -84,7 +84,7 @@ goto CopyList
 echo.
 echo Copying config files.
 
-set CPFILE=FDAUTO.BAT
+set CPFILE=AUTOEXEC.BAT
 copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
