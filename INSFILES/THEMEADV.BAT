@@ -13,3 +13,8 @@ REM Title Bar Foreground, Background and Highlight Colors
 set FDI_TFG=White
 set FDI_TBG=Red
 set FDI_THC=Yellow
+
+REM Title Bar Foreground, Background and Highlight Colors
+set FDI_FFG=White
+set FDI_FBG=Red
+set FDI_FBS=double

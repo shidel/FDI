@@ -108,6 +108,10 @@ goto Finished
 REM Installer failed or was aborted *******************************************
 :Aborted
 vcls /a 0x07
+vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
+vecho
+if not "%FDI_ERROR%" == "" vecho %FDI_ERROR%
+if not "%FDI_ERROR%" == "" vecho
 goto Finished
 
 REM Post execution cleanup ****************************************************
@@ -127,6 +131,7 @@ set FDI_RECOVERY=
 set FDI_STAGE=
 set FDI_PIPES=
 set FDI_CURSOR=
+set FDI_ERROR=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything

@@ -13,3 +13,15 @@ REM Clear Theme Variables
 set FDI_SFG=
 set FDI_SBG=
 set FDI_SFC=
+
+set FDI_TFG=
+set FDI_TBG=
+set FDI_THC=
+
+set FDI_FFG=
+set FDI_FBG=
+set FDI_FHC=
+set FDI_FBS=
+
+set FDI_CYC=
+set FDI_CNC=

@@ -1,17 +1,3 @@
-REM Draw the welcome screen.
-vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
-vframe /bGray /fBlack /w58 /h10 /c /y7 single
-vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
-vecho "Welcome to the installation program for " /fRed "%OS_NAME% %OS_VERSION%" /fBlack "."
-vecho
-vecho "Do you wish to proceed?"
-vframe /w40 /h4 /c /y12 hidden
-vecho /fGreen "  Yes " /fBlack "- Continue with Installation"
-vecho /fRed "  No  " /fBlack "- Return to DOS" /n
-vchoice /fYellow /bBlue Ctrl-C
-
-if errorlevel 200 goto ControlCPress
-if errorlevel 2 goto DoNotInstall
 
 vinfo /dC
 
@@ -279,36 +265,3 @@ goto DoneBatch
 :DoNotInstall
 
 goto AbortBatch
-
-:ControlCPress
-vcls /fGray /bBlue /y2 /h24
-vframe /bRed /fWhite /w60 /h10 /c /y7 hidden shadow
-vframe /bRed /fWhite /w58 /h10 /c /y7 single
-vframe /bRed /fWhite /w56 /h8 /c /y8 hidden
-vecho "You have pressed " /fYellow "CTRL-C" /fWhite "."
-vecho
-vecho "Are you sure you wish to abort the installation?"
-vframe /w44 /h4 /c /y12 hidden
-vecho /fLightMagenta "  Yes " /fGray "- Please return to DOS."
-vecho /fLightGreen "  No  " /fGray "- I want to continue." /n
-vchoice /fYellow /bBlue /d 2 Ctrl-C
-
-if errorlevel 200 goto AbortBatch
-if errorlevel 2 goto %ReturnFromC%
-
-:AbortBatch
-vcls /fGray /bBlack
-vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
-vecho
-if not "%ERRORMSG%" == "" vecho %ERRORMSG%
-if not "%ERRORMSG%" == "" vecho
-goto CleanUpBatch
-
-:DoneBatch
-
-vecho /n "Press a key... "
-vpause /t 10
-vcls /fGray /bBlack
-REM Batch file has completed.
-
-:CleanUpBatch
