@@ -25,7 +25,7 @@ vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
 vecho "Drive " /f %FDI_FHC% C /f %FDI_FFG% " does not appear to be formatted."
 vecho
 vecho "Do you wish to format your drive?"
-vframe /w44 /h4 /c /y12 hidden
+vframe /b %FDI_FBG% /f %FDI_FFG% /w44 /h4 /c /y12 hidden
 vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please erase and format drive C."
 vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C /d 2
@@ -47,8 +47,8 @@ set FDI_DIDFMT=YES
 
 vcursor hide
 vgotoxy eop sor
-vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t %PAUSING% CTRL-C
+vecho /n /fLightGreen " Press a key... " /e
+vpause /fLightCyan /t %FDI_PAUSE% CTRL-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterFormat
 
@@ -70,9 +70,9 @@ vecho /n "Having a problem reading Drive " /f %FDI_FHC% C /f %FDI_FFG% "."
 vecho "A system reboot may help."
 vecho
 vecho "Do you wish to reboot now?"
-vframe /w40 /h4 /c /y13 hidden
-vecho /f %FDI_CYC% "  Yes " /fBlack "- Please reboot now."
-vecho /f %FDI_FCS% "  No  " /fBlack "- Return to DOS" /n
+vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y13 hidden
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please reboot now."
+vecho /f %FDI_FCS% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 StillCannotReadC

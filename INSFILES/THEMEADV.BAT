@@ -31,3 +31,8 @@ set FDI_CBS=single
 set FDI_CCC=White
 set FDI_CAC=Yellow
 set FDI_CCS=0x1f
+
+REM Pause Bar and Clock Colors
+set FDI_PBG=Red
+set FDI_PBC=White
+set FDI_PCC=Yellow

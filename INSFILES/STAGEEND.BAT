@@ -37,4 +37,8 @@ set FDI_CCC=
 set FDI_CAC=
 set FDI_CCS=
 
+set FDI_PBG=
+set FDI_PBC=
+set FDI_PCC=
+
 :SkipClear

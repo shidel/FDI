@@ -16,7 +16,7 @@ vecho "Welcome to the advanced installer for " /f %FDI_FHC% "%OS_NAME% %OS_VERSI
 :Spacer
 vecho
 vecho "Do you wish to proceed?"
-vframe /w40 /h4 /c /y12 hidden
+vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y12 hidden
 vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Continue with Installation"
 vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C

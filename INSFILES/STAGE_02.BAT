@@ -25,9 +25,9 @@ vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
 vecho "Drive " /f  %FDI_FHC% C /f %FDI_FFG% " does not appear to be partitioned."
 vecho
 vecho "Do you wish to partition your drive?"
-vframe /w40 /h4 /c /y12 hidden
-vecho /f %FDI_CYC% "  Yes " /fBlack "- Launch Partitioner."
-vecho /f %FDI_CNC% "  No  " /fBlack "- Return to DOS" /n
+vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y12 hidden
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Launch Partitioner."
+vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
@@ -51,9 +51,9 @@ vecho /n "You must reboot your computer for the new partitioning"
 vecho "scheme to take effect."
 vecho
 vecho "Do you wish to reboot now?"
-vframe /w40 /h4 /c /y13 hidden
-vecho /f %FDI_CYC% "  Yes " /fBlack "- Please reboot now."
-vecho /f %FDI_FCS% "  No  " /fBlack "- Return to DOS" /n
+vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y13 hidden
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please reboot now."
+vecho /f %FDI_FCS% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
