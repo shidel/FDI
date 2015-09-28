@@ -1,5 +1,9 @@
 @echo off
 
+REM FreeDOS Installer.
+REM Released Under GPL v2.0 License.
+REM Created by Jerome Shidel.
+
 REM Test for Presence of V8Power Tools ****************************************
 
 REM Check current errorlevel is 255, then test by clearing it.
