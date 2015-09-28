@@ -25,9 +25,27 @@ REM V8Power Tools Found *******************************************************
 :V8Present
 verrlvl 0
 
+REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
+REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
+REM later versions of Windows DOS support it.
+
+set FDI_PIPES=NO
+if "%TEMP%" == "" goto NoPipeSupport
+echo. | set /p FDI_PIPES=
+if "%FDI_PIPES%" == "NO" goto NoPipeSupport
+echo YES| set /p FDI_PIPES=
+if not "%FDI_PIPES%" == "YES" goto NoPipeSupport
+vcursor | set /p FDI_CURSOR=
+goto PipeSupport
+
+:NoPipeSupport
+set FDI_CURSOR=small
+
+:PipeSupport
+
 REM Change to directory and path of this batch file.
 vfdutil /c /p "%0"
-if not exist FDSETUP\SETUP\NUL goto Missing
+if not exist FDSETUP\SETUP\NUL goto Error
 cd FDSETUP\SETUP
 
 REM Configure commmand-line options
@@ -56,7 +74,15 @@ if errorlevel 1 goto Aborted
 
 :SkipInstallCheck
 
+REM Set Installer theme.
+set FDI_THEME=NUL
+if "%FDI_ADVANCED%" == "yes" set FDI_THEME=ADV
+if not exist THEME%FDI_THEME%.BAT goto Error
+call THEME%FDI_THEME%.BAT
+if errorlevel 1 goto Aborted
+
 REM Run Stage processor.
+vcursor hide
 set FDI_STAGE=00
 if not exist STAGE_%FDI_STAGE%.BAT goto Error
 call STAGE_%FDI_STAGE%.BAT
@@ -64,15 +90,25 @@ if errorlevel 1 goto Aborted
 
 REM Installer completed successfully ******************************************
 :Completed
+if not "%FDI_DEBUG%" == "yes" goto NoPause
+vgotoxy /g eop sor
+vecho /g /a0x70 " Finished, Press a key... " /e /n
+vpause /t %FDI_PAUSE%
+:NoPause
+vcls /a 0x07
 goto Finished
 
 REM Installer failed or was aborted *******************************************
 :Error
+vcls /a 0x07
 echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
+goto Finished
 
 REM Installer failed or was aborted *******************************************
 :Aborted
+vcls /a 0x07
+goto Finished
 
 REM Post execution cleanup ****************************************************
 :Finished
@@ -83,10 +119,14 @@ call STAGE%FDI_STAGE%.BAT
 cd ..\..
 :NoCleanupStage
 
+vfdutil /c /p "%0"
+vcursor %FDI_CURSOR%
+
 set FDI_ADVANCED=
 set FDI_RECOVERY=
 set FDI_STAGE=
-vfdutil /c /p "%0"
+set FDI_PIPES=
+set FDI_CURSOR=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything
