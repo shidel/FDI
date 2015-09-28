@@ -2,7 +2,7 @@
 
 REM FreeDOS Installer.
 REM Released Under GPL v2.0 License.
-REM Created by Jerome Shidel.
+REM Copyright 2015 Jerome Shidel.
 
 REM Test for Presence of V8Power Tools ****************************************
 
