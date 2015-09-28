@@ -1,24 +1,5 @@
 @echo off
 
-REM Set operating system TITLE and VERSION for installer, not cleared at exit.
-set OS_NAME=FreeDOS
-set OS_VERSION=1.1a
-set VOL_NAME=FreeDOS2015
-
-REM Set other installer options. Cleared at exit.
-
-REM Drive C Formatting options.
-set FMTCOPTS=/Q /U /Z:seriously
-
-REM Pause duration after Format and System file transfers.
-set PAUSING=15
-
-REM Default Temp Directory.
-set FDTEMP=C:\FDTEMP
-
-REM Flag for remembering if drive was formatted.
-set WASFORMATED=NO
-
 REM Test for Presence of V8Power Tools
 if errorlevel 255 goto ClearError
 

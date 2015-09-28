@@ -41,6 +41,12 @@ if "%1" == "ADV" set FDI_ADVANCED=yes
 if "%1" == "advanced" set FDI_ADVANCED=yes
 if "%1" == "ADVANCED" set FDI_ADVANCED=yes
 
+REM Run configuration stage.
+set FDI_STAGE=CFG
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
 if not "%FDI_RECOVERY%" == "yes" goto SkipInstallCheck
 set FDI_STAGE=FDI
 if not exist STAGE%FDI_STAGE%.BAT goto Error
@@ -49,12 +55,6 @@ if errorlevel 2 goto Finished
 if errorlevel 1 goto Aborted
 
 :SkipInstallCheck
-
-REM Run configuration stage.
-set FDI_STAGE=CFG
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
-if errorlevel 1 goto Aborted
 
 REM Run Stage processor.
 set FDI_STAGE=00
