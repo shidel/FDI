@@ -63,9 +63,9 @@ goto Done
 
 :StillCannotReadC
 
-vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h10 /c /y7 %FDI_FBS%
-vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
+vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h11 /c /y7 hidden shadow
+vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h11 /c /y7 %FDI_FBS%
+vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h9 /c /y8 hidden
 vecho /n "Having a problem reading Drive " /f %FDI_FHC% C /f %FDI_FFG% "."
 vecho "A system reboot may help."
 vecho
@@ -82,7 +82,6 @@ vecho "The computer will now reboot."
 vecho
 reboot
 goto AbortBatch
-
 
 :AbortBatch
 verrlvl 1

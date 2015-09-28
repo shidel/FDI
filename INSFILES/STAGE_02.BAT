@@ -34,7 +34,7 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
-vcursor %EXIT_CURSOR%
+vcursor %FDI_CURSOR%
 
 REM **** Launch Partitioning Program ****
 fdisk 1
@@ -44,9 +44,9 @@ vcursor hide
 :AfterPartitioned
 call FDICLS.BAT
 
-vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h10 /c /y7 %FDI_FBS%
-vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
+vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h11 /c /y7 hidden shadow
+vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h11 /c /y7 %FDI_FBS%
+vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h9 /c /y8 hidden
 vecho /n "You must reboot your computer for the new partitioning"
 vecho "scheme to take effect."
 vecho
