@@ -1,6 +1,6 @@
 @echo off
 
-REM STAGE_00, runs through all stages.
+REM STAGERUN, runs through all stages.
 
 REM Welcome
 set FDI_STAGE=01

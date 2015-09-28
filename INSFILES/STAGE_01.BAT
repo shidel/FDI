@@ -1,13 +1,18 @@
 @echo off
 
-:MainPrompt
+REM Welcome to the installer, continue or exit.
+
 call FDICLS.BAT
 
 REM Draw the welcome screen.
 vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h10 /c /y7 hidden shadow
 vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h10 /c /y7 %FDI_FBS%
 vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
+if "%FDI_ADVANCED" == "yes" goto AdvancedMesssage
 vecho "Welcome to the installation program for " /f %FDI_FHC% "%OS_NAME% %OS_VERSION%" /f %FDI_FFG% "."
+goto Spacer
+vecho "Welcome to the advanced installer for " /f %FDI_FHC% "%OS_NAME% %OS_VERSION%" /f %FDI_FFG% "."
+:Spacer
 vecho
 vecho "Do you wish to proceed?"
 vframe /w40 /h4 /c /y12 hidden

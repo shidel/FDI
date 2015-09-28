@@ -83,9 +83,9 @@ if errorlevel 1 goto Aborted
 
 REM Run Stage processor.
 vcursor hide
-set FDI_STAGE=00
-if not exist STAGE_%FDI_STAGE%.BAT goto Error
-call STAGE_%FDI_STAGE%.BAT
+set FDI_STAGE=RUN
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Installer completed successfully ******************************************

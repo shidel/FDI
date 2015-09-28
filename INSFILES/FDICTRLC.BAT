@@ -1,6 +1,6 @@
 @echo off
 
-:ControlCPress
+REM Control-C Handler
 vcls /f %FDI_SFG% /b %FDI_SBG% /c %FDI_SFC% /y2 /h24
 vframe /f %FDI_CFG% /b %FDI_CBG% /w60 /h10 /c /y7 hidden shadow
 vframe /f %FDI_CFG% /b %FDI_CBG% /w58 /h10 /c /y7 %FDI_CBS%
@@ -21,7 +21,7 @@ goto AbortBatch
 
 :ContinueBatch
 verrlvl 0
-%1
+%1 %2 %3 %4 %5 %6 %7 %8 %9
 
 :AbortBatch
 
