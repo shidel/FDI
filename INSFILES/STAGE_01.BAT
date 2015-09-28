@@ -11,6 +11,7 @@ vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
 if "%FDI_ADVANCED%" == "yes" goto AdvancedMesssage
 vecho "Welcome to the installation program for " /f %FDI_FHC% "%OS_NAME% %OS_VERSION%" /f %FDI_FFG% "."
 goto Spacer
+:AdvancedMesssage
 vecho "Welcome to the advanced installer for " /f %FDI_FHC% "%OS_NAME% %OS_VERSION%" /f %FDI_FFG% "."
 :Spacer
 vecho
