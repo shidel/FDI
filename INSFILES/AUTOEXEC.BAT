@@ -40,7 +40,7 @@ alias auto=edit %0
 
 vecho "Done processing startup files %cfgfile% and %0"
 
-CALL SETUP.BAT VERIFY
+CALL SETUP.BAT RECOVERY
 
 vecho "Type " /fWhite HELP /fGray " to get support on commands and navigation"
 vecho

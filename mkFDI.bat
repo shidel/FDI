@@ -77,6 +77,15 @@ echo Copying required V8Power Tools.
 set CPLST=V8Power.lst
 set CPSRC=%IV8P%
 set CPDST=%OV8P%
+set CPRET=CopySETUP
+goto CopyList
+
+:CopySETUP
+echo.
+echo Copying required Setup Files.
+set CPLST=FDSETUP.lst
+set CPSRC=%IINS%
+set CPDST=%ODOS%\SETUP
 set CPRET=CopyCFG
 goto CopyList
 
