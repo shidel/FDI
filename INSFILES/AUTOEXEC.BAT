@@ -39,6 +39,7 @@ alias cfg=edit %cfgfile%
 alias auto=edit %0
 
 vecho "Done processing startup files %cfgfile% and %0"
+vecho
 
 CALL SETUP.BAT RECOVERY
 
