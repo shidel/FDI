@@ -13,7 +13,7 @@ vecho "Do you wish to proceed?"
 vframe /w40 /h4 /c /y12 hidden
 vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Continue with Installation"
 vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
-vchoice /fYellow /bBlue Ctrl-C
+vchoice /a %FDI_FCS% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto Done

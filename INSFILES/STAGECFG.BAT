@@ -9,7 +9,7 @@ set OS_NAME=FreeDOS
 set OS_VERSION=1.1a
 
 REM Formatted volume label
-set FDI_VOLUMNE=FreeDOS2015
+set FDI_VOLUME=FreeDOS2015
 
 REM Drive C Formatting options.
 set FDI_FORMAT=/Q /U /Z:seriously
