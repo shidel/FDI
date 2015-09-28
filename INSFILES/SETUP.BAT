@@ -25,6 +25,11 @@ REM V8Power Tools Found *******************************************************
 :V8Present
 verrlvl 0
 
+REM Change to directory and path of this batch file.
+vfdutil /c /p "%0"
+if not exist FDSETUP\SETUP\NUL goto Missing
+cd FDSETUP\SETUP
+
 REM Configure commmand-line options
 set FDI_ADVANCED=
 set FDI_RECOVERY=
@@ -36,21 +41,15 @@ if "%1" == "ADV" set FDI_ADVANCED=yes
 if "%1" == "advanced" set FDI_ADVANCED=yes
 if "%1" == "ADVANCED" set FDI_ADVANCED=yes
 
-REM Change to drive and path of this batch file.
-
-REM Run Installer.
-
-set FDI_STAGE=0
-vfdutil /c /p "%0"
-if not exist "FDSETUP\SETUP\STAGE_0%FDI_STAGE%.BAT" goto Error
-cd  FDSETUP\SETUP
-call STAGE_%FDI_STAGE%.BAT
+REM Run configuration stage.
+set FDI_STAGE=CFG
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
-set FDI_STAGE=1
-vfdutil /c /p "%0"
-if not exist "FDSETUP\SETUP\STAGE_0%FDI_STAGE%.BAT" goto Error
-cd  FDSETUP\SETUP
+REM Run Stage processor.
+set FDI_STAGE=00
+if not exist STAGE_%FDI_STAGE%.BAT goto Error
 call STAGE_%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
@@ -61,13 +60,20 @@ goto Finished
 REM Installer failed or was aborted *******************************************
 :Error
 echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
-echo corrupt. Please redownload it or try a different method of installation.
+echo corrupt. Please re-download it or try a different method of installation.
 
 REM Installer failed or was aborted *******************************************
 :Aborted
 
 REM Post execution cleanup ****************************************************
 :Finished
+REM Run cleanup stage.
+set FDI_STAGE=END
+if not exist STAGE%FDI_STAGE%.BAT goto NoCleanupStage
+call STAGE%FDI_STAGE%.BAT
+cd ..\..
+:NoCleanupStage
+
 set FDI_ADVANCED=
 set FDI_RECOVERY=
 set FDI_STAGE=

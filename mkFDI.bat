@@ -37,6 +37,7 @@ if not exist %ODOS%\CPI\NUL mkdir %ODOS%\CPI
 if not exist %ODOS%\NLS\NUL mkdir %ODOS%\NLS
 if not exist %ODOS%\HELP\NUL mkdir %ODOS%\HELP
 if not exist %ODOS%\TEMP\NUL mkdir %ODOS%\TEMP
+if not exist %ODOS%\SETUP\NUL mkdir %ODOS%\SETUP
 if not exist %OV8P%\NUL mkdir %OV8P%
 if not "%1" == "" goto VeryEnd
 
