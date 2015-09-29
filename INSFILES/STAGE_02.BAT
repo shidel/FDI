@@ -1,10 +1,12 @@
 @echo off
 
+REM Check state of drive C:, check if it needs partitioned.
+REM If so, prompt to run partitioner then reboot.
+
 vcls /f %FDI_SFG% /b %FDI_SBG% /c %FDI_SFC% /y2 /h24
 
 if not "%1" == "" goto %1
 
-REM Check state of drive C:, check if it needs partitioned.
 vinfo /dC
 
 if errorlevel 100 goto Done

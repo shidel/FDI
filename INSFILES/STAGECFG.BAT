@@ -18,7 +18,7 @@ REM Pause duration after Format and System file transfers.
 set FDI_PAUSE=15
 
 REM Default Temp Directory.
-set FDI_TEMP=C:\FDTEMP
+set FDI_TEMP=C:\FDI_TEMP.$$$
 
 REM Flag for remembering if drive was formatted.
 set FDI_DIDFMT=NO

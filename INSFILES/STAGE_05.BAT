@@ -1,8 +1,4 @@
-
-:PrepForInstall
-if "%TEMP%" == "" set TEMP=%FDTEMP%
-if "%TMP%" == "" set TEMP=%TEMP%
-if not exist %TEMP%\NUL mkdir "%TEMP%
+@echo off
 
 if "%WASFORMATED%" == "YES" goto SkipBackup
 if exist C:\FDAUTO.BAT goto QueryBackup

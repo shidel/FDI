@@ -1,0 +1,17 @@
+@echo off
+
+REM Drive C exists, so now we have temporary storage for redirected I/O
+REM once we setup the temp directories.
+
+if "%TEMP%" == "" set TEMP=%FDI_TEMP%
+if "%TMP%" == "" set TEMP=%TEMP%
+if not exist %TEMP%\NUL mkdir "%TEMP%
+if not exist %TEMP%\NUL goto AbortBatch
+
+verrlvl 0
+goto AbortBatch
+
+:AbortBatch
+verrlvl 1
+
+:Done
