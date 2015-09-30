@@ -36,3 +36,5 @@ REM Pause Bar and Clock Colors
 set FDI_PBG=Blue
 set FDI_PBC=LightGreen
 set FDI_PCC=LightCyan
+
+verrlvl 0
