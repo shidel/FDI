@@ -26,6 +26,7 @@ set FDI_TEMP=
 set FDI_DIDFMT=
 set FDI_THEME=
 set FDI_EXISTS=
+set FDI_INSP=
 
 REM Clear Theme Variables
 set FDI_SFG=

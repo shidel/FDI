@@ -2,13 +2,14 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 8
+call FDIWIND.BAT 5
 
 vecho "Gathering some information for the installation."
-vecho
-vecho
 
-call FDISCAN.BAT FDASK
+echo %FDI_INSP%>%TEMP%\FDIPATHS.LST
+for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d FDASK
+
+vdelay 1000
 
 :EachPath
 set FDI_TSFL=0
@@ -22,7 +23,6 @@ vmath %FDI_TSFL% + 1 | set /p FDI_TSFL=
 goto EachRepeat
 
 :EachDone
-vpause
 verrlvl 0
 goto Done
 

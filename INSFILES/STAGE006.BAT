@@ -8,6 +8,8 @@ if "%TMP%" == "" set TEMP=%TEMP%
 if not exist %TEMP%\NUL mkdir "%TEMP%
 if not exist %TEMP%\NUL goto AbortBatch
 
+CD | set /p FDI_INSP=
+
 verrlvl 0
 goto Done
 
