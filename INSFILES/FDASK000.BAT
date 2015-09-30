@@ -1,5 +1,6 @@
 @echo off
 
+echo Query
 if "%FDI_DIDFMT%" == "YES" goto SkipBackup
 if exist C:\FDAUTO.BAT goto QueryBackup
 if exist C:\AUTOEXEC.BAT goto QueryBackup

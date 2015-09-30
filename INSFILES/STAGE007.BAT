@@ -10,25 +10,19 @@ vecho
 
 call FDISCAN.BAT FDASK
 
-verrlvl 0
-goto Done
-
-:IncludeFiles
+:EachPath
 set FDI_TSFL=0
 
-:IncludeRepeat
-type %TEMP%\FDSCAN.LST | vstr /l %FDI_TSFL% | set /p FDI_TSFF=
-if "%FDI_TSFF%" == "" goto IncludeDone
-echo %FDI_TSFP%\%FDI_TSFF%>>%TEMP%\%1.LST
+:EachRepeat
+type %TEMP%\FDIPATHS.LST | vstr /l %FDI_TSFL% | set /p FDI_TASK=
+if "%FDI_TASK%" == "" goto EachDone
+for %f in ( %FDI_TASK%\FDASK*.BAT ) do call %f
+
 vmath %FDI_TSFL% + 1 | set /p FDI_TSFL=
-goto IncludeRepeat
+goto EachRepeat
 
-:IncludeDone
-if exist %TEMP%\FDSCAN.LST del %TEMP%\FDSCAN.LST
-set FDI_TSFL=
-set FDI_TSFF=
-set FDI_TSFP=
-
+:EachDone
+vpause
 verrlvl 0
 goto Done
 
@@ -36,3 +30,5 @@ goto Done
 verrlvl 1
 
 :Done
+set FDI_TASK=
+set FDI_TSFL=
