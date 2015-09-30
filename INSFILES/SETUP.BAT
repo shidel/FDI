@@ -63,30 +63,6 @@ if "%1" == "ADV" set FDI_ADVANCED=yes
 if "%1" == "advanced" set FDI_ADVANCED=yes
 if "%1" == "ADVANCED" set FDI_ADVANCED=yes
 
-REM Run configuration stage.
-set FDI_STAGE=CFG
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
-if errorlevel 1 goto Aborted
-
-if not "%FDI_RECOVERY%" == "yes" goto SkipInstallCheck
-set FDI_STAGE=FDI
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
-if errorlevel 2 goto Finished
-if errorlevel 1 goto Aborted
-
-:SkipInstallCheck
-
-REM Set Installer theme.
-set FDI_THEME=NUL
-if "%FDI_ADVANCED%" == "yes" set FDI_THEME=ADV
-if not exist THEME%FDI_THEME%.BAT goto Error
-call THEME%FDI_THEME%.BAT
-if errorlevel 1 goto Aborted
-
-REM Run Stage processor.
-vcursor hide
 set FDI_STAGE=RUN
 if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT

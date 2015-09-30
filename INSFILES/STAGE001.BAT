@@ -9,10 +9,6 @@ REM exit 1, Error
 verrlvl 0
 goto Finished
 
-:Error
-echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
-echo corrupt. Please re-download it or try a different method of installation.
-
 REM Installer failed or was aborted *******************************************
 :Aborted
 verrlvl 1

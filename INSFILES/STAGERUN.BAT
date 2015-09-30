@@ -2,22 +2,54 @@
 
 REM STAGERUN, runs through all stages.
 
-REM Welcome
+REM Run configuration stage.
+set FDI_STAGE=000
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+if not "%FDI_RECOVERY%" == "yes" goto SkipInstallCheck
 set FDI_STAGE=001
-if not exist STAGE_%FDI_STAGE%.BAT goto Error
-call STAGE_%FDI_STAGE%.BAT
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+verrlvl 0
+
+:SkipInstallCheck
+
+REM Set Installer theme.
+set FDI_STAGE=002
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Welcome
+set FDI_STAGE=003
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Partitoned
-set FDI_STAGE=002
-if not exist STAGE_%FDI_STAGE%.BAT goto Error
-call STAGE_%FDI_STAGE%.BAT
+set FDI_STAGE=004
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
-set FDI_STAGE=003
-if not exist STAGE_%FDI_STAGE%.BAT goto Error
-call STAGE_%FDI_STAGE%.BAT
+set FDI_STAGE=005
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Pre install configuration and temp directory setups.
+set FDI_STAGE=006
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+set FDI_STAGE=007
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 verrlvl 0
