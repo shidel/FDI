@@ -2,7 +2,7 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 6
+call FDIWIND.BAT 5
 
 vecho "Gathering some information for the installation." /n
 
