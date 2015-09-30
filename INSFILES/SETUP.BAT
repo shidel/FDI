@@ -78,7 +78,7 @@ vpause /t %FDI_PAUSE%
 vcls /a 0x07
 goto Finished
 
-REM Installer failed or was aborted *******************************************
+REM Installer failed **********************************************************
 :Error
 vcls /a 0x07
 echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is

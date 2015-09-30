@@ -55,11 +55,12 @@ vecho
 vecho "Do you wish to reboot now?"
 vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y13 hidden
 vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please reboot now."
-vecho /f %FDI_FCS% "  No  " /f %FDI_FFG% "- Return to DOS" /n
+vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
 vchoice /a %FDI_FCS% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch
+
 vcls /a0x07
 vecho "The computer will now reboot."
 vecho
