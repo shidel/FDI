@@ -6,10 +6,12 @@ call FDIWIND.BAT 5
 
 vecho "Gathering some information for the installation." /n
 
-echo %FDI_INSP%>%TEMP%\FDIPATHS.LST
-for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d FDASK
+vcls
 
-vdelay 1000
+echo %FDI_INSP%>%TEMP%\FDIPATHS.LST
+for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
+
+rem vdelay 1000
 
 :EachPath
 set FDI_TSFL=0
