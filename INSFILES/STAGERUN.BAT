@@ -52,15 +52,29 @@ if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
+REM Run cleanup stage.
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+
 verrlvl 0
 goto Finished
 
 :Error
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto NoCleanupStage
+call STAGE%FDI_STAGE%.BAT
+:NoCleanupStage
 echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
+verrlvl 1
+goto Finished
 
 REM Installer failed or was aborted *******************************************
 :Aborted
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 verrlvl 1
 
 REM Post execution cleanup ****************************************************

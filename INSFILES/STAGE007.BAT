@@ -1,5 +1,7 @@
 @echo off
 
+goto DoNotInstall
+
 if "%WASFORMATED%" == "YES" goto SkipBackup
 if exist C:\FDAUTO.BAT goto QueryBackup
 if exist C:\AUTOEXEC.BAT goto QueryBackup
@@ -152,4 +154,3 @@ goto DoneBatch
 
 :DoNotInstall
 
-goto AbortBatch

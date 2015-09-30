@@ -2,6 +2,9 @@
 
 REM STAGEEND, Post installer cleanup.
 
+vfdutil /c /p "%0"
+vcursor %FDI_CURSOR%
+
 rem if "%FDI_DEBUG%" == "yes" goto SkipClear
 set FDI_DEBUG=
 set FDI_VOLUME=
@@ -42,3 +45,4 @@ set FDI_PBC=
 set FDI_PCC=
 
 :SkipClear
+

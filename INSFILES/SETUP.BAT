@@ -96,15 +96,7 @@ goto Finished
 
 REM Post execution cleanup ****************************************************
 :Finished
-REM Run cleanup stage.
-set FDI_STAGE=END
-if not exist STAGE%FDI_STAGE%.BAT goto NoCleanupStage
-call STAGE%FDI_STAGE%.BAT
 cd ..\..
-:NoCleanupStage
-
-vfdutil /c /p "%0"
-vcursor %FDI_CURSOR%
 
 set FDI_ADVANCED=
 set FDI_RECOVERY=
