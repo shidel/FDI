@@ -11,12 +11,6 @@ vfdutil /u %1:\FDI?????.$$$ | set /p FDI_TSFN=
 if "%FDI_TSFN%" == "" goto Done
 
 if not exist %1:\FDSETUP\SETUP\NUL goto Done
-echo dir /a /b /p- %1:\FDSETUP\SETUP\FDASK*.BAT
-dir /a /b /p- %1:\FDSETUP\SETUP\FDASK*.BAT
-dir /a /b /p- %1:\FDSETUP\SETUP\FDASK*.BAT | vstr /l 0 | set /p FDI_TSFN=
-echo test for %1:\FDSETUP\SETUP\%FDI_TSFN%
-if not exist %1:\FDSETUP\SETUP\%FDI_TSFN% goto Failed
-echo passed
 echo %1:\FDSETUP\SETUP>>%TEMP%\FDIPATHS.LST
 goto Done
 
@@ -24,9 +18,6 @@ goto Done
 vinfo /d %1
 if errorlevel 5 goto Done
 goto CheckFiles
-
-:Failed
-echo failed
 
 :Done
 set FDI_TSFN=
