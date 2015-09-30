@@ -1,6 +1,6 @@
 @echo off
 
-REM Prompt user for all questions needed for install.
+REM Run entire install process.
 
 verrlvl 0
 goto AbortBatch

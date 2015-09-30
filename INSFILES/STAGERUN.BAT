@@ -49,7 +49,20 @@ if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
+REM Ask the user all of the Questions.
 set FDI_STAGE=007
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Do the installation.
+set FDI_STAGE=008
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Post install stuff, like recommend reboot.
+set FDI_STAGE=009
 if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
