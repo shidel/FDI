@@ -1,9 +1,21 @@
 @echo off
 
-REM STAGEEND, Post installer cleanup.
+REM Post installer cleanup.
 
 vfdutil /c /p "%0"
 vcursor %FDI_CURSOR%
+
+goto IgnoreTemp
+
+vinfo /dC
+if errorlevel 2 goto IgnoreTemp
+
+if "%TEMP%" == "%FDI_TEMP%" set TEMP=C:\
+if "%TMP%" == "%FDI_TEMP%" set TMP=C:\
+if exist %FDI_TEMP%\NUL DELTREE /y %FDI_TEMP%\*.*>NUL
+if exist %FDI_TEMP%\NUL RMDIR %FDI_TEMP%
+
+:IgnoreTemp
 
 rem if "%FDI_DEBUG%" == "yes" goto SkipClear
 set FDI_DEBUG=

@@ -1,6 +1,6 @@
 @echo off
 
-REM Theme Loader.
+REM Basic (NUL) and Advanced (ADV) Theme Loader.
 
 set FDI_THEME=NUL
 if "%FDI_ADVANCED%" == "yes" set FDI_THEME=ADV

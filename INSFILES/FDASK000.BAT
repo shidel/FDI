@@ -18,13 +18,13 @@ goto SkipBackup
 
 :QueryBackup
 call FDIWIND.BAT 10
-vecho "A previous operating system was detected on drive " /fRed C /fBlack "."
+vecho "A previous operating system was detected on drive " /f %FDI_FHC% C /f %FDI_FFG% "."
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 2
-vecho /fGreen "  Yes " /fBlack "- Please backup first."
-vecho /fRed "  No  " /fBlack "- Install without backing up." /n
-vchoice /fYellow /bBlue /d 1 Ctrl-C
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "-  Please backup first."
+vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Install without backing up." /n
+vchoice /a %FDI_FCS% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipBackup

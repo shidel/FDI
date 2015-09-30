@@ -9,7 +9,7 @@ if not exist %TEMP%\NUL mkdir "%TEMP%
 if not exist %TEMP%\NUL goto AbortBatch
 
 verrlvl 0
-goto AbortBatch
+goto Done
 
 :AbortBatch
 verrlvl 1
