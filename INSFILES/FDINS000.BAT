@@ -1,39 +1,6 @@
 @echo off
 
-goto DoNotInstall
-
-if "%WASFORMATED%" == "YES" goto SkipBackup
-if exist C:\FDAUTO.BAT goto QueryBackup
-if exist C:\AUTOEXEC.BAT goto QueryBackup
-if exist C:\CONFIG.SYS goto QueryBackup
-if exist C:\FDCONFIG.SYS goto QueryBackup
-if exist C:\KERNEL.SYS goto QueryBackup
-if exist C:\COMMAND.COM goto QueryBackup
-if exist C:\DRDOS.386 goto QueryBackup
-if exist C:\WINA20.386 goto QueryBackup
-if exist C:\IBMBIO.COM goto QueryBackup
-if exist C:\IBMDOS.COM goto QueryBackup
-if exist C:\IO.SYS copy goto QueryBackup
-if exist C:\MSDOS.SYS goto QueryBackup
-if exist C:\FDOS\NUL goto QueryBackup
 goto SkipBackup
-
-:QueryBackup
-set ReturnFromC=QueryBackup
-vcls /fGray /bBlue /y2 /h24
-vframe /bGray /fBlack /w60 /h10 /c /y7 hidden shadow
-vframe /bGray /fBlack /w58 /h10 /c /y7 single
-vframe /bGray /fBlack /w56 /h8 /c /y8 hidden
-vecho "A previous operating system was detected on drive " /fRed C /fBlack "."
-vecho
-vecho "Do you wish to backup the old files?"
-vframe /w44 /h4 /c /y12 hidden
-vecho /fGreen "  Yes " /fBlack "- Please backup first."
-vecho /fRed "  No  " /fBlack "- Install without backing up." /n
-vchoice /fYellow /bBlue /d 1 Ctrl-C
-
-if errorlevel 200 goto ControlCPress
-if errorlevel 2 goto SkipBackup
 
 vcls /fGray /bBlue /y2 /h24
 vframe /bGray /fBlack /w60 /h8 /c /y7 hidden shadow
@@ -122,35 +89,3 @@ set BFILE=
 vcls /fGray /bBlue /y2 /h24
 
 :SkipBackup
-
-:FindSourceMedia
-vcls /fGray /bBlue /y2 /h24
-
-:MakeBackup
-
-:BeginInstall
-vcls /fWhite /bBlue /y2 /h24
-vgotoxy down down
-vecho /fGray "Transferring " /fLightGreen %OS_NAME% /fGray " boot files..."
-vecho
-
-REM **** Launch transfer system files ****
-rem sys C:
-REM **** Returned from transfering system files ****
-
-set ReturnFromC=AfterSysXfer
-vgotoxy eop sor
-vecho /n /fLightGreen "Press a key... " /e
-vpause /fLightCyan /t %PAUSING% CTRL-C
-if errorlevel 200 goto ControlCPress
-
-:AfterSysXfer
-vgotoxy eop sor
-vcls /fGray /bBlue eol
-
-vcls /fGray /bBlue /y2 /h24
-
-goto DoneBatch
-
-:DoNotInstall
-

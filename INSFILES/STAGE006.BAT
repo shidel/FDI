@@ -3,8 +3,11 @@
 REM Drive C exists, so now we have temporary storage for redirected I/O
 REM once we setup the temp directories.
 
-if "%TEMP%" == "" set TEMP=%FDI_TEMP%
-if "%TMP%" == "" set TEMP=%TEMP%
+set FDI_TEMPO=%TEMP%
+set FDI_TMPO=%TMP%
+set TEMP=%FDI_TEMP%
+set TMP=%FDI_TEMP%
+
 if not exist %TEMP%\NUL mkdir "%TEMP%
 if not exist %TEMP%\NUL goto AbortBatch
 
