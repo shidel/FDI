@@ -3,19 +3,19 @@
 REM STAGERUN, runs through all stages.
 
 REM Welcome
-set FDI_STAGE=01
+set FDI_STAGE=001
 if not exist STAGE_%FDI_STAGE%.BAT goto Error
 call STAGE_%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Partitoned
-set FDI_STAGE=02
+set FDI_STAGE=002
 if not exist STAGE_%FDI_STAGE%.BAT goto Error
 call STAGE_%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
-set FDI_STAGE=03
+set FDI_STAGE=003
 if not exist STAGE_%FDI_STAGE%.BAT goto Error
 call STAGE_%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
