@@ -2,9 +2,9 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 5
+call FDIWIND.BAT 6
 
-vecho "Gathering some information for the installation."
+vecho "Gathering some information for the installation." /n
 
 echo %FDI_INSP%>%TEMP%\FDIPATHS.LST
 for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d FDASK

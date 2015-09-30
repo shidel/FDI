@@ -14,7 +14,7 @@ echo %1:\FDSETUP\SETUP>>%TEMP%\FDIPATHS.LST
 goto Done
 
 :CheckDriveExists
-vinfo /d %FDI_TSDL%
+vinfo /d %1
 if errorlevel 5 goto Done
 goto CheckFiles
 
