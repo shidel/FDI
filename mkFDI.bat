@@ -57,7 +57,7 @@ goto CopyLoop
 :CopyBIN
 echo.
 echo Copying basic FreeDOS binaries.
-set CPLST=FDBIN.lst
+set CPLST=MKBIN.lst
 set CPSRC=%IDOS%\BIN
 set CPDST=%ODOS%\BIN
 set CPRET=CopyHelp
@@ -66,7 +66,7 @@ goto CopyList
 :CopyHelp
 echo.
 echo Copying some FreeDOS Help files.
-set CPLST=FDHELP.lst
+set CPLST=MKHELP.lst
 set CPSRC=%IDOS%\HELP
 set CPDST=%ODOS%\HELP
 set CPRET=CopyV8
@@ -75,7 +75,7 @@ goto CopyList
 :CopyV8
 echo.
 echo Copying required V8Power Tools.
-set CPLST=V8Power.lst
+set CPLST=MKV8P.lst
 set CPSRC=%IV8P%
 set CPDST=%OV8P%
 set CPRET=CopySETUP
@@ -84,7 +84,7 @@ goto CopyList
 :CopySETUP
 echo.
 echo Copying required Setup Files.
-set CPLST=FDSETUP.lst
+set CPLST=MKSETUP.lst
 set CPSRC=%IINS%
 set CPDST=%ODOS%\SETUP
 set CPRET=CopyCFG
