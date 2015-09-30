@@ -24,7 +24,7 @@ vecho "A previous operating system was detected on drive " /f %FDI_FHC% C /f %FD
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 2
-vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "-  Please backup first."
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please backup first."
 vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Install without backing up." /n
 vchoice /a %FDI_FCS% Ctrl-C /d 1
 
@@ -42,8 +42,8 @@ vecho "A previous operating system was detected on drive " /f %FDI_FHC% C /f %FD
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 3
-vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "-  Please backup first to folder."
-vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "-  Please backup first as zip archive."
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please backup to a folder."
+vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please backup as zip archive."
 vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Install without backing up." /n
 vchoice /a %FDI_FCS% Ctrl-C /d 1
 
