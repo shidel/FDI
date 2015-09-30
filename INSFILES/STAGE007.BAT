@@ -3,7 +3,7 @@
 REM Prompt user for all questions needed for install.
 
 verrlvl 0
-goto AbortBatch
+goto Done
 
 :AbortBatch
 verrlvl 1

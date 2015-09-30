@@ -3,7 +3,7 @@
 REM Run entire install process.
 
 verrlvl 0
-goto AbortBatch
+goto Done
 
 :AbortBatch
 verrlvl 1

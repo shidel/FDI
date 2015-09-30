@@ -3,7 +3,7 @@
 REM Thank the user for installing and offer to reboot.
 
 verrlvl 0
-goto AbortBatch
+goto Done
 
 :AbortBatch
 verrlvl 1
