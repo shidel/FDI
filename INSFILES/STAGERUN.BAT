@@ -13,6 +13,8 @@ set FDI_STAGE=001
 if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
+if "%FDI_EXISTS%" == "yes" goto NoInstallNeeded
+
 verrlvl 0
 
 :SkipInstallCheck
@@ -51,6 +53,8 @@ set FDI_STAGE=007
 if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
+
+:NoInstallNeeded
 
 REM Run cleanup stage.
 set FDI_STAGE=999

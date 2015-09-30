@@ -13,6 +13,7 @@ set FDI_PAUSE=
 set FDI_TEMP=
 set FDI_DIDFMT=
 set FDI_THEME=
+set FDI_EXISTS=
 
 REM Clear Theme Variables
 set FDI_SFG=
