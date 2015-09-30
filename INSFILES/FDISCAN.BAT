@@ -28,7 +28,7 @@ vstr /c %FDI_TSDL% | set /p FDI_TSDL=
 vmath %FDI_TSDM% * 100 div 27 | set /p FDI_TSDP=
 vprogress %FDI_TSDP%
 
-if "%FDI_TSDM%" == "5" goto ScanDone
+if "%FDI_TSDM%" == "27" goto ScanDone
 if "%FDI_TSDL%" == "A" goto CheckDriveExists
 if "%FDI_TSDL%" == "B" goto CheckDriveExists
 
