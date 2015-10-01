@@ -33,17 +33,17 @@ REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
 REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
 REM later versions of Windows DOS support it.
 
-set FDI_PIPES=NO
+set FPIPES=NO
 if "%TEMP%" == "" goto NoPipeSupport
-echo. | set /p FDI_PIPES=
-if "%FDI_PIPES%" == "NO" goto NoPipeSupport
-echo YES| set /p FDI_PIPES=
-if not "%FDI_PIPES%" == "YES" goto NoPipeSupport
-vcursor | set /p FDI_CURSOR=
+echo. | set /p FPIPES=
+if "%FPIPES%" == "NO" goto NoPipeSupport
+echo YES| set /p FPIPES=
+if not "%FPIPES%" == "YES" goto NoPipeSupport
+vcursor | set /p FCURSOR=
 goto PipeSupport
 
 :NoPipeSupport
-set FDI_CURSOR=small
+set FCURSOR=small
 
 :PipeSupport
 
@@ -53,141 +53,141 @@ if not exist FDSETUP\SETUP\NUL goto Error
 cd FDSETUP\SETUP
 
 REM Configure commmand-line options
-set FDI_ADVANCED=
-set FDI_RECOVERY=
+set FADV=
+set FRECOVER=
 
-if "%1" == "recovery" set FDI_RECOVERY=yes
-if "%1" == "RECOVERY" set FDI_RECOVERY=yes
-if "%1" == "adv" set FDI_ADVANCED=yes
-if "%1" == "ADV" set FDI_ADVANCED=yes
-if "%1" == "advanced" set FDI_ADVANCED=yes
-if "%1" == "ADVANCED" set FDI_ADVANCED=yes
+if "%1" == "recovery" set FRECOVER=yes
+if "%1" == "RECOVERY" set FRECOVER=yes
+if "%1" == "adv" set FADV=yes
+if "%1" == "ADV" set FADV=yes
+if "%1" == "advanced" set FADV=yes
+if "%1" == "ADVANCED" set FADV=yes
 
 REM Run configuration stage.
-set FDI_STAGE=000
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=000
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
-if not "%FDI_RECOVERY%" == "yes" goto SkipInstallCheck
-set FDI_STAGE=001
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+if not "%FRECOVER%" == "yes" goto SkipInstallCheck
+set FSTAGE=001
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
-if "%FDI_EXISTS%" == "yes" goto NoInstallNeeded
+if "%FFOUND%" == "yes" goto NoInstallNeeded
 
 verrlvl 0
 
 :SkipInstallCheck
 
 REM Set Installer theme.
-set FDI_STAGE=002
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=002
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Welcome
-set FDI_STAGE=003
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=003
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Partitoned
-set FDI_STAGE=004
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=004
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
-set FDI_STAGE=005
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=005
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Pre install configuration and temp directory setups.
-set FDI_STAGE=006
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=006
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Ask the user all of the Questions.
-set FDI_STAGE=007
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=007
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Do the installation.
-set FDI_STAGE=008
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=008
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Post install stuff, like recommend reboot.
-set FDI_STAGE=009
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=009
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Run cleanup stage.
-set FDI_STAGE=999
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=999
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 
 verrlvl 0
 goto Completed
 
 :NoInstallNeeded
 REM Run cleanup stage.
-set FDI_STAGE=999
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=999
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 
 verrlvl 0
 goto Finished
 
 REM Installer completed successfully ******************************************
 :Completed
-if not "%FDI_DEBUG%" == "yes" goto NoPause
+if not "%FDEBUG%" == "yes" goto NoPause
 vgotoxy /g eop sor
 vecho /g /a0x70 " Finished, Press a key... " /e /n
-vpause /t %FDI_PAUSE%
+vpause /t %FWAIT%
 :NoPause
 vcls /a 0x07
 goto Finished
 
 REM Installer failed **********************************************************
 :Error
-set FDI_STAGE=999
-if not exist STAGE%FDI_STAGE%.BAT goto NoCleanupStage
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=999
+if not exist STAGE%FSTAGE%.BAT goto NoCleanupStage
+call STAGE%FSTAGE%.BAT
 :NoCleanupStage
 vcls /a 0x07
-echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
+echo Unable to execute installer stage %FSTAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
 goto Finished
 
 REM Installer failed or was aborted *******************************************
 :Aborted
-set FDI_STAGE=999
-if not exist STAGE%FDI_STAGE%.BAT goto Error
-call STAGE%FDI_STAGE%.BAT
+set FSTAGE=999
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
 vcls /a 0x07
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho
-if not "%FDI_ERROR%" == "" vecho %FDI_ERROR%
-if not "%FDI_ERROR%" == "" vecho
+if not "%FERROR%" == "" vecho %FERROR%
+if not "%FERROR%" == "" vecho
 goto Finished
 
 REM Post execution cleanup ****************************************************
 :Finished
 cd ..\..
 
-set FDI_ADVANCED=
-set FDI_RECOVERY=
-set FDI_STAGE=
-set FDI_PIPES=
-set FDI_CURSOR=
-set FDI_ERROR=
+set FADV=
+set FRECOVER=
+set FSTAGE=
+set FPIPES=
+set FCURSOR=
+set FERROR=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything

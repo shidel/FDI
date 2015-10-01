@@ -2,8 +2,8 @@
 
 REM Test if current version of FreeDOS is already installed.
 REM exit 0, not installed
-REM exit 0, if found, but not this version set FDI_EXISTS=(version)
-REM exit 0, if found, and is this version set FDI_EXISTS=yes
+REM exit 0, if found, but not this version set FFOUND=(version)
+REM exit 0, if found, and is this version set FFOUND=yes
 REM exit 1, Error
 
 verrlvl 0

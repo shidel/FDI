@@ -10,7 +10,7 @@ REM Draw the welcome screen.
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-if "%FDI_ADVANCED%" == "yes" goto AdvancedMesssage
+if "%FADV%" == "yes" goto AdvancedMesssage
 vecho "Welcome to the installation program for " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
 goto Spacer
 :AdvancedMesssage

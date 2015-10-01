@@ -1,6 +1,6 @@
 @echo off
 
-if "%1:\FDSETUP\SETUP" == "%FDI_INSP%" goto Done
+if "%1:\FDSETUP\SETUP" == "%FINSP%" goto Done
 if exist %TEMP%\FDISCAN.LST del %TEMP%\FDISCAN.LST
 
 if "%1" == "A" goto CheckDriveExists

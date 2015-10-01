@@ -39,18 +39,18 @@ vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 vecho
-vcursor %FDI_CURSOR%
+vcursor %FCURSOR%
 
 REM **** Launch Formatting Program ****
-format C: /V:%FDI_VOLUME% %FDI_FORMAT%
+format C: /V:%OVOL% %FFMT%
 REM **** Returned from Formatting ****
 
-set FDI_DIDFMT=YES
+set FDIDFMT=YES
 
 vcursor hide
 vgotoxy eop sor
 vecho /n /fLightGreen " Press a key... " /e
-vpause /fLightCyan /t %FDI_PAUSE% CTRL-C
+vpause /fLightCyan /t %FWAIT% CTRL-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterFormat
 

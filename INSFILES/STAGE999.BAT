@@ -3,33 +3,37 @@
 REM Post installer cleanup.
 
 vfdutil /c /p "%0"
-vcursor %FDI_CURSOR%
+vcursor %FCURSOR%
 
 vinfo /dC
 if errorlevel 2 goto IgnoreTemp
 
 if exist %TEMP%\FDIPATHS.LST del %TEMP%\FDIPATHS.LST>NUL
-if exist %FDI_TEMP%\NUL DELTREE /y %FDI_TEMP%\*.*>NUL
-if exist %FDI_TEMP%\NUL RMDIR %FDI_TEMP%
+if exist %FTEMP%\NUL DELTREE /y %FTEMP%\*.*>NUL
+if exist %FTEMP%\NUL RMDIR %FTEMP%
 
 :IgnoreTemp
-set TEMP=%FDI_TEMPO%
-set TMP=%FDI_TMPO%
+set TEMP=%FTEMPO%
+set TMP=%FTMPO%
 
-rem if "%FDI_DEBUG%" == "yes" goto SkipClear
-set FDI_DEBUG=
-set FDI_VOLUME=
-set FDI_FORMAT=
-set FDI_PAUSE=
-set FDI_TEMP=
-set FDI_DIDFMT=
-set FDI_THEME=
-set FDI_EXISTS=
-set FDI_INSP=
-set FDI_BAK=
-set FDI_SYS=
-set FDI_TEMPO=
-set FDI_TMPO=
+rem if "%FDEBUG%" == "yes" goto SkipClear
+set FDEBUG=
+set FFMT=
+set FWAIT=
+set FTEMP=
+set FTHEME=
+
+set FDIDFMT=
+set FFOUND=
+set FINSP=
+set FTEMPO=
+set FTMPO=
+set FCURSOR
+
+rem clear built-in installer options settings
+set OVOL=
+set OBAK=
+set OSYS=
 
 REM Clear Theme Variables
 set TSF=
