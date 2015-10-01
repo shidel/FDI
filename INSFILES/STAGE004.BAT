@@ -3,7 +3,7 @@
 REM Check state of drive C:, check if it needs partitioned.
 REM If so, prompt to run partitioner then reboot.
 
-vcls /f %FDI_SFG% /b %FDI_SBG% /c %FDI_SFC% /y2 /h24
+vcls /f %_SFG% /b %_SBG% /c %_SFC% /y2 /h24
 
 if not "%1" == "" goto %1
 
@@ -21,16 +21,16 @@ goto Done
 
 :NoSuchDrive
 :WrongTypeDrive
-vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h10 /c /y7 %FDI_FBS%
-vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f  %FDI_FHC% C /f %FDI_FFG% " does not appear to be partitioned."
+vframe /b %_FBG% /f %_FFG% /w60 /h10 /c /y7 hidden shadow
+vframe /b %_FBG% /f %_FFG% /w58 /h10 /c /y7 %_FBS%
+vframe /b %_FBG% /f %_FFG% /w56 /h8 /c /y8 hidden
+vecho "Drive " /f  %_FHC% C /f %_FFG% " does not appear to be partitioned."
 vecho
 vecho "Do you wish to partition your drive?"
-vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y12 hidden
-vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Launch Partitioner."
-vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
-vchoice /a %FDI_FCS% Ctrl-C /d 2
+vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y12 hidden
+vecho "  Yes - Launch Partitioner."
+vecho "  No  - Return to DOS" /n
+vchoice /a %_FCS% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
@@ -46,17 +46,17 @@ vcursor hide
 :AfterPartitioned
 call FDICLS.BAT
 
-vframe /b %FDI_FBG% /f %FDI_FFG% /w60 /h11 /c /y7 hidden shadow
-vframe /b %FDI_FBG% /f %FDI_FFG% /w58 /h11 /c /y7 %FDI_FBS%
-vframe /b %FDI_FBG% /f %FDI_FFG% /w56 /h9 /c /y8 hidden
+vframe /b %_FBG% /f %_FFG% /w60 /h11 /c /y7 hidden shadow
+vframe /b %_FBG% /f %_FFG% /w58 /h11 /c /y7 %_FBS%
+vframe /b %_FBG% /f %_FFG% /w56 /h9 /c /y8 hidden
 vecho /n "You must reboot your computer for the new partitioning"
 vecho "scheme to take effect."
 vecho
 vecho "Do you wish to reboot now?"
-vframe /b %FDI_FBG% /f %FDI_FFG% /w40 /h4 /c /y13 hidden
-vecho /f %FDI_CYC% "  Yes " /f %FDI_FFG% "- Please reboot now."
-vecho /f %FDI_CNC% "  No  " /f %FDI_FFG% "- Return to DOS" /n
-vchoice /a %FDI_FCS% Ctrl-C
+vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y13 hidden
+vecho "  Yes - Please reboot now."
+vecho "  No  - Return to DOS" /n
+vchoice /a %_FCS% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch

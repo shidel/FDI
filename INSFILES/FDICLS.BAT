@@ -1,10 +1,10 @@
 @echo off
 
 REM Clear entire screen.
-vcls /f %FDI_SFG% /b %FDI_SBG% /c %FDI_SFC%
+vcls /f %_SFG% /b %_SBG% /c %_SFC%
 
 REM Draw the Title Bar
 vgotoxy /x1 /y1
-vcls /b %FDI_TBG% /f %FDI_TFG% EOL
+vcls /b %_TBG% /f %_TFG% EOL
 vgotoxy /x30 /y1
-vecho /f %FDI_TFG% "%OS_NAME% " /f  %FDI_THC% "%OS_VERSION%" /f %FDI_TFG% " Installer"
+vecho /f %_TFG% "%OS_NAME% " /f  %_THC% "%OS_VERSION%" /f %_TFG% " Installer"

@@ -10,14 +10,14 @@ echo %FDI_INSP%>%TEMP%\FDIPATHS.LST
 for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
 
 :EachPath
-set FDI_TSFL=0
+set _TSFL=0
 
 :EachRepeat
-type %TEMP%\FDIPATHS.LST | vstr /l %FDI_TSFL% | set /p FDI_TASK=
-if "%FDI_TASK%" == "" goto EachDone
-for %f in ( %FDI_TASK%\FDASK*.BAT ) do call %f
+type %TEMP%\FDIPATHS.LST | vstr /l %_TSFL% | set /p _TASK=
+if "%_TASK%" == "" goto EachDone
+for %f in ( %_TASK%\FDASK*.BAT ) do call %f
 
-vmath %FDI_TSFL% + 1 | set /p FDI_TSFL=
+vmath %_TSFL% + 1 | set /p _TSFL=
 goto EachRepeat
 
 :EachDone
@@ -28,5 +28,5 @@ goto Done
 verrlvl 1
 
 :Done
-set FDI_TASK=
-set FDI_TSFL=
+set _TASK=
+set _TSFL=

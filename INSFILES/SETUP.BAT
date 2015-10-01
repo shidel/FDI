@@ -63,10 +63,87 @@ if "%1" == "ADV" set FDI_ADVANCED=yes
 if "%1" == "advanced" set FDI_ADVANCED=yes
 if "%1" == "ADVANCED" set FDI_ADVANCED=yes
 
-set FDI_STAGE=RUN
+REM Run configuration stage.
+set FDI_STAGE=000
 if not exist STAGE%FDI_STAGE%.BAT goto Error
 call STAGE%FDI_STAGE%.BAT
 if errorlevel 1 goto Aborted
+
+if not "%FDI_RECOVERY%" == "yes" goto SkipInstallCheck
+set FDI_STAGE=001
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+if "%FDI_EXISTS%" == "yes" goto NoInstallNeeded
+
+verrlvl 0
+
+:SkipInstallCheck
+
+REM Set Installer theme.
+set FDI_STAGE=002
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Welcome
+set FDI_STAGE=003
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Partitoned
+set FDI_STAGE=004
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Formatted
+set FDI_STAGE=005
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Pre install configuration and temp directory setups.
+set FDI_STAGE=006
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Ask the user all of the Questions.
+set FDI_STAGE=007
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Do the installation.
+set FDI_STAGE=008
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Post install stuff, like recommend reboot.
+set FDI_STAGE=009
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Run cleanup stage.
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+
+verrlvl 0
+goto Completed
+
+:NoInstallNeeded
+REM Run cleanup stage.
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
+
+verrlvl 0
+goto Finished
 
 REM Installer completed successfully ******************************************
 :Completed
@@ -80,6 +157,10 @@ goto Finished
 
 REM Installer failed **********************************************************
 :Error
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto NoCleanupStage
+call STAGE%FDI_STAGE%.BAT
+:NoCleanupStage
 vcls /a 0x07
 echo Unable to execute installer stage %FDI_STAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
@@ -87,6 +168,9 @@ goto Finished
 
 REM Installer failed or was aborted *******************************************
 :Aborted
+set FDI_STAGE=999
+if not exist STAGE%FDI_STAGE%.BAT goto Error
+call STAGE%FDI_STAGE%.BAT
 vcls /a 0x07
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
 vecho

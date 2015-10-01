@@ -32,34 +32,31 @@ set FDI_TEMPO=
 set FDI_TMPO=
 
 REM Clear Theme Variables
-set FDI_SFG=
-set FDI_SBG=
-set FDI_SFC=
+set _SFG=
+set _SBG=
+set _SFC=
 
-set FDI_TFG=
-set FDI_TBG=
-set FDI_THC=
+set _TFG=
+set _TBG=
+set _THC=
 
-set FDI_FFG=
-set FDI_FBG=
-set FDI_FHC=
-set FDI_FBS=
-set FDI_FCS=
+set _FFG=
+set _FBG=
+set _FHC=
+set _FBS=
+set _FCS=
 
-set FDI_CYC=
-set FDI_CNC=
+set _CFG=
+set _CHC=
+set _CBG=
+set _CBS=
+set _CCC=
+set _CAC=
+set _CCS=
 
-set FDI_CFG=
-set FDI_CHC=
-set FDI_CBG=
-set FDI_CBS=
-set FDI_CCC=
-set FDI_CAC=
-set FDI_CCS=
-
-set FDI_PBG=
-set FDI_PBC=
-set FDI_PCC=
+set _PBG=
+set _PBC=
+set _PCC=
 
 :SkipClear
 
