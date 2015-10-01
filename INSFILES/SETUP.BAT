@@ -46,6 +46,7 @@ goto PipeSupport
 set FCURSOR=small
 
 :PipeSupport
+set FPIPES=
 
 REM Change to directory and path of this batch file.
 vfdutil /c /p "%0"
@@ -60,8 +61,6 @@ if "%1" == "recovery" set FRECOVER=yes
 if "%1" == "RECOVERY" set FRECOVER=yes
 if "%1" == "adv" set FADV=yes
 if "%1" == "ADV" set FADV=yes
-if "%1" == "advanced" set FADV=yes
-if "%1" == "ADVANCED" set FADV=yes
 
 REM Run configuration stage.
 set FSTAGE=000
@@ -70,12 +69,13 @@ call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 if not "%FRECOVER%" == "yes" goto SkipInstallCheck
+
+REM Detect if this version is already installed
 set FSTAGE=001
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 if "%FFOUND%" == "yes" goto NoInstallNeeded
-
 verrlvl 0
 
 :SkipInstallCheck
@@ -185,7 +185,6 @@ cd ..\..
 set FADV=
 set FRECOVER=
 set FSTAGE=
-set FPIPES=
 set FCURSOR=
 set FERROR=
 

@@ -19,10 +19,6 @@ set TFB=Gray
 set TFS=single
 set TFC=0x1e
 
-REM Choice Yes and No Colors
-set _CYC=Green
-set _CNC=Red
-
 REM Control-C Foreground, Background and Highlight Colors
 set TCF=White
 set TCH=Yellow
