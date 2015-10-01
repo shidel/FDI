@@ -3,7 +3,7 @@
 REM Check state of drive C:, check if it needs partitioned.
 REM If so, prompt to run partitioner then reboot.
 
-vcls /f %_SFG% /b %_SBG% /c %_SFC% /y2 /h24
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
@@ -21,16 +21,16 @@ goto Done
 
 :NoSuchDrive
 :WrongTypeDrive
-vframe /b %_FBG% /f %_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %_FBG% /f %_FFG% /w58 /h10 /c /y7 %_FBS%
-vframe /b %_FBG% /f %_FFG% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f  %_FHC% C /f %_FFG% " does not appear to be partitioned."
+vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
+vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
+vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
+vecho "Drive " /f  %TFH% C /f %TFF% " does not appear to be partitioned."
 vecho
 vecho "Do you wish to partition your drive?"
-vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y12 hidden
+vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
 vecho "  Yes - Launch Partitioner."
 vecho "  No  - Return to DOS" /n
-vchoice /a %_FCS% Ctrl-C /d 2
+vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
@@ -46,17 +46,17 @@ vcursor hide
 :AfterPartitioned
 call FDICLS.BAT
 
-vframe /b %_FBG% /f %_FFG% /w60 /h11 /c /y7 hidden shadow
-vframe /b %_FBG% /f %_FFG% /w58 /h11 /c /y7 %_FBS%
-vframe /b %_FBG% /f %_FFG% /w56 /h9 /c /y8 hidden
+vframe /b %TFB% /f %TFF% /w60 /h11 /c /y7 hidden shadow
+vframe /b %TFB% /f %TFF% /w58 /h11 /c /y7 %TFS%
+vframe /b %TFB% /f %TFF% /w56 /h9 /c /y8 hidden
 vecho /n "You must reboot your computer for the new partitioning"
 vecho "scheme to take effect."
 vecho
 vecho "Do you wish to reboot now?"
-vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y13 hidden
+vframe /b %TFB% /f %TFF% /w40 /h4 /c /y13 hidden
 vecho "  Yes - Please reboot now."
 vecho "  No  - Return to DOS" /n
-vchoice /a %_FCS% Ctrl-C
+vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch

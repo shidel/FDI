@@ -1,11 +1,11 @@
 @echo off
 
 REM Control-C Handler
-vcls /f %_SFG% /b %_SBG% /c %_SFC% /y2 /h24
-vframe /f %_CFG% /b %_CBG% /w60 /h12 /c /y7 hidden shadow
-vframe /f %_CFG% /b %_CBG% /w58 /h12 /c /y7 %_CBS%
-vframe /f %_CFG% /b %_CBG% /w56 /h10 /c /y8 hidden
-vecho "You have pressed " /f %_CHC% "CTRL-C" /f %_CFG% "."
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /f %TCF% /b %TCB% /w60 /h12 /c /y7 hidden shadow
+vframe /f %TCF% /b %TCB% /w58 /h12 /c /y7 %TCS%
+vframe /f %TCF% /b %TCB% /w56 /h10 /c /y8 hidden
+vecho "You have pressed " /f %TCH% "CTRL-C" /f %TCF% "."
 vecho
 vecho "Are you sure you wish to abort the installation?"
 vframe /w44 /h6 /c /y12 hidden
@@ -14,7 +14,7 @@ vecho "  No  - I want to continue."
 vecho
 if "%FDI_ADVANCED%" == "" vecho "  No  - Switch to Advanced Mode." /n
 if "%FDI_ADVANCED%" == "yes" vecho "  No  - Switch to Basic Mode." /n
-vchoice /a %_CCS% /d 2 Ctrl-C
+vchoice /a %TCC% /d 2 Ctrl-C
 
 if errorlevel 200 goto AbortBatch
 if errorlevel 3 goto SwitchMode

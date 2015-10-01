@@ -4,7 +4,7 @@ REM Check state of drive C:, check if it needs formatted.
 REM If so, prompt to run format, then retest. If fails again,
 REM prompt to reboot.
 
-vcls /f %_SFG% /b %_SBG% /c %_SFC% /y2 /h24
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
@@ -21,21 +21,21 @@ goto Done
 goto Done
 
 :NotFormatted
-vframe /b %_FBG% /f %_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %_FBG% /f %_FFG% /w58 /h10 /c /y7 %_FBS%
-vframe /b %_FBG% /f %_FFG% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f %_FHC% C /f %_FFG% " does not appear to be formatted."
+vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
+vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
+vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
+vecho "Drive " /f %TFH% C /f %TFF% " does not appear to be formatted."
 vecho
 vecho "Do you wish to format your drive?"
-vframe /b %_FBG% /f %_FFG% /w44 /h4 /c /y12 hidden
+vframe /b %TFB% /f %TFF% /w44 /h4 /c /y12 hidden
 vecho "  Yes - Please erase and format drive C."
 vecho "  No  - Return to DOS" /n
-vchoice /a %_FCS% Ctrl-C /d 2
+vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
-vcls /f %_SFG% /b %_SBG% /y2 /h24
+vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 vecho
@@ -65,17 +65,17 @@ goto Done
 
 :StillCannotReadC
 
-vframe /b %_FBG% /f %_FFG% /w60 /h11 /c /y7 hidden shadow
-vframe /b %_FBG% /f %_FFG% /w58 /h11 /c /y7 %_FBS%
-vframe /b %_FBG% /f %_FFG% /w56 /h9 /c /y8 hidden
-vecho /n "Having a problem reading Drive " /f %_FHC% C /f %_FFG% "."
+vframe /b %TFB% /f %TFF% /w60 /h11 /c /y7 hidden shadow
+vframe /b %TFB% /f %TFF% /w58 /h11 /c /y7 %TFS%
+vframe /b %TFB% /f %TFF% /w56 /h9 /c /y8 hidden
+vecho /n "Having a problem reading Drive " /f %TFH% C /f %TFF% "."
 vecho "A system reboot may help."
 vecho
 vecho "Do you wish to reboot now?"
-vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y13 hidden
+vframe /b %TFB% /f %TFF% /w40 /h4 /c /y13 hidden
 vecho "  Yes - Please reboot now."
 vecho "  No  - Return to DOS" /n
-vchoice /a %_FCS% Ctrl-C
+vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 StillCannotReadC
 if errorlevel 2 goto AbortBatch

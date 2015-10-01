@@ -7,21 +7,21 @@ vcursor hide
 call FDICLS.BAT
 
 REM Draw the welcome screen.
-vframe /b %_FBG% /f %_FFG% /w60 /h10 /c /y7 hidden shadow
-vframe /b %_FBG% /f %_FFG% /w58 /h10 /c /y7 %_FBS%
-vframe /b %_FBG% /f %_FFG% /w56 /h8 /c /y8 hidden
+vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
+vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
+vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
 if "%FDI_ADVANCED%" == "yes" goto AdvancedMesssage
-vecho "Welcome to the installation program for " /f %_FHC% "%OS_NAME% %OS_VERSION%" /f %_FFG% "."
+vecho "Welcome to the installation program for " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
 goto Spacer
 :AdvancedMesssage
-vecho "Welcome to the advanced installer for " /f %_FHC% "%OS_NAME% %OS_VERSION%" /f %_FFG% "."
+vecho "Welcome to the advanced installer for " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
 :Spacer
 vecho
 vecho "Do you wish to proceed?"
-vframe /b %_FBG% /f %_FFG% /w40 /h4 /c /y12 hidden
+vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
 vecho "  Yes - Continue with Installation"
 vecho "  No  - Return to DOS" /n
-vchoice /a %_FCS% Ctrl-C
+vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto Done

@@ -32,31 +32,29 @@ set FDI_TEMPO=
 set FDI_TMPO=
 
 REM Clear Theme Variables
-set _SFG=
-set _SBG=
-set _SFC=
+set TSF=
+set TSB=
+set TSC=
 
-set _TFG=
-set _TBG=
-set _THC=
+set TTF=
+set TTB=
+set TTH=
 
-set _FFG=
-set _FBG=
-set _FHC=
-set _FBS=
-set _FCS=
+set TFF=
+set TFB=
+set TFH=
+set TFS=
+set TFC=
 
-set _CFG=
-set _CHC=
-set _CBG=
-set _CBS=
-set _CCC=
-set _CAC=
-set _CCS=
+set TCF=
+set TCH=
+set TCB=
+set TCS=
+set TCC=
 
-set _PBG=
-set _PBC=
-set _PCC=
+set TPB=
+set TPF=
+set TPH=
 
 :SkipClear
 

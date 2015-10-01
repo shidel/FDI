@@ -20,13 +20,13 @@ goto SkipBackup
 if "%FDI_ADVANCED%" == "yes" goto QueryBackupAdv
 
 call FDIWIND.BAT 10
-vecho "A previous operating system was detected on drive " /f %_FHC% C /f %_FFG% "."
+vecho "A previous operating system was detected on drive " /f %TFH% C /f %TFF% "."
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 2
 vecho "  Yes - Please backup first."
 vecho "  No  - Install without backing up." /n
-vchoice /a %_FCS% Ctrl-C /d 1
+vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipBackup
@@ -38,14 +38,14 @@ goto Done
 
 :QueryBackupAdv
 call FDIWIND.BAT 11
-vecho "A previous operating system was detected on drive " /f %_FHC% C /f %_FFG% "."
+vecho "A previous operating system was detected on drive " /f %TFH% C /f %TFF% "."
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 3
 vecho "  Yes - Please backup to a folder."
 vecho "  Yes - Please backup as zip archive."
 vecho "  No  - Install without backing up." /n
-vchoice /a %_FCS% Ctrl-C /d 1
+vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 3 goto SkipBackup

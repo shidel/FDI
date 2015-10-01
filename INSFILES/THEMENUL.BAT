@@ -3,38 +3,36 @@
 REM THEMENUL, Default Installer Theme.
 
 REM Screen Foreground, Background and Fill Character
-set _SFG=Gray
-set _SBG=Blue
-set _SFC=0xB0
+set TSF=Gray
+set TSB=Blue
+set TSC=0xB0
 
 REM Title Bar Foreground, Background and Highlight Colors
-set _TFG=Black
-set _TBG=Gray
-set _THC=Red
+set TTF=Black
+set TTB=Gray
+set TTH=Red
 
 REM Window Foreground, Background and Highlight Colors
-set _FFG=Black
-set _FHC=Red
-set _FBG=Gray
-set _FBS=single
-set _FCS=0x1e
+set TFF=Black
+set TFH=Red
+set TFB=Gray
+set TFS=single
+set TFC=0x1e
 
 REM Choice Yes and No Colors
 set _CYC=Green
 set _CNC=Red
 
 REM Control-C Foreground, Background and Highlight Colors
-set _CFG=White
-set _CHC=Yellow
-set _CBG=Red
-set _CBS=double
-set _CCC=White
-set _CAC=Yellow
-set _CCS=0x1f
+set TCF=White
+set TCH=Yellow
+set TCB=Red
+set TCS=double
+set TCC=0x1f
 
 REM Pause Bar and Clock Colors
-set _PBG=Blue
-set _PBC=LightGreen
-set _PCC=LightCyan
+set TPB=Blue
+set TPF=LightGreen
+set TPH=LightCyan
 
 verrlvl 0

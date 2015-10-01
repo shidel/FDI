@@ -3,38 +3,36 @@
 REM THEMEADV, Advanced Installer Theme.
 
 REM Screen Foreground, Background and Fill Character
-set _SFG=Gray
-set _SBG=Red
-set _SFC=0xB0
+set TSF=Gray
+set TSB=Red
+set TSC=0xB0
 
 REM Title Bar Foreground, Background and Highlight Colors
-set _TFG=White
-set _TBG=Red
-set _THC=Yellow
+set TTF=White
+set TTB=Red
+set TTH=Yellow
 
 REM Window Foreground, Background and Highlight Colors
-set _FFG=White
-set _FHC=LightGreen
-set _FBG=Red
-set _FBS=double
-set _FCS=0x1e
+set TFF=White
+set TFH=LightGreen
+set TFB=Red
+set TFS=double
+set TFC=0x1e
 
 REM Choice Yes and No Colors
 set _CYC=White
 set _CNC=Yellow
 
 REM Control-C Foreground, Background and Highlight Colors
-set _CFG=White
-set _CHC=Yellow
-set _CBG=Red
-set _CBS=single
-set _CCC=White
-set _CAC=Yellow
-set _CCS=0x1f
+set TCF=White
+set TCH=Yellow
+set TCB=Red
+set TCS=single
+set TCC=0x1f
 
 REM Pause Bar and Clock Colors
-set _PBG=Red
-set _PBC=White
-set _PCC=Yellow
+set TPB=Red
+set TPF=White
+set TPH=Yellow
 
 verrlvl 0

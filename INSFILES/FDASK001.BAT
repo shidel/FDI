@@ -10,12 +10,12 @@ goto Done
 
 :AdvancedMode
 call FDIWIND.BAT 8
-vecho "Transfer system files to drive " /f %_FHC% C /f %_FFG% "?"
+vecho "Transfer system files to drive " /f %TFH% C /f %TFF% "?"
 vecho
 call FDIOPTS.BAT 2
 vecho "  Yes - Transfer system files."
 vecho "  No  - Do not transfer system files." /n
-vchoice /a %_FCS% Ctrl-C /d 1
+vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipSysXfer
