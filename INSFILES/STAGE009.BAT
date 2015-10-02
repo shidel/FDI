@@ -3,7 +3,7 @@
 REM Thank the user for installing and offer to reboot.
 
 call FDIWIND.BAT 10
-vecho "Installation of " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% " completed."
+vecho "Installation of " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% " is now complete."
 vecho
 vecho "Do you want to reboot now?"
 call FDIOPTS.BAT 2

@@ -59,7 +59,7 @@ utilities.
         redirection is still unavailable, it will abort the installation.
 
         NOTE: Now that a TEMP directory exists,  FDIWIND.BAT and other
-        batch files that use I/O redirection for utilities like vmath can
+        batch files that use I/O redirection and utilities like vmath can
         now be used.
 
         STAGE007, Calls all Installation configuration batch files named
