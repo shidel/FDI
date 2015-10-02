@@ -37,7 +37,7 @@ set FPIPES=NO
 if "%TEMP%" == "" goto NoPipeSupport
 echo. | set /p FPIPES=
 if "%FPIPES%" == "NO" goto NoPipeSupport
-echo YES| set /p FPIPES=
+echo y| set /p FPIPES=
 if not "%FPIPES%" == "y" goto NoPipeSupport
 vcursor | set /p FCURSOR=
 
