@@ -3,7 +3,8 @@
 REM Post installer cleanup.
 
 vfdutil /c /p "%0"
-vcursor %FCURSOR%
+if "%FCURSOR%" == "" vcursor small
+if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
 vinfo /dC
 if errorlevel 2 goto IgnoreTemp

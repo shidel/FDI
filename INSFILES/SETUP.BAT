@@ -40,12 +40,8 @@ if "%FPIPES%" == "NO" goto NoPipeSupport
 echo YES| set /p FPIPES=
 if not "%FPIPES%" == "y" goto NoPipeSupport
 vcursor | set /p FCURSOR=
-goto PipeSupport
 
 :NoPipeSupport
-set FCURSOR=small
-
-:PipeSupport
 set FPIPES=
 
 REM Change to directory and path of this batch file.

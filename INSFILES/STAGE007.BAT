@@ -2,25 +2,18 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 5
+set _TI=0
 
-vecho "Gathering some information for the installation." /n
+:Lopping
+dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
+if "%_TA%" == "" goto Finished
+verrlvl 0
+call %_TA%
+if errorlevel 1 goto AbortBatch
+vmath %_TI% + 1 | set /p _TI=
+goto Looping
 
-echo %FINSP%>%TEMP%\FDIPATHS.LST
-for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
-
-:EachPath
-set _TSFL=0
-
-:EachRepeat
-type %TEMP%\FDIPATHS.LST | vstr /l %_TSFL% | set /p _TASK=
-if "%_TASK%" == "" goto EachDone
-for %f in ( %_TASK%\FDASK*.BAT ) do call %f
-
-vmath %_TSFL% + 1 | set /p _TSFL=
-goto EachRepeat
-
-:EachDone
+:Finished
 verrlvl 0
 goto Done
 
@@ -28,5 +21,5 @@ goto Done
 verrlvl 1
 
 :Done
-set _TASK=
-set _TSFL=
+set _TI=
+set _TA=

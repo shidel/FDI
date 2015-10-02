@@ -39,7 +39,8 @@ vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
 vecho /fGray "Formatting drive " /fWhite C /fGray "..."
 vecho
-vcursor %FCURSOR%
+if "%FCURSOR%" == "" vcursor small
+if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
 REM **** Launch Formatting Program ****
 format C: /V:%OVOL% %FFMT%

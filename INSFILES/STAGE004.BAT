@@ -36,7 +36,8 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
-vcursor %FCURSOR%
+if "%FCURSOR%" == "" vcursor small
+if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
 REM **** Launch Partitioning Program ****
 fdisk 1

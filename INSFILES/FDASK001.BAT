@@ -2,11 +2,7 @@
 
 REM if advanced mode prompt for transfer system files.
 
-if "%FADV%" == "y" goto AdvancedMode
-
-set OSYS=y
-verrlvl 0
-goto Done
+if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
 call FDIWIND.BAT 8
@@ -20,6 +16,7 @@ vchoice /a %TFC% Ctrl-C /d 1
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipSysXfer
 
+:AssumeYes
 set OSYS=y
 verrlvl 0
 goto Done
@@ -27,6 +24,5 @@ goto Done
 :SkipSysXfer
 set OSYS=no
 verrlvl 0
-goto Done
 
 :Done
