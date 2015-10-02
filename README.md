@@ -114,3 +114,27 @@ utilities.
                     does nothing.
 
         FDINS001    Transfers system files if OSYS is "y".
+
+
+### Other batch files.
+
+        FDCTRLC.BAT Code that is executed anytime the user presses CONTROL-C
+                    at a vchoice or vpause. Provides 3 options, Return to
+                    where you were, exit to dos or switch to/from advanced mode.
+
+                    You do not "CALL" FDCTRLC.BAT" you pass control to it and
+                    provide the batch file and options you wish to maintain
+                    if the user does not quit. The best example of this is
+                    STAGE004.BAT can return to itself in two separate places.
+
+        FDIWIND.BAT Functions only after STAGE006 runs. Creates a normal box
+                    for text or choices. %1 is the total height of the box.
+                    So, add 4 to how many lines you want. You want 1 line for
+                    just one line of text "CALL FDIWIND.BAT 5"
+
+        FDIOPTS.BAT Functions only after STAGE006. Creates an area to contain
+                    choices for vchoice. %1 is total number of choices you
+                    want.
+
+        FDISCAN.BAT Used internally to scan for drives that may contain paths
+                    that may contain FDINS???.BAT files.
