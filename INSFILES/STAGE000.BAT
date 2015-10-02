@@ -20,5 +20,3 @@ set FWAIT=15
 REM Default Temp Directory.
 set FTEMP=C:\FDTEMP.$$$
 
-REM Flag for remembering if drive was formatted.
-set FDIDFMT=NO

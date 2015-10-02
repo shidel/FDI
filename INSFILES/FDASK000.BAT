@@ -56,12 +56,12 @@ verrlvl 0
 goto Done
 
 :ZipBackup
-set OBAK=zip
+set OBAK=z
 verrlvl 0
 goto Done
 
 :SkipBackup
-set OBAK=no
+set OBAK=n
 verrlvl 0
 
 :Done

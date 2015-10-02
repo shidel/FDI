@@ -61,6 +61,9 @@ if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
 
 REM Run Installer Stages ******************************************************
+
+set FDIDFMT=NO
+
 REM Run configuration stage.
 set FSTAGE=000
 if not exist STAGE%FSTAGE%.BAT goto Error

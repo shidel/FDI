@@ -22,7 +22,7 @@ verrlvl 0
 goto Done
 
 :SkipSysXfer
-set OSYS=no
+set OSYS=n
 verrlvl 0
 
 :Done
