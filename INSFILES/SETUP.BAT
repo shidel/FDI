@@ -183,6 +183,8 @@ set FRECOVER=
 set FSTAGE=
 set FCURSOR=
 set FERROR=
+set FDEBUG=
+set FWAIT=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything

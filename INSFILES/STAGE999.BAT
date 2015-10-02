@@ -17,9 +17,7 @@ set TEMP=%FTEMPO%
 set TMP=%FTMPO%
 
 rem if "%FDEBUG%" == "y" goto SkipClear
-set FDEBUG=
 set FFMT=
-set FWAIT=
 set FTEMP=
 set FTHEME=
 

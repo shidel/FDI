@@ -18,7 +18,7 @@ REM Pause duration after Format and System file transfers.
 set FWAIT=15
 
 REM Default Temp Directory.
-set FTEMP=C:\FTEMP.$$$
+set FTEMP=C:\FDTEMP.$$$
 
 REM Flag for remembering if drive was formatted.
 set FDIDFMT=NO

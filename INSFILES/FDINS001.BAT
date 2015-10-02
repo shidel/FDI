@@ -2,6 +2,9 @@
 
 REM Transfer system files.
 
+vcls 0x07
+echo System file Transfer
+vdleay 1000
 verrlvl 0
 goto AfterSysXfer
 

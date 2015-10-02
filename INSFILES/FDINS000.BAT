@@ -1,5 +1,8 @@
 @echo off
 
+vcls 0x07
+echo Making Backup
+vdleay 1000
 verrlvl 0
 goto SkipBackup
 

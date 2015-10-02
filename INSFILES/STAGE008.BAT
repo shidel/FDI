@@ -20,21 +20,35 @@ call FDIWIND.BAT 5
 vecho "Preparing for the installation." /n
 vdelay 1000
 
+
+REM Scan for all install file paths.
 echo %FINSP%>%TEMP%\FDIPATHS.LST
 for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
 
-:EachPath
-set _TSFL=0
+REM Scan each install file path
+set _TSI=0
 
-:EachRepeat
-type %TEMP%\FDIPATHS.LST | vstr /l %_TSFL% | set /p _TASK=
-if "%_TASK%" == "" goto EachDone
-for %f in ( %_TASK%\FDASK*.BAT ) do call %f
+:LoopingPath
+type %TEMP%\FDIPATHS.LST | vstr /l %_TSI% | set /p _TSA=
+if "%_TSA%" == "" goto FinishedPath
+verrlvl 0
 
-vmath %_TSFL% + 1 | set /p _TSFL=
-goto EachRepeat
+set _TI=0
+:Looping
+dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
+if "%_TA%" == "" goto Finished
+verrlvl 0
+call %_TA%
+if errorlevel 1 goto AbortBatch
+vmath %_TI% + 1 | set /p _TI=
+goto Looping
+:Finished
 
-:EachDone
+if errorlevel 1 goto AbortBatch
+vmath %_TSI% + 1 | set /p _TSI=
+goto LoopingPath
+
+:FinishedPath
 verrlvl 0
 goto Done
 
@@ -42,5 +56,7 @@ goto Done
 verrlvl 1
 
 :Done
-set _TASK=
-set _TSFL=
+set _TSI=
+set _TSA=
+set _TI=
+set _TA=
