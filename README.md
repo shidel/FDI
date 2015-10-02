@@ -14,3 +14,8 @@ utilities.
 
 ### Build files in INSFILES\
 
+    MKBIN.LST   List of files copyied from C:\FDOS\BIN\ to A:\FDSETUP\BIN\
+    MKHELP.LST  List of files copyied from C:\FDOS\HELP\ to A:\FDSETUP\HELP\
+    MKV8P.LST   List of files copyied from V8POWER\ to A:\FDSETUP\V8POWER\
+    MKSETUP.LST List of files copyied from INSFILES\ to A:\FDSETUP\SETUP\
+
