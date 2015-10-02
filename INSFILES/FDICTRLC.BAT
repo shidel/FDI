@@ -13,7 +13,7 @@ vecho "  Yes - Please return to DOS."
 vecho "  No  - I want to continue."
 vecho
 if "%FADV%" == "" vecho "  No  - Switch to Advanced Mode." /n
-if "%FADV%" == "yes" vecho "  No  - Switch to Basic Mode." /n
+if "%FADV%" == "y" vecho "  No  - Switch to Basic Mode." /n
 vchoice /a %TCC% /d 2 Ctrl-C
 
 if errorlevel 200 goto AbortBatch
@@ -24,8 +24,8 @@ goto AbortBatch
 
 :SwitchMode
 verrlvl 0
-if "%FADV%" == "yes" goto SwitchBasic
-set FADV=yes
+if "%FADV%" == "y" goto SwitchBasic
+set FADV=y
 call STAGE002.BAT
 call FDICLS.BAT
 goto ContinueBatch

@@ -2,7 +2,7 @@
 
 REM Configure the installer.
 
-set FDEBUG=yes
+set FDEBUG=y
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS

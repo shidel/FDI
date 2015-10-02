@@ -3,7 +3,7 @@
 REM Basic (NUL) and Advanced (ADV) Theme Loader.
 
 set FTHEME=NUL
-if "%FADV%" == "yes" set FTHEME=ADV
+if "%FADV%" == "y" set FTHEME=ADV
 if not exist THEME%FTHEME%.BAT goto Error
 call THEME%FTHEME%.BAT
 if errorlevel 1 goto Aborted

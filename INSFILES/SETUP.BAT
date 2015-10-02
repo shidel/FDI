@@ -38,7 +38,7 @@ if "%TEMP%" == "" goto NoPipeSupport
 echo. | set /p FPIPES=
 if "%FPIPES%" == "NO" goto NoPipeSupport
 echo YES| set /p FPIPES=
-if not "%FPIPES%" == "YES" goto NoPipeSupport
+if not "%FPIPES%" == "y" goto NoPipeSupport
 vcursor | set /p FCURSOR=
 goto PipeSupport
 
@@ -57,10 +57,10 @@ REM Configure commmand-line options
 set FADV=
 set FRECOVER=
 
-if "%1" == "recovery" set FRECOVER=yes
-if "%1" == "RECOVERY" set FRECOVER=yes
-if "%1" == "adv" set FADV=yes
-if "%1" == "ADV" set FADV=yes
+if "%1" == "recovery" set FRECOVER=y
+if "%1" == "RECOVERY" set FRECOVER=y
+if "%1" == "adv" set FADV=y
+if "%1" == "ADV" set FADV=y
 
 REM Run configuration stage.
 set FSTAGE=000
@@ -68,14 +68,14 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
-if not "%FRECOVER%" == "yes" goto SkipInstallCheck
+if not "%FRECOVER%" == "y" goto SkipInstallCheck
 
 REM Detect if this version is already installed
 set FSTAGE=001
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
-if "%FFOUND%" == "yes" goto NoInstallNeeded
+if "%FFOUND%" == "y" goto NoInstallNeeded
 verrlvl 0
 
 :SkipInstallCheck
@@ -147,7 +147,7 @@ goto Finished
 
 REM Installer completed successfully ******************************************
 :Completed
-if not "%FDEBUG%" == "yes" goto NoPause
+if not "%FDEBUG%" == "y" goto NoPause
 vgotoxy /g eop sor
 vecho /g /a0x70 " Finished, Press a key... " /e /n
 vpause /t %FWAIT%

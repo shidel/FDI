@@ -16,7 +16,7 @@ if exist %FTEMP%\NUL RMDIR %FTEMP%
 set TEMP=%FTEMPO%
 set TMP=%FTMPO%
 
-rem if "%FDEBUG%" == "yes" goto SkipClear
+rem if "%FDEBUG%" == "y" goto SkipClear
 set FDEBUG=
 set FFMT=
 set FWAIT=

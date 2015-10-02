@@ -1,6 +1,6 @@
 @echo off
 
-if "%FDIDFMT%" == "YES" goto SkipBackup
+if "%FDIDFMT%" == "y" goto SkipBackup
 if exist C:\FDAUTO.BAT goto QueryBackup
 if exist C:\AUTOEXEC.BAT goto QueryBackup
 if exist C:\CONFIG.SYS goto QueryBackup
@@ -17,7 +17,7 @@ if exist C:\FDOS\NUL goto QueryBackup
 goto SkipBackup
 
 :QueryBackup
-if "%FADV%" == "yes" goto QueryBackupAdv
+if "%FADV%" == "y" goto QueryBackupAdv
 
 call FDIWIND.BAT 10
 vecho "A previous operating system was detected on drive " /f %TFH% C /f %TFF% "."
@@ -31,7 +31,7 @@ vchoice /a %TFC% Ctrl-C /d 1
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipBackup
 
-set OBAK=yes
+set OBAK=y
 
 verrlvl 0
 goto Done
@@ -51,7 +51,7 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 3 goto SkipBackup
 if errorlevel 2 goto ZipBackup
 
-set OBAK=yes
+set OBAK=y
 
 verrlvl 0
 goto Done

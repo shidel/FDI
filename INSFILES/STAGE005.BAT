@@ -45,7 +45,7 @@ REM **** Launch Formatting Program ****
 format C: /V:%OVOL% %FFMT%
 REM **** Returned from Formatting ****
 
-set FDIDFMT=YES
+set FDIDFMT=y
 
 vcursor hide
 vgotoxy eop sor
