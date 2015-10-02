@@ -38,8 +38,13 @@ set _TI=0
 dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto Finished
 verrlvl 0
+if not exist %_TSA%\%_TA% goto MissingFile
+vfdutil /c/p %_TSA%\
 call %_TA%
+vfdutil /c/p %FINSP%\
 if errorlevel 1 goto AbortBatch
+
+:MissingFile
 vmath %_TI% + 1 | set /p _TI=
 goto Looping
 :Finished
