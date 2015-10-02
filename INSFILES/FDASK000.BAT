@@ -32,7 +32,6 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipBackup
 
 set OBAK=y
-
 verrlvl 0
 goto Done
 

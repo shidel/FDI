@@ -63,3 +63,4 @@ set TPH=
 :SkipClear
 
 vdelay 2000
+verrlvl 0

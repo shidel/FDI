@@ -1,5 +1,6 @@
 @echo off
 
+verrlvl 0
 goto SkipBackup
 
 vcls /fGray /bBlue /y2 /h24

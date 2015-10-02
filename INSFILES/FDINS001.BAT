@@ -2,8 +2,8 @@
 
 REM Transfer system files.
 
+verrlvl 0
 goto AfterSysXfer
-
 
 :BeginInstall
 vcls /fWhite /bBlue /y2 /h24

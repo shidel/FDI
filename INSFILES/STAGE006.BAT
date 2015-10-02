@@ -18,7 +18,7 @@ REM later versions of Windows DOS support it. We cannot install without it!
 set FPIPES=NO
 echo. | set /p FPIPES=
 if "%FPIPES%" == "NO" goto AbortBatch
-echo YES| set /p FPIPES=
+echo y| set /p FPIPES=
 if not "%FPIPES%" == "y" goto AbortBatch
 CD | set /p FINSP=
 
