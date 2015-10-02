@@ -1,6 +1,6 @@
 @echo off
 
-REM FreeDOS Installer.
+REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2015 Jerome Shidel.
 
@@ -29,6 +29,7 @@ REM V8Power Tools Found *******************************************************
 :V8Present
 verrlvl 0
 
+REM Test for I/O redirection **************************************************
 REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
 REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
 REM later versions of Windows DOS support it.
@@ -44,6 +45,7 @@ vcursor | set /p FCURSOR=
 :NoPipeSupport
 set FPIPES=
 
+REM Configure initial mode ****************************************************
 REM Change to directory and path of this batch file.
 vfdutil /c /p "%0"
 if not exist FDSETUP\SETUP\NUL goto Error
@@ -58,6 +60,7 @@ if "%1" == "RECOVERY" set FRECOVER=y
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
 
+REM Run Installer Stages ******************************************************
 REM Run configuration stage.
 set FSTAGE=000
 if not exist STAGE%FSTAGE%.BAT goto Error
@@ -129,6 +132,7 @@ set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 
+REM Ran all installer stages **************************************************
 verrlvl 0
 goto Completed
 
@@ -151,7 +155,7 @@ vcls /a 0x07
 verrlvl 0
 goto Finished
 
-REM Installer failed **********************************************************
+REM Installer failed from missing stage file **********************************
 :Error
 set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto NoCleanupStage
@@ -162,7 +166,7 @@ echo Unable to execute installer stage %FSTAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
 goto Finished
 
-REM Installer failed or was aborted *******************************************
+REM Installer failed to install or was aborte**********************************
 :Aborted
 set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
