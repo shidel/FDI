@@ -186,5 +186,16 @@ set FERROR=
 set FDEBUG=
 set FWAIT=
 
+if "%FREBOOT%" == "y" goto DoReboot
+if "%FREBOOT%" == "n" goto DoExit
+goto DontDoAnything
+
+:DoReboot
+vcls 0x07
+reboot
+
+:DoExit
+set FREBOOT=
+
 REM End of Batch Script *******************************************************
 :DontDoAnything
