@@ -1,7 +1,6 @@
 @echo off
 
 REM Post installer cleanup.
-
 vfdutil /c /p "%0"
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
@@ -63,3 +62,4 @@ set TPH=
 
 :SkipClear
 
+vdelay 2000

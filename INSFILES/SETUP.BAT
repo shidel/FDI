@@ -137,7 +137,6 @@ REM Run cleanup stage.
 set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
-
 verrlvl 0
 goto Finished
 
@@ -149,6 +148,7 @@ vecho /g /a0x70 " Finished, Press a key... " /e /n
 vpause /t %FWAIT%
 :NoPause
 vcls /a 0x07
+verrlvl 0
 goto Finished
 
 REM Installer failed **********************************************************
