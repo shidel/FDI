@@ -50,9 +50,9 @@ utilities.
         partitioned and offers to run fdisk or exit. If user selects fdisk,
         then offers to reboot or exit.
 
-        STAGE005, Checks if drive C is readble. If not prompts user that C
+        STAGE005, Checks if drive C is readable. If not prompts user that C
         needs formatted and offers to format or exit. If user selects formats,
-        then rechecks if C is readble. If not, offers to reboot or exit.
+        then rechecks if C is readable. If not, offers to reboot or exit.
 
         STAGE006, Sets up temporary TEMP Directory so I/O redirection can
         function and for storage of a couple temporary files. If I/O
@@ -71,7 +71,7 @@ utilities.
         \FDSETUP\SETUP\FDINS???.BAT files and calls them in that order to
         perform the installation.
 
-        STAGE009, Informs user that instalation is complete offers reboot or
+        STAGE009, Informs user that installation is complete offers reboot or
         exit.
 
         STAGE999, Performs cleanup and is always run. It is only not run
@@ -108,6 +108,17 @@ utilities.
 
 ### Installer FDINS???.BAT scripts included on BOOT disk.
 
+        Note:       When an FDINS???.BAT is called. The current drive and
+                    directory are set automatically to the location of
+                    the FDINS???.BAT file. Also, errorlevel must be 0 on
+                    exit from the FDINS???.BAT script or the Installer
+                    will assume failure and terminate. You may easily insure
+                    that it continues by using "verrlvl 0" to clear any
+                    existing errorlevel value. Also, any custom FDINS???.BAT
+                    scripts should test the OS_NAME and OS_VERSION to
+                    insure compatibility with the version of FreeDOS being
+                    installed.
+
         FDINS000    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
                     and stored in C:\FDBACKUP\ directory. If "n", then
@@ -115,14 +126,13 @@ utilities.
 
         FDINS001    Transfers system files if OSYS is "y".
 
-
 ### Other batch files.
 
         FDCTRLC.BAT Code that is executed anytime the user presses CONTROL-C
                     at a vchoice or vpause. Provides 3 options, Return to
                     where you were, exit to dos or switch to/from advanced mode.
 
-                    You do not "CALL" FDCTRLC.BAT" you pass control to it and
+                    You do not "CALL" FDCTRLC.BAT you pass control to it and
                     provide the batch file and options you wish to maintain
                     if the user does not quit. The best example of this is
                     STAGE004.BAT can return to itself in two separate places.
