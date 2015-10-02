@@ -22,7 +22,7 @@ utilities.
     FDCONFIG.SYS Copied as-is to A:\
     SETUP.BAT    Copied as-is to A:\
 
-### How the installer Works
+### What the installer does.
 
     AUTOEXEC.BAT calls SETUP.BAT RECOVERY
 
@@ -76,4 +76,4 @@ utilities.
         if the STAGE001 test for existing OS installation passes and the
         batch script is exiting without running the installer.
 
-        If user had selected reboot, it is done now.
+        If user had selected reboot in STAGE009, it is done now.
