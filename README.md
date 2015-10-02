@@ -106,7 +106,7 @@ utilities.
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
 
-### Installer scripts included on BOOT disk.
+### Installer FDINS???.BAT scripts included on BOOT disk.
 
         FDINS000    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
