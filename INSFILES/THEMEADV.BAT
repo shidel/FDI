@@ -4,7 +4,7 @@ REM THEMEADV, Advanced Installer Theme.
 
 REM Screen Foreground, Background and Fill Character
 set TSF=Gray
-set TSB=Red
+set TSB=Black
 set TSC=0xB0
 
 REM Title Bar Foreground, Background and Highlight Colors

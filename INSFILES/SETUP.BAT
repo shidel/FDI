@@ -70,17 +70,19 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
-if not "%FRECOVER%" == "y" goto SkipInstallCheck
-
 REM Detect if this version is already installed
+if not "%FRECOVER%" == "y" goto SkipInstallCheck
 set FSTAGE=001
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 if "%FFOUND%" == "y" goto NoInstallNeeded
 verrlvl 0
-
 :SkipInstallCheck
+
+REM Show Logo file if present.
+if exist FDSPLASH.BAT call FDSPLASH.BAT
+if errorlevel 1 goto Aborted
 
 REM Set Installer theme.
 set FSTAGE=002
@@ -179,6 +181,7 @@ vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /f
 vecho
 if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
+if exist FDERROR.BAT call FDERROR.BAT
 goto Finished
 
 REM Post execution cleanup ****************************************************
@@ -202,6 +205,7 @@ vcls 0x07
 reboot
 
 :DoExit
+if exist FDSETUP\SETUP\FDTHANK.BAT call FDSETUP\SETUP\FDTHANK.BAT
 set FREBOOT=
 
 REM End of Batch Script *******************************************************

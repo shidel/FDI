@@ -43,6 +43,9 @@ utilities.
         STAGE002, Loads current color scheme from either THEMENUL.BAT or
         if THEMEADV.BAT (Advanced Mode).
 
+        If FDSETUP\SETUP\FDSPLASH.BAT exists, it is called. It might be good
+        for displaying ascii art logo or something.
+
         STAGE003, Displays welcome to FreeDOS installer message. Offers to
         continue or exit.
 
@@ -78,7 +81,17 @@ utilities.
         if the STAGE001 test for existing OS installation passes and the
         batch script is exiting without running the installer.
 
+        Screen is cleared, reguardless of successful or failed installation.
+
+        If install has failed due to an error and FDSETUP\SETUP\FDERROR.BAT
+        exists it will be called now. You could set FREBOOT=y, to force reboot
+        or display addition error information, suggestions on how  to correct
+        the issue or some such thing.
+
         If user had selected reboot in STAGE009, it is done now.
+
+        If install had completed and reboot was not selected AND
+        FDSETUP\SETUP\FDTHANK.BAT exists it will be called last.
 
 ### Some global environment variables.
 
@@ -90,6 +103,10 @@ utilities.
                     drive C.
         FWAIT       = If your going to use vpause, This is how many seconds you
                     should pause. Example: vpause /t %FWAIT%
+
+        FREBOOT     = "" No effect when ending batch script.
+                    = "n" will cause FDTHANK to be called at exit.
+                    = "y" will cause reboot at exit.
 
 ### Options configured by FDASK???.BAT files.
 
@@ -117,7 +134,8 @@ utilities.
                     existing errorlevel value. Also, any custom FDINS???.BAT
                     scripts should test the OS_NAME and OS_VERSION to
                     insure compatibility with the version of FreeDOS being
-                    installed.
+                    installed. Also, if you set FERROR, it will be displayed as
+                    an error message when installer aborts.
 
         FDINS000    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
