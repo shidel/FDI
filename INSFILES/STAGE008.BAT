@@ -20,7 +20,6 @@ call FDIWIND.BAT 5
 vecho "Preparing for the installation." /n
 vdelay 1000
 
-
 REM Scan for all install file paths.
 echo %FINSP%>%TEMP%\FDIPATHS.LST
 for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
