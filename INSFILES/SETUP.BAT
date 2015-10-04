@@ -177,8 +177,9 @@ set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 vcls /a 0x07
-vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% was aborted." /e /fGray
+vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% has been aborted." /e /fGray
 vecho
+if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n
 if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
 if exist FDERROR.BAT call FDERROR.BAT

@@ -23,9 +23,10 @@ if not "%FPIPES%" == "y" goto AbortBatch
 CD | set /p FINSP=
 
 verrlvl 0
-goto Done
+rem goto Done
 
 :AbortBatch
+set FERROR="Command interpeter does not support 'set /p'"
 verrlvl 1
 
 :Done

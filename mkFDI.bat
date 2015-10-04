@@ -113,6 +113,33 @@ copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
 if not exist %ODIR%\%CPFILE% goto ErrorCopy
 
+:CopyFDLOGO
+set CPFILE=FDSPLASH.BAT
+if not exist %IINS%\%CPFILE% goto CopyFDERROR
+echo.
+echo Copying custom splash file.
+copy %IINS%\%CPFILE% %ODOS%\SETUP
+if errorlevel 1 goto ErrorCopy
+if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
+:CopyFDERROR
+set CPFILE=FDERROR.BAT
+if not exist %IINS%\%CPFILE% goto CopyFDTHANK
+echo.
+echo Copying custom error file.
+copy %IINS%\%CPFILE% %ODOS%\SETUP
+if errorlevel 1 goto ErrorCopy
+if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
+:CopyFDTHANK
+set CPFILE=FDTHANK.BAT
+if not exist %IINS%\%CPFILE% goto Done
+echo.
+echo Copying custom thank you file.
+copy %IINS%\%CPFILE% %ODOS%\SETUP
+if errorlevel 1 goto ErrorCopy
+if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
 goto Done
 
 :MissingV8
