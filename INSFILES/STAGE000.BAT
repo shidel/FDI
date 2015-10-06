@@ -17,6 +17,9 @@ set FFMT=/Q /U /Z:seriously
 REM Pause duration after Format and System file transfers.
 set FWAIT=15
 
-REM Default Temp Directory.
+REM Default TEMP directory.
 set FTEMP=C:\FDTEMP.$$$
+
+REM Target path to install FreeDOS
+FTARGET=C:\FDOS
 
