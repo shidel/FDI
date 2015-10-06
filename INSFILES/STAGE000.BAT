@@ -21,5 +21,5 @@ REM Default TEMP directory.
 set FTEMP=C:\FDTEMP.$$$
 
 REM Target path to install FreeDOS
-FTARGET=C:\FDOS
+set FTARGET=C:\FDOS
 
