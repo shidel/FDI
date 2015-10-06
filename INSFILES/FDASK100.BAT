@@ -1,26 +1,27 @@
 @echo off
 
 if "%FDIDFMT%" == "y" goto SkipBackup
-if exist C:\FDAUTO.BAT goto QueryBackup
-if exist C:\AUTOEXEC.BAT goto QueryBackup
-if exist C:\CONFIG.SYS goto QueryBackup
-if exist C:\FDCONFIG.SYS goto QueryBackup
-if exist C:\KERNEL.SYS goto QueryBackup
-if exist C:\COMMAND.COM goto QueryBackup
-if exist C:\DRDOS.386 goto QueryBackup
-if exist C:\WINA20.386 goto QueryBackup
-if exist C:\IBMBIO.COM goto QueryBackup
-if exist C:\IBMDOS.COM goto QueryBackup
-if exist C:\IO.SYS copy goto QueryBackup
-if exist C:\MSDOS.SYS goto QueryBackup
-if exist C:\FDOS\NUL goto QueryBackup
+vfdutil /d %FTARGET% | set /p _C=
+if exist %_C%\FDAUTO.BAT goto QueryBackup
+if exist %_C%\AUTOEXEC.BAT goto QueryBackup
+if exist %_C%\CONFIG.SYS goto QueryBackup
+if exist %_C%\FDCONFIG.SYS goto QueryBackup
+if exist %_C%\KERNEL.SYS goto QueryBackup
+if exist %_C%\COMMAND.COM goto QueryBackup
+if exist %_C%\DRDOS.386 goto QueryBackup
+if exist %_C%\WINA20.386 goto QueryBackup
+if exist %_C%\IBMBIO.COM goto QueryBackup
+if exist %_C%\IBMDOS.COM goto QueryBackup
+if exist %_C%\IO.SYS copy goto QueryBackup
+if exist %_C%\MSDOS.SYS goto QueryBackup
+if exist %FTARGET%\NUL goto QueryBackup
 goto SkipBackup
 
 :QueryBackup
 if "%FADV%" == "y" goto QueryBackupAdv
 
 call FDIWIND.BAT 10
-vecho "A previous operating system was detected on drive " /f %TFH% C /f %TFF% "."
+vecho "A previous operating system was detected on drive " /f %TFH% %_C% /f %TFF% "."
 vecho
 vecho "Do you wish to backup the old files?"
 call FDIOPTS.BAT 2
@@ -37,9 +38,9 @@ goto Done
 
 :QueryBackupAdv
 call FDIWIND.BAT 11
-vecho "A previous operating system was detected on drive " /f %TFH% C /f %TFF% "."
+vecho "A previous operating system was detected on drive " /f %TFH% %_C% /f %TFF% "."
 vecho
-vecho "Do you wish to backup the old files?"
+vecho "Do you wish to backup the old system files?"
 call FDIOPTS.BAT 3
 vecho "  Yes - Please backup to a folder."
 vecho "  Yes - Please backup as zip archive."
@@ -65,3 +66,4 @@ set OBAK=n
 verrlvl 0
 
 :Done
+set _C=

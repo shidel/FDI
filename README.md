@@ -113,13 +113,13 @@ utilities.
         OVOL        If drive is formatted, set its labal to this text
                     (actually OVOL is set in STAGE000)
 
-        OBAK        Set in FDASK000. If an operating system is detected.
+        OBAK        Set in FDASK100. If an operating system is detected.
                     and user selects backup it will be set to "y". In advanced
                     mode user can select 'archive to zip' then it is set as
                     "z". If no OS was detected, or uses selects no backup it
                     will be set to "n"
 
-        OSYS        Set in FDASK001. If user is in basic mode it is set to
+        OSYS        Set in FDASK200. If user is in basic mode it is set to
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
 
@@ -137,12 +137,12 @@ utilities.
                     installed. Also, if you set FERROR, it will be displayed as
                     an error message when installer aborts.
 
-        FDINS000    Creates a backup folder of OS and CONFIG files if OBAK
+        FDINS100    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
                     and stored in C:\FDBACKUP\ directory. If "n", then
                     does nothing.
 
-        FDINS001    Transfers system files if OSYS is "y".
+        FDINS200    Transfers system files if OSYS is "y".
 
 ### Other batch files.
 

@@ -6,7 +6,8 @@ if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
 call FDIWIND.BAT 8
-vecho "Transfer system files to drive " /f %TFH% C /f %TFF% "?"
+vfdutil /d %FTARGET% | set /p _C=
+vecho "Transfer system files to drive " /f %TFH% %_C% /f %TFF% "?"
 vecho
 call FDIOPTS.BAT 2
 vecho "  Yes - Transfer system files."
@@ -26,3 +27,4 @@ set OSYS=n
 verrlvl 0
 
 :Done
+set _C=
