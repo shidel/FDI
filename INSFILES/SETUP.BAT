@@ -151,10 +151,10 @@ goto Finished
 
 REM Installer completed successfully ******************************************
 :Completed
-if not "%FDEBUG%" == "y" goto NoPause
-vgotoxy /g eop sor
-vecho /g /a0x70 " Finished, Press a key... " /e /n
-vpause /t %FWAIT%
+rem if not "%FDEBUG%" == "y" goto NoPause
+rem vgotoxy /g eop sor
+rem vecho /g /a0x70 " Finished, Press a key... " /e /n
+rem vpause /t %FWAIT%
 :NoPause
 vcls /a 0x07
 verrlvl 0

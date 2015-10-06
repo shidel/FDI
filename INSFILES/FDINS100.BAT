@@ -1,18 +1,24 @@
 @echo off
 
-vcls 0x07
-echo Making Backup
-vdelay 1000
-verrlvl 0
-goto SkipBackup
+if "%OBAK%" == "" goto AfterBackup
+if not "%OBAK%" == "n" goto MakeBackup
+goto AfterBackup
 
-vcls /fGray /bBlue /y2 /h24
-vframe /bGray /fBlack /w60 /h8 /c /y7 hidden shadow
-vframe /bGray /fBlack /w58 /h8 /c /y7 single
-vframe /bGray /fBlack /w56 /h6 /c /y8 hidden
+:MakeBackup
+call FDIWIND.BAT 7
 vecho /n "Creating backup"
 vgotoxy /l eop sor
 vprogres /fBlack 0
+goto AfterBackup
+
+if "%OBAK%" == "z" goto ZipBackup
+:SimpleBackup
+
+goto AfterBackup
+
+ZipBackup:
+goto AfterBackup
+
 if not exist C:\FDBACKUP\NUL mkdir C:\FDBACKUP
 
 set BFILE=0
@@ -90,6 +96,4 @@ vdelay 1000
 set BLIST=
 set BFILE=
 
-vcls /fGray /bBlue /y2 /h24
-
-:SkipBackup
+:AfterBackup
