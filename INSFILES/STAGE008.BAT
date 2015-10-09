@@ -33,20 +33,19 @@ if "%_TSA%" == "" goto FinishedPath
 verrlvl 0
 
 set _TI=0
-:Looping
+:LoopingList
 dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
-if "%_TA%" == "" goto Finished
+if "%_TA%" == "" goto FinishedList
 verrlvl 0
-if not exist %_TSA%\%_TA% goto AbortBatch
+if not exist %_TSA%\%_TA% goto FinishedList
 vfdutil /c/p %_TSA%\
 call %_TA%
 if errorlevel 1 goto AbortBatch
 vfdutil /c/p %FINSP%\
 
-:MissingFile
 vmath %_TI% + 1 | set /p _TI=
-goto Looping
-:Finished
+goto LoopingList
+:FinishedList
 
 if errorlevel 1 goto AbortBatch
 vmath %_TSI% + 1 | set /p _TSI=
