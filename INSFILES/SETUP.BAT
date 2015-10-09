@@ -29,6 +29,49 @@ REM V8Power Tools Found *******************************************************
 :V8Present
 verrlvl 0
 
+REM Startup super simple environment free space test **************************
+set _A=0123456789012345
+set _A=%_A%%_A%%_A%%_A%%_A%%_A%
+set _B=%_A%
+if "%_B%" == "" goto FailEnvTest
+set _C=%_B%
+if "%_C%" == "" goto FailEnvTest
+set _D=%_C%
+if "%_D%" == "" goto FailEnvTest
+set _E=%_D%
+if "%_E%" == "" goto FailEnvTest
+set _F=%_E%
+if "%_F%" == "" goto FailEnvTest
+set _G=%_F%
+if "%_G%" == "" goto FailEnvTest
+set _H=%_G%
+if "%_H%" == "" goto FailEnvTest
+set _I=%_H%
+if "%_I%" == "" goto FailEnvTest
+set _J=%_I%
+if "%_J%" == "" goto FailEnvTest
+
+verrlvl 0
+goto EnvTestCleanup
+
+:FailEnvTest
+verrlvl 1
+
+:EnvTestCleanup
+set _A=
+set _B=
+set _C=
+set _D=
+set _E=
+set _F=
+set _G=
+set _H=
+set _I=
+set _J=
+
+if errorlevel 1 set FERROR="Insufficient free environment space."
+if errorlevel 1 goto Aborted
+
 REM Test for I/O redirection **************************************************
 REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
 REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and

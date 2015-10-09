@@ -23,3 +23,6 @@ set FTEMP=C:\FDTEMP.$$$
 REM Target path to install FreeDOS
 set FTARGET=C:\FDOS
 
+REM Backup path to when archiving.
+set FBAK=C:\FDBACKUP
+
