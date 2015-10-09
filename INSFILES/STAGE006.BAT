@@ -26,7 +26,8 @@ verrlvl 0
 goto Done
 
 :AbortBatch
-set FERROR="Command interpeter does not support 'set /p'"
+set FERROR="no support for 'set /p' or I/O redirection."
+call FDIFAIL.BAT "Installation is not supported under your current shell."
 verrlvl 1
 
 :Done

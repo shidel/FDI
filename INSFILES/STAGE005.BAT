@@ -65,26 +65,8 @@ verrlvl 0
 goto Done
 
 :StillCannotReadC
-
-vframe /b %TFB% /f %TFF% /w60 /h11 /c /y7 hidden shadow
-vframe /b %TFB% /f %TFF% /w58 /h11 /c /y7 %TFS%
-vframe /b %TFB% /f %TFF% /w56 /h9 /c /y8 hidden
-vecho /n "Having a problem reading Drive " /f %TFH% C /f %TFF% "."
-vecho "A system reboot may help."
-vecho
-vecho "Do you wish to reboot now?"
-vframe /b %TFB% /f %TFF% /w40 /h4 /c /y13 hidden
-vecho "  Yes - Please reboot now."
-vecho "  No  - Return to DOS" /n
-vchoice /a %TFC% Ctrl-C
-
-if errorlevel 200 FDICTRLC.BAT %0 StillCannotReadC
-if errorlevel 2 goto AbortBatch
-vcls /a0x07
-vecho "The computer will now reboot."
-vecho
-reboot
-goto AbortBatch
+set FERROR="Unable to read drive C: after format."
+call FDIFAIL.BAT "Having a problem reading drive " /f %TFH% C: /f %TFF% "."
 
 :AbortBatch
 verrlvl 1
