@@ -16,7 +16,7 @@ vecho "  Yes - Please reboot now."
 vecho "  No  - Return to DOS" /n
 vchoice /a %TFC% Ctrl-C
 
-if errorlevel 200 FDIFAIL.BAT %0 %1 %2 %3 %4 %5 %6 %7 %8
+if errorlevel 200 FDIFAIL.BAT %0 "%1 %2 %3 %4 %5 %6 %7 %8"
 if errorlevel 2 goto AbortBatch
 vcls /a0x07
 vecho "The computer will now reboot."

@@ -10,13 +10,12 @@ vfdutil /d %FTARGET% | set /p _C=
 call FDIWIND.BAT 7
 vecho /n "Creating backup"
 vgotoxy /l eop sor
-vprogres /f %TFH% 0
+vprogres /f %TFHP% 0
 
 if "%OBAK%" == "z" goto ZipBackup
 
 REM Backup to a renamed file  *************************************************
 :SimpleBackup
-
 vfdutil /u %_C%\FDOS_OLD.??? | set /p _AF=
 
 mkdir %_AF%
@@ -191,12 +190,12 @@ goto AfterBackup
 
 :ZipBackupFailed
 set FERROR="Making backup archive %_AF%."
-if errorlevel 1 call FDIFAIL.BAT "Making backup archive %_AF%."
+call FDIFAIL.BAT "Making backup archive %_AF%."
 goto AfterBackup
 
 :CopyBackupFailed
 set FERROR="Making backup."
-if errorlevel 1 call FDIFAIL.BAT "Making backup."
+call FDIFAIL.BAT "Error making backup."
 goto AfterBackup
 
 :AfterBackup
