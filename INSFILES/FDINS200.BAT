@@ -22,7 +22,7 @@ mkdir %_AF%
 
 set _AL=%TEMP%\FDBACKUP.LST
 date /d>%_AL%
-echo %_AL% >>%_AL%
+rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
 vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"
@@ -123,7 +123,7 @@ if not exist %FBAK%\NUL mkdir %FBAK%
 vfdutil /u %FBAK%\FDOS????.ZIP | set /p _AF=
 set _AL=%TEMP%\FDBACKUP.LST
 date /d>%_AL%
-echo %_AL% >>%_AL%
+rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
 vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"

@@ -34,6 +34,8 @@ rem clear built-in installer options settings
 set OVOL=
 set OBAK=
 set OSYS=
+set OCFG=
+set OCLEAN=
 
 REM Clear Theme Variables
 set TSF=
