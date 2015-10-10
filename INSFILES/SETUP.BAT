@@ -233,6 +233,7 @@ set FCURSOR=
 set FERROR=
 set FDEBUG=
 set FWAIT=
+set FDEL=
 
 if "%FREBOOT%" == "y" goto DoReboot
 if "%FREBOOT%" == "n" goto DoExit

@@ -70,6 +70,8 @@ vgotoxy /l eop sor
 
 vprogres /f %TFP% %_BP%
 
+if "%_BN%" == "%_BM%" goto BackupComplete
+
 type %_AL% | vstr /L %_BN% | set /p _BF=
 
 REM kind of a kludge, but i still need to do string/line prefixing in vstr
@@ -79,7 +81,6 @@ if exist %FTARGET%\%_BF% set _BF=C%FTARGET%\%_BF%
 zip -q -9 -S -u -r -b %TEMP% %_AF% %_BF%
 if errorlevel 1 goto FailedZipBackup
 
-if "%_BN%" == "%_BM%" goto BackupComplete
 vmath %_BN% + 1 | set /p _BN=
 goto BackupLoop
 
