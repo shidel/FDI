@@ -30,6 +30,7 @@ REM V8Power Tools Found *******************************************************
 verrlvl 0
 
 REM Startup super simple environment free space test **************************
+REM ensure a 1K (Plus a little) of free space is available in the environment.
 set _A=0123456789012345
 set _A=%_A%%_A%%_A%%_A%%_A%%_A%
 set _B=%_A%
@@ -50,6 +51,8 @@ set _I=%_H%
 if "%_I%" == "" goto FailEnvTest
 set _J=%_I%
 if "%_J%" == "" goto FailEnvTest
+set _K=%_J%
+if "%_K%" == "" goto FailEnvTest
 
 verrlvl 0
 goto EnvTestCleanup
@@ -68,9 +71,9 @@ set _G=
 set _H=
 set _I=
 set _J=
+set _K=
 
-if errorlevel 1 set FERROR="Insufficient free environment space."
-if errorlevel 1 goto Aborted
+if errorlevel 1 goto NoEnvSpace
 
 REM Test for I/O redirection **************************************************
 REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
@@ -208,14 +211,22 @@ echo Unable to execute installer stage %FSTAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
 goto Finished
 
+:NoEnvSpace
+vfdutil /c/p %0
+set FERROR="Insufficient free environment space."
+goto AbortedNoCleanup
+
 REM Installer failed to install or was aborte**********************************
 :Aborted
 set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
+:AbortedNoCleanup
 vcls /a 0x07
+if "%OS_NAME%" == "" goto NoOSName
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% has been aborted." /e /fGray
 vecho
+:NoOSName
 if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n
 if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
@@ -224,7 +235,7 @@ goto Finished
 
 REM Post execution cleanup ****************************************************
 :Finished
-cd ..\..
+vfdutil /c /p ..\..\
 
 set FADV=
 set FRECOVER=
