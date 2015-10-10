@@ -166,3 +166,10 @@ utilities.
 
         FDISCAN.BAT Used internally to scan for drives that may contain paths
                     that may contain FDINS???.BAT files.
+
+        FDIFAIL.BAT Call FDIFAIL "message about failure" to inform the user
+                    that the installation has failed. It offers to reboot
+                    or exit to DOS. Afterwards, if exit to DOS was selected,
+                    it will return to your script. You should then exit
+                    you batch file with an errorlevel of 1 to prevent
+                    futher processing of the installation.
