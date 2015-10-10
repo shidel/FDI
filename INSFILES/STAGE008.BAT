@@ -22,7 +22,10 @@ vdelay %FDEL%
 
 REM Scan for all install file paths.
 echo %FINSP%>%TEMP%\FDIPATHS.LST
-for %d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %d
+
+if not "%FSCAN%" == "y" goto NoVendorScanning
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %%d
+:NoVendorScanning
 
 REM Scan each install file path
 set _TSI=0

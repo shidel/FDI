@@ -3,6 +3,7 @@
 if "%1:\FDSETUP\SETUP" == "%FINSP%" goto Done
 if exist %TEMP%\FDISCAN.LST del %TEMP%\FDISCAN.LST
 
+REM Test Drive A/B actually exist to prevent single floppy change disk message.
 if "%1" == "A" goto CheckDriveExists
 if "%1" == "B" goto CheckDriveExists
 

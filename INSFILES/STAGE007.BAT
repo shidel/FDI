@@ -6,7 +6,33 @@ call FDIWIND.BAT 5
 vecho "Gathering information for installation." /n
 vdelay %FDEL%
 
+REM Locate installer packages media.
 set _TI=0
+
+:MediaLoop
+vmath %_TI% + 65 | set /p _TA=
+vstr /c %_TA% | set /p _TA=
+call FDIMEDIA.BAT %_TA%
+if "%FMEDIA%" == "" goto MediaFound
+if "%_TA%" == "Z" goto MissingMedia
+vmath %_TI% + 1 | set /p _TI=
+goto MediaLoop
+
+:MissingMedia
+set FERROR="Unable to locate installation packages."
+call FDFAIL.BAT "Unable to locate installation packages."
+goto AbortBatch
+
+:MediaFound
+
+REM Run through all questions.
+set _TI=0
+
+REM For some reason, DOS sometimes fails to do this correctly on the first try.
+REM So, make sure it is ready before moving on.
+:Sticky
+dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
+if "%_TA%" == "" goto Sticky
 
 :Looping
 dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=

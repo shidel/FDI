@@ -30,6 +30,8 @@ set FCURSOR=
 set FTARGET=
 set FBAK=
 set FVERB=
+set FSCAN=
+set FMEDIA=
 
 rem clear built-in installer options settings
 set OVOL=
