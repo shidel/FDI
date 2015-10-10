@@ -130,7 +130,7 @@ utilities.
                     "z". If no OS was detected, or uses selects no backup it
                     will be set to "n"
 
-        OSYS        Set in FDASK300. If user is in basic mode it is set to
+        OSYS        Set in FDASK400. If user is in basic mode it is set to
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
 
@@ -159,7 +159,9 @@ utilities.
                     and stored in C:\FDBACKUP\ directory. If "n", then
                     does nothing.
 
-        FDINS300    Transfers system files if OSYS is "y".
+        FDINS300    Reserved.
+
+        FDINS400    Transfers system files if OSYS is "y".
 
 ### Other batch files.
 
