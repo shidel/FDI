@@ -7,7 +7,7 @@ call FDICLS.BAT
 vframe /b %TFB% /f %TFF% /w74 /h11 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w72 /h11 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w70 /h9 /c /y8 hidden
-vecho %1 %2 %3 %4 %5 %6 %7 %8
+vecho "%1 %2 %3 %4 %5 %6 %7 %8"
 vecho "A reboot may help."
 vecho
 vecho "Do you wish to reboot now?"
