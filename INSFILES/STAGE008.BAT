@@ -7,9 +7,9 @@ vecho "We are now ready to install " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% 
 vecho
 vecho "Do you want to install now?"
 call FDIOPTS.BAT 2
-vecho "  Yes - Please install %OS_NAME%."
+vecho "  Yes - Please install %OS_NAME% %OS_VERSION%."
 vecho "  No  - Exit to DOS." /n
-vchoice /a %TFC% Ctrl-C /d 1
+vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch

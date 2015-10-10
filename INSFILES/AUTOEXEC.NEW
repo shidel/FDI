@@ -1,0 +1,63 @@
+@echo off
+SET LANG=EN
+SET MTCPCFG=C:\FDOS\MTCP.CFG
+SET WATTCP.CFG=C:\FDOS
+SET PATH=%dosdir%\BIN
+SET PATH=%path%;C:\TOOLS
+SET NLSPATH=%dosdir%\NLS
+SET HELPPATH=%dosdir%\HELP
+SET TEMP=%dosdir%\TEMP
+SET TMP=%TEMP%
+SET BLASTER=A220 I5 D1 H5 P330
+SET DIRCMD=/P /OGN /4
+SET COPYCMD=/-Y
+if "%config%"=="4" goto end
+SHSUCDX /QQ /D3
+LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
+LH FDAPM APMDOS
+IF "%config%"=="2" LH SHARE
+LH DOSLFN
+REM NLSFUNC C:\FDOS\BIN\COUNTRY.SYS
+REM DISPLAY CON=(EGA),858,2)
+REM MODE CON CP PREP=((858) C:\FDOS\CPI\EGA.CPX)
+REM KEYB US,858,C:\FDOS\bin\keyboard.sys
+REM CHCP 858
+REM LH PCNTPK INT=0x60
+REM DHCP
+MOUSE
+DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
+SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
+MEM /C /N
+IF NOT "%config%"=="4" SHSUCDX /D
+GOTO END
+:END
+SET AUTOFILE=%0
+SET CFGFILE=C:\FDCONFIG.SYS
+alias reboot=fdapm warmboot
+alias reset=fdisk /reboot
+alias halt=fdapm poweroff
+alias shutdown=fdapm poweroff
+alias cfg=edit %cfgfile%
+alias auto=edit %0
+
+set OS_NAME=FreeDOS
+set OS_VERSION=1.1a
+
+if exist %dosdir%\V8POWER\NUL goto V8Power
+
+echo Done processing startup files %cfgfile% and %0
+echo Type HELP to get support on commands and navigation
+echo.
+echo  Welcome to the %OS_NAME% %OS_VERSION% operating system (http://www.freedos.org)
+goto DONE
+
+:V8Power
+set PATH=%PATH%;%dosdir%\V8POWER
+vecho "Done processing startup files %cfgfile% and %0"
+vecho "Type " /fWhite HELP /fGray " to get support on commands and navigation"
+vecho
+vecho /n "Welcome to the " /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%"
+vecho /fGray " operating system (" /fYellow "http://www.freedos.org" /fGray ")" /e
+vecho
+
+:DONE

@@ -4,29 +4,25 @@ REM if advanced mode prompt to replace system config files.
 
 if "%FADV%" == "" goto AssumeYes
 
-:AdvancedMode
-if exist %FTARGET%\NUL goto AskAdvanced
-goto AssumeYes
-
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Remove all old files from %FTARGET%?"
+vecho "Install V8Power Tools to %FTARGET%?"
 vecho
 call FDIOPTS.BAT 2
-vecho "  Yes - Start fresh."
-vecho "  No  - Leave it cluttered." /n
+vecho "  Yes - Install V8Power Tools."
+vecho "  No  - Do not install them." /n
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipOption
 
 :AssumeYes
-set OCLEAN=y
+set OV8P=y
 verrlvl 0
 goto Done
 
 :SkipOtion
-set OCLEAN=n
+set OV8P=n
 verrlvl 0
 
 :Done

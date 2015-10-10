@@ -130,9 +130,17 @@ utilities.
                     "z". If no OS was detected, or uses selects no backup it
                     will be set to "n"
 
-        OSYS        Set in FDASK400. If user is in basic mode it is set to
+        OCFG        Set in FDASK300. If in advanced mode, user can choose not
+                    to replace existing configuration files.
+
+        OCLEAN      Set in FDASK400. If in advanced mode, user can choose not
+                    to remove all files in FreeDOS target directory before
+                    installing.
+
+        OSYS        Set in FDASK500. If user is in basic mode it is set to
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
+
 
 ### Installer FDINS???.BAT scripts included on BOOT disk.
 
@@ -159,9 +167,11 @@ utilities.
                     and stored in C:\FDBACKUP\ directory. If "n", then
                     does nothing.
 
-        FDINS300    Reserved.
+        FDINS300    Removes old configuration files when OCFG is "y".
 
-        FDINS400    Transfers system files if OSYS is "y".
+        FDINS400    Removes old FreeDOS target directory when OCLEAN is "y"
+
+        FDINS500    Transfers system files if OSYS is "y".
 
 ### Other batch files.
 
