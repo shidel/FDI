@@ -24,7 +24,7 @@ goto Done
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f  %TFH% C /f %TFF% " does not appear to be partitioned."
+vecho "Drive " /f  %TFH% C: /f %TFF% " does not appear to be partitioned."
 vecho
 vecho "Do you wish to partition your drive?"
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden

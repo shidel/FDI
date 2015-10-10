@@ -24,11 +24,11 @@ goto Done
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f %TFH% C /f %TFF% " does not appear to be formatted."
+vecho "Drive " /f %TFH% C: /f %TFF% " does not appear to be formatted."
 vecho
 vecho "Do you wish to format your drive?"
 vframe /b %TFB% /f %TFF% /w44 /h4 /c /y12 hidden
-vecho "  Yes - Please erase and format drive C."
+vecho "  Yes - Please erase and format drive C:."
 vecho "  No  - Return to DOS" /n
 vchoice /a %TFC% Ctrl-C /d 2
 
