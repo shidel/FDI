@@ -15,6 +15,7 @@ set TTH=Red
 REM Window Foreground, Background and Highlight Colors
 set TFF=Black
 set TFH=Red
+set TFP=Blue
 set TFB=Gray
 set TFS=single
 set TFC=0x1e

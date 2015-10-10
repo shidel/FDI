@@ -4,7 +4,7 @@ REM Prompt user for all questions needed for install.
 
 call FDIWIND.BAT 5
 vecho "Gathering information for installation." /n
-vdelay 1000
+vdelay %FDEL%
 
 set _TI=0
 

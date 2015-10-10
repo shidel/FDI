@@ -18,7 +18,7 @@ if errorlevel 2 goto AbortBatch
 
 call FDIWIND.BAT 5
 vecho "Preparing for the installation." /n
-vdelay 1000
+vdelay %FDEL%
 
 REM Scan for all install file paths.
 echo %FINSP%>%TEMP%\FDIPATHS.LST

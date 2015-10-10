@@ -16,6 +16,7 @@ REM Window Foreground, Background and Highlight Colors
 set TFF=White
 set TFH=LightGreen
 set TFB=Red
+set TFP=Yellow
 set TFS=double
 set TFC=0x1e
 

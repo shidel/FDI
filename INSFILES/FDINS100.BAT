@@ -32,7 +32,7 @@ echo %_AL% >>%_AL%
 vgotoxy /l sop eol right right
 vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"
 vgotoxy /l eop sor
-vprogres /f %TFH% 5
+vprogres /f %TFP% 5
 
 if exist %_C%\FDAUTO.BAT echo %_C%\FDAUTO.BAT >>%_AL%
 if exist %_C%\AUTOEXEC.BAT echo %_C%\AUTOEXEC.BAT >>%_AL%
@@ -49,7 +49,7 @@ if exist %_C%\IBMDOS.COM echo %_C%\IBMDOS.COM >>%_AL%
 if exist %_C%\IO.SYS echo %_C%\IO.SYS >>%_AL%
 if exist %_C%\MSDOS.SYS echo %_C%\MSDOS.SYS >>%_AL%
 
-vprogres /f %TFH% 10
+vprogres /f %TFP% 10
 
 set _BN=1
 if not exist %FTARGET%\NUL goto BackupRun
@@ -68,29 +68,33 @@ vmath %_BN% mul 90 div %_BM% + 10 | set /p _BP=
 
 vgotoxy /l eop sor
 
-vprogres /f %TFH% %_BP%
+vprogres /f %TFP% %_BP%
 
 type %_AL% | vstr /L %_BN% | set /p _BF=
-
-rem vecho "%_BN% of %_BM% is %_BP%, %_BF%"
-rem vdelay 1000
-rem if "%_BF%" == "" goto BackupComplete
 
 REM kind of a kludge, but i still need to do string/line prefixing in vstr
 if exist %FTARGET%\%_BF%\NUL set _BF=%FTARGET%\%_BF%
 if exist %FTARGET%\%_BF% set _BF=C%FTARGET%\%_BF%
 
 zip -q -9 -S -u -r -b %TEMP% %_AF% %_BF%
+if errorlevel 1 goto FailedZipBackup
 
 if "%_BN%" == "%_BM%" goto BackupComplete
 vmath %_BN% + 1 | set /p _BN=
 goto BackupLoop
 
+REM Backup complete ***********************************************************
 :BackupComplete
-rem if exist %_AL% del %_AL%
+if exist %_AL% del %_AL%
 vgotoxy /l eop sor
 vecho /n /f %TFF% "Backup complete." /e
-vdelay 1000
+vdelay %FDEL%
+goto AfterBackup
+
+:FailedZipBackup
+set FERROR="Making backup archive %_AF%."
+if errorlevel 1 call FDIFAIL.BAT "Making backup archive %_AF%."
+goto AfterBackup
 
 :AfterBackup
 set _BM=

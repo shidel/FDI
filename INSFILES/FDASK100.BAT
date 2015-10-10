@@ -23,7 +23,7 @@ if "%FADV%" == "y" goto QueryBackupAdv
 call FDIWIND.BAT 10
 vecho "A previous operating system was detected on drive " /f %TFH% %_C% /f %TFF% "."
 vecho
-vecho "Do you wish to backup the old files?"
+vecho "Do you wish to backup the old files before installing?"
 call FDIOPTS.BAT 2
 vecho "  Yes - Please backup first."
 vecho "  No  - Install without backing up." /n
