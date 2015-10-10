@@ -2,11 +2,14 @@
 
 REM Configure the installer.
 
-rem set FDEBUG=y
+set FDEBUG=n
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
 set OS_VERSION=1.1a
+
+REM Set Timezone so unzip doesn't complain.
+set TZ=UTC
 
 REM Formatted volume label
 set OVOL=FreeDOS2015

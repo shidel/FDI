@@ -10,7 +10,7 @@ vfdutil /d %FTARGET% | set /p _C=
 call FDIWIND.BAT 7
 vecho /n "Creating backup"
 vgotoxy /l eop sor
-vprogres /f %TFHP% 0
+vprogres /f %TFP% 0
 
 if "%OBAK%" == "z" goto ZipBackup
 
@@ -99,7 +99,7 @@ if errorlevel 1 goto CopyBackupFailed
 dir /A /B /P- %FTARGET%\%_BF%\*.* | vstr /l total | set /p _BT=
 verrlvl 0
 if "%_BT%" == "0" goto PostCopy
-xcopy /y /q /e /r %FTARGET%\%_BF% %_AF%\%_BF% >NUL
+xcopy /y /q /e /r %FTARGET%\%_BF%\*.* %_AF%\%_BF%\ >NUL
 goto PostCopy
 
 :FDOSFile
@@ -189,11 +189,13 @@ vdelay %FDEL%
 goto AfterBackup
 
 :ZipBackupFailed
+vdelay %FDEL%
 set FERROR="Making backup archive %_AF%."
 call FDIFAIL.BAT "Making backup archive %_AF%."
 goto AfterBackup
 
 :CopyBackupFailed
+vdelay %FDEL%
 set FERROR="Making backup."
 call FDIFAIL.BAT "Error making backup."
 goto AfterBackup

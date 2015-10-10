@@ -7,15 +7,20 @@ vecho "Gathering information for installation." /n
 vdelay %FDEL%
 
 REM Locate installer packages media.
-set _TI=0
+set _MI=0
 
+REM For some reason, DOS sometimes fails to do this correctly on the first try.
 :MediaLoop
-vmath %_TI% + 65 | set /p _TA=
-vstr /c %_TA% | set /p _TA=
-call FDIMEDIA.BAT %_TA%
-if "%FMEDIA%" == "" goto MediaFound
-if "%_TA%" == "Z" goto MissingMedia
-vmath %_TI% + 1 | set /p _TI=
+if "%_MI%" == "27" goto MissingMedia
+vmath %_MI% + 1 | set /p _MT=
+if "%_MT%" == "" goto MediaLoop
+set _MI=%_MT%
+
+vmath %_MI% + 64 | set /p _MA=
+vstr /c %_MA% | set /p _MA=
+call FDIMEDIA.BAT %_MA%
+
+if not "%FMEDIA%" == "" goto MediaFound
 goto MediaLoop
 
 :MissingMedia
@@ -24,7 +29,8 @@ call FDFAIL.BAT "Unable to locate installation packages."
 goto AbortBatch
 
 :MediaFound
-
+set _MI=
+set _MA=
 REM Run through all questions.
 set _TI=0
 

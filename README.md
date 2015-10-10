@@ -121,6 +121,8 @@ utilities.
 
         FVERB       = When is 'y', more status messages appear.
 
+        FMEDIA      = Is the path to the FreeDOS installation packages.
+
 ### Options configured by FDASK???.BAT files.
 
         OVOL        If drive is formatted, set its labal to this text
@@ -175,9 +177,9 @@ utilities.
 
         FDINS500    Transfers system files if OSYS is "y".
 
-        FDINS600    Reserved.
+        FDINS600    Creates package lists used in FDINS700.
 
-        FDINS700    Install pckages.
+        FDINS700    Installs binary and source packages.
 
         FDINS800    Copy new configuration files, maybe.
 
