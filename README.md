@@ -104,22 +104,33 @@ utilities.
         FWAIT       = If your going to use vpause, This is how many seconds you
                     should pause. Example: vpause /t %FWAIT%
 
+        FDEL        = Delay in milliseconds after non-interactive messages
+                    are displayed.
+
         FREBOOT     = "" No effect when ending batch script.
                     = "n" will cause FDTHANK to be called at exit.
                     = "y" will cause reboot at exit.
+
+        FERROR      = Error message to display when installer is aborted
+                    or exited with an error.
+
+        FTARGET     = installation path for FreeDOS.
+
+        FBAK        = Backup path for previous OS version, when the zip
+                    archive backup method is selected in advanced mode.
 
 ### Options configured by FDASK???.BAT files.
 
         OVOL        If drive is formatted, set its labal to this text
                     (actually OVOL is set in STAGE000)
 
-        OBAK        Set in FDASK100. If an operating system is detected.
+        OBAK        Set in FDASK200. If an operating system is detected.
                     and user selects backup it will be set to "y". In advanced
                     mode user can select 'archive to zip' then it is set as
                     "z". If no OS was detected, or uses selects no backup it
                     will be set to "n"
 
-        OSYS        Set in FDASK200. If user is in basic mode it is set to
+        OSYS        Set in FDASK300. If user is in basic mode it is set to
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
 
@@ -137,12 +148,18 @@ utilities.
                     installed. Also, if you set FERROR, it will be displayed as
                     an error message when installer aborts.
 
-        FDINS100    Creates a backup folder of OS and CONFIG files if OBAK
+        FDINS000    Debugging batch file. When FDEBUG=y, this will display
+                    the current environment variables then wait. Otherwise,
+                    it does nothing.
+
+        FDINS100    Reserved.
+
+        FDINS200    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
                     and stored in C:\FDBACKUP\ directory. If "n", then
                     does nothing.
 
-        FDINS200    Transfers system files if OSYS is "y".
+        FDINS300    Transfers system files if OSYS is "y".
 
 ### Other batch files.
 

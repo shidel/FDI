@@ -1,29 +1,68 @@
 @echo off
 
-REM if advanced mode prompt for transfer system files.
-
-if "%FADV%" == "" goto AssumeYes
-
-:AdvancedMode
-call FDIWIND.BAT 8
+if "%FDIDFMT%" == "y" goto SkipBackup
 vfdutil /d %FTARGET% | set /p _C=
-vecho "Transfer system files to drive " /f %TFH% %_C% /f %TFF% "?"
+if exist %_C%\FDAUTO.BAT goto QueryBackup
+if exist %_C%\AUTOEXEC.BAT goto QueryBackup
+if exist %_C%\CONFIG.SYS goto QueryBackup
+if exist %_C%\FDCONFIG.SYS goto QueryBackup
+if exist %_C%\KERNEL.SYS goto QueryBackup
+if exist %_C%\COMMAND.COM goto QueryBackup
+if exist %_C%\DRDOS.386 goto QueryBackup
+if exist %_C%\WINA20.386 goto QueryBackup
+if exist %_C%\IBMBIO.COM goto QueryBackup
+if exist %_C%\IBMDOS.COM goto QueryBackup
+if exist %_C%\IO.SYS copy goto QueryBackup
+if exist %_C%\MSDOS.SYS goto QueryBackup
+if exist %FTARGET%\NUL goto QueryBackup
+goto SkipBackup
+
+:QueryBackup
+if "%FADV%" == "y" goto QueryBackupAdv
+
+call FDIWIND.BAT 10
+vecho "A previous operating system was detected on drive " /f %TFH% %_C% /f %TFF% "."
 vecho
+vecho "Do you wish to backup the old files before installing?"
 call FDIOPTS.BAT 2
-vecho "  Yes - Transfer system files."
-vecho "  No  - Do not transfer system files." /n
+vecho "  Yes - Please backup first."
+vecho "  No  - Install without backing up." /n
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
-if errorlevel 2 goto SkipSysXfer
+if errorlevel 2 goto SkipBackup
 
-:AssumeYes
-set OSYS=y
+set OBAK=y
 verrlvl 0
 goto Done
 
-:SkipSysXfer
-set OSYS=n
+:QueryBackupAdv
+call FDIWIND.BAT 11
+vecho "A previous operating system was detected on drive " /f %TFH% %_C% /f %TFF% "."
+vecho
+vecho "Do you wish to backup the old system files?"
+call FDIOPTS.BAT 3
+vecho "  Yes - Please backup to a folder."
+vecho "  Yes - Please backup as zip archive."
+vecho "  No  - Install without backing up." /n
+vchoice /a %TFC% Ctrl-C /d 1
+
+if errorlevel 200 FDICTRLC.BAT %0
+if errorlevel 3 goto SkipBackup
+if errorlevel 2 goto ZipBackup
+
+set OBAK=y
+
+verrlvl 0
+goto Done
+
+:ZipBackup
+set OBAK=z
+verrlvl 0
+goto Done
+
+:SkipBackup
+set OBAK=n
 verrlvl 0
 
 :Done
