@@ -36,6 +36,7 @@ if exist %_C%\FDCONFIG.SYS del %_C%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 verrlvl 0
 
+if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
 vecho "Old configuration files were removed." /n /e

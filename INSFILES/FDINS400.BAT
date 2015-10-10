@@ -13,14 +13,22 @@ vecho "Removing old files from %FTARGET%." /n
 vdelay %FDEL%
 
 attrib -R -S -H %FTARGET% >NUL
-attrib -R -S -H %FTARGET%\ >NUL
 
+dir /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
+if "%_BT%" == "0" goto NoFileAttrib
+attrib -R -S -H /D %FTARGET%\ >NUL
+
+:NoFileAttrib
+
+if "%_BT%" == "0" goto NoFileDump
 deltree /y %FTARGET%\*.* >NUL
 if errorlevel 1 goto Failed
 
+:NoFileDump
 rmdir %FTARGET% >NUL
 if errorlevel 1 goto Failed
 
+if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
 vecho "Old operating system files were removed." /n /e
@@ -34,4 +42,4 @@ call FDFAIL.BAT "Problem removing old system files."
 verrlvl 1
 
 :AfterOption
-set _C=
+set _BT=

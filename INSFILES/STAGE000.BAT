@@ -29,3 +29,5 @@ set FTARGET=C:\FDOS
 REM Backup path to when archiving.
 set FBAK=C:\FDBACKUP
 
+REM Show when little operations that complete.
+set FVERB=n

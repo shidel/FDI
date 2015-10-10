@@ -119,6 +119,8 @@ utilities.
         FBAK        = Backup path for previous OS version, when the zip
                     archive backup method is selected in advanced mode.
 
+        FVERB       = When is 'y', more status messages appear.
+
 ### Options configured by FDASK???.BAT files.
 
         OVOL        If drive is formatted, set its labal to this text
@@ -172,6 +174,15 @@ utilities.
         FDINS400    Removes old FreeDOS target directory when OCLEAN is "y"
 
         FDINS500    Transfers system files if OSYS is "y".
+
+        FDINS600    Reserved.
+
+        FDINS700    Install pckages.
+
+        FDINS800    Copy new configuration files, maybe.
+
+        FDINS900    Install V8Power Tools from installer, maybe.
+
 
 ### Other batch files.
 

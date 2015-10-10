@@ -29,6 +29,7 @@ set FTMPO=
 set FCURSOR=
 set FTARGET=
 set FBAK=
+set FVERB=
 
 rem clear built-in installer options settings
 set OVOL=
