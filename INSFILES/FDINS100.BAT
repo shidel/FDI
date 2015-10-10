@@ -5,95 +5,98 @@ if not "%OBAK%" == "n" goto MakeBackup
 goto AfterBackup
 
 :MakeBackup
+vfdutil /d %FTARGET% | set /p _C=
+
 call FDIWIND.BAT 7
 vecho /n "Creating backup"
 vgotoxy /l eop sor
-vprogres /fBlack 0
-goto AfterBackup
+vprogres /f %TFH% 0
 
 if "%OBAK%" == "z" goto ZipBackup
+
+REM Backup to as renamed file  ************************************************
 :SimpleBackup
 
 goto AfterBackup
 
-ZipBackup:
-goto AfterBackup
+REM Backup to archive file ****************************************************
+:ZipBackup
 
-if not exist C:\FDBACKUP\NUL mkdir C:\FDBACKUP
+if not exist %FBAK%\NUL mkdir %FBAK%
 
-set BFILE=0
-:SetBFile
-if not exist C:\FDBACKUP\FDBAK%BFILE%.ZIP goto GoodBFile
-:IncBFile
-vmath %BFILE% + 1 | set /p BFILE=
-if not "%BFILE%" == "1000" goto SetBFile
-ERRORMSG="Too many backup files in '" /fWhite "C:\FDBACKUP\" /fGray "'".
-goto AbortBatch
+vfdutil /u %FBAK%\FDOS????.ZIP | set /p _AF=
+set _AL=%TEMP%\FDBACKUP.LST
+date /d>%_AL%
+echo %_AL% >>%_AL%
 
-:GoodBFile
-set BLIST=C:\FDBACKUP\FDBAK%BFILE%.LST
-if exist %BLIST% goto IncBFile
-set BFILE=C:\FDBACKUP\FDBAK%BFILE%.ZIP
-date /d >%BLIST%
-echo %BLIST% >>%BLIST%
 vgotoxy /l sop eol right right
-vecho /n "'" /fBlue "%BFILE%" /fBlack "'"
+vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"
 vgotoxy /l eop sor
-vprogres /fBlack 5
+vprogres /f %TFH% 5
 
-if exist C:\FDAUTO.BAT echo C:\FDAUTO.BAT >>%BLIST%
-if exist C:\AUTOEXEC.BAT echo C:\AUTOEXEC.BAT >>%BLIST%
-if exist C:\CONFIG.SYS echo C:\CONFIG.SYS >>%BLIST%
-if exist C:\FDCONFIG.SYS echo C:\FDCONFIG.SYS >>%BLIST%
-if exist C:\KERNEL.SYS echo C:\KERNEL.SYS >>%BLIST%
-if exist C:\COMMAND.COM echo C:\COMMAND.COM >>%BLIST%
+if exist %_C%\FDAUTO.BAT echo %_C%\FDAUTO.BAT >>%_AL%
+if exist %_C%\AUTOEXEC.BAT echo %_C%\AUTOEXEC.BAT >>%_AL%
+if exist %_C%\CONFIG.SYS echo %_C%\CONFIG.SYS >>%_AL%
+if exist %_C%\FDCONFIG.SYS echo %_C%\FDCONFIG.SYS >>%_AL%
+if exist %_C%\KERNEL.SYS echo %_C%\KERNEL.SYS >>%_AL%
+if exist %_C%\COMMAND.COM echo %_C%\COMMAND.COM >>%_AL%
 
 REM EXTRAS
-if exist C:\DRDOS.386 echo C:\DRDOS.386 >>%BLIST%
-if exist C:\WINA20.386 echo C:\WINA20.386 >>%BLIST%
-if exist C:\IBMBIO.COM echo C:\IBMBIO.COM >>%BLIST%
-if exist C:\IBMDOS.COM echo C:\IBMDOS.COM >>%BLIST%
-if exist C:\IO.SYS echo C:\IO.SYS >>%BLIST%
-if exist C:\MSDOS.SYS echo C:\MSDOS.SYS >>%BLIST%
+if exist %_C%\DRDOS.386 echo %_C%\DRDOS.386 >>%_AL%
+if exist %_C%\WINA20.386 echo %_C%\WINA20.386 >>%_AL%
+if exist %_C%\IBMBIO.COM echo %_C%\IBMBIO.COM >>%_AL%
+if exist %_C%\IBMDOS.COM echo %_C%\IBMDOS.COM >>%_AL%
+if exist %_C%\IO.SYS echo %_C%\IO.SYS >>%_AL%
+if exist %_C%\MSDOS.SYS echo %_C%\MSDOS.SYS >>%_AL%
 
-vprogres /fBlack 10
+vprogres /f %TFH% 10
 
-if not exist C:\FDOS\NUL goto BackupRun
-dir /A /B /P- C:\FDOS\*.* >> %BLIST%
+set _BN=1
+if not exist %FTARGET%\NUL goto BackupRun
+dir /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :BackupRun
-type %BLIST% | vstr /L TOTAL | set /p FDBAKMAX=
-set FDBAKLINE=1
+REM For some reason, DOS sometimes fails to do this next line correctly.
+type %_AL%|vstr /L TOTAL|set /p _BM=
+REM So, if it's value does not get set. Do it again. Might have to do
+REM with internal buffers or caching.
+if "%_BM%" == "" goto BackupRun
 
 :BackupLoop
 REM vmath processes only from left to right!!!!!
-vmath %FDBAKLINE% mul 90 div %FDBAKMAX% + 10 | set /p FDBAKPER=
+vmath %_BN% mul 90 div %_BM% + 10 | set /p _BP=
 
 vgotoxy /l eop sor
-vprogres /fBlack %FDBAKPER%
 
-type %BLIST% | vstr /L %FDBAKLINE% | set /p FDBAKFILE=
+vprogres /f %TFH% %_BP%
+
+type %_AL% | vstr /L %_BN% | set /p _BF=
+
+rem vecho "%_BN% of %_BM% is %_BP%, %_BF%"
+rem vdelay 1000
+rem if "%_BF%" == "" goto BackupComplete
 
 REM kind of a kludge, but i still need to do string/line prefixing in vstr
-if exist C:\FDOS\%FDBAKFILE%\NUL set FDBAKFILE=C:\FDOS\%FDBAKFILE%
-if exist C:\FDOS\%FDBAKFILE% set FDBAKFILE=C:\FDOS\%FDBAKFILE%
+if exist %FTARGET%\%_BF%\NUL set _BF=%FTARGET%\%_BF%
+if exist %FTARGET%\%_BF% set _BF=C%FTARGET%\%_BF%
 
-zip -q -9 -S -u -r -b %TEMP% %BFILE% %FDBAKFILE%
+zip -q -9 -S -u -r -b %TEMP% %_AF% %_BF%
 
-if "%FDBAKLINE%" == "%FDBAKMAX%" goto BackupComplete
-vmath %FDBAKLINE% + 1 | set /p FDBAKLINE=
+if "%_BN%" == "%_BM%" goto BackupComplete
+vmath %_BN% + 1 | set /p _BN=
 goto BackupLoop
 
 :BackupComplete
-if exist %BLIST% del %BLIST%
-set FDBAKMAX=
-set FDBAKFILE=
-set FDBAKPER=
-set FDBAKLINE=
+rem if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /fBlack "Backup complete." /e
+vecho /n /f %TFF% "Backup complete." /e
 vdelay 1000
-set BLIST=
-set BFILE=
 
 :AfterBackup
+set _BM=
+set _BF=
+set _BP=
+set _BN=
+set _AL=
+set _AF=
+set _C=

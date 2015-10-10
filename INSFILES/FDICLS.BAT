@@ -1,7 +1,7 @@
 @echo off
 
-REM Clear entire screen.
-vcls /f %TSF% /b %TSB% /c %TSC%
+REM Clear entire screen (Minus title bar)
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 REM Draw the Title Bar
 vgotoxy /x1 /y1

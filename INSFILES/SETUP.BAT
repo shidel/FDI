@@ -194,12 +194,6 @@ goto Finished
 
 REM Installer completed successfully ******************************************
 :Completed
-rem if not "%FDEBUG%" == "y" goto NoPause
-rem vgotoxy /g eop sor
-rem vecho /g /a0x70 " Finished, Press a key... " /e /n
-rem vpause /t %FWAIT%
-:NoPause
-vcls /a 0x07
 verrlvl 0
 goto Finished
 
@@ -245,10 +239,11 @@ if "%FREBOOT%" == "n" goto DoExit
 goto DontDoAnything
 
 :DoReboot
-vcls 0x07
+vcls /a 0x07
 reboot
 
 :DoExit
+vcls /a 0x07
 if exist FDSETUP\SETUP\FDTHANK.BAT call FDSETUP\SETUP\FDTHANK.BAT
 set FREBOOT=
 

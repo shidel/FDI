@@ -1,7 +1,7 @@
 @echo off
 
 REM Thank the user for installing and offer to reboot.
-
+call FDICLS.BAT
 call FDIWIND.BAT 10
 vecho "Installation of " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% " is now complete."
 vecho

@@ -38,9 +38,12 @@ dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto FinishedList
 verrlvl 0
 if not exist %_TSA%\%_TA% goto FinishedList
+vfdutil /c/d %_TSA%\
+pushd
 vfdutil /c/p %_TSA%\
 call %_TA%
 if errorlevel 1 goto AbortBatch
+popd
 vfdutil /c/p %FINSP%\
 
 vmath %_TI% + 1 | set /p _TI=
