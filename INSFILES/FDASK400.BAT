@@ -25,7 +25,7 @@ set OCLEAN=y
 verrlvl 0
 goto Done
 
-:SkipOtion
+:SkipOption
 set OCLEAN=n
 verrlvl 0
 

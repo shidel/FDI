@@ -29,7 +29,7 @@ set OCFG=y
 verrlvl 0
 goto Done
 
-:SkipOtion
+:SkipOption
 set OCFG=n
 verrlvl 0
 

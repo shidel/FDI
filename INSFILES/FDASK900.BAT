@@ -21,7 +21,7 @@ set OV8P=y
 verrlvl 0
 goto Done
 
-:SkipOtion
+:SkipOption
 set OV8P=n
 verrlvl 0
 
