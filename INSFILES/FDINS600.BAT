@@ -1,17 +1,15 @@
 @echo off
 
-REM Create Package Lists
-if exist %TEMP%\FDIBINS.LST del %TEMP%\FDIBINS.LST
-if exist %TEMP%\FDISRCS.LST del %TEMP%\FDISRCS.LST
-
-type %FINSP%\FDBASEB.LST>%TEMP%\FDIBINS.LST
-if "%OSRC%" == "y" type %FINSP%\FDBASES.LST>%TEMP%\FDISRCS.LST
-if "%OALL%" == "y" goto AddMore
+REM Set Package Lists
+set OPBIN=%FINSP%\FDBASEB.LST
+set OPSRC=
+if "%OSRC%" == "y" set OPSRC=%FINSP%\FDBASES.LST
+if "%OALL%" == "y" goto AllPackages
 goto Done
 
-:AddMore
-type %FINSP%\FDMOREB.LST>>%TEMP%\FDIBINS.LST
-if "%OSRC%" == "y" type %FINSP%\FDMORES.LST>>%TEMP%\FDISRCS.LST
+:AllPackages
+set OPBIN=%FINSP%\FDALLB.LST
+if "%OSRC%" == "y" set OPSRC=%FINSP%\FDALLS.LST
 
 :Done
 verrlvl 0

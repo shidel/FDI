@@ -14,17 +14,17 @@ set _PI=0
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 REM So, make sure it is ready before moving on.
 :BinSticky
-type %TEMP%\FDIBINS.LST | vstr /l %_PI% | set /p _PA=
+type %OPBIN% | vstr /l %_PI% | set /p _PA=
 if "%_PA%" == "" goto BinSticky
-type %TEMP%\FDIBINS.LST | vstr /l TOTAL | set /p _PM=
+type %OPBIN% | vstr /l TOTAL | set /p _PM=
 if "%_PM%" == "0" goto BinDone
 
 :BinLoop
-type %TEMP%\FDIBINS.LST | vstr /l %_PI% | set /p _PA=
+type %OPBIN% | vstr /l %_PI% | set /p _PA=
 vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
 if "%_PA%" == "" goto BinSkip
-if not exist "%FMEDIA%\%_PA%.zip" == "" goto BinSkip
+if not exist %FMEDIA%\%_PA%.zip goto BinSkip
 vgotoxy /l sop /x 29
 vecho "'" /f %TFH% %_PA% /f %TFF% "'" /e /n
 
