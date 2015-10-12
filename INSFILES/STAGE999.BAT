@@ -44,8 +44,8 @@ set OCLEAN=
 set OALL=
 set OSRC=
 set OV8P=
-set OPBIN=
-set OPSRC=
+set FPBIN=
+set FPSRC=
 
 REM Clear Theme Variables
 set TSF=

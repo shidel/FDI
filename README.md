@@ -123,6 +123,12 @@ utilities.
 
         FMEDIA      = Is the path to the FreeDOS installation packages.
 
+        FPBIN       = Set in FPINS600 and points to list of binary packages
+                    to be installed.
+
+        FPSRC       = Set in FPINS600 and points to list of source packages
+                    to be installed.
+
 ### Options configured by FDASK???.BAT files.
 
         OVOL        If drive is formatted, set its labal to this text
@@ -144,6 +150,12 @@ utilities.
         OSYS        Set in FDASK500. If user is in basic mode it is set to
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
+
+        OALL        Set in FDASK600. If user wants all binary packages, it is
+                    set to 'y'
+
+        OSRC        Set in FDASK600. If user wans sources for selected packages
+                    installed it is set to 'y'
 
 
 ### Installer FDINS???.BAT scripts included on BOOT disk.
@@ -177,7 +189,9 @@ utilities.
 
         FDINS500    Transfers system files if OSYS is "y".
 
-        FDINS600    Creates package lists used in FDINS700.
+        FDINS600    Configures package list options FPBIN and FPSRC to point
+                    to their respective package list files to be used in
+                    FDINS700 during package installation.
 
         FDINS700    Installs binary and source packages.
 
