@@ -42,8 +42,6 @@ vmath %_PI% + 1 | set /p _PI=
 goto BinLoop
 
 :BinError
-echo unzip -qq -o %FMEDIA%\%_PA%.zip
-vdelay 4000
 vfdutil /c/p %FINSP%\
 verrlvl 1
 goto Done
@@ -62,12 +60,13 @@ goto Done
 
 :AbortBin
 set FERROR="Unable to install %_PA% package."
-call %FINSP%\FDIFAIL.BAT "Unable to install the %_PA% package."
-goto Done
+call %FINSP%\FDIFAIL.BAT cc "Unable to install the %_PA% package."
+if errorlevel 1 goto Done
+goto BinSkip
 
 :AbortSrc
 set FERROR="Unable to install %_PA% source."
-call %FINSP%\FDIFAIL.BAT "Unable to install the %_PA% source."
+call %FINSP%\FDIFAIL.BAT cc "Unable to install the %_PA% source."
 goto Done
 
 :Success

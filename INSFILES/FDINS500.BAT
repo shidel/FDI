@@ -26,7 +26,7 @@ goto AfterOption
 
 :Failed
 set FERROR="System file transfer to %_C% failed."
-call FDFAIL.BAT "Error transfering system files to %_C%."
+call FDFAIL.BAT cc "Error transfering system files to %_C%."
 verrlvl 1
 
 :AfterOption

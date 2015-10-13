@@ -38,7 +38,7 @@ goto AfterOption
 
 :Failed
 set FERROR="Cleaning up old system files."
-call FDFAIL.BAT "Problem removing old system files."
+call FDFAIL.BAT cc "Problem removing old system files."
 verrlvl 1
 
 :AfterOption

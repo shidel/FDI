@@ -26,7 +26,7 @@ goto AfterOption
 
 :Failed
 set FERROR="Copying configuration files."
-call FDFAIL.BAT "Problem copying new configuration files."
+call FDFAIL.BAT cc "Problem copying new configuration files."
 verrlvl 1
 
 :AfterOption

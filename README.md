@@ -235,4 +235,5 @@ utilities.
                     you batch file with an errorlevel of 1 to prevent
                     futher processing of the installation. Note: if %1 is
                     "cc" and in advanced mode, then an additional option to
-                    continue will be also displayed.
+                    continue will be also displayed at some points during
+                    the installation process.

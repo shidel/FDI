@@ -22,7 +22,7 @@ goto AfterOption
 
 :Failed
 set FERROR="Copying V8Power Tools files."
-call FDFAIL.BAT "Problem installing V8Power Tools."
+call FDFAIL.BAT cc "Problem installing V8Power Tools."
 verrlvl 1
 
 :AfterOption
