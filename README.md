@@ -22,6 +22,11 @@ utilities.
     FDCONFIG.SYS Copied as-is to A:\
     SETUP.BAT    Copied as-is to A:\
 
+    FDBASEB.LST  Default base binary package list.
+    FDBASES.LST  Default base source package list.
+    FDALLB.LST   All binary package list.
+    FDALLS.LST   All source package list.
+
 ### What the installer does.
 
     AUTOEXEC.BAT calls SETUP.BAT RECOVERY
@@ -228,4 +233,6 @@ utilities.
                     or exit to DOS. Afterwards, if exit to DOS was selected,
                     it will return to your script. You should then exit
                     you batch file with an errorlevel of 1 to prevent
-                    futher processing of the installation.
+                    futher processing of the installation. Note: if %1 is
+                    "cc" and in advanced mode, then an additional option to
+                    continue will be also displayed.
