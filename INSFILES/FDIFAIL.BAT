@@ -47,6 +47,7 @@ vecho "Do you wish to reboot now?"
 vframe /b %TFB% /f %TFF% /w40 /h6 /c /y13 hidden
 vecho "  Yes - Please reboot now."
 vecho "  No  - Return to DOS"
+vecho
 vecho "  No  - Continue Anyway (not recommended)" /n
 vchoice /a %TFC% Ctrl-C
 
