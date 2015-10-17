@@ -36,4 +36,4 @@ REM Show when little operations that complete.
 set FVERB=n
 
 REM Scan for vendor media installers.
-set FSCAN=y
+set FSCAN=n

@@ -14,10 +14,10 @@ utilities.
 
 ### Build files in INSFILES\
 
-    MKBIN.LST    List of files copyied from C:\FDOS\BIN\ to A:\FDSETUP\BIN\
-    MKHELP.LST   List of files copyied from C:\FDOS\HELP\ to A:\FDSETUP\HELP\
-    MKV8P.LST    List of files copyied from V8POWER\ to A:\FDSETUP\V8POWER\
-    MKSETUP.LST  List of files copyied from INSFILES\ to A:\FDSETUP\SETUP\
+    MKBIN.LST    List of files copied from C:\FDOS\BIN\ to A:\FDSETUP\BIN\
+    MKHELP.LST   List of files copied from C:\FDOS\HELP\ to A:\FDSETUP\HELP\
+    MKV8P.LST    List of files copied from V8POWER\ to A:\FDSETUP\V8POWER\
+    MKSETUP.LST  List of files copied from INSFILES\ to A:\FDSETUP\SETUP\
     AUTOEXEC.BAT Copied as-is to A:\
     FDCONFIG.SYS Copied as-is to A:\
     SETUP.BAT    Copied as-is to A:\
@@ -41,29 +41,31 @@ utilities.
         built-in default settings are stored. Things like New Volume Label,
         OS Version and etc.
 
-        if RECOVERY option was present at launceh, tests if this version of
-        FreeDOS is already installed using STAGE001. If so, just exists to
-        prompt with a welcome message. Otherwise, proceeds with installer.
+        If RECOVERY option was present at launceh, tests if this version of
+        FreeDOS is already installed using STAGE001. If so, it just exists to
+        the prompt with a welcome message. Otherwise, it proceeds with
+        installation process.
 
         STAGE002, Loads current color scheme from either THEMENUL.BAT or
-        if THEMEADV.BAT (Advanced Mode).
+        THEMEADV.BAT (Advanced Mode).
 
         If FDSETUP\SETUP\FDSPLASH.BAT exists, it is called. It might be good
         for displaying ascii art logo or something.
 
-        STAGE003, Displays welcome to FreeDOS installer message. Offers to
-        continue or exit.
+        STAGE003, Displays the "Welcome to FreeDOS" installer message and offers
+        to continue or exit.
 
-        STAGE004, Checks if drive C exists. If not prompts user that C needs
+        STAGE004, Checks if drive C exists. If not, prompts user that C needs
         partitioned and offers to run fdisk or exit. If user selects fdisk,
-        then offers to reboot or exit.
+        then it offers to reboot or exit.
 
-        STAGE005, Checks if drive C is readable. If not prompts user that C
-        needs formatted and offers to format or exit. If user selects formats,
-        then rechecks if C is readable. If not, offers to reboot or exit.
+        STAGE005, Checks if drive C is readable. If not, prompts user that C
+        needs to be formatted and offers to format or exit. If user selected
+        format, it formats and then rechecks if C is readable. If not, offers
+        to reboot or exit.
 
         STAGE006, Sets up temporary TEMP Directory so I/O redirection can
-        function and for storage of a couple temporary files. If I/O
+        function and also for storage of a couple temporary files. If I/O
         redirection is still unavailable, it will abort the installation.
 
         NOTE: Now that a TEMP directory exists,  FDIWIND.BAT and other
@@ -75,9 +77,10 @@ utilities.
 
         STAGE008, Prompts user that installation will now begin, Offers
         to continue or exit. Then, scans current FDSETUP\SETUP for all
-        FDINS???.BAT files. The scans all other drives for
+        FDINS???.BAT files. Then if FSCAN="y", it scans all other drives for
         \FDSETUP\SETUP\FDINS???.BAT files and calls them in that order to
-        perform the installation.
+        perform any additional installations from auxiliary installers.
+        (May be good for vendor specific add-ons at OS install time)
 
         STAGE009, Informs user that installation is complete offers reboot or
         exit.
@@ -133,6 +136,9 @@ utilities.
 
         FPSRC       = Set in FPINS600 and points to list of source packages
                     to be installed.
+
+        FSCAN       = Used to determine if all drives should be scanned
+                    during the actual installation to run additional installers.
 
 ### Options configured by FDASK???.BAT files.
 
