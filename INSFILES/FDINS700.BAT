@@ -119,6 +119,7 @@ vecho /n "Installing package source"
 goto SrcSkip
 
 :Success
+if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP
 call FDIWIND.BAT 5
 vecho /n "Software package installation is complete."
 vdelay %FDEL%
