@@ -27,6 +27,18 @@ utilities.
     FDALLB.LST   All binary package list.
     FDALLS.LST   All source package list.
 
+### Creating the install media
+
+    It basically has the same requirements as the installer. It just requires
+    less free environment space. I've been using /E:1024 without issue.
+
+    Stick a floppy to destroy in drive A:
+
+    run mkFDI.BAT
+
+    It will use the binaries (like xcopy, format, sys) that are under your
+    C:\FDOS directory for the installer. So, you should run mkFDI from the
+    latest version of FreeDOS that you wish to create an install disk.
 
 ### Installer requirements.
 
