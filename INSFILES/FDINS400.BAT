@@ -7,6 +7,10 @@ if "%OCLEAN%" == "y" goto DoOption
 goto AfterOption
 
 :DoOption
+pushd
+vfdutil /c/p %FTARGET%
+cd \
+popd
 
 call FDIWIND.BAT 5
 vecho "Removing old files from '" /f %TFH% %FTARGET% /f %TFF% "'." /n
@@ -25,9 +29,6 @@ deltree /y %FTARGET%\*.* >NUL
 if errorlevel 1 goto Failed
 
 :NoFileDump
-vfdutil /c/p %FTARGET%
-cd \
-vfdutil /c/p %FINSP%
 rmdir %FTARGET% >NUL
 if errorlevel 1 goto Failed
 
