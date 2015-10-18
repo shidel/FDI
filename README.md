@@ -269,4 +269,11 @@ utilities.
 
 ### FDI Roadmap
 
+    Find and supress occasional DOS text that can appear while pruning the
+    old FreeDOS installation.
+
+    (These require some additional tools not yet created for V8Power Tools)
+    Maybe localization support.
+    Advanced mode, target directory changing.
+    Advanced mode, individual package selections.
 

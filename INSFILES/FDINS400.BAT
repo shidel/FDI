@@ -25,6 +25,9 @@ deltree /y %FTARGET%\*.* >NUL
 if errorlevel 1 goto Failed
 
 :NoFileDump
+vfdutil /c/p %FTARGET%
+cd \
+vfdutil /c/p %FINSP%
 rmdir %FTARGET% >NUL
 if errorlevel 1 goto Failed
 
