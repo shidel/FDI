@@ -269,8 +269,8 @@ utilities.
 
 ### FDI Roadmap
 
-    Find and supress occasional DOS text that can appear while pruning the
-    old FreeDOS installation.
+    Verify no DOS text that can appear while purging the old installation.
+    Verify integrity of backup folder and zip backups.
 
     (These require some additional tools not yet created for V8Power Tools)
     Maybe localization support.
