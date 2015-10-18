@@ -38,3 +38,7 @@ if "%FADV%" == "y" set FVERB=y
 
 REM Scan for vendor media installers.
 set FSCAN=n
+
+REM New config file extension to be used for replacing AUTOEXEC.BAT and
+REM FDCONFIG.SYS.
+set FEXT=NEW

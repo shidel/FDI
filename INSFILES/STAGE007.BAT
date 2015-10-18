@@ -2,8 +2,8 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 5 62
-vecho "Gathering some information to prepare for installation." /n
+call FDIWIND.BAT 5 66
+vecho "Gathering some information to prepare for the installation." /n
 vdelay %FDEL%
 
 REM Locate installer packages media.

@@ -34,6 +34,7 @@ set FBAK=
 set FVERB=
 set FSCAN=
 set FMEDIA=
+set FEXT=
 
 rem clear built-in installer options settings
 set OVOL=

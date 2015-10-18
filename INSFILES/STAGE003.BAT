@@ -26,7 +26,7 @@ vecho "Welcome to the advanced installer for " /f %TFH% "%OS_NAME% %OS_VERSION%"
 vecho
 vecho "Do you wish to proceed?"
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
-vecho "  Yes - Continue with Installation"
+vecho "  Yes - Continue with installation"
 vecho "  No  - Return to DOS" /n
 vchoice /a %TFC% Ctrl-C
 

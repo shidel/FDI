@@ -143,6 +143,10 @@ utilities.
         FSCAN       = Used to determine if all drives should be scanned
                     during the actual installation to run additional installers.
 
+        FEXT        = File extension of new source AUTOEXEC.BAT and FDCONFIG.SYS
+                    files that will be used to replace existing versions.
+                    The default setting is "NEW". (AUTOEXEC.NEW, FDCONFIG.NEW)
+
 ### Options configured by FDASK???.BAT files.
 
         OVOL        If drive is formatted, set its labal to this text

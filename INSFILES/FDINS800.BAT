@@ -11,9 +11,9 @@ vdelay %FDEL%
 
 vfdutil /d %FTARGET% | set /p _C=
 
-copy %FINSP%\AUTOEXEC.NEW %_C%\AUTOEXEC.BAT >NUL
+copy %FINSP%\AUTOEXEC.%FEXT% %_C%\AUTOEXEC.BAT >NUL
 if errorlevel 1 goto Failed
-copy %FINSP%\FDCONFIG.NEW %_C%\FDCONFIG.SYS >NUL
+copy %FINSP%\FDCONFIG.%FEXT% %_C%\FDCONFIG.SYS >NUL
 if errorlevel 1 goto Failed
 
 if not "%FVERB%" == "y" goto AfterOption
