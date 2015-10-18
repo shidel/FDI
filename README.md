@@ -228,7 +228,10 @@ utilities.
         FDIWIND.BAT Functions only after STAGE006 runs. Creates a normal box
                     for text or choices. %1 is the total height of the box.
                     So, add 4 to how many lines you want. You want 1 line for
-                    just one line of text "CALL FDIWIND.BAT 5"
+                    just one line of text "CALL FDIWIND.BAT 5" Also, %2 is the
+                    overall width of the frame desired. If it is not specified,
+                    a default value of 60 is assumed (providing a 54 character
+                    wide area for text).
 
         FDIOPTS.BAT Functions only after STAGE006. Creates an area to contain
                     choices for vchoice. %1 is total number of choices you

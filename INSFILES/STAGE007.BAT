@@ -2,7 +2,7 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 5
+call FDIWIND.BAT 5 62
 vecho "Gathering some information to prepare for installation." /n
 vdelay %FDEL%
 

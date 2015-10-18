@@ -184,7 +184,7 @@ REM Backup complete ***********************************************************
 :BackupComplete
 if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /f %TFF% "Backup is finished." /e
+vecho /n /f %TFF% "Backup has completed." /e
 vdelay %FDEL%
 goto AfterBackup
 
