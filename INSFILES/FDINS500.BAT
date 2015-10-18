@@ -19,7 +19,7 @@ verrlvl 0
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "System file transfer complete." /n /e
+vecho "System file transfer is complete." /n /e
 vdelay %FDEL%
 
 goto AfterOption

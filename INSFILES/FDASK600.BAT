@@ -3,7 +3,7 @@
 REM if advanced mode prompt to replace system config files.
 
 call FDIWIND.BAT 11
-vecho "What %OS_NAME% packages do you want to install?"
+vecho "What " /f %TFH% %OS_NAME% /f %TFF% " packages do you want to install?"
 vecho
 call FDIOPTS.BAT 5
 vecho "  Basic packages only."

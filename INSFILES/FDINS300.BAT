@@ -16,7 +16,7 @@ goto AfterOption
 vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 5
-vecho "Cleaning out old configuration files." /n
+vecho "Cleaning out the old configuration files." /n
 vdelay %FDEL%
 
 if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
@@ -39,14 +39,14 @@ verrlvl 0
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "Old configuration files were removed." /n /e
+vecho "Old configuration files have been removed." /n /e
 vdelay %FDEL%
 
 goto AfterOption
 
 :Failed
 set FERROR="Cleaning up old configuration files."
-call FDFAIL.BAT cc "Problem removing old configuration files."
+call FDFAIL.BAT cc "There was a problem removing the old configuration."
 verrlvl 1
 
 :AfterOption

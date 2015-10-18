@@ -184,7 +184,7 @@ REM Backup complete ***********************************************************
 :BackupComplete
 if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /f %TFF% "Backup complete." /e
+vecho /n /f %TFF% "Backup is finished." /e
 vdelay %FDEL%
 goto AfterBackup
 
@@ -197,7 +197,7 @@ goto AfterBackup
 :CopyBackupFailed
 vdelay %FDEL%
 set FERROR="Making backup."
-call FDIFAIL.BAT "Error making backup."
+call FDIFAIL.BAT "Error making the backup."
 goto AfterBackup
 
 :AfterBackup

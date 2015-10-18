@@ -34,6 +34,7 @@ set FBAK=C:\FDBACKUP
 
 REM Show when little operations that complete.
 set FVERB=n
+if "%FADV%" == "y" set FVERB=y
 
 REM Scan for vendor media installers.
 set FSCAN=n

@@ -9,7 +9,7 @@ goto AfterOption
 :DoOption
 
 call FDIWIND.BAT 5
-vecho "Removing old files from %FTARGET%." /n
+vecho "Removing old files from '" /f %TFH% %FTARGET% /f %TFF% "'." /n
 vdelay %FDEL%
 
 attrib -R -S -H %FTARGET% >NUL
@@ -38,7 +38,7 @@ goto AfterOption
 
 :Failed
 set FERROR="Cleaning up old system files."
-call FDFAIL.BAT cc "Problem removing old system files."
+call FDFAIL.BAT cc "Had a problem removing old system files."
 verrlvl 1
 
 :AfterOption

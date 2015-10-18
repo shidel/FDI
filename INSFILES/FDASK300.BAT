@@ -14,7 +14,7 @@ goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Replace system configuration files?"
+vecho "Replace the system configuration files?"
 vecho
 call FDIOPTS.BAT 2
 vecho "  Yes - Transfer new default files."

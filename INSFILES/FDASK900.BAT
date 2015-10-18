@@ -6,7 +6,7 @@ if "%FADV%" == "" goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Install V8Power Tools to %FTARGET%\V8Power?"
+vecho "Install a copy of " /f %TFH% "V8Power Tools" /f %TFF% "?"
 vecho
 call FDIOPTS.BAT 2
 vecho "  Yes - Install V8Power Tools."

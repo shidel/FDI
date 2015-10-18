@@ -10,7 +10,7 @@ goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Remove all old files from %FTARGET%?"
+vecho "Remove all old files from " /f %TFH% %FTARGET% /f %TFF% "?"
 vecho
 call FDIOPTS.BAT 2
 vecho "  Yes - Start fresh."

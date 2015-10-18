@@ -127,7 +127,10 @@ utilities.
         FBAK        = Backup path for previous OS version, when the zip
                     archive backup method is selected in advanced mode.
 
-        FVERB       = When is 'y', more status messages appear.
+        FVERB       = When is 'y', more status messages appear. By default,
+                    FVERB is "n" unless the installer is started with the
+                    option "adv". Switching to advanced mode from within
+                    the installer does not change this setting.
 
         FMEDIA      = Is the path to the FreeDOS installation packages.
 
