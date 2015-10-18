@@ -27,6 +27,13 @@ utilities.
     FDALLB.LST   All binary package list.
     FDALLS.LST   All source package list.
 
+
+### Installer requirements.
+
+    FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
+    V8Power Tools located in path environment variable.
+    (V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
+
 ### What the installer does.
 
     AUTOEXEC.BAT calls SETUP.BAT RECOVERY
@@ -253,3 +260,13 @@ utilities.
                     "cc" and in advanced mode, then an additional option to
                     continue will be also displayed at some points during
                     the installation process.
+
+        FDIPKG.BAT  Actual package installer. %1 is "bin" or "src" for package
+                    type and %2 is package name like "appendx". It is run from
+                    the new freedos installation directory %FTARGET% (probably
+                    "C:\FDOS") set errorlevel to 0 fur sucess, 1 for failure
+                    on leaving this batch.
+
+### FDI Roadmap
+
+
