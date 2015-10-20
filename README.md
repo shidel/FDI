@@ -295,14 +295,6 @@ utilities.
     STAGE700, add detection if installing from a folder and skip searching
     for installation media. Just set FMEDIA to subdirectory.
 
-    (These require some additional tools not yet created for V8Power Tools)
-
-    Maybe localization support.
-
-    Advanced mode, target directory changing.
-
-    Advanced mode, individual package selections.
-
     Remove need to leave in install media to reboot.
 
     Delpoy solution to adjust for long perceived pauses during backup
@@ -310,6 +302,14 @@ utilities.
     do to many files being copied. Namely a backup of a previous version
     that included sources files stick for a long time around 37% while
     coping all the old sources.
+
+    (These require some additional tools not yet created for V8Power Tools)
+
+    Maybe localization support.
+
+    Advanced mode, target directory changing.
+
+    Advanced mode, individual package selections.
 
 ### Known issues
 
