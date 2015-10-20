@@ -293,7 +293,7 @@ utilities.
     Verify integrity of backup folder and zip backups.
 
     STAGE007, add detection if installing from a folder and skip searching
-    for installation media.
+    for installation media. Just set FMEDIA to subdirectory.
 
     (These require some additional tools not yet created for V8Power Tools)
 
