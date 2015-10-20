@@ -118,7 +118,7 @@ if errorlevel 1 goto Aborted
 
 REM Detect if this version is already installed
 if not "%FRECOVER%" == "y" goto SkipInstallCheck
-set FSTAGE=001
+set FSTAGE=100
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -131,49 +131,49 @@ if exist FDSPLASH.BAT call FDSPLASH.BAT
 if errorlevel 1 goto Aborted
 
 REM Set Installer theme.
-set FSTAGE=002
+set FSTAGE=200
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Welcome
-set FSTAGE=003
+set FSTAGE=300
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Partitoned
-set FSTAGE=004
+set FSTAGE=400
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
-set FSTAGE=005
+set FSTAGE=500
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Pre install configuration and temp directory setups.
-set FSTAGE=006
+set FSTAGE=600
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Ask the user all of the Questions.
-set FSTAGE=007
+set FSTAGE=700
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Do the installation.
-set FSTAGE=008
+set FSTAGE=800
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Post install stuff, like recommend reboot.
-set FSTAGE=009
+set FSTAGE=900
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
