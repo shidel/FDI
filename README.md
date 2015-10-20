@@ -292,6 +292,9 @@ utilities.
 
     Verify integrity of backup folder and zip backups.
 
+    STAGE007, add detection if installing from a folder and skip searching
+    for installation media.
+
     (These require some additional tools not yet created for V8Power Tools)
 
     Maybe localization support.
