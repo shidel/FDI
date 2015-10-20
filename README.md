@@ -306,3 +306,8 @@ utilities.
 ### Known issues
 
     Stuff in the Roadmap.
+
+    Long perceived pauses during backup and some package installations.
+    Not a bug, but may appear "hung-up" do to many files being copied.
+    Namely a backup of a previous version that included sources files
+    stick for a long time around 37% while coping all the old sources.
