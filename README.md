@@ -303,6 +303,8 @@ utilities.
 
     Advanced mode, individual package selections.
 
+    Remove need to leave in install media to reboot.
+
 ### Known issues
 
     Stuff in the Roadmap.
