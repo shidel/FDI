@@ -26,14 +26,14 @@ goto AbortBatch
 verrlvl 0
 if "%FADV%" == "y" goto SwitchBasic
 set FADV=y
-call STAGE002.BAT
+call STAGE200.BAT
 call FDICLS.BAT
 goto ContinueBatch
 
 :SwitchBasic
 verrlvl 0
 set FADV=
-call STAGE002.BAT
+call STAGE200.BAT
 call FDICLS.BAT
 goto ContinueBatch
 
