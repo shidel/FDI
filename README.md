@@ -281,11 +281,25 @@ utilities.
 
 ### FDI Roadmap
 
+    Remove the requirement of FreeCom already being the current shell.
+
+    Implement STAGE001, already installed testing.
+
+    Implement testing that system requirements are met in STAGE006. (Probably
+    by just adding a call to an FDIREQ.BAT file.)
+
     Verify no DOS text that can appear while purging the old installation.
+
     Verify integrity of backup folder and zip backups.
 
     (These require some additional tools not yet created for V8Power Tools)
+
     Maybe localization support.
+
     Advanced mode, target directory changing.
+
     Advanced mode, individual package selections.
 
+### Known issues
+
+    Stuff in the Roadmap.
