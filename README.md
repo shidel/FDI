@@ -84,8 +84,9 @@ utilities.
         to reboot or exit.
 
         STAGE600, Sets up temporary TEMP Directory so I/O redirection can
-        function and also for storage of a couple temporary files. If I/O
-        redirection is still unavailable, it will abort the installation.
+        function.  Also, it provides for storage of a couple temporary files.
+        If I/O redirection is still unavailable, it will abort the
+        installation.
 
         NOTE: Now that a TEMP directory exists,  FDIWIND.BAT and other
         batch files that use I/O redirection and utilities like vmath can
@@ -297,10 +298,10 @@ utilities.
 
     Remove need to leave in install media to reboot.
 
-    Delpoy solution to adjust for long perceived pauses during backup
-    and some package installations. Not a bug, but may appear "hung-up"
-    do to many files being copied. Namely a backup of a previous version
-    that included sources files stick for a long time around 37% while
+    Deploy a solution to adjust for the long perceived pauses during backup
+    and some package installations. Not a bug, but it may appear "hung-up"
+    do to many files being copied. Namely, a backup of a previous version
+    that included source files, will stick for a long time around 37% while
     coping all the old sources.
 
     (These require some additional tools not yet created for V8Power Tools)
