@@ -298,6 +298,8 @@ utilities.
 
     Remove need to leave in install media to reboot.
 
+    Add ability to install from Floppy only sources.
+
     Deploy a solution to adjust for the long perceived pauses during backup
     and some package installations. Not a bug, but it may appear "hung-up"
     do to many files being copied. Namely, a backup of a previous version
