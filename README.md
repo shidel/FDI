@@ -280,7 +280,6 @@ utilities.
                     "C:\FDOS") set errorlevel to 0 fur sucess, 1 for failure
                     on leaving this batch.
 
-<span id="roadmap"></span>
 ### FDI Roadmap
 
     Remove the requirement of FreeCom already being the current shell.
