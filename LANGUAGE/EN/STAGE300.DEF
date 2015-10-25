@@ -1,0 +1,5 @@
+HELLO="Welcome to the installation program for " /f %1 "%2" /f %3 "."
+HELLO_ADV="Welcome to the advanced installer for " /f %1 "%2" /f %3 "."
+PROCEED="Do you wish to proceed?"
+YES="  Yes - Continue with installation"
+NO="  No  - Return to DOS"

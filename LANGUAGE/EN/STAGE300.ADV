@@ -1,0 +1,1 @@
+HELLO="Welcome to the advanced installer for " /f %1 "%2" /f %3 "."

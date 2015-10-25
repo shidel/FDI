@@ -87,8 +87,14 @@ echo Copying required Setup Files.
 set CPLST=MKSETUP.lst
 set CPSRC=%IINS%
 set CPDST=%ODOS%\SETUP
-set CPRET=CopyCFG
+set CPRET=CopyLang
 goto CopyList
+
+:CopyLang
+echo.
+echo Copying language files.
+xcopy /E %IINS%\LANGUAGE\*.* %ODOS%\SETUP\
+if errorlevel 1 goto ErrorCopy
 
 :CopyCFG
 echo.

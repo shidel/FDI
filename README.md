@@ -152,6 +152,8 @@ utilities.
                     option "adv". Switching to advanced mode from within
                     the installer does not change this setting.
 
+        FINSP       = Installer path, set in Stage600.
+
         FMEDIA      = Is the path to the FreeDOS installation packages.
 
         FPBIN       = Set in FPINS600 and points to list of binary packages
@@ -166,6 +168,8 @@ utilities.
         FEXT        = File extension of new source AUTOEXEC.BAT and FDCONFIG.SYS
                     files that will be used to replace existing versions.
                     The default setting is "NEW". (AUTOEXEC.NEW, FDCONFIG.NEW)
+
+        FLANG       = Current Language translation file.
 
 ### Options configured by FDASK???.BAT files.
 

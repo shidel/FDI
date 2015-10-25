@@ -112,6 +112,7 @@ set FDIDFMT=NO
 
 REM Run configuration stage.
 set FSTAGE=000
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -119,6 +120,7 @@ if errorlevel 1 goto Aborted
 REM Detect if this version is already installed
 if not "%FRECOVER%" == "y" goto SkipInstallCheck
 set FSTAGE=100
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -127,59 +129,69 @@ verrlvl 0
 :SkipInstallCheck
 
 REM Show Logo file if present.
+call FDILANG.BAT FDSPLASH FDSETUP
 if exist FDSPLASH.BAT call FDSPLASH.BAT
 if errorlevel 1 goto Aborted
 
 REM Set Installer theme.
 set FSTAGE=200
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Welcome
 set FSTAGE=300
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Partitoned
 set FSTAGE=400
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
 set FSTAGE=500
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Pre install configuration and temp directory setups.
 set FSTAGE=600
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Ask the user all of the Questions.
 set FSTAGE=700
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Do the installation.
 set FSTAGE=800
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Post install stuff, like recommend reboot.
 set FSTAGE=900
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Run cleanup stage.
 set FSTAGE=999
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 
@@ -190,6 +202,7 @@ goto Completed
 :NoInstallNeeded
 REM Run cleanup stage.
 set FSTAGE=999
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 verrlvl 0
@@ -203,10 +216,12 @@ goto Finished
 REM Installer failed from missing stage file **********************************
 :Error
 set FSTAGE=999
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto NoCleanupStage
 call STAGE%FSTAGE%.BAT
 :NoCleanupStage
 vcls /a 0x07
+call FDILANG.BAT FDSETUP
 echo Unable to execute installer stage %FSTAGE%. It is possible the installer is
 echo corrupt. Please re-download it or try a different method of installation.
 goto Finished
@@ -219,9 +234,11 @@ goto AbortedNoCleanup
 REM Installer failed to install or was aborte**********************************
 :Aborted
 set FSTAGE=999
+call FDILANG.BAT STAGE%FSTAGE% FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 :AbortedNoCleanup
+call FDILANG.BAT FDSETUP
 vcls /a 0x07
 if "%OS_NAME%" == "" goto NoOSName
 vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% has been aborted." /e /fGray
@@ -230,6 +247,7 @@ vecho
 if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n
 if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
+call FDILANG.BAT FDERROR FDSETUP
 if exist FDERROR.BAT call FDERROR.BAT
 goto Finished
 
@@ -256,6 +274,7 @@ reboot
 
 :DoExit
 vcls /a 0x07
+call FDSETUP\SETUP\FDILANG.BAT FDTHANK FDSETUP
 if exist FDSETUP\SETUP\FDTHANK.BAT call FDSETUP\SETUP\FDTHANK.BAT
 set FREBOOT=
 

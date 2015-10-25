@@ -18,16 +18,16 @@ vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
 if "%FADV%" == "y" goto AdvancedMesssage
-vecho "Welcome to the installation program for " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
+vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 goto Spacer
 :AdvancedMesssage
-vecho "Welcome to the advanced installer for " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
+vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
 vecho
-vecho "Do you wish to proceed?"
+vecho /t %FLANG% PROCEED
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
-vecho "  Yes - Continue with installation"
-vecho "  No  - Return to DOS" /n
+vecho /t %FLANG% YES
+vecho /n /t %FLANG% NO
 vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
