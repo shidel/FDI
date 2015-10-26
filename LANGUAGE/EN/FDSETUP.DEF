@@ -1,3 +1,6 @@
+; FDICLS - Title
+TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Setup"
+
 ; STAGE300 - Initial welcome screen message
 HELLO="Welcome to the installation program for " /f %1 "%2" /f %3 .
 HELLO_ADV="Welcome to the advanced installer for " /f %1 "%2" /f %3 .

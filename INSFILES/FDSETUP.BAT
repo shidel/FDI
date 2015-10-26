@@ -271,8 +271,8 @@ reboot
 
 :DoExit
 vcls /a 0x07
-call FDSETUP\SETUP\FDILANG.BAT FDTHANK FDSETUP
-if exist FDSETUP\SETUP\FDTHANK.BAT call FDSETUP\SETUP\FDTHANK.BAT
+call FDILANG.BAT FDTHANK FDSETUP
+if exist FDTHANK.BAT call FDTHANK.BAT
 set FREBOOT=
 
 REM End of Batch Script *******************************************************
