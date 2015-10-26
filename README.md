@@ -53,6 +53,11 @@ utilities.
     SETUP.BAT
 
         Tests for presence of V8Power Tools.
+        Starts FDSETUP.BAT
+
+    FDSETUP.BAT
+
+        Tests for presence of V8Power Tools.
         Tests for I/O redirection support at present.
         Does some basic settings initialization.
 
@@ -283,6 +288,10 @@ utilities.
                     the new freedos installation directory %FTARGET% (probably
                     "C:\FDOS") set errorlevel to 0 fur sucess, 1 for failure
                     on leaving this batch.
+
+        FDILANG.BAT Uses current %LANG% setting and %1, %2, %3... and %FADV%
+                    to locate the current text translation file and point
+                    %FLANG% to it.
 
 ### FDI Roadmap
 
