@@ -4,9 +4,10 @@ REM Run entire install process.
 
 call FDIWIND.BAT 10
 vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
-vecho /t %FLANG%  INSTALL?
+vecho
+vecho /t %FLANG% INSTALL?
 call FDIOPTS.BAT 2
-vecho /t %FLANG%  INSTALL_YES "%OS_NAME% %OS_VERSION%."
+vecho /t %FLANG% INSTALL_YES "%OS_NAME% %OS_VERSION%"
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
