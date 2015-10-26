@@ -321,7 +321,7 @@ utilities.
 
     (These require some additional tools not yet created for V8Power Tools)
 
-    Maybe localization support.
+    Maybe localization support in error messages.
 
     Advanced mode, target directory changing.
 
