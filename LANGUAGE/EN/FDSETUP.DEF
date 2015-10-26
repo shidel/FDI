@@ -39,3 +39,9 @@ PREPARING="Preparing for the installation."
 ; STAGE900 - All Done reboot?
 DONE= "Installation of " /f %1"%2" /f %3 " is now complete."
 ; REBOOT?, REBOOT, EXIT
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR="Unable to execute installer stage %1." /y "It is possible the installer is corrupt." /y "Please re-download it or try a different method of installation."

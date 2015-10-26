@@ -220,8 +220,7 @@ call STAGE%FSTAGE%.BAT
 :NoCleanupStage
 vcls /a 0x07
 call FDILANG.BAT FDSETUP
-echo Unable to execute installer stage %FSTAGE%. It is possible the installer is
-echo corrupt. Please re-download it or try a different method of installation.
+vecho /t %FLANG% STAGE_ERROR %FSTAGE%
 goto Finished
 
 :NoEnvSpace
@@ -239,7 +238,7 @@ call STAGE%FSTAGE%.BAT
 call FDILANG.BAT FDSETUP
 vcls /a 0x07
 if "%OS_NAME%" == "" goto NoOSName
-vecho /fWhite /bRed " Installation of %OS_NAME% %OS_VERSION% has been aborted." /e /fGray
+vecho /t %FLANG% ABORTED "%OS_NAME% %OS_VERSION%"
 vecho
 :NoOSName
 if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n

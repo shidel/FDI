@@ -29,7 +29,7 @@ vecho
 vecho /t %FLANG% FORMAT?
 vframe /b %TFB% /f %TFF% /w44 /h4 /c /y12 hidden
 vecho /t %FLANG% FORMAT_YES C:
-vecho /t %FLANG% EXIT
+vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
