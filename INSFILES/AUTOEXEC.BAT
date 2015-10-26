@@ -1,13 +1,13 @@
 @echo off
 SET LANG=EN
-SET MTCPCFG=%dosdir%\MTCP.CFG
-SET WATTCP.CFG=%dosdir%
+rem SET MTCPCFG=%dosdir%\MTCP.CFG
+rem SET WATTCP.CFG=%dosdir%
 SET PATH=%dosdir%\BIN
 SET PATH=%path%;%dosdir%\V8Power
 SET NLSPATH=%dosdir%\NLS
 SET HELPPATH=%dosdir%\HELP
-REM SET TEMP=%dosdir%\TEMP
-REM SET TMP=%TEMP%
+rem SET TEMP=%dosdir%\TEMP
+rem SET TMP=%TEMP%
 rem SET BLASTER=A220 I5 D1 H5 P330
 rem SET DIRCMD=/P /OGN /4
 rem SET COPYCMD=/-Y

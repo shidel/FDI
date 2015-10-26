@@ -21,7 +21,7 @@ shift
 goto Retry
 
 :WPNone
-set FLANG=EN\FDSETUP.DEF
+set FLANG=%FINSP%\EN\FDSETUP.DEF
 goto Done
 
 :PreINSP

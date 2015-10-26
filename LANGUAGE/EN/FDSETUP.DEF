@@ -37,7 +37,7 @@ INSTALL_YES="  Yes - Please install %1."
 PREPARING="Preparing for the installation."
 
 ; STAGE900 - All Done reboot?
-DONE= "Installation of " /f %1"%2" /f %3 " is now complete."
+COMPLETE="Installation of " /f %1 "%2" /f %3 " is now complete."
 ; REBOOT?, REBOOT, EXIT
 
 ; FDSETUP - Installer Aborted

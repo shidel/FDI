@@ -32,6 +32,7 @@ verrlvl 0
 REM Run Installer *************************************************************
 REM Change to directory and path of this batch file.
 pushd
+vfdutil /c /p %0
 if not exist FDSETUP\SETUP\FDSETUP.BAT goto Error
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 popd
