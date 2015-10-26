@@ -3,12 +3,11 @@
 REM Run entire install process.
 
 call FDIWIND.BAT 10
-vecho "We are now ready to install " /f %TFH% "%OS_NAME% %OS_VERSION%" /f %TFF% "."
-vecho
-vecho "Do you want to install now?"
+vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /t %FLANG%  INSTALL?
 call FDIOPTS.BAT 2
-vecho "  Yes - Please install %OS_NAME% %OS_VERSION%."
-vecho "  No  - Exit to DOS." /n
+vecho /t %FLANG%  INSTALL_YES "%OS_NAME% %OS_VERSION%."
+vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
@@ -17,7 +16,7 @@ if errorlevel 2 goto AbortBatch
 :DoInstall
 
 call FDIWIND.BAT 5
-vecho "Preparing for the installation." /n
+vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
 REM Scan for all install file paths.

@@ -24,12 +24,12 @@ goto Done
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f  %TFH% C: /f %TFF% " does not appear to be partitioned."
+vecho /t %FLANG% NOPART %TFH% C: %TFF%
 vecho
-vecho "Do you wish to partition your drive?"
+vecho /t %FLANG% PART?
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
-vecho "  Yes - Launch Partitioner."
-vecho "  No  - Return to DOS" /n
+vecho /t %FLANG% PART_YES C:
+vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
@@ -50,20 +50,19 @@ call FDICLS.BAT
 vframe /b %TFB% /f %TFF% /w60 /h11 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h11 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h9 /c /y8 hidden
-vecho /n "You must reboot your computer for the new partitioning"
-vecho "scheme to take effect."
+vecho /t %FLANG% PARTED
 vecho
-vecho "Do you wish to reboot now?"
+vecho /t %FLANG% REBOOT?
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y13 hidden
-vecho "  Yes - Please reboot now."
-vecho "  No  - Return to DOS" /n
+vecho /t %FLANG% REBOOT_YES
+vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
-vecho "The computer will now reboot."
+vecho  /t %FLANG% REBOOT
 vecho
 reboot
 goto AbortBatch

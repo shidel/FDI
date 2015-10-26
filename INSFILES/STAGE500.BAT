@@ -24,12 +24,12 @@ goto Done
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-vecho "Drive " /f %TFH% C: /f %TFF% " does not appear to be formatted."
+vecho /t %FLANG% NOFORMAT %TFH% C: %TFF%
 vecho
-vecho "Do you wish to format your drive?"
+vecho /t %FLANG% FORMAT?
 vframe /b %TFB% /f %TFF% /w44 /h4 /c /y12 hidden
-vecho "  Yes - Please erase and format drive C:."
-vecho "  No  - Return to DOS" /n
+vecho /t %FLANG% FORMAT_YES C:
+vecho /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
@@ -37,7 +37,7 @@ if errorlevel 2 goto AbortBatch
 
 vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
-vecho /fGray "Formatting drive " /fWhite C /fGray "..."
+vecho /t %FLANG% FORMATTING C:
 vecho
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
@@ -50,7 +50,7 @@ set FDIDFMT=y
 
 vcursor hide
 vgotoxy eop sor
-vecho /n /fLightGreen " Press a key... " /e
+vecho /n /t %FLANG% PAUSE
 vpause /fLightCyan /t %FWAIT% CTRL-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterFormat

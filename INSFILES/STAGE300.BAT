@@ -24,10 +24,10 @@ goto Spacer
 vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
 vecho
-vecho /t %FLANG% PROCEED
+vecho /t %FLANG% PROCEED?
 vframe /b %TFB% /f %TFF% /w40 /h4 /c /y12 hidden
-vecho /t %FLANG% YES
-vecho /n /t %FLANG% NO
+vecho /t %FLANG% CONTINUE
+vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
