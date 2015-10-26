@@ -1,19 +1,23 @@
 @echo off
 
 REM Control-C Handler
+set TLANG=%FLANG%
+if "%FISNP%" == "" call FDILANG.BAT FDSETUP
+if not "%FISNP%" == "" call %FISNP%\FDILANG.BAT FDSETUP
+
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /f %TCF% /b %TCB% /w60 /h12 /c /y7 hidden shadow
 vframe /f %TCF% /b %TCB% /w58 /h12 /c /y7 %TCS%
 vframe /f %TCF% /b %TCB% /w56 /h10 /c /y8 hidden
-vecho "You have pressed " /f %TCH% "CTRL-C" /f %TCF% "."
+vecho /t %FLANG% CTRLC %TCH% %TCF%
 vecho
-vecho "Are you sure you wish to abort the installation?"
+vecho /t %FLANG% CTRLC?
 vframe /w44 /h6 /c /y12 hidden
-vecho "  Yes - Please return to DOS."
-vecho "  No  - I want to continue."
+vecho /t %FLANG% CTRLCY
+vecho /t %FLANG% CTRLCN
 vecho
-if "%FADV%" == "" vecho "  No  - Switch to Advanced Mode." /n
-if "%FADV%" == "y" vecho "  No  - Switch to Basic Mode." /n
+if "%FADV%" == "" vecho /n /t %FLANG% CTRLCA
+if "%FADV%" == "y" vecho /n /t %FLANG% CTRLCB
 vchoice /a %TCC% /d 2 Ctrl-C
 
 if errorlevel 200 goto AbortBatch
@@ -42,4 +46,5 @@ verrlvl 0
 %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 :AbortBatch
-
+set FLANG=%TLANG%
+set TLANG=

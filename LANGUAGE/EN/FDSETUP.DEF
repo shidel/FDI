@@ -1,5 +1,5 @@
 ; FDICLS - Title
-TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Setup"
+TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Installer"
 
 ; STAGE300 - Initial welcome screen message
 HELLO="Welcome to the installation program for " /f %1 "%2" /f %3 .
@@ -48,3 +48,11 @@ ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
 
 ; FDSETUP - Missing Stage Error
 STAGE_ERROR="Unable to execute installer stage %1." /y "It is possible the installer is corrupt." /y "Please re-download it or try a different method of installation."
+
+; FDICTRLC - Control-C specific
+CTRLC="You have pressed " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Are you sure you wish to abort the installation?"
+CTRLCY="  Yes - Please return to DOS."
+CTRLCN="  No  - I want to continue."
+CTRLCA="  No  - Switch to Advanced Mode."
+CTRLCB="  No  - Switch to Basic Mode."
