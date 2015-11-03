@@ -14,11 +14,11 @@ goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Replace the system configuration files?"
+vecho /t %FLANG% REPLACE?
 vecho
 call FDIOPTS.BAT 2
-vecho "  Yes - Transfer new default files."
-vecho "  No  - Keep the old files." /n
+vecho /t %FLANG% REPLACEY
+vecho /n /t %FLANG% REPLACEN
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0

@@ -1,6 +1,6 @@
 @echo off
 
-REM if advanced mode prompt to replace system config files.
+REM if advanced mode prompt to remove old OS files.
 
 if "%FADV%" == "" goto AssumeYes
 
@@ -10,11 +10,11 @@ goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Remove all old files from " /f %TFH% %FTARGET% /f %TFF% "?"
+vecho /t %FLANG% DELETE? %TFH% %FTARGET% %TFF%
 vecho
 call FDIOPTS.BAT 2
-vecho "  Yes - Start fresh."
-vecho "  No  - Leave it cluttered." /n
+vecho /t %FLANG% DELETEY
+vecho /n /t %FLANG% DELETEN
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
