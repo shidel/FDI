@@ -31,7 +31,7 @@ PACDONE="Software package installation has completed."
 
 ; FDINS800 -
 CONFIGS="Installing fresh configuration files."
-CONFIGS_DONE=
+CONFIGS_DONE="New configuration files were installed."
 
 ; FDINS900 -
 V8POWER="Installing a copy of '" /f %1 "V8Power Tools" /f %2 "'."
