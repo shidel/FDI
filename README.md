@@ -70,7 +70,7 @@ utilities.
         the prompt with a welcome message. Otherwise, it proceeds with
         installation process.
 
-        STAGE200, Loads current color scheme from either THEMENUL.BAT or
+        STAGE200, Loads current color scheme from either THEMEDEF.BAT or
         THEMEADV.BAT (Advanced Mode).
 
         If FDSETUP\SETUP\FDSPLASH.BAT exists, it is called. It might be good

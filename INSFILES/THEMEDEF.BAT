@@ -1,6 +1,6 @@
 @echo off
 
-REM THEMENUL, Default Installer Theme.
+REM THEMEDEF, Default Installer Theme.
 
 REM Screen Foreground, Background and Fill Character
 set TSF=Gray

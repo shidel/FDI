@@ -1,8 +1,8 @@
 @echo off
 
-REM Basic (NUL) and Advanced (ADV) Theme Loader.
+REM Basic Default (DEF) and Advanced (ADV) Theme Loader.
 
-set FTHEME=NUL
+set FTHEME=DEF
 if "%FADV%" == "y" set FTHEME=ADV
 if not exist THEME%FTHEME%.BAT goto Error
 call THEME%FTHEME%.BAT
