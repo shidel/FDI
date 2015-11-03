@@ -39,6 +39,11 @@ set _TI=0
 :LoopingList
 dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto FinishedList
+
+vfdutil /n %_TA% | set /p _TL=
+call FDILANG.BAT %_TL% FDINS FDSETUP
+set _TL=
+
 verrlvl 0
 if not exist %_TSA%\%_TA% goto FinishedList
 vfdutil /c/d %_TSA%\

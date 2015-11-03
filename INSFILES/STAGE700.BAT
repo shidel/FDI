@@ -43,7 +43,12 @@ if "%_TA%" == "" goto Sticky
 :Looping
 dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto Finished
+
+vfdutil /n %_TA% | set /p _TL=
+call FDILANG.BAT %_TL% FDASK FDSETUP
+set _TL=
 verrlvl 0
+
 call %_TA%
 if errorlevel 1 goto AbortBatch
 vmath %_TI% + 1 | set /p _TI=
