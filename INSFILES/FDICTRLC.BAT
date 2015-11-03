@@ -18,6 +18,9 @@ vecho /t %FLANG% CTRLCN
 vecho
 if "%FADV%" == "" vecho /n /t %FLANG% CTRLCA
 if "%FADV%" == "y" vecho /n /t %FLANG% CTRLCB
+set FLANG=%TLANG%
+set TLANG=
+
 vchoice /a %TCC% /d 2 Ctrl-C
 
 if errorlevel 200 goto AbortBatch
@@ -46,5 +49,3 @@ verrlvl 0
 %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 :AbortBatch
-set FLANG=%TLANG%
-set TLANG=

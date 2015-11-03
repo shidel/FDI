@@ -146,6 +146,15 @@ copy %IINS%\%CPFILE% %ODOS%\SETUP
 if errorlevel 1 goto ErrorCopy
 if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
 
+:CopyFDCHECK
+set CPFILE=FDCHECK.BAT
+if not exist %IINS%\%CPFILE% goto Done
+echo.
+echo Copying custom requirements checking file.
+copy %IINS%\%CPFILE% %ODOS%\SETUP
+if errorlevel 1 goto ErrorCopy
+if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
 goto Done
 
 :MissingV8

@@ -4,6 +4,10 @@ if not "%FINSP%" == "" vfdutil /c/p %FINSP%\
 
 call FDICLS.BAT
 
+set TLANG=%FLANG%
+if "%FISNP%" == "" call FDILANG.BAT FDSETUP
+if not "%FISNP%" == "" call %FISNP%\FDILANG.BAT FDSETUP
+
 if not "%FADV%" == "y" goto NoContinue
 
 if "%1" == "cc" goto CanContinue
@@ -29,14 +33,9 @@ vchoice /a %TFC% Ctrl-C
 
 if errorlevel 200 goto CtrlCPress
 if errorlevel 2 goto AbortBatch
-vcls /a0x07
-vecho "The computer will now reboot."
-vecho
-reboot
-goto AbortBatch
+goto DoReboot
 
 :CanContinue
-
 vframe /b %TFB% /f %TFF% /w74 /h13 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w72 /h13 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w70 /h11 /c /y8 hidden
@@ -55,6 +54,7 @@ if errorlevel 200 CtrlCPress
 if errorlevel 3 goto ContinueAnyway
 if errorlevel 2 goto AbortBatch
 
+:DoReboot
 vcls /a0x07
 vecho "The computer will now reboot."
 vecho
@@ -62,11 +62,12 @@ reboot
 goto AbortBatch
 
 :CtrlCPress
+set FLANG=%TLANG%
+set TLANG=
 if "%1" == "cc" goto FirstIsCC
 FDICTRLC.BAT %0 "%1 %2 %3 %4 %5 %6 %7 %8"
 :FirstIsCC
 FDICTRLC.BAT %0 %1 "%2 %3 %4 %5 %6 %7 %8"
-
 
 :AbortBatch
 verrlvl 1
@@ -78,3 +79,5 @@ verrlvl 0
 goto Done
 
 :Done
+set FLANG=%TLANG%
+set TLANG=

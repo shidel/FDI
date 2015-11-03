@@ -2,9 +2,6 @@
 
 REM Reserved for splash screen or log display.
 
-REM To automatically include this file on the installer, add FDSPLASH.BAT to
-REM the MKSETUP.LST installer setup file list.
-
 REM If a language file FDSPLASH.DEF exists, it will be automatically loaded
 REM prior to running this file.
 
