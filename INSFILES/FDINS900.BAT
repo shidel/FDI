@@ -6,7 +6,7 @@ goto AfterOption
 :DoOption
 
 call FDIWIND.BAT 5
-vecho "Installing a copy of '" /f %TFH% V8Power Tools /f %TFF% "'." /n
+vecho "Installing a copy of '" /f %TFH% "V8Power Tools" /f %TFF% "'." /n
 vdelay %FDEL%
 
 xcopy %FINSP%\..\V8POWER %FTARGET%\V8POWER\ >NUL

@@ -48,6 +48,7 @@ set OSRC=
 set OV8P=
 set FPBIN=
 set FPSRC=
+set FDUALP=
 
 REM Clear Theme Variables
 set TSF=

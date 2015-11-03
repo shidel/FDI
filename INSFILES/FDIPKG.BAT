@@ -1,5 +1,10 @@
 @echo off
 
+REM if binary packages contain the sources, set NOSRC=y
+REM that will allow them to be installed in one pass when %1 is bin and
+REM %OSRC% is y without requireing a two step process for SOURCE/BINARY
+REM packages.
+
 if "%1" == "bin" goto BinPackage
 if "%1" == "src" goto SrcPackage
 

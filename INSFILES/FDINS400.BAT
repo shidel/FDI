@@ -13,7 +13,7 @@ cd \
 popd
 
 call FDIWIND.BAT 5
-vecho "Removing old files from '" /f %TFH% %FTARGET% /f %TFF% "'." /n
+vecho /n /t %FLANG% RMOS %TFH% %FTARGET% %TFF%
 vdelay %FDEL%
 
 attrib -R -S -H %FTARGET% >NUL
@@ -35,7 +35,7 @@ if errorlevel 1 goto Failed
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "Old operating system files were removed." /n /e
+vecho /n /e /t %FLANG% RMOS_DONE
 vdelay %FDEL%
 
 goto AfterOption

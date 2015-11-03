@@ -6,11 +6,29 @@ PRESSKEY="Press a key..."
 ; FDINS200 - Backing up old OS
 BACKUP="Creating backup"
 TARGET="'" /f %1 "%2" /f %T3 "'"
-BACKUPDONE=/f %1 "Backup has completed."
-; FDINS300 -
-; FDINS400 -
-; FDINS500 -
-; FDINS600 -
-; FDINS700 -
+BACKUP_DONE=/f %1 "Backup has completed."
+
+; FDINS300 - Remove old config files
+CLEAN="Cleaning out the old configuration files."
+CLEAN_DONE="Old configuration files have been removed."
+
+; FDINS400 - Remove old OS files
+RMOS="Removing old files from '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Old operating system files were removed."
+
+; FDINS500 - Transfer system files
+XSYS="Transferring system boot files to drive " /f %1 %2 /f %3 '.'
+XSYS_DONE="System file transfer is complete."
+
+; FDINS600 - Package list file configuration. No text to display.
+
+; FDINS700 - Package installation.
+PACBM="Installing software packages."
+PACBI="Installing software package '" /f %1 %2 /f %3 "'"
+PACSM="Installing sources."
+PACSI="Installing sources for '" /f %1 %2 /f %3 "'"
+PACDONE="Software package installation is complete."
+
 ; FDINS800 -
+
 ; FDINS900 -

@@ -184,7 +184,7 @@ REM Backup complete ***********************************************************
 :BackupComplete
 if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /e /t %FLANG% BACKUPDONE %TFF%
+vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
 vdelay %FDEL%
 goto AfterBackup
 

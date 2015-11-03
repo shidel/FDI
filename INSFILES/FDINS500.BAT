@@ -9,7 +9,7 @@ goto AfterOption
 vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 5
-vecho "Transferring system boot files to drive " /f %TFH% %_C% /f %TFF% '.' /n
+vecho /n /t %FLANG% XSYS %TFH% %_C% %TFF%
 vdelay %FDEL%
 
 sys %_C%>NUL
@@ -19,7 +19,7 @@ verrlvl 0
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "System file transfer is complete." /n /e
+vecho /n /e /t %FLANG% XSYS_DONE
 vdelay %FDEL%
 
 goto AfterOption

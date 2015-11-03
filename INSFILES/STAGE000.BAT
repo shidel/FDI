@@ -41,4 +41,7 @@ set FSCAN=n
 
 REM New config file extension to be used for replacing AUTOEXEC.BAT and
 REM FDCONFIG.SYS.
-set FEXT=NEW
+set FEXT=DEF
+
+REM Dual source packages, set it to y if true
+set FDUALP=

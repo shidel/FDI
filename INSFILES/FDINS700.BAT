@@ -1,7 +1,7 @@
 @echo off
 
 call FDIWIND.BAT 7
-vecho /n "Installing software package"
+vecho /n /t %FLANG% PACBM
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -25,8 +25,8 @@ vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
 if "%_PA%" == "" goto BinSkip
 rem if not exist %FMEDIA%\%_PA%.zip goto BinSkip
-vgotoxy /l sop /x 29
-vecho "'" /f %TFH% %_PA% /f %TFF% "'" /e /n
+vgotoxy /l sop
+vecho /e /n /t %FLANG% PACBI %TFH% %_PA% %TFF%
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0
@@ -49,10 +49,11 @@ goto AbortBin
 :BinDone
 vdelay %FDEL%
 
+if "%FDUALP%" == "y" goto Success
 if not "%OSRC%" == "y" goto Success
 
 call FDIWIND.BAT 7
-vecho /n "Installing package source"
+vecho /n /t %FLANG% PACSM
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -72,8 +73,8 @@ type %FPSRC% | vstr /l %_PI% | set /p _PA=
 vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
 if "%_PA%" == "" goto SrcSkip
-vgotoxy /l sop /x 27
-vecho "'" /f %TFH% %_PA% /f %TFF% "'" /e /n
+vgotoxy /l sop
+vecho /e /n /t %FLANG% PACSI %TFH% %_PA% %TFF%
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0
@@ -108,20 +109,18 @@ set FERROR="Unable to install '%_PA%' package."
 call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' package."
 if errorlevel 1 goto Done
 call FDIWIND.BAT 7
-vecho /n "Installing software package"
 goto BinSkip
 
 :AbortSrc
 set FERROR="Unable to install '%_PA%' source."
 call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' source."
 call FDIWIND.BAT 7
-vecho /n "Installing package source"
 goto SrcSkip
 
 :Success
 if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP
 call FDIWIND.BAT 5
-vecho /n "Software package installation is complete."
+vecho /n /t %FLANG% PACDONE
 vdelay %FDEL%
 verrlvl 0
 

@@ -16,7 +16,7 @@ goto AfterOption
 vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 5
-vecho "Cleaning out the old configuration files." /n
+vecho /n /t %FLANG% CLEAN
 vdelay %FDEL%
 
 if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
@@ -39,7 +39,7 @@ verrlvl 0
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "Old configuration files have been removed." /n /e
+vecho /n /e /t %FLANG% CLEAN_DONE
 vdelay %FDEL%
 
 goto AfterOption
