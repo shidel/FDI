@@ -109,12 +109,14 @@ set FERROR="Unable to install '%_PA%' package."
 call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' package."
 if errorlevel 1 goto Done
 call FDIWIND.BAT 7
+vecho /n /t %FLANG% PACBM
 goto BinSkip
 
 :AbortSrc
 set FERROR="Unable to install '%_PA%' source."
 call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' source."
 call FDIWIND.BAT 7
+vecho /n /t %FLANG% PACSM
 goto SrcSkip
 
 :Success
