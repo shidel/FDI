@@ -299,9 +299,6 @@ utilities.
 
     Implement STAGE100, already installed testing.
 
-    Implement testing that system requirements are met in STAGE600. (Probably
-    by just adding a call to an FDIREQ.BAT file.)
-
     Verify no DOS text that can appear while purging the old installation.
 
     Verify integrity of backup folder and zip backups.
