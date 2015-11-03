@@ -1,0 +1,6 @@
+; FDASK200 - Backup old OS
+BACKUP="A previous operating system was detected on drive " /f %1 %2 /f %3 .
+BACKUP?="Do you wish to backup the old files before installing?"
+BACKUPY="  Yes - Please backup first."
+BACKUPZ="  Yes - Please backup as zip archive."
+BACKUPN="  No  - Install without backing up."
