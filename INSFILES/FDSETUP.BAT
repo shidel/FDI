@@ -228,7 +228,7 @@ vfdutil /c/p %0
 set FERROR="Insufficient free environment space."
 goto AbortedNoCleanup
 
-REM Installer failed to install or was aborte**********************************
+REM Installer failed to install or was aborted ********************************
 :Aborted
 set FSTAGE=999
 call FDILANG.BAT FDSETUP
@@ -270,10 +270,10 @@ vcls /a 0x07
 reboot
 
 :DoExit
+set FREBOOT=
 vcls /a 0x07
 call FDILANG.BAT FDTHANK FDSETUP
 if exist FDTHANK.BAT call FDTHANK.BAT
-set FREBOOT=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything
