@@ -1,0 +1,16 @@
+; FDINS000 - Debug mode pause
+PRESSKEY="Press a key..."
+
+; FDINS100 - Reserved
+
+; FDINS200 - Backing up old OS
+BACKUP="Creating backup"
+TARGET="'" /f %1 "%2" /f %T3 "'"
+BACKUPDONE=/f %1 "Backup has completed."
+; FDINS300 -
+; FDINS400 -
+; FDINS500 -
+; FDINS600 -
+; FDINS700 -
+; FDINS800 -
+; FDINS900 -

@@ -1,3 +1,7 @@
+; FDASK000 - Reserved
+
+; FDASK100 - Reserved
+
 ; FDASK200 - Backup old OS
 BACKUP="A previous operating system was detected on drive " /f %1 %2 /f %3 .
 BACKUP?="Do you wish to backup the old files before installing?"
@@ -26,6 +30,10 @@ PACBO="  Basic packages only."
 PACBS="  Basic packages with sources only."
 PACAO="  All the packages."
 PACAS="  All the packages and their sources."
+
+; FDASK700 - Reserved
+
+; FDASK800 - Reserved
 
 ; FDASK900 - Advanced mode Install V8Power Tools.
 V8I?="Install a copy of " /f %1 "V8Power Tools" /f %2 "?"

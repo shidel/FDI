@@ -26,4 +26,3 @@ set OV8P=n
 verrlvl 0
 
 :Done
-set _C=

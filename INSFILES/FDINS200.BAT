@@ -8,7 +8,7 @@ goto AfterBackup
 vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 7
-vecho /n "Creating backup"
+vecho /n /t %FLANG% BACKUP
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -25,7 +25,7 @@ date /d>%_AL%
 rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
-vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"
+vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
@@ -126,7 +126,7 @@ date /d>%_AL%
 rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
-vecho /n "'" /f %TFH% "%_AF%" /f %TFF% "'"
+vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
@@ -184,7 +184,7 @@ REM Backup complete ***********************************************************
 :BackupComplete
 if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /f %TFF% "Backup has completed." /e
+vecho /n /e /t %FLANG% BACKUPDONE %TFF%
 vdelay %FDEL%
 goto AfterBackup
 
