@@ -166,6 +166,11 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+REM Check requirements if testing is present.
+call FDILANG.BAT FDCHECK FDSETUP
+if exist FDCHECK.BAT call FDCHECK.BAT
+if errorlevel 1 goto Aborted
+
 REM Ask the user all of the Questions.
 set FSTAGE=700
 call FDILANG.BAT FDSETUP
