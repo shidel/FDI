@@ -11,7 +11,7 @@ goto AfterOption
 :DoOption
 
 call FDIWIND.BAT 5
-vecho "Installing fresh configuration files." /n
+vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
 vfdutil /d %FTARGET% | set /p _C=
@@ -24,7 +24,7 @@ if errorlevel 1 goto Failed
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho "New config files were installed." /n /e
+vecho /n /e /t %FLANG% CONFIGS_DONE
 vdelay %FDEL%
 
 goto AfterOption

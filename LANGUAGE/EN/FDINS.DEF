@@ -6,7 +6,7 @@ PRESSKEY="Press a key..."
 ; FDINS200 - Backing up old OS
 BACKUP="Creating backup"
 TARGET="'" /f %1 "%2" /f %T3 "'"
-BACKUP_DONE=/f %1 "Backup has completed."
+BACKUP_DONE=/f %1 "Back up has completed."
 
 ; FDINS300 - Remove old config files
 CLEAN="Cleaning out the old configuration files."
@@ -18,7 +18,7 @@ RMOS_DONE="Old operating system files were removed."
 
 ; FDINS500 - Transfer system files
 XSYS="Transferring system boot files to drive " /f %1 %2 /f %3 '.'
-XSYS_DONE="System file transfer is complete."
+XSYS_DONE="System file transfer has completed."
 
 ; FDINS600 - Package list file configuration. No text to display.
 
@@ -27,8 +27,12 @@ PACBM="Installing software packages."
 PACBI="Installing software package '" /f %1 %2 /f %3 "'"
 PACSM="Installing sources."
 PACSI="Installing sources for '" /f %1 %2 /f %3 "'"
-PACDONE="Software package installation is complete."
+PACDONE="Software package installation has completed."
 
 ; FDINS800 -
+CONFIGS="Installing fresh configuration files."
+CONFIGS_DONE=
 
 ; FDINS900 -
+V8POWER="Installing a copy of '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER_DONE="V8Power Tools were installed."
