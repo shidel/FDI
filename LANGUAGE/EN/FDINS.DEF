@@ -5,7 +5,7 @@ PRESSKEY="Press a key..."
 
 ; FDINS200 - Backing up old OS
 BACKUP="Creating backup"
-TARGET="'" /f %1 "%2" /f %T3 "'"
+TARGET="'" /f %1 "%2" /f %3 "'"
 BACKUP_DONE=/f %1 "Back up has completed."
 
 ; FDINS300 - Remove old config files
