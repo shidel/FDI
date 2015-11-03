@@ -1,16 +1,16 @@
 @echo off
 
-REM if advanced mode prompt to replace system config files.
+REM Installation package selection.
 
 call FDIWIND.BAT 11
-vecho "What " /f %TFH% %OS_NAME% /f %TFF% " packages do you want to install?"
+vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
 call FDIOPTS.BAT 5
-vecho "  Basic packages only."
-vecho "  Basic packages with sources only."
+vecho /t %FLANG% PACBO
+vecho /t %FLANG% PACBS
 vecho
-vecho "  All the packages."
-vecho "  All the packages and their sources." /n
+vecho /t %FLANG% PACAO
+vecho /n /t %FLANG% PACAS
 vchoice /a %TFC% Ctrl-C /d 3
 
 if errorlevel 200 FDICTRLC.BAT %0

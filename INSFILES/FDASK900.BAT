@@ -1,16 +1,16 @@
 @echo off
 
-REM if advanced mode prompt to replace system config files.
+REM if advanced mode prompt to install copy of V8Power Tools files.
 
 if "%FADV%" == "" goto AssumeYes
 
 :AskAdvanced
 call FDIWIND.BAT 8
-vecho "Install a copy of " /f %TFH% "V8Power Tools" /f %TFF% "?"
+vecho /t %FLANG% V8I? %TFH% %TFF%
 vecho
 call FDIOPTS.BAT 2
-vecho "  Yes - Install V8Power Tools."
-vecho "  No  - Do not install them." /n
+vecho /t %FLANG% V8IY
+vecho /n /t %FLANG% V8IN
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
