@@ -7,6 +7,7 @@ if "%FINSP%" == "" goto PreINSP
 if "%1" == "" goto WPNone
 
 if not "%FADV%" == "y" goto WPDefault
+
 if not exist %FINSP%\%LANG%\%1.ADV goto WPDefault
 set FLANG=%FINSP%\%LANG%\%1.ADV
 goto Done

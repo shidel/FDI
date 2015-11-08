@@ -8,6 +8,10 @@ set OS_VERSION=1.1a
 
 if "%1" == "VersionOnly" goto Done
 
+REM Remove trailing spaces from LANG variable.
+if %LANG% == EN set FLANG=EN
+if %LANG% == ES set FLANG=ES
+
 REM Debug Mode
 set FDEBUG=n
 

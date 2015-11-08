@@ -18,7 +18,7 @@ REM V8Power Tools are not present. ********************************************
 :V8Missing
 echo V8Power Tools were not found. Please install them or try booting from the
 echo installation media and trying again.
-goto DontDoAnything
+goto Done
 
 REM Check by setting errorlevel to 0.
 :ClearError
@@ -36,6 +36,9 @@ vfdutil /c /p %0
 if not exist FDSETUP\SETUP\FDSETUP.BAT goto Error
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 popd
+goto Done
+
+
 
 REM End of Batch Script *******************************************************
-:DontDoAnything
+:Done
