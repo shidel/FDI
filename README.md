@@ -318,8 +318,6 @@ utilities.
 
 ### FDI Roadmap
 
-    Verify no DOS text that can appear while purging the old installation.
-
     Verify integrity of backup folder and zip backups.
 
     STAGE700, add detection if installing from a folder and skip searching

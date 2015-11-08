@@ -2,7 +2,7 @@
 
 REM Remove old files in FreeDOS target
 
-if not exist %FTARTGET%\NUL goto AfterOption
+if not exist %FTARGET%\NUL goto AfterOption
 if "%OCLEAN%" == "y" goto DoOption
 goto AfterOption
 
