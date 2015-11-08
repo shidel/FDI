@@ -208,6 +208,8 @@ set FSTAGE=999
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
+call FDILANG.BAT FDNOTICE FDSETUP
+if exist FDNOTICE.BAT call FDNOTICE.BAT
 verrlvl 0
 goto Finished
 

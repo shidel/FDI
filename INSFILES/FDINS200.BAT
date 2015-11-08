@@ -191,13 +191,13 @@ goto AfterBackup
 :ZipBackupFailed
 vdelay %FDEL%
 set FERROR="Making backup archive %_AF%."
-call FDIFAIL.BAT "Making backup archive %_AF%."
+call FDIFAIL.BAT ERROR_BACKZIP %_AF%.
 goto AfterBackup
 
 :CopyBackupFailed
 vdelay %FDEL%
 set FERROR="Making backup."
-call FDIFAIL.BAT "Error making the backup."
+call FDIFAIL.BAT ERROR_BACKUP
 goto AfterBackup
 
 :AfterBackup

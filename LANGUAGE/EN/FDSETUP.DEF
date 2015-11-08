@@ -56,3 +56,20 @@ CTRLCY="  Yes - Please return to DOS."
 CTRLCN="  No  - I want to continue."
 CTRLCA="  No  - Switch to Advanced Mode."
 CTRLCB="  No  - Switch to Basic Mode."
+
+; FDIFAIL - Installation failure error message box
+FAILH="A reboot may help."
+FAIL?="Do you wish to reboot now?"
+FAILY="  Yes - Please reboot now."
+FAILN="  No  - Return to DOS"
+RAILI="  No  - Ignore (not recommended)"
+FAILR="The computer will now reboot."
+
+; Failure messages
+ERROR_BACKZIP="Making backup archive %1."
+ERROR_BACKUP="Error making the backup."
+ERROR_MKDOS="Unable to create '%1' directory."
+ERROR_PACKAGE="Unable to install the '%1' package."
+ERROR_SOURCE="Unable to install the '%1' source."
+ERROR_READC="Having a problem reading drive C:."
+ERROR_SHELL="Installation is not supported under your current shell."

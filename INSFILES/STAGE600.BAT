@@ -27,7 +27,7 @@ goto Done
 
 :AbortBatch
 set FERROR="no support for 'set /p' or I/O redirection."
-call FDIFAIL.BAT "Installation is not supported under your current shell."
+call FDIFAIL.BAT ERROR_SHELL
 verrlvl 1
 
 :Done

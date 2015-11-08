@@ -1,6 +1,6 @@
 @echo off
 
-REM Test detects FreeDOS 1.x install media location.
+REM Test for detecting FreeDOS 1.x install media location.
 if "%FMEDIA%" == "" goto Check
 goto CheckDone
 

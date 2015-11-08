@@ -101,12 +101,12 @@ goto Success
 
 :AbortDir
 set FERROR="Unable to create %FTARGET% directory."
-call %FINSP%\FDIFAIL.BAT "Unable to create %FTARGET% directory."
+call %FINSP%\FDIFAIL.BAT ERROR_MKDOS %FTARGET%
 goto Done
 
 :AbortBin
 set FERROR="Unable to install '%_PA%' package."
-call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' package."
+call %FINSP%\FDIFAIL.BAT cc ERROR_PACKAGE %_PA%
 if errorlevel 1 goto Done
 call FDIWIND.BAT 7
 vecho /n /t %FLANG% PACBM
@@ -114,7 +114,7 @@ goto BinSkip
 
 :AbortSrc
 set FERROR="Unable to install '%_PA%' source."
-call %FINSP%\FDIFAIL.BAT cc "Unable to install the '%_PA%' source."
+call %FINSP%\FDIFAIL.BAT cc ERROR_SOURCE %_PA%
 call FDIWIND.BAT 7
 vecho /n /t %FLANG% PACSM
 goto SrcSkip

@@ -1,5 +1,7 @@
 @echo off
 
+call INSFILES\STAGE000.BAT VersionOnly
+
 REM Install Disk Options.
 set VOLUMEID=FD-SETUP
 
@@ -154,6 +156,23 @@ echo Copying custom requirements checking file.
 copy %IINS%\%CPFILE% %ODOS%\SETUP
 if errorlevel 1 goto ErrorCopy
 if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
+:CopyFDNOTICE
+set CPFILE=FDNOTICE.BAT
+if not exist %IINS%\%CPFILE% goto Done
+echo.
+echo Copying custom already installed notice file.
+copy %IINS%\%CPFILE% %ODOS%\SETUP
+if errorlevel 1 goto ErrorCopy
+if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
+
+:VersionID
+echo.
+echo Create the installer version ID file.
+echo PLATFORM=%OS_NAME%>%ODOS%\SETUP\VERSION.FDI
+if errorlevel 1 goto Failed
+echo VERSION=%OS_VERSION%>>%ODOS%\SETUP\VERSION.FDI
+if errorlevel 1 goto Failed
 
 goto Done
 

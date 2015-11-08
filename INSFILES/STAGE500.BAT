@@ -66,7 +66,7 @@ goto Done
 
 :StillCannotReadC
 set FERROR="Unable to read drive C: after format."
-call FDIFAIL.BAT "Having a problem reading drive C:."
+call FDIFAIL.BAT ERROR_READC
 
 :AbortBatch
 verrlvl 1

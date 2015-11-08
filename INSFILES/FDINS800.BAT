@@ -21,6 +21,12 @@ if errorlevel 1 goto Failed
 copy %FINSP%\FDCONFIG.%FEXT% %_C%\FDCONFIG.SYS >NUL
 if errorlevel 1 goto Failed
 
+REM Create the installed version ID file.
+echo PLATFORM=%OS_NAME%>%FTARGET%\VERSION.FDI
+if errorlevel 1 goto Failed
+echo VERSION=%OS_VERSION%>>%FTARGET%\VERSION.FDI
+if errorlevel 1 goto Failed
+
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop

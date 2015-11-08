@@ -245,7 +245,9 @@ utilities.
 
         FDINS700    Installs binary and source packages.
 
-        FDINS800    Copy new configuration files, maybe.
+        FDINS800    Copy new configuration files, maybe. If so, also
+                    creates the VERSION.FDI file for testing when this
+                    version of the OS is already installed.
 
         FDINS900    Install V8Power Tools from installer, maybe.
 
@@ -296,11 +298,27 @@ utilities.
                     to locate the current text translation file and point
                     %FLANG% to it.
 
+        FDCHECK.BAT If it exists, use to test system for compatibilty prior to
+                    installation of FreeDOS.
+
+        FDSPLASH.BAT If it exists, use to display spash screen or logo prior to
+                    the welcome message.
+
+        FDERROR.BAT If it exists, use it to display custom error messages when
+                    the installer exists.
+
+        FDTHANK.BAT If it exists, use it to display a custom message after
+                    the installer completes successfully just prior to
+                    exiting the installer.
+
+        FDNOTICE.BAT If run during the boot process and this version is
+                     already installed, this file will be called instead of
+                     automatically starting the installer.
+
+
 ### FDI Roadmap
 
     Remove the requirement of FreeCom already being the current shell.
-
-    Implement STAGE100, already installed testing.
 
     Verify no DOS text that can appear while purging the old installation.
 
@@ -321,7 +339,7 @@ utilities.
 
     (These require some additional tools not yet created for V8Power Tools)
 
-    Maybe localization support in error messages.
+    Maybe localization support in exit error messages.
 
     Advanced mode, target directory changing.
 
@@ -332,3 +350,6 @@ utilities.
     Stuff in the Roadmap.
 
     Zip file warnings cannot be suppressed.
+
+    Will not detect Current OS version when it was installed to a directory
+    other than the default "C:\FDOS" directory.

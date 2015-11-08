@@ -1,12 +1,15 @@
 @echo off
 
-REM Configure the installer.
-
-set FDEBUG=n
+REM Configure the installer. **************************************************
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
 set OS_VERSION=1.1a
+
+if "%1" == "VersionOnly" goto Done
+
+REM Debug Mode
+set FDEBUG=n
 
 REM Set Timezone so unzip doesn't complain.
 set TZ=UTC
@@ -45,3 +48,5 @@ set FEXT=DEF
 
 REM Dual source packages, set it to y if true
 set FDUALP=
+
+:Done
