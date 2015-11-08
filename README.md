@@ -320,10 +320,10 @@ utilities.
 
     Should, verify integrity of backup folder and zip backups.
 
-    Should, STAGE700, add detection if installing from a folder and skip
+    Should, in STAGE700, add detection if installing from a folder and skip
     searching for installation media. Just set FMEDIA to subdirectory.
 
-    Probably, Remove need to leave in install media to reboot.
+    Probably, remove need to leave in install media to reboot.
 
     Maybe, add ability to install from Floppy only sources.
 
