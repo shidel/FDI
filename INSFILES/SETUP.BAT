@@ -34,11 +34,24 @@ REM Change to directory and path of this batch file.
 pushd
 vfdutil /c /p %0
 if not exist FDSETUP\SETUP\FDSETUP.BAT goto Error
+if "%1" == "RECOVERY" goto Booted
+
+:Manual
+if not exist FDSETUP\BIN\COMMAND.COM goto Error
+FDSETUP\BIN\COMMAND.COM /E:2048/C FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+goto Afterwards
+
+:Booted
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+
+:Afterwards
+vfdutil /c /p %0
 popd
 goto Done
 
-
+:Error
+vecho "Important installer files were not found. Please verify you have a"
+vecho "complete version or download a new copy."
 
 REM End of Batch Script *******************************************************
 :Done

@@ -318,8 +318,6 @@ utilities.
 
 ### FDI Roadmap
 
-    Remove the requirement of FreeCom already being the current shell.
-
     Verify no DOS text that can appear while purging the old installation.
 
     Verify integrity of backup folder and zip backups.
