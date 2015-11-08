@@ -318,28 +318,28 @@ utilities.
 
 ### FDI Roadmap
 
-    Verify integrity of backup folder and zip backups.
+    Should, verify integrity of backup folder and zip backups.
 
-    STAGE700, add detection if installing from a folder and skip searching
-    for installation media. Just set FMEDIA to subdirectory.
+    Should, STAGE700, add detection if installing from a folder and skip
+    searching for installation media. Just set FMEDIA to subdirectory.
 
-    Remove need to leave in install media to reboot.
+    Probably, Remove need to leave in install media to reboot.
 
-    Add ability to install from Floppy only sources.
+    Maybe, add ability to install from Floppy only sources.
 
-    Deploy a solution to adjust for the long perceived pauses during backup
-    and some package installations. Not a bug, but it may appear "hung-up"
-    do to many files being copied. Namely, a backup of a previous version
-    that included source files, will stick for a long time around 37% while
-    coping all the old sources.
+    Might, deploy a solution to adjust for the long perceived pauses during
+    backup and some package installations. Not a bug, but it may appear
+    "hung-up" do to many files being copied. Namely, a backup of a previous
+    version that included source files, will stick for a long time around 37%
+    while coping all the old sources.
 
     (These require some additional tools not yet created for V8Power Tools)
 
-    Maybe localization support in exit error messages.
+    Maybe, localization support in exit error messages.
 
-    Advanced mode, target directory changing.
+    Probably, advanced mode, target directory changing.
 
-    Advanced mode, individual package selections.
+    Probably, advanced mode, individual package selections.
 
 ### Known issues
 
@@ -348,4 +348,5 @@ utilities.
     Zip file warnings cannot be suppressed.
 
     Will not detect Current OS version when it was installed to a directory
-    other than the default "C:\FDOS" directory.
+    other than the default "C:\FDOS" directory. Might add some common
+    locations to check later. Might not. We will see.
