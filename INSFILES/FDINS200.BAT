@@ -5,7 +5,6 @@ if not "%OBAK%" == "n" goto MakeBackup
 goto AfterBackup
 
 :MakeBackup
-vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 7
 vecho /n /t %FLANG% BACKUP
@@ -16,7 +15,7 @@ if "%OBAK%" == "z" goto ZipBackup
 
 REM Backup to a renamed file  *************************************************
 :SimpleBackup
-vfdutil /u %_C%\FDOS_OLD.??? | set /p _AF=
+vfdutil /u %FDRIVE%\FDOS_OLD.??? | set /p _AF=
 
 mkdir %_AF%
 
@@ -30,37 +29,37 @@ vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
 REM copy Config files to root directory as old versions.
-vfdutil /u %_C%\FDAUTO.??? | set /p _BF=
-if exist %_C%\FDAUTO.BAT copy %_C%\FDAUTO.BAT %_BF% >NUL
+vfdutil /u %FDRIVE%\FDAUTO.??? | set /p _BF=
+if exist %FDRIVE%\FDAUTO.BAT copy %FDRIVE%\FDAUTO.BAT %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
-vfdutil /u %_C%\AUTOEXEC.??? | set /p _BF=
-if exist %_C%\AUTOEXEC.BAT copy %_C%\AUTOEXEC.BAT %_BF% >NUL
+vfdutil /u %FDRIVE%\AUTOEXEC.??? | set /p _BF=
+if exist %FDRIVE%\AUTOEXEC.BAT copy %FDRIVE%\AUTOEXEC.BAT %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
-vfdutil /u %_C%\CONFIG.??? | set /p _BF=
-if exist %_C%\CONFIG.SYS copy %_C%\CONFIG.SYS %_BF% >NUL
+vfdutil /u %FDRIVE%\CONFIG.??? | set /p _BF=
+if exist %FDRIVE%\CONFIG.SYS copy %FDRIVE%\CONFIG.SYS %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
-vfdutil /u %_C%\FDCONFIG.??? | set /p _BF=
-if exist %_C%\FDCONFIG.SYS copy %_C%\FDCONFIG.SYS %_BF% >NUL
+vfdutil /u %FDRIVE%\FDCONFIG.??? | set /p _BF=
+if exist %FDRIVE%\FDCONFIG.SYS copy %FDRIVE%\FDCONFIG.SYS %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
 REM make list of files.
-if exist %_C%\FDAUTO.BAT echo %_C%\FDAUTO.BAT >>%_AL%
-if exist %_C%\AUTOEXEC.BAT echo %_C%\AUTOEXEC.BAT >>%_AL%
-if exist %_C%\CONFIG.SYS echo %_C%\CONFIG.SYS >>%_AL%
-if exist %_C%\FDCONFIG.SYS echo %_C%\FDCONFIG.SYS >>%_AL%
-if exist %_C%\KERNEL.SYS echo %_C%\KERNEL.SYS >>%_AL%
-if exist %_C%\COMMAND.COM echo %_C%\COMMAND.COM >>%_AL%
+if exist %FDRIVE%\FDAUTO.BAT echo %FDRIVE%\FDAUTO.BAT >>%_AL%
+if exist %FDRIVE%\AUTOEXEC.BAT echo %FDRIVE%\AUTOEXEC.BAT >>%_AL%
+if exist %FDRIVE%\CONFIG.SYS echo %FDRIVE%\CONFIG.SYS >>%_AL%
+if exist %FDRIVE%\FDCONFIG.SYS echo %FDRIVE%\FDCONFIG.SYS >>%_AL%
+if exist %FDRIVE%\KERNEL.SYS echo %FDRIVE%\KERNEL.SYS >>%_AL%
+if exist %FDRIVE%\COMMAND.COM echo %FDRIVE%\COMMAND.COM >>%_AL%
 
 REM EXTRAS
-if exist %_C%\DRDOS.386 echo %_C%\DRDOS.386 >>%_AL%
-if exist %_C%\WINA20.386 echo %_C%\WINA20.386 >>%_AL%
-if exist %_C%\IBMBIO.COM echo %_C%\IBMBIO.COM >>%_AL%
-if exist %_C%\IBMDOS.COM echo %_C%\IBMDOS.COM >>%_AL%
-if exist %_C%\IO.SYS echo %_C%\IO.SYS >>%_AL%
-if exist %_C%\MSDOS.SYS echo %_C%\MSDOS.SYS >>%_AL%
+if exist %FDRIVE%\DRDOS.386 echo %FDRIVE%\DRDOS.386 >>%_AL%
+if exist %FDRIVE%\WINA20.386 echo %FDRIVE%\WINA20.386 >>%_AL%
+if exist %FDRIVE%\IBMBIO.COM echo %FDRIVE%\IBMBIO.COM >>%_AL%
+if exist %FDRIVE%\IBMDOS.COM echo %FDRIVE%\IBMDOS.COM >>%_AL%
+if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
+if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 vprogres /f %TFP% 10
 
@@ -130,20 +129,20 @@ vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
-if exist %_C%\FDAUTO.BAT echo %_C%\FDAUTO.BAT >>%_AL%
-if exist %_C%\AUTOEXEC.BAT echo %_C%\AUTOEXEC.BAT >>%_AL%
-if exist %_C%\CONFIG.SYS echo %_C%\CONFIG.SYS >>%_AL%
-if exist %_C%\FDCONFIG.SYS echo %_C%\FDCONFIG.SYS >>%_AL%
-if exist %_C%\KERNEL.SYS echo %_C%\KERNEL.SYS >>%_AL%
-if exist %_C%\COMMAND.COM echo %_C%\COMMAND.COM >>%_AL%
+if exist %FDRIVE%\FDAUTO.BAT echo %FDRIVE%\FDAUTO.BAT >>%_AL%
+if exist %FDRIVE%\AUTOEXEC.BAT echo %FDRIVE%\AUTOEXEC.BAT >>%_AL%
+if exist %FDRIVE%\CONFIG.SYS echo %FDRIVE%\CONFIG.SYS >>%_AL%
+if exist %FDRIVE%\FDCONFIG.SYS echo %FDRIVE%\FDCONFIG.SYS >>%_AL%
+if exist %FDRIVE%\KERNEL.SYS echo %FDRIVE%\KERNEL.SYS >>%_AL%
+if exist %FDRIVE%\COMMAND.COM echo %FDRIVE%\COMMAND.COM >>%_AL%
 
 REM EXTRAS
-if exist %_C%\DRDOS.386 echo %_C%\DRDOS.386 >>%_AL%
-if exist %_C%\WINA20.386 echo %_C%\WINA20.386 >>%_AL%
-if exist %_C%\IBMBIO.COM echo %_C%\IBMBIO.COM >>%_AL%
-if exist %_C%\IBMDOS.COM echo %_C%\IBMDOS.COM >>%_AL%
-if exist %_C%\IO.SYS echo %_C%\IO.SYS >>%_AL%
-if exist %_C%\MSDOS.SYS echo %_C%\MSDOS.SYS >>%_AL%
+if exist %FDRIVE%\DRDOS.386 echo %FDRIVE%\DRDOS.386 >>%_AL%
+if exist %FDRIVE%\WINA20.386 echo %FDRIVE%\WINA20.386 >>%_AL%
+if exist %FDRIVE%\IBMBIO.COM echo %FDRIVE%\IBMBIO.COM >>%_AL%
+if exist %FDRIVE%\IBMDOS.COM echo %FDRIVE%\IBMDOS.COM >>%_AL%
+if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
+if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 vprogres /f %TFP% 10
 
@@ -208,4 +207,3 @@ set _BN=
 set _BT=
 set _AL=
 set _AF=
-set _C=

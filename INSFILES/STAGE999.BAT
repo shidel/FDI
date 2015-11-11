@@ -5,12 +5,11 @@ vfdutil /c /p "%0"
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
-vinfo /dC
+vinfo /d %TEMP%
 if errorlevel 2 goto IgnoreTemp
 
 if exist %TEMP%\FDIPATHS.LST del %TEMP%\FDIPATHS.LST>NUL
 if exist %TEMP%\FDIBINS.LST del %TEMP%\FDIBINS.LST>NUL
-if exist %TEMP%\FDISRCS.LST del %TEMP%\FDISRCS.LST>NUL
 if exist %FTEMP%\NUL DELTREE /y %FTEMP%\*.*>NUL
 if exist %FTEMP%\NUL RMDIR %FTEMP%
 
@@ -37,6 +36,7 @@ set FSCAN=
 set FMEDIA=
 set FEXT=
 set FLANG=
+set FPKGS=
 
 rem clear built-in installer options settings
 set OVOL=
@@ -47,7 +47,6 @@ set OCLEAN=
 set OALL=
 set OSRC=
 set OV8P=
-set FPKGS=
 
 REM Clear Theme Variables
 set TSF=

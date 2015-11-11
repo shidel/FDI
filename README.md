@@ -226,7 +226,9 @@ utilities.
                     the current environment variables then wait. Otherwise,
                     it does nothing.
 
-        FDINS100    Reserved.
+        FDINS100    Configures package list options FPBIN and FPSRC to point
+                    to their respective package list files to be used in
+                    FDINS700 during package installation.
 
         FDINS200    Creates a backup folder of OS and CONFIG files if OBAK
                     is set to "y". If it is "z" then a zip archive is created
@@ -235,13 +237,11 @@ utilities.
 
         FDINS300    Removes old configuration files when OCFG is "y".
 
-        FDINS400    Removes old FreeDOS target directory when OCLEAN is "y"
+        FDINS400    Remove old conflicting packages.
 
-        FDINS500    Transfers system files if OSYS is "y".
+        FDINS500    Removes old FreeDOS target directory when OCLEAN is "y"
 
-        FDINS600    Configures package list options FPBIN and FPSRC to point
-                    to their respective package list files to be used in
-                    FDINS700 during package installation.
+        FDINS600    Transfers system files if OSYS is "y".
 
         FDINS700    Installs binary and source packages.
 

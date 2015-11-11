@@ -276,6 +276,7 @@ goto DontDoAnything
 :DoReboot
 vcls /a 0x07
 reboot
+goto DontDoAnything
 
 :DoExit
 set FREBOOT=

@@ -1,12 +1,33 @@
 @echo off
 
-REM Set Package Lists
-set FPKGS=%FINSP%\FDBASEB.LST
-if "%OALL%" == "y" goto AllPackages
-goto Done
+REM Transfer system files.
 
-:AllPackages
-set FPKGS=%FINSP%\FDALLB.LST
+if "%OSYS%" == "y" goto DoOption
+goto AfterOption
 
-:Done
+:DoOption
+vfdutil /d %FTARGET% | set /p _C=
+
+call FDIWIND.BAT 5
+vecho /n /t %FLANG% XSYS %TFH% %_C% %TFF%
+vdelay %FDEL%
+
+sys %_C%>NUL
+if errorlevel 1 goto Failed
 verrlvl 0
+
+if not "%FVERB%" == "y" goto AfterOption
+call FDIWIND.BAT 5
+vgotoxy /l sop
+vecho /n /e /t %FLANG% XSYS_DONE
+vdelay %FDEL%
+
+goto AfterOption
+
+:Failed
+set FERROR="System file transfer to %_C% failed."
+call FDFAIL.BAT cc "Error transfering system files to %_C%."
+verrlvl 1
+
+:AfterOption
+set _C=

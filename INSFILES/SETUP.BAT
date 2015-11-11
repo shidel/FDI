@@ -53,6 +53,11 @@ call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 :Afterwards
 vfdutil /c /p %0
 popd
+if "%FREBOOT%" == "y" goto DoReboot
+goto Done
+
+:DoReboot
+reboot
 goto Done
 
 :Error
