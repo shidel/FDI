@@ -30,4 +30,3 @@ set OCLEAN=n
 verrlvl 0
 
 :Done
-set _C=

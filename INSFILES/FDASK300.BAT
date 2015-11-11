@@ -5,11 +5,10 @@ REM if advanced mode prompt to replace system config files.
 if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
-vfdutil /d %FTARGET% | set /p _C=
-if exist %_C%\AUTOEXEC.BAT goto AskAdvanced
-if exist %_C%\FDAUTO.BAT goto AskAdvanced
-if exist %_C%\CONFIG.SYS goto AskAdvanced
-if exist %_C%\FDCONFIG.SYS goto AskAdvanced
+if exist %FDRIVE%\AUTOEXEC.BAT goto AskAdvanced
+if exist %FDRIVE%\FDAUTO.BAT goto AskAdvanced
+if exist %FDRIVE%\CONFIG.SYS goto AskAdvanced
+if exist %FDRIVE%\FDCONFIG.SYS goto AskAdvanced
 goto AssumeYes
 
 :AskAdvanced
@@ -34,4 +33,3 @@ set OCFG=n
 verrlvl 0
 
 :Done
-set _C=

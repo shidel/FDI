@@ -6,8 +6,7 @@ if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
 call FDIWIND.BAT 8
-vfdutil /d %FTARGET% | set /p _C=
-vecho /t %FLANG% XFER? %TFH% %_C% %TFF%
+vecho /t %FLANG% XFER? %TFH% %FDRIVE% %TFF%
 vecho
 call FDIOPTS.BAT 2
 vecho /t %FLANG% XFERY
@@ -27,4 +26,3 @@ set OSYS=n
 verrlvl 0
 
 :Done
-set _C=

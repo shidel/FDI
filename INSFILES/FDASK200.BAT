@@ -1,19 +1,18 @@
 @echo off
 
 if "%FDIDFMT%" == "y" goto SkipBackup
-vfdutil /d %FTARGET% | set /p _C=
-if exist %_C%\FDAUTO.BAT goto QueryBackup
-if exist %_C%\AUTOEXEC.BAT goto QueryBackup
-if exist %_C%\CONFIG.SYS goto QueryBackup
-if exist %_C%\FDCONFIG.SYS goto QueryBackup
-if exist %_C%\KERNEL.SYS goto QueryBackup
-if exist %_C%\COMMAND.COM goto QueryBackup
-if exist %_C%\DRDOS.386 goto QueryBackup
-if exist %_C%\WINA20.386 goto QueryBackup
-if exist %_C%\IBMBIO.COM goto QueryBackup
-if exist %_C%\IBMDOS.COM goto QueryBackup
-if exist %_C%\IO.SYS copy goto QueryBackup
-if exist %_C%\MSDOS.SYS goto QueryBackup
+if exist %FDRIVE%\FDAUTO.BAT goto QueryBackup
+if exist %FDRIVE%\AUTOEXEC.BAT goto QueryBackup
+if exist %FDRIVE%\CONFIG.SYS goto QueryBackup
+if exist %FDRIVE%\FDCONFIG.SYS goto QueryBackup
+if exist %FDRIVE%\KERNEL.SYS goto QueryBackup
+if exist %FDRIVE%\COMMAND.COM goto QueryBackup
+if exist %FDRIVE%\DRDOS.386 goto QueryBackup
+if exist %FDRIVE%\WINA20.386 goto QueryBackup
+if exist %FDRIVE%\IBMBIO.COM goto QueryBackup
+if exist %FDRIVE%\IBMDOS.COM goto QueryBackup
+if exist %FDRIVE%\IO.SYS copy goto QueryBackup
+if exist %FDRIVE%\MSDOS.SYS goto QueryBackup
 if exist %FTARGET%\NUL goto QueryBackup
 goto SkipBackup
 
@@ -21,7 +20,7 @@ goto SkipBackup
 if "%FADV%" == "y" goto QueryBackupAdv
 
 call FDIWIND.BAT 10
-vecho /t %FLANG% BACKUP %TFH% %_C% %TFF%
+vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?
 call FDIOPTS.BAT 2
@@ -38,7 +37,7 @@ goto Done
 
 :QueryBackupAdv
 call FDIWIND.BAT 11
-vecho /t %FLANG% BACKUP %TFH% %_C% %TFF%
+vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?
 call FDIOPTS.BAT 3
@@ -66,4 +65,3 @@ set OBAK=n
 verrlvl 0
 
 :Done
-set _C=
