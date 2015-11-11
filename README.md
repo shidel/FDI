@@ -30,7 +30,7 @@ utilities.
     It basically has the same requirements as the installer. It just requires
     less free environment space. I've been using /E:1024 without issue.
 
-    Download the latest <a href="http://up.lod.bz/V8Power/latest">V8Power Tools</a>.
+    Download the latest [V8Power Tools](http://up.lod.bz/V8Power/latest).
     Place them in a V8POWER subdirectory.
 
     Download the latest [FDNPKG](https://sourceforge.net/projects/fdnpkg/)
