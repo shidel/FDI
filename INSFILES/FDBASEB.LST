@@ -11,10 +11,10 @@ base\debug
 base\defrag
 base\deltree
 base\devload
+base\diskcomp
 base\diskcopy
 base\display
 base\dosfsck
-base\diskcomp
 base\edit
 base\edlin
 base\exe2bin
@@ -26,6 +26,7 @@ base\format
 base\fdxms
 base\fdxms286
 base\help
+base\jemm
 base\himemx
 base\kernel
 base\keyb
@@ -34,12 +35,14 @@ base\label
 base\lbacache
 base\mem
 base\mirror
+base\mkeyb
 base\mode
 base\more
 base\move
 base\nansi
 base\nlsfunc
 base\print
+base\rdisk
 base\recover
 base\replace
 base\share

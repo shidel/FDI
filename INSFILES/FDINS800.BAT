@@ -14,9 +14,9 @@ call FDIWIND.BAT 5
 vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
-copy %FINSP%\AUTOEXEC.%FEXT% %%FDRIVE%%\AUTOEXEC.BAT >NUL
+copy %FINSP%\AUTOEXEC.%FEXT% %FDRIVE%\AUTOEXEC.BAT >NUL
 if errorlevel 1 goto Failed
-copy %FINSP%\FDCONFIG.%FEXT% %%FDRIVE%%\FDCONFIG.SYS >NUL
+copy %FINSP%\FDCONFIG.%FEXT% %FDRIVE%\FDCONFIG.SYS >NUL
 if errorlevel 1 goto Failed
 
 REM Create the installed version ID file.

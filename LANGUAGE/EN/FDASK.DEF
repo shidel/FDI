@@ -20,7 +20,7 @@ DELETEY="  Yes - Start fresh."
 DELETEN="  No  - Leave it cluttered."
 
 ; FDASK500 - Advanced mode transfer system files
-XFER?="Transfer system files to drive " /f %1 %2 /f %3 "?
+XFER?="Transfer system files to drive " /f %1 %2 /f %3 ?
 XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
