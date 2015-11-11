@@ -28,28 +28,25 @@ if "%_PM%" == "0" goto PkgDone
 type %FPKGS% | vstr /l %_PI% | set /p _PA=
 vmath %_PI% mul 100 div %_PM% | set /p _PP=
 vgotoxy /l eop sor
+if "%_PM%" == "%_PI" _PP=100
 vprogres /f %TFP% %_PP%
-if "%_PM%" == "%_PI" goto MaxPercent
-vmath %_PI% + 1 | set /p _PI=
-verrlvl 0
-
-:MaxPercent
 if "%_PA%" == "" goto PkgDone
 
 if not "%OCLEAN%" == "y" goto IncludeBase
-
 vfdutil /p ?:\%_PA% | set /p _PD=
 if "%_PD%" == "?:\BASE" goto PkgSkip
 :IncludeBase
-
 vfdutil /n ?:\%_PA% | set /p _PA=
 if not exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgSkip
 vgotoxy /l sop
 vecho /e /n /t %FLANG% RMPACKN %TFH% %_PA% %TFF%
-FDINST remove %_PA% >>C:\FDINST.LOG
+FDINST remove %_PA% >>NUL
+set _PL=y
 goto PkgNext
 
 :PkgSkip
+if not "%_PL%" == "y" goto PkgNext
+set _PL=
 vgotoxy /l sop
 vecho /e /n /t %FLANG% RMPACKS
 
