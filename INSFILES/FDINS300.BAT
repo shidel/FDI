@@ -1,53 +1,40 @@
 @echo off
 
-REM Remove old config files, maybe.
+REM Remove old conflicting packages
 
-if "%OCFG%" == "y" goto MaybeOption
-goto AfterOption
+REM Generate Conflicting package file
+echo COMMAND>%TEMP%\CONFICT.LST
 
-:MaybeOption
-if exist %_C%\AUTOEXEC.BAT goto DoOption
-if exist %_C%\FDAUTO.BAT goto DoOption
-if exist %_C%\CONFIG.SYS goto DoOption
-if exist %_C%\FDCONFIG.SYS goto DoOption
-goto AfterOption
+REM Run through all binaries to be installed.
+set _PI=0
 
-:DoOption
-vfdutil /d %FTARGET% | set /p _C=
+REM For some reason, DOS sometimes fails to do this correctly on the first try.
+REM So, make sure it is ready before moving on.
+:PkgSticky
+type %FPKGS% | vstr /l %_PI% | set /p _PA=
+if "%_PA%" == "" goto PkgSticky
 
-call FDIWIND.BAT 5
-vecho /n /t %FLANG% CLEAN
-vdelay %FDEL%
+:PkgLoop
+type %FPKGS% | vstr /l %_PI% | set /p _PA=
+if "%_PA%" == "" goto PkgDone
 
-if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
-if exist %_C%\AUTOEXEC.BAT del %_C%\AUTOEXEC.BAT
-if errorlevel 1 goto Failed
+vfdutil /p ?:\%PA% | set /p _PM=
+if "%_PM%" == "?:\BASE" goto PkgSkip
 
-if exist %_C%\FDAUTO.BAT attrib -R -S -H %_C%\FDAUTO.BAT >NUL
-if exist %_C%\FDAUTO.BAT del %_C%\FDAUTO.BAT
-if errorlevel 1 goto Failed
+vfdutil /n ?:\%PA% | set /p _PA=
+if exist %FTARGET%\APPINFO\%_PA%.LSM echo %_PA%>%TEMP%\CONFICT.LST
 
-if exist %_C%\CONFIG.SYS attrib -R -S -H %_C%\CONFIG.SYS >NUL
-if exist %_C%\CONFIG.SYS del %_C%\CONFIG.SYS
-if errorlevel 1 goto Failed
+:PkgSkip
+vmath %_PI% + 1 | set /p _PI=
+goto PkgLoop
 
-if exist %_C%\FDCONFIG.SYS attrib -R -S -H %_C%\FDCONFIG.SYS >NUL
-if exist %_C%\FDCONFIG.SYS del %_C%\FDCONFIG.SYS
-if errorlevel 1 goto Failed
-verrlvl 0
-
-if not "%FVERB%" == "y" goto AfterOption
-call FDIWIND.BAT 5
-vgotoxy /l sop
-vecho /n /e /t %FLANG% CLEAN_DONE
-vdelay %FDEL%
-
-goto AfterOption
-
-:Failed
-set FERROR="Cleaning up old configuration files."
-call FDFAIL.BAT cc "There was a problem removing the old configuration."
+:PkgError
+vfdutil /c/p %FINSP%\
 verrlvl 1
+goto AbortPkg
 
-:AfterOption
-set _C=
+:PkgDone
+set _PA=
+set _PI=
+set _PM=
+verrlvl 0verrlvl 0

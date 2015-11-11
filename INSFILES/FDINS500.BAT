@@ -1,49 +1,53 @@
 @echo off
 
-REM Remove old files in FreeDOS target
+REM Remove old config files, maybe.
 
-if not exist %FTARGET%\NUL goto AfterOption
-if "%OCLEAN%" == "y" goto DoOption
+if "%OCFG%" == "y" goto MaybeOption
+goto AfterOption
+
+:MaybeOption
+if exist %_C%\AUTOEXEC.BAT goto DoOption
+if exist %_C%\FDAUTO.BAT goto DoOption
+if exist %_C%\CONFIG.SYS goto DoOption
+if exist %_C%\FDCONFIG.SYS goto DoOption
 goto AfterOption
 
 :DoOption
-pushd
-vfdutil /c/p %FTARGET%
-cd \
-popd
+vfdutil /d %FTARGET% | set /p _C=
 
 call FDIWIND.BAT 5
-vecho /n /t %FLANG% RMOS %TFH% %FTARGET% %TFF%
+vecho /n /t %FLANG% CLEAN
 vdelay %FDEL%
 
-attrib -R -S -H %FTARGET% >NUL
-
-dir /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
-if "%_BT%" == "0" goto NoFileAttrib
-attrib -R -S -H /D %FTARGET%\ >NUL
-
-:NoFileAttrib
-
-if "%_BT%" == "0" goto NoFileDump
-deltree /y %FTARGET%\*.* >NUL
+if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
+if exist %_C%\AUTOEXEC.BAT del %_C%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
-:NoFileDump
-rmdir %FTARGET% >NUL
+if exist %_C%\FDAUTO.BAT attrib -R -S -H %_C%\FDAUTO.BAT >NUL
+if exist %_C%\FDAUTO.BAT del %_C%\FDAUTO.BAT
 if errorlevel 1 goto Failed
+
+if exist %_C%\CONFIG.SYS attrib -R -S -H %_C%\CONFIG.SYS >NUL
+if exist %_C%\CONFIG.SYS del %_C%\CONFIG.SYS
+if errorlevel 1 goto Failed
+
+if exist %_C%\FDCONFIG.SYS attrib -R -S -H %_C%\FDCONFIG.SYS >NUL
+if exist %_C%\FDCONFIG.SYS del %_C%\FDCONFIG.SYS
+if errorlevel 1 goto Failed
+verrlvl 0
 
 if not "%FVERB%" == "y" goto AfterOption
 call FDIWIND.BAT 5
 vgotoxy /l sop
-vecho /n /e /t %FLANG% RMOS_DONE
+vecho /n /e /t %FLANG% CLEAN_DONE
 vdelay %FDEL%
 
 goto AfterOption
 
 :Failed
-set FERROR="Cleaning up old system files."
-call FDFAIL.BAT cc "Had a problem removing old system files."
+set FERROR="Cleaning up old configuration files."
+call FDFAIL.BAT cc "There was a problem removing the old configuration."
 verrlvl 1
 
 :AfterOption
-set _BT=
+set _C=

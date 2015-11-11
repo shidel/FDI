@@ -235,11 +235,11 @@ utilities.
                     and stored in C:\FDBACKUP\ directory. If "n", then
                     does nothing.
 
-        FDINS300    Removes old configuration files when OCFG is "y".
+        FDINS300    Remove old conflicting packages.
 
-        FDINS400    Remove old conflicting packages.
+        FDINS400    Removes old FreeDOS target directory when OCLEAN is "y"
 
-        FDINS500    Removes old FreeDOS target directory when OCLEAN is "y"
+        FDINS500    Removes old configuration files when OCFG is "y".
 
         FDINS600    Transfers system files if OSYS is "y".
 
