@@ -1,15 +1,12 @@
 @echo off
 
 REM Set Package Lists
-set FPBIN=%FINSP%\FDBASEB.LST
-set FPSRC=
-if "%OSRC%" == "y" set FPSRC=%FINSP%\FDBASES.LST
+set FPKGS=%FINSP%\FDBASEB.LST
 if "%OALL%" == "y" goto AllPackages
 goto Done
 
 :AllPackages
-set FPBIN=%FINSP%\FDALLB.LST
-if "%OSRC%" == "y" set FPSRC=%FINSP%\FDALLS.LST
+set FPKGS=%FINSP%\FDALLB.LST
 
 :Done
 verrlvl 0

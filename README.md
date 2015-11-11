@@ -23,9 +23,7 @@ utilities.
     SETUP.BAT    Copied as-is to A:\
 
     FDBASEB.LST  Default base binary package list.
-    FDBASES.LST  Default base source package list.
     FDALLB.LST   All binary package list.
-    FDALLS.LST   All source package list.
 
 ### Creating the install media
 
@@ -169,14 +167,8 @@ utilities.
 
         FMEDIA      = Is the path to the FreeDOS installation packages.
 
-        FPBIN       = Set in FPINS600 and points to list of binary packages
+        FPKGS       = Set in FPINS600 and points to list of binary packages
                     to be installed.
-
-        FPSRC       = Set in FPINS600 and points to list of source packages
-                    to be installed.
-
-        FDUALP      = By default is empty. But, set it to y if sources and
-                    binaries are contained in a single package.
 
         FSCAN       = Used to determine if all drives should be scanned
                     during the actual installation to run additional installers.
