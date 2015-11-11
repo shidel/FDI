@@ -288,11 +288,10 @@ utilities.
                     continue will be also displayed at some points during
                     the installation process.
 
-        FDIPKG.BAT  Actual package installer. %1 is "bin" or "src" for package
-                    type and %2 is package name like "appendx". It is run from
-                    the new freedos installation directory %FTARGET% (probably
-                    "C:\FDOS") set errorlevel to 0 fur sucess, 1 for failure
-                    on leaving this batch.
+        FDIPKG.BAT  Actual package installer. %1 is package name like "appendx".
+                    It is run from the new freedos installation directory
+                    %FTARGET% (probably "C:\FDOS") set errorlevel to 0 for
+                    sucess, 1 for failure on leaving this batch.
 
         FDILANG.BAT Uses current %LANG% setting and %1, %2, %3... and %FADV%
                     to locate the current text translation file and point

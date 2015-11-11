@@ -30,7 +30,7 @@ vecho /e /n /t %FLANG% PACBI %TFH% %_PA% %TFF%
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0
-call %FINSP%\FDIPKG.BAT bin %_PA%
+call %FINSP%\FDIPKG.BAT %_PA%
 if errorlevel 1 goto PkgError
 vfdutil /c/p %FINSP%\
 

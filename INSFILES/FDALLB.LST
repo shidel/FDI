@@ -51,8 +51,7 @@ base\undelete
 base\unformat
 base\xcopy
 base\xmgr
-devel\bcc
 devel\nasm
 devel\fasm
 games\boom
-games\fmine
+games\fmines

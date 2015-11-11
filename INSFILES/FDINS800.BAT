@@ -14,11 +14,9 @@ call FDIWIND.BAT 5
 vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
-vfdutil /d %FTARGET% | set /p _C=
-
-copy %FINSP%\AUTOEXEC.%FEXT% %_C%\AUTOEXEC.BAT >NUL
+copy %FINSP%\AUTOEXEC.%FEXT% %%FDRIVE%%\AUTOEXEC.BAT >NUL
 if errorlevel 1 goto Failed
-copy %FINSP%\FDCONFIG.%FEXT% %_C%\FDCONFIG.SYS >NUL
+copy %FINSP%\FDCONFIG.%FEXT% %%FDRIVE%%\FDCONFIG.SYS >NUL
 if errorlevel 1 goto Failed
 
 REM Create the installed version ID file.
@@ -41,4 +39,3 @@ call FDFAIL.BAT cc "Problem copying new configuration files."
 verrlvl 1
 
 :AfterOption
-set _C=

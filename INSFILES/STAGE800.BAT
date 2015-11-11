@@ -1,5 +1,8 @@
 @echo off
 
+set ODOSDIR=%DOSDIR%
+set OFDNPKG=%FDNPKG.CFG%
+
 REM Run entire install process.
 
 call FDIWIND.BAT 10
@@ -26,6 +29,11 @@ echo %FINSP%>%TEMP%\FDIPATHS.LST
 if not "%FSCAN%" == "y" goto NoVendorScanning
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDISCAN.BAT %%d
 :NoVendorScanning
+
+REM Configure FDINST package manager.
+set FDNPKG.CFG=%FINSP%\FDNPBIN.CFG
+if "%OSRC%" == "y" SET FDNPKG.CFG=%FINSP%\FDNPSRC.CFG
+set DOSDIR=%FTARGET%
 
 REM Scan each install file path
 set _TSI=0
@@ -76,3 +84,7 @@ set _TSI=
 set _TSA=
 set _TI=
 set _TA=
+set DOSDIR=%ODOSDIR%
+set ODOSDIR=
+set FDNPKG.CFG=%OFDNPKG%
+set OFDNPKG=

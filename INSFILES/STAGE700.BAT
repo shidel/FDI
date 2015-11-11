@@ -31,6 +31,7 @@ goto AbortBatch
 :MediaFound
 set _MI=
 set _MA=
+set _MT=
 REM Run through all questions.
 set _TI=0
 
