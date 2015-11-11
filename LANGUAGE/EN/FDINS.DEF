@@ -8,6 +8,7 @@ BACKUP_DONE=/f %1 "Backup process has completed."
 
 ; Old Package removal
 RMPACKS="Removing old conflicting packages."
+RMPACKN="Removing old '" /f %1 %2 /f %3 "' package."
 
 ; Remove old OS files
 RMOS="Removing old files from '" /f %1 %2 /f %3 "'."

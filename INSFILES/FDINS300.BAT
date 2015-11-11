@@ -7,6 +7,12 @@ vecho /n /t %FLANG% RMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
+set ODOSDIR=%DOSDIR%
+set OFDNPKG=%FDNPKG.CFG%
+set FDNPKG.CFG=%FINSP%\FDNPBIN.CFG
+if "%OSRC%" == "y" SET FDNPKG.CFG=%FINSP%\FDNPSRC.CFG
+set DOSDIR=%FTARGET%
+
 REM Run through all binaries to be installed.
 set _PI=0
 
@@ -38,8 +44,16 @@ if "%_PD%" == "?:\BASE" goto PkgSkip
 
 vfdutil /n ?:\%_PA% | set /p _PA=
 if not exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgSkip
-FDINST remove %_PA% >NUL
+vgotoxy /l sop
+vecho /e /n /t %FLANG% RMPACKN %TFH% %_PA% %TFF%
+FDINST remove %_PA% >>C:\FDINST.LOG
+goto PkgNext
+
 :PkgSkip
+vgotoxy /l sop
+vecho /e /n /t %FLANG% RMPACKS
+
+:PkgNext
 vmath %_PI% + 1 | set /p _PI=
 goto PkgLoop
 
@@ -54,6 +68,9 @@ set _PI=
 set _PD=
 set _PM=
 set _PP=
-
+set DOSDIR=%ODOSDIR%
+set ODOSDIR=
+set FDNPKG.CFG=%OFDNPKG%
+set OFDNPKG=
 :Done
 verrlvl 0
