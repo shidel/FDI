@@ -318,6 +318,10 @@ utilities.
 
 ### FDI Roadmap
 
+    Probably, convert package hadleing to use FDINST instead of UNZIP.
+
+    Verify, sufficient disk space prior to install.
+
     Should, verify integrity of backup folder and zip backups.
 
     Should, in STAGE700, add detection if installing from a folder and skip
@@ -338,9 +342,9 @@ utilities.
 
     Maybe, localization support in exit error messages.
 
-    Probably, advanced mode, target directory changing.
+    Someday, advanced mode, target directory changing.
 
-    Probably, advanced mode, individual package selections.
+    Someday, advanced mode, individual package selections.
 
 ### Known issues
 
