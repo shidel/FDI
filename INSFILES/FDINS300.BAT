@@ -1,9 +1,9 @@
 @echo off
 
 REM Remove old conflicting packages
-
-REM Generate Conflicting package file
-echo COMMAND>%TEMP%\CONFICT.LST
+if not exist %FTARGET%\APPINFO\NUL goto Done
+call FDIWIND.BAT 5
+vecho /n /t %FLANG% RMPACKS
 
 REM Run through all binaries to be installed.
 set _PI=0
@@ -17,13 +17,15 @@ if "%_PA%" == "" goto PkgSticky
 :PkgLoop
 type %FPKGS% | vstr /l %_PI% | set /p _PA=
 if "%_PA%" == "" goto PkgDone
+if not "%OCLEAN%" == "y" goto IncludeBase
 
-vfdutil /p ?:\%PA% | set /p _PM=
+vfdutil /p ?:\%_PA% | set /p _PM=
 if "%_PM%" == "?:\BASE" goto PkgSkip
+:IncludeBase
 
-vfdutil /n ?:\%PA% | set /p _PA=
-if exist %FTARGET%\APPINFO\%_PA%.LSM echo %_PA%>%TEMP%\CONFICT.LST
-
+vfdutil /n ?:\%_PA% | set /p _PA=
+if not exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgSkip
+FDINST remove %_PA% >NUL
 :PkgSkip
 vmath %_PI% + 1 | set /p _PI=
 goto PkgLoop
@@ -37,4 +39,6 @@ goto AbortPkg
 set _PA=
 set _PI=
 set _PM=
-verrlvl 0verrlvl 0
+
+:Done
+verrlvl 0

@@ -1,38 +1,35 @@
-; FDINS000 - Debug mode pause
+; Debug mode pause
 PRESSKEY="Press a key..."
 
-; FDINS100 - Reserved
-
-; FDINS200 - Backing up old OS
+; Backing up old OS
 BACKUP="Creating backup"
 TARGET="'" /f %1 "%2" /f %3 "'"
 BACKUP_DONE=/f %1 "Backup process has completed."
 
-; FDINS300 - Remove old config files
-CLEAN="Cleaning out the old configuration files."
-CLEAN_DONE="Old configuration files have been removed."
+; Old Package removal
+RMPACKS="Removing old conflicting packages."
 
-; FDINS400 - Remove old OS files
+; Remove old OS files
 RMOS="Removing old files from '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Old operating system files were removed."
 
-; FDINS500 - Transfer system files
+; Remove old config files
+CLEAN="Cleaning out the old configuration files."
+CLEAN_DONE="Old configuration files have been removed."
+
+; Transfer system files
 XSYS="Transferring system boot files to drive " /f %1 %2 /f %3 '.'
 XSYS_DONE="System file transfer has completed."
 
-; FDINS600 - Package list file configuration. No text to display.
-
-; FDINS700 - Package installation.
+; Package installation.
 PACBM="Installing software packages."
 PACBI="Installing software package '" /f %1 %2 /f %3 "'"
 PACSM="Installing sources."
 PACSI="Installing sources for '" /f %1 %2 /f %3 "'"
 PACDONE="Software package installation has completed."
 
-; FDINS800 -
 CONFIGS="Installing fresh configuration files."
 CONFIGS_DONE="New configuration files were installed."
 
-; FDINS900 -
 V8POWER="Installing a copy of '" /f %1 "V8Power Tools" /f %2 "'."
 V8POWER_DONE="V8Power Tools were installed."
