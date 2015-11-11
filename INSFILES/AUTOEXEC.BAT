@@ -35,8 +35,8 @@ alias reboot=fdapm warmboot
 alias reset=fdisk /reboot
 alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
-alias cfg=edit %cfgfile%
-alias auto=edit %0
+rem alias cfg=edit %cfgfile%
+rem alias auto=edit %0
 
 vecho "Done processing startup files %cfgfile% and %0"
 vecho

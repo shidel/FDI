@@ -30,6 +30,12 @@ REM V8Power Tools Found *******************************************************
 verrlvl 0
 
 REM Run Installer *************************************************************
+REM Insure Power management aliases are present
+alias reboot=fdapm warmboot
+alias reset=fdisk /reboot
+alias halt=fdapm poweroff
+alias shutdown=fdapm poweroff
+
 REM Change to directory and path of this batch file.
 pushd
 vfdutil /c /p %0
