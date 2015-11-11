@@ -32,6 +32,12 @@ utilities.
     It basically has the same requirements as the installer. It just requires
     less free environment space. I've been using /E:1024 without issue.
 
+    Download the latest [V8Power Tools](http://up.lod.bz/V8Power/latest).
+    Place them in a V8POWER subdirectory.
+
+    Download the latest [FDNPKG](https://sourceforge.net/projects/fdnpkg/)
+    Place its binaries in a MORE subdirectory.
+
     Stick a floppy to destroy in drive A:
 
     run mkFDI.BAT
@@ -146,6 +152,8 @@ utilities.
 
         FERROR      = Error message to display when installer is aborted
                     or exited with an error.
+
+        FDRIVE      = installation drive for FreeDOS.
 
         FTARGET     = installation path for FreeDOS.
 

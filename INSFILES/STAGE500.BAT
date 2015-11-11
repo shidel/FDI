@@ -1,6 +1,6 @@
 @echo off
 
-REM Check state of drive C:, check if it needs formatted.
+REM Check state of drive %FDRIVE% (C:), check if it needs formatted.
 REM If so, prompt to run format, then retest. If fails again,
 REM prompt to reboot.
 
@@ -8,12 +8,12 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
-vinfo /dC
+vinfo /d %FDRIVE%
 
 if errorlevel 5 goto NotFormatted
 if errorlevel 2 goto WrongTypeDrive
 
-REM Drive C is formatted.
+REM Drive %FDRIVE% is formatted.
 verrlvl 0
 goto Done
 
@@ -24,11 +24,11 @@ goto Done
 vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
 vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
 vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
-vecho /t %FLANG% NOFORMAT %TFH% C: %TFF%
+vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% FORMAT?
 vframe /b %TFB% /f %TFF% /w44 /h4 /c /y12 hidden
-vecho /t %FLANG% FORMAT_YES C:
+vecho /t %FLANG% FORMAT_YES %FDRIVE%
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 
@@ -37,13 +37,13 @@ if errorlevel 2 goto AbortBatch
 
 vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
-vecho /t %FLANG% FORMATTING C:
+vecho /t %FLANG% FORMATTING %FDRIVE%
 vecho
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
 REM **** Launch Formatting Program ****
-format C: /V:%OVOL% %FFMT%
+format %FDRIVE% /V:%OVOL% %FFMT%
 REM **** Returned from Formatting ****
 
 set FDIDFMT=y
@@ -56,7 +56,7 @@ vpause /fLightCyan /t %FWAIT% CTRL-C
 if errorlevel 200 FDICTRLC.BAT %0 AfterFormat
 
 :AfterFormat
-vinfo /dC
+vinfo /d %FDRIVE%
 
 REM **** May want to say, we still cannot read C and offer to reboot. ****
 if errorlevel 2 goto StillCannotReadC
@@ -65,7 +65,7 @@ verrlvl 0
 goto Done
 
 :StillCannotReadC
-set FERROR="Unable to read drive C: after format."
+set FERROR="Unable to read drive %FDRIVE% after format."
 call FDIFAIL.BAT ERROR_READC
 
 :AbortBatch

@@ -267,6 +267,7 @@ set FERROR=
 set FDEBUG=
 set FWAIT=
 set FDEL=
+set FLANG=
 
 if "%FREBOOT%" == "y" goto DoReboot
 if "%FREBOOT%" == "n" goto DoExit

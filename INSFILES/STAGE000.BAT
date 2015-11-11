@@ -30,14 +30,15 @@ set FWAIT=15
 REM Pause after displaying non-interactive messages. (milliseconds)
 set FDEL=2000
 
-REM Default TEMP directory.
-set FTEMP=C:\FDTEMP.$$$
-
 REM Target path to install FreeDOS
-set FTARGET=C:\FDOS
+set FDRIVE=C:
+set FTARGET=%FDRIVE%\FDOS
+
+REM Default TEMP directory.
+set FTEMP=%FDRIVE%\FDTEMP.$$$
 
 REM Backup path to when archiving.
-set FBAK=C:\FDBACKUP
+set FBAK=%FDRIVE%\FDBACKUP
 
 REM Show when little operations that complete.
 set FVERB=n

@@ -29,6 +29,7 @@ set FINSP=
 set FTEMPO=
 set FTMPO=
 set FCURSOR=
+set FDRIVE=
 set FTARGET=
 set FBAK=
 set FVERB=

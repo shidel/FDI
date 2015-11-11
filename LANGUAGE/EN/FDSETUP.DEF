@@ -62,7 +62,7 @@ FAILH="A reboot may help."
 FAIL?="Do you wish to reboot now?"
 FAILY="  Yes - Please reboot now."
 FAILN="  No  - Return to DOS"
-RAILI="  No  - Ignore (not recommended)"
+FAILI="  No  - Ignore (not recommended)"
 FAILR="The computer will now reboot."
 
 ; Failure messages

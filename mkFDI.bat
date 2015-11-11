@@ -62,6 +62,15 @@ echo Copying basic FreeDOS binaries.
 set CPLST=MKBIN.lst
 set CPSRC=%IDOS%\BIN
 set CPDST=%ODOS%\BIN
+set CPRET=CopyMore
+goto CopyList
+
+:CopyMore
+echo.
+echo Copying additional binaries.
+set CPLST=MKMORE.lst
+set CPSRC=MORE
+set CPDST=%ODOS%\BIN
 set CPRET=CopyHelp
 goto CopyList
 
@@ -115,7 +124,6 @@ if not exist %ODIR%\%CPFILE% goto ErrorCopy
 :CopyINS
 echo.
 echo Copying setup installer files.
-
 set CPFILE=SETUP.BAT
 copy %IINS%\%CPFILE% %ODIR%\
 if errorlevel 1 goto ErrorCopy
