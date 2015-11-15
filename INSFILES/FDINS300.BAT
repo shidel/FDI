@@ -34,9 +34,10 @@ if "%_PA%" == "" goto PkgDone
 
 if not "%OCLEAN%" == "y" goto IncludeBase
 vfdutil /p ?:\%_PA% | set /p _PD=
+vfdutil /n ?:\%_PA% | set /p _PA=
 if "%_PD%" == "?:\BASE" goto PkgBase
 :IncludeBase
-vfdutil /n ?:\%_PA% | set /p _PA=
+if exist %FTARGET%\APPINFO\%_PA%\NUL goto PkgRemove
 if exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgRemove
 if exist %FTARGET%\PACKAGES\%_PA%\NUL goto PkgRemove
 if exist %FTARGET%\PACKAGES\%_PA%.LST goto PkgRemove
