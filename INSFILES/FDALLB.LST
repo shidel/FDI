@@ -63,3 +63,6 @@ util\4dos
 util\bootfix
 archiver\zip
 archiver\unzip
+devel\nasm
+devel\fasm
+devel\fpc

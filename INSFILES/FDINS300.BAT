@@ -34,15 +34,25 @@ if "%_PA%" == "" goto PkgDone
 
 if not "%OCLEAN%" == "y" goto IncludeBase
 vfdutil /p ?:\%_PA% | set /p _PD=
-if "%_PD%" == "?:\BASE" goto PkgSkip
+if "%_PD%" == "?:\BASE" goto PkgBase
 :IncludeBase
 vfdutil /n ?:\%_PA% | set /p _PA=
-if not exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgSkip
+if exist %FTARGET%\APPINFO\%_PA%.LSM goto PkgRemove
+if exist %FTARGET%\PACKAGES\%_PA%\NUL goto PkgRemove
+if exist %FTARGET%\PACKAGES\%_PA%.LST goto PkgRemove
+goto PkgSkip
+:PkgRemove
 vgotoxy /l sop
 vecho /e /n /t %FLANG% RMPACKN %TFH% %_PA% %TFF%
 FDINST remove %_PA% >>NUL
 set _PL=y
 goto PkgNext
+
+:PkgBase
+if exist %FTARGET%\APPINFO\%_PA%.LSM del %FTARGET%\APPINFO\%_PA%.LSM >NUL
+if exist %FTARGET%\APPINFO\%_PA%\NUL deltree /y %FTARGET%\APPINFO\%_PA% >NUL
+if exist %FTARGET%\PACKAGES\%_PA%.LST del %FTARGET%\PACKAGES\%_PA%.LST >NUL
+if exist %FTARGET%\PACKAGES\%_PA%\NUL deltree /y %FTARGET%\PACKAGES\%_PA% >NUL
 
 :PkgSkip
 if not "%_PL%" == "y" goto PkgNext
@@ -60,6 +70,14 @@ verrlvl 1
 goto AbortPkg
 
 :PkgDone
+if not "%OCLEAN%" == "y" goto PkgNoSave
+if not exist %TEMP%\SAVED\NUL mkdir %TEMP%\SAVED
+if not exist %TEMP%\SAVED\APPINFO mkdir %TEMP%\SAVED\APPINFO >NUL
+if not exist %TEMP%\SAVED\PACKAGES mkdir %TEMP%\SAVED\PACKAGES >NUL
+xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
+xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
+
+:PkgNoSave
 set _PA=
 set _PI=
 set _PD=
