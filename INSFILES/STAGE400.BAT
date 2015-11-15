@@ -62,9 +62,10 @@ if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
-vecho  /t %FLANG% REBOOT
+vecho /t %FLANG% REBOOT
 vecho
-reboot
+fdapm warmboot
+set FREBOOT=y
 goto AbortBatch
 
 :AbortBatch

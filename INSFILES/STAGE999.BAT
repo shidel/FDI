@@ -1,10 +1,11 @@
 @echo off
 
 REM Post installer cleanup.
-vfdutil /c /p "%0"
+vfdutil /c /p %0
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
+if "%TEMP%" == "" goto IgnoreTemp
 vinfo /d %TEMP%
 if errorlevel 2 goto IgnoreTemp
 
@@ -75,5 +76,4 @@ set TPF=
 set TPH=
 
 :SkipClear
-
 verrlvl 0

@@ -244,6 +244,7 @@ call STAGE%FSTAGE%.BAT
 :AbortedNoCleanup
 call FDILANG.BAT FDSETUP
 vcls /a 0x07
+if "%FREBOOT%" == "y" goto DoReboot
 if "%OS_NAME%" == "" goto NoOSName
 vecho /t %FLANG% ABORTED "%OS_NAME% %OS_VERSION%"
 vecho
@@ -275,7 +276,7 @@ goto DontDoAnything
 
 :DoReboot
 vcls /a 0x07
-reboot
+fdapm warmboot
 goto DontDoAnything
 
 :DoExit

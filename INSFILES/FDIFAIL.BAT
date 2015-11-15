@@ -57,7 +57,8 @@ if errorlevel 2 goto AbortBatch
 vcls /a0x07
 vecho /t %FLANG% FAILR
 vecho
-reboot
+fdapm warmboot
+set FREBOOT=y
 goto AbortBatch
 
 :CtrlCPress
