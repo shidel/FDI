@@ -2,6 +2,7 @@
 
 REM if advanced mode prompt to install copy of V8Power Tools files.
 
+if not "%OALL%" == "y" goto AssumeNo
 if "%FADV%" == "" goto AssumeYes
 
 :AskAdvanced
@@ -18,6 +19,11 @@ if errorlevel 2 goto SkipOption
 
 :AssumeYes
 set OV8P=y
+verrlvl 0
+goto Done
+
+:AssumeNo
+set OV8P=n
 verrlvl 0
 goto Done
 

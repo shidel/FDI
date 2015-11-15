@@ -11,6 +11,7 @@ if errorlevel 1 goto AbortDir
 REM Restore Preserved Package Data and FreeDOS files if Present
 if not exist %TEMP%\SAVED\NUL goto :NoSavedData
 xcopy /E %TEMP%\SAVED\*.* %FTARGET%\ >NUL
+verrlvl 0
 
 :NoSavedData
 REM Run through all binaries to be installed.

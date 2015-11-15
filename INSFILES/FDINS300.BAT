@@ -76,6 +76,7 @@ if not exist %TEMP%\SAVED\APPINFO mkdir %TEMP%\SAVED\APPINFO >NUL
 if not exist %TEMP%\SAVED\PACKAGES mkdir %TEMP%\SAVED\PACKAGES >NUL
 xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
 xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
+verrlvl 0
 
 :PkgNoSave
 set _PA=
