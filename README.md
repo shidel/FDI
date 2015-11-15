@@ -317,8 +317,6 @@ utilities.
 
 ### FDI Roadmap
 
-    Probably, convert package hadleing to use FDINST instead of UNZIP.
-
     Verify, sufficient disk space prior to install.
 
     Should, verify integrity of backup folder and zip backups.
@@ -349,7 +347,8 @@ utilities.
 
     Stuff in the Roadmap.
 
-    Zip file warnings cannot be suppressed.
+    Package files that are not part of "BASE" that are located under the
+    %DOSDIR% will be lost when doing a "Clean" install of FreeDOS.
 
     Will not detect Current OS version when it was installed to a directory
     other than the default "C:\FDOS" directory. Might add some common
