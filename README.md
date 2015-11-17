@@ -22,8 +22,8 @@ utilities.
     FDCONFIG.SYS Copied as-is to A:\
     SETUP.BAT    Copied as-is to A:\
 
-    FDBASEB.LST  Default base binary package list.
-    FDALLB.LST   All binary package list.
+    FDPLBASE.LST  Default base binary package list.
+    FDPLALL.LST   All binary package list.
 
 ### Creating the install media
 
