@@ -6,7 +6,8 @@ goto AfterBackup
 
 :MakeBackup
 
-call FDIWIND.BAT 7
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /n /t %FLANG% BACKUP
 vgotoxy /l eop sor
 vprogres /f %TFP% 0

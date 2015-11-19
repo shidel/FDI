@@ -17,14 +17,14 @@ set TFF=Black
 set TFH=Red
 set TFP=Blue
 set TFB=Gray
-set TFS=single
+set TFS=single shadow
 set TFC=0x1e
 
 REM Control-C Foreground, Background and Highlight Colors
 set TCF=White
 set TCH=Yellow
 set TCB=Red
-set TCS=double
+set TCS=double shadow
 set TCC=0x1f
 
 REM Pause Bar and Clock Colors

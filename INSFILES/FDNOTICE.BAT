@@ -13,7 +13,7 @@ vecho /fDarkGray /x 0x2a /fGray
 vecho /n /fDarkGray '***' /fGray
 vecho /n /r5/c32 /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%" /fGray " is already installed."
 vgotoxy eor left left
-vecho /fDarkGray /x 0x2a /fGray /y /n /fDarkGray '***' /fGray
+vecho /fDarkGray /x 0x2a /fGray /p /n /fDarkGray '***' /fGray
 vecho /n /r5/c32 "You can start the installer manually by running '" /fCyan SETUP.BAT /fGray "'"
 vgotoxy eor left left
-vecho /fDarkGray /x 0x2a /fGray /y /fDarkGray /x 0x2a /fGray /y
+vecho /fDarkGray /x 0x2a /fGray /p /fDarkGray /x 0x2a /fGray /p

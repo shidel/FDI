@@ -97,9 +97,8 @@ utilities.
         If I/O redirection is still unavailable, it will abort the
         installation.
 
-        NOTE: Now that a TEMP directory exists,  FDIWIND.BAT and other
-        batch files that use I/O redirection and utilities like vmath can
-        now be used.
+        NOTE: Now that a TEMP directory exists, batch files that use I/O
+        redirection and utilities like vmath can now be used.
 
         STAGE700, Calls all Installation configuration batch files named
         FDASK???.BAT located in the FDSETUP\SETUP directory.
@@ -262,14 +261,6 @@ utilities.
                     provide the batch file and options you wish to maintain
                     if the user does not quit. The best example of this is
                     STAGE400.BAT can return to itself in two separate places.
-
-        FDIWIND.BAT Functions only after STAGE600 runs. Creates a normal box
-                    for text or choices. %1 is the total height of the box.
-                    So, add 4 to how many lines you want. You want 1 line for
-                    just one line of text "CALL FDIWIND.BAT 5" Also, %2 is the
-                    overall width of the frame desired. If it is not specified,
-                    a default value of 60 is assumed (providing a 54 character
-                    wide area for text).
 
         FDIOPTS.BAT Functions only after STAGE600. Creates an area to contain
                     choices for vchoice. %1 is total number of choices you

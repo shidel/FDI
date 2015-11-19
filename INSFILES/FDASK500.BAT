@@ -5,7 +5,8 @@ REM if advanced mode prompt for transfer system files.
 if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
-call FDIWIND.BAT 8
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XFER_FRAME
 vecho /t %FLANG% XFER? %TFH% %FDRIVE% %TFF%
 vecho
 call FDIOPTS.BAT 2

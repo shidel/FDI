@@ -3,6 +3,8 @@
 ; FDASK100 - Reserved
 
 ; FDASK200 - Backup old OS
+BACKUP_FRAME=/w60 /h10 /c
+BACKUPADV_FRAME=/w60 /h11 /c
 BACKUP="A previous operating system was detected on drive " /f %1 %2 /f %3 .
 BACKUP?="Do you wish to backup the old files before installing?"
 BACKUPY="  Yes - Please backup first."
@@ -10,21 +12,25 @@ BACKUPZ="  Yes - Please backup as zip archive."
 BACKUPN="  No  - Install without backing up."
 
 ; FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w60 /h8 /c
 REPLACE?="Replace the system configuration files?"
 REPLACEY="  Yes - Transfer new default files."
 REPLACEN="  No  - Keep the old files."
 
 ; FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
 DELETE?="Remove all old files from " /f %1 %2 /f %3 ?
 DELETEY="  Yes - Start fresh."
 DELETEN="  No  - Leave it cluttered."
 
 ; FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c
 XFER?="Transfer system files to drive " /f %1 %2 /f %3 ?
 XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
 ; FDASK600 - Package group selection.
+PAC_FRAME=/w60 /h11 /c
 PACS?="What " /f %1 %2 /f %3 " packages do you want to install?"
 PACBO="  Basic packages only."
 PACBS="  Basic packages with sources only."
@@ -36,6 +42,7 @@ PACAS="  All the packages and their sources."
 ; FDASK800 - Reserved
 
 ; FDASK900 - Advanced mode Install V8Power Tools.
+V8_FRAME=/w60 /h8 /c
 V8I?="Install a copy of " /f %1 "V8Power Tools" /f %2 "?"
 V8IY="  Yes - Install V8Power Tools."
 V8IN="  No  - Do not install them."

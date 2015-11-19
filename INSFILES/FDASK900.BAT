@@ -6,7 +6,8 @@ if not "%OALL%" == "y" goto AssumeNo
 if "%FADV%" == "" goto AssumeYes
 
 :AskAdvanced
-call FDIWIND.BAT 8
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8_FRAME
 vecho /t %FLANG% V8I? %TFH% %TFF%
 vecho
 call FDIOPTS.BAT 2

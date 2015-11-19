@@ -5,7 +5,8 @@ set OFDNPKG=%FDNPKG.CFG%
 
 REM Run entire install process.
 
-call FDIWIND.BAT 10
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME
 vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 vecho
 vecho /t %FLANG% INSTALL?
@@ -19,7 +20,8 @@ if errorlevel 2 goto AbortBatch
 
 :DoInstall
 
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
@@ -59,6 +61,7 @@ pushd
 vfdutil /c/p %_TSA%\
 call %_TA%
 if errorlevel 1 goto AbortBatch
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 popd
 vfdutil /c/p %FINSP%\
 

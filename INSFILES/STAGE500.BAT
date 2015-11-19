@@ -21,9 +21,7 @@ goto Done
 goto Done
 
 :NotFormatted
-vframe /b %TFB% /f %TFF% /w60 /h10 /c /y7 hidden shadow
-vframe /b %TFB% /f %TFF% /w58 /h10 /c /y7 %TFS%
-vframe /b %TFB% /f %TFF% /w56 /h8 /c /y8 hidden
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
 vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% FORMAT?

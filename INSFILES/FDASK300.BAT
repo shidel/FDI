@@ -12,7 +12,8 @@ if exist %FDRIVE%\FDCONFIG.SYS goto AskAdvanced
 goto AssumeYes
 
 :AskAdvanced
-call FDIWIND.BAT 8
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
 vecho /t %FLANG% REPLACE?
 vecho
 call FDIOPTS.BAT 2

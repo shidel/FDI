@@ -5,7 +5,8 @@ goto AfterOption
 
 :DoOption
 
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
 vecho /n /t %FLANG% V8POWER %TFH% %TFF%
 vdelay %FDEL%
 
@@ -13,7 +14,8 @@ xcopy %FINSP%\..\V8POWER %FTARGET%\V8POWER\ >NUL
 if errorlevel 1 goto Failed
 
 if not "%FVERB%" == "y" goto AfterOption
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
 vgotoxy /l sop
 vecho /n /e /t %FLANG% V8POWER_DONE
 vdelay %FDEL%

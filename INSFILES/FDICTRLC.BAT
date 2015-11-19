@@ -6,13 +6,11 @@ if "%FISNP%" == "" call FDILANG.BAT FDSETUP
 if not "%FISNP%" == "" call %FISNP%\FDILANG.BAT FDSETUP
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /f %TCF% /b %TCB% /w60 /h12 /c /y7 hidden shadow
-vframe /f %TCF% /b %TCB% /w58 /h12 /c /y7 %TCS%
-vframe /f %TCF% /b %TCB% /w56 /h10 /c /y8 hidden
+vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
 vecho /t %FLANG% CTRLC %TCH% %TCF%
 vecho
 vecho /t %FLANG% CTRLC?
-vframe /w44 /h6 /c /y12 hidden
+vframe /b %TCB% /f %TCF% hidden /t %FLANG% CTRLC_OPTS
 vecho /t %FLANG% CTRLCY
 vecho /t %FLANG% CTRLCN
 vecho

@@ -14,9 +14,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 :Welcome
 REM Draw the welcome screen.
-vframe /b %TFB% /f %TFF% /w70 /h10 /c /y7 hidden shadow
-vframe /b %TFB% /f %TFF% /w68 /h10 /c /y7 %TFS%
-vframe /b %TFB% /f %TFF% /w66 /h8 /c /y8 hidden
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
 vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 goto Spacer

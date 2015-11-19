@@ -10,7 +10,8 @@ goto AfterOption
 
 :DoOption
 
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
 vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
@@ -26,7 +27,8 @@ echo VERSION=%OS_VERSION%>>%FTARGET%\VERSION.FDI
 if errorlevel 1 goto Failed
 
 if not "%FVERB%" == "y" goto AfterOption
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
 vgotoxy /l sop
 vecho /n /e /t %FLANG% CONFIGS_DONE
 vdelay %FDEL%

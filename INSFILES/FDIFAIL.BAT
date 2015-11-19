@@ -13,9 +13,7 @@ if "%1" == "cc" goto CanContinue
 
 :NoContinue
 
-vframe /b %TFB% /f %TFF% /w74 /h11 /c /y7 hidden shadow
-vframe /b %TFB% /f %TFF% /w72 /h11 /c /y7 %TFS%
-vframe /b %TFB% /f %TFF% /w70 /h9 /c /y8 hidden
+vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% FAIL_FRAME
 if "%1" == "cc" goto SkipFirstA
 vecho /t %FLANG% %1 %2 %3 %4 %5 %6 %7 %8
 goto AfterSkipA
@@ -25,7 +23,7 @@ vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
 vecho /t %FLANG% FAILH
 vecho
 vecho /t %FLANG% FAIL?
-vframe /b %TFB% /f %TFF% /w40 /h4 /c /y13 hidden
+vframe /b %TCB% /f %TCF% hidden /t %FLANG% FAIL_OPTS
 vecho /t %FLANG% FAILY
 vecho /n /t %FLANG% FAILN
 vchoice /a %TFC% Ctrl-C
@@ -35,21 +33,19 @@ if errorlevel 2 goto AbortBatch
 goto DoReboot
 
 :CanContinue
-vframe /b %TFB% /f %TFF% /w74 /h13 /c /y7 hidden shadow
-vframe /b %TFB% /f %TFF% /w72 /h13 /c /y7 %TFS%
-vframe /b %TFB% /f %TFF% /w70 /h11 /c /y8 hidden
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% FAILADV_FRAME
 vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
 vecho /t %FLANG% FAILH
 vecho
 vecho /t %FLANG% FAIL?
-vframe /b %TFB% /f %TFF% /w40 /h6 /c /y13 hidden
+vframe /b %TCB% /f %TCF% hidden /t %FLANG% FAILADV_OPTS
 vecho /t %FLANG% FAILY
 vecho /t %FLANG% FAILN
 vecho
 vecho /n /t %FLANG% FAILI
 vchoice /a %TFC% Ctrl-C
 
-if errorlevel 200 CtrlCPress
+if errorlevel 200 goto CtrlCPress
 if errorlevel 3 goto ContinueAnyway
 if errorlevel 2 goto AbortBatch
 

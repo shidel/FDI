@@ -9,7 +9,8 @@ if exist %FTARGET%\NUL goto AskAdvanced
 goto AssumeYes
 
 :AskAdvanced
-call FDIWIND.BAT 8
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
 vecho /t %FLANG% DELETE? %TFH% %FTARGET% %TFF%
 vecho
 call FDIOPTS.BAT 2

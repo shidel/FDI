@@ -2,7 +2,8 @@
 
 REM Prompt user for all questions needed for install.
 
-call FDIWIND.BAT 5 66
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME
 vecho /n /t %FLANG% GATHERING
 vdelay %FDEL%
 
@@ -52,6 +53,7 @@ verrlvl 0
 
 call %_TA%
 if errorlevel 1 goto AbortBatch
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vmath %_TI% + 1 | set /p _TI=
 goto Looping
 

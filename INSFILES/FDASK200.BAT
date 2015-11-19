@@ -19,7 +19,8 @@ goto SkipBackup
 :QueryBackup
 if "%FADV%" == "y" goto QueryBackupAdv
 
-call FDIWIND.BAT 10
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?
@@ -36,7 +37,8 @@ verrlvl 0
 goto Done
 
 :QueryBackupAdv
-call FDIWIND.BAT 11
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUPADV_FRAME
 vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?

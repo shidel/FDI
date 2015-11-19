@@ -15,7 +15,8 @@ goto AfterOption
 :DoOption
 vfdutil /d %FTARGET% | set /p _C=
 
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
 vecho /n /t %FLANG% CLEAN
 vdelay %FDEL%
 
@@ -37,7 +38,8 @@ if errorlevel 1 goto Failed
 verrlvl 0
 
 if not "%FVERB%" == "y" goto AfterOption
-call FDIWIND.BAT 5
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
 vgotoxy /l sop
 vecho /n /e /t %FLANG% CLEAN_DONE
 vdelay %FDEL%

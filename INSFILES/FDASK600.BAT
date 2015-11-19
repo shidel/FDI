@@ -2,7 +2,8 @@
 
 REM Installation package selection.
 
-call FDIWIND.BAT 11
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
 call FDIOPTS.BAT 5

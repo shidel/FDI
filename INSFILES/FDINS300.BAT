@@ -2,7 +2,9 @@
 
 REM Remove old conflicting packages
 if not exist %FTARGET%\APPINFO\NUL goto Done
-call FDIWIND.BAT 7
+
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
 vecho /n /t %FLANG% RMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
@@ -73,8 +75,8 @@ goto AbortPkg
 :PkgDone
 if not "%OCLEAN%" == "y" goto PkgNoSave
 if not exist %TEMP%\SAVED\NUL mkdir %TEMP%\SAVED
-if not exist %TEMP%\SAVED\APPINFO mkdir %TEMP%\SAVED\APPINFO >NUL
-if not exist %TEMP%\SAVED\PACKAGES mkdir %TEMP%\SAVED\PACKAGES >NUL
+if not exist %TEMP%\SAVED\APPINFO\NUL mkdir %TEMP%\SAVED\APPINFO >NUL
+if not exist %TEMP%\SAVED\PACKAGES\NUL mkdir %TEMP%\SAVED\PACKAGES >NUL
 xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
 xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
 verrlvl 0

@@ -2,7 +2,7 @@
 
 REM Thank the user for installing and offer to reboot.
 call FDICLS.BAT
-call FDIWIND.BAT 10
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
 vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 vecho
 vecho /t %FLANG% REBOOT?
