@@ -8,10 +8,6 @@ set OS_VERSION=1.2-pre3
 
 if "%1" == "VersionOnly" goto Done
 
-REM Remove trailing spaces from LANG variable.
-if %LANG% == EN set FLANG=EN
-if %LANG% == ES set FLANG=ES
-
 REM Debug Mode
 set FDEBUG=n
 
@@ -50,5 +46,45 @@ set FSCAN=n
 REM New config file extension to be used for replacing AUTOEXEC.BAT and
 REM FDCONFIG.SYS.
 set FEXT=DEF
+
+REM Try to import some stuff from autoexec.bat and fdconfig.sys
+if "%TEMP%" == "" goto AdjustData
+vfdutil /u %TEMP%\TEST????.??? >NUL
+if errorlevel 1 goto AdjustData
+vfdutil /u C:\TEST????.??? >NUL
+if errorlevel 1 goto AdjustData
+
+echo @ECHO OFF>%TEMP%\FDIMPORT.000
+if not exist C:\FDCONFIG.SYS goto NoFDCONFIG
+grep -i "!SET " C:\FDCONFIG.SYS |grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+goto CheckAuto
+
+:NoFDCONFIG
+if not exist C:\CONFIG.SYS goto CheckAuto
+grep -i "!SET " C:\FDCONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+
+:CheckAuto
+if not exist C:\AUTOEXEC.BAT goto NoAuto
+grep -i -v "REM " C:\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
+
+:NoAuto
+type %TEMP%\FDIMPORT.000|vstr /n /s " DOSDIR=" " FTARGET=">%TEMP%\FDIMPORT.BAT
+
+call %TEMP%\FDIMPORT.BAT
+del %TEMP%\FDIMPORT.000
+del %TEMP%\FDIMPORT.BAT
+
+if "%FTARGET%" == "" goto AdjustData
+vfdutil /d %FTARGET% | set /p FDRIVE=
+
+:AdjustData
+REM Remove trailing spaces from LANG variable.
+if %LANG% == EN set LANG=EN
+if %LANG% == ES set LANG=ES
+
+if "%LANG% == "" set FCLANG=y
+if "%LANG% == "" set LANG=EN
+REM Langage not supported switch to english
+if not exist %LANG%\NUL set LANG=EN
 
 :Done

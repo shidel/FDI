@@ -1,0 +1,47 @@
+; Debug mode pause
+PRESSKEY="Press a key..."
+
+; Backing up old OS
+BACKUP_FRAME=/w60 /h7 /c
+BACKUP="Creating backup"
+TARGET="'" /f %1 "%2" /f %3 "'"
+BACKUP_DONE=/f %1 "Backup process has completed."
+
+; Old Package removal
+RMPACK_FRAME=/w60 /h7 /c
+RMPACKS="Removing old conflicting packages."
+RMPACKN="Removing old '" /f %1 %2 /f %3 "' package."
+
+; Remove old OS files
+RMOS_FRAME=/w60 /h5 /c
+RMOS="Removing old files from '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Old operating system files were removed."
+
+; Remove old config files
+CLEAN_FRAME=/w60 /h5 /c
+CLEAN="Cleaning out the old configuration files."
+CLEAN_DONE="Old configuration files have been removed."
+
+; Transfer system files
+XSYS_FRAME=/w60 /h5 /c
+XSYS="Transferring system boot files to drive " /f %1 %2 /f %3 '.'
+XSYS_DONE="System file transfer has completed."
+
+; Package installation.
+PAC_FRAME=/w60 /h7 /c
+PACBM="Installing software packages."
+PACBI="Installing software package '" /f %1 %2 /f %3 "'"
+PACSM="Installing sources."
+PACSI="Installing sources for '" /f %1 %2 /f %3 "'"
+PACDONE_FRAME=/w60 /h5 /c
+PACDONE="Software package installation has completed."
+
+; Config file installation
+CONFIGS_FRAME=/w60 /h5 /c
+CONFIGS="Installing fresh configuration files."
+CONFIGS_DONE="New configuration files were installed."
+
+; V8 Power tools installation
+V8POWER_FRAME=/w60 /h5 /c
+V8POWER="Installing a copy of '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER_DONE="V8Power Tools were installed."

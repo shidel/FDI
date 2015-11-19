@@ -4,7 +4,7 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2015 Jerome Shidel.
 
-if "%1" == "RECOVERY" goto RunInstaller
+rem if "%1" == "RECOVERY" goto RunInstaller
 if exist FDSETUP\V8POWER\vfdutil.com goto AdjustPath
 
 REM Test for Presence of V8Power Tools ****************************************
@@ -115,4 +115,3 @@ REM End of Batch Script *******************************************************
 :Done
 if not "%OLD_PATH%" == "" set PATH=%OLD_PATH%
 set OLD_PATH=
-

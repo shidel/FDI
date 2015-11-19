@@ -1,0 +1,95 @@
+; FDICLS - Title
+TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Instalador"
+
+; STAGE300 - Initial welcome screen message
+HELLO_FRAME=/w68 /h10 /c /y7
+HELLO_OPTS=/w40 /h4 /c /y12
+HELLO="Bienvenido al programa de instalaci¢n para " /f %1 "%2" /f %3 .
+HELLO_ADV="Bienvenido al instalador avanzado para " /f %1 "%2" /f %3 .
+PROCEED?="¨Desea continuar?"
+CONTINUE="  S¡ - Contin£e con la instalaci¢n"
+EXIT="  No - Volver a DOS"
+
+; STAGE400 - Partition screen specific
+NOPART_FRAME=/w70 /h10 /c /y9
+NOPART_OPTS=/w40 /h4 /c /y12
+NOPART="La unidad " /f  %1 %2 /f %3 " no parece ser particionado"
+PART?="¨Quiere crear particiones en la unidad ?"
+PART_YES="  S¡ - Partitioner Lanzamiento."
+; EXIT
+
+; STAGE500 - After partitioned specific
+PARTED_FRAME=/w60 /h11 /c /y9
+PARTED_OPTS=/w40 /h4 /c /y13
+PARTED="Debe reiniciar el equipo para el nuevo esquema de " /p "partici¢n entre en vigor."
+REBOOT?="¨Desea reiniciar ahora?"
+REBOOT_YES="  S¡ - Por favor, reiniciar ahora."
+; EXIT
+REBOOT="Su equipo ahora debe reiniciar el sistema."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w60 /h10 /c /y9
+NOFORMAT_OPTS=/w40 /h4 /c /y12
+NOFORMAT="La unidad " /f %1 %2 /f %3 " no parece ser formateado."
+FORMAT?="¨Quiere formatear la unidad?"
+FORMAT_YES="  S¡ - Por favor, borrar y formatear la unidad %1."
+; EXIT
+FORMATTING=/fGray "Unidad de formato " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Presione una tecla... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w74 /h5 /c
+GATHERING="Recopilaci¢n de informaci¢n para prepararse para la instalaci¢n."
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w60 /h10 /c /y8
+INSTALL_OPTS=/w46 /h4 /c /y13
+INSTALL="We are now ready to install " /f %1 "%2" /f %3 .
+INSTALL?="Do you want to install now?"
+INSTALL_YES="  Yes - Please install %1."
+; EXIT
+PREPARING_FRAME=/w60 /h5 /c
+PREPARING="Preparing for the installation."
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c /y7
+COMPLETE_OPTS=/w40 /h4 /c /y12
+COMPLETE="Installation of " /f %1 "%2" /f %3 " is now complete."
+; REBOOT?, REBOOT, EXIT
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR="Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c /y7
+CTRLC_OPTS=/w44 /h6 /c /y12
+CTRLC="You have pressed " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Are you sure you wish to abort the installation?"
+CTRLCY="  Yes - Please return to DOS."
+CTRLCN="  No  - I want to continue."
+CTRLCA="  No  - Switch to Advanced Mode."
+CTRLCB="  No  - Switch to Basic Mode."
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w60 /h11 /c /y7
+FAIL_OPTS=/w40 /h4 /c /y13
+FAILADV_FRAME=/w60 /h13 /c /y7
+FAILADV_OPTS=/w40 /h6 /c /y13
+FAILH="A reboot may help."
+FAIL?="Do you wish to reboot now?"
+FAILY="  Yes - Please reboot now."
+FAILN="  No  - Return to DOS"
+FAILI="  No  - Ignore (not recommended)"
+FAILR="The computer will now reboot."
+
+; Failure messages
+ERROR_BACKZIP="Making backup archive %1."
+ERROR_BACKUP="Error making the backup."
+ERROR_MKDOS="Unable to create '%1' directory."
+ERROR_PACKAGE="Unable to install the '%1' package."
+ERROR_SOURCE="Unable to install the '%1' source."
+ERROR_READC="Having a problem reading drive C:."
+ERROR_SHELL="Installation is not supported under your current shell."
