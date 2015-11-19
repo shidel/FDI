@@ -62,7 +62,14 @@ set TEMP=C:\FDTEMP.$$$
 goto HasTemp
 
 :NoTEMP
+FDSETUP\V8POWER\vfdutil /u A:\TEST????.??? >NUL
+if errorlevel 1 goto V8Missing
+if exist A:\FDSETUP\V8POWER\vfdutil.com goto IsFloppy
 goto V8Missing
+
+:IsFloppy
+set PATH=A:\FDSETUP\BIN;A:\FDSETUP\V8POWER
+goto RunInstaller
 
 :HasTemp
 FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
