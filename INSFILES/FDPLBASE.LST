@@ -18,7 +18,6 @@ base\dosfsck
 base\edit
 base\edlin
 base\exe2bin
-base\fail
 base\fc
 base\fdapm
 base\fdisk
