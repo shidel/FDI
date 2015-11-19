@@ -15,9 +15,12 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
 vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
-copy %FINSP%\AUTOEXEC.%FEXT% %FDRIVE%\AUTOEXEC.BAT >NUL
+REM Simple Autoexec.bat creation
+type %FINSP%\AUTOEXEC.%FEXT%>%FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
-copy %FINSP%\FDCONFIG.%FEXT% %FDRIVE%\FDCONFIG.SYS >NUL
+
+REM Simple CONFIG.SYS creation.
+type %FINSP%\FDCONFIG.%FEXT%>%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 
 REM Create the installed version ID file.
