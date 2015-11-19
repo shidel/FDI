@@ -68,12 +68,11 @@ if not exist C:\AUTOEXEC.BAT goto NoAuto
 grep -i -v "REM " C:\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
 
 :NoAuto
-type %TEMP%\FDIMPORT.000|vstr /n /s " DOSDIR=" " FTARGET=">%TEMP%\FDIMPORT.BAT
+type %TEMP%\FDIMPORT.000|vstr /n /s " DOSDIR=" " FTARGET="|vstr /n /s "  " " ">%TEMP%\FDIMPORT.BAT
 
 call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
 del %TEMP%\FDIMPORT.BAT
-
 if "%FTARGET%" == "" goto AdjustData
 vfdutil /d %FTARGET% | set /p FDRIVE=
 
@@ -82,8 +81,9 @@ REM Remove trailing spaces from LANG variable.
 if %LANG% == EN set LANG=EN
 if %LANG% == ES set LANG=ES
 
-if "%LANG% == "" set FCLANG=y
-if "%LANG% == "" set LANG=EN
+if "%LANG%" == "" set FCLANG=y
+if "%LANG%" == "" set LANG=EN
+
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN
 

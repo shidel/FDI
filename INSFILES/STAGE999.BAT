@@ -37,6 +37,7 @@ set FSCAN=
 set FMEDIA=
 set FEXT=
 set FLANG=
+set FCLANG=
 set FPKGS=
 
 rem clear built-in installer options settings

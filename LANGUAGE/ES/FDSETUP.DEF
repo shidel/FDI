@@ -2,6 +2,12 @@
 TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Instalador"
 
 ; STAGE300 - Initial welcome screen message
+LANG_FRAME=/w50 /h8 /c
+LANG_ASK="Por favor seleccione usted idioma.."
+LANG_EN=Ingl‚s
+LANG_ES=Espa¤ol
+LANG_FR=Franc‚s
+LANG_GB=Alem n
 HELLO_FRAME=/w68 /h10 /c /y7
 HELLO_OPTS=/w40 /h4 /c /y12
 HELLO="Bienvenido al programa de instalaci¢n para " /f %1 "%2" /f %3 .
