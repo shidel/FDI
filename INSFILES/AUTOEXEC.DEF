@@ -1,7 +1,7 @@
 @ECHO OFF
-SET LANG=EN
-SET MTCPCFG=C:\FDOS\MTCP.CFG
-SET WATTCP.CFG=C:\FDOS
+SET LANG=$FLANG$
+SET MTCPCFG=%dosdir%\MTCP.CFG
+SET WATTCP.CFG=%dosdir%
 SET PATH=%dosdir%\BIN
 SET PATH=%path%;C:\TOOLS
 SET NLSPATH=%dosdir%\NLS
@@ -17,10 +17,10 @@ LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
 LH FDAPM APMDOS
 IF "%config%"=="2" LH SHARE
 LH DOSLFN
-REM NLSFUNC C:\FDOS\BIN\COUNTRY.SYS
+REM NLSFUNC %dosdir%\BIN\COUNTRY.SYS
 REM DISPLAY CON=(EGA),858,2)
-REM MODE CON CP PREP=((858) C:\FDOS\CPI\EGA.CPX)
-REM KEYB US,858,C:\FDOS\bin\keyboard.sys
+REM MODE CON CP PREP=((858) %dosdir%\CPI\EGA.CPX)
+REM KEYB US,858,%dosdir%\bin\keyboard.sys
 REM CHCP 858
 REM LH PCNTPK INT=0x60
 REM DHCP
@@ -33,7 +33,7 @@ IF NOT "%config%"=="4" SHSUCDX /D
 GOTO END
 :END
 SET AUTOFILE=%0
-SET CFGFILE=C:\FDCONFIG.SYS
+SET CFGFILE=$FDRIVE$\FDCONFIG.SYS
 alias reboot=fdapm warmboot
 alias reset=fdisk /reboot
 alias halt=fdapm poweroff
@@ -42,7 +42,7 @@ alias cfg=edit %cfgfile%
 alias auto=edit %0
 
 set OS_NAME=FreeDOS
-set OS_VERSION=1.1a
+set OS_VERSION=$OSVER$
 
 if exist %dosdir%\V8POWER\NUL goto V8Power
 

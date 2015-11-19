@@ -16,11 +16,21 @@ vecho /n /t %FLANG% CONFIGS
 vdelay %FDEL%
 
 REM Simple Autoexec.bat creation
-type %FINSP%\AUTOEXEC.%FEXT%>%FDRIVE%\AUTOEXEC.BAT
+type %FINSP%\AUTOEXEC.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %FTARGET% >%TEMP%\REPLACE.002
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ %FDRIVE% >%TEMP%\REPLACE.003
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.003 | vstr /n /s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
 REM Simple CONFIG.SYS creation.
-type %FINSP%\FDCONFIG.%FEXT%>%FDRIVE%\FDCONFIG.SYS
+type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %FTARGET% >%TEMP%\REPLACE.002
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ %FDRIVE% >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 
 REM Create the installed version ID file.
