@@ -27,6 +27,7 @@ vecho /n /t %FLANG% LANG_GB
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 goto LanguageSet
 
 :LanguageChange
@@ -44,11 +45,15 @@ set LANG=EN
 
 :DoChange
 call FDILANG.BAT FDSETUP
-call FDICLS.BAT
+vgotoxy /x1 /y1
+vcls /b %TTB% /f %TTF% EOL
+vgotoxy /x30 /y1
+vecho /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 goto LanguagePrompt
 
 :LanguageSet
-set FCLANG=
+if "%FCLANG%" == "y" set FCLANG=n
 set _WCI=
 REM Draw the welcome screen.
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME

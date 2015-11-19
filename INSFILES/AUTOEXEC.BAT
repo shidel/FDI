@@ -1,5 +1,5 @@
 @echo off
-rem SET LANG=EN
+SET LANG=
 rem SET MTCPCFG=%dosdir%\MTCP.CFG
 rem SET WATTCP.CFG=%dosdir%
 SET PATH=%dosdir%\BIN

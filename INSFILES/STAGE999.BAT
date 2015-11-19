@@ -37,6 +37,7 @@ set FSCAN=
 set FMEDIA=
 set FEXT=
 set FLANG=
+if not "%FCLANG%" == "" set LANG=
 set FCLANG=
 set FPKGS=
 
