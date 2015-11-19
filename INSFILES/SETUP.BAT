@@ -81,6 +81,7 @@ if "%1" == "RECOVERY" goto Booted
 
 :Manual
 if not exist FDSETUP\BIN\COMMAND.COM goto Error
+FDSETUP\BIN\LBACACHE.COM buf 20 flop >NUL
 FDSETUP\BIN\COMMAND.COM /E:2048/C FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 goto Afterwards
 
