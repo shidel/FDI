@@ -2,7 +2,7 @@
 TITLE=/f %1 "%2 " /f %3 "%4" /f %1 " Installer"
 
 ; STAGE300 - Initial welcome screen message
-LANG_FRAME=/w40 /h8 /c
+LANG_FRAME=/w40 /h10 /c
 LANG_ASK="Please select you language."
 LANG_EN=English
 LANG_ES=Spanish

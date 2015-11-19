@@ -77,12 +77,12 @@ if "%FTARGET%" == "" goto AdjustData
 vfdutil /d %FTARGET% | set /p FDRIVE=
 
 :AdjustData
+if "%LANG%" == "" set FCLANG=y
+if "%LANG%" == "" set LANG=EN
+
 REM Remove trailing spaces from LANG variable.
 if %LANG% == EN set LANG=EN
 if %LANG% == ES set LANG=ES
-
-if "%LANG%" == "" set FCLANG=y
-if "%LANG%" == "" set LANG=EN
 
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN

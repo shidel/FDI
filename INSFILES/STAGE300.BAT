@@ -23,12 +23,13 @@ vline hidden
 vecho /t %FLANG% LANG_EN
 vecho /t %FLANG% LANG_ES
 vecho /t %FLANG% LANG_FR
-vecho /t %FLANG% LANG_GB
+vecho /n /t %FLANG% LANG_GB
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
 goto LanguageSet
 
+:LanguageChange
 set _WCI=4
 set LANG=GB
 if errorlevel 104 goto DoChange
