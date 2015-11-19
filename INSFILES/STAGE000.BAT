@@ -48,6 +48,7 @@ REM FDCONFIG.SYS.
 set FEXT=DEF
 
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
+set HLANG=%LANG%
 if "%TEMP%" == "" goto AdjustData
 vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto AdjustData
@@ -77,6 +78,7 @@ if "%FTARGET%" == "" goto AdjustData
 vfdutil /d %FTARGET% | set /p FDRIVE=
 
 :AdjustData
+if not "%HLANG%" == "" set LANG=%HLANG%
 if "%LANG%" == "" set FCLANG=y
 if "%LANG%" == "" set LANG=EN
 
@@ -86,5 +88,5 @@ if %LANG% == ES set LANG=ES
 
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN
-
+set HLANG=
 :Done
