@@ -6,7 +6,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
 vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 vecho
 vecho /t %FLANG% REBOOT?
-call FDIOPTS.BAT 2
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% COMPLETE_OPTS
 vecho /t %FLANG% REBOOT_YES
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 1

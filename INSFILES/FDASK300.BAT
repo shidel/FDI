@@ -16,7 +16,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
 vecho /t %FLANG% REPLACE?
 vecho
-call FDIOPTS.BAT 2
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% REPLACE_OPTS
 vecho /t %FLANG% REPLACEY
 vecho /n /t %FLANG% REPLACEN
 vchoice /a %TFC% Ctrl-C /d 1

@@ -262,10 +262,6 @@ utilities.
                     if the user does not quit. The best example of this is
                     STAGE400.BAT can return to itself in two separate places.
 
-        FDIOPTS.BAT Functions only after STAGE600. Creates an area to contain
-                    choices for vchoice. %1 is total number of choices you
-                    want.
-
         FDISCAN.BAT Used internally to scan for drives that may contain paths
                     that may contain FDINS???.BAT files.
 

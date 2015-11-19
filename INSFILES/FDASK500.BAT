@@ -9,7 +9,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XFER_FRAME
 vecho /t %FLANG% XFER? %TFH% %FDRIVE% %TFF%
 vecho
-call FDIOPTS.BAT 2
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% XFER_OPTS
 vecho /t %FLANG% XFERY
 vecho /n /t %FLANG% XFERN
 vchoice /a %TFC% Ctrl-C /d 1

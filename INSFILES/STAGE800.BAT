@@ -10,7 +10,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME
 vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 vecho
 vecho /t %FLANG% INSTALL?
-call FDIOPTS.BAT 2
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% INSTALL_OPTS
 vecho /t %FLANG% INSTALL_YES "%OS_NAME% %OS_VERSION%"
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2

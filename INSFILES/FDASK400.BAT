@@ -13,7 +13,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
 vecho /t %FLANG% DELETE? %TFH% %FTARGET% %TFF%
 vecho
-call FDIOPTS.BAT 2
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% DELETE_OPTS
 vecho /t %FLANG% DELETEY
 vecho /n /t %FLANG% DELETEN
 vchoice /a %TFC% Ctrl-C /d 1
