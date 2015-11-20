@@ -16,14 +16,20 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if "%_WCI%" == "" set _WCI=1
 REM If Need to set language then do it now
 if not "%FCLANG%" == "y" goto LanguageSet
-:LanguagePrompt
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% LANG_FRAME
-vecho /t %FLANG% LANG_ASK
+vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
+vgotoxy /l /y3
 vline hidden
-vecho /t %FLANG% LANG_EN
-vecho /t %FLANG% LANG_ES
-vecho /t %FLANG% LANG_FR
-vecho /n /t %FLANG% LANG_GB
+:LanguagePrompt
+vgotoxy /l sop /g up up
+vecho /n /e
+vgotoxy /l sop
+vecho /n /t %FLANG% LANG_ASK
+vecho /n /e
+vgotoxy /l eop /g down down /l sop
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
+vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_GB
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
@@ -45,11 +51,10 @@ set LANG=EN
 
 :DoChange
 call FDILANG.BAT FDSETUP
-vgotoxy /x1 /y1
-vcls /b %TTB% /f %TTF% EOL
 vgotoxy /x30 /y1
-vecho /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vecho /n /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
+vecho /e
+vgotoxy /g /x40 /y12
 goto LanguagePrompt
 
 :LanguageSet
