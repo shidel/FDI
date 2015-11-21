@@ -62,5 +62,7 @@ util\fdnpkg
 util\memtest
 util\4dos
 util\bootfix
+util\shsufdrv
+util\grep
 archiver\zip
 archiver\unzip
