@@ -1,27 +1,92 @@
 @echo off
 
+pushd
+SET OLDFDNPKG.CFG=%FDNPKG.CFG%
+SET OLDDOSDIR=%DOSDIR%
+SET OLDPATH=%PATH%
+
 REM Configure Variables and stuff.
 call FDSETUP\SETUP\STAGE000.BAT VersionOnly
 
 set FLOPPY=A:
 set VOLUME=FD-SETUP
-set V8PATH=V8Power
+set RAMDRV=
+set RAMSIZE=1440K
+set CDROM=
 
-echo FreeDOS install creator.
+echo FreeDOS install disk creator.
 echo.
 
-if not exist %V8PATH%\VERRLVL.COM goto MissingV8
-%V8PATH%\verrlvl 0
+if not exist V8POWER\VERRLVL.COM goto MissingV8
+V8POWER\verrlvl 0
+
+V8POWER\vfdutil /p %0 | set /p TEMPPATH=
+if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
+
+set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
+vgotoxy up up
+vecho /fLightGreen "FreeDOS install disk creator." /p
+
+REM Making Ramdisk.
+verrlvl 1
+SHSURDRV /QQ /U
+if errorlevel 2 goto NotLoaded
+if errorlevel 1 goto NoRamDriver
+:NotLoaded
+SHSURDRV /QQ /D:%RAMSIZE%,A
+if errorlevel 27 goto NoRamDrive
+if errorlevel  1 set RAMDRV=A:
+if errorlevel  2 set RAMDRV=B:
+if errorlevel  3 set RAMDRV=C:
+if errorlevel  4 set RAMDRV=D:
+if errorlevel  5 set RAMDRV=E:
+if errorlevel  6 set RAMDRV=F:
+if errorlevel  7 set RAMDRV=G:
+if errorlevel  8 set RAMDRV=H:
+if errorlevel  9 set RAMDRV=I:
+if errorlevel 10 set RAMDRV=J:
+if errorlevel 11 set RAMDRV=K:
+if errorlevel 12 set RAMDRV=L:
+if errorlevel 13 set RAMDRV=M:
+if errorlevel 14 set RAMDRV=N:
+if errorlevel 15 set RAMDRV=O:
+if errorlevel 16 set RAMDRV=P:
+if errorlevel 17 set RAMDRV=Q:
+if errorlevel 18 set RAMDRV=R:
+if errorlevel 19 set RAMDRV=S:
+if errorlevel 20 set RAMDRV=T:
+if errorlevel 21 set RAMDRV=U:
+if errorlevel 22 set RAMDRV=V:
+if errorlevel 23 set RAMDRV=W:
+if errorlevel 24 set RAMDRV=X:
+if errorlevel 25 set RAMDRV=Y:
+if errorlevel 26 set RAMDRV=Z:
+if "%RAMDRV%" == "" goto NoRamDrive
+
+vecho "Ramdrive is " /fYellow %RAMDRV% /fGray /p
+mkdir %RAMDRV%\FDSETUP
+mkdir %RAMDRV%\FDSETUP\BIN
+set DOSDIR=%RAMDRV%\FDSETUP
+set FDNPKG.CFG=FDIBUILD.CFG
+set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
+
+vecho "Copying V8Power Tools to Ramdrive."
+xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
+vecho
+vfdutil /d %OLDDOSDIR% | vecho "Transferring system files from " /fYellow /i /fGrey " to Ramdrive" /p
 
 :FormatDisk
-pause Press a key to Format disk in drive %ODRV%
-echo.
-%V8PATH%\vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
+vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
+vpause /fCyan /t 15 CTRL-C
+if errorlevel 100 goto Error
+vgotoxy left
+vecho /fGray /e /p /p
+vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
 if errorlevel 1 goto Error
 rem sys a:
 if errorlevel 1 goto Error
-
 goto Done
+
 
 :MissingV8
 echo ERROR: V8Power Tools are missing.
@@ -32,17 +97,35 @@ echo '%V8%' directory. Then run this batch file again.
 goto VeryEnd
 
 :Done
-%V8PATH%\vecho /p /bBlue /fYellow " Process has completed." /e /fGray /bBlack
-%V8PATH%\verrlvl 0
+vecho /p /fLightGreen "Process has completed." /e /fGray /bBlack
+verrlvl 0
 goto VeryEnd
 
+:NoRamDriver
+vecho /fLightRed "Unable to create Ramdrive." /fGray
+goto Error
+
+:NoRamDrive
+vecho /fLightRed "Unable to create Ramdrive." /fGray
+SHSURDRV /QQ /U
+goto Error
+
 :Error
-%V8PATH%\verrlvl 1
-%V8PATH%\vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
+verrlvl 1
+vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 
 :VeryEnd
 set OS_NAME=
 set OS_VERSION=
 set FLOPPY=
 set VOLUME=
-set V8PATH=
+set RAMDRV=
+set RAMSIZE=
+set CDROM=
+SET FDNPKG.CFG=%OLDFDNPKG.CFG%
+SET DOSDIR=%OLDDOSDIR%
+SET PATH=%OLDPATH%
+SET OLDFDNPKG.CFG=
+SET OLDDOSDIR=
+SET OLDPATH=
+popd
