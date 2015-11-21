@@ -18,7 +18,8 @@ SET OLDDOSDIR=%DOSDIR%
 SET OLDPATH=%PATH%
 
 REM Configure Variables and stuff.
-call FDSETUP\SETUP\STAGE000.BAT VersionOnly
+if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
+call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 
 set FLOPPY=A:
 set VOLUME=FD-SETUP
@@ -105,6 +106,10 @@ rem sys a:
 if errorlevel 1 goto Error
 goto Done
 
+:BadLayout
+echo ERROR: Cannot locate needed files. Please download the FDI sources
+echo again from http://github.com/shidel/FDI.
+goto CleanUp
 
 :MissingV8
 echo ERROR: V8Power Tools are missing.
