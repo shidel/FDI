@@ -1,5 +1,17 @@
 @echo off
 
+if not "%1" == "findcd" goto Start
+
+if not "%CDROM%" == "" goto EndOfFile
+vecho /n /fDarkGray .
+vfdutil /u %2:\TEMP????.??? >NUL
+if errorlevel 1 goto EndOfFile
+if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
+if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
+set CDROM=%2:
+goto EndOfFile
+
+:Start
 pushd
 SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
@@ -26,6 +38,12 @@ if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
 vgotoxy up up
 vecho /fLightGreen "FreeDOS install disk creator." /p
+
+vecho "Searching for CD-ROM containing packages" /n
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
+if "%CDROM%" == "" goto NoCDROM
+vgotoxy sol
+vecho "Package media is " /fYellow %CDROM% /fGray /e /p
 
 REM Making Ramdisk.
 verrlvl 1
@@ -73,7 +91,7 @@ set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 vecho "Copying V8Power Tools to Ramdrive."
 xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
 vecho
-vfdutil /d %OLDDOSDIR% | vecho "Transferring system files from " /fYellow /i /fGrey " to Ramdrive" /p
+vfdutil /d %OLDDOSDIR% | vecho "Transferring system files from " /fYellow /i /fGrey " to Ramdrive." /p
 
 :FormatDisk
 vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
@@ -94,12 +112,17 @@ echo.
 echo Download the latest version from 'http://up.lod.bz/V8Power'.
 echo Then extract them making sure the V8PT binaries are located in the
 echo '%V8%' directory. Then run this batch file again.
-goto VeryEnd
+goto CleanUp
 
 :Done
 vecho /p /fLightGreen "Process has completed." /e /fGray /bBlack
 verrlvl 0
-goto VeryEnd
+goto CleanUp
+
+:NoCDROM
+vgotoxy sol
+vecho /fLightRed "Unable to locate package CD-ROM media." /e /fGray
+goto Error
 
 :NoRamDriver
 vecho /fLightRed "Unable to create Ramdrive." /fGray
@@ -114,7 +137,7 @@ goto Error
 verrlvl 1
 vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 
-:VeryEnd
+:CleanUp
 set OS_NAME=
 set OS_VERSION=
 set FLOPPY=
@@ -129,3 +152,5 @@ SET OLDFDNPKG.CFG=
 SET OLDDOSDIR=
 SET OLDPATH=
 popd
+
+:EndOfFile
