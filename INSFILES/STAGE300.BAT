@@ -29,7 +29,7 @@ vgotoxy /l eop /g down down /l sop
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
-vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_GB
+vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_DE
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
@@ -38,7 +38,7 @@ goto LanguageSet
 
 :LanguageChange
 set _WCI=4
-set LANG=GB
+set LANG=DE
 if errorlevel 104 goto DoChange
 set _WCI=3
 set LANG=FR

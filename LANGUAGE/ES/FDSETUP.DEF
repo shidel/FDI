@@ -6,7 +6,7 @@ LANG_ASK="Por favor seleccione usted idioma."
 LANG_EN=Ingl‚s
 LANG_ES=Espa¤ol
 LANG_FR=Franc‚s
-LANG_GB=Alem n
+LANG_DE=Alem n
 HELLO_FRAME=/w68 /h10 /c /y7
 HELLO_OPTS=/w40 /h4 /c /y12
 HELLO="Bienvenido al programa de instalaci¢n para " /f %1 "%2" /f %3 .
@@ -49,52 +49,52 @@ GATHERING="Recopilaci¢n de informaci¢n para prepararse para la instalaci¢n."
 ; STAGE800 - Installing
 INSTALL_FRAME=/w60 /h10 /c /y8
 INSTALL_OPTS=/w46 /h4 /c /y13
-INSTALL="We are now ready to install " /f %1 "%2" /f %3 .
-INSTALL?="Do you want to install now?"
-INSTALL_YES="  Yes - Please install %1."
+INSTALL="Ahora estamos listos para instalar " /f %1 "%2" /f %3 .
+INSTALL?="¨Quieres instalar ahora?"
+INSTALL_YES="  S¡ - Por favor, instale %1."
 ; EXIT
 PREPARING_FRAME=/w60 /h5 /c
-PREPARING="Preparing for the installation."
+PREPARING="Preparaci¢n para la instalaci¢n."
 
 ; STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w60 /h10 /c /y7
 COMPLETE_OPTS=/w40 /h4 /c /y12
-COMPLETE="Installation of " /f %1 "%2" /f %3 " is now complete."
+COMPLETE="La instalaci¢n de " /f %1 "%2" /f %3 " ha finalizado."
 ; REBOOT?, REBOOT, EXIT
 
 ; FDSETUP - Installer Aborted
-ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
+ABORTED=/fWhite /bRed "La instalaci¢n de %1 ha sido abortada." /e /fGray
 
 ; FDSETUP - Missing Stage Error
-STAGE_ERROR="Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
+STAGE_ERROR="No se puede ejecutar la etapa de instalaci¢n de %1." /p "Es posible que el instalador est  da¤ado." /p "Por favor, vuelva a descargarlo o probar un m‚todo diferente de la instalaci¢n."
 
 ; FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c /y7
 CTRLC_OPTS=/w44 /h6 /c /y12
-CTRLC="You have pressed " /f %1 "CTRL-C" /f %2 .
-CTRLC?="Are you sure you wish to abort the installation?"
-CTRLCY="  Yes - Please return to DOS."
-CTRLCN="  No  - I want to continue."
-CTRLCA="  No  - Switch to Advanced Mode."
-CTRLCB="  No  - Switch to Basic Mode."
+CTRLC="Ha pulsado " /f %1 "CTRL-C" /f %2 .
+CTRLC?="¨Est  seguro que desea cancelar la instalaci¢n?"
+CTRLCY="  S¡ - Por favor regrese a DOS."
+CTRLCN="  No - Quiero seguir."
+CTRLCA="  No - Cambiar al modo avanzado."
+CTRLCB="  No - Cambiar a modo b sico."
 
 ; FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w60 /h11 /c /y7
 FAIL_OPTS=/w40 /h4 /c /y13
 FAILADV_FRAME=/w60 /h13 /c /y7
 FAILADV_OPTS=/w40 /h6 /c /y13
-FAILH="A reboot may help."
-FAIL?="Do you wish to reboot now?"
-FAILY="  Yes - Please reboot now."
-FAILN="  No  - Return to DOS"
-FAILI="  No  - Ignore (not recommended)"
-FAILR="The computer will now reboot."
+FAILH="Un reinicio puede ayudar."
+FAIL?="¨Desea reiniciar ahora?"
+FAILY="  S¡ - Por favor, reinicie ahora."
+FAILN="  No - Volver a DOS."
+FAILI="  No - Ignorar (no recomendado)"
+FAILR="El ordenador se reiniciar ."
 
 ; Failure messages
-ERROR_BACKZIP="Making backup archive %1."
-ERROR_BACKUP="Error making the backup."
-ERROR_MKDOS="Unable to create '%1' directory."
-ERROR_PACKAGE="Unable to install the '%1' package."
-ERROR_SOURCE="Unable to install the '%1' source."
-ERROR_READC="Having a problem reading drive C:."
-ERROR_SHELL="Installation is not supported under your current shell."
+ERROR_BACKZIP="Hacer copia de seguridad de archivo %1."
+ERROR_BACKUP="Error de hacer la copia de seguridad."
+ERROR_MKDOS="No se puede crear el directorio '%1'."
+ERROR_PACKAGE="No se puede instalar el paquete '%1'."
+ERROR_SOURCE="No se puede instalar la fuente '%1'."
+ERROR_READC="Tener una unidad de C: problema de lectura."
+ERROR_SHELL="La instalaci¢n no es compatible con el shell actual."

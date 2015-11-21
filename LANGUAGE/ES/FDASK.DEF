@@ -3,45 +3,45 @@
 ; FDASK100 - Reserved
 
 ; FDASK200 - Backup old OS
-BACKUP_FRAME=/w60 /h10 /c /y7
-BACKUP_OPTS=/w40 /h4 /c /y12
-BACKUPADV_OPTS=/w40 /h5 /c /y12
-BACKUPADV_FRAME=/w60 /h11 /c /y7
-BACKUP="A previous operating system was detected on drive " /f %1 %2 /f %3 .
-BACKUP?="Do you wish to backup the old files before installing?"
-BACKUPY="  Yes - Please backup first."
-BACKUPZ="  Yes - Please backup as zip archive."
-BACKUPN="  No  - Install without backing up."
+BACKUP_FRAME=/w65 /h10 /c /y7
+BACKUP_OPTS=/w50 /h4 /c /y12
+BACKUPADV_OPTS=/w57 /h5 /c /y12
+BACKUPADV_FRAME=/w65 /h11 /c /y7
+BACKUP="Un sistema operativo anterior se detect¢ en la unidad " /f %1 %2 /f %3 .
+BACKUP?="¨Deseas hacer copias de seguridad de los archivos viejos?"
+BACKUPY="  S¡ - Por favor, copia de seguridad primero."
+BACKUPZ="  S¡ - Por favor copia de seguridad como archivo zip."
+BACKUPN="  No - Instalar y sin marcha atr s."
 
 ; FDASK300 - Advanced mode Replace system files
 REPLACE_FRAME=/w60 /h8 /c /y9
 REPLACE_OPTS=/w40 /h4 /c /y12
-REPLACE?="Replace the system configuration files?"
-REPLACEY="  Yes - Transfer new default files."
-REPLACEN="  No  - Keep the old files."
+REPLACE?="¨Reemplazar archivos de sistema?"
+REPLACEY="  S¡ - Reemplazar los archivos"
+REPLACEN="  No - Mantener los archivos viejos."
 
 ; FDASK400 - Advanced mode delete old OS files
 DELETE_FRAME=/w60 /h8 /c /y9
 DELETE_OPTS=/w40 /h4 /c /y12
-DELETE?="Remove all old files from " /f %1 %2 /f %3 ?
-DELETEY="  Yes - Start fresh."
-DELETEN="  No  - Leave it cluttered."
+DELETE?="¨Eliminar todos los archivos viejos de " /f %1 %2 /f %3 ?
+DELETEY="  S¡ - Nuevo comienzo."
+DELETEN="  No - D‚jalo desordenada."
 
 ; FDASK500 - Advanced mode transfer system files
 XFER_FRAME=/w60 /h8 /c /y9
-XFER_OPTS=/w40 /h4 /c /y12
-XFER?="Transfer system files to drive " /f %1 %2 /f %3 ?
-XFERY="  Yes - Transfer system files."
-XFERN="  No  - Do not transfer system files."
+XFER_OPTS=/w54 /h4 /c /y12
+XFER?="¨Sistema de transferencia de archivos a la unidad " /f %1 %2 /f %3 ?
+XFERY="  S¡ - Los archivos del sistema de transferencia."
+XFERN="  No - No transferir los archivos del sistema."
 
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c /y9
 PAC_OPTS=/w40 /h7 /c /y12
-PACS?="What " /f %1 %2 /f %3 " packages do you want to install?"
-PACBO="  Basic packages only."
-PACBS="  Basic packages with sources only."
-PACAO="  All the packages."
-PACAS="  All the packages and their sources."
+PACS?="¨Qu‚ paquetes de  " /f %1 %2 /f %3 " quieres instalar?"
+PACBO="  Paquetes b sicos solamente."
+PACBS="  Paquetes b sicos con s¢lo fuentes."
+PACAO="  Todos los paquetes."
+PACAS="  Todos los paquetes y sus fuentes."
 
 ; FDASK700 - Reserved
 
@@ -50,6 +50,6 @@ PACAS="  All the packages and their sources."
 ; FDASK900 - Advanced mode Install V8Power Tools.
 V8_FRAME=/w60 /h8 /c /y9
 V8_OPTS=/w40 /h4 /c /y12
-V8I?="Install a copy of " /f %1 "V8Power Tools" /f %2 "?"
-V8IY="  Yes - Install V8Power Tools."
-V8IN="  No  - Do not install them."
+V8I?="¨Instalar una copia de " /f %1 "V8Power Tools" /f %2 "?"
+V8IY="  S¡ - Instalar V8Power Tools."
+V8IN="  No - No instale ellos."
