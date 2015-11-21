@@ -30,7 +30,7 @@ set VOLUME=FD-SETUP
 set RAMDRV=
 set RAMSIZE=5M
 set CDROM=
-set KERNEL=KERN386.SYS
+set KERNEL=KERNL386.SYS
 
 echo FreeDOS install disk creator.
 echo.
@@ -57,7 +57,7 @@ SHSURDRV /QQ /U
 if errorlevel 2 goto NotLoaded
 if errorlevel 1 goto MissingSHSURDRV
 :NotLoaded
-SHSURDRV /QQ /D:%RAMSIZE%,A
+SHSURDRV /QQ /D:%RAMSIZE%,C1K,A
 if errorlevel 27 goto NoRamDrive
 if errorlevel  1 set RAMDRV=A:
 if errorlevel  2 set RAMDRV=B:
@@ -121,13 +121,18 @@ verrlvl 2
 fdinst install %PACKFILE% >NUL
 if errorlevel 2 goto MissingFDINST
 if errorlevel 1 goto ErrorFDINST
-vecho ', ' /fLightGreen " OK" /fGray
+vecho ', ' /fLightGreen "OK" /fGray
 goto PkgLoop
 :PkgDone
 set PACKFILE=
 set PACKIDX=
 vecho
 
+vecho "Replacing system files on Ramdrive"
+copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM
+copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS
+
+vecho
 vecho "Removing unnecessary files and folders."
 
 set PACKIDX=0
@@ -147,8 +152,6 @@ set PACKFILE=
 set PACKIDX=
 vecho
 
-goto Done
-
 :FormatDisk
 vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
 vpause /fCyan /t 15 CTRL-C
@@ -157,11 +160,18 @@ vgotoxy left
 vecho /fGray /e /p /p
 vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
 if errorlevel 1 goto Error
+pushd
 %RAMDRV%
 cd \
 sys a:
-if errorlevel 1 goto Error
-vfdutil /c /p %0
+if errorlevel 1 goto SysError
+popd
+
+xcopy /E %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\
+xcopy FDISETUP\*.* %FLOPPY%\
+xcopy /E FDISETUP\SETUP\*.* %FLOPPY%\FDSETUP\SETUP\
+xcopy /E LANGUAGE\*.* %FLOPPY%\FDSETUP\SETUP\
+
 goto Done
 
 :MissingV8
@@ -197,7 +207,7 @@ SHSURDRV /QQ /U
 goto Error
 
 :ErrorFDINST
-vecho ', ' /fLightRed " ERROR" /fGray
+vecho ', ' /fLightRed "ERROR" /fGray
 goto Error
 
 :SysError
