@@ -28,8 +28,9 @@ call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 set FLOPPY=A:
 set VOLUME=FD-SETUP
 set RAMDRV=
-set RAMSIZE=1440K
+set RAMSIZE=5M
 set CDROM=
+set KERNEL=KERN386.SYS
 
 echo FreeDOS install disk creator.
 echo.
@@ -54,7 +55,7 @@ REM Making Ramdisk.
 verrlvl 1
 SHSURDRV /QQ /U
 if errorlevel 2 goto NotLoaded
-if errorlevel 1 goto NoRamDriver
+if errorlevel 1 goto MissingSHSURDRV
 :NotLoaded
 SHSURDRV /QQ /D:%RAMSIZE%,A
 if errorlevel 27 goto NoRamDrive
@@ -90,13 +91,64 @@ vecho "Ramdrive is " /fYellow %RAMDRV% /fGray /p
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
-set FDNPKG.CFG=FDIBUILD.CFG
+set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
 vecho "Copying V8Power Tools to Ramdrive."
 xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
 vecho
 vfdutil /d %OLDDOSDIR% | vecho "Transferring system files from " /fYellow /i /fGrey " to Ramdrive." /p
+pushd
+vfdutil /c /p %OLDDOSDIR%
+cd \
+sys %RAMDRV% >NUL
+if errorlevel 1 goto SysError
+popd
+
+vecho "Installing packages to " /fYellow %RAMDRV% /fGray
+
+set PACKIDX=0
+:PkgLoop
+type FDIBUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+if not "%PACKIDX%" == "0" goto PkgCheck
+if "%PACKFILE%" == "" goto PkgLoop
+:PkgCheck
+if "%PACKFILE%" == "" goto PkgDone
+vmath %PACKIDX% + 1 | set /p PACKIDX=
+vecho /n "%PACKIDX% - %PACKFILE%"
+set PACKFILE=%CDROM%\%PACKFILE%.zip
+verrlvl 2
+fdinst install %PACKFILE% >NUL
+if errorlevel 2 goto MissingFDINST
+if errorlevel 1 goto ErrorFDINST
+vecho ', ' /fLightGreen " OK" /fGray
+goto PkgLoop
+:PkgDone
+set PACKFILE=
+set PACKIDX=
+vecho /p
+
+
+vecho "Removing unnecessary files and folders."
+
+set PACKIDX=0
+:CleanLoop
+type FDIBUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+if not "%PACKIDX%" == "0" goto CleanCheck
+if "%PACKFILE%" == "" goto CleanLoop
+:CleanCheck
+if "%PACKFILE%" == "" goto CleanDone
+vmath %PACKIDX% + 1 | set /p PACKIDX=
+if exist %DOSDIR%\%PACKFILE%\NUL deltree /y %DOSDIR%\%PACKFILE%\ >NUL
+if exist %DOSDIR%\%PACKFILE%\NUL rmdir %DOSDIR%\%PACKFILE% >NUL
+if exist %DOSDIR%\%PACKFILE% del %DOSDIR%\%PACKFILE% >NUL
+goto CleanLoop
+:CleanDone
+set PACKFILE=
+set PACKIDX=
+vecho
+
+goto Done
 
 :FormatDisk
 vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
@@ -106,14 +158,12 @@ vgotoxy left
 vecho /fGray /e /p /p
 vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
 if errorlevel 1 goto Error
-rem sys a:
+%RAMDRV%
+cd \
+sys a:
 if errorlevel 1 goto Error
+vfdutil /c /p %0
 goto Done
-
-:BadLayout
-echo ERROR: Cannot locate needed files. Please download the FDI sources
-echo again from http://github.com/shidel/FDI.
-goto CleanUp
 
 :MissingV8
 echo ERROR: V8Power Tools are missing.
@@ -123,18 +173,23 @@ echo Then extract them making sure the V8PT binaries are located in the
 echo '%V8%' directory. Then run this batch file again.
 goto CleanUp
 
-:Done
-vecho /p /fLightGreen "Process has completed." /e /fGray /bBlack
-verrlvl 0
-goto CleanUp
+:MissingSHSURDRV
+vecho /fLightRed "Unable to create Ramdrive." /fGray
+goto Error
+
+:MissingFDINST
+vecho /fLightRed "Unable to install packages." /fGray
+SHSURDRV /QQ /U
+goto Error
+
+:BadLayout
+vecho /fLightRed "Cannot locate needed files. Please download the FDI sources again from"
+vecho /fLightCyan http://github.com/shidel/FDI /fGray.
+goto Error
 
 :NoCDROM
 vgotoxy sol
 vecho /fLightRed "Unable to locate package CD-ROM media." /e /fGray
-goto Error
-
-:NoRamDriver
-vecho /fLightRed "Unable to create Ramdrive." /fGray
 goto Error
 
 :NoRamDrive
@@ -142,9 +197,22 @@ vecho /fLightRed "Unable to create Ramdrive." /fGray
 SHSURDRV /QQ /U
 goto Error
 
+:ErrorFDINST
+vecho ', ' /fLightRed " ERROR" /fGray
+goto Error
+
+:SysError
+popd
+
 :Error
-verrlvl 1
 vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
+verrlvl 1
+goto Cleanup
+
+:Done
+vecho /p /fLightGreen "Process has completed." /e /fGray /bBlack
+verrlvl 0
+goto CleanUp
 
 :CleanUp
 set OS_NAME=
@@ -154,6 +222,10 @@ set VOLUME=
 set RAMDRV=
 set RAMSIZE=
 set CDROM=
+set KERNEL=
+set PACKFILE=
+set PACKIDX=
+
 SET FDNPKG.CFG=%OLDFDNPKG.CFG%
 SET DOSDIR=%OLDDOSDIR%
 SET PATH=%OLDPATH%
