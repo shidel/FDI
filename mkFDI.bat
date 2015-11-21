@@ -126,8 +126,7 @@ goto PkgLoop
 :PkgDone
 set PACKFILE=
 set PACKIDX=
-vecho /p
-
+vecho
 
 vecho "Removing unnecessary files and folders."
 
