@@ -1,186 +1,25 @@
 @echo off
 
-call INSFILES\STAGE000.BAT VersionOnly
+REM Configure Variables and stuff.
+call FDSETUP\SETUP\STAGE000.BAT VersionOnly
 
-REM Install Disk Options.
-set VOLUMEID=FD-SETUP
-
-REM Source file input settings.
-set IDRV=C:
-set IDOS=%IDRV%\FDOS
-set IINS=INSFILES
-set IV8P=V8Power
-
-REM Output to file system tree structure.
-set ODRV=A:
-set ODIR=%ODRV%
-set ODOS=%ODIR%\FDSetup
-set OV8P=%ODOS%\V8Power
+set FLOPPY=A:
+set VOLUME=FD-SETUP
+set V8PATH=V8Power
 
 echo FreeDOS install creator.
 echo.
 
-if not exist %IV8P%\VERRLVL.COM goto MissingV8
-V8Power\verrlvl 0
+if not exist %V8PATH%\VERRLVL.COM goto MissingV8
+%V8PATH%\verrlvl 0
 
 :FormatDisk
-%IDRV%
 pause Press a key to Format disk in drive %ODRV%
 echo.
-V8Power\vstr /c13/c78/c13 | format %ODRV% /V:%VOLUMEID% /U
+%V8PATH%\vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
 if errorlevel 1 goto Error
-sys a:
+rem sys a:
 if errorlevel 1 goto Error
-
-:MakeTree
-if not exist %ODOS%\NUL mkdir %ODOS%
-if not exist %ODOS%\BIN\NUL mkdir %ODOS%\BIN
-if not exist %ODOS%\CPI\NUL mkdir %ODOS%\CPI
-if not exist %ODOS%\NLS\NUL mkdir %ODOS%\NLS
-if not exist %ODOS%\HELP\NUL mkdir %ODOS%\HELP
-if not exist %ODOS%\TEMP\NUL mkdir %ODOS%\TEMP
-if not exist %ODOS%\SETUP\NUL mkdir %ODOS%\SETUP
-if not exist %OV8P%\NUL mkdir %OV8P%
-if not "%1" == "" goto VeryEnd
-
-goto CopyBIN
-
-:CopyList
-set COUNTER=0
-:CopyLoop
-type %IINS%\%CPLST% | V8Power\vstr /L %COUNTER% | set /p CPFILE=
-if "%CPFILE%" == "" goto %CPRET%
-copy %CPSRC%\%CPFILE% %CPDST%
-if errorlevel 1 goto ErrorCopy
-if not exist %CPDST%\%CPFILE% goto ErrorCopy
-V8power\vmath %COUNTER% + 1 | set /p COUNTER=
-goto CopyLoop
-
-:CopyBIN
-echo.
-echo Copying basic FreeDOS binaries.
-set CPLST=MKBIN.lst
-set CPSRC=%IDOS%\BIN
-set CPDST=%ODOS%\BIN
-set CPRET=CopyMore
-goto CopyList
-
-:CopyMore
-echo.
-echo Copying additional binaries.
-set CPLST=MKMORE.lst
-set CPSRC=MORE
-set CPDST=%ODOS%\BIN
-set CPRET=CopyHelp
-goto CopyList
-
-:CopyHelp
-echo.
-echo Copying some FreeDOS Help files.
-set CPLST=MKHELP.lst
-set CPSRC=%IDOS%\HELP
-set CPDST=%ODOS%\HELP
-set CPRET=CopyV8
-goto CopyList
-
-:CopyV8
-echo.
-echo Copying required V8Power Tools.
-set CPLST=MKV8P.lst
-set CPSRC=%IV8P%
-set CPDST=%OV8P%
-set CPRET=CopySETUP
-goto CopyList
-
-:CopySETUP
-echo.
-echo Copying required Setup Files.
-set CPLST=MKSETUP.lst
-set CPSRC=%IINS%
-set CPDST=%ODOS%\SETUP
-set CPRET=CopyLang
-goto CopyList
-
-:CopyLang
-echo.
-echo Copying language files.
-xcopy /E %IINS%\LANGUAGE\*.* %ODOS%\SETUP\
-if errorlevel 1 goto ErrorCopy
-
-:CopyCFG
-echo.
-echo Copying config files.
-
-set CPFILE=AUTOEXEC.BAT
-copy %IINS%\%CPFILE% %ODIR%\
-if errorlevel 1 goto ErrorCopy
-if not exist %ODIR%\%CPFILE% goto ErrorCopy
-
-set CPFILE=FDCONFIG.SYS
-copy %IINS%\%CPFILE% %ODIR%\
-if errorlevel 1 goto ErrorCopy
-if not exist %ODIR%\%CPFILE% goto ErrorCopy
-
-:CopyINS
-echo.
-echo Copying setup installer files.
-set CPFILE=SETUP.BAT
-copy %IINS%\%CPFILE% %ODIR%\
-if errorlevel 1 goto ErrorCopy
-if not exist %ODIR%\%CPFILE% goto ErrorCopy
-
-:CopyFDLOGO
-set CPFILE=FDSPLASH.BAT
-if not exist %IINS%\%CPFILE% goto CopyFDERROR
-echo.
-echo Copying custom splash file.
-copy %IINS%\%CPFILE% %ODOS%\SETUP
-if errorlevel 1 goto ErrorCopy
-if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
-
-:CopyFDERROR
-set CPFILE=FDERROR.BAT
-if not exist %IINS%\%CPFILE% goto CopyFDTHANK
-echo.
-echo Copying custom error file.
-copy %IINS%\%CPFILE% %ODOS%\SETUP
-if errorlevel 1 goto ErrorCopy
-if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
-
-:CopyFDTHANK
-set CPFILE=FDTHANK.BAT
-if not exist %IINS%\%CPFILE% goto Done
-echo.
-echo Copying custom thank you file.
-copy %IINS%\%CPFILE% %ODOS%\SETUP
-if errorlevel 1 goto ErrorCopy
-if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
-
-:CopyFDCHECK
-set CPFILE=FDCHECK.BAT
-if not exist %IINS%\%CPFILE% goto Done
-echo.
-echo Copying custom requirements checking file.
-copy %IINS%\%CPFILE% %ODOS%\SETUP
-if errorlevel 1 goto ErrorCopy
-if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
-
-:CopyFDNOTICE
-set CPFILE=FDNOTICE.BAT
-if not exist %IINS%\%CPFILE% goto Done
-echo.
-echo Copying custom already installed notice file.
-copy %IINS%\%CPFILE% %ODOS%\SETUP
-if errorlevel 1 goto ErrorCopy
-if not exist %ODOS%\SETUP\%CPFILE% goto ErrorCopy
-
-:VersionID
-echo.
-echo Create the installer version ID file.
-echo PLATFORM=%OS_NAME%>%ODOS%\SETUP\VERSION.FDI
-if errorlevel 1 goto Failed
-echo VERSION=%OS_VERSION%>>%ODOS%\SETUP\VERSION.FDI
-if errorlevel 1 goto Failed
 
 goto Done
 
@@ -189,35 +28,21 @@ echo ERROR: V8Power Tools are missing.
 echo.
 echo Download the latest version from 'http://up.lod.bz/V8Power'.
 echo Then extract them making sure the V8PT binaries are located in the
-echo '%IV8P%' directory.
-echo Then run this batch file again.
-goto Error
-
-:ErrorCopy
-echo.
-echo ERROR: Copying '%CPFILE%'.
-
-:Error
-echo.
-echo Aborted.
+echo '%V8%' directory. Then run this batch file again.
 goto VeryEnd
 
 :Done
-echo.
-echo Finished.
+%V8PATH%\vecho /p /bBlue /fYellow " Process has completed." /e /fGray /bBlack
+%V8PATH%\verrlvl 0
+goto VeryEnd
+
+:Error
+%V8PATH%\verrlvl 1
+%V8PATH%\vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 
 :VeryEnd
-set IDRV=
-set IDOS=
-set IINS=
-set IV8P=
-set ODRV=
-set ODIR=
-set ODOS=
-set OV8P=
-set COUNTER=
-set CPFILE=
-set CPLST=
-set CPSRC=
-set CPDST=
-set CPRET=
+set OS_NAME=
+set OS_VERSION=
+set FLOPPY=
+set VOLUME=
+set V8PATH=
