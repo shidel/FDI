@@ -38,6 +38,7 @@ echo.
 if not exist V8POWER\VERRLVL.COM goto MissingV8
 V8POWER\verrlvl 0
 
+V8POWER\vfdutil /c /p %0
 V8POWER\vfdutil /p %0 | set /p TEMPPATH=
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 
@@ -167,10 +168,12 @@ sys a:
 if errorlevel 1 goto SysError
 popd
 
-xcopy /E %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\
-xcopy FDISETUP\*.* %FLOPPY%\
-xcopy /E FDISETUP\SETUP\*.* %FLOPPY%\FDSETUP\SETUP\
-xcopy /E LANGUAGE\*.* %FLOPPY%\FDSETUP\SETUP\
+xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy FDISETUP\*.* %RAMDRV%\ >NUL
+
+xcopy /E %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
+xcopy FDISETUP\*.* %FLOPPY%\ >NUL
 
 goto Done
 
@@ -193,7 +196,7 @@ goto Error
 
 :BadLayout
 vecho /fLightRed "Cannot locate needed files. Please download the FDI sources again from"
-vecho /fLightCyan http://github.com/shidel/FDI /fGray.
+vecho /fLightCyan "http://github.com/shidel/FDI" /fGray .
 goto Error
 
 :NoCDROM
