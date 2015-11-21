@@ -17,8 +17,12 @@ SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
 SET OLDPATH=%PATH%
 
-REM Configure Variables and stuff.
+if not exist FDISETUP\SETUP\NUL goto BadLayout
+if not exist FDIBUILD\FDIBUILD.CFG goto BadLayout
+if not exist FDIBUILD\PACKAGES.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
+
+REM Configure Variables and stuff.
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 
 set FLOPPY=A:
