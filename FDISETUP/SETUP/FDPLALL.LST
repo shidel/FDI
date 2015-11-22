@@ -63,6 +63,7 @@ util\memtest
 util\4dos
 util\bootfix
 util\shsufdrv
+util\cwsdpmi
 util\grep
 archiver\zip
 archiver\unzip

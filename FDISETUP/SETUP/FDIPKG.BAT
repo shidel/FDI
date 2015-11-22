@@ -2,20 +2,20 @@
 
 :BinPackage
 if not exist %FMEDIA%\%1.zip goto Failed
-rem unzip -qq -o %FMEDIA%\%1.zip >NUL
-if exist %FINSP%\PACKAGES\%PACKFILE%.ZIP goto OverrideA
-if exist %FINSP%\..\PACKAGES\%PACKFILE%.ZIP goto OverrideB
-fdinst install %FMEDIA%\%1.zip >NUL
+vfdutil /n %PACKFILE% | set /p TEMPFILE=
+if exist %FINSP%\PACKAGES\%TEMPFILE%.ZIP goto OverrideA
+if exist %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP goto OverrideB
+fdinst install %FMEDIA%\%1.zip >>%FDRIVE%\FDSETUP.LOG
 :CheckSuccess
 if errorlevel 1 goto Failed
 goto Success
 
 :OverrideA
-fdinst install %FINSP%\PACKAGES\%PACKFILE%.ZIP >NUL
+fdinst install %FINSP%\PACKAGES\%TEMPFILE%.ZIP >>%FDRIVE%\FDSETUP.LOG
 goto CheckSuccess
 
 :OverrideB
-fdinst install %FINSP%\..\PACKAGES\%PACKFILE%.ZIP >NUL
+fdinst install %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP >>%FDRIVE%\FDSETUP.LOG
 goto CheckSuccess
 
 :Failed
@@ -27,3 +27,4 @@ verrlvl 0
 goto Done
 
 :Done
+set TEMPFILE=

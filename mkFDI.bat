@@ -12,6 +12,7 @@ set CDROM=%2:
 goto EndOfFile
 
 :Start
+echo .>MKFDI.LOG
 pushd
 SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
@@ -123,11 +124,17 @@ if "%PACKFILE%" == "" goto PkgLoop
 :PkgCheck
 if "%PACKFILE%" == "" goto PkgDone
 vmath %PACKIDX% + 1 | set /p PACKIDX=
+vfdutil /n %PACKFILE% | set /p TEMPFILE=
+if exist PACKAGES\%TEMPFILE%.ZIP set OVERRIDE=PACKAGES\%TEMPFILE%.ZIP
 set PACKFILE=%CDROM%\%PACKFILE%.zip
-if exist ..\PACKAGES\%PACKFILE%.ZIP set PACKFILE=..\PACKAGES\%PACKFILE%.ZIP
-vecho /n "%PACKFILE%"
+if not "%OVERRIDE%" == ""  set PACKFILE=%OVERRIDE%
+vecho /n/r4/c32 "%PACKFILE%"
+if not "%OVERRIDE%" == "" vecho /n ', ' /fLightRed "OVERRIDE" /fGray
+set OVERRIDE=
+set TEMPFILE=
 verrlvl 2
-fdinst install %PACKFILE% >NUL
+fdinst install %PACKFILE% >>MKFDI.LOG
+
 if errorlevel 2 goto MissingFDINST
 if errorlevel 1 goto ErrorFDINST
 vecho /n ', ' /fLightGreen "OK" /fGray
@@ -148,7 +155,7 @@ copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
 copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
 
-vecho /n "Adding instller files to Ramdrive"
+vecho /n "Adding installer files to Ramdrive"
 xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy FDISETUP\*.* %RAMDRV%\ >NUL
@@ -156,6 +163,12 @@ echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho ', ' /fLightGreen "OK" /fGray /p
 
+if not exist PACKAGES\NUL goto NoOverrides
+vecho /n "Adding package overrides to Ramdrive"
+xcopy /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
+vecho ', ' /fLightGreen "OK" /fGray /p
+
+:NoOverrides
 vecho /n "Removing unnecessary files and folders"
 set PACKIDX=0
 :CleanLoop
