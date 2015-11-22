@@ -16,6 +16,7 @@ util\fdnpkg
 archiver\zip
 util\uide
 base\himemx
+base\jemm
 base\edit
 base\mem
 base\more
