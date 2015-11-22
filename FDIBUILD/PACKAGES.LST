@@ -3,6 +3,7 @@ base\kernel
 base\deltree
 base\xcopy
 base\devload
+base\attrib
 base\shsucdx
 util\shsufdrv
 base\fdisk
@@ -13,7 +14,6 @@ base\lbacache
 util\grep
 util\fdnpkg
 archiver\zip
-base\attrib
 util\uide
 base\himemx
 base\edit

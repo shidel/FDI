@@ -20,9 +20,9 @@ vdelay %FDEL%
 attrib -R -S -H %FTARGET% >NUL
 
 dir /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
+
 if "%_BT%" == "0" goto NoFileAttrib
 attrib -R -S -H /D %FTARGET%\ >NUL
-
 :NoFileAttrib
 
 if "%_BT%" == "0" goto NoFileDump

@@ -123,8 +123,10 @@ if "%PACKFILE%" == "" goto PkgLoop
 :PkgCheck
 if "%PACKFILE%" == "" goto PkgDone
 vmath %PACKIDX% + 1 | set /p PACKIDX=
-vecho /n "%PACKIDX% - %PACKFILE%"
+PACKAGES\%PACKFILE%.ZIP | set /p OVERRIDE=
 set PACKFILE=%CDROM%\%PACKFILE%.zip
+if exist ..\PACKAGES\%PACKFILE%.ZIP set PACKFILE=..\PACKAGES\%PACKFILE%.ZIP
+vecho /n "%PACKFILE"
 verrlvl 2
 fdinst install %PACKFILE% >NUL
 if errorlevel 2 goto MissingFDINST
