@@ -17,14 +17,6 @@ SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
 SET OLDPATH=%PATH%
 
-if not exist FDISETUP\SETUP\NUL goto BadLayout
-if not exist FDIBUILD\FDIBUILD.CFG goto BadLayout
-if not exist FDIBUILD\PACKAGES.LST goto BadLayout
-if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
-
-REM Configure Variables and stuff.
-call FDISETUP\SETUP\STAGE000.BAT VersionOnly
-
 set FLOPPY=A:
 set VOLUME=FD-SETUP
 set RAMDRV=
@@ -35,10 +27,24 @@ set KERNEL=KERNL386.SYS
 echo FreeDOS install disk creator.
 echo.
 
-if not exist V8POWER\VERRLVL.COM goto MissingV8
-V8POWER\verrlvl 0
+if exist V8POWER\VERRLVL.COM goto V8TestSkip
+if errorlevel 255 goto ClearError
+verrlvl 255
+if errorlevel 255 goto V8Found
+:ClearError
+verrlvl 0
+if errorlevel 1 goto V8Missing
+:V8Found
+vfdutil /c /p %0
+:V8TestSkip
+if not exist FDISETUP\SETUP\NUL goto BadLayout
+if not exist FDIBUILD\FDIBUILD.CFG goto BadLayout
+if not exist FDIBUILD\PACKAGES.LST goto BadLayout
+if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
 
-V8POWER\vfdutil /c /p %0
+REM Configure Variables and stuff.
+call FDISETUP\SETUP\STAGE000.BAT VersionOnly
+
 V8POWER\vfdutil /p %0 | set /p TEMPPATH=
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 
@@ -95,19 +101,20 @@ set DOSDIR=%RAMDRV%\FDSETUP
 set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
-vecho "Copying V8Power Tools to Ramdrive."
+vecho /n "Copying V8Power Tools to Ramdrive"
 xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
-vecho
-vfdutil /d %OLDDOSDIR% | vecho "Transferring system files from " /fYellow /i /fGrey " to Ramdrive." /p
+vecho ', ' /fLightGreen "OK" /fGray /p
+
+vfdutil /d %OLDDOSDIR% | vecho /n "Transferring system files from " /fYellow /i /fGrey " to Ramdrive"
 pushd
 vfdutil /c /p %OLDDOSDIR%
 cd \
 sys %RAMDRV% >NUL
 if errorlevel 1 goto SysError
 popd
+vecho ', ' /fLightGreen "OK" /fGray /p
 
 vecho "Installing packages to " /fYellow %RAMDRV% /fGray
-
 set PACKIDX=0
 :PkgLoop
 type FDIBUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
@@ -122,20 +129,33 @@ verrlvl 2
 fdinst install %PACKFILE% >NUL
 if errorlevel 2 goto MissingFDINST
 if errorlevel 1 goto ErrorFDINST
-vecho ', ' /fLightGreen "OK" /fGray
+vecho /n ', ' /fLightGreen "OK" /fGray
+if exist %DOSDIR%\APPINFO\NUL deltree /Y %DOSDIR%\APPINFO >NUL
+if exist %DOSDIR%\PACKAGES\NUL deltree /Y %DOSDIR%\PACKAGES >NUL
+if exist %DOSDIR%\DOC\NUL deltree /Y %DOSDIR%\DOC >NUL
+if exist %DOSDIR%\HELP\NUL deltree /Y %DOSDIR%\HELP >NUL
+if exist %DOSDIR%\NLS\NUL deltree /Y %DOSDIR%\NLS >NUL
+vecho ', ' /fLightCyan "Cleaned" /fGray
 goto PkgLoop
 :PkgDone
 set PACKFILE=
 set PACKIDX=
-vecho
+vecho  /fLightGreen "Done" /fGray /p
 
-vecho "Replacing system files on Ramdrive"
-copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM
-copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS
+vecho /n "Replacing system files on Ramdrive"
+copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
+copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
+vecho ', ' /fLightGreen "OK" /fGray /p
 
-vecho
-vecho "Removing unnecessary files and folders."
+vecho /n "Adding instller files to Ramdrive"
+xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy FDISETUP\*.* %RAMDRV%\ >NUL
+echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
+echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
+vecho ', ' /fLightGreen "OK" /fGray /p
 
+vecho /n "Removing unnecessary files and folders"
 set PACKIDX=0
 :CleanLoop
 type FDIBUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
@@ -144,14 +164,14 @@ if "%PACKFILE%" == "" goto CleanLoop
 :CleanCheck
 if "%PACKFILE%" == "" goto CleanDone
 vmath %PACKIDX% + 1 | set /p PACKIDX=
-if exist %DOSDIR%\%PACKFILE%\NUL deltree /y %DOSDIR%\%PACKFILE%\ >NUL
+if exist %DOSDIR%\%PACKFILE%\NUL deltree /Y %DOSDIR%\%PACKFILE%\ >NUL
 if exist %DOSDIR%\%PACKFILE%\NUL rmdir %DOSDIR%\%PACKFILE% >NUL
 if exist %DOSDIR%\%PACKFILE% del %DOSDIR%\%PACKFILE% >NUL
 goto CleanLoop
 :CleanDone
 set PACKFILE=
 set PACKIDX=
-vecho
+vecho ', ' /fLightGreen "OK" /fGray /p
 
 :FormatDisk
 vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
@@ -167,14 +187,12 @@ cd \
 sys a:
 if errorlevel 1 goto SysError
 popd
+vecho
 
-xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
-xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
-xcopy FDISETUP\*.* %RAMDRV%\ >NUL
-
+vecho "Copying files to floppy disk " /fYellow %FLOPPY% /fGray /n
 xcopy /E %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 xcopy FDISETUP\*.* %FLOPPY%\ >NUL
-
+vecho ', ' /fLightGreen "OK" /fGray
 goto Done
 
 :MissingV8
@@ -182,7 +200,7 @@ echo ERROR: V8Power Tools are missing.
 echo.
 echo Download the latest version from 'http://up.lod.bz/V8Power'.
 echo Then extract them making sure the V8PT binaries are located in the
-echo '%V8%' directory. Then run this batch file again.
+echo 'V8POWER' subdirectory. Then run this batch file again.
 goto CleanUp
 
 :MissingSHSURDRV
