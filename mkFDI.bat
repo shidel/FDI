@@ -163,12 +163,19 @@ echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho ', ' /fLightGreen "OK" /fGray /p
 
-if not exist PACKAGES\NUL goto NoOverrides
+if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
 xcopy /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
+:NoPackOverrides
 
-:NoOverrides
+if not exist BINARIES\NUL goto NoBinOverrides
+vecho /n "Adding binary overrides to Ramdrive"
+xcopy /E /Y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
+vecho ', ' /fLightGreen "OK" /fGray /p
+:NoBinOverrides
+
+
 vecho /n "Removing unnecessary files and folders"
 set PACKIDX=0
 :CleanLoop

@@ -12,37 +12,51 @@ utilities.
     LICENSE     - GNU GPL v2.
     mkFDI.bat   - Create the Floppy installation media.
 
-### Build files in INSFILES\
+### Build files and directories
 
-    MKBIN.LST    List of files copied from C:\FDOS\BIN\ to A:\FDSETUP\BIN\
-    MKHELP.LST   List of files copied from C:\FDOS\HELP\ to A:\FDSETUP\HELP\
-    MKV8P.LST    List of files copied from V8POWER\ to A:\FDSETUP\V8POWER\
-    MKSETUP.LST  List of files copied from INSFILES\ to A:\FDSETUP\SETUP\
-    AUTOEXEC.BAT Copied as-is to A:\
-    FDCONFIG.SYS Copied as-is to A:\
-    SETUP.BAT    Copied as-is to A:\
+    FDIBUILD\FDIBUILD.CFG - Configuration file for FDINST.
 
-    FDPLBASE.LST  Default base binary package list.
-    FDPLALL.LST   All binary package list.
+    FDIBUILD\PACKAGES.LST - List of packages to use for install disk.
+
+    FDIBUILD\CLEANUP.LST - Files/directories to be removed after all packages
+    have been added to the install disk.
+
+    FDISETUP\ - Contains installer files.
+
+    LANGUAGE\ - Contains language translation directories and files for the
+    installer.
+
+    V8POWER\ - (Not included, but is required). A copy of the V8Power Tools
+    binaries. Available from http://up.lod.bz/V8Power
+
+    PACKAGES\ - If present, mkFDI will use these packages over any packages
+    on the package repository disc. They will also be copied to the install
+    disk and have priority over packages that will be on the install media.
+
+    BINARIES\ - If present, mkFDI will copy any files to the install disks
+    copy of FreeDOS binaries and will overwrite any conflicting files.
+
 
 ### Creating the install media
 
     It basically has the same requirements as the installer. It just requires
     less free environment space. I've been using /E:1024 without issue.
 
-    Download the latest [V8Power Tools](http://up.lod.bz/V8Power/latest).
-    Place them in a V8POWER subdirectory.
+    Download the latest V8Power Tools from http://up.lod.bz/V8Power/latest
+    and place them in a V8POWER subdirectory.
 
-    Download the latest [FDNPKG](https://sourceforge.net/projects/fdnpkg/)
-    Place its binaries in a MORE subdirectory.
+    Create a FreeDOS package repository disc. One can be downloaded from
+    http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/
 
+    FDINST from the FDNPKG package must be installed.
+    SHSUFDRV package must also be installed.
+    A memory manager the can be used to allocate a 5Mb ram-disk. (like JEMM)
+
+    Stick the CD in your CD drive.
     Stick a floppy to destroy in drive A:
-
     run mkFDI.BAT
 
-    It will use the binaries (like xcopy, format, sys) that are under your
-    C:\FDOS directory for the installer. So, you should run mkFDI from the
-    latest version of FreeDOS that you wish to create an install disk.
+    (Warning: all previous ramdisks will be shutdown!!)
 
 ### Installer requirements.
 
