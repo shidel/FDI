@@ -1,10 +1,5 @@
 @echo off
 
-REM This should be improved to generate fresh config files based on all
-REM options. Not just pick this or that config file. Requires some additional
-REM tools abe created for V8Power Tools first. At present, %FEXT% is just
-REM set to DEF in STAGE000.
-
 if "%OCFG%" == "y" goto DoOption
 goto AfterOption
 
