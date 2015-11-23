@@ -69,7 +69,7 @@ if not exist C:\AUTOEXEC.BAT goto NoAuto
 grep -i -v "REM " C:\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
 
 :NoAuto
-type %TEMP%\FDIMPORT.000|vstr /n /s " DOSDIR=" " FTARGET="|vstr /n /s "  " " ">%TEMP%\FDIMPORT.BAT
+type %TEMP%\FDIMPORT.000|vstr /u/n/s " DOSDIR=" " FTARGET="|vstr /n /s "  " " ">%TEMP%\FDIMPORT.BAT
 
 call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
