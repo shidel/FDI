@@ -47,7 +47,7 @@ verrlvl 0
 
 set _TI=0
 :LoopingList
-dir /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
+dir /on /a /b /p- %_TSA%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto FinishedList
 
 vfdutil /n %_TA% | set /p _TL=

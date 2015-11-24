@@ -211,7 +211,7 @@ popd
 vecho
 
 vecho "Copying files to floppy disk " /fYellow %FLOPPY% /fGray /n
-xcopy /E %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
+xcopy /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 xcopy FDISETUP\*.* %FLOPPY%\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray
 goto Done

@@ -66,7 +66,7 @@ vprogres /f %TFP% 10
 
 set _BN=1
 if not exist %FTARGET%\NUL goto CopyBackupRun
-dir /A /B /P- %FTARGET%\*.*>>%_AL%
+dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :CopyBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.
@@ -96,7 +96,7 @@ goto NormalFile
 :FDOSSubDir
 mkdir %_AF%\%_BF%
 if errorlevel 1 goto CopyBackupFailed
-dir /A /B /P- %FTARGET%\%_BF%\*.* | vstr /l total | set /p _BT=
+dir /ON /A /B /P- %FTARGET%\%_BF%\*.* | vstr /l total | set /p _BT=
 verrlvl 0
 if "%_BT%" == "0" goto PostCopy
 xcopy /y /q /e /r %FTARGET%\%_BF%\*.* %_AF%\%_BF%\ >NUL
@@ -149,7 +149,7 @@ vprogres /f %TFP% 10
 
 set _BN=1
 if not exist %FTARGET%\NUL goto ZipBackupRun
-dir /A /B /P- %FTARGET%\*.*>>%_AL%
+dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :ZipBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.

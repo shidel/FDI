@@ -7,11 +7,6 @@ if "%OCLEAN%" == "y" goto DoOption
 goto AfterOption
 
 :DoOption
-pushd
-vfdutil /c/p %FTARGET%
-cd \
-popd
-
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
 vecho /n /t %FLANG% RMOS %TFH% %FTARGET% %TFF%
@@ -19,7 +14,7 @@ vdelay %FDEL%
 
 attrib -R -S -H %FTARGET% >NUL
 
-dir /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
+dir /ON /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
 
 if "%_BT%" == "0" goto NoFileAttrib
 attrib -R -S -H /D %FTARGET%\ >NUL

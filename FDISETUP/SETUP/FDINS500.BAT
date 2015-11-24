@@ -20,7 +20,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
 vecho /n /t %FLANG% CLEAN
 vdelay %FDEL%
 
-rem if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
+if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
 if exist %_C%\AUTOEXEC.BAT del %_C%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 

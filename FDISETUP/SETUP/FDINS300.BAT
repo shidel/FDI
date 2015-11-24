@@ -74,14 +74,17 @@ goto AbortPkg
 
 :PkgDone
 if not "%OCLEAN%" == "y" goto PkgNoSave
-if not exist %TEMP%\SAVED\NUL mkdir %TEMP%\SAVED
-if not exist %TEMP%\SAVED\APPINFO\NUL mkdir %TEMP%\SAVED\APPINFO >NUL
-if not exist %TEMP%\SAVED\PACKAGES\NUL mkdir %TEMP%\SAVED\PACKAGES >NUL
-xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
+if not exist %FTARGET%\PACKAGES\NUL goto PkgNoSave
+
+rem xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
 xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
-verrlvl 0
+echo %FTARGET%\ | vstr /n /s '\' '\\' | set /p _PA=
+
+grep -h -i %_PA% %FTARGET%\PACKAGES\*.LST> %FDRIVE%\GREP.LOG
 
 :PkgNoSave
+vdelay %FDEL%
+
 set _PA=
 set _PI=
 set _PD=

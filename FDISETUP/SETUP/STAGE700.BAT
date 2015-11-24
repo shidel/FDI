@@ -39,11 +39,11 @@ set _TI=0
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 REM So, make sure it is ready before moving on.
 :Sticky
-dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
+dir /on /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto Sticky
 
 :Looping
-dir /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
+dir /on /a /b /p- FDASK*.BAT | vstr /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto Finished
 
 vfdutil /n %_TA% | set /p _TL=
