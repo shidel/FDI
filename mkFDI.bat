@@ -270,12 +270,12 @@ goto Cleanup
 dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
 type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
 set PACKIDX=0
-vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p
+vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p /p
 vgotoxy up up
 vline
 vprogres /fLightGreen 0
 vgotoxy up up
-vecho /p /p
+vecho /p
 
 :PTestLoop
 type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
