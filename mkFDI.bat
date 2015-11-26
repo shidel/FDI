@@ -102,9 +102,13 @@ set DOSDIR=%RAMDRV%\FDSETUP
 set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
+if "%1" == "test" goto PackageTest
+
 vecho /n "Copying V8Power Tools to Ramdrive"
 xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
+
+if "%1" == "update" goto UpdateOnlyA
 
 vfdutil /d %OLDDOSDIR% | vecho /n "Transferring system files from " /fYellow /i /fGrey " to Ramdrive"
 pushd
@@ -155,6 +159,7 @@ copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
 copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
 
+:UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
 xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
@@ -175,7 +180,6 @@ xcopy /E /Y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
 :NoBinOverrides
 
-
 vecho /n "Removing unnecessary files and folders"
 set PACKIDX=0
 :CleanLoop
@@ -194,6 +198,7 @@ set PACKFILE=
 set PACKIDX=
 vecho ', ' /fLightGreen "OK" /fGray /p
 
+if "%1" == "update" goto UpdateOnlyB
 :FormatDisk
 vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
 vpause /fCyan /t 15 CTRL-C
@@ -210,6 +215,7 @@ if errorlevel 1 goto SysError
 popd
 vecho
 
+:UpdateOnlyB
 vecho "Copying files to floppy disk " /fYellow %FLOPPY% /fGray /n
 xcopy /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 xcopy FDISETUP\*.* %FLOPPY%\ >NUL
@@ -260,8 +266,43 @@ vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 verrlvl 1
 goto Cleanup
 
+:PackageTest
+dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
+type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
+set PACKIDX=0
+vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p
+vgotoxy up up
+vline
+vprogres /fLightGreen 0
+vgotoxy up up
+vecho /p /p
+
+:PTestLoop
+type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+vecho /e /n /fGray %PACKFILE%
+fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
+if errorlevel 1 goto PTestError
+vecho ', ' /fLightGreen "OK" /fGray /n
+:PTestNext
+vfdutil /n %PACKFILE% | set /p PACKFILE=
+fdinst remove %PACKFILE% >NUL
+vmath %PACKIDX% + 1 | set /p PACKIDX=
+vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
+vgotoxy sol down down
+vprogres /fLightGreen %PACKPER%
+vgotoxy up up sol
+goto PTestLoop
+:PTestError
+vecho ', ' /fLightRed "ERROR" /fGray
+goto PTestNext
+
+:PTestDone
+vecho /p /fLightGreen "Testing complete." /e /fGray /bBlack
+verrlvl 0
+goto CleanUp
+
 :Done
-vecho /p /fLightGreen "Process has completed." /e /fGray /bBlack
+vecho /p /fLightGreen "Creation complete." /e /fGray /bBlack
 verrlvl 0
 goto CleanUp
 
@@ -276,6 +317,8 @@ set CDROM=
 set KERNEL=
 set PACKFILE=
 set PACKIDX=
+set PACKCNT=
+set PACKPER=
 
 SET FDNPKG.CFG=%OLDFDNPKG.CFG%
 SET DOSDIR=%OLDDOSDIR%
