@@ -302,13 +302,9 @@ fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
-if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
-if "%PACKNAME%" == "HELP" goto PTestNoMulti
-if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
-if "%PACKNAME%" == "NASM" goto PTestNoMulti
-if "%PACKNAME%" == "FMINES" goto PTestNoMulti
-if "%PACKNAME%" == "KRAPTOR" goto PTestNoMulti
-
+set PBACK=PMULTI
+goto CheckMulti
+:PMULTI
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestErrorRemove
@@ -325,9 +321,13 @@ grep -i "error while" %RAMDRV%\FDINST.LOG | vstr /s "Error while " "" >>%ELOG%
 vstr /r 80 /c 0x2d >>%ELOG%
 vmath %PACKRETRY% + 1 | set /p PACKRETRY=
 if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
+set PBACK=PDoRetry
+goto CheckMulti
+:PDoRetry
 vecho /p /fLightCyan "Retry" /fGray ", " /n
 deltree /y %DOSDIR%\ >NUL
 goto PTestRetry
+
 :PTestOK
 vecho /fLightGreen " OK" /fGray /n
 if "%PACKRETRY%" == "0" goto PTestNext
@@ -363,7 +363,21 @@ vecho /fYellow " Only one test" /fGray ", " /fLightGreen "OK"
 echo System crashes, skipping multitest with %PACKFILE% >>%ELOG%
 goto PTestNext
 
+:CheckMulti
+if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
+if "%PACKNAME%" == "HELP" goto PTestNoMulti
+if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
+if "%PACKNAME%" == "NASM" goto PTestNoMulti
+if "%PACKNAME%" == "FMINES" goto PTestNoMulti
+if "%PACKNAME%" == "KRAPTOR" goto PTestNoMulti
+if "%PACKNAME%" == "MIRMAGIC" goto PTestNoMulti
+if "%PACKNAME%" == "VERTIGO" goto PTestNoMulti
+if "%PACKNAME%" == "DILLO" goto PTestNoMulti
+if "%PACKNAME%" == "MBEDIT" goto PTestNoMulti
+goto %PBACK%
+
 :PTestDone
+set PBACK=
 vgotoxy eop /x1 up
 vecho /g /e /p /e
 vgotoxy /l eot
