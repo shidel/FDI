@@ -301,6 +301,7 @@ if not "%PACKERR%" == "0" goto PTestCatch
 if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 if "%PACKNAME%" == "HELP" goto PTestNoMulti
 if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
+if "%PACKNAME%" == "NASM" goto PTestNoMulti
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestErrorRemove
