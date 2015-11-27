@@ -161,9 +161,9 @@ vecho ', ' /fLightGreen "OK" /fGray /p
 
 :UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
-xcopy /E FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
-xcopy /E LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy FDISETUP\*.* %RAMDRV%\ >NUL
+xcopy /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho ', ' /fLightGreen "OK" /fGray /p
@@ -282,6 +282,7 @@ if exist %RAMDRV%\ERROR.LOG del %RAMDRV%\ERROR.LOG
 :PTestLoop
 type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
 if "%PACKFILE%" == "" goto PTestDone
+rem if "%PACKIDX%" == "25" goto PTestDone
 vecho /p /n /e /fGray %PACKFILE%
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
