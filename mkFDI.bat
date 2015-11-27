@@ -306,7 +306,8 @@ if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 if "%PACKNAME%" == "HELP" goto PTestNoMulti
 if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
 if "%PACKNAME%" == "NASM" goto PTestNoMulti
-if "%PACKNAME%" == "MINES" goto PTestNoMulti
+if "%PACKNAME%" == "FMINES" goto PTestNoMulti
+if "%PACKNAME%" == "KRAPTOR" goto PTestNoMulti
 
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
