@@ -290,10 +290,14 @@ if "%PACKFILE%" == "" goto PTestDone
 rem if "%PACKIDX%" == "5" goto PTestDone
 vecho
 set PACKRETRY=0
+vecho /n /fGray /e /fDarkGray "%PACKIDX% - "
 :PTestRetry
-vecho /n /fGray /e /fDarkGray "%PACKIDX% - " /fGray %PACKFILE%
+vecho /n /fGray %PACKFILE%
 vecho /n /fDarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
+if "%PACKNAME%" == "ZSNES" goto PTestSkip
+if "%PACKNAME%" == "OPENGEM" goto PTestSkip
+
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
@@ -303,9 +307,6 @@ if "%PACKNAME%" == "HELP" goto PTestNoMulti
 if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
 if "%PACKNAME%" == "NASM" goto PTestNoMulti
 if "%PACKNAME%" == "MINES" goto PTestNoMulti
-
-if "%PACKNAME%" == "ZSNES" goto PTestSkip
-if "%PACKNAME%" == "OPENGEM" goto PTestSkip
 
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
@@ -333,6 +334,7 @@ echo %PACKFILE% was OK on retry. >>%ELOG%
 vstr /r 80 /c 0x2d >>%ELOG%
 :PTestNext
 fdinst remove %PACKNAME% >NUL
+:PTestIgnore
 vmath %PACKIDX% + 1 | set /p PACKIDX=
 vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
 vgotoxy eop sor
@@ -342,7 +344,7 @@ goto PTestLoop
 :PTestSkip
 vecho /fLightRed " Skipped" /fGray
 echo %PACKFILE% skipped. >>%ELOG%
-goto PTestNext
+goto PTestIgnore
 
 :PTestErrorRemove
 echo %PACKFILE% remove error. >>%ELOG%
