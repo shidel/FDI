@@ -23,8 +23,8 @@ set RAMDRV=
 set RAMSIZE=32M
 set CDROM=
 set KERNEL=KERNL386.SYS
-set PACKGO=226
-set PACKTRY=1
+set PACKGO=0
+set PACKTRY=3
 
 echo FreeDOS install disk creator.
 echo.
