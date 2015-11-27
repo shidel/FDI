@@ -34,8 +34,8 @@ utilities.
     disk and have priority over packages that will be on the install media.
 
     BINARIES\ - If present, mkFDI will copy any files to the install disks
-    copy of FreeDOS binaries and will overwrite any conflicting files.
-
+    copy of the FreeDOS binaries and will overwrite any conflicting files.
+    These files will not automatically be copied to the installation system.
 
 ### Creating the install media
 
@@ -50,7 +50,7 @@ utilities.
 
     FDINST from the FDNPKG package must be installed.
     SHSUFDRV package must also be installed.
-    A memory manager the can be used to allocate a 5Mb ram-disk. (like JEMM)
+    A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
 
     Stick the CD in your CD drive.
     Stick a floppy to destroy in drive A:
