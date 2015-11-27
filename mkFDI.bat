@@ -12,7 +12,6 @@ set CDROM=%2:
 goto EndOfFile
 
 :Start
-rem echo .>MKFDI.LOG
 pushd
 SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
@@ -24,7 +23,7 @@ set RAMDRV=
 set RAMSIZE=32M
 set CDROM=
 set KERNEL=KERNL386.SYS
-set PACKGO=154
+set PACKGO=226
 set PACKTRY=1
 
 echo FreeDOS install disk creator.
@@ -140,7 +139,6 @@ set OVERRIDE=
 set TEMPFILE=
 verrlvl 2
 fdinst install %PACKFILE% >NUL
-rem fdinst install %PACKFILE% >>MKFDI.LOG
 
 if errorlevel 2 goto MissingFDINST
 if errorlevel 1 goto ErrorFDINST
@@ -307,6 +305,7 @@ if "%PACKNAME%" == "NASM" goto PTestNoMulti
 if "%PACKNAME%" == "MINES" goto PTestNoMulti
 
 if "%PACKNAME%" == "ZSNES" goto PTestSkip
+if "%PACKNAME%" == "OPENGEM" goto PTestSkip
 
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
