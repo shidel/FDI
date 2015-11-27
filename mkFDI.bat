@@ -297,6 +297,7 @@ fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
+if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestError
@@ -335,6 +336,10 @@ grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 vecho /fLightRed " %PACKERR% Errors" /fGray /n
 echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
 goto PTestErrorLog
+:PTestNoMulti
+vecho /fYellow " Skip" /fGray ", " /fLightGreen "OK"
+echo Skipping multitest with %PACKFILE% >>%ELOG%
+goto PTestNext
 
 :PTestDone
 vgotoxy eop /x1 up
