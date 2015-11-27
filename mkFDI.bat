@@ -21,7 +21,7 @@ SET OLDPATH=%PATH%
 set FLOPPY=A:
 set VOLUME=FD-SETUP
 set RAMDRV=
-set RAMSIZE=5M
+set RAMSIZE=32M
 set CDROM=
 set KERNEL=KERNL386.SYS
 
@@ -290,16 +290,16 @@ set PACKRETRY=0
 :PTestRetry
 vecho /n /e /fGray %PACKFILE%
 
-vecho /fDarkGray .
+vecho /n /fDarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
-vecho /fDarkGray .
+vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestError
-vecho /fDarkGray .
+vecho /n /fDarkGray .
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 
