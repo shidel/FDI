@@ -290,16 +290,16 @@ set PACKRETRY=0
 :PTestRetry
 vecho /n /e /fGray %PACKFILE%
 
-vecho /DarkGray .
+vecho /fDarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
-vecho /DarkGray .
+vecho /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestError
-vecho /DarkGray .
+vecho /fDarkGray .
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 
