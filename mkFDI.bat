@@ -270,34 +270,54 @@ goto Cleanup
 dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
 type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
 set PACKIDX=0
-vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p /p
-vgotoxy up up
+vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p /p /p
+vgotoxy eop /x1 up
 vline
+vgotoxy eop /x1
 vprogres /fLightGreen 0
-vgotoxy up up
-vecho /p
+vgotoxy up up /l eot
+vecho
+if exist %RAMDRV%\ERROR.LOG del %RAMDRV%\ERROR.LOG
 
 :PTestLoop
 type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
-vecho /e /n /fGray %PACKFILE%
+if "%PACKFILE%" == "" goto PTestDone
+vecho /p /n /e /fGray %PACKFILE%
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
-vecho ', ' /fLightGreen "OK" /fGray /n
+grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
+if "%PACKERR%" == "0" goto PTestOk
+vecho /fGray ', ' /fLightRed "%PACKERR% Errors" /fGray /n
+echo %PACKFILE% >>%RAMDRV%\ERROR.LOG
+grep -i "error while" %RAMDRV%\FDINST.LOG >>%RAMDRV%\ERROR.LOG
+vstr /r 80 /c 0x2d >>%RAMDRV%\ERROR.LOG
+goto PTestNext
+:PTestOK
+vecho /fGray ', ' /fLightGreen "OK" /fGray /n
 :PTestNext
 vfdutil /n %PACKFILE% | set /p PACKFILE=
 fdinst remove %PACKFILE% >NUL
 vmath %PACKIDX% + 1 | set /p PACKIDX=
 vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
-vgotoxy sol down down
+vgotoxy eop sor
 vprogres /fLightGreen %PACKPER%
-vgotoxy up up sol
+vgotoxy up up /l eot
 goto PTestLoop
 :PTestError
-vecho ', ' /fLightRed "ERROR" /fGray
+vecho /fGray ', ' /fLightRed "ERROR" /fGray /n
 goto PTestNext
 
 :PTestDone
-vecho /p /fLightGreen "Testing complete." /e /fGray /bBlack
+vgotoxy eop /x1 up
+vecho /g /e /p /e
+vgotoxy /l eot
+vecho /p
+vecho /n /fGray "Testing complete, "
+if not exist %RAMDRV%\ERROR.LOG vecho /fLightGreen "OK" /fGray
+if exist %RAMDRV%\ERROR.LOG vecho /fLightRed "Errors %RAMDRV%\ERROR.LOG" /fGray
+vecho /fGray
+if exist %RAMDRV%\PACKAGES.LST del %RAMDRV%\PACKAGES.LST
+if exist %RAMDRV%\FDINST.LOG del %RAMDRV%\FDINST.LOG
 verrlvl 0
 goto CleanUp
 
@@ -319,6 +339,7 @@ set PACKFILE=
 set PACKIDX=
 set PACKCNT=
 set PACKPER=
+set PACKERR=
 
 SET FDNPKG.CFG=%OLDFDNPKG.CFG%
 SET DOSDIR=%OLDDOSDIR%
