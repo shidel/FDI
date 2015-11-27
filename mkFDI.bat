@@ -24,6 +24,8 @@ set RAMDRV=
 set RAMSIZE=32M
 set CDROM=
 set KERNEL=KERNL386.SYS
+set PACKGO=154
+set PACKTRY=1
 
 echo FreeDOS install disk creator.
 echo.
@@ -271,7 +273,8 @@ goto Cleanup
 SET PATH=%OLDPATH%
 dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
 type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
-set PACKIDX=0
+
+set PACKIDX=%PACKGO%
 vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p /p /p
 vgotoxy eop /x1 up
 vline
@@ -290,8 +293,7 @@ rem if "%PACKIDX%" == "5" goto PTestDone
 vecho
 set PACKRETRY=0
 :PTestRetry
-vecho /n /e /fGray %PACKFILE%
-
+vecho /n /fGray /e /fDarkGray "%PACKIDX% - " /fGray %PACKFILE%
 vecho /n /fDarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
@@ -302,13 +304,16 @@ if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 if "%PACKNAME%" == "HELP" goto PTestNoMulti
 if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
 if "%PACKNAME%" == "NASM" goto PTestNoMulti
+if "%PACKNAME%" == "MINES" goto PTestNoMulti
+
+if "%PACKNAME%" == "ZSNES" goto PTestSkip
+
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestErrorRemove
 vecho /n /fDarkGray .
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestErrorReinst
-
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if "%PACKERR%" == "0" goto PTestOk
 :PTestCatch
@@ -318,7 +323,7 @@ echo Unreported errors with %PACKFILE% >>%ELOG%
 grep -i "error while" %RAMDRV%\FDINST.LOG | vstr /s "Error while " "" >>%ELOG%
 vstr /r 80 /c 0x2d >>%ELOG%
 vmath %PACKRETRY% + 1 | set /p PACKRETRY=
-if "%PACKRETRY%" == "3" goto PTestNext
+if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
 vecho /p /fLightCyan "Retry" /fGray ", " /n
 deltree /y %DOSDIR%\ >NUL
 goto PTestRetry
@@ -335,6 +340,11 @@ vgotoxy eop sor
 vprogres /fLightGreen %PACKPER%
 vgotoxy up up /l eot
 goto PTestLoop
+:PTestSkip
+vecho /fLightRed " Skipped" /fGray
+echo %PACKFILE% skipped. >>%ELOG%
+goto PTestNext
+
 :PTestErrorRemove
 echo %PACKFILE% remove error. >>%ELOG%
 goto PTestError
@@ -392,6 +402,8 @@ set PACKCNT=
 set PACKPER=
 set PACKERR=
 set PACKRETRY=
+set PACKGO=
+set PACKTRY=
 set ELOG=
 
 SET FDNPKG.CFG=%OLDFDNPKG.CFG%
