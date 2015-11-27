@@ -11,11 +11,11 @@ if errorlevel 1 goto Failed
 goto Success
 
 :OverrideA
-fdinst install %FINSP%\PACKAGES\%TEMPFILE%.ZIP >>%FDRIVE%\FDSETUP.LOG
+fdinst install %FINSP%\PACKAGES\%TEMPFILE%.ZIP >nul
 goto CheckSuccess
 
 :OverrideB
-fdinst install %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP >>%FDRIVE%\FDSETUP.LOG
+fdinst install %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP >nul
 goto CheckSuccess
 
 :Failed
