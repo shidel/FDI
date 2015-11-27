@@ -300,12 +300,13 @@ grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
 if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 if "%PACKNAME%" == "HELP" goto PTestNoMulti
+if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
 vecho /n /fDarkGray .
 fdinst remove %PACKNAME% >NUL
-if errorlevel 1 goto PTestError
+if errorlevel 1 goto PTestErrorRemove
 vecho /n /fDarkGray .
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
-if errorlevel 1 goto PTestError
+if errorlevel 1 goto PTestErrorReinst
 
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if "%PACKERR%" == "0" goto PTestOk
@@ -333,6 +334,12 @@ vgotoxy eop sor
 vprogres /fLightGreen %PACKPER%
 vgotoxy up up /l eot
 goto PTestLoop
+:PTestErrorRemove
+echo %PACKFILE% remove error. >>%ELOG%
+goto PTestError
+:PTestErrorReinst
+echo %PACKFILE% reinstall error. >>%ELOG%
+goto PTestError
 :PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 vecho /fLightRed " %PACKERR% Errors" /fGray /n
@@ -340,7 +347,7 @@ echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
 goto PTestErrorLog
 :PTestNoMulti
 vecho /fYellow " Only one test" /fGray ", " /fLightGreen "OK"
-echo Skipping multitest with %PACKFILE% >>%ELOG%
+echo System crashes, skipping multitest with %PACKFILE% >>%ELOG%
 goto PTestNext
 
 :PTestDone
