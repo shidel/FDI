@@ -290,20 +290,23 @@ set PACKRETRY=0
 :PTestRetry
 vecho /n /e /fGray %PACKFILE%
 
+vecho /DarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if not "%PACKERR%" == "0" goto PTestCatch
+vecho /DarkGray .
 fdinst remove %PACKNAME% >NUL
 if errorlevel 1 goto PTestError
+vecho /DarkGray .
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if "%PACKERR%" == "0" goto PTestOk
 :PTestCatch
-vecho /fGray ', ' /fLightRed "%PACKERR% Unreported errors" /fGray /n
+vecho /fLightRed " %PACKERR% Unreported errors" /fGray /n
 echo Unreported errors with %PACKFILE% >>%ELOG%
 :PTestErrorLog
 grep -i "error while" %RAMDRV%\FDINST.LOG | vstr /s "Error while " "" >>%ELOG%
@@ -314,7 +317,7 @@ vecho /p /fLightCyan "Retry" /fGray ", " /n
 deltree /y %DOSDIR%\ >NUL
 goto PTestRetry
 :PTestOK
-vecho /fGray ', ' /fLightGreen "OK" /fGray /n
+vecho /fLightGreen " OK" /fGray /n
 if "%PACKRETRY%" == "0" goto PTestNext
 echo %PACKFILE% was OK on retry. >>%ELOG%
 vstr /r 80 /c 0x2d >>%ELOG%
@@ -328,7 +331,7 @@ vgotoxy up up /l eot
 goto PTestLoop
 :PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
-vecho /fGray ', ' /fLightRed "%PACKERR% Errors" /fGray /n
+vecho /fLightRed " %PACKERR% Errors" /fGray /n
 echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
 goto PTestErrorLog
 
