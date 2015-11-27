@@ -268,6 +268,7 @@ verrlvl 1
 goto Cleanup
 
 :PackageTest
+SET PATH=%OLDPATH%
 dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
 type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
 set PACKIDX=0
