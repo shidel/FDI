@@ -12,7 +12,7 @@ set CDROM=%2:
 goto EndOfFile
 
 :Start
-echo .>MKFDI.LOG
+rem echo .>MKFDI.LOG
 pushd
 SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
@@ -137,7 +137,8 @@ if not "%OVERRIDE%" == "" vecho /n ', ' /fLightRed "OVERRIDE" /fGray
 set OVERRIDE=
 set TEMPFILE=
 verrlvl 2
-fdinst install %PACKFILE% >>MKFDI.LOG
+fdinst install %PACKFILE% >NUL
+rem fdinst install %PACKFILE% >>MKFDI.LOG
 
 if errorlevel 2 goto MissingFDINST
 if errorlevel 1 goto ErrorFDINST
@@ -176,7 +177,7 @@ vecho ', ' /fLightGreen "OK" /fGray /p
 
 if not exist BINARIES\NUL goto NoBinOverrides
 vecho /n "Adding binary overrides to Ramdrive"
-xcopy /E /Y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
+xcopy /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
 :NoBinOverrides
 
@@ -277,27 +278,48 @@ vgotoxy eop /x1
 vprogres /fLightGreen 0
 vgotoxy up up /l eot
 vecho
-if exist %RAMDRV%\ERROR.LOG del %RAMDRV%\ERROR.LOG
+set ELOG=%RAMDRV%\FDIERROR.LOG
+if exist %ELOG% del %ELOG%
 
 :PTestLoop
 type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
 if "%PACKFILE%" == "" goto PTestDone
-rem if "%PACKIDX%" == "25" goto PTestDone
-vecho /p /n /e /fGray %PACKFILE%
+rem if "%PACKIDX%" == "5" goto PTestDone
+vecho
+set PACKRETRY=0
+:PTestRetry
+vecho /n /e /fGray %PACKFILE%
+
+vfdutil /n %PACKFILE% | set /p PACKNAME=
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
+if not "%PACKERR%" == "0" goto PTestCatch
+fdinst remove %PACKNAME% >NUL
+if errorlevel 1 goto PTestError
+fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
+if errorlevel 1 goto PTestError
+
+grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 if "%PACKERR%" == "0" goto PTestOk
-vecho /fGray ', ' /fLightRed "%PACKERR% Errors" /fGray /n
-echo %PACKFILE% >>%RAMDRV%\ERROR.LOG
-grep -i "error while" %RAMDRV%\FDINST.LOG >>%RAMDRV%\ERROR.LOG
-vstr /r 80 /c 0x2d >>%RAMDRV%\ERROR.LOG
-goto PTestNext
+:PTestCatch
+vecho /fGray ', ' /fLightRed "%PACKERR% Unreported errors" /fGray /n
+echo Unreported errors with %PACKFILE% >>%ELOG%
+:PTestErrorLog
+grep -i "error while" %RAMDRV%\FDINST.LOG | vstr /s "Error while " "" >>%ELOG%
+vstr /r 80 /c 0x2d >>%ELOG%
+vmath %PACKRETRY% + 1 | set /p PACKRETRY=
+if "%PACKRETRY%" == "3" goto PTestNext
+vecho /p /fLightCyan "Retry" /fGray ", " /n
+deltree /y %DOSDIR%\ >NUL
+goto PTestRetry
 :PTestOK
 vecho /fGray ', ' /fLightGreen "OK" /fGray /n
+if "%PACKRETRY%" == "0" goto PTestNext
+echo %PACKFILE% was OK on retry. >>%ELOG%
+vstr /r 80 /c 0x2d >>%ELOG%
 :PTestNext
-vfdutil /n %PACKFILE% | set /p PACKFILE=
-fdinst remove %PACKFILE% >NUL
+fdinst remove %PACKNAME% >NUL
 vmath %PACKIDX% + 1 | set /p PACKIDX=
 vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
 vgotoxy eop sor
@@ -305,8 +327,10 @@ vprogres /fLightGreen %PACKPER%
 vgotoxy up up /l eot
 goto PTestLoop
 :PTestError
-vecho /fGray ', ' /fLightRed "ERROR" /fGray /n
-goto PTestNext
+grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
+vecho /fGray ', ' /fLightRed "%PACKERR% Errors" /fGray /n
+echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
+goto PTestErrorLog
 
 :PTestDone
 vgotoxy eop /x1 up
@@ -314,8 +338,14 @@ vecho /g /e /p /e
 vgotoxy /l eot
 vecho /p
 vecho /n /fGray "Testing complete, "
-if not exist %RAMDRV%\ERROR.LOG vecho /fLightGreen "OK" /fGray
-if exist %RAMDRV%\ERROR.LOG vecho /fLightRed "Errors %RAMDRV%\ERROR.LOG" /fGray
+if not exist %ELOG% goto SkipErrors
+grep -i "errors with" %ELOG% |  vstr /l total | set /p PACKIDX=
+grep -i "extracting" %ELOG% |  vstr /l total | set /p PACKERR=
+vecho /fLightRed "%PACKIDX% Packages with %PACKERR% errors, see %ELOG%" /fGray
+goto SkipReport
+:SkipErrors
+vecho /fLightGreen "OK" /fGray
+:SkipReport
 vecho /fGray
 if exist %RAMDRV%\PACKAGES.LST del %RAMDRV%\PACKAGES.LST
 if exist %RAMDRV%\FDINST.LOG del %RAMDRV%\FDINST.LOG
@@ -337,10 +367,13 @@ set RAMSIZE=
 set CDROM=
 set KERNEL=
 set PACKFILE=
+set PACKNAME=
 set PACKIDX=
 set PACKCNT=
 set PACKPER=
 set PACKERR=
+set PACKRETRY=
+set ELOG=
 
 SET FDNPKG.CFG=%OLDFDNPKG.CFG%
 SET DOSDIR=%OLDDOSDIR%
