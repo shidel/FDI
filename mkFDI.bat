@@ -317,8 +317,8 @@ if "%PACKERR%" == "0" goto PTestOk
 vecho /fLightRed " %PACKERR% Unreported errors" /fGray /n
 echo Unreported errors with %PACKFILE% >>%ELOG%
 :PTestErrorLog
-grep -i "error while" %RAMDRV%\FDINST.LOG | vstr /s "Error while " "" >>%ELOG%
-vstr /r 80 /c 0x2d >>%ELOG%
+grep -i "error while" %RAMDRV%\FDINST.LOG|vstr /n/b/f "' to '" 2-|vstr /n/s "'! " " ">>%ELOG%
+vstr /r 5 /c 0x2d >>%ELOG%
 vmath %PACKRETRY% + 1 | set /p PACKRETRY=
 if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
 set PBACK=PDoRetry
@@ -332,7 +332,7 @@ goto PTestRetry
 vecho /fLightGreen " OK" /fGray /n
 if "%PACKRETRY%" == "0" goto PTestNext
 echo %PACKFILE% was OK on retry. >>%ELOG%
-vstr /r 80 /c 0x2d >>%ELOG%
+vstr /r 5 /c 0x2d >>%ELOG%
 :PTestNext
 fdinst remove %PACKNAME% >NUL
 :PTestIgnore
@@ -385,7 +385,7 @@ vecho /p
 vecho /n /fGray "Testing complete, "
 if not exist %ELOG% goto SkipErrors
 grep -i "errors with" %ELOG% |  vstr /l total | set /p PACKIDX=
-grep -i "extracting" %ELOG% |  vstr /l total | set /p PACKERR=
+grep " \[" %ELOG% |  vstr /l total | set /p PACKERR=
 vecho /fLightRed "%PACKIDX% Packages with %PACKERR% errors, see %ELOG%" /fGray
 goto SkipReport
 :SkipErrors
