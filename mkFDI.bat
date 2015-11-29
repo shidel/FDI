@@ -60,6 +60,9 @@ if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
 vecho "Package media is " /fYellow %CDROM% /fGray /e /p
 
+if "%1" == "test2" goto PackageTestB
+if "%1" == "testb" goto PackageTestB
+
 REM Making Ramdisk.
 verrlvl 1
 SHSURDRV /QQ /U
@@ -101,9 +104,9 @@ mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
 set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
-set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
 if "%1" == "test" goto PackageTest
+set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
 vecho /n "Copying V8Power Tools to Ramdrive"
 xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
@@ -267,6 +270,16 @@ vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 verrlvl 1
 goto Cleanup
 
+:PackageTestB
+
+set RAMDRV=C:\TESTB
+if not exist %RAMDRV%\NUL mkdir %RAMDRV%
+deltree -y %RAMDRV%\*.*
+if not exist %RAMDRV%\FDSETUP\NUL mkdir %RAMDRV%\FDSETUP
+if not exist %RAMDRV%\FDSETUP\BIN\NUL mkdir %RAMDRV%\FDSETUP\BIN
+set DOSDIR=%RAMDRV%\FDSETUP
+set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
+
 :PackageTest
 SET PATH=%OLDPATH%
 dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
@@ -374,6 +387,7 @@ if "%PACKNAME%" == "MIRMAGIC" goto PTestNoMulti
 if "%PACKNAME%" == "VERTIGO" goto PTestNoMulti
 if "%PACKNAME%" == "DILLO" goto PTestNoMulti
 if "%PACKNAME%" == "MBEDIT" goto PTestNoMulti
+if "%PACKNAME%" == "CTMOUSE" goto PTestNoMulti
 goto %PBACK%
 
 :PTestDone
@@ -394,6 +408,13 @@ vecho /fLightGreen "OK" /fGray
 vecho /fGray
 if exist %RAMDRV%\PACKAGES.LST del %RAMDRV%\PACKAGES.LST
 if exist %RAMDRV%\FDINST.LOG del %RAMDRV%\FDINST.LOG
+if "%1" == "test2" goto DumpTemp
+if "%1" == "testb" goto DumpTemp
+verrlvl 0
+goto CleanUp
+:DumpTemp
+deltree -y %RAMDRV%\*.*
+rmdir %RAMDRV%
 verrlvl 0
 goto CleanUp
 
