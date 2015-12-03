@@ -5,8 +5,8 @@
 ; FDASK200 - Backup old OS
 BACKUP_FRAME=/w60 /h10 /c /y7
 BACKUP_OPTS=/w40 /h4 /c /y12
-BACKUPADV_OPTS=/w40 /h5 /c /y12
 BACKUPADV_FRAME=/w60 /h11 /c /y7
+BACKUPADV_OPTS=/w40 /h5 /c /y12
 BACKUP=A previous operating system was detected on drive /f %1 %2 /f %3 /s- .
 BACKUP?=Do you wish to backup the old files before installing?
 BACKUPY="  Yes - Please backup first."
@@ -35,8 +35,8 @@ XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
 ; FDASK600 - Package group selection.
-PAC_FRAME=/w60 /h11 /c /y9
-PAC_OPTS=/w40 /h7 /c /y12
+PAC_FRAME=/w60 /h11 /c /y8
+PAC_OPTS=/w40 /h7 /c /y11
 PACS?=What /f %1 %2 /f %3 packages do you want to install?
 PACBO="  Basic packages only."
 PACBS="  Basic packages with sources only."

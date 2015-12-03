@@ -4,17 +4,17 @@ PRESSKEY="Press a key..."
 ; Backing up old OS
 BACKUP_FRAME=/w66 /h7 /c
 BACKUP="Creaci¢n de copias de seguridad"
-TARGET="'" /f %1 "%2" /f %3 "'"
+TARGET=/s- "'" /f %1 "%2" /f %3 "'"
 BACKUP_DONE=/f %1 "Proceso de copia de seguridad se ha completado."
 
 ; Old Package removal
 RMPACK_FRAME=/w60 /h7 /c
 RMPACKS="Extracci¢n de paquetes en conflicto viejos."
-RMPACKN="Extracci¢n paquete antiguo'" /f %1 %2 /f %3 "'."
+RMPACKN=/s- "Extracci¢n paquete antiguo'" /f %1 %2 /f %3 "'."
 
 ; Remove old OS files
 RMOS_FRAME=/w60 /h5 /c
-RMOS="La eliminaci¢n de archivos viejos de '" /f %1 %2 /f %3 "'."
+RMOS=/s- "La eliminaci¢n de archivos viejos de '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Se eliminaron los archivos del sistema operativo antiguo."
 
 ; Remove old config files
@@ -24,15 +24,15 @@ CLEAN_DONE="Se han eliminado los archivos de configuraci¢n antiguos."
 
 ; Transfer system files
 XSYS_FRAME=/w60 /h6 /c
-XSYS="Transferencia de archivos de arranque del sistema a" /p "la unidad " /f %1 %2 /f %3 '.'
+XSYS=/s- "Transferencia de archivos de arranque del sistema a" /p "la unidad " /f %1 %2 /f %3 '.'
 XSYS_DONE="Transferencia de archivos del sistema ha completado."
 
 ; Package installation.
 PAC_FRAME=/w60 /h7 /c
 PACBM="Instalaci¢n de paquetes de software."
-PACBI="Instalaci¢n de paquete de software '" /f %1 %2 /f %3 "'"
+PACBI=/s- "Instalaci¢n de paquete de software '" /f %1 %2 /f %3 "'"
 PACSM="Instalaci¢n de fuentes."
-PACSI="Instalaci¢n de fuentes para '" /f %1 %2 /f %3 "'"
+PACSI=/s- "Instalaci¢n de fuentes para '" /f %1 %2 /f %3 "'"
 PACDONE_FRAME=/w60 /h5 /c
 PACDONE="Instalaci¢n del paquete de software se ha completado."
 
@@ -43,5 +43,5 @@ CONFIGS_DONE="Se instalaron nuevos archivos de configuraci¢n."
 
 ; V8 Power tools installation
 V8POWER_FRAME=/w60 /h5 /c
-V8POWER="Instalaci¢n de una copia de '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER=/s- "Instalaci¢n de una copia de '" /f %1 "V8Power Tools" /f %2 "'."
 V8POWER_DONE="Se instalaron V8Power Tools."
