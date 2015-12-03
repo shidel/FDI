@@ -58,7 +58,7 @@ vecho "Searching for CD-ROM containing packages" /n
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
 if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
-vecho "Package media is " /fYellow %CDROM% /fGray /e /p
+vecho /e "Package media is" /fYellow %CDROM% /fGray /p
 
 if "%1" == "test2" goto PackageTestB
 if "%1" == "testb" goto PackageTestB
@@ -69,7 +69,8 @@ SHSURDRV /QQ /U
 if errorlevel 2 goto NotLoaded
 if errorlevel 1 goto MissingSHSURDRV
 :NotLoaded
-SHSURDRV /QQ /D:%RAMSIZE%,C1K,A
+rem SHSURDRV /QQ /D:%RAMSIZE%,C1K,A
+SHSURDRV /QQ /D:%RAMSIZE%,A
 if errorlevel 27 goto NoRamDrive
 if errorlevel  1 set RAMDRV=A:
 if errorlevel  2 set RAMDRV=B:
@@ -99,7 +100,7 @@ if errorlevel 25 set RAMDRV=Y:
 if errorlevel 26 set RAMDRV=Z:
 if "%RAMDRV%" == "" goto NoRamDrive
 
-vecho "Ramdrive is " /fYellow %RAMDRV% /fGray /p
+vecho "Ramdrive is" /fYellow %RAMDRV% /fGray /p
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
@@ -121,7 +122,7 @@ cd \
 sys %RAMDRV% >NUL
 if errorlevel 1 goto SysError
 popd
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho /s- ', ' /fLightGreen "OK" /fGray /p
 
 vecho "Installing packages to " /fYellow %RAMDRV% /fGray
 set PACKIDX=0
@@ -137,31 +138,36 @@ if exist PACKAGES\%TEMPFILE%.ZIP set OVERRIDE=PACKAGES\%TEMPFILE%.ZIP
 set PACKFILE=%CDROM%\%PACKFILE%.zip
 if not "%OVERRIDE%" == ""  set PACKFILE=%OVERRIDE%
 vecho /n/r4/c32 "%PACKFILE%"
-if not "%OVERRIDE%" == "" vecho /n ', ' /fLightRed "OVERRIDE" /fGray
+if not "%OVERRIDE%" == "" vecho /s- /n ', ' /fLightRed "OVERRIDE" /fGray
 set OVERRIDE=
 set TEMPFILE=
-verrlvl 2
+verrlvl 250
 fdinst install %PACKFILE% >NUL
 
-if errorlevel 2 goto MissingFDINST
-if errorlevel 1 goto ErrorFDINST
-vecho /n ', ' /fLightGreen "OK" /fGray
+if errorlevel 250 goto MissingFDINST
+if errorlevel 1 goto PkgError
+vecho /s- /n ', ' /fLightGreen "OK" /fGray
 if exist %DOSDIR%\APPINFO\NUL deltree /Y %DOSDIR%\APPINFO >NUL
 if exist %DOSDIR%\PACKAGES\NUL deltree /Y %DOSDIR%\PACKAGES >NUL
 if exist %DOSDIR%\DOC\NUL deltree /Y %DOSDIR%\DOC >NUL
 if exist %DOSDIR%\HELP\NUL deltree /Y %DOSDIR%\HELP >NUL
 if exist %DOSDIR%\NLS\NUL deltree /Y %DOSDIR%\NLS >NUL
-vecho ', ' /fLightCyan "Cleaned" /fGray
+vecho /s- ', ' /fLightCyan "Cleaned" /fGray
 goto PkgLoop
+:PkgError
+:ErrorFDINST
+vecho /s- ', ' /fLightRed "ERROR" /fGray ', Ignored.'
+goto PkgLoop
+
 :PkgDone
 set PACKFILE=
 set PACKIDX=
-vecho  /fLightGreen "Done" /fGray /p
+vecho  /s- /fLightGreen "Done" /fGray /p
 
 vecho /n "Replacing system files on Ramdrive"
 copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
 copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho /s- ', ' /fLightGreen "OK" /fGray /p
 
 :UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
@@ -170,18 +176,18 @@ xcopy /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho /s- ', ' /fLightGreen "OK" /fGray /p
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
 xcopy /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho /s- ', ' /fLightGreen "OK" /fGray /p
 :NoPackOverrides
 
 if not exist BINARIES\NUL goto NoBinOverrides
-vecho /n "Adding binary overrides to Ramdrive"
-xcopy /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho /s- /n "Adding binary overrides to Ramdrive"
+xcopy /s- /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
+vecho /s- ', ' /fLightGreen "OK" /fGray /p
 :NoBinOverrides
 
 vecho /n "Removing unnecessary files and folders"
@@ -308,8 +314,9 @@ vecho /n /fGray /e /fDarkGray "%PACKIDX% - "
 vecho /n /fGray %PACKFILE%
 vecho /n /fDarkGray .
 vfdutil /n %PACKFILE% | set /p PACKNAME=
-if "%PACKNAME%" == "ZSNES" goto PTestSkip
-if "%PACKNAME%" == "OPENGEM" goto PTestSkip
+
+rem if "%PACKNAME%" == "ZSNES" goto PTestSkip
+rem if "%PACKNAME%" == "OPENGEM" goto PTestSkip
 
 fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
 if errorlevel 1 goto PTestError
@@ -377,6 +384,8 @@ echo System crashes, skipping multitest with %PACKFILE% >>%ELOG%
 goto PTestNext
 
 :CheckMulti
+goto %PBACK%
+
 if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
 if "%PACKNAME%" == "HELP" goto PTestNoMulti
 if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti

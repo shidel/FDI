@@ -43,8 +43,8 @@ vecho
 
 if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
-vecho "Type " /fWhite HELP /fGray " to get support on commands and navigation"
+vecho Type /fWhite HELP /fGray to get support on commands and navigation
 vecho
-vecho /n "Welcome to the " /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%"
-vecho /fGray " operating system (" /fYellow "http://www.freedos.org" /fGray ")" /e
+vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
+vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e
 vecho

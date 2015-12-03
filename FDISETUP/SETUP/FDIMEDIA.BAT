@@ -21,7 +21,7 @@ REM www.ibiblio.org ALL_CD.ISO based Version **********************************
 if not exist %1:\BASE\NUL goto CheckDone
 if not exist %1:\BASE\COMMAND.ZIP goto CheckDone
 if not exist %1:\BASE\INDEX.LST goto CheckDone
-set FMEDIA=%1:\
+set FMEDIA=%1:
 goto CheckDone
 
 :CheckDriveExists

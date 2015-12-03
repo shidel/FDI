@@ -1,11 +1,11 @@
 @echo off
 
 :BinPackage
-if not exist %FMEDIA%\%1.zip goto Failed
 vfdutil /n %1 | set /p TEMPFILE=
 if exist %FINSP%\PACKAGES\%TEMPFILE%.ZIP goto OverrideA
 if exist %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP goto OverrideB
-fdinst install %FMEDIA%\%1.zip >>nul
+if not exist %FMEDIA%\%1.zip goto Failed
+fdinst install %FMEDIA%\%1.zip >nul
 :CheckSuccess
 if errorlevel 1 goto Failed
 goto Success

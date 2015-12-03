@@ -54,11 +54,11 @@ goto DONE
 
 :V8Power
 set PATH=%PATH%;%dosdir%\V8POWER
-vecho "Done processing startup files %cfgfile% and %0"
-vecho "Type " /fWhite HELP /fGray " to get support on commands and navigation"
+vecho Done processing startup files /fCyan %cfgfile% a/fGray and /fCyan %0 /fGray /p
+vecho Type /fWhite HELP /fGray to get support on commands and navigation
 vecho
-vecho /n "Welcome to the " /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%"
-vecho /fGray " operating system (" /fYellow "http://www.freedos.org" /fGray ")" /e
+vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
+vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e
 vecho
 
 :DONE
