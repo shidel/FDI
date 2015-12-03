@@ -80,7 +80,7 @@ rem xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
 xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
 echo %FTARGET%\ | vstr /n /s '\' '\\' | set /p _PA=
 
-rem grep -h -i %_PA% %FTARGET%\PACKAGES\*.LST >%FDRIVE%\GREP.LOG
+rem grep -h -i %_PA% %FTARGET%\PACKAGES\*.LST to %TEMP%\GREP.LOG
 
 :PkgNoSave
 vdelay %FDEL%
