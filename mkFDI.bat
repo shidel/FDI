@@ -12,6 +12,7 @@ set CDROM=%2:
 goto EndOfFile
 
 :Start
+if "%TEMP%" == "" goto NoTempSet
 pushd
 SET OLDFDNPKG.CFG=%FDNPKG.CFG%
 SET OLDDOSDIR=%DOSDIR%
@@ -336,10 +337,13 @@ if "%PACKERR%" == "0" goto PTestOk
 :PTestCatch
 vecho /fLightRed " %PACKERR% Unreported errors" /fGray /n
 echo Unreported errors with %PACKFILE% >>%ELOG%
+
 :PTestErrorLog
 grep -i "error while" %RAMDRV%\FDINST.LOG|vstr /n/b/f "' to '" 2-|vstr /n/s "'! " " ">>%ELOG%
 vstr /r 5 /c 0x2d >>%ELOG%
 vmath %PACKRETRY% + 1 | set /p PACKRETRY=
+type %RAMDRV%\FDINST.LOG | vecho /p /i
+goto PTestNext
 if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
 set PBACK=PDoRetry
 goto CheckMulti
@@ -353,8 +357,10 @@ vecho /fLightGreen " OK" /fGray /n
 if "%PACKRETRY%" == "0" goto PTestNext
 echo %PACKFILE% was OK on retry. >>%ELOG%
 vstr /r 5 /c 0x2d >>%ELOG%
+
 :PTestNext
 fdinst remove %PACKNAME% >NUL
+
 :PTestIgnore
 vmath %PACKIDX% + 1 | set /p PACKIDX=
 vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
@@ -362,6 +368,7 @@ vgotoxy eop sor
 vprogres /fLightGreen %PACKPER%
 vgotoxy up up /l eot
 goto PTestLoop
+
 :PTestSkip
 vecho /fLightRed " Skipped" /fGray
 echo %PACKFILE% skipped. >>%ELOG%
@@ -373,11 +380,13 @@ goto PTestError
 :PTestErrorReinst
 echo %PACKFILE% reinstall error. >>%ELOG%
 goto PTestError
+
 :PTestError
 grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
 vecho /fLightRed " %PACKERR% Errors" /fGray /n
 echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
 goto PTestErrorLog
+
 :PTestNoMulti
 vecho /fYellow " Only one test" /fGray ", " /fLightGreen "OK"
 echo System crashes, skipping multitest with %PACKFILE% >>%ELOG%
@@ -411,8 +420,10 @@ grep -i "errors with" %ELOG% |  vstr /l total | set /p PACKIDX=
 grep " \[" %ELOG% |  vstr /l total | set /p PACKERR=
 vecho /fLightRed "%PACKIDX% Packages with %PACKERR% errors, see %ELOG%" /fGray
 goto SkipReport
+
 :SkipErrors
 vecho /fLightGreen "OK" /fGray
+
 :SkipReport
 vecho /fGray
 if exist %RAMDRV%\PACKAGES.LST del %RAMDRV%\PACKAGES.LST
@@ -421,6 +432,16 @@ if "%1" == "test2" goto DumpTemp
 if "%1" == "testb" goto DumpTemp
 verrlvl 0
 goto CleanUp
+
+:NoTempSet
+if exist C:\FDOS\TEMP\NUL set TEMP=C:\FDOS\TEMP
+if exist C:\FREEDOS\TEMP\NUL set TEMP=C:\FREEDOS\TEMP
+if exist C:\TEMP\NUL set TEMP=C:\TEMP
+if not "%TEMP%" == "" goto Start
+echo TEMP directory not configured.
+goto CleanUp
+
+
 :DumpTemp
 deltree -y %RAMDRV%\*.*
 rmdir %RAMDRV%
