@@ -26,12 +26,13 @@ FIND.EN=Creating package list.
 PACKAGES.EN=Detected /fLightCyan %1 /a7 packages
 NUMBER.EN=/fDarkGray %1 of %2 /a7
 COMPLETE.EN=Package test complete
+RETRY.EN=/a7 /p /fYellow Retry /a7 /s- , /s+ %1, /c32
 
-FDIOK.EN=/a7 /fLightGreen /s- I
+FDIOK.EN=/a7 /fLightCyan /s- I
 FDIERR.EN=/a7 /fLightRed /s- I
-FDROK.EN=/a7 /fLightGreen /s- R
+FDROK.EN=/a7 /fLightCyan /s- R
 FDRERR.EN=/a7 /fLightRed /s- R
-FDPOK.EN=/a7 /fLightGreen /s- P
+FDPOK.EN=/a7 /fLightCyan /s- P
 FDPERR.EN=/a7 /fLightRed /s- P
 
 OK.EN=/s- /a7 , /s+ /fLightGreen OK /a7
@@ -97,16 +98,14 @@ vfdutil /c /p %0
 REM Temp Dircectory Test and Auto-configuration********************************
 :TempTest
 if not "%TEMP%" == "" goto TempSet
-vfdutil /u C:\FDOS\TEST????.??? >NUL
+vfdutil /u C:\FDOS\TEMP\TEST????.??? >NUL
 if errorlevel 1 goto NoFDOS
-if not exist C:\FDOS\TEMP\NUL mkdir C:\FDOS\TEMP
 set TEMP=C:\FDOS\TEMP
 goto HasTemp
 
 :NoFDOS
-vfdutil /u C:\FREEDOS\TEST????.??? >NUL
+vfdutil /u C:\FREEDOS\TEMP\TEST????.??? >NUL
 if errorlevel 1 goto NoFREEDOS
-if not exist C:\FREEDOS\TEMP\NUL mkdir C:\FREEDOS\TEMP
 set TEMP=C:\FREEDOS\TEMP
 goto HasTemp
 
@@ -148,12 +147,12 @@ echo SETP | set /p SETP=
 if "%SETP%" == "" goto SetDOSDIR
 set SETP=
 vecho /fYellow /bBlack /n /t %SELF% DOSDIR?.%LNG%
-vask /c /fWhite /bBlue /d10 /t %SELF% DOSDIR | vstr /N/U | set /p DOSDIR=
+vask /c /fWhite /bBlue /d10 /t %SELF% DOSDIR | set /p DOSDIR=
 if errorlevel 200 goto CtrlCPressed
 vgotoxy sor
 if "%DOSDIR%" == "" goto SetDOSDIR
-vfdutil /u %DOSDIR%\TEST????.??? >NUL
-if not errorlevel 1 goto SetDOSDIR
+vfdutil /f %DOSDIR% | set /p DOSDIR=
+if exist %DOSDIR%\NUL goto SetDOSDIR
 vfdutil /d %DOSDIR% | set /p DRIVE=
 vfdutil /u %DRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto SetDOSDIR
@@ -168,10 +167,11 @@ echo SETP | set /p SETP=
 if "%SETP%" == "" goto SetTempDir
 set SETP=
 vecho /fYellow /bBlack /n /t %SELF% TEMP?.%LNG%
-vask /c /fWhite /bBlue /d10 /t %SELF% TEMP | vstr /N/U | set /p TEMP=
+vask /c /fWhite /bBlue /d10 /t %SELF% TEMP | set /p TEMP=
 if errorlevel 200 goto CtrlCPressed
 vgotoxy sor
 if "%TEMP%" == "" goto SetTempDir
+vfdutil /f %TEMP% | set /p TEMP=
 vfdutil /d %TEMP% | set /p DRIVE=
 vfdutil /u %DRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto SetTempDir
@@ -188,7 +188,7 @@ set SETP=
 vfdutil /d %DOSDIR% | set /p DRIVE=
 vfdutil /n %0 | set /p NAME=
 vecho /fYellow /bBlack /n /t %SELF% LOG?.%LNG%
-vask /c /fWhite /bBlue /d10 %DRIVE%\%NAME%.LOG | vstr /N/U | set /p LOG=
+vask /c /fWhite /bBlue /d10 %DRIVE%\%NAME%.LOG | set /p LOG=
 if errorlevel 200 goto CtrlCPressed
 vgotoxy sor
 vfdutil /f %LOG% | set /p LOG=
@@ -217,7 +217,7 @@ echo SETP | set /p SETP=
 if "%SETP%" == "" goto SetTimes
 set SETP=
 vecho /fYellow /bBlack /n /t %SELF% TIMES?.%LNG%
-vask /c /fWhite /bBlue /d10 /t %SELF% TIMES | vstr /N/U | set /p TIMES=
+vask /c /fWhite /bBlue /d10 /t %SELF% TIMES | set /p TIMES=
 if errorlevel 200 goto CtrlCPressed
 vgotoxy sor
 if "%TIMES%" == "" goto SetTimes
@@ -230,7 +230,7 @@ echo SETP | set /p SETP=
 if "%SETP%" == "" goto SetRetries
 set SETP=
 vecho /fYellow /bBlack /n /t %SELF% RETRIES?.%LNG%
-vask /c /fWhite /bBlue /d10 /t %SELF% RETRIES | vstr /N/U | set /p RETRIES=
+vask /c /fWhite /bBlue /d10 /t %SELF% RETRIES | set /p RETRIES=
 if errorlevel 200 goto CtrlCPressed
 vgotoxy sor
 if "%RETRIES%" == "" goto SetRetries
@@ -294,11 +294,27 @@ vecho /n /fGray /c32 - %FILE%, /c32
 if not exist %DOSDIR%\NUL mkdir %DOSDIR%
 if not exist %DOSDIR%\NUL goto MkDirError
 
+set TIME=%TIMES%
+:TryPackage
+if "%TIME%" == "0" goto DonePackage
+vmath %TIME% - 1 | set /p TENV=
+if "%TENV%" == "" goto TryPackage
+set TIME=%TENV%
+set TENV=
+set RETRY=%RETRIES%
+
+:RetryPackage
+vmath %RETRY% - 1 | set /p TENV=
+if "%TENV%" == "" goto RetryPackage
+set RETRY=%TENV%
+set TENV=
+
 :RepeatLog
 vfdutil /u %TEMP%\FDINST.??? | set /p FLOG=
 if "%FLOG%" == "" goto RepeatLog
 vecho /n /fDarkGray .
 fdinst install %FILE% >%FLOG%
+verrlvl 1
 if errorlevel 1 goto InstallError
 vgotoxy left
 vecho /n /t %SELF% FDIOK.%LNG%
@@ -317,15 +333,31 @@ fdinst remove %NAME% >%FLOG%
 if errorlevel 1 goto RemoveError
 vgotoxy left
 vecho /n /t %SELF% FDROK.%LNG%
-goto Continued
+goto TryPackage
 
 :RemoveError
 vgotoxy left
 vecho /n /t %SELF% FDRERR.%LNG%
 
 :PurgeDOS
+vecho /n /fDarkGray .
+deltree /y %DOSDIR%\*.* >NUL
+if errorlevel 1 goto PurgeError
+vgotoxy left
+vecho /n /t %SELF% FDPOK.%LNG%
+if "%RETRY%" == "0" goto DonePackage
+vecho /n /t %SELF% RETRY.%LNG% %NAME%
+goto RetryPackage
 
-:Continued
+:PurgeError
+vgotoxy left
+vecho /t %SELF% FDPERR.%LNG%
+goto Abort
+
+:FailedPackage
+goto NextPackage
+
+:DonePackage
 vecho /a7
 goto NextPackage
 
@@ -383,6 +415,10 @@ SET DRIVE=
 SET LOG=
 SET TIMES=
 SET RETRIES=
+SET FLOG=
+SET TIME=
+SET RETRY=
+SET LINE=
 if "%TEMP%" == "" goto NoCleanTemp
 if not exist %TEMP%\NUL  goto NoCleanTemp
 rem deltree -y %TEMP%\*.* >NUL
