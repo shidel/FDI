@@ -30,6 +30,7 @@ RETRY.EN=/a7 /p /fYellow Retry /a7 /s- , /s+ %1, /c32
 PASSED.EN=Passed.
 FAILED.EN=Failed. %2 Errors with %1 Packages.
 ABORT?.EN=Press Ctrl+C to ABORT...
+START?.EN=Start with package number? /c32
 
 FDIOK.EN=/a7 /fLightCyan /s- I
 FDIERR.EN=/a7 /fLightRed /s- I
@@ -241,6 +242,24 @@ if "%RETRIES%" == "" goto SetRetries
 vecho /a7 /n /t %SELF% RETRIES?.%LNG%
 vecho /a7 /e /fWhite %RETRIES%
 
+REM Set Start
+:SetStart
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetRetries
+set SETP=
+vecho /fYellow /bBlack /n /t %SELF% START?.%LNG%
+vask /c /fWhite /bBlue /d10 1 | set /p START=
+if errorlevel 200 goto CtrlCPressed
+vgotoxy sor
+if "%START%" == "" goto SetStart
+vecho /a7 /n /t %SELF% START?.%LNG%
+vecho /a7 /e /fWhite %START%
+:SetSubOne
+vmath %START% - 1 | set /p TENV=
+if "%TENV%" == "" goto SetSubOne
+set START=%TENV%
+set TENV=
+
 vecho /a7
 
 REM Locate Media
@@ -277,8 +296,7 @@ echo dir progs %DOSDIR%\>>%FDNPKG.CFG%
 echo dir links %DOSDIR%\links>>%FDNPKG.CFG%
 
 REM Test All Packages.
-SET NUMBER=0
-rem SET NUMBER=255
+SET NUMBER=%START%
 SET PPERR=0
 SET PFERR=0
 
@@ -482,11 +500,12 @@ SET PPERR=
 SET PTERR=
 SET PFERR=
 set FIRST=
+set START=
 
 if "%TEMP%" == "" goto NoCleanTemp
 if not exist %TEMP%\NUL  goto NoCleanTemp
-rem deltree -y %TEMP%\*.* >NUL
-rem if not "%OLD_TEMP%" == "%TEMP%" rmdir %TEMP% >NUL
+deltree -y %TEMP%\*.* >NUL
+if not "%OLD_TEMP%" == "%TEMP%" rmdir %TEMP% >NUL
 :NoCleanTemp
 SET TEMP=%OLD_TEMP%
 if "%DOSDIR%" == "" goto NoCleanDOS
