@@ -25,15 +25,19 @@ RETRIES?.EN=Number of install retries? /c32
 FIND.EN=Creating package list.
 PACKAGES.EN=Detected /fLightCyan %1 /a7 packages
 NUMBER.EN=/fDarkGray %1 of %2 /a7
-COMPLETE.EN=Package test complete
+COMPLETE.EN=Package test complete, /c32
 RETRY.EN=/a7 /p /fYellow Retry /a7 /s- , /s+ %1, /c32
+PASSED.EN=Passed.
+FAILED.EN=Failed. %2 Errors with %1 Packages.
+ABORT?.EN=Press Ctrl+C to ABORT...
 
 FDIOK.EN=/a7 /fLightCyan /s- I
 FDIERR.EN=/a7 /fLightRed /s- I
+FDUERR.EN=/a7 /fLightRed /s- U
 FDROK.EN=/a7 /fLightCyan /s- R
 FDRERR.EN=/a7 /fLightRed /s- R
 FDPOK.EN=/a7 /fLightCyan /s- P
-FDPERR.EN=/a7 /fLightRed /s- P
+FDPERR.EN=/a7 /fLightRed /s- P /s+ /p Unable to purge directory.
 
 OK.EN=/s- /a7 , /s+ /fLightGreen OK /a7
 ERROR.EN=/s- /a7 , /s+ /fLightRed ERROR /a7
@@ -206,7 +210,7 @@ if "%NOWD%" == "" goto RepeatDate
 :RepeatTime
 time /t | vstr /b /f is 2 | set /p NOWT=
 if "%NOWT%" == "" goto RepeatTime
-echo Created %NOWD% at %NOWT% | vstr /b /s "  " " ">%LOG%
+echo Created %NOWD% at %NOWT%|vstr /b/s "  " " "|vstr /b/s "  " " ">%LOG%
 if not exist %LOG% goto SetLogFile
 SET NOWD=
 SET NOWT=
@@ -274,9 +278,12 @@ echo dir links %DOSDIR%\links>>%FDNPKG.CFG%
 
 REM Test All Packages.
 SET NUMBER=0
-SET NUMBER=260
+rem SET NUMBER=255
+SET PPERR=0
+SET PFERR=0
 
 :NextPackage
+SET PTERR=
 deltree /y %TEMP%\FDINST.* >NUL
 :RepeatNumber
 vmath %NUMBER% + 1 | set /p TENV=
@@ -295,6 +302,8 @@ if not exist %DOSDIR%\NUL mkdir %DOSDIR%
 if not exist %DOSDIR%\NUL goto MkDirError
 
 set TIME=%TIMES%
+set FIRST=yes
+
 :TryPackage
 if "%TIME%" == "0" goto DonePackage
 vmath %TIME% - 1 | set /p TENV=
@@ -314,15 +323,29 @@ vfdutil /u %TEMP%\FDINST.??? | set /p FLOG=
 if "%FLOG%" == "" goto RepeatLog
 vecho /n /fDarkGray .
 fdinst install %FILE% >%FLOG%
-verrlvl 1
 if errorlevel 1 goto InstallError
+:RepeatCatch
+grep -i \[\- %FLOG%|vstr /b/l total | set /p TENV=
+if "%TENV%" == "" goto RepeatCatch
+if not "%TENV%" == "0" goto CaughtError
+
 vgotoxy left
 vecho /n /t %SELF% FDIOK.%LNG%
 goto RemovePackage
 
+:CaughtError
+vgotoxy left
+vecho /n /t %SELF% FDUERR.%LNG%
+if "%FIRST%" == "yes" echo Uncaught install error with %FILE%>>%LOG%
+if not "%FIRST%" == "yes" echo Uncaught re-install error with %FILE%>>%LOG%
+goto PurgeDOS
+
 :InstallError
+set PTERR=y
 vgotoxy left
 vecho /n /t %SELF% FDIERR.%LNG%
+if "%FIRST%" == "yes" echo Install error with %FILE%>>%LOG%
+if not "%FIRST%" == "yes" echo Re-install error with %FILE%>>%LOG%
 goto PurgeDOS
 
 :RemovePackage
@@ -333,11 +356,14 @@ fdinst remove %NAME% >%FLOG%
 if errorlevel 1 goto RemoveError
 vgotoxy left
 vecho /n /t %SELF% FDROK.%LNG%
+set FIRST=no
 goto TryPackage
 
 :RemoveError
+set PTERR=y
 vgotoxy left
 vecho /n /t %SELF% FDRERR.%LNG%
+echo Remove error with %FILE%>>%LOG%
 
 :PurgeDOS
 vecho /n /fDarkGray .
@@ -345,25 +371,58 @@ deltree /y %DOSDIR%\*.* >NUL
 if errorlevel 1 goto PurgeError
 vgotoxy left
 vecho /n /t %SELF% FDPOK.%LNG%
-if "%RETRY%" == "0" goto DonePackage
-vecho /n /t %SELF% RETRY.%LNG% %NAME%
+vecho /n /t %SELF% ERROR.%LNG%
+vecho /a7
+grep -i error %FLOG%|vstr /f ' to ' 2|vstr /b/n/s "%DOSDIR%\" ""|vstr /s "'" ""|vecho /n/i
+grep -i error %FLOG%|vstr /f ' to ' 2|vstr /b/n/s "%DOSDIR%\" ""|vstr /s "'" "">>%LOG%
+:RetryCount
+grep -i error %FLOG%|vstr /f ' to ' 2|vstr /b/n/s "%DOSDIR%\" ""|vstr /b/l total | set /p TENV=
+if "%TENV%" == "" goto RetryCount
+vmath %PFERR% + %TENV% | set /p TENV=
+if "%TENV%" == "" goto RetryCount
+set PFERR=%TENV%
+set TENV=
+if "%RETRY%" == "0" goto FailedPackage
+vecho /n /t %SELF% RETRY.%LNG% %NAME% %TENV%
+set FIRST=yes
+set TENV=
 goto RetryPackage
 
 :PurgeError
 vgotoxy left
-vecho /t %SELF% FDPERR.%LNG%
+vecho /n /t %SELF% FDPERR.%LNG%
 goto Abort
 
 :FailedPackage
+vecho /a7 /p /n /fYellow /t %SELF% ABORT?.%LNG%
+vpause /fLightCyan /t 5 CTRL-C
+if errorlevel 200 goto TestComplete
+vgotoxy sor
+vecho /a7 /e /n
 goto NextPackage
 
 :DonePackage
+set TENV=
+if "%PTERR%" == "" goto NoError
+vmath %PPERR% + 1 | set /p TENV=
+if "%TENV%" == "" goto DonePackage
+set PPERR=%TENV%
+set TENV=
 vecho /a7
+goto NextPackage
+:NoError
+vecho /a7 /t %SELF% OK.%LNG%
 goto NextPackage
 
 :TestComplete
-vecho /a7 /p /t %SELF% COMPLETE.%LNG%
-
+vecho /n /a7 /p /t %SELF% COMPLETE.%LNG%
+if "%PPERR%" == "0" goto Passed
+vecho /n /fLightRed /t %SELF% FAILED.%LNG% %PPERR% %PFERR%
+vecho /a7
+goto Done
+:Passed
+vecho /n /fLightGreen /t %SELF% PASSED.%LNG%
+vecho /a7
 goto Done
 
 REM Pre-V8Power Tools Error Messages ******************************************
@@ -419,6 +478,11 @@ SET FLOG=
 SET TIME=
 SET RETRY=
 SET LINE=
+SET PPERR=
+SET PTERR=
+SET PFERR=
+set FIRST=
+
 if "%TEMP%" == "" goto NoCleanTemp
 if not exist %TEMP%\NUL  goto NoCleanTemp
 rem deltree -y %TEMP%\*.* >NUL
