@@ -12,6 +12,7 @@ NOTEMP.EN=Unable to locate or configure TEMP directory.
 NOMEDIA.EN=Unable to locate installation packages.
 ABORT.EN=Unable to continue. Test aborted.
 CTRLC.EN=Control+C detected. Test aborted.
+MKDIRERR.EN=Unable to create directory. Test aborted.
 
 WELCOME.EN=FreeDOS 1.2+ Package Tester version 1.00.
 DOSDIR?.EN=Confirm %DOSDIR% target directory? /c32
@@ -19,17 +20,28 @@ TEMP?.EN=Confirm current %TEMP% directory? /c32
 LOG?.EN=Confirm log file? /c32
 SCAN.EN=Locating package installation media
 MEDIA.EN=Package installation media at %1
+TIMES?.EN=Number of install iterations? /c32
+RETRIES?.EN=Number of install retries? /c32
 FIND.EN=Creating package list.
 PACKAGES.EN=Detected /fLightCyan %1 /a7 packages
 NUMBER.EN=/fDarkGray %1 of %2 /a7
 COMPLETE.EN=Package test complete
 
-OK.EN=/s- /a7 , /c32 /fLightGreen OK /a7
-ERROR.EN=/s- /a7 , /c32 /fLightRed ERROR /a7
+FDIOK.EN=/a7 /fLightGreen /s- I
+FDIERR.EN=/a7 /fLightRed /s- I
+FDROK.EN=/a7 /fLightGreen /s- R
+FDRERR.EN=/a7 /fLightRed /s- R
+FDPOK.EN=/a7 /fLightGreen /s- P
+FDPERR.EN=/a7 /fLightRed /s- P
+
+OK.EN=/s- /a7 , /s+ /fLightGreen OK /a7
+ERROR.EN=/s- /a7 , /s+ /fLightRed ERROR /a7
 
 ; Default Test Settings
-DOSDIR=C:\TEST
+DOSDIR=C:\FDTEST
 TEMP=C:\TEMP
+TIMES=2
+RETRIES=3
 
 REM Package media search sub-batch utility ************************************
 :MediaSearch
@@ -132,6 +144,9 @@ vecho /a7
 
 REM Set DOSDIR
 :SetDOSDIR
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetDOSDIR
+set SETP=
 vecho /fYellow /bBlack /n /t %SELF% DOSDIR?.%LNG%
 vask /c /fWhite /bBlue /d10 /t %SELF% DOSDIR | vstr /N/U | set /p DOSDIR=
 if errorlevel 200 goto CtrlCPressed
@@ -149,6 +164,9 @@ if not exist %DOSDIR%\NUL goto Abort
 
 REM Set TEMP
 :SetTempDir
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetTempDir
+set SETP=
 vecho /fYellow /bBlack /n /t %SELF% TEMP?.%LNG%
 vask /c /fWhite /bBlue /d10 /t %SELF% TEMP | vstr /N/U | set /p TEMP=
 if errorlevel 200 goto CtrlCPressed
@@ -164,6 +182,9 @@ if not exist %TEMP%\NUL goto Abort
 
 REM Set Log File Name
 :SetLogFile
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetLogFile
+set SETP=
 vfdutil /d %DOSDIR% | set /p DRIVE=
 vfdutil /n %0 | set /p NAME=
 vecho /fYellow /bBlack /n /t %SELF% LOG?.%LNG%
@@ -189,6 +210,33 @@ echo Created %NOWD% at %NOWT% | vstr /b /s "  " " ">%LOG%
 if not exist %LOG% goto SetLogFile
 SET NOWD=
 SET NOWT=
+
+REM Set iterations
+:SetTimes
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetTimes
+set SETP=
+vecho /fYellow /bBlack /n /t %SELF% TIMES?.%LNG%
+vask /c /fWhite /bBlue /d10 /t %SELF% TIMES | vstr /N/U | set /p TIMES=
+if errorlevel 200 goto CtrlCPressed
+vgotoxy sor
+if "%TIMES%" == "" goto SetTimes
+vecho /a7 /n /t %SELF% TIMES?.%LNG%
+vecho /a7 /e /fWhite %TIMES%
+
+REM Set retries
+:SetRetries
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetRetries
+set SETP=
+vecho /fYellow /bBlack /n /t %SELF% RETRIES?.%LNG%
+vask /c /fWhite /bBlue /d10 /t %SELF% RETRIES | vstr /N/U | set /p RETRIES=
+if errorlevel 200 goto CtrlCPressed
+vgotoxy sor
+if "%RETRIES%" == "" goto SetRetries
+vecho /a7 /n /t %SELF% RETRIES?.%LNG%
+vecho /a7 /e /fWhite %RETRIES%
+
 vecho /a7
 
 REM Locate Media
@@ -205,6 +253,7 @@ vecho /n /t %SELF% FIND.%LNG%
 :RepeatFind
 dir /on /a /b /p- /s %MEDIA%\*.zip | vstr /u/b >%TEMP%\PACKAGES.LST
 type %TEMP%\PACKAGES.LST | vstr /b/l total | set /p PACKAGES=
+if "%PACKAGES%" == "" goto RepeatFind
 if "%PACKAGES%" == "0" goto RepeatFind
 vgotoxy sor
 vecho /n /t %SELF% PACKAGES.%LNG% %PACKAGES%
@@ -225,17 +274,62 @@ echo dir links %DOSDIR%\links>>%FDNPKG.CFG%
 
 REM Test All Packages.
 SET NUMBER=0
+SET NUMBER=260
 
 :NextPackage
-vmath %NUMBER% + 1 | set /p NUMBER=
+deltree /y %TEMP%\FDINST.* >NUL
+:RepeatNumber
+vmath %NUMBER% + 1 | set /p TENV=
+if "%TENV%" == "" goto RepeatNumber
+set NUMBER=%TENV%
+set TENV=
 vmath %NUMBER% - 1 | set /p LINE=
 type %TEMP%\PACKAGES.LST | vstr /b/l %LINE% | set /p FILE=
+if "%FILE%" == "" goto TestComplete
 vecho /n /t %SELF% NUMBER.%LNG% %NUMBER% %PACKAGES%
+vfdutil /n %FILE% | set /p NAME=
 set LINE=
 :TestPackage
-vecho /n /fGray " - %FILE%"
-vecho /a7
+vecho /n /fGray /c32 - %FILE%, /c32
+if not exist %DOSDIR%\NUL mkdir %DOSDIR%
+if not exist %DOSDIR%\NUL goto MkDirError
 
+:RepeatLog
+vfdutil /u %TEMP%\FDINST.??? | set /p FLOG=
+if "%FLOG%" == "" goto RepeatLog
+vecho /n /fDarkGray .
+fdinst install %FILE% >%FLOG%
+if errorlevel 1 goto InstallError
+vgotoxy left
+vecho /n /t %SELF% FDIOK.%LNG%
+goto RemovePackage
+
+:InstallError
+vgotoxy left
+vecho /n /t %SELF% FDIERR.%LNG%
+goto PurgeDOS
+
+:RemovePackage
+vfdutil /u %TEMP%\FDINST.??? | set /p FLOG=
+if "%FLOG%" == "" goto RemovePackage
+vecho /n /fDarkGray .
+fdinst remove %NAME% >%FLOG%
+if errorlevel 1 goto RemoveError
+vgotoxy left
+vecho /n /t %SELF% FDROK.%LNG%
+goto Continued
+
+:RemoveError
+vgotoxy left
+vecho /n /t %SELF% FDRERR.%LNG%
+
+:PurgeDOS
+
+:Continued
+vecho /a7
+goto NextPackage
+
+:TestComplete
 vecho /a7 /p /t %SELF% COMPLETE.%LNG%
 
 goto Done
@@ -263,6 +357,12 @@ vecho /a7 /p /p /n /fWhite /bRed /e /t %SELF% CTRLC.%LNG%
 vecho /a7 /p
 goto Done
 
+:MkDirError
+vecho /n /t %SELF% ERROR.%LNG%
+vecho /a7 /p /p /n /fWhite /bRed /e /t %SELF% MKDIRERR.%LNG%
+vecho /a7 /p
+goto Done
+
 :Abort
 vecho /a7 /p /p /n /fWhite /bRed /e /t %SELF% ABORT.%LNG%
 vecho /a7 /p
@@ -281,10 +381,12 @@ SET FILE=
 SET PATH=%OLD_PATH%
 SET DRIVE=
 SET LOG=
+SET TIMES=
+SET RETRIES=
 if "%TEMP%" == "" goto NoCleanTemp
 if not exist %TEMP%\NUL  goto NoCleanTemp
-deltree -y %TEMP%\*.* >NUL
-if not "%OLD_TEMP%" == "%TEMP%" rmdir %TEMP% >NUL
+rem deltree -y %TEMP%\*.* >NUL
+rem if not "%OLD_TEMP%" == "%TEMP%" rmdir %TEMP% >NUL
 :NoCleanTemp
 SET TEMP=%OLD_TEMP%
 if "%DOSDIR%" == "" goto NoCleanDOS
