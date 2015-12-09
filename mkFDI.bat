@@ -341,9 +341,9 @@ echo Unreported errors with %PACKFILE% >>%ELOG%
 :PTestErrorLog
 grep -i "error while" %RAMDRV%\FDINST.LOG|vstr /n/b/f "' to '" 2-|vstr /n/s "'! " " ">>%ELOG%
 vstr /r 5 /c 0x2d >>%ELOG%
-vmath %PACKRETRY% + 1 | set /p PACKRETRY=
 type %RAMDRV%\FDINST.LOG | vecho /p /i
 goto PTestNext
+vmath %PACKRETRY% + 1 | set /p PACKRETRY=
 if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
 set PBACK=PDoRetry
 goto CheckMulti
