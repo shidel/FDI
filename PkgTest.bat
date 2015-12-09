@@ -159,7 +159,6 @@ vfdutil /u %DRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto SetTempDir
 vecho /a7 /n /t %SELF% TEMP?.%LNG%
 vecho /a7 /e /fWhite %TEMP%
-vecho /a7
 if not exist %TEMP%\NUL mkdir %TEMP%
 if not exist %TEMP%\NUL goto Abort
 
@@ -180,7 +179,6 @@ SET DRIVE=
 SET NAME=
 vecho /a7 /n /t %SELF% TEMP?.%LNG%
 vecho /a7 /e /fWhite %TEMP%
-vecho /a7
 :RepeatDate
 date /t | vstr /b /f is 2 | set /p NOWD=
 if "%NOWD%" == "" goto RepeatDate
@@ -191,6 +189,7 @@ echo Created %NOWD% at %NOWT% | vstr /b /s "  " " ">%LOG%
 if not exist %LOG% goto SetLogFile
 SET NOWD=
 SET NOWT=
+vecho /a7
 
 REM Locate Media
 vecho /n /t %SELF% SCAN.%LNG%
