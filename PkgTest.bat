@@ -177,8 +177,8 @@ vfdutil /u %DRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto SetLogFile
 SET DRIVE=
 SET NAME=
-vecho /a7 /n /t %SELF% TEMP?.%LNG%
-vecho /a7 /e /fWhite %TEMP%
+vecho /a7 /n /t %SELF% LOG?.%LNG%
+vecho /a7 /e /fWhite %LOG%
 :RepeatDate
 date /t | vstr /b /f is 2 | set /p NOWD=
 if "%NOWD%" == "" goto RepeatDate
