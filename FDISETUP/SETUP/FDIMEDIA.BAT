@@ -10,6 +10,12 @@ if "%1" == "A" goto CheckDriveExists
 if "%1" == "B" goto CheckDriveExists
 
 :CheckFiles
+vinfo /d %1:\
+if errorlevel 15 goto MaybeCD
+
+if errorlevel 5 goto CheckDone
+
+:MaybeCD
 vfdutil /u %1:\FDI?????.$$$ | set /p _CE=
 if "%_CE%" == "" goto CheckDone
 

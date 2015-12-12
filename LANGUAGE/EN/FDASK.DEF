@@ -13,6 +13,11 @@ BACKUPY="  Yes - Please backup first."
 BACKUPZ="  Yes - Please backup as zip archive."
 BACKUPN="  No  - Install without backing up."
 
+; FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c /y10
+TARGET?=Change installation target directory?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
 ; FDASK300 - Advanced mode Replace system files
 REPLACE_FRAME=/w60 /h8 /c /y9
 REPLACE_OPTS=/w40 /h4 /c /y12

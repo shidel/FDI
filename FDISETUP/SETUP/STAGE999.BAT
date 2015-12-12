@@ -31,6 +31,7 @@ set FTMPO=
 set FCURSOR=
 set FDRIVE=
 set FTARGET=
+set HTARGET=
 set FBAK=
 set FVERB=
 set FMEDIA=
@@ -75,6 +76,9 @@ set TCC=
 set TPB=
 set TPF=
 set TPH=
+
+set TQF=
+set TQB=
 
 :SkipClear
 verrlvl 0

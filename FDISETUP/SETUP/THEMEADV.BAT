@@ -32,4 +32,8 @@ set TPB=Red
 set TPF=White
 set TPH=Yellow
 
+REM Text Input Colors.
+set TQF=Yellow
+set TQB=Blue
+
 verrlvl 0

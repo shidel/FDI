@@ -31,6 +31,7 @@ verrlvl 0
 
 REM Startup super simple environment free space test **************************
 REM ensure a 1K (Plus a little) of free space is available in the environment.
+REM Should not need this, but here it is anyway.
 set _A=0123456789012345
 set _A=%_A%%_A%%_A%%_A%%_A%%_A%
 set _B=%_A%
@@ -145,6 +146,7 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+:DiskTesting
 REM Partitoned
 set FSTAGE=400
 call FDILANG.BAT FDSETUP
@@ -172,11 +174,14 @@ if exist FDCHECK.BAT call FDCHECK.BAT
 if errorlevel 1 goto Aborted
 
 REM Ask the user all of the Questions.
+SET HTARGET=%FTARGET%
 set FSTAGE=700
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
+if not "%HTARGET%" == "%FTARGET%" goto DiskTesting
+SET HTARGET=
 
 REM Do the installation.
 set FSTAGE=800

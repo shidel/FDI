@@ -16,7 +16,7 @@ CONTINUE="  Yes - Continue with installation"
 EXIT="  No  - Return to DOS"
 
 ; STAGE400 - Partition screen specific
-NOPART_FRAME=/w70 /h10 /c /y9
+NOPART_FRAME=/w70 /h10 /c /y8
 NOPART_OPTS=/w40 /h4 /c /y12
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
