@@ -16,13 +16,13 @@ set _PI=0
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 REM So, make sure it is ready before moving on.
 :PkgSticky
-type %FPKGS% | vstr /l %_PI% | set /p _PA=
+type %FPKGS% | vstr /b /l %_PI% | set /p _PA=
 if "%_PA%" == "" goto PkgSticky
-type %FPKGS% | vstr /l TOTAL | set /p _PM=
+type %FPKGS% | vstr /b /l TOTAL | set /p _PM=
 if "%_PM%" == "0" goto PkgDone
 
 :PkgLoop
-type %FPKGS% | vstr /l %_PI% | set /p _PA=
+type %FPKGS% | vstr /b /l %_PI% | set /p _PA=
 vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
 if "%_PA%" == "" goto PkgSkip

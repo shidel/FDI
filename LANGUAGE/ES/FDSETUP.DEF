@@ -90,6 +90,10 @@ FAILN="  No - Volver a DOS."
 FAILI="  No - Ignorar (no recomendado)"
 FAILR="El ordenador se reiniciar ."
 
+; FDNOTICE - Already installed notice.
+NOTICE.1=/c32 /fGreen %1 /fCyan %2 /fGray se allready instalado.
+NOTICE.2=/c32 Puede iniciar el programa de instalaci¢n manualmente ejecutando /fCyan SETUP.BAT /fGray
+
 ; Failure messages
 ERROR_BACKZIP="Hacer copia de seguridad de archivo %1."
 ERROR_BACKUP="Error de hacer la copia de seguridad."

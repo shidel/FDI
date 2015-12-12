@@ -90,6 +90,10 @@ FAILN="  No  - Return to DOS"
 FAILI="  No  - Ignore (not recommended)"
 FAILR="The computer will now reboot."
 
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is already installed.
+NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan SETUP.BAT /fGray "'"
+
 ; Failure messages
 ERROR_BACKZIP="Making backup archive %1."
 ERROR_BACKUP="Error making the backup."

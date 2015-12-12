@@ -11,9 +11,9 @@ REM starting the install process.
 
 vecho /fDarkGray /x 0x2a /fGray
 vecho /n /fDarkGray '***' /fGray
-vecho /n /r5/c32 /fGreen "%OS_NAME%" /fCyan " %OS_VERSION%" /fGray " is already installed."
+vecho /n /t %FLANG% NOTICE.1 "%OS_NAME%" "%OS_VERSION%"
 vgotoxy eor left left
 vecho /fDarkGray /x 0x2a /fGray /p /n /fDarkGray '***' /fGray
-vecho /n /r5/c32 "You can start the installer manually by running '" /fCyan SETUP.BAT /fGray "'"
+vecho /n /t %FLANG% NOTICE.2
 vgotoxy eor left left
 vecho /fDarkGray /x 0x2a /fGray /p /fDarkGray /x 0x2a /fGray /p

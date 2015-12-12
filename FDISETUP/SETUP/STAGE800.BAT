@@ -35,7 +35,7 @@ set DOSDIR=%FTARGET%
 REM Scan each install file path
 set _TI=0
 :LoopingList
-dir /on /a /b /p- %FINSP%\FDINS*.BAT | vstr /l %_TI% | set /p _TA=
+dir /on /a /b /p- %FINSP%\FDINS*.BAT | vstr /b /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto FinishedList
 
 vfdutil /n %_TA% | set /p _TL=
