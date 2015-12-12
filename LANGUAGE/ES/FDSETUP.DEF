@@ -16,7 +16,7 @@ CONTINUE="  S¡ - Contin£e con la instalaci¢n"
 EXIT="  No - Volver a DOS"
 
 ; STAGE400 - Partition screen specific
-NOPART_FRAME=/w70 /h10 /c /y9
+NOPART_FRAME=/w70 /h10 /c /y7
 NOPART_OPTS=/w40 /h4 /c /y12
 NOPART=/s- "La unidad " /f  %1 %2 /f %3 " no parece ser particionado"
 PART?="¨Quiere crear particiones en la unidad ?"
@@ -24,8 +24,8 @@ PART_YES="  S¡ - Partitioner Lanzamiento."
 ; EXIT
 
 ; STAGE500 - After partitioned specific
-PARTED_FRAME=/w60 /h11 /c /y9
-PARTED_OPTS=/w40 /h4 /c /y13
+PARTED_FRAME=/w60 /h11 /c /y7
+PARTED_OPTS=/w40 /h4 /c /y12
 PARTED="Debe reiniciar el equipo para el nuevo esquema de " /p "partici¢n entre en vigor."
 REBOOT?="¨Desea reiniciar ahora?"
 REBOOT_YES="  S¡ - Por favor, reiniciar ahora."
@@ -33,8 +33,8 @@ REBOOT_YES="  S¡ - Por favor, reiniciar ahora."
 REBOOT="Su equipo ahora debe reiniciar el sistema."
 
 ; STAGE500 - Formating specific
-NOFORMAT_FRAME=/w60 /h10 /c /y9
-NOFORMAT_OPTS=/w40 /h4 /c /y12
+NOFORMAT_FRAME=/w62 /h10 /c /y7
+NOFORMAT_OPTS=/w54 /h4 /c /y12
 NOFORMAT=/s- "La unidad " /f %1 %2 /f %3 " no parece ser formateado."
 FORMAT?="¨Quiere formatear la unidad?"
 FORMAT_YES="  S¡ - Por favor, borrar y formatear la unidad %1."

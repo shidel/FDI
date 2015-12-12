@@ -4,6 +4,10 @@ if not "%1" == "findcd" goto Start
 
 if not "%CDROM%" == "" goto EndOfFile
 vecho /n /fDarkGray .
+vinfo /d %2:\
+if errorlevel 15 goto MaybeCD
+if errorlevel 5 goto EndOfFile
+:MaybeCD
 vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
