@@ -91,7 +91,7 @@ FAILI="  No - Ignorar (no recomendado)"
 FAILR="El ordenador se reiniciar ."
 
 ; FDNOTICE - Already installed notice.
-NOTICE.1=/c32 /fGreen %1 /fCyan %2 /fGray se allready instalado.
+NOTICE.1=/c32 /fGreen %1 /fCyan %2 /fGray ya est  instalado.
 NOTICE.2=/c32 Puede iniciar el programa de instalaci¢n manualmente ejecutando /fCyan SETUP.BAT /fGray
 
 ; Failure messages
