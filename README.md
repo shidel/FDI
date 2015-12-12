@@ -119,10 +119,7 @@ utilities.
 
         STAGE800, Prompts user that installation will now begin, Offers
         to continue or exit. Then, scans current FDSETUP\SETUP for all
-        FDINS???.BAT files. Then if FSCAN="y", it scans all other drives for
-        \FDSETUP\SETUP\FDINS???.BAT files and calls them in that order to
-        perform any additional installations from auxiliary installers.
-        (May be good for vendor specific add-ons at OS install time)
+        FDINS???.BAT files.
 
         STAGE900, Informs user that installation is complete offers reboot or
         exit.
@@ -182,9 +179,6 @@ utilities.
 
         FPKGS       = Set in FPINS600 and points to list of binary packages
                     to be installed.
-
-        FSCAN       = Used to determine if all drives should be scanned
-                    during the actual installation to run additional installers.
 
         FEXT        = File extension of new source AUTOEXEC.BAT and FDCONFIG.SYS
                     files that will be used to replace existing versions.

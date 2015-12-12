@@ -33,7 +33,6 @@ set FDRIVE=
 set FTARGET=
 set FBAK=
 set FVERB=
-set FSCAN=
 set FMEDIA=
 set FEXT=
 set FLANG=
