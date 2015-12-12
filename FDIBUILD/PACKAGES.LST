@@ -15,6 +15,7 @@ util\grep
 util\fdnpkg
 archiver\zip
 util\uide
+util\udvd2
 base\himemx
 base\jemm
 base\edit

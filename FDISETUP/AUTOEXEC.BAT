@@ -11,10 +11,15 @@ rem SET TMP=%TEMP%
 rem SET BLASTER=A220 I5 D1 H5 P330
 rem SET DIRCMD=/P /OGN /4
 rem SET COPYCMD=/-Y
+
 SHSUCDX /QQ /D3
+
 rem LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
+
 LH FDAPM APMDOS
+
 REM LH SHARE
+
 LH DOSLFN
 REM NLSFUNC %dosdir%\BIN\COUNTRY.SYS
 REM DISPLAY CON=(EGA),858,2)
@@ -24,7 +29,8 @@ REM CHCP 858
 REM LH PCNTPK INT=0x60
 REM DHCP
 REM MOUSE
-DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
+
+rem DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
 REM MEM /C /N
 SHSUCDX /D
@@ -35,16 +41,14 @@ alias reboot=fdapm warmboot
 alias reset=fdisk /reboot
 alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
+
 rem alias cfg=edit %cfgfile%
 rem alias auto=edit %0
 
-vecho "Done processing startup files %cfgfile% and %0"
-vecho
+vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 
 if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
-vecho Type /fWhite HELP /fGray to get support on commands and navigation
-vecho
+vecho Type /fWhite HELP /fGray to get support on commands and navigation /p
 vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
-vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e
-vecho
+vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e /p

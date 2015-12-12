@@ -61,9 +61,6 @@ if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
 vecho /e "Package media is" /fYellow %CDROM% /fGray /p
 
-if "%1" == "test2" goto PackageTestB
-if "%1" == "testb" goto PackageTestB
-
 REM Making Ramdisk.
 verrlvl 1
 SHSURDRV /QQ /U
@@ -107,11 +104,10 @@ mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
 set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
 
-if "%1" == "test" goto PackageTest
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
 vecho /n "Copying V8Power Tools to Ramdrive"
-xcopy /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
+xcopy /y /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray /p
 
 if "%1" == "update" goto UpdateOnlyA
@@ -172,22 +168,22 @@ vecho /s- ', ' /fLightGreen "OK" /fGray /p
 
 :UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
-xcopy FDISETUP\*.* %RAMDRV%\ >NUL
-xcopy /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
-xcopy /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy /y FDISETUP\*.* %RAMDRV%\ >NUL
+xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
+xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho /s- ', ' /fLightGreen "OK" /fGray /p
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
-xcopy /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
+xcopy /y /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
 vecho /s- ', ' /fLightGreen "OK" /fGray /p
 :NoPackOverrides
 
 if not exist BINARIES\NUL goto NoBinOverrides
 vecho /s- /n "Adding binary overrides to Ramdrive"
-xcopy /s- /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
+xcopy /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
 vecho /s- ', ' /fLightGreen "OK" /fGray /p
 :NoBinOverrides
 
@@ -228,8 +224,8 @@ vecho
 
 :UpdateOnlyB
 vecho "Copying files to floppy disk " /fYellow %FLOPPY% /fGray /n
-xcopy /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
-xcopy FDISETUP\*.* %FLOPPY%\ >NUL
+xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
+xcopy /y FDISETUP\*.* %FLOPPY%\ >NUL
 vecho ', ' /fLightGreen "OK" /fGray
 goto Done
 
@@ -276,150 +272,6 @@ popd
 vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
 verrlvl 1
 goto Cleanup
-
-:PackageTestB
-
-set RAMDRV=C:\TESTB
-if not exist %RAMDRV%\NUL mkdir %RAMDRV%
-deltree -y %RAMDRV%\*.*
-if not exist %RAMDRV%\FDSETUP\NUL mkdir %RAMDRV%\FDSETUP
-if not exist %RAMDRV%\FDSETUP\BIN\NUL mkdir %RAMDRV%\FDSETUP\BIN
-set DOSDIR=%RAMDRV%\FDSETUP
-set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
-
-:PackageTest
-SET PATH=%OLDPATH%
-dir /on /a /b /p- /s %CDROM%\*.zip>%RAMDRV%\PACKAGES.LST
-type %RAMDRV%\PACKAGES.LST | vstr /l total | set /p PACKCNT=
-
-set PACKIDX=%PACKGO%
-vecho /fLightCyan "Testing %PACKCNT% packages." /e /fGray /bBlack /p /p /p
-vgotoxy eop /x1 up
-vline
-vgotoxy eop /x1
-vprogres /fLightGreen 0
-vgotoxy up up /l eot
-vecho
-rem set ELOG=%RAMDRV%\FDIERROR.LOG
-set ELOG=C:\FDIERROR.LOG
-if exist %ELOG% del %ELOG%
-
-:PTestLoop
-type %RAMDRV%\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
-if "%PACKFILE%" == "" goto PTestDone
-rem if "%PACKIDX%" == "5" goto PTestDone
-vecho
-set PACKRETRY=0
-vecho /n /fGray /e /fDarkGray "%PACKIDX% - "
-:PTestRetry
-vecho /n /fGray %PACKFILE%
-vecho /n /fDarkGray .
-vfdutil /n %PACKFILE% | set /p PACKNAME=
-
-rem if "%PACKNAME%" == "ZSNES" goto PTestSkip
-rem if "%PACKNAME%" == "OPENGEM" goto PTestSkip
-
-fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
-if errorlevel 1 goto PTestError
-grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
-if not "%PACKERR%" == "0" goto PTestCatch
-set PBACK=PMULTI
-goto CheckMulti
-:PMULTI
-vecho /n /fDarkGray .
-fdinst remove %PACKNAME% >NUL
-if errorlevel 1 goto PTestErrorRemove
-vecho /n /fDarkGray .
-fdinst install %PACKFILE% >%RAMDRV%\FDINST.LOG
-if errorlevel 1 goto PTestErrorReinst
-grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
-if "%PACKERR%" == "0" goto PTestOk
-:PTestCatch
-vecho /fLightRed " %PACKERR% Unreported errors" /fGray /n
-echo Unreported errors with %PACKFILE% >>%ELOG%
-
-:PTestErrorLog
-grep -i "error while" %RAMDRV%\FDINST.LOG|vstr /n/b/f "' to '" 2-|vstr /n/s "'! " " ">>%ELOG%
-vstr /r 5 /c 0x2d >>%ELOG%
-type %RAMDRV%\FDINST.LOG | vecho /p /i
-goto PTestNext
-vmath %PACKRETRY% + 1 | set /p PACKRETRY=
-if "%PACKRETRY%" == "%PACKTRY%" goto PTestNext
-set PBACK=PDoRetry
-goto CheckMulti
-:PDoRetry
-vecho /p /fLightCyan "Retry" /fGray ", " /n
-deltree /y %DOSDIR%\ >NUL
-goto PTestRetry
-
-:PTestOK
-vecho /fLightGreen " OK" /fGray /n
-if "%PACKRETRY%" == "0" goto PTestNext
-echo %PACKFILE% was OK on retry. >>%ELOG%
-vstr /r 5 /c 0x2d >>%ELOG%
-
-:PTestNext
-fdinst remove %PACKNAME% >NUL
-
-:PTestIgnore
-vmath %PACKIDX% + 1 | set /p PACKIDX=
-vmath %PACKIDX% * 100 / %PACKCNT% | set /p PACKPER=
-vgotoxy eop sor
-vprogres /fLightGreen %PACKPER%
-vgotoxy up up /l eot
-goto PTestLoop
-
-:PTestSkip
-vecho /fLightRed " Skipped" /fGray
-echo %PACKFILE% skipped. >>%ELOG%
-goto PTestIgnore
-
-:PTestErrorRemove
-echo %PACKFILE% remove error. >>%ELOG%
-goto PTestError
-:PTestErrorReinst
-echo %PACKFILE% reinstall error. >>%ELOG%
-goto PTestError
-
-:PTestError
-grep -i "error while" %RAMDRV%\FDINST.LOG |  vstr /l total | set /p PACKERR=
-vecho /fLightRed " %PACKERR% Errors" /fGray /n
-echo %PACKERR% Errors with %PACKFILE% >>%ELOG%
-goto PTestErrorLog
-
-:PTestNoMulti
-vecho /fYellow " Only one test" /fGray ", " /fLightGreen "OK"
-echo System crashes, skipping multitest with %PACKFILE% >>%ELOG%
-goto PTestNext
-
-:CheckMulti
-goto %PBACK%
-
-if "%PACKNAME%" == "COMMAND" goto PTestNoMulti
-if "%PACKNAME%" == "HELP" goto PTestNoMulti
-if "%PACKNAME%" == "DJGPP_RH" goto PTestNoMulti
-if "%PACKNAME%" == "NASM" goto PTestNoMulti
-if "%PACKNAME%" == "FMINES" goto PTestNoMulti
-if "%PACKNAME%" == "KRAPTOR" goto PTestNoMulti
-if "%PACKNAME%" == "MIRMAGIC" goto PTestNoMulti
-if "%PACKNAME%" == "VERTIGO" goto PTestNoMulti
-if "%PACKNAME%" == "DILLO" goto PTestNoMulti
-if "%PACKNAME%" == "MBEDIT" goto PTestNoMulti
-if "%PACKNAME%" == "CTMOUSE" goto PTestNoMulti
-goto %PBACK%
-
-:PTestDone
-set PBACK=
-vgotoxy eop /x1 up
-vecho /g /e /p /e
-vgotoxy /l eot
-vecho /p
-vecho /n /fGray "Testing complete, "
-if not exist %ELOG% goto SkipErrors
-grep -i "errors with" %ELOG% |  vstr /l total | set /p PACKIDX=
-grep " \[" %ELOG% |  vstr /l total | set /p PACKERR=
-vecho /fLightRed "%PACKIDX% Packages with %PACKERR% errors, see %ELOG%" /fGray
-goto SkipReport
 
 :SkipErrors
 vecho /fLightGreen "OK" /fGray

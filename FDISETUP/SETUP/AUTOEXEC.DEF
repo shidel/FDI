@@ -12,8 +12,6 @@ SET BLASTER=A220 I5 D1 H5 P330
 SET DIRCMD=/P /OGN /4
 SET COPYCMD=/-Y
 if "%config%"=="4" goto end
-SHSUCDX /QQ /D3
-LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
 LH FDAPM APMDOS
 IF "%config%"=="2" LH SHARE
 LH DOSLFN
@@ -26,8 +24,12 @@ REM LH PCNTPK INT=0x60
 REM DHCP
 REM MOUSE
 CTMOUSE
-DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
+
+SHSUCDX /QQ /D3
+REM LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
+REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
+
 MEM /C /N
 IF NOT "%config%"=="4" SHSUCDX /D
 GOTO END
@@ -54,11 +56,9 @@ goto DONE
 
 :V8Power
 set PATH=%PATH%;%dosdir%\V8POWER
-vecho Done processing startup files /fCyan %cfgfile% a/fGray and /fCyan %0 /fGray /p
-vecho Type /fWhite HELP /fGray to get support on commands and navigation
-vecho
+vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
+vecho Type /fWhite HELP /fGray to get support on commands and navigation /p
 vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
-vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e
-vecho
+vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e /p
 
 :DONE
