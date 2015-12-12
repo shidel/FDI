@@ -35,7 +35,8 @@ set DOSDIR=%FTARGET%
 REM Scan each install file path
 set _TI=0
 :LoopingList
-dir /on /a /b /p- %FINSP%\FDINS*.BAT | vstr /b /l %_TI% | set /p _TA=
+vfdutil /c/p %FINSP%\
+dir /on /a /b /p- FDINS*.BAT | vstr /b /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto FinishedList
 
 vfdutil /n %_TA% | set /p _TL=
@@ -43,26 +44,21 @@ call FDILANG.BAT %_TL% FDINS FDSETUP
 set _TL=
 
 verrlvl 0
-if not exist %FINSP%\%_TA% goto FinishedList
-vfdutil /c/d %FINSP%\
+if not exist %_TA% goto FinishedList
 pushd
-vfdutil /c/p %FINSP%\
 call %_TA%
 if errorlevel 1 goto AbortBatch
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 popd
-vfdutil /c/p %FINSP%\
 
 vmath %_TI% + 1 | set /p _TI=
 goto LoopingList
 
 :FinishedList
-vfdutil /c/p %FINSP%\
 verrlvl 0
 goto Done
 
 :AbortBatch
-vfdutil /c/p %FINSP%\
 verrlvl 1
 
 :Done

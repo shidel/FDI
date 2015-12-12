@@ -25,7 +25,7 @@ if "%_PM%" == "0" goto PkgDone
 type %FPKGS% | vstr /b /l %_PI% | set /p _PA=
 vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
-if "%_PA%" == "" goto PkgSkip
+if "%_PA%" == "" goto PkgDone
 rem if not exist %FMEDIA%\%_PA%.zip goto PkgSkip
 vgotoxy /l sop
 vecho /e /n /t %FLANG% PACBI %TFH% %_PA% %TFF%
@@ -49,6 +49,8 @@ verrlvl 1
 goto AbortPkg
 
 :PkgDone
+vgotoxy /l eop sor
+vprogres /f %TFP% 100
 vdelay %FDEL%
 
 REM Restore Preserved Package Data and FreeDOS files if Present
