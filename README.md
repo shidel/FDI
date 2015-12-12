@@ -270,9 +270,6 @@ utilities.
                     if the user does not quit. The best example of this is
                     STAGE400.BAT can return to itself in two separate places.
 
-        FDISCAN.BAT Used internally to scan for drives that may contain paths
-                    that may contain FDINS???.BAT files.
-
         FDIFAIL.BAT Call FDIFAIL "message about failure" to inform the user
                     that the installation has failed. It offers to reboot
                     or exit to DOS. Afterwards, if exit to DOS was selected,
