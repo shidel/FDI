@@ -1,1 +1,3 @@
-FreeDOS 1.2+ Installer Language Template File.
+FreeDOS 1.2+ Installer Language Template File for all installation messages
+handled by the FDSETUP.BAT and default handling of the FDCHECK, FDERROR,
+FDICLS, FDICTRLC, FDIFAIL, FDNOTICE, FDSPLASH and FDTHANK utility batch files.

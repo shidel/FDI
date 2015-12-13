@@ -1,1 +1,2 @@
-FreeDOS 1.2+ Installer Language Template File.
+FreeDOS 1.2+ Installer Language Template File for all user prompted questions
+handled by the default FDASK???.BAT files.
