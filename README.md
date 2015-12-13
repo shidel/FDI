@@ -253,8 +253,14 @@ utilities.
         FDINS700    Installs binary and source packages.
 
         FDINS800    Copy new configuration files, maybe. If so, also
-                    creates the VERSION.FDI file for testing when this
-                    version of the OS is already installed.
+                    creates the VERSION.FDI file for testing if this
+                    version of the OS is already installed. It will use
+                    the AUTOEXEC.DEF and FDCONFIG.DEF template files to
+                    create the new configuration files. It will convert
+                    $FLANG$ to the current %LANG%. Also, it will
+                    replace $FDRIVE$ with the target drive (like C:) and
+                    $FTARGET$ with the installation base directory (like
+                    C:\FDOS).
 
         FDINS900    Install V8Power Tools from installer, maybe.
 
