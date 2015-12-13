@@ -8,6 +8,6 @@ vgotoxy eop sor
 vecho /n /t %FLANG% PRESSKEY
 vpause /t 30
 
-call FDICLS
+call FDICLS.BAT
 
 :NoDebugInfo
