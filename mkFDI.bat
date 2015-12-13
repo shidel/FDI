@@ -192,6 +192,7 @@ vecho /s- ', ' /fLightGreen "OK" /fGray /p
 :NoBinOverrides
 
 vecho /n "Removing unnecessary files and folders"
+if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
 set PACKIDX=0
 :CleanLoop
 type FDIBUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
