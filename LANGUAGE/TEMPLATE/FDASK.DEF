@@ -16,7 +16,7 @@ the letter case or add any spaces prior to the "=" for the ID keys. Doing so
 will cause a match not to be found and generate "Parameter Error" messages
 in the installer. All text that does not match a requested ID string is ignored.
 So, basically, you can use any character like ;#!* or none at all to denote
-commment text.
+commment text. I'm going to use the ; just for readablility
 
 *******************************************************************************
 FreeDOS 1.2 Installer (language) Translation.
@@ -25,3 +25,6 @@ Contact Email: (optional, but preferred)
 Created/Modified: (today)
 Released Under GPL v2.0 License.
 *******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=
