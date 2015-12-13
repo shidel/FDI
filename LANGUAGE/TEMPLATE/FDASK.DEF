@@ -1,2 +1,19 @@
 FreeDOS 1.2+ Installer Language Template File for all user prompted questions
 handled by the default FDASK???.BAT files.
+
+Create a subdirectory under the LANGUAGE directory using the DOS %LANG% language
+ID and place your language translation of this file there.
+
+These "Language" translation files also include settings for text frame
+dimensions and other settings that can change based on the language text.
+Some settings (like frame style) are handled inside the batch script. While
+some other settings like color and text may be passed through %1-%9 parameters
+so the text can be properly formatted. Think of them as additional command-line
+parameters to their counterparts that are in the batch script file.
+
+Also, the ID strings must exactly match those provided. Do not indent, change
+the letter case or add any spaces prior to the "=" for the ID keys. Doing so
+will cause a match not to be found and generate "Parameter Error" messages
+in the installer. All text that does not match a requested ID string is ignored.
+So, basically, you can use any character like ;#!* or none at all to denote
+commment text.
