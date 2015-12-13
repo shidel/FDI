@@ -9,7 +9,6 @@ vprogres /f %TFP% 0
 if not exist %FTARGET%\NUL mkdir %FTARGET%
 if errorlevel 1 goto AbortDir
 
-:NoSavedData
 REM Run through all binaries to be installed.
 set _PI=0
 
@@ -54,10 +53,10 @@ vprogres /f %TFP% 100
 vdelay %FDEL%
 
 REM Restore Preserved Package Data and FreeDOS files if Present
-if not exist %TEMP%\SAVED\NUL goto :NoSavedData
+if not exist %TEMP%\SAVED\NUL goto NoSavedData
 xcopy /E /N %TEMP%\SAVED\*.* %FTARGET%\ >NUL
+:NoSavedData
 verrlvl 0
-
 goto Success
 
 :AbortDir
