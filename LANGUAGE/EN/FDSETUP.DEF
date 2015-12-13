@@ -25,7 +25,7 @@ PART_YES="  Yes - Launch Partitioner."
 
 ; STAGE500 - After partitioned specific
 PARTED_FRAME=/w60 /h11 /c /y7
-PARTED_OPTS=/w40 /h4 /c /y12
+PARTED_OPTS=/w40 /h4 /c /y13
 PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
 REBOOT?="Do you wish to reboot now?"
 REBOOT_YES="  Yes - Please reboot now."
