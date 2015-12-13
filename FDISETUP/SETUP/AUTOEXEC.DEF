@@ -58,7 +58,7 @@ goto DONE
 English (EN)
 DONE.EN=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
 HELP.EN=Type /fWhite %1 /fGray to get support on commands and navigation.
-WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow %3 /fGray )
+WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
 
 Spanish (ES)
 DONE.ES=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
