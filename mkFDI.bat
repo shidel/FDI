@@ -102,7 +102,7 @@ if errorlevel 25 set RAMDRV=Y:
 if errorlevel 26 set RAMDRV=Z:
 if "%RAMDRV%" == "" goto NoRamDrive
 
-vecho "Ramdrive is" /fYellow %RAMDRV% /fGray /p
+vecho Ramdrive is /fYellow %RAMDRV% /fGray /p
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
@@ -112,20 +112,20 @@ set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
 vecho /n "Copying V8Power Tools to Ramdrive"
 xcopy /y /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho , /fLightGreen OK /fGray /p
 
 if "%1" == "update" goto UpdateOnlyA
 
-vfdutil /d %OLDDOSDIR% | vecho /n "Transferring system files from " /fYellow /i /fGrey " to Ramdrive"
+vfdutil /d %OLDDOSDIR% | vecho /n Transferring system files from /c32 /fYellow /i /fGrey to Ramdrive
 pushd
 vfdutil /c /p %OLDDOSDIR%
 cd \
 sys %RAMDRV% >NUL
 if errorlevel 1 goto SysError
 popd
-vecho /s- ', ' /fLightGreen "OK" /fGray /p
+vecho , /fLightGreen OK /fGray /p
 
-vecho "Installing packages to " /fYellow %RAMDRV% /fGray
+vecho Installing packages to /fYellow %RAMDRV% /fGray
 set PACKIDX=0
 :PkgLoop
 type FDIBUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
@@ -147,13 +147,13 @@ fdinst install %PACKFILE% >NUL
 
 if errorlevel 250 goto MissingFDINST
 if errorlevel 1 goto PkgError
-vecho /s- /n ', ' /fLightGreen "OK" /fGray
+vecho /n ,  /fLightGreen OK /fGray
 if exist %DOSDIR%\APPINFO\NUL deltree /Y %DOSDIR%\APPINFO >NUL
 if exist %DOSDIR%\PACKAGES\NUL deltree /Y %DOSDIR%\PACKAGES >NUL
 if exist %DOSDIR%\DOC\NUL deltree /Y %DOSDIR%\DOC >NUL
 if exist %DOSDIR%\HELP\NUL deltree /Y %DOSDIR%\HELP >NUL
 if exist %DOSDIR%\NLS\NUL deltree /Y %DOSDIR%\NLS >NUL
-vecho /s- ', ' /fLightCyan "Cleaned" /fGray
+vecho ,  /fLightCyan Cleaned /fGray
 goto PkgLoop
 :PkgError
 :ErrorFDINST
@@ -163,12 +163,12 @@ goto PkgLoop
 :PkgDone
 set PACKFILE=
 set PACKIDX=
-vecho  /s- /fLightGreen "Done" /fGray /p
+vecho /fLightGreen Done /fGray /p
 
 vecho /n "Replacing system files on Ramdrive"
 copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
 copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
-vecho /s- ', ' /fLightGreen "OK" /fGray /p
+vecho ,  /fLightGreen OK /fGray /p
 
 :UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
@@ -177,18 +177,18 @@ xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
-vecho /s- ', ' /fLightGreen "OK" /fGray /p
+vecho , /fLightGreen OK /fGray /p
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
 xcopy /y /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
-vecho /s- ', ' /fLightGreen "OK" /fGray /p
+vecho ,  /fLightGreen OK /fGray /p
 :NoPackOverrides
 
 if not exist BINARIES\NUL goto NoBinOverrides
 vecho /s- /n "Adding binary overrides to Ramdrive"
 xcopy /e /y BINARIES\*.* %RAMDRV%\FDSETUP\BIN\ >NUL
-vecho /s- ', ' /fLightGreen "OK" /fGray /p
+vecho ,  /fLightGreen OK /fGray /p
 :NoBinOverrides
 
 vecho /n "Removing unnecessary files and folders"
@@ -208,11 +208,11 @@ goto CleanLoop
 :CleanDone
 set PACKFILE=
 set PACKIDX=
-vecho ', ' /fLightGreen "OK" /fGray /p
+vecho , /fLightGreen OK /fGray /p
 
 if "%1" == "update" goto UpdateOnlyB
 :FormatDisk
-vecho "Press a key to format the disk in drive " /fYellow %FLOPPY% /fGray "... " /n
+vecho Press a key to format the disk in drive /fYellow %FLOPPY% /s- /fGray ... /c32 /n
 vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
 vgotoxy left
@@ -228,10 +228,10 @@ popd
 vecho
 
 :UpdateOnlyB
-vecho "Copying files to floppy disk " /fYellow %FLOPPY% /fGray /n
+vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
 xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 xcopy /y FDISETUP\*.* %FLOPPY%\ >NUL
-vecho ', ' /fLightGreen "OK" /fGray
+vecho ,  /fLightGreen OK /fGray
 goto Done
 
 :MissingV8
@@ -279,7 +279,7 @@ verrlvl 1
 goto Cleanup
 
 :SkipErrors
-vecho /fLightGreen "OK" /fGray
+vecho /fLightGreen OK /fGray
 
 :SkipReport
 vecho /fGray
@@ -306,7 +306,7 @@ verrlvl 0
 goto CleanUp
 
 :Done
-vecho /p /fLightGreen "Creation complete." /e /fGray /bBlack
+vecho /p /fLightGreen Creation complete. /e /fGray /bBlack
 verrlvl 0
 goto CleanUp
 
