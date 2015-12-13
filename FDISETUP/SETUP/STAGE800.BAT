@@ -47,7 +47,7 @@ verrlvl 0
 if not exist %_TA% goto FinishedList
 pushd
 call %_TA%
-if errorlevel 1 goto AbortBatch
+if errorlevel 1 goto FailedInstaller
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 popd
 
@@ -57,6 +57,9 @@ goto LoopingList
 :FinishedList
 verrlvl 0
 goto Done
+
+:FailedInstaller
+popd
 
 :AbortBatch
 verrlvl 1
