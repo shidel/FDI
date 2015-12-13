@@ -2,7 +2,7 @@
 
 ; FSASK100 - Advanced mode
 TARGET_FRAME=/w60 /h7 /c /y10
-TARGET?=Cambie el directorio destino de la instalaci¢n?
+TARGET?=¨Cambie el directorio destino de la instalaci¢n?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
 
 ; FDASK200 - Backup old OS
