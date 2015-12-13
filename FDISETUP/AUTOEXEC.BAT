@@ -44,11 +44,28 @@ alias shutdown=fdapm poweroff
 
 rem alias cfg=edit %cfgfile%
 rem alias auto=edit %0
+goto SkipLanguageData
 
+***** Language specific text data.
+English (EN)
+HELP.EN=Type /fWhite %1 /fGray to get support on commands and navigation.
+WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
+
+Spanish (ES)
+HELP.ES=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
+WELCOME.ES=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
+
+:SkipLanguageData
 vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 
 if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
-vecho Type /fWhite HELP /fGray to get support on commands and navigation /p
-vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
-vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e /p
+set DEFLANG=EN
+if "%LANG%" == "" goto NoLanguage
+if %LANG% == ES set DEFLANG=ES
+:NoLanguage
+vecho /t %0 HELP.%DEFLANG% HELP
+vecho
+vecho /t %0 WELCOME.%DEFLANG% %OS_NAME% %OS_VERSION% http://www.freedos.org
+vecho
+set DEFLANG=

@@ -54,11 +54,27 @@ echo.
 echo  Welcome to the %OS_NAME% %OS_VERSION% operating system (http://www.freedos.org)
 goto DONE
 
+***** V8Power Language specific text data.
+English (EN)
+DONE.EN=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
+HELP.EN=Type /fWhite %1 /fGray to get support on commands and navigation.
+WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow %3 /fGray )
+
+Spanish (ES)
+DONE.ES=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
+HELP.ES=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
+WELCOME.ES=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
+
 :V8Power
 set PATH=%PATH%;%dosdir%\V8POWER
-vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
-vecho Type /fWhite HELP /fGray to get support on commands and navigation /p
-vecho /n Welcome to the /fGreen %OS_NAME% /fCyan %OS_VERSION%
-vecho /fGray " operating system (" /s- /fYellow "http://www.freedos.org" /fGray ")" /e /p
+set DEFLANG=EN
+if "%LANG%" == "" goto NoLanguage
+if %LANG% == ES set DEFLANG=ES
+:NoLanguage
+vecho /p /t %0 DONE.%DEFLANG% %cfgfile% %0
+vecho /p /t %0 HELP.%DEFLANG% HELP
+vecho /p /t %0 WELCOME.%DEFLANG% %OS_NAME% %OS_VERSION% http://www.freedos.org
+vecho
+SET DEFLANG=
 
 :DONE
