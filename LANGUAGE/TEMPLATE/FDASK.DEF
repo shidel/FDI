@@ -16,7 +16,10 @@ the letter case or add any spaces prior to the "=" for the ID keys. Doing so
 will cause a match not to be found and generate "Parameter Error" messages
 in the installer. All text that does not match a requested ID string is ignored.
 So, basically, you can use any character like ;#!* or none at all to denote
-commment text. I'm going to use the ; just for readablility
+commment text. I'm going to use the ; just for readability.
+
+See FDSETUP.DEF for some additional comments on some of the switches that are
+used in the "Language strings."
 
 *******************************************************************************
 FreeDOS 1.2 Installer (language) Translation.
@@ -28,3 +31,64 @@ Released Under GPL v2.0 License.
 
 ; LANG_AUTHOR is unused at present, but you should set it to your name.
 LANG_AUTHOR=
+
+; FDASK000 - Reserved
+
+; FDASK100 - Reserved
+
+; FDASK200 - Backup old OS
+BACKUP_FRAME=/w60 /h10 /c /y7
+BACKUP_OPTS=/w40 /h4 /c /y12
+BACKUPADV_FRAME=/w60 /h11 /c /y7
+BACKUPADV_OPTS=/w40 /h5 /c /y12
+BACKUP=A previous operating system was detected on drive /f %1 %2 /f %3 /s- .
+BACKUP?=Do you wish to backup the old files before installing?
+BACKUPY="  Yes - Please backup first."
+BACKUPZ="  Yes - Please backup as zip archive."
+BACKUPN="  No  - Install without backing up."
+
+; FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c /y10
+TARGET?=Change installation target directory?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+; FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w60 /h8 /c /y9
+REPLACE_OPTS=/w40 /h4 /c /y12
+REPLACE?=Replace the system configuration files?
+REPLACEY="  Yes - Transfer new default files."
+REPLACEN="  No  - Keep the old files."
+
+; FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c /y9
+DELETE_OPTS=/w40 /h4 /c /y12
+DELETE?=Remove all old files from /f %1 %2 /f %3 /s- ?
+DELETEY="  Yes - Start fresh."
+DELETEN="  No  - Leave it cluttered."
+
+; FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c /y9
+XFER_OPTS=/w40 /h4 /c /y12
+XFER?=Transfer system files to drive /f %1 %2 /f %3 /s- ?
+XFERY="  Yes - Transfer system files."
+XFERN="  No  - Do not transfer system files."
+
+; FDASK600 - Package group selection.
+PAC_FRAME=/w60 /h11 /c /y8
+PAC_OPTS=/w40 /h7 /c /y11
+PACS?=What /f %1 %2 /f %3 packages do you want to install?
+PACBO="  Basic packages only."
+PACBS="  Basic packages with sources only."
+PACAO="  All the packages."
+PACAS="  All the packages and their sources."
+
+; FDASK700 - Reserved
+
+; FDASK800 - Reserved
+
+; FDASK900 - Advanced mode Install V8Power Tools.
+V8_FRAME=/w60 /h8 /c /y9
+V8_OPTS=/w40 /h4 /c /y12
+V8I?=Install a copy of /f %1 V8Power Tools /f %2 /s- ?
+V8IY="  Yes - Install V8Power Tools."
+V8IN="  No  - Do not install them."

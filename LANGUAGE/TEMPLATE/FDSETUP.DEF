@@ -17,7 +17,12 @@ the letter case or add any spaces prior to the "=" for the ID keys. Doing so
 will cause a match not to be found and generate "Parameter Error" messages
 in the installer. All text that does not match a requested ID string is ignored.
 So, basically, you can use any character like ;#!* or none at all to denote
-commment text. I'm going to use the ; just for readablility
+commment text. I'm going to use the ; just for readability.
+
+Finally, any key below that contains ADV is only used in advanced mode.
+You can switch to and from advanced mode at any time the installer is waiting
+for user input by pressing CTRL+C and selecting the other mode. Or, you can
+start the installer in advanced mode with the "adv" command line option.
 
 *******************************************************************************
 FreeDOS 1.2 Installer (language) Translation.
@@ -29,3 +34,155 @@ Released Under GPL v2.0 License.
 
 ; LANG_AUTHOR is unused at present, but you should set it to your name.
 LANG_AUTHOR=
+
+; FDICLS - Installer Title Bar
+; %1 %3 are color settings
+; %2 is OS name (FreeDOS)
+; %3 is Version number (like 1.2)
+; Looks something like "FreeDOS 1.2 Installer"
+; Please note that /s- causes no spaces between text strings. This is the
+; opposite of the default /s+ operation of vecho.
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installer"
+; This would work as well:
+; TITLE=/f%1 %2 /f%3 %4 /f%1 Installer
+; Just note that the / and any form of quote must be inside quotes to be output
+; as text. To use " quote it like this 'Say "Hello!"' and for ' use something
+; like "Bob's House."
+
+; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Please select you language."
+LANG_EN=English
+LANG_ES=Spanish
+LANG_FR=French
+LANG_DE=German
+; add this language if needed.
+
+; STAGE300 - Initial welcome screen message.
+; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
+; rows) then centered, then move top to row 7.
+HELLO_FRAME=/w68 /h10 /c /y7
+; Hidden frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
+; = 2 usable rows)
+; then centered, then move top to row 7.
+HELLO_OPTS=/w40 /h4 /c /y12
+; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
+; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
+; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
+; then use the /p switch in the HELLO message.
+HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
+; Alternate, advanced mode welcome message.
+HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
+PROCEED?="Do you wish to proceed?"
+; Do not span lines in option choices. A new line will become an additional
+; choice and will throw off the return value for the following selections.
+; Also, to indent the choice, you can either use white spaces or insert the
+; repeat char switches. Like /r2/c32. Which would be repeat 2 times the ascii
+; character 32. If you prefer, hex can be used like /r2/c0x20.
+CONTINUE="  Yes - Continue with installation"
+EXIT="  No  - Return to DOS"
+
+; STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w70 /h10 /c /y7
+NOPART_OPTS=/w40 /h4 /c /y12
+NOPART=/s- "Drive " /f %1 %2 /f %3 " does not appear to be partitioned."
+PART?="Do you wish to partition your drive?"
+PART_YES="  Yes - Launch Partitioner."
+; Also uses EXIT defined above.
+
+; STAGE500 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c /y7
+PARTED_OPTS=/w40 /h4 /c /y13
+; Actually, this uses two lines because of the frame width. Not because it
+; is two strings.
+PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
+REBOOT?="Do you wish to reboot now?"
+REBOOT_YES="  Yes - Please reboot now."
+; Also uses EXIT defined above.
+REBOOT="Your computer should now reboot."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w60 /h10 /c /y7
+NOFORMAT_OPTS=/w50 /h4 /c /y12
+NOFORMATADV_FRAME=/w60 /h11 /c /y7
+NOFORMATADV_OPTS=/w50 /h5 /c /y12
+NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
+FORMAT?="Do you wish to format your drive?"
+FORMAT_YES="  Yes - Please erase and format drive %1."
+FORMATADV_QUICK="  Yes - Quick erase and format drive %1."
+FORMATADV_SLOW="  Yes - Full erase and format drive %1."
+; Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
+; The /e switch clears the rest of the current line without moving the cursor.
+PAUSE=/fLightGreen " Press a key... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w66 /h5 /c
+GATHERING="Gathering some information to prepare for the installation."
+
+; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+; it will use it over the main FDASK.DEF language file. That is only recommended
+; for add-on questioning prompts that are not part of the main FDI base.
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w60 /h10 /c /y8
+INSTALL_OPTS=/w46 /h4 /c /y13
+INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
+INSTALL?="Do you want to install now?"
+INSTALL_YES="  Yes - Please install %1."
+; Also uses EXIT defined above.
+PREPARING_FRAME=/w60 /h5 /c
+PREPARING="Preparing for the installation."
+
+; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+; it will use it over the main FDINS.DEF language file. That is only recommended
+; for add-on installers that are not part of the main FDI base.
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c /y7
+COMPLETE_OPTS=/w40 /h4 /c /y12
+COMPLETE=/s- "Installation of " /f %1 "%2" /f %3 " is now complete."
+; Also uses REBOOT?, REBOOT, EXIT defined above.
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c /y7
+CTRLC_OPTS=/w44 /h6 /c /y12
+CTRLC=/s- "You have pressed " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Are you sure you wish to abort the installation?"
+CTRLCY="  Yes - Please return to DOS."
+CTRLCN="  No  - I want to continue."
+CTRLCA="  No  - Switch to Advanced Mode."
+CTRLCB="  No  - Switch to Basic Mode."
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w60 /h11 /c /y7
+FAIL_OPTS=/w40 /h4 /c /y13
+FAILADV_FRAME=/w60 /h13 /c /y7
+FAILADV_OPTS=/w40 /h6 /c /y13
+FAILH="A reboot may help."
+FAIL?="Do you wish to reboot now?"
+FAILY="  Yes - Please reboot now."
+FAILN="  No  - Return to DOS"
+; At present FAILI is only available in advanced mode.
+FAILI="  No  - Ignore (not recommended)"
+FAILR="The computer will now reboot."
+
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is already installed.
+NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+; Failure messages
+ERROR_BACKZIP="Making backup archive %1."
+ERROR_BACKUP="Error making the backup."
+ERROR_MKDOS="Unable to create '%1' directory."
+ERROR_PACKAGE="Unable to install the '%1' package."
+ERROR_SOURCE="Unable to install the '%1' source."
+ERROR_READC="Having a problem reading drive C:."
+ERROR_SHELL="Installation is not supported under your current shell."
