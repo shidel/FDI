@@ -38,14 +38,21 @@ goto TempTest
 :AdjustPath
 FDSETUP\V8POWER\vfdutil /c /p %0
 
-:TempTest
 set OLD_PATH=%PATH%
-if not "%TEMP%" == "" goto HasTemp
+
+REM Temp Dircectory Test and Auto-configuration********************************
+:TempTest
+if not "%TEMP%" == "" goto TempSet
+FDSETUP\V8POWER\vinfo /d C:
+if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u C:\FDOS\TEST????.??? >NUL
 if errorlevel 1 goto NoFDOS
 if not exist C:\FDOS\TEMP\NUL mkdir C:\FDOS\TEMP
 set TEMP=C:\FDOS\TEMP
 goto HasTemp
+
+:NoDriveC
+goto NoTemp
 
 :NoFDOS
 FDSETUP\V8POWER\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
@@ -61,19 +68,30 @@ if not exist C:\FDTEMP.$$$\NUL mkdir C:\FDTEMP.$$$
 set TEMP=C:\FDTEMP.$$$
 goto HasTemp
 
+:TempSet
+vfdutil /u %TEMP%\TEST????.??? >NUL
+if errorlevel 1 goto NoTEMP
+goto HasTemp
+
 :NoTEMP
 FDSETUP\V8POWER\vfdutil /u A:\TEST????.??? >NUL
 if errorlevel 1 goto V8Missing
 if exist A:\FDSETUP\V8POWER\vfdutil.com goto IsFloppy
 goto V8Missing
 
+:TempRetry
+SET TEMP=
+goto TempTest
+
 :IsFloppy
 set PATH=A:\FDSETUP\BIN;A:\FDSETUP\V8POWER
 goto RunInstaller
 
 :HasTemp
+FDSETUP\V8POWER\vinfo /d %TEMP%
+if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 goto V8Missing
+if errorlevel 1 goto NoDriveC
 FDSETUP\BIN\COMMAND.COM /E:2048/C FDSETUP\V8POWER\vfdutil /p %0 | set /p TMD=
 set PATH=%TMD%\FDSETUP\BIN;%TMD%\FDSETUP\V8POWER
 set TMD=

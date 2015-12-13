@@ -18,7 +18,7 @@ REM Formatted volume label
 set OVOL=FreeDOS2015
 
 REM Drive C Formatting options.
-set FFMT=/Q /U /Z:seriously
+set FFMT=/U /Z:seriously
 
 REM Pause duration after Format and System file transfers. (seconds)
 set FWAIT=15

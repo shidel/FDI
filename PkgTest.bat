@@ -103,10 +103,15 @@ vfdutil /c /p %0
 REM Temp Dircectory Test and Auto-configuration********************************
 :TempTest
 if not "%TEMP%" == "" goto TempSet
+vinfo /d C:
+if errorlevel 1 goto NoDriveC
 vfdutil /u C:\FDOS\TEMP\TEST????.??? >NUL
 if errorlevel 1 goto NoFDOS
 set TEMP=C:\FDOS\TEMP
 goto HasTemp
+
+:NoDriveC
+goto NoTemp
 
 :NoFDOS
 vfdutil /u C:\FREEDOS\TEMP\TEST????.??? >NUL

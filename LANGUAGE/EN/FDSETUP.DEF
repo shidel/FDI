@@ -35,9 +35,13 @@ REBOOT="Your computer should now reboot."
 ; STAGE500 - Formating specific
 NOFORMAT_FRAME=/w60 /h10 /c /y7
 NOFORMAT_OPTS=/w50 /h4 /c /y12
+NOFORMATADV_FRAME=/w60 /h11 /c /y7
+NOFORMATADV_OPTS=/w50 /h5 /c /y12
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."
+FORMATADV_QUICK="  Yes - Quick erase and format drive %1."
+FORMATADV_SLOW="  Yes - Full erase and format drive %1."
 ; EXIT
 FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Press a key... " /e

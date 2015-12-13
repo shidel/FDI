@@ -21,6 +21,7 @@ goto Done
 goto Done
 
 :NotFormatted
+if "%FADV%" == "y" goto AdvancedFormat
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
 vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
 vecho
@@ -33,17 +34,48 @@ vchoice /a %TFC% Ctrl-C /d 2
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
+set FDIDFMT=QuickFormat
+goto DoFormat
+
+:AdvancedFormat
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMATADV_FRAME
+vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
+vecho
+vecho /t %FLANG% FORMAT?
+vframe /b %TFB% /f %TFF% hidden /t %FLANG% NOFORMATADV_OPTS
+vecho /t %FLANG% FORMATADV_QUICK %FDRIVE%
+vecho /t %FLANG% FORMATADV_SLOW %FDRIVE%
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 3
+
+if errorlevel 200 FDICTRLC.BAT %0
+if errorlevel 1 set FDIDFMT=QuickFormat
+if errorlevel 2 set FDIDFMT=SlowFormat
+if errorlevel 3 goto AbortBatch
+goto DoFormat
+
+:DoFormat
 vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
 vecho /t %FLANG% FORMATTING %FDRIVE%
 vecho
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
+goto %FDIDFMT%
 
+:QuickFormat
+REM **** Launch Formatting Program ****
+format %FDRIVE% /V:%OVOL% /Q %FFMT%
+REM **** Returned from Formatting ****
+goto DoneFormat
+
+:SlowFormat
 REM **** Launch Formatting Program ****
 format %FDRIVE% /V:%OVOL% %FFMT%
 REM **** Returned from Formatting ****
+goto DoneFormat
 
+:DoneFormat
 set FDIDFMT=y
 
 vcursor hide
@@ -56,7 +88,6 @@ if errorlevel 200 FDICTRLC.BAT %0 AfterFormat
 :AfterFormat
 vinfo /d %FDRIVE%
 
-REM **** May want to say, we still cannot read C and offer to reboot. ****
 if errorlevel 2 goto StillCannotReadC
 
 verrlvl 0
