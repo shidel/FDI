@@ -35,9 +35,13 @@ REBOOT="Su equipo ahora debe reiniciar el sistema."
 ; STAGE500 - Formating specific
 NOFORMAT_FRAME=/w62 /h10 /c /y7
 NOFORMAT_OPTS=/w54 /h4 /c /y12
+NOFORMATADV_FRAME=/w62 /h11 /c /y7
+NOFORMATADV_OPTS=/w54 /h5 /c /y12
 NOFORMAT=/s- "La unidad " /f %1 %2 /f %3 " no parece ser formateado."
 FORMAT?="¨Quiere formatear la unidad?"
 FORMAT_YES="  S¡ - Por favor, borrar y formatear la unidad %1."
+FORMATADV_QUICK="  S¡ - Borrado r pido y formatear la unidad %1."
+FORMATADV_SLOW="  S¡ - Borrado completo y el formato la unidad %1."
 ; EXIT
 FORMATTING=/fGray /s- "Unidad de formato " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Presione una tecla... " /e
