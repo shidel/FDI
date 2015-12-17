@@ -10,7 +10,7 @@ vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
 vecho /t %FLANG% CTRLC %TCH% %TCF%
 vecho
 vecho /t %FLANG% CTRLC?
-vframe /b %TCB% /f %TCF% hidden /t %FLANG% CTRLC_OPTS
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% CTRLC_OPTS
 vecho /t %FLANG% CTRLCY
 vecho /t %FLANG% CTRLCN
 vecho

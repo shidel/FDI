@@ -70,7 +70,7 @@ vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
 vecho
 vecho /t %FLANG% PROCEED?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% HELLO_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
 vecho /t %FLANG% CONTINUE
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C

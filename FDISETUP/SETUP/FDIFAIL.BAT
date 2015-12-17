@@ -23,7 +23,7 @@ vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
 vecho /t %FLANG% FAILH
 vecho
 vecho /t %FLANG% FAIL?
-vframe /b %TCB% /f %TCF% hidden /t %FLANG% FAIL_OPTS
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% FAIL_OPTS
 vecho /t %FLANG% FAILY
 vecho /n /t %FLANG% FAILN
 vchoice /a %TFC% Ctrl-C
@@ -38,7 +38,7 @@ vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
 vecho /t %FLANG% FAILH
 vecho
 vecho /t %FLANG% FAIL?
-vframe /b %TCB% /f %TCF% hidden /t %FLANG% FAILADV_OPTS
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% FAILADV_OPTS
 vecho /t %FLANG% FAILY
 vecho /t %FLANG% FAILN
 vecho

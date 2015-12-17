@@ -24,7 +24,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% BACKUP_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% BACKUP_OPTS
 vecho /t %FLANG% BACKUPY
 vecho /n /t %FLANG% BACKUPN
 vchoice /a %TFC% Ctrl-C /d 1
@@ -42,7 +42,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUPADV_FRAME
 vecho /t %FLANG% BACKUP %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% BACKUP?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% BACKUPADV_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% BACKUPADV_OPTS
 vecho /t %FLANG% BACKUPY
 vecho /t %FLANG% BACKUPZ
 vecho /n /t %FLANG% BACKUPN

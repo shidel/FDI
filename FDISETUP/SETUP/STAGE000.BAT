@@ -4,7 +4,7 @@ REM Configure the installer. **************************************************
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
 set OS_NAME=FreeDOS
-set OS_VERSION=1.2-pre6
+set OS_VERSION=1.2-pre7
 
 if "%1" == "VersionOnly" goto Done
 

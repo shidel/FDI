@@ -26,7 +26,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
 vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% FORMAT?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% NOFORMAT_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMAT_OPTS
 vecho /t %FLANG% FORMAT_YES %FDRIVE%
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
@@ -42,7 +42,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMATADV_FRAME
 vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% FORMAT?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% NOFORMATADV_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMATADV_OPTS
 vecho /t %FLANG% FORMATADV_QUICK %FDRIVE%
 vecho /t %FLANG% FORMATADV_SLOW %FDRIVE%
 vecho /n /t %FLANG% EXIT

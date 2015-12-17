@@ -59,12 +59,12 @@ LANG_DE=German
 
 ; STAGE300 - Initial welcome screen message.
 ; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
-; rows) then centered, then move top to row 7.
-HELLO_FRAME=/w68 /h10 /c /y7
-; Hidden frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
+; rows) then centered.
+HELLO_FRAME=/w68 /h10 /c
+; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
 ; = 2 usable rows)
-; then centered, then move top to row 7.
-HELLO_OPTS=/w40 /h4 /c /y12
+; then centered.
+HELLO_OPTS=/w40 /h4 /c
 ; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
 ; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
 ; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
@@ -82,16 +82,16 @@ CONTINUE="  Yes - Continue with installation"
 EXIT="  No  - Return to DOS"
 
 ; STAGE400 - Partition screen specific dialog text.
-NOPART_FRAME=/w70 /h10 /c /y7
-NOPART_OPTS=/w40 /h4 /c /y12
+NOPART_FRAME=/w70 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 ; Also uses EXIT defined above.
 
 ; STAGE500 - After partitioned specific text.
-PARTED_FRAME=/w60 /h11 /c /y7
-PARTED_OPTS=/w40 /h4 /c /y13
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
 ; Actually, this uses two lines because of the frame width. Not because it
 ; is two strings.
 PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
@@ -101,10 +101,10 @@ REBOOT_YES="  Yes - Please reboot now."
 REBOOT="Your computer should now reboot."
 
 ; STAGE500 - Formating specific
-NOFORMAT_FRAME=/w60 /h10 /c /y7
-NOFORMAT_OPTS=/w50 /h4 /c /y12
-NOFORMATADV_FRAME=/w60 /h11 /c /y7
-NOFORMATADV_OPTS=/w50 /h5 /c /y12
+NOFORMAT_FRAME=/w60 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w60 /h11 /c
+NOFORMATADV_OPTS=/w50 /h5 /c
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."
@@ -125,8 +125,8 @@ GATHERING="Gathering some information to prepare for the installation."
 ; for add-on questioning prompts that are not part of the main FDI base.
 
 ; STAGE800 - Installing
-INSTALL_FRAME=/w60 /h10 /c /y8
-INSTALL_OPTS=/w46 /h4 /c /y13
+INSTALL_FRAME=/w60 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
 INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
 INSTALL?="Do you want to install now?"
 INSTALL_YES="  Yes - Please install %1."
@@ -140,8 +140,8 @@ PREPARING="Preparing for the installation."
 ; for add-on installers that are not part of the main FDI base.
 
 ; STAGE900 - All Done reboot?
-COMPLETE_FRAME=/w60 /h10 /c /y7
-COMPLETE_OPTS=/w40 /h4 /c /y12
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "Installation of " /f %1 "%2" /f %3 " is now complete."
 ; Also uses REBOOT?, REBOOT, EXIT defined above.
 
@@ -152,8 +152,8 @@ ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
 STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
 
 ; FDICTRLC - Control-C specific
-CTRLC_FRAME=/w60 /h12 /c /y7
-CTRLC_OPTS=/w44 /h6 /c /y12
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "You have pressed " /f %1 "CTRL-C" /f %2 .
 CTRLC?="Are you sure you wish to abort the installation?"
 CTRLCY="  Yes - Please return to DOS."
@@ -162,10 +162,10 @@ CTRLCA="  No  - Switch to Advanced Mode."
 CTRLCB="  No  - Switch to Basic Mode."
 
 ; FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w60 /h11 /c /y7
-FAIL_OPTS=/w40 /h4 /c /y13
-FAILADV_FRAME=/w60 /h13 /c /y7
-FAILADV_OPTS=/w40 /h6 /c /y13
+FAIL_FRAME=/w60 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
 FAILH="A reboot may help."
 FAIL?="Do you wish to reboot now?"
 FAILY="  Yes - Please reboot now."

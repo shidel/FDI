@@ -7,8 +7,8 @@ LANG_EN=English
 LANG_ES=Spanish
 LANG_FR=French
 LANG_DE=German
-HELLO_FRAME=/w68 /h10 /c /y7
-HELLO_OPTS=/w40 /h4 /c /y12
+HELLO_FRAME=/w68 /h10 /c
+HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
 PROCEED?="Do you wish to proceed?"
@@ -16,16 +16,16 @@ CONTINUE="  Yes - Continue with installation"
 EXIT="  No  - Return to DOS"
 
 ; STAGE400 - Partition screen specific
-NOPART_FRAME=/w70 /h10 /c /y7
-NOPART_OPTS=/w40 /h4 /c /y12
+NOPART_FRAME=/w70 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 ; EXIT
 
 ; STAGE500 - After partitioned specific
-PARTED_FRAME=/w60 /h11 /c /y7
-PARTED_OPTS=/w40 /h4 /c /y13
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
 PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
 REBOOT?="Do you wish to reboot now?"
 REBOOT_YES="  Yes - Please reboot now."
@@ -33,10 +33,10 @@ REBOOT_YES="  Yes - Please reboot now."
 REBOOT="Your computer should now reboot."
 
 ; STAGE500 - Formating specific
-NOFORMAT_FRAME=/w60 /h10 /c /y7
-NOFORMAT_OPTS=/w50 /h4 /c /y12
-NOFORMATADV_FRAME=/w60 /h11 /c /y7
-NOFORMATADV_OPTS=/w50 /h5 /c /y12
+NOFORMAT_FRAME=/w60 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w60 /h11 /c
+NOFORMATADV_OPTS=/w50 /h5 /c
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."
@@ -51,8 +51,8 @@ GATHERING_FRAME=/w66 /h5 /c
 GATHERING="Gathering some information to prepare for the installation."
 
 ; STAGE800 - Installing
-INSTALL_FRAME=/w60 /h10 /c /y8
-INSTALL_OPTS=/w46 /h4 /c /y13
+INSTALL_FRAME=/w60 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
 INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
 INSTALL?="Do you want to install now?"
 INSTALL_YES="  Yes - Please install %1."
@@ -61,8 +61,8 @@ PREPARING_FRAME=/w60 /h5 /c
 PREPARING="Preparing for the installation."
 
 ; STAGE900 - All Done reboot?
-COMPLETE_FRAME=/w60 /h10 /c /y7
-COMPLETE_OPTS=/w40 /h4 /c /y12
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "Installation of " /f %1 "%2" /f %3 " is now complete."
 ; REBOOT?, REBOOT, EXIT
 
@@ -73,8 +73,8 @@ ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
 STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
 
 ; FDICTRLC - Control-C specific
-CTRLC_FRAME=/w60 /h12 /c /y7
-CTRLC_OPTS=/w44 /h6 /c /y12
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "You have pressed " /f %1 "CTRL-C" /f %2 .
 CTRLC?="Are you sure you wish to abort the installation?"
 CTRLCY="  Yes - Please return to DOS."
@@ -83,10 +83,10 @@ CTRLCA="  No  - Switch to Advanced Mode."
 CTRLCB="  No  - Switch to Basic Mode."
 
 ; FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w60 /h11 /c /y7
-FAIL_OPTS=/w40 /h4 /c /y13
-FAILADV_FRAME=/w60 /h13 /c /y7
-FAILADV_OPTS=/w40 /h6 /c /y13
+FAIL_FRAME=/w60 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
 FAILH="A reboot may help."
 FAIL?="Do you wish to reboot now?"
 FAILY="  Yes - Please reboot now."

@@ -25,7 +25,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOPART_FRAME
 vecho /t %FLANG% NOPART %TFH% %FDRIVE% %TFF%
 vecho
 vecho /t %FLANG% PART?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% NOPART_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOPART_OPTS
 vecho /t %FLANG% PART_YES %FDRIVE%
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
@@ -49,7 +49,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
 vecho /t %FLANG% PARTED
 vecho
 vecho /t %FLANG% REBOOT?
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% PARTED_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PARTED_OPTS
 vecho /t %FLANG% REBOOT_YES
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C

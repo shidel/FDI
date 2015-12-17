@@ -10,7 +10,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8_FRAME
 vecho /t %FLANG% V8I? %TFH% %TFF%
 vecho
-vframe /b %TFB% /f %TFF% hidden /t %FLANG% V8_OPTS
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% V8_OPTS
 vecho /t %FLANG% V8IY
 vecho /n /t %FLANG% V8IN
 vchoice /a %TFC% Ctrl-C /d 1
