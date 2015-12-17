@@ -32,6 +32,7 @@ Released Under GPL v2.0 License.
 ; LANG_AUTHOR is unused at present, but you should set it to your name.
 ; DEMO "John Doe"
 LANG_AUTHOR=
+LANG_NAME=
 
 ; FDASK000 - Reserved
 

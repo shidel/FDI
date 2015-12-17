@@ -34,6 +34,7 @@ Released Under GPL v2.0 License.
 
 ; LANG_AUTHOR is unused at present, but you should set it to your name.
 LANG_AUTHOR=
+LANG_NAME=
 
 ; FDICLS - Installer Title Bar
 ; %1 %3 are color settings
