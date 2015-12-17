@@ -312,6 +312,15 @@ utilities.
                      already installed, this file will be called instead of
                      automatically starting the installer.
 
+### Other Data Files
+
+        FDPLALL.LST  List of "All" package files.
+
+        FDPLBASE.LST List of "Base" package files.
+
+        FDNPBIN.CFG  FDINST Package manager binaries only config file.
+
+        FDNPSRC.CFG  FDINST Package manager source mode config file.
 
 ### FDI Roadmap
 
@@ -336,8 +345,6 @@ utilities.
     (These require some additional tools not yet created for V8Power Tools)
 
     Maybe, localization support in exit error messages.
-
-    Someday, advanced mode, target directory changing.
 
     Someday, advanced mode, individual package selections.
 
