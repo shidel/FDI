@@ -88,6 +88,8 @@ PACBO="  Basic packages only."
 PACBS="  Basic packages with sources only."
 PACAO="  All the packages."
 PACAS="  All the packages and their sources."
+PACDO_ADV="  Selected binary packages."
+PACDS_ADV="  Selected packages and their sources.
 
 ; FDASK700 - Reserved
 
