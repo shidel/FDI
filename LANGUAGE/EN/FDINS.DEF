@@ -8,6 +8,8 @@ Released Under GPL v2.0 License.
 
 ; LANG_AUTHOR is unused at present, but you should set it to your name.
 LANG_AUTHOR=Jerome Shidel
+LANG_NAME=English
+
 ; Debug mode pause
 PRESSKEY="Press a key..."
 
