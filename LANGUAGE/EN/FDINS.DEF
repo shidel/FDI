@@ -1,3 +1,13 @@
+*******************************************************************************
+FreeDOS 1.2 Installer English Translation.
+Provided by: Jerome Shidel
+Contact Email: jerome@shidel.net
+Created/Modified: 12/17/2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Jerome Shidel
 ; Debug mode pause
 PRESSKEY="Press a key..."
 
