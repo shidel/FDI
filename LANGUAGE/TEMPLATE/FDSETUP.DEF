@@ -42,6 +42,7 @@ LANG_AUTHOR=
 ; Looks something like "FreeDOS 1.2 Installer"
 ; Please note that /s- causes no spaces between text strings. This is the
 ; opposite of the default /s+ operation of vecho.
+; vecho "FreeDOS 2.2 Installer"
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installer"
 ; This would work as well:
 ; TITLE=/f%1 %2 /f%3 %4 /f%1 Installer
@@ -69,8 +70,10 @@ HELLO_OPTS=/w40 /h4 /c
 ; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
 ; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
 ; then use the /p switch in the HELLO message.
+; vecho "Welcome to the installation program for FreeDOS."
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 ; Alternate, advanced mode welcome message.
+; vecho "Welcome to the advanced installer for FreeDOS."
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
 PROCEED?="Do you wish to proceed?"
 ; Do not span lines in option choices. A new line will become an additional
@@ -84,6 +87,7 @@ EXIT="  No  - Return to DOS"
 ; STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
+; vecho "Drive C: does not appear to be partitioned."
 NOPART=/s- "Drive " /f %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
@@ -105,6 +109,7 @@ NOFORMAT_FRAME=/w60 /h10 /c
 NOFORMAT_OPTS=/w50 /h4 /c
 NOFORMATADV_FRAME=/w60 /h11 /c
 NOFORMATADV_OPTS=/w50 /h5 /c
+; vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."

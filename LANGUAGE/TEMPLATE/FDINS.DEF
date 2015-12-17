@@ -38,16 +38,19 @@ PRESSKEY="Press a key..."
 ; Backing up old OS
 BACKUP_FRAME=/w60 /h7 /c
 BACKUP=Creating backup
+; vecho "'C:\FDOS'"
 TARGET=/s- "'" /f %1 "%2" /f %3 "'"
 BACKUP_DONE=/f %1 Backup process has completed.
 
 ; Old Package removal
 RMPACK_FRAME=/w60 /h7 /c
 RMPACKS=Removing old conflicting packages.
+; vecho "Removing old 'base/append' package."
 RMPACKN=/s- "Removing old '" /f %1 %2 /f %3 "' package."
 
 ; Remove old OS files
 RMOS_FRAME=/w60 /h5 /c
+; vecho "Removing old files from 'C:\FDOS'."
 RMOS=/s- "Removing old files from '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Old operating system files were removed."
 
@@ -58,14 +61,18 @@ CLEAN_DONE="Old configuration files have been removed."
 
 ; Transfer system files
 XSYS_FRAME=/w60 /h5 /c
+; vecho "Transferring system boot files to drive C:."
 XSYS= /s- "Transferring system boot files to drive " /f %1 %2 /f %3 .
 XSYS_DONE="System file transfer has completed."
 
 ; Package installation.
 PAC_FRAME=/w60 /h7 /c
 PACBM="Installing software packages."
+; vecho "Installing software package 'base/command'"
 PACBI=/s- "Installing software package '" /f %1 %2 /f %3 "'"
 PACSM="Installing sources."
+; unused at present:
+; vecho "Installing software package 'base/kernel'"
 PACSI= /s- "Installing sources for '" /f %1 %2 /f %3 "'"
 PACDONE_FRAME=/w60 /h5 /c
 PACDONE="Software package installation has completed."
@@ -77,5 +84,6 @@ CONFIGS_DONE="New configuration files were installed."
 
 ; V8 Power tools installation
 V8POWER_FRAME=/w60 /h5 /c
+; vecho "Installing a copy of 'V8Power Tools'."
 V8POWER=/s- "Installing a copy of '" /f %1 "V8Power Tools" /f %2 "'."
 V8POWER_DONE="V8Power Tools were installed."
