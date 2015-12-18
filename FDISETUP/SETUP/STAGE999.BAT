@@ -1,6 +1,7 @@
 @echo off
 
 REM Post installer cleanup.
+if "%1" == "VARSONLY" goto VarsOnly
 vfdutil /c /p %0
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
@@ -18,6 +19,7 @@ if exist %FTEMP%\NUL RMDIR %FTEMP%
 set TEMP=%FTEMPO%
 set TMP=%FTMPO%
 
+:VarsOnly
 rem if "%FDEBUG%" == "y" goto SkipClear
 set FFMT=
 set FTEMP=
