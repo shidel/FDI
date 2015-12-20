@@ -96,6 +96,44 @@ vchoice /a %TFC% Ctrl-C
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:NEEDFORMAT
+call %SELF% CLS NEEDFORMAT FDSETUP DEF
+if "%FADV%" == "y" goto NEEDFORMATADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
+vecho /t %FLANG% NOFORMAT %TFH% C: %TFF%
+vecho
+vecho /t %FLANG% FORMAT?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMAT_OPTS
+vecho /t %FLANG% FORMAT_YES C:
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 2
+goto NEEDFORMATCHK
+:NEEDFORMATADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMATADV_FRAME
+vecho /t %FLANG% NOFORMAT %TFH% C: %TFF%
+vecho
+vecho /t %FLANG% FORMAT?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMATADV_OPTS
+vecho /t %FLANG% FORMATADV_QUICK C:
+vecho /t %FLANG% FORMATADV_SLOW C:
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 3
+:NEEDFORMATCHK
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:FORMATTED
+call %SELF% CLS FORMATTED FDSETUP DEF
+vcls /f %TSF% /b %TSB% /y2 /h24
+vgotoxy down
+vecho /t %FLANG% FORMATTING C:
+vecho
+vgotoxy eop sor
+vecho /n /t %FLANG% PAUSE
+vpause /fLightCyan CTRL-C
+if errorlevel 200 Abort
+if "%FADV%" == "" goto %PART%
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
