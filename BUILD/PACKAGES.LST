@@ -1,3 +1,5 @@
+; Package list for install media.
+
 base\command
 base\kernel
 base\deltree
@@ -14,8 +16,12 @@ base\lbacache
 util\grep
 util\fdnpkg
 archiver\zip
+
+; UIDE is buggy and is not used. but is included anyway
 util\uide
+; UDVD2 is replacing UIDE for CD/DVD support.
 util\udvd2
+
 base\himemx
 base\jemm
 base\edit

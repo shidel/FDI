@@ -1,3 +1,6 @@
+; Cleanup file list.
+; These files will be removed and not copied to the install media.
+
 BIN\KERNL86.SYS
 BIN\KERNL386.SYS
 BIN\FDCOM.ICO
