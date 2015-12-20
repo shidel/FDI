@@ -7,6 +7,7 @@ REM Copyright 2015 Jerome Shidel.
 set SELF=%0
 if "%1" == "CLS" goto ClearScreen
 if "%1" == "STANDBY" goto StandBy
+if "%1" == "FAIL" goto FAIL
 
 set OLD_LANG=%LANG%
 set FADV="y"
@@ -34,7 +35,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :PICKLANG
-call %SELF% CLS PICKLANG FDSETUP DEF
+call %SELF% CLS PICKLANG FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
 vgotoxy /l /y3
 vline hidden
@@ -53,7 +54,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :WELCOME
-call %SELF% CLS WELCOME FDSETUP DEF
+call %SELF% CLS WELCOME FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
 vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
@@ -71,7 +72,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :NEEDPART
-call %SELF% CLS NEEDPART FDSETUP DEF
+call %SELF% CLS NEEDPART FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOPART_FRAME
 vecho /t %FLANG% NOPART %TFH% C: %TFF%
 vecho
@@ -84,7 +85,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :PARTED
-call %SELF% CLS PARTED FDSETUP DEF
+call %SELF% CLS PARTED FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
 vecho /t %FLANG% PARTED
 vecho
@@ -97,7 +98,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :NEEDFORMAT
-call %SELF% CLS NEEDFORMAT FDSETUP DEF
+call %SELF% CLS NEEDFORMAT FDSETUP
 if "%FADV%" == "y" goto NEEDFORMATADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
 vecho /t %FLANG% NOFORMAT %TFH% C: %TFF%
@@ -123,7 +124,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :FORMATTED
-call %SELF% CLS FORMATTED FDSETUP DEF
+call %SELF% CLS FORMATTED FDSETUP
 vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
 vecho /t %FLANG% FORMATTING C:
@@ -131,7 +132,13 @@ vecho
 vgotoxy eop sor
 vecho /n /t %FLANG% PAUSE
 vpause /fLightCyan CTRL-C
-if errorlevel 200 Abort
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:FORMATFAIL
+call %SELF% CLS FORMATFAIL FDSETUP
+call %SELF% FAIL ERROR_READC
+if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 vcls /a7
@@ -159,6 +166,41 @@ if "%FADV%" == "" vecho "Theme: Basic" /e
 if "%FADV%" == "y" vecho "Theme: Advanced" /e
 vecho "Section: %PART%" /e
 vecho "Resource: %FLANG%" /e
+goto EndOfBatch
+
+:FAIL
+shift
+if not "%FADV%" == "y" goto NoContinue
+if "%1" == "cc" goto CanContinue
+:NoContinue
+vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% FAIL_FRAME
+if "%1" == "cc" goto SkipFirstA
+vecho /t %FLANG% %1 %2 %3 %4 %5 %6 %7 %8
+goto AfterSkipA
+:SkipFirstA
+vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
+:AfterSkipA
+vecho /t %FLANG% FAILH
+vecho
+vecho /t %FLANG% FAIL?
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% FAIL_OPTS
+vecho /t %FLANG% FAILY
+vecho /n /t %FLANG% FAILN
+vchoice /a %TFC% Ctrl-C
+goto EndOfBatch
+
+:CanContinue
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% FAILADV_FRAME
+vecho /t %FLANG% %2 %3 %4 %5 %6 %7 %8
+vecho /t %FLANG% FAILH
+vecho
+vecho /t %FLANG% FAIL?
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% FAILADV_OPTS
+vecho /t %FLANG% FAILY
+vecho /t %FLANG% FAILN
+vecho
+vecho /n /t %FLANG% FAILI
+vchoice /a %TFC% Ctrl-C
 goto EndOfBatch
 
 :StandBy
