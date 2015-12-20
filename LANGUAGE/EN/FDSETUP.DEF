@@ -19,7 +19,7 @@ LANG_EN=English
 LANG_ES=Spanish
 LANG_FR=French
 LANG_DE=German
-HELLO_FRAME=/w68 /h10 /c
+HELLO_FRAME=/w66 /h10 /c
 HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
@@ -28,7 +28,7 @@ CONTINUE="  Yes - Continue with installation"
 EXIT="  No  - Return to DOS"
 
 ; STAGE400 - Partition screen specific
-NOPART_FRAME=/w70 /h10 /c
+NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
@@ -36,19 +36,19 @@ PART_YES="  Yes - Launch Partitioner."
 ; EXIT
 
 ; STAGE500 - After partitioned specific
-PARTED_FRAME=/w60 /h11 /c
+PARTED_FRAME=/w62 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
-PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
+PARTED=/s- "You must reboot your computer for the new partitioning" /p "scheme to take effect."
 REBOOT?="Do you wish to reboot now?"
 REBOOT_YES="  Yes - Please reboot now."
 ; EXIT
 REBOOT="Your computer should now reboot."
 
 ; STAGE500 - Formating specific
-NOFORMAT_FRAME=/w60 /h10 /c
-NOFORMAT_OPTS=/w50 /h4 /c
-NOFORMATADV_FRAME=/w60 /h11 /c
-NOFORMATADV_OPTS=/w50 /h5 /c
+NOFORMAT_FRAME=/w55 /h10 /c
+NOFORMAT_OPTS=/w45 /h4 /c
+NOFORMATADV_FRAME=/w55 /h11 /c
+NOFORMATADV_OPTS=/w45 /h5 /c
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."
@@ -69,7 +69,7 @@ INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
 INSTALL?="Do you want to install now?"
 INSTALL_YES="  Yes - Please install %1."
 ; EXIT
-PREPARING_FRAME=/w60 /h5 /c
+PREPARING_FRAME=/w38 /h5 /c
 PREPARING="Preparing for the installation."
 
 ; STAGE900 - All Done reboot?
@@ -95,9 +95,9 @@ CTRLCA="  No  - Switch to Advanced Mode."
 CTRLCB="  No  - Switch to Basic Mode."
 
 ; FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w60 /h11 /c
+FAIL_FRAME=/w62 /h11 /c
 FAIL_OPTS=/w40 /h4 /c
-FAILADV_FRAME=/w60 /h13 /c
+FAILADV_FRAME=/w62 /h13 /c
 FAILADV_OPTS=/w40 /h6 /c
 FAILH="A reboot may help."
 FAIL?="Do you wish to reboot now?"
