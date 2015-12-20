@@ -70,6 +70,18 @@ vchoice /a %TFC% Ctrl-C
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:NEEDPART
+call %SELF% CLS NEEDPART FDSETUP DEF
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOPART_FRAME
+vecho /t %FLANG% NOPART %TFH% C: %TFF%
+vecho
+vecho /t %FLANG% PART?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOPART_OPTS
+vecho /t %FLANG% PART_YES %FDRIVE%
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 2
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
 
 vcls /a7
 vecho Language %LANG% verification complete.
