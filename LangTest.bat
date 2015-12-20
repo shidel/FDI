@@ -83,6 +83,19 @@ vchoice /a %TFC% Ctrl-C /d 2
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:PARTED
+call %SELF% CLS PARTED FDSETUP DEF
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
+vecho /t %FLANG% PARTED
+vecho
+vecho /t %FLANG% REBOOT?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PARTED_OPTS
+vecho /t %FLANG% REBOOT_YES
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
