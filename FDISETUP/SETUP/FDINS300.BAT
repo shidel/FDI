@@ -1,6 +1,7 @@
 @echo off
 
-REM Remove old conflicting packages
+REM Remove old conflicting packages.
+
 if not exist %FTARGET%\APPINFO\NUL goto Done
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24

@@ -15,7 +15,7 @@ REM Set Timezone so unzip doesn't complain.
 set TZ=UTC
 
 REM Formatted volume label
-set OVOL=FreeDOS2015
+set OVOL=$OVOL$
 
 REM Drive C Formatting options.
 set FFMT=/U /Z:seriously

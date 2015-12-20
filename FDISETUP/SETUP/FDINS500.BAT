@@ -1,6 +1,6 @@
 @echo off
 
-REM Remove old config files, maybe.
+REM Remove old config files.
 
 if "%OCFG%" == "y" goto MaybeOption
 goto AfterOption

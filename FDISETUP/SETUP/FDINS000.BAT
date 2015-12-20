@@ -1,5 +1,7 @@
 @echo off
 
+REM Debug mode only. To display current environment variables.
+
 if not "%FDEBUG%" == "y" goto NoDebugInfo
 
 vcls /a 0x07

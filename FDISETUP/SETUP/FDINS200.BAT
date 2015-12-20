@@ -1,5 +1,7 @@
 @echo off
 
+REM Create a Backup folder or Zip archive.
+
 if "%OBAK%" == "" goto AfterBackup
 if not "%OBAK%" == "n" goto MakeBackup
 goto AfterBackup

@@ -50,15 +50,20 @@ if not exist BUILD\PACKAGES.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
 
 REM Configure Variables and stuff.
-call FDISETUP\SETUP\STAGE000.BAT VersionOnly
-type SETTINGS\VERSION.CFG | grep -iv ^; | vstr /b | set /p OS_VERSION=
-
 V8POWER\vfdutil /p %0 | set /p TEMPPATH=
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 
+call FDISETUP\SETUP\STAGE000.BAT VersionOnly
+:RepeatVER
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VERSION|vstr /b/f = 2|set /p OS_VERSION=
+if "%OS_VERSION%" == "" goto RepeatVER
+:RepeatID
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VOLUME|vstr /b/f = 2|set /p VOLUMEID=
+if "%VOLUMEID%" == "" goto RepeatID
+
 set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
 vgotoxy up up
-vecho /fLightGreen "FreeDOS install disk creator." /p
+vecho /fLightGreen "FreeDOS %OS_VERSION% install disk creator." /p
 
 vecho "Searching for CD-ROM containing packages" /n
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
@@ -180,7 +185,9 @@ copy /y SETTINGS\PKG_ALL.LST %RAMDRV%\FDSETUP\SETUP\FDPLALL.LST >NUL
 copy /y SETTINGS\PKG_BASE.LST %RAMDRV%\FDSETUP\SETUP\FDPLBASE.LST >NUL
 type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "0">%RAMDRV%\FDSETUP\SETUP\FDNPBIN.CFG
 type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "1">%RAMDRV%\FDSETUP\SETUP\FDNPSRC.CFG
-type FDISETUP\SETUP\STAGE000.BAT|vstr /n/s "$VERSION$" "%OS_VERSION%">%RAMDRV%\FDSETUP\SETUP\STAGE000.BAT
+type FDISETUP\SETUP\STAGE000.BAT|vstr /n/s "$VERSION$" "%OS_VERSION%">%TEMP%\STAGE000.BAT
+type %TEMP%\STAGE000.BAT|vstr /n/s "$OVOL$" "%VOLUMEID%">%DOSDIR%\SETUP\STAGE000.BAT
+del %TEMP%\STAGE000.BAT
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho , /fLightGreen OK /fGray /p
