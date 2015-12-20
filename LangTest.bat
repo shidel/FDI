@@ -1,63 +1,119 @@
 @echo off
 
-REM FreeDOS 1.2+ Lanuage Tester version 1.00.
+REM FreeDOS 1.2+ Language Tester version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2015 Jerome Shidel.
 
+set SELF=%0
 if "%1" == "CLS" goto ClearScreen
 if "%1" == "STANDBY" goto StandBy
-if "%1" == "" goto NOLANG
-set OLD_LANG=%LANG%
-set LANG=%1
-if "%2" == "" goto %2
 
-:0
-call %0 CLS 0 FDSETUP DEF
-call %0 STANDBY
-if Errorlevel 1 goto Done
+set OLD_LANG=%LANG%
+set FADV="y"
+
+if "%1" == "" goto DoneParams
+if not exist LANGUAGE\%1\FDSETUP.DEF goto NoSetLang
+set LANG=%1
+shift
+:NoSetLang
+if "%1" == "" goto DoneParams
+if not "%1" == "" set PART=%1
+shift
+
+:DoneParams
+
+if "%LANG%" == "" goto NoLangSet
+
+if not "%PART%" == "" goto %PART%
+if not "%PART%" == "" goto Error
+
+REM Clear Screen
+:FDICLS
+call %SELF% CLS FDICLS FDSETUP
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+REM  Language Screen
+:PICKLANG
+call %SELF% CLS PICKLANG FDSETUP DEF
+vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
+vgotoxy /l /y3
+vline hidden
+:LanguagePrompt
+vgotoxy /l sop /g up up
+vecho /n /e
+vgotoxy /l sop
+vecho /n /t %FLANG% LANG_ASK
+vecho /n /e
+vgotoxy /l eop /g down down /l sop
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
+vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_DE
+vchoice /a %TFC% Ctrl-C
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
 
 vcls /a7
+vecho Language %LANG% verification complete.
+
 goto Done
 
 :ClearScreen
+if "%FADV%" == "" set TADV=y
+if "%FADV%" == "y" set TADV=
+set FADV=%TADV%
+set TADV=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 set PART=%2
 set FLANG=LANGUAGE\%LANG%\FDSETUP.DEF
-call FDISETUP\SETUP\THEME%4.BAT
+if "%FADV%" == "" call FDISETUP\SETUP\THEMEDEF.BAT
+if "%FADV%" == "y" call FDISETUP\SETUP\THEMEADV.BAT
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vgotoxy /x1 /y1
 vcls /b %TTB% /f %TTF% EOL
 vgotoxy /x30 /y1
 vecho /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
 set FLANG=LANGUAGE\%LANG%\%3.DEF
-vecho "Theme: %4"
-vecho "Section: %PART%"
-vecho "Resource: %FLANG%"
+if "%FADV%" == "" vecho "Theme: Basic" /e
+if "%FADV%" == "y" vecho "Theme: Advanced" /e
+vecho "Section: %PART%" /e
+vecho "Resource: %FLANG%" /e
 goto EndOfBatch
 
 :StandBy
 vgotoxy eop sor
 vecho /fBlack /bGray "Press a key or" /fRed "CTRL+C" /fBlack /s- ... /e /n
-vpause /d 10 CTRL+C
-if errorlevel 1 goto Abort
+vpause CTRL+C
 goto EndOfBatch
+
+:NoSuchPart
+vcls /a7
+vecho "Invaild section: %PART%"
+goto Done
 
 :Abort
 vcls /a7
+if "%FADV%" == "" vecho "Theme: Basic"
+if "%FADV%" == "y" vecho "Theme: Advanced"
 vecho "Section: %PART%"
 vecho "Resource: %FLANG%"
-verrlvl 1
-goto EndOfBatch
+goto DropOut
 
-:NOLANG
+:NoLangSet
 vecho "No Language specified."
-verrlvl 1
+goto Done
 
 :Done
 set PART=
-set LANG=%OLD_LANG%
+:DropOut
+if not "%OLD_LANG%" == "" set LANG=%OLD_LANG%
 set OLD_LANG=
+set SELF=
+set FADV=
 call FDISETUP\SETUP\STAGE999.BAT VARSONLY
+if not "%PART%" == "" verrlvl 200
 
 REM The very last command line of the batch file (for Sub-utilties) ***********
 :EndOfBatch
