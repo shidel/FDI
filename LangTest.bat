@@ -376,6 +376,60 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:RMOLDDOSDONE
+call %SELF% CLS RMOLDDOSDONE FDINS ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
+vgotoxy /l sop
+vecho /n /e /t %FLANG% RMOS_DONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:RMOLDCFG
+call %SELF% CLS RMOLDCFG FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
+vecho /n /t %FLANG% CLEAN
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:RMOLDCFGDONE
+call %SELF% CLS RMOLDCFGDONE FDINS ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
+vgotoxy /l sop
+vecho /n /e /t %FLANG% CLEAN_DONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSPKG
+call %SELF% CLS INSPKG FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
+vecho /n /t %FLANG% PACBM
+vgotoxy /l eop sor
+vprogres /f %TFP% 0
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSPKGPART
+call %SELF% CLS INSPKGPART FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
+vecho /e /n /t %FLANG% PACBI %TFH% "packages\filename" %TFF%
+vgotoxy /l eop sor
+vprogres /f %TFP% 50
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSPKGDONE
+call %SELF% CLS INSPKGDONE FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PACDONE_FRAME
+vecho /n /t %FLANG% PACDONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
