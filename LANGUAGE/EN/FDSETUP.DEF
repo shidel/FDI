@@ -35,7 +35,7 @@ PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 ; EXIT
 
-; STAGE500 - After partitioned specific
+; STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 PARTED=/s- "You must reboot your computer for the new partitioning" /p "scheme to take effect."

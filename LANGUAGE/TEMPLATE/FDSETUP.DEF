@@ -94,7 +94,7 @@ PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 ; Also uses EXIT defined above.
 
-; STAGE500 - After partitioned specific text.
+; STAGE400 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 ; Actually, this uses two lines because of the frame width. Not because it

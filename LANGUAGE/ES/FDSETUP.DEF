@@ -35,7 +35,7 @@ PART?="¨Quiere crear particiones en la unidad?"
 PART_YES="  S¡ - Partitioner Lanzamiento."
 ; EXIT
 
-; STAGE500 - After partitioned specific
+; STAGE400 - After partitioned specific
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 PARTED="Debe reiniciar el equipo para el nuevo esquema de " /p "partici¢n entre en vigor."
