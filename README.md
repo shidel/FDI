@@ -314,9 +314,9 @@ utilities.
 
 ### Other Data Files
 
-        FDPLALL.LST  List of "All" package files.
+        SETTINGS\PKG_ALL.LST  List of "All" package files.
 
-        FDPLBASE.LST List of "Base" package files.
+        SETTINGS\PKG_BASE.LST List of "Base" package files.
 
         FDNPBIN.CFG  FDINST Package manager binaries only config file.
 
