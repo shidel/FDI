@@ -227,8 +227,19 @@ vecho /t %FLANG% BACKUPY
 vecho /t %FLANG% BACKUPZ
 vecho /n /t %FLANG% BACKUPN
 vchoice /a %TFC% Ctrl-C /d 1
-
 :BACKUPCHECK
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:SYSFILES
+call %SELF% CLS SYSFILES FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
+vecho /t %FLANG% REPLACE?
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% REPLACE_OPTS
+vecho /t %FLANG% REPLACEY
+vecho /n /t %FLANG% REPLACEN
+vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
