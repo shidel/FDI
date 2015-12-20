@@ -128,7 +128,7 @@ vecho , /fLightGreen OK /fGray /p
 vecho Installing packages to /fYellow %RAMDRV% /fGray
 set PACKIDX=0
 :PkgLoop
-type BUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l %PACKIDX% | set /p PACKFILE=
 if not "%PACKIDX%" == "0" goto PkgCheck
 if "%PACKFILE%" == "" goto PkgLoop
 :PkgCheck
@@ -201,7 +201,7 @@ if exist %DOSDIR%\SETUP\PACKAGES\README.TXT deltree /Y %DOSDIR%\SETUP\PACKAGES\R
 if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
 set PACKIDX=0
 :CleanLoop
-type BUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+type BUILD\CLEANUP.LST | grep -iv ^; | vstr /b/l %PACKIDX% | set /p PACKFILE=
 if not "%PACKIDX%" == "0" goto CleanCheck
 if "%PACKFILE%" == "" goto CleanLoop
 :CleanCheck
