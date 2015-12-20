@@ -14,14 +14,17 @@ utilities.
 
 ### Build files and directories
 
-    FDIBUILD\FDIBUILD.CFG - Configuration file for FDINST.
+    BUILD\BUILD.CFG - Configuration file for FDINST for install media. (not for
+    the OS installation, that is located in SETTINGS)
 
-    FDIBUILD\PACKAGES.LST - List of packages to use for install disk.
+    BUILD\PACKAGES.LST - List of packages to use for install disk.
 
-    FDIBUILD\CLEANUP.LST - Files/directories to be removed after all packages
+    BUILD\CLEANUP.LST - Files/directories to be removed after all packages
     have been added to the install disk.
 
     FDISETUP\ - Contains installer files.
+
+    SETTINGS\ - General OS installation settings and configurations.
 
     LANGUAGE\ - Contains language translation directories and files for the
     installer.
@@ -318,9 +321,7 @@ utilities.
 
         SETTINGS\PKG_BASE.LST List of "Base" package files.
 
-        FDNPBIN.CFG  FDINST Package manager binaries only config file.
-
-        FDNPSRC.CFG  FDINST Package manager source mode config file.
+        SETTINGS\FDNPKG.CFG  FDINST Package manager template config file.
 
 ### FDI Roadmap
 
