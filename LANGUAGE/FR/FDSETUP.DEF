@@ -1,0 +1,144 @@
+*******************************************************************************
+FreeDOS 1.2 Installer french Translation.
+Provided by: Paul Dufresne
+Contact Email: dufresnep@gmail.com
+Created/Modified: December 17, 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR="Paul Dufresne"
+LANG_NAME="fran‡ais"
+
+; FDICLS - Installer Title Bar
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installateur"
+
+; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Veuillez choisir votre langue."
+LANG_EN=Anglais
+LANG_ES=Espagnol
+LANG_FR=Fran‡ais
+LANG_DE=Allemand
+
+; STAGE300 - Initial welcome screen message.
+HELLO_FRAME=/w68 /h10 /c
+HELLO_OPTS=/w44 /h4 /c
+HELLO=/s- "Bienvenue au programme d'installation de " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Bienvenue … l'installateur avanc‚ de " /f %1 "%2" /f %3 .
+PROCEED?="Voulez-vous proc‚der?"
+CONTINUE="  Oui - Continuer avec l'installation."
+EXIT="  Non - Retourner au DOS."
+
+; STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w70 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Le disque " /f %1 %2 /f %3 " ne semble pas avoir ‚t‚ partitionn‚."
+PART?="Voulez-vous partitionner votre disque?"
+PART_YES="  Oui - Lancer le Partitionneur."
+; Also uses EXIT defined above.
+
+; STAGE500 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Vous dezez red‚marrer votre ordinateur pour que la" /p "nouvelle table de partition prenne effet."
+REBOOT?="Voulez-vous red‚marrer?"
+REBOOT_YES="  Oui - Red‚marre maintenant."
+; Also uses EXIT defined above.
+REBOOT="Votre ordinateur red‚marre."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w60 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w72 /h11 /c
+NOFORMATADV_OPTS=/w60 /h5 /c
+NOFORMAT=/s-  "Le disque " /f %1 %2 /f %3 " ne semble pas ˆtre formatt‚."
+FORMAT?="Voulez-vous formater le disque?"
+FORMAT_YES="  Oui - Effacer et formater %1."
+FORMATADV_QUICK="  Oui - Effacer rapidement et formater le disque %1."
+FORMATADV_SLOW="  Oui - Effacer complŠtement et formater le disque %1."
+; Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Formatage en cours de " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Appuyer une touche... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w70 /h5 /c
+GATHERING="Cueillette de quelques information n‚cessaire … l'installation."
+
+; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+; it will use it over the main FDASK.DEF language file. That is only recommended
+; for add-on questioning prompts that are not part of the main FDI base.
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w60 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
+INSTALL=/s- "Prˆt pour l'installation " /f %1 "%2" /f %3 .
+INSTALL?="Voulez-vous intaller maintenant?"
+INSTALL_YES="  Oui - Installer %1."
+; Also uses EXIT defined above.
+PREPARING_FRAME=/w42 /h5 /c
+PREPARING="Preparation de l'installation."
+
+; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+; it will use it over the main FDINS.DEF language file. That is only recommended
+; for add-on installers that are not part of the main FDI base.
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w68 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Installation de " /f %1 "%2" /f %3 " est maintenant termin‚e."
+; Also uses REBOOT?, REBOOT, EXIT defined above.
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " L'installation de %1 a ‚t‚ interrompue." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Incapable d'ex‚cuter l'‚tape %1 de l'installateur." /p "Il est possible que l'installateur soit corrompu." /p "Veuillez le ret‚l‚charger ou tenter une m‚thode diff‚rente d'installation."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Vous avez press‚ " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Etes-vous certain de vouloir interrompre l'installation?"
+CTRLCY="  Oui - Retourner au DOS."
+CTRLCN="  Non - je veux continuer."
+CTRLCA="  Non - Passer au Mode Avanc‚."
+CTRLCB="  Non - Passer au Mode Normal"
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w64 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w64 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Un red‚marrage pourrait aider."
+FAIL?="Voulez-vous red‚marrer maintenant?"
+FAILY="  Oui - Red‚marrez maintenant."
+FAILN="  Non - Retournez au DOS."
+; At present FAILI is only available in advanced mode.
+FAILI="  Non - Ignorer. (non recommend‚)"
+FAILR="L'ordinateur va maintenant red‚marrer."
+
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is already installed.
+NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+; Failure messages
+ERROR_BACKZIP="Archivage %1."
+ERROR_BACKUP="Erreur lors de l'archivage."
+ERROR_MKDOS="N'a pas pu cr‚er le r‚pertoire '%1'."
+ERROR_PACKAGE="N'a pas pu installer le paquet '%1'."
+ERROR_SOURCE="N'a pas pu installer le code source '%1'."
+ERROR_READC="J'ai un problŠeme … lire le disque C:."
+ERROR_SHELL="L'installation n'est pas support‚ par votre interpr‚teur" /p "de commandes.  " /n
+
+ERROR_MEDIA="Unable to locate the installation packages."
+ERROR_REMOS="Had a problem removing old system files."
+ERROR_XSYS="Error transfering system files to %1."
+ERROR_CONFIG="Problem copying new configuration files."
+ERROR_V8="Problem installing V8Power Tools."
+
+; AUTOEXEC.BAT messages
+AUTO_DONE=Fini d'installer les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %2 /a7
+AUTO_HELP=Taper /fWhite %1 /fGray pour obtenir du support concernant les commandes et la navigation.
+AUTO_WELCOME=Bienvenue au systŠme d'exploitation /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )

@@ -1,0 +1,59 @@
+*******************************************************************************
+FreeDOS 1.2 Installer french Translation.
+Provided by: Paul Dufresne
+Contact Email: dufresnep@gmail.com
+Created/Modified: December 17, 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR="Paul Dufresne"
+LANG_NAME=fran‡ais
+
+; Debug mode pause
+PRESSKEY="Appuyer une touche..."
+
+; Backing up old OS
+BACKUP_FRAME=/w60 /h7 /c
+BACKUP=Sauvgarde en cours
+TARGET=/s- "'" /f %1 "%2" /f %3 "'"
+BACKUP_DONE=/f %1 Sauvgarde achev‚e.
+
+; Old Package removal
+RMPACK_FRAME=/w60 /h7 /c
+RMPACKS=Supprimant les anciens paquetages en conflit.
+RMPACKN=/s- "Supprimant l'ancien paquet '" /f %1 %2 /f %3 "'."
+
+; Remove old OS files
+RMOS_FRAME=/w74 /h5 /c
+RMOS=/s- "Supprimant les anciens fichiers de '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Les fichiers de l'ancien systŠme d'exploitation ont ‚t‚ supprim‚s."
+
+; Remove old config files
+CLEAN_FRAME=/w64 /h5 /c
+CLEAN="Nettoyage en cours des anciens fichiers de configuration."
+CLEAN_DONE="Nettoyage termin‚ des anciens fichiers de configuration."
+
+; Transfer system files
+XSYS_FRAME=/w60 /h5 /c
+XSYS=/s- "Copiant les fichiers de d‚marrage vers le disque " /f %1 %2 /f %3 .
+XSYS_DONE="Copie termin‚e des fichiers de d‚marrage."
+
+; Package installation.
+PAC_FRAME=/w60 /h7 /c
+PACBM="Installant les paquetages."
+PACBI=/s- "Installant le paquet '" /f %1 %2 /f %3 "'"
+PACSM="Installing sources."
+PACSI= /s- "Installant les sources de '" /f %1 %2 /f %3 "'"
+PACDONE_FRAME=/w46 /h5 /c
+PACDONE="Installation termin‚e des paquetages."
+
+; Config file installation
+CONFIGS_FRAME=/w64 /h5 /c
+CONFIGS="Installant les nouveaux fichiers de configuration."
+CONFIGS_DONE="Les nouveaux fichiers de configuration ont ‚t‚ install‚s."
+
+; V8 Power tools installation
+V8POWER_FRAME=/w60 /h5 /c
+V8POWER=/s- "Installant une copie des outils '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER_DONE="Les outils V8Power Tools ont ‚t‚ install‚s."

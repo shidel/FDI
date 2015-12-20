@@ -1,0 +1,67 @@
+*******************************************************************************
+FreeDOS 1.2 Installer french Translation.
+Provided by: Paul Dufresne
+Contact Email: dufresnep@gmail.com
+Created/Modified: December 17, 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR="Paul Dufresne"
+LANG_NAME="fran‡ais"
+
+; FDASK200 - Backup old OS
+BACKUP_FRAME=/w72 /h10 /c
+BACKUP_OPTS=/w60 /h4 /c
+BACKUPADV_FRAME=/w72 /h11 /c
+BACKUPADV_OPTS=/w60 /h5 /c
+BACKUP="Un systŠme d'exploitation existe d‚j… sur le disque" /f %1 %2 /f %3 /s- .
+BACKUP?="D‚sirez vous savegarder les anciens fichier avant l'installation?"
+BACKUPY="  Oui - Sauvegarder les fichiers avant."
+BACKUPZ="  Oui - Sauvegarder dans un fichier .zip avant."
+BACKUPN="  Non - Installer sans sauvegarder les anciens fichiers."
+
+; FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c
+TARGET?=Changer le r‚pertoire de destination?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+; FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w72 /h8 /c
+REPLACE_OPTS=/w64 /h4 /c
+REPLACE?=Remplacer les fichiers de configuration systŠme?
+REPLACEY="  Oui - Transf‚rer les nouveaux fichiers de configuration."
+REPLACEN="  Non - Conserver les anciens fichiers."
+
+; FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
+DELETE_OPTS=/w40 /h4 /c
+DELETE?=Enlever tous les anciens fichiers de /f %1 %2 /f %3 /s- ?
+DELETEY="  Oui - R‚installer … neuf."
+DELETEN="  Non - Ajouter … ce qui ‚tait l…."
+
+; FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w68 /h8 /c
+XFER_OPTS=/w56 /h4 /c
+XFER?=Transf‚rer les fichiers systŠmes vers le disque /f %1 %2 /f %3 /s- ?
+XFERY="  Oui - Transf‚rer les fichiers systŠmes."
+XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
+
+; FDASK600 - Package group selection.
+PAC_FRAME=/w72 /h11 /c
+PAC_OPTS=/w66 /h7 /c
+PACS?=Quels paquetages  /f %1 %2 /f %3 d‚sirez-vous installer?
+PACBO="  Uniquement les paquetages essentiels."
+PACBS="  Uniquement les paquetages essentiels avec leur code source."
+PACAO="  Tout les paquetages."
+PACAS="  Tout les paquetages incluant leur code source."
+PACDO_ADV="  Un choix personnel de paquetages binaires."
+PACDS_ADV="  Un choix personnel de paquetages incluant leur code source.
+
+
+; FDASK900 - Advanced mode Install V8Power Tools.
+V8_FRAME=/w60 /h8 /c
+V8_OPTS=/w44 /h4 /c
+V8I?=Installer une copie des outils /f %1 V8Power /f %2 /s- ?
+V8IY="  Oui - Installer les outils V8Power."
+V8IN="  Non - Ne pas les installer."
