@@ -24,8 +24,8 @@ HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
 PROCEED?="Do you wish to proceed?"
-CONTINUE="  Yes - Continue with installation"
-EXIT="  No  - Return to DOS"
+CONTINUE="  Yes - Continue with installation."
+EXIT="  No  - Return to DOS."
 
 ; STAGE400 - Partition screen specific
 NOPART_FRAME=/w60 /h10 /c
@@ -102,8 +102,8 @@ FAILADV_OPTS=/w40 /h6 /c
 FAILH="A reboot may help."
 FAIL?="Do you wish to reboot now?"
 FAILY="  Yes - Please reboot now."
-FAILN="  No  - Return to DOS"
-FAILI="  No  - Ignore (not recommended)"
+FAILN="  No  - Return to DOS."
+FAILI="  No  - Ignore. (not recommended)"
 FAILR="The computer will now reboot."
 
 ; FDNOTICE - Already installed notice.
