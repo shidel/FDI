@@ -1,3 +1,6 @@
+; Package list for ALL package installation.
+
+; These are the same as the BASE set.
 base\append
 base\assign
 base\attrib
@@ -55,15 +58,19 @@ base\unformat
 base\xcopy
 base\xmgr
 util\udvd2
+
+; The remaining packages are only installed when ALL is chosen.
+
 net\wget
 net\mtcp
+util\4dos
 util\doslfn
 util\fdnpkg
 util\memtest
-util\4dos
 util\bootfix
 util\shsufdrv
 util\cwsdpmi
 util\grep
 archiver\zip
 archiver\unzip
+

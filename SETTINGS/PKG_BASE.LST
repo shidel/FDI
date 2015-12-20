@@ -1,3 +1,5 @@
+; Package list for BASE only installation.
+
 base\append
 base\assign
 base\attrib
