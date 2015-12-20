@@ -6,6 +6,7 @@ if "%OCFG%" == "y" goto MaybeOption
 goto AfterOption
 
 :MaybeOption
+vfdutil /d %FTARGET% | set /p _C=
 if exist %_C%\AUTOEXEC.BAT goto DoOption
 if exist %_C%\FDAUTO.BAT goto DoOption
 if exist %_C%\CONFIG.SYS goto DoOption
@@ -13,8 +14,6 @@ if exist %_C%\FDCONFIG.SYS goto DoOption
 goto AfterOption
 
 :DoOption
-vfdutil /d %FTARGET% | set /p _C=
-
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
 vecho /n /t %FLANG% CLEAN
