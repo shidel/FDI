@@ -197,7 +197,7 @@ goto AfterBackup
 :CopyBackupFailed
 vdelay %FDEL%
 set FERROR="Making backup."
-call FDIFAIL.BAT ERROR_BACKUP
+call FDIFAIL.BAT ERROR_BACKUP %_AF%
 goto AfterBackup
 
 :AfterBackup
