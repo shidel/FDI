@@ -195,6 +195,8 @@ ERROR_SHELL="Installation is not supported under your current shell."
 ERROR_MEDIA="Unable to locate the installation packages."
 ERROR_REMOS="Had a problem removing old system files."
 ERROR_XSYS="Error transfering system files to %1."
+ERROR_CONFIG="Problem copying new configuration files."
+ERROR_V8="Problem installing V8Power Tools."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
