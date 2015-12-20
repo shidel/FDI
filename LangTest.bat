@@ -430,6 +430,87 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:INSDIRFAIL
+call %SELF% CLS INSDIRFAIL FDSETUP
+call %SELF% FAIL ERROR_MKDOS C:\FREE_DOS
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSPKGFAIL
+call %SELF% CLS INSPKGFAIL FDSETUP
+call %SELF% FAIL cc ERROR_PACKAGE packages\filename
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSSYS
+call %SELF% CLS INSSYS FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XSYS_FRAME
+vecho /n /t %FLANG% XSYS %TFH% C: %TFF%
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSSYSDONE
+call %SELF% CLS INSSYSDONE FDINS ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XSYS_FRAME
+vgotoxy /l sop
+vecho /n /e /t %FLANG% XSYS_DONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSSYSFAIL
+call %SELF% CLS INSSYSFAIL FDSETUP
+call %SELF% FAIL cc ERROR_XSYS C:
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSCFG
+call %SELF% CLS INSCFG FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
+vecho /n /t %FLANG% CONFIGS
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSCFGDONE
+call %SELF% CLS INSCFGDONE FDINS ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
+vgotoxy /l sop
+vecho /n /e /t %FLANG% CONFIGS_DONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSCFGFAIL
+call %SELF% CLS INSCFGFAIL FDSETUP
+call %SELF% FAIL cc ERROR_CONFIG
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSV8
+call %SELF% CLS INSV8 FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
+vecho /n /t %FLANG% V8POWER %TFH% %TFF%
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSV8DONE
+call %SELF% CLS INSV8DONE FDINS ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
+vgotoxy /l sop
+vecho /n /e /t %FLANG% V8POWER_DONE
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:INSV8FAIL
+call %SELF% CLS INSV8FAIL FDSETUP
+call %SELF% FAIL cc ERROR_V8
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
