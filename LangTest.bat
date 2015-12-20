@@ -34,6 +34,8 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+REM ***** STAGES
+
 :PICKLANG
 call %SELF% CLS PICKLANG FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
@@ -196,6 +198,7 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+REM ***** FDASK
 :TARGET
 call %SELF% CLS TARGET FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
@@ -231,8 +234,8 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:SYSFILES
-call %SELF% CLS SYSFILES FDASK ADV
+:CONFIGFILES
+call %SELF% CLS CONFIGFILES FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
 vecho /t %FLANG% REPLACE?
 vecho
@@ -243,6 +246,66 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:PURGE
+call %SELF% CLS PURGE FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
+vecho /t %FLANG% DELETE? %TFH% C:\FDOS %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% DELETE_OPTS
+vecho /t %FLANG% DELETEY
+vecho /n /t %FLANG% DELETEN
+vchoice /a %TFC% Ctrl-C /d 1
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:SYSFILES
+call %SELF% CLS SYSFILES FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XFER_FRAME
+vecho /t %FLANG% XFER? %TFH% C: %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% XFER_OPTS
+vecho /t %FLANG% XFERY
+vecho /n /t %FLANG% XFERN
+vchoice /a %TFC% Ctrl-C /d 1
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:PACKAGES
+call %SELF% CLS PACKAGES FDASK
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
+vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS
+vecho /t %FLANG% PACBO
+vecho /t %FLANG% PACBS
+vecho
+vecho /t %FLANG% PACAO
+vecho /n /t %FLANG% PACAS
+vchoice /a %TFC% Ctrl-C /d 3
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:V8FILES
+call %SELF% CLS V8FILES FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8_FRAME
+vecho /t %FLANG% V8I? %TFH% %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% V8_OPTS
+vecho /t %FLANG% V8IY
+vecho /n /t %FLANG% V8IN
+vchoice /a %TFC% Ctrl-C /d 1
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+REM ***** FDINS
+:MKBACKUP
+call %SELF% CLS MKBACKUP FDINS
+
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
@@ -251,6 +314,7 @@ goto Done
 :ClearScreen
 if "%FADV%" == "" set TADV=y
 if "%FADV%" == "y" set TADV=
+if "%4" == "ADV" set TADV=y
 set FADV=%TADV%
 set TADV=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly

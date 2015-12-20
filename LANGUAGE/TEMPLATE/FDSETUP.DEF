@@ -193,6 +193,7 @@ ERROR_SOURCE="Unable to install the '%1' source."
 ERROR_READC="Having a problem reading drive C:."
 ERROR_SHELL="Installation is not supported under your current shell."
 ERROR_MEDIA="Unable to locate the installation packages."
+ERROR_REMOS="Had a problem removing old system files."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
