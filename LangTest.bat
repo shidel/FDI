@@ -156,10 +156,79 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-
 :MEDIAFAIL
 call %SELF% CLS MEDIAFAIL FDSETUP
 call %SELF% FAIL ERROR_MEDIA
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:READY
+call %SELF% CLS READY FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME
+vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho
+vecho /t %FLANG% INSTALL?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% INSTALL_OPTS
+vecho /t %FLANG% INSTALL_YES "%OS_NAME% %OS_VERSION%"
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 2
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:PREP
+call %SELF% CLS PREP FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
+vecho /n /t %FLANG% PREPARING
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:COMPLETE
+call %SELF% CLS COMPLETE FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
+vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho
+vecho /t %FLANG% REBOOT?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% COMPLETE_OPTS
+vecho /t %FLANG% REBOOT_YES
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C /d 1
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:TARGET
+call %SELF% CLS TARGET FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
+vecho /t %FLANG% TARGET?
+vecho
+vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% 15 C:\FDOS
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:BACKUP
+call %SELF% CLS BACKUP FDASK
+if "%FADV%" == "y" goto BACKUPADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
+vecho /t %FLANG% BACKUP %TFH% C: %TFF%
+vecho
+vecho /t %FLANG% BACKUP?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% BACKUP_OPTS
+vecho /t %FLANG% BACKUPY
+vecho /n /t %FLANG% BACKUPN
+vchoice /a %TFC% Ctrl-C /d 1
+goto BACKUPCHECK
+:BACKUPADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUPADV_FRAME
+vecho /t %FLANG% BACKUP %TFH% C: %TFF%
+vecho
+vecho /t %FLANG% BACKUP?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% BACKUPADV_OPTS
+vecho /t %FLANG% BACKUPY
+vecho /t %FLANG% BACKUPZ
+vecho /n /t %FLANG% BACKUPN
+vchoice /a %TFC% Ctrl-C /d 1
+
+:BACKUPCHECK
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -184,8 +253,10 @@ vcls /b %TTB% /f %TTF% EOL
 vgotoxy /x30 /y1
 vecho /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
 set FLANG=LANGUAGE\%LANG%\%3.DEF
-if "%FADV%" == "" vecho "Theme: Basic" /e
-if "%FADV%" == "y" vecho "Theme: Advanced" /e
+if "%FADV%" == "" vecho /n "Theme: Basic" /e
+if "%FADV%" == "y" vecho /n "Theme: Advanced" /e
+if "%4" == "ADV" vecho /n ", (Advanced Only)"
+vecho
 vecho "Section: %PART%" /e
 vecho "Resource: %FLANG%" /e
 goto EndOfBatch
