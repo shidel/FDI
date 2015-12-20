@@ -45,8 +45,8 @@ if errorlevel 1 goto V8Missing
 vfdutil /c /p %0
 :V8TestSkip
 if not exist FDISETUP\SETUP\NUL goto BadLayout
-if not exist FDIBUILD\FDIBUILD.CFG goto BadLayout
-if not exist FDIBUILD\PACKAGES.LST goto BadLayout
+if not exist BUILD\BUILD.CFG goto BadLayout
+if not exist BUILD\PACKAGES.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
 
 REM Configure Variables and stuff.
@@ -106,7 +106,7 @@ vecho Ramdrive is /fYellow %RAMDRV% /fGray /p
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
-set FDNPKG.CFG=FDIBUILD\FDIBUILD.CFG
+set FDNPKG.CFG=BUILD\BUILD.CFG
 
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
@@ -128,7 +128,7 @@ vecho , /fLightGreen OK /fGray /p
 vecho Installing packages to /fYellow %RAMDRV% /fGray
 set PACKIDX=0
 :PkgLoop
-type FDIBUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+type BUILD\PACKAGES.LST | vstr /l %PACKIDX% | set /p PACKFILE=
 if not "%PACKIDX%" == "0" goto PkgCheck
 if "%PACKFILE%" == "" goto PkgLoop
 :PkgCheck
@@ -201,7 +201,7 @@ if exist %DOSDIR%\SETUP\PACKAGES\README.TXT deltree /Y %DOSDIR%\SETUP\PACKAGES\R
 if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
 set PACKIDX=0
 :CleanLoop
-type FDIBUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
+type BUILD\CLEANUP.LST | vstr /l %PACKIDX% | set /p PACKFILE=
 if not "%PACKIDX%" == "0" goto CleanCheck
 if "%PACKFILE%" == "" goto CleanLoop
 :CleanCheck
