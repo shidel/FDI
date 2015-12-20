@@ -27,20 +27,17 @@ if "%LANG%" == "" goto NoLangSet
 if not "%PART%" == "" goto %PART%
 if not "%PART%" == "" goto Error
 
-REM Clear Screen
 :FDICLS
 call %SELF% CLS FDICLS FDSETUP
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-REM  Language Screen
 :PICKLANG
 call %SELF% CLS PICKLANG FDSETUP DEF
 vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
 vgotoxy /l /y3
 vline hidden
-:LanguagePrompt
 vgotoxy /l sop /g up up
 vecho /n /e
 vgotoxy /l sop
@@ -54,6 +51,25 @@ vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_DE
 vchoice /a %TFC% Ctrl-C
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
+
+:WELCOME
+call %SELF% CLS WELCOME FDSETUP DEF
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
+if "%FADV%" == "y" goto AdvancedMesssage
+vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+goto Spacer
+:AdvancedMesssage
+vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+:Spacer
+vecho
+vecho /t %FLANG% PROCEED?
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
+vecho /t %FLANG% CONTINUE
+vecho /n /t %FLANG% EXIT
+vchoice /a %TFC% Ctrl-C
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 
 vcls /a7
 vecho Language %LANG% verification complete.

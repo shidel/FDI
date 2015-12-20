@@ -60,6 +60,7 @@ goto LanguagePrompt
 :LanguageSet
 if "%FCLANG%" == "y" set FCLANG=n
 set _WCI=
+
 REM Draw the welcome screen.
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
