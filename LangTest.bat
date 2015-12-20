@@ -300,11 +300,54 @@ if "%FADV%" == "" goto %PART%
 REM ***** FDINS
 :MKBACKUP
 call %SELF% CLS MKBACKUP FDINS
-
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
+vecho /n /t %FLANG% BACKUP
+vgotoxy /l sop eol right right
+vecho /n /t %FLANG% TARGET %TFH% C:\FDOS_OLD.000 %TFF%
+vgotoxy /l eop sor
+vprogres /f %TFP% 50
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:MKBACKUPZIP
+call %SELF% CLS MKBACKUPZIP FDINS ADV
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
+vecho /n /t %FLANG% BACKUP
+vecho /n /t %FLANG% TARGET %TFH% C:\FDBACKUP\FDOS0000.ZIP %TFF%
+vgotoxy /l eop sor
+vprogres /f %TFP% 50
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:MKBACKUPDONE
+call %SELF% CLS MKBACKUPDONE FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
+vecho /n /t %FLANG% BACKUP
+vgotoxy /l sop eol right right
+vecho /n /t %FLANG% TARGET %TFH% C:\FDOS_OLD.000 %TFF%
+vgotoxy /l eop sor
+vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:BACKUPFAIL
+call %SELF% CLS BACKUPFAIL FDSETUP
+call %SELF% FAIL ERROR_BACKUP
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:BACKUPZIPFAIL
+call %SELF% CLS BACKUPZIPFAIL FDSETUP
+call %SELF% FAIL ERROR_BACKZIP C:\FDBACKUP\FDOS0000.ZIP
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+
+:RMOLDPKG
 
 vcls /a7
 vecho Language %LANG% verification complete.
