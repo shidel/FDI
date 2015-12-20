@@ -196,6 +196,8 @@ vecho ,  /fLightGreen OK /fGray /p
 :NoBinOverrides
 
 vecho /n "Removing unnecessary files and folders"
+if exist %DOSDIR%\BIN\README.TXT deltree /Y %DOSDIR%\BIN\README.TXT >NUL
+if exist %DOSDIR%\SETUP\PACKAGES\README.TXT deltree /Y %DOSDIR%\SETUP\PACKAGES\README.TXT >NUL
 if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
 set PACKIDX=0
 :CleanLoop
