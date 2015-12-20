@@ -204,7 +204,7 @@ call %SELF% CLS TARGET FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
 vecho /t %FLANG% TARGET?
 vecho
-vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% 15 C:\FDOS
+vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% 15 C:\FREE_DOS
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -249,7 +249,7 @@ if "%FADV%" == "" goto %PART%
 :PURGE
 call %SELF% CLS PURGE FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
-vecho /t %FLANG% DELETE? %TFH% C:\FDOS %TFF%
+vecho /t %FLANG% DELETE? %TFH% C:\FREE_DOS %TFF%
 vecho
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% DELETE_OPTS
 vecho /t %FLANG% DELETEY
@@ -303,7 +303,7 @@ call %SELF% CLS MKBACKUP FDINS
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /n /t %FLANG% BACKUP
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% C:\FDOS_OLD.000 %TFF%
+vecho /n /t %FLANG% TARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 50
 call %SELF% STANDBY
@@ -327,7 +327,7 @@ call %SELF% CLS MKBACKUPDONE FDINS
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /n /t %FLANG% BACKUP
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% C:\FDOS_OLD.000 %TFF%
+vecho /n /t %FLANG% TARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
 vgotoxy /l eop sor
 vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
 call %SELF% STANDBY
@@ -346,8 +346,35 @@ call %SELF% FAIL ERROR_BACKZIP C:\FDBACKUP\FDOS0000.ZIP
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-
 :RMOLDPKG
+call %SELF% CLS RMOLDPKG FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
+vecho /n /t %FLANG% RMPACKS
+vgotoxy /l eop sor
+vprogres /f %TFP% 0
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:RMOLDPKGPART
+call %SELF% CLS RMOLDPKGPART FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
+vecho /n /t %FLANG% RMPACKS
+vgotoxy /l eop sor
+vprogres /f %TFP% 50
+vgotoxy /l sop
+vecho /e /n /t %FLANG% RMPACKN %TFH% PACKAGES %TFF%
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:RMOLDDOS
+call %SELF% CLS RMOLDDOS FDINS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
+vecho /n /t %FLANG% RMOS %TFH% C:\FREE_DOS %TFF%
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
 
 vcls /a7
 vecho Language %LANG% verification complete.
