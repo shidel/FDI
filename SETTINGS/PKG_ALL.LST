@@ -61,7 +61,6 @@ util\udvd2
 
 ; The remaining packages are only installed when ALL is chosen.
 
-net\wget
 net\mtcp
 util\4dos
 util\doslfn
@@ -70,7 +69,17 @@ util\memtest
 util\bootfix
 util\shsufdrv
 util\cwsdpmi
-util\grep
 archiver\zip
 archiver\unzip
+
+; Some packages I would like to see in ALL.
+util\grep
+archiver\tar
+archiver\gzip
+archiver\bz2
+devel\nasm
+devel\fpc
+net\wget
+net\rsync
+
 
