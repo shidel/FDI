@@ -141,6 +141,28 @@ call %SELF% FAIL ERROR_READC
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:SHELLFAIL
+call %SELF% CLS SHELLFAIL FDSETUP
+call %SELF% FAIL ERROR_SHELL
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:MEDIASEARCH
+call %SELF% CLS MEDIASEARCH FDSETUP
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME
+vecho /n /t %FLANG% GATHERING
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+
+:MEDIAFAIL
+call %SELF% CLS MEDIAFAIL FDSETUP
+call %SELF% FAIL ERROR_MEDIA
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 vcls /a7
 vecho Language %LANG% verification complete.
 

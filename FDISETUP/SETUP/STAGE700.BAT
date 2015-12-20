@@ -26,7 +26,7 @@ goto MediaLoop
 
 :MissingMedia
 set FERROR="Unable to locate installation packages."
-call FDFAIL.BAT "Unable to locate installation packages."
+call FDFAIL.BAT ERROR_MEDIA
 goto AbortBatch
 
 :MediaFound
