@@ -1,3 +1,26 @@
+FreeDOS 1.2+ Installer Language Template File for all installation messages
+handled by the default FDINS???.BAT files.
+
+Create a subdirectory under the LANGUAGE directory using the DOS %LANG% language
+ID and place your language translation of this file there.
+
+These "Language" translation files also include settings for text frame
+dimensions and other settings that can change based on the language text.
+Some settings (like frame style) are handled inside the batch script. While
+some other settings like color and text may be passed through %1-%9 parameters
+so the text can be properly formatted. Think of them as additional command-line
+parameters to their counterparts that are in the batch script file.
+
+Also, the ID strings must exactly match those provided. Do not indent, change
+the letter case or add any spaces prior to the "=" for the ID keys. Doing so
+will cause a match not to be found and generate "Parameter Error" messages
+in the installer. All text that does not match a requested ID string is ignored.
+So, basically, you can use any character like ;#!* or none at all to denote
+commment text. I'm going to use the ; just for readability.
+
+See FDSETUP.DEF for some additional comments on some of the switches that are
+used in the "Language strings."
+
 *******************************************************************************
 FreeDOS 1.2 Installer french Translation.
 Provided by: Paul Dufresne
@@ -27,20 +50,20 @@ RMPACKS=Supprimant les anciens paquetages en conflit.
 RMPACKN=/s- "Supprimant l'ancien paquet '" /f %1 %2 /f %3 "'."
 
 ; Remove old OS files
-RMOS_FRAME=/w74 /h5 /c
+RMOS_FRAME=/w60 /h5 /c
 ; vecho "Removing old files from 'C:\FDOS'."
 RMOS=/s- "Supprimant les anciens fichiers de '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Les fichiers de l'ancien systŠme d'exploitation ont ‚t‚ supprim‚s."
 
 ; Remove old config files
-CLEAN_FRAME=/w66 /h5 /c
+CLEAN_FRAME=/w60 /h5 /c
 CLEAN="Nettoyage en cours des anciens fichiers de configuration."
 CLEAN_DONE="Nettoyage termin‚ des anciens fichiers de configuration."
 
 ; Transfer system files
 XSYS_FRAME=/w60 /h5 /c
 ; vecho "Transferring system boot files to drive C:."
-XSYS= /s- "Copiant les fichiers de d‚marrage vers le disque " /f %1 %2 /f %3 .
+XSYS= /s- "Copiant les fichiers de d‚marrage vers le disque /f %1 %2 /f %3 ."
 XSYS_DONE="Copie termin‚e des fichiers de d‚marrage."
 
 ; Package installation.
@@ -52,16 +75,16 @@ PACSM="Installing sources."
 ; unused at present:
 ; vecho "Installant le paquet 'base/kernel'"
 PACSI= /s- "Installant les sources de '" /f %1 %2 /f %3 "'"
-PACDONE_FRAME=/w46 /h5 /c
+PACDONE_FRAME=/w60 /h5 /c
 PACDONE="Installation termin‚e des paquetages."
 
 ; Config file installation
-CONFIGS_FRAME=/w64 /h5 /c
+CONFIGS_FRAME=/w60 /h5 /c
 CONFIGS="Installant les nouveaux fichiers de configuration."
 CONFIGS_DONE="Les nouveaux fichiers de configuration ont ‚t‚ install‚s."
 
 ; V8 Power tools installation
-V8POWER_FRAME=/w58 /h5 /c
+V8POWER_FRAME=/w60 /h5 /c
 ; vecho "Installing a copy of 'V8Power Tools'."
-V8POWER=/s- "Installant une copie des outils '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER=/s- "Installant une copie des outils '" /f %1 "V8Power" /f %2 "'."
 V8POWER_DONE="Les outils V8Power Tools ont ‚t‚ install‚s."

@@ -1,3 +1,26 @@
+FreeDOS 1.2+ Installer Language Template File for all user prompted questions
+handled by the default FDASK???.BAT files.
+
+Create a subdirectory under the LANGUAGE directory using the DOS %LANG% language
+ID and place your language translation of this file there.
+
+These "Language" translation files also include settings for text frame
+dimensions and other settings that can change based on the language text.
+Some settings (like frame style) are handled inside the batch script. While
+some other settings like color and text may be passed through %1-%9 parameters
+so the text can be properly formatted. Think of them as additional command-line
+parameters to their counterparts that are in the batch script file.
+
+Also, the ID strings must exactly match those provided. Do not indent, change
+the letter case or add any spaces prior to the "=" for the ID keys. Doing so
+will cause a match not to be found and generate "Parameter Error" messages
+in the installer. All text that does not match a requested ID string is ignored.
+So, basically, you can use any character like ;#!* or none at all to denote
+commment text. I'm going to use the ; just for readability.
+
+See FDSETUP.DEF for some additional comments on some of the switches that are
+used in the "Language strings."
+
 *******************************************************************************
 FreeDOS 1.2 Installer french Translation.
 Provided by: Paul Dufresne
@@ -16,16 +39,16 @@ LANG_NAME="fran‡ais"
 ; FDASK100 - Reserved
 
 ; FDASK200 - Backup old OS
-BACKUP_FRAME=/w72 /h10 /c
-BACKUP_OPTS=/w60 /h4 /c
-BACKUPADV_FRAME=/w72 /h11 /c
-BACKUPADV_OPTS=/w60 /h5 /c
+BACKUP_FRAME=/w60 /h10 /c
+BACKUP_OPTS=/w40 /h4 /c
+BACKUPADV_FRAME=/w60 /h11 /c
+BACKUPADV_OPTS=/w40 /h5 /c
 ; vecho "A previous operating system was detected on drive C:."
-BACKUP="Un systŠme d'exploitation existe d‚j… sur le disque" /f %1 %2 /f %3 /s- .
-BACKUP?="D‚sirez vous savegarder les anciens fichier avant l'installation?"
+BACKUP=Un systŠme d'exploitation existe d‚j… sur le disque /f %1 %2 /f %3 /s- .
+BACKUP?=D‚sirez vous savegarder les anciens fichier avant l'installation?
 BACKUPY="  Oui - Sauvegarder les fichiers avant."
 BACKUPZ="  Oui - Sauvegarder dans un fichier .zip avant."
-BACKUPN="  Non - Installer sans sauvegarder les anciens fichiers."
+BACKUPN="  Non - Installer sans sauvegarder les anciens fichiers"
 
 ; FSASK100 - Advanced mode
 TARGET_FRAME=/w60 /h7 /c
@@ -34,8 +57,8 @@ TARGET?=Changer le r‚pertoire de destination?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
 
 ; FDASK300 - Advanced mode Replace system files
-REPLACE_FRAME=/w72 /h8 /c
-REPLACE_OPTS=/w62 /h4 /c
+REPLACE_FRAME=/w60 /h8 /c
+REPLACE_OPTS=/w40 /h4 /c
 REPLACE?=Remplacer les fichiers de configuration systŠme?
 REPLACEY="  Oui - Transf‚rer les nouveaux fichiers de configuration."
 REPLACEN="  Non - Conserver les anciens fichiers."
@@ -46,21 +69,21 @@ DELETE_OPTS=/w40 /h4 /c
 ; vecho "Remove all old files from C:\FDOS?
 DELETE?=Enlever tous les anciens fichiers de /f %1 %2 /f %3 /s- ?
 DELETEY="  Oui - R‚installer … neuf."
-DELETEN="  Non - Ajouter … ce qui ‚tait l…."
+DELETEN="  Non - Ajouter … ce qui ‚tait l… ."
 
-; FDASK400 - Advanced mode transfer system files
-XFER_FRAME=/w68 /h8 /c
-XFER_OPTS=/w52 /h4 /c
+; FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c
+XFER_OPTS=/w40 /h4 /c
 ; vecho "Transfer system files to drive C:?"
 XFER?=Transf‚rer les fichiers systŠmes vers le disque /f %1 %2 /f %3 /s- ?
 XFERY="  Oui - Transf‚rer les fichiers systŠmes."
 XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
 
 ; FDASK600 - Package group selection.
-PAC_FRAME=/w72 /h11 /c
-PAC_OPTS=/w64 /h7 /c
-; vecho "What FreeDOS packages do you want to install?"
-PACS?=Quels paquetages /f %1 %2 /f %3 d‚sirez-vous installer?
+PAC_FRAME=/w60 /h11 /c
+PAC_OPTS=/w40 /h7 /c
+; vecho "Quels paquetages FreeDOS d‚sirez-vous installer?"
+PACS?=What /f %1 %2 /f %3 packages do you want to install?
 PACBO="  Uniquement les paquetages essentiels."
 PACBS="  Uniquement les paquetages essentiels avec leur code source."
 PACAO="  Tout les paquetages."
@@ -74,7 +97,7 @@ PACDS_ADV="  Un choix personnel de paquetages incluant leur code source.
 
 ; FDASK900 - Advanced mode Install V8Power Tools.
 V8_FRAME=/w60 /h8 /c
-V8_OPTS=/w42 /h4 /c
+V8_OPTS=/w40 /h4 /c
 ; vecho "Install a copy of V8Power Tools?"
 V8I?=Installer une copie des outils /f %1 V8Power /f %2 /s- ?
 V8IY="  Oui - Installer les outils V8Power."

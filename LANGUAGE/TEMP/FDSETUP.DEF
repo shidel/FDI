@@ -1,3 +1,29 @@
+FreeDOS 1.2+ Installer Language Template File for all installation messages
+handled by the FDSETUP.BAT and default handling of the FDCHECK, FDERROR,
+FDICLS, FDICTRLC, FDIFAIL, FDNOTICE, FDSPLASH and FDTHANK utility batch files.
+
+Create a subdirectory under the LANGUAGE directory using the DOS %LANG% language
+ID and place your language translation of this file there.
+
+These "Language" translation files also include settings for text frame
+dimensions and other settings that can change based on the language text.
+Some settings (like frame style) are handled inside the batch script. While
+some other settings like color and text may be passed through %1-%9 parameters
+so the text can be properly formatted. Think of them as additional command-line
+parameters to their counterparts that are in the batch script file.
+
+Also, the ID strings must exactly match those provided. Do not indent, change
+the letter case or add any spaces prior to the "=" for the ID keys. Doing so
+will cause a match not to be found and generate "Parameter Error" messages
+in the installer. All text that does not match a requested ID string is ignored.
+So, basically, you can use any character like ;#!* or none at all to denote
+commment text. I'm going to use the ; just for readability.
+
+Finally, any key below that contains ADV is only used in advanced mode.
+You can switch to and from advanced mode at any time the installer is waiting
+for user input by pressing CTRL+C and selecting the other mode. Or, you can
+start the installer in advanced mode with the "adv" command line option.
+
 *******************************************************************************
 FreeDOS 1.2 Installer french Translation.
 Provided by: Paul Dufresne
@@ -40,7 +66,7 @@ HELLO_FRAME=/w68 /h10 /c
 ; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
 ; = 2 usable rows)
 ; then centered.
-HELLO_OPTS=/w44 /h4 /c
+HELLO_OPTS=/w40 /h4 /c
 ; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
 ; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
 ; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
@@ -56,8 +82,8 @@ PROCEED?="Voulez-vous proc‚der?"
 ; Also, to indent the choice, you can either use white spaces or insert the
 ; repeat char switches. Like /r2/c32. Which would be repeat 2 times the ascii
 ; character 32. If you prefer, hex can be used like /r2/c0x20.
-CONTINUE="  Oui - Continuer avec l'installation."
-EXIT="  Non - Retourner au DOS."
+CONTINUE="  Oui - Continuer avec l'installation"
+EXIT="  Non - Retourner au DOS"
 
 ; STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
@@ -73,7 +99,7 @@ PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 ; Actually, this uses two lines because of the frame width. Not because it
 ; is two strings.
-PARTED=/s- "Vous devez red‚marrer votre ordinateur pour que la" /p "nouvelle table de partition prenne effet."
+PARTED=/s- "Vous devez red‚marrer votre ordinateur pour que la nouvelle table de partition prenne effet."
 REBOOT?="Voulez-vous red‚marrer?"
 REBOOT_YES="  Oui - Red‚marre maintenant."
 ; Also uses EXIT defined above.
@@ -82,8 +108,8 @@ REBOOT="Votre ordinateur red‚marre."
 ; STAGE500 - Formating specific
 NOFORMAT_FRAME=/w60 /h10 /c
 NOFORMAT_OPTS=/w50 /h4 /c
-NOFORMATADV_FRAME=/w70 /h11 /c
-NOFORMATADV_OPTS=/w60 /h5 /c
+NOFORMATADV_FRAME=/w60 /h11 /c
+NOFORMATADV_OPTS=/w50 /h5 /c
 ; vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Le disque " /f %1 %2 /f %3 " ne semble pas ˆtre format‚."
 FORMAT?="Voulez-vous formater le disque?"
@@ -96,7 +122,7 @@ FORMATTING=/s- /fGray "Formatage en cours de " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Appuyer une touche... " /e
 
 ; STAGE700 - Install preparation
-GATHERING_FRAME=/w72 /h5 /c
+GATHERING_FRAME=/w66 /h5 /c
 GATHERING="Cueillette de quelques information n‚cessaire … l'installation."
 
 ; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
@@ -111,7 +137,7 @@ INSTALL=/s- "Prˆt pour l'installation " /f %1 "%2" /f %3 .
 INSTALL?="Voulez-vous intaller maintenant?"
 INSTALL_YES="  Oui - Installer %1."
 ; Also uses EXIT defined above.
-PREPARING_FRAME=/w40 /h5 /c
+PREPARING_FRAME=/w60 /h5 /c
 PREPARING="Preparation de l'installation."
 
 ; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
@@ -120,7 +146,7 @@ PREPARING="Preparation de l'installation."
 ; for add-on installers that are not part of the main FDI base.
 
 ; STAGE900 - All Done reboot?
-COMPLETE_FRAME=/w68 /h10 /c
+COMPLETE_FRAME=/w60 /h10 /c
 COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "Installation de " /f %1 "%2" /f %3 " est maintenant termin‚e."
 ; Also uses REBOOT?, REBOOT, EXIT defined above.
@@ -142,16 +168,16 @@ CTRLCA="  Non - Passer au Mode Avanc‚."
 CTRLCB="  Non - Passer au Mode Normal"
 
 ; FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w64 /h11 /c
-FAIL_OPTS=/w46 /h4 /c
-FAILADV_FRAME=/w64 /h13 /c
-FAILADV_OPTS=/w46 /h6 /c
+FAIL_FRAME=/w60 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
 FAILH="Un red‚marrage pourrait aider."
 FAIL?="Voulez-vous red‚marrer maintenant?"
 FAILY="  Oui - Red‚marrez maintenant."
-FAILN="  Non - Retournez au DOS."
+FAILN="  Non - Retournez au DOS"
 ; At present FAILI is only available in advanced mode.
-FAILI="  Non - Ignorer. (non recommend‚)"
+FAILI="  Non - Ignorer (non recommend‚)"
 FAILR="L'ordinateur va maintenant red‚marrer."
 
 ; FDNOTICE - Already installed notice.
@@ -162,15 +188,10 @@ NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan 
 ERROR_BACKZIP="Archivage %1."
 ERROR_BACKUP="Erreur lors de l'archivage."
 ERROR_MKDOS="N'a pas pu cr‚er le r‚pertoire '%1'."
-ERROR_PACKAGE="N'a pas pu installer le paquet '%1'."
+ERROR_PACKAGE="N'a pas pu installer le paquet'%1'."
 ERROR_SOURCE="N'a pas pu installer le code source '%1'."
 ERROR_READC="J'ai un problŠeme … lire le disque C:."
-ERROR_SHELL="L'installation n'est pas support‚ par votre interpr‚teur" /p "de commandes.  " /n
-ERROR_MEDIA="Unable to locate the installation packages."
-ERROR_REMOS="Had a problem removing old system files."
-ERROR_XSYS="Error transfering system files to %1."
-ERROR_CONFIG="Problem copying new configuration files."
-ERROR_V8="Problem installing V8Power Tools."
+ERROR_SHELL="L'installation n'est pas support‚ par votre interpr‚teur de commandes."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Fini d'installer les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %2 /a7
