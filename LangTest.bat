@@ -315,6 +315,7 @@ call %SELF% CLS MKBACKUPZIP FDINS ADV
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /n /t %FLANG% BACKUP
+vgotoxy /l sop eol right right
 vecho /n /t %FLANG% TARGET %TFH% C:\FDBACKUP\FDOS0000.ZIP %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 50

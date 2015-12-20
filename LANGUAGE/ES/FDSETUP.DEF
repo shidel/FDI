@@ -28,10 +28,10 @@ CONTINUE="  S¡ - Contin£e con la instalaci¢n"
 EXIT="  No - Volver a DOS"
 
 ; STAGE400 - Partition screen specific
-NOPART_FRAME=/w70 /h10 /c
+NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
-NOPART=/s- "La unidad " /f  %1 %2 /f %3 " no parece ser particionado"
-PART?="¨Quiere crear particiones en la unidad ?"
+NOPART=/s- "La unidad " /f  %1 %2 /f %3 " no parece ser particionado."
+PART?="¨Quiere crear particiones en la unidad?"
 PART_YES="  S¡ - Partitioner Lanzamiento."
 ; EXIT
 
@@ -46,9 +46,9 @@ REBOOT="Su equipo ahora debe reiniciar el sistema."
 
 ; STAGE500 - Formating specific
 NOFORMAT_FRAME=/w62 /h10 /c
-NOFORMAT_OPTS=/w54 /h4 /c
-NOFORMATADV_FRAME=/w62 /h11 /c
-NOFORMATADV_OPTS=/w54 /h5 /c
+NOFORMAT_OPTS=/w56 /h4 /c
+NOFORMATADV_FRAME=/w64 /h11 /c
+NOFORMATADV_OPTS=/w56 /h5 /c
 NOFORMAT=/s- "La unidad " /f %1 %2 /f %3 " no parece ser formateado."
 FORMAT?="¨Quiere formatear la unidad?"
 FORMAT_YES="  S¡ - Por favor, borrar y formatear la unidad %1."
@@ -59,7 +59,7 @@ FORMATTING=/fGray /s- "Unidad de formato " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Presione una tecla... " /e
 
 ; STAGE700 - Install preparation
-GATHERING_FRAME=/w74 /h5 /c
+GATHERING_FRAME=/w72 /h5 /c
 GATHERING="Recopilaci¢n de informaci¢n para prepararse para la instalaci¢n."
 
 ; STAGE800 - Installing
@@ -69,7 +69,7 @@ INSTALL=/s- "Ahora estamos listos para instalar " /f %1 "%2" /f %3 .
 INSTALL?="¨Quieres instalar ahora?"
 INSTALL_YES="  S¡ - Por favor, instale %1."
 ; EXIT
-PREPARING_FRAME=/w60 /h5 /c
+PREPARING_FRAME=/w44 /h5 /c
 PREPARING="Preparaci¢n para la instalaci¢n."
 
 ; STAGE900 - All Done reboot?
@@ -95,9 +95,9 @@ CTRLCA="  No - Cambiar al modo avanzado."
 CTRLCB="  No - Cambiar a modo b sico."
 
 ; FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w60 /h11 /c
+FAIL_FRAME=/w70 /h11 /c
 FAIL_OPTS=/w40 /h4 /c
-FAILADV_FRAME=/w60 /h13 /c
+FAILADV_FRAME=/w70 /h13 /c
 FAILADV_OPTS=/w40 /h6 /c
 FAILH="Un reinicio puede ayudar."
 FAIL?="¨Desea reiniciar ahora?"

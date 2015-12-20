@@ -21,10 +21,10 @@ BACKUP_DONE=/f %1 "Proceso de copia de seguridad se ha completado."
 ; Old Package removal
 RMPACK_FRAME=/w60 /h7 /c
 RMPACKS="Extracci¢n de paquetes en conflicto viejos."
-RMPACKN=/s- "Extracci¢n paquete antiguo'" /f %1 %2 /f %3 "'."
+RMPACKN=/s- "Extracci¢n paquete antiguo '" /f %1 %2 /f %3 "'."
 
 ; Remove old OS files
-RMOS_FRAME=/w60 /h5 /c
+RMOS_FRAME=/w64 /h5 /c
 RMOS=/s- "La eliminaci¢n de archivos viejos de '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Se eliminaron los archivos del sistema operativo antiguo."
 
@@ -35,11 +35,11 @@ CLEAN_DONE="Se han eliminado los archivos de configuraci¢n antiguos."
 
 ; Transfer system files
 XSYS_FRAME=/w60 /h6 /c
-XSYS=/s- "Transferencia de archivos de arranque del sistema a" /p "la unidad " /f %1 %2 /f %3 '.'
+XSYS=/s- "Transferencia de archivos de arranque del sistema a " /p "la unidad " /f %1 %2 /f %3 '.'
 XSYS_DONE="Transferencia de archivos del sistema ha completado."
 
 ; Package installation.
-PAC_FRAME=/w60 /h7 /c
+PAC_FRAME=/w64 /h7 /c
 PACBM="Instalaci¢n de paquetes de software."
 PACBI=/s- "Instalaci¢n de paquete de software '" /f %1 %2 /f %3 "'"
 PACSM="Instalaci¢n de fuentes."

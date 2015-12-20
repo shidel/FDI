@@ -43,7 +43,7 @@ DELETEY="  S¡ - Nuevo comienzo."
 DELETEN="  No - D‚jalo desordenada."
 
 ; FDASK500 - Advanced mode transfer system files
-XFER_FRAME=/w60 /h8 /c
+XFER_FRAME=/w64 /h8 /c
 XFER_OPTS=/w54 /h4 /c
 XFER?=/s- "¨Sistema de transferencia de archivos a la unidad " /f %1 %2 /f %3 ?
 XFERY="  S¡ - Los archivos del sistema de transferencia."
@@ -52,7 +52,7 @@ XFERN="  No - No transferir los archivos del sistema."
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w40 /h7 /c
-PACS?=/s- "¨Qu‚ paquetes de  " /f %1 %2 /f %3 " quieres instalar?"
+PACS?=/s- "¨Qu‚ paquetes de " /f %1 %2 /f %3 " quieres instalar?"
 PACBO="  Paquetes b sicos solamente."
 PACBS="  Paquetes b sicos con s¢lo fuentes."
 PACAO="  Todos los paquetes."
@@ -63,7 +63,7 @@ PACAS="  Todos los paquetes y sus fuentes."
 ; FDASK800 - Reserved
 
 ; FDASK900 - Advanced mode Install V8Power Tools.
-V8_FRAME=/w60 /h8 /c
+V8_FRAME=/w52 /h8 /c
 V8_OPTS=/w40 /h4 /c
 V8I?=/s- "¨Instalar una copia de " /f %1 "V8Power Tools" /f %2 "?"
 V8IY="  S¡ - Instalar V8Power Tools."
