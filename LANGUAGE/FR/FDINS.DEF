@@ -46,11 +46,8 @@ XSYS_DONE="Copie termin‚e des fichiers de d‚marrage."
 ; Package installation.
 PAC_FRAME=/w60 /h7 /c
 PACBM="Installant les paquetages."
-; vecho "Installing software package 'base/command'"
-PACBI=/s- "Installing software package '" /f %1 %2 /f %3 "'"
+PACBI=/s- "Installant le paquet '" /f %1 %2 /f %3 "'"
 PACSM="Installing sources."
-; unused at present:
-; vecho "Installant le paquet 'base/kernel'"
 PACSI= /s- "Installant les sources de '" /f %1 %2 /f %3 "'"
 PACDONE_FRAME=/w46 /h5 /c
 PACDONE="Installation termin‚e des paquetages."
