@@ -1,1 +1,1 @@
-Place any miscellaneous binary files in here. The will be copied to theFDSETUP/BIN directory on the install media and overwrite any pre-existingfiles.
+Place any miscellaneous binary files in here. The will be copied to theFDSETUP/BIN directory on the install media and overwrite any pre-existingfiles. These files will not be installed on the user's computer when theyperform an installation.
