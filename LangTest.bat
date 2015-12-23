@@ -31,6 +31,9 @@ if not "%PART%" == "" goto Error
 
 :START
 :0
+:1
+:BEGIN
+:FIRST
 :FDICLS
 call %SELF% CLS FDICLS FDSETUP
 call %SELF% STANDBY
