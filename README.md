@@ -27,8 +27,8 @@ A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
 
 (Warning: all previous ramdisks will be shutdown!!)
 
-Please note, a pre-made version [FreeDOS Installer Prototype's boot image](http://up.lod.bz/FDI/latest)
-is also available.
+Please note, a pre-made version [FreeDOS Installer Prototype's](http://up.lod.bz/FDI/latest)
+boot image is also available.
 
 ### Installer requirements.
 
