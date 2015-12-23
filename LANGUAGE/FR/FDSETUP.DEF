@@ -155,8 +155,8 @@ FAILI="  Non - Ignorer. (non recommend‚)"
 FAILR="L'ordinateur va maintenant red‚marrer."
 
 ; FDNOTICE - Already installed notice.
-NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is already installed.
-NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan SETUP.BAT /fGray "'"
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray est d‚j… install‚.
+NOTICE.2=/r5/c32 "Vous pouvez lancer l'installateur manuellement en ex‚cutant '" /s- /fCyan SETUP /fGray "'"
 
 ; Failure messages
 ERROR_BACKZIP="Archivage %1."
@@ -173,7 +173,7 @@ ERROR_CONFIG="Problem copying new configuration files."
 ERROR_V8="Problem installing V8Power Tools."
 
 ; AUTOEXEC.BAT messages
-AUTO_DONE=Fini d'installer les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %2 /a7
+AUTO_DONE=Fini "d'installer" les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %2 /a7
 AUTO_HELP=Taper /fWhite %1 /fGray pour obtenir du support concernant les commandes et la navigation.
-AUTO_WELCOME=Bienvenue au systŠme d'exploitation /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
+AUTO_WELCOME=Bienvenue au systŠme "d'exploitation" /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
 
