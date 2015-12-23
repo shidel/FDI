@@ -6,6 +6,7 @@ REM Copyright 2015 Jerome Shidel.
 
 set SELF=%0
 if "%1" == "CLS" goto ClearScreen
+if "%1" == "BLACK" goto ClearScreen
 if "%1" == "STANDBY" goto StandBy
 if "%1" == "FAIL" goto FAIL
 
@@ -511,6 +512,30 @@ call %SELF% FAIL cc ERROR_V8
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:STAGEFAIL
+SET FADV="y"
+call %SELF% BLACK STAGEFAIL FDSETUP
+vecho /t %FLANG% STAGE_ERROR nnn
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+
+:SKIPPED
+SET FADV="y"
+call %SELF% BLACK SKIPPED FDSETUP
+call FDISETUP\SETUP\FDNOTICE.BAT
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+
+:AUTO
+SET FADV="y"
+call %SELF% BLACK AUTO FDSETUP
+vecho /p /t %FLANG% AUTO_DONE AUTOEXEC.BAT FDCONFIG.SYS
+vecho /p /t %FLANG% AUTO_HELP HELP
+vecho /p /t %FLANG% AUTO_WELCOME %OS_NAME% %OS_VERSION% http://www.freedos.org
+vecho
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+
 vcls /a7
 vecho Language %LANG% verification complete.
 
@@ -539,6 +564,9 @@ if "%4" == "ADV" vecho /n ", (Advanced Only)"
 vecho
 vecho "Section: %PART%" /e
 vecho "Resource: %FLANG%" /e
+if not "%1" == "BLACK" goto EndOfBatch
+vline
+vcls /y6 /h24 /a0x07
 goto EndOfBatch
 
 :FAIL
