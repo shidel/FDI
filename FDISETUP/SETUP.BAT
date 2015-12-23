@@ -41,7 +41,7 @@ FDSETUP\V8POWER\vfdutil /c /p %0
 set OLDPATH=%PATH%
 if "%PATH%" == "A:\FDSetup\BIN;A:\FDSetup\V8Power" set OLDPATH=
 
-REM Temp Dircectory Test and Auto-configuration********************************
+REM Temp Directory Test and Auto-configuration ********************************
 :TempTest
 if not "%TEMP%" == "" goto TempSet
 FDSETUP\V8POWER\vinfo /d C:
