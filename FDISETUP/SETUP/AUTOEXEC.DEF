@@ -15,11 +15,7 @@ if "%config%"=="4" goto end
 LH FDAPM APMDOS
 IF "%config%"=="2" LH SHARE
 LH DOSLFN
-REM NLSFUNC %dosdir%\BIN\COUNTRY.SYS
-REM DISPLAY CON=(EGA),858,2)
-REM MODE CON CP PREP=((858) %dosdir%\CPI\EGA.CPX)
-REM KEYB US,858,%dosdir%\bin\keyboard.sys
-REM CHCP 858
+$LANG_SET$
 REM LH PCNTPK INT=0x60
 REM DHCP
 REM MOUSE
@@ -55,21 +51,13 @@ echo  Welcome to the %OS_NAME% %OS_VERSION% operating system (http://www.freedos
 goto DONE
 
 ***** V8Power Language specific text data.
-English (EN)
-DONE.EN=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
-HELP.EN=Type /fWhite %1 /fGray to get support on commands and navigation.
-WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
-
-Spanish (ES)
-DONE.ES=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
-HELP.ES=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
-WELCOME.ES=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
+$LANG_TEXT$
 
 :V8Power
 set PATH=%PATH%;%dosdir%\V8POWER
 set DEFLANG=EN
 if "%LANG%" == "" goto NoLanguage
-if %LANG% == ES set DEFLANG=ES
+if %LANG% == $FLANG$ set DEFLANG=$FLANG$
 :NoLanguage
 vecho /p /t %0 DONE.%DEFLANG% %cfgfile% %0
 vecho /p /t %0 HELP.%DEFLANG% HELP

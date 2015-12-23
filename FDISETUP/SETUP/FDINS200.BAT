@@ -64,8 +64,6 @@ if exist %FDRIVE%\IBMDOS.COM echo %FDRIVE%\IBMDOS.COM >>%_AL%
 if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
-vprogres /f %TFP% 10
-
 set _BN=1
 if not exist %FTARGET%\NUL goto CopyBackupRun
 dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
@@ -78,12 +76,9 @@ REM with internal buffers or caching.
 if "%_BM%" == "" goto CopyBackupRun
 
 :CopyBackupLoop
-REM vmath processes only from left to right!!!!!
-vmath %_BN% mul 90 div %_BM% + 10 | set /p _BP=
-
 vgotoxy /l eop sor
 
-vprogres /f %TFP% %_BP%
+vprogres /f %TFP% %_BN% of %_BM%
 
 if "%_BN%" == "%_BM%" goto BackupComplete
 
@@ -147,8 +142,6 @@ if exist %FDRIVE%\IBMDOS.COM echo %FDRIVE%\IBMDOS.COM >>%_AL%
 if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
-vprogres /f %TFP% 10
-
 set _BN=1
 if not exist %FTARGET%\NUL goto ZipBackupRun
 dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
@@ -161,12 +154,9 @@ REM with internal buffers or caching.
 if "%_BM%" == "" goto ZipBackupRun
 
 :ZipBackupLoop
-REM vmath processes only from left to right!!!!!
-vmath %_BN% mul 90 div %_BM% + 10 | set /p _BP=
-
 vgotoxy /l eop sor
 
-vprogres /f %TFP% %_BP%
+vprogres /f %TFP% %_BN% of %_BM%
 
 if "%_BN%" == "%_BM%" goto BackupComplete
 
@@ -205,7 +195,6 @@ goto AfterBackup
 :AfterBackup
 set _BM=
 set _BF=
-set _BP=
 set _BN=
 set _BT=
 set _AL=

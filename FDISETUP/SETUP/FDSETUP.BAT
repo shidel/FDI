@@ -216,6 +216,7 @@ call STAGE%FSTAGE%.BAT
 call FDILANG.BAT FDNOTICE FDSETUP
 if exist FDNOTICE.BAT call FDNOTICE.BAT
 verrlvl 0
+set FDRIVE=
 goto Finished
 
 REM Installer completed successfully ******************************************
@@ -233,6 +234,7 @@ call STAGE%FSTAGE%.BAT
 vcls /a 0x07
 call FDILANG.BAT FDSETUP
 vecho /t %FLANG% STAGE_ERROR %FSTAGE%
+set FDRIVE=
 goto Finished
 
 :NoEnvSpace
@@ -259,6 +261,7 @@ if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
 call FDILANG.BAT FDERROR FDSETUP
 if exist FDERROR.BAT call FDERROR.BAT
+set FDRIVE=
 goto Finished
 
 REM Post execution cleanup ****************************************************
@@ -277,6 +280,9 @@ set FLANG=
 
 if "%FREBOOT%" == "y" goto DoReboot
 if "%FREBOOT%" == "n" goto DoExit
+
+set FDRIVE=
+
 goto DontDoAnything
 
 :DoReboot
@@ -289,6 +295,10 @@ set FREBOOT=
 vcls /a 0x07
 call FDILANG.BAT FDTHANK FDSETUP
 if exist FDTHANK.BAT call FDTHANK.BAT
+if not "%FDRIVE%" == "" %FDRIVE%
+if not "%FDRIVE%" == "" cd \
+set FLANG=
+set FDRIVE=
 
 REM End of Batch Script *******************************************************
 :DontDoAnything

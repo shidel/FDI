@@ -38,7 +38,8 @@ goto TempTest
 :AdjustPath
 FDSETUP\V8POWER\vfdutil /c /p %0
 
-set OLD_PATH=%PATH%
+set OLDPATH=%PATH%
+if "%PATH%" == "A:\FDSetup\BIN;A:\FDSetup\V8Power" set OLDPATH=
 
 REM Temp Dircectory Test and Auto-configuration********************************
 :TempTest
@@ -93,7 +94,8 @@ if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto NoDriveC
 FDSETUP\BIN\COMMAND.COM /E:512/C FDSETUP\V8POWER\vfdutil /p %0 | set /p TMD=
-set PATH=%TMD%\FDSETUP\BIN;%TMD%\FDSETUP\V8POWER
+FDSETUP\BIN\COMMAND.COM /E:512/C FDSETUP\V8POWER\vfdutil /p %TMD%\FDSETUP\ | set /p TMD=
+set PATH=%TMD%\BIN;%TMD%\V8POWER
 FDSETUP\BIN\COMMAND.COM /E:512/C LBACACHE.COM INFO|grep -i "Caching floppy"|vstr|set /p TMD=
 if "%TMD%" == "" LBACACHE.COM buf 20 flop >NUL
 set TMD=
@@ -132,5 +134,5 @@ vecho "complete version or download a new copy."
 
 REM End of Batch Script *******************************************************
 :Done
-if not "%OLD_PATH%" == "" set PATH=%OLD_PATH%
-set OLD_PATH=
+if not "%OLDPATH%" == "" set PATH=%OLDPATH%
+set OLDPATH=

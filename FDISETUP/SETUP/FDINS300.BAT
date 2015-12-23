@@ -10,8 +10,8 @@ vecho /n /t %FLANG% RMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
-set ODOSDIR=%DOSDIR%
-set OFDNPKG=%FDNPKG.CFG%
+set OLDDOS=%DOSDIR%
+set OLDFDN=%FDNPKG.CFG%
 set FDNPKG.CFG=%FINSP%\FDNPBIN.CFG
 if "%OSRC%" == "y" SET FDNPKG.CFG=%FINSP%\FDNPSRC.CFG
 set DOSDIR=%FTARGET%
@@ -29,10 +29,8 @@ if "%_PM%" == "0" goto PkgDone
 
 :PkgLoop
 type %FPKGS% | grep -iv ^; | vstr /b/l %_PI% | set /p _PA=
-vmath %_PI% mul 100 div %_PM% | set /p _PP=
 vgotoxy /l eop sor
-if "%_PM%" == "%_PI" _PP=100
-vprogres /f %TFP% %_PP%
+vprogres /f %TFP% %_PI% of %_PM%
 if "%_PA%" == "" goto PkgDone
 
 if not "%OCLEAN%" == "y" goto IncludeBase
@@ -90,10 +88,10 @@ set _PA=
 set _PI=
 set _PD=
 set _PM=
-set _PP=
-set DOSDIR=%ODOSDIR%
-set ODOSDIR=
-set FDNPKG.CFG=%OFDNPKG%
-set OFDNPKG=
+set DOSDIR=%OLDDOS%
+set OLDDOS=
+set FDNPKG.CFG=%OLDFDN%
+set OLDFDN=
+
 :Done
 verrlvl 0

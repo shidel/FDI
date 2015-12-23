@@ -28,6 +28,9 @@ if errorlevel 1 goto Failed
 rmdir %FTARGET% >NUL
 if errorlevel 1 goto Failed
 
+if not exist %FTARGET%\NUL mkdir %FTARGET% >NUL
+if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
+
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
@@ -38,6 +41,9 @@ vdelay %FDEL%
 goto AfterOption
 
 :Failed
+if not exist %FTARGET%\NUL mkdir %FTARGET% >NUL
+if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
+
 set FERROR="Cleaning up old system files."
 call FDFAIL.BAT cc "Had a problem removing old system files."
 verrlvl 1

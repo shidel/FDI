@@ -1,7 +1,7 @@
 @echo off
 
-set ODOSDIR=%DOSDIR%
-set OFDNPKG=%FDNPKG.CFG%
+set OLDDOS=%DOSDIR%
+set OLDFDN=%FDNPKG.CFG%
 
 REM Run entire install process.
 
@@ -67,7 +67,7 @@ verrlvl 1
 :Done
 set _TI=
 set _TA=
-set DOSDIR=%ODOSDIR%
-set ODOSDIR=
-set FDNPKG.CFG=%OFDNPKG%
-set OFDNPKG=
+set DOSDIR=%OLDDOS%
+set OLDDOS=
+set FDNPKG.CFG=%OLDFDN%
+set OLDFDN=

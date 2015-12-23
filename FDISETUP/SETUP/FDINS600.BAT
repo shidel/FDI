@@ -1,5 +1,7 @@
 @echo off
 
+rem set to C:\ENV.txt
+
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
 vecho /n /t %FLANG% PACBM
@@ -22,7 +24,6 @@ if "%_PM%" == "0" goto PkgDone
 
 :PkgLoop
 type %FPKGS% | grep -iv ^; | vstr /b/l %_PI% | set /p _PA=
-vmath %_PI% mul 100 div %_PM% | set /p _PP=
 verrlvl 0
 if "%_PA%" == "" goto PkgDone
 rem if not exist %FMEDIA%\%_PA%.zip goto PkgSkip
@@ -37,7 +38,7 @@ vfdutil /c/p %FINSP%\
 
 :PkgSkip
 vgotoxy /l eop sor
-vprogres /f %TFP% %_PP%
+vprogres /f %TFP% %_PI% of %_PM%
 if "%_PI%" == "%_PM%" goto PkgDone
 vmath %_PI% + 1 | set /p _PI=
 goto PkgLoop
@@ -84,5 +85,4 @@ verrlvl 0
 :Done
 set _PA=
 set _PI=
-set _PP=
 set _PM=

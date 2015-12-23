@@ -12,7 +12,7 @@ if "%1" == "STANDBY" goto StandBy
 if "%1" == "FAIL" goto FAIL
 
 set OLD_LANG=%LANG%
-set OLD_PATH=%PATH%
+set OLDPATH=%PATH%
 
 if exist V8POWER\VECHO.COM set PATH=%PATH%;V8POWER
 
@@ -662,9 +662,9 @@ goto Done
 set PART=
 :DropOut
 if not "%OLD_LANG%" == "" set LANG=%OLD_LANG%
-if not "%OLD_PATH%" == "" set PATH=%OLD_PATH%
+if not "%OLDPATH%" == "" set PATH=%OLDPATH%
 set OLD_LANG=
-set OLD_PATH=
+set OLDPATH=
 set SELF=
 set FADV=
 call FDISETUP\SETUP\STAGE999.BAT VARSONLY

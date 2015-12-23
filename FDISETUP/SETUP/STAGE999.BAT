@@ -16,8 +16,8 @@ if exist %FTEMP%\NUL DELTREE /y %FTEMP%\*.*>NUL
 if exist %FTEMP%\NUL RMDIR %FTEMP%
 
 :IgnoreTemp
-set TEMP=%FTEMPO%
-set TMP=%FTMPO%
+set TEMP=%OLDTMP%
+set TMP=%TEMP%
 
 :VarsOnly
 rem if "%FDEBUG%" == "y" goto SkipClear
@@ -28,10 +28,8 @@ set FTHEME=
 set FDIDFMT=
 set FFOUND=
 set FINSP=
-set FTEMPO=
-set FTMPO=
+set OLDTMP=
 set FCURSOR=
-set FDRIVE=
 set FTARGET=
 set HTARGET=
 set FBAK=
