@@ -29,6 +29,8 @@ if "%LANG%" == "" goto NoLangSet
 if not "%PART%" == "" goto %PART%
 if not "%PART%" == "" goto Error
 
+:START
+:0
 :FDICLS
 call %SELF% CLS FDICLS FDSETUP
 call %SELF% STANDBY
