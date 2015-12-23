@@ -133,7 +133,7 @@ ABORTED=/fWhite /bRed " L'installation de %1 a ‚t‚ interrompue." /e /fGray
 STAGE_ERROR=/s- "Incapable d'ex‚cuter l'‚tape %1 de l'installateur." /p "Il est possible que l'installateur soit corrompu." /p "Veuillez le ret‚l‚charger ou tenter une m‚thode diff‚rente d'installation."
 
 ; FDICTRLC - Control-C specific
-CTRLC_FRAME=/w60 /h12 /c
+CTRLC_FRAME=/w64 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "Vous avez press‚ " /f %1 "CTRL-C" /f %2 .
 CTRLC?="Etes-vous certain de vouloir interrompre l'installation?"
