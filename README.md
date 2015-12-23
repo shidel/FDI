@@ -17,9 +17,9 @@ and place the binaries in the V8POWER subdirectory.
 Create a FreeDOS package repository disc. One can be downloaded from
 [Mateusz's Reopsitory](http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/).
 
-FDINST from the FDNPKG package must be installed.
-SHSUFDRV package must also be installed.
-A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
+FDINST from the FDNPKG package must be installed.<br>
+SHSUFDRV package must also be installed.<br>
+A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)<br>
 
     Stick the CD in your CD drive.
     Stick a floppy to destroy in drive A:
