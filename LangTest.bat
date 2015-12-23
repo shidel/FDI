@@ -50,7 +50,7 @@ REM ***** STAGES
 
 :PICKLANG
 call %SELF% CLS PICKLANG FDSETUP
-vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h11 /c /y7
+vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h12 /c /y7
 vgotoxy /l /y3
 vline hidden
 vgotoxy /l sop /g up up
@@ -62,7 +62,8 @@ vgotoxy /l eop /g down down /l sop
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
-vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_DE
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_DE
+vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_EO
 vchoice /a %TFC% Ctrl-C
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
