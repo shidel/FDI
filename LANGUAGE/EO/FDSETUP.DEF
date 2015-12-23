@@ -1,0 +1,146 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Esperanto Translation.
+Provided by: Rugxulo
+Contact Email: rugxulo@gmail.com
+Created/Modified: Tuesday, December 22, 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Rugxulo
+LANG_NAME=Esperanto
+
+; FDICLS - Installer Title Bar
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Enhavigilo"
+
+; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Bonvolu elekti vian lingvon."
+LANG_EN=Angla
+LANG_ES=Hispana
+LANG_FR=Franca
+LANG_DE=Germanaj
+LANG_EO=Esperanto
+
+; STAGE300 - Initial welcome screen message.
+HELLO_FRAME=/w66 /h10 /c
+HELLO_OPTS=/w42 /h4 /c
+HELLO=/s- "Bonvolu al la enhavigilon por " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Bonvolu al la altspertan enhavigilon por " /f %1 "%2" /f %3 .
+PROCEED?="Chu vi deziras dauri plu?"
+CONTINUE="  Jes - Dauru por enhavigi dosierojn."
+EXIT="  Ne  - Adiau, ghis revido."
+
+; STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w56 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Diskero " /f %1 %2 /f %3 " laushajne ne havas dosieraran specon."
+PART?="Chu vi volas registri vian diskospecon?"
+PART_YES="  Jes - Ekfunkciu la registrilon."
+; Also uses EXIT defined above.
+
+; STAGE400 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Vi reenvekigu vian komputilon por sukcesi la novan" /p "disk-registrilan metodon."
+REBOOT?="Chu vi volas reenvekigi nuntempe?"
+REBOOT_YES="  Jes - Bonvolu reenvekigi tuj."
+; Also uses EXIT defined above.
+REBOOT="Via komputilo nun reenvekighas."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w61 /h11 /c
+NOFORMAT_OPTS=/w53 /h4 /c
+NOFORMATADV_FRAME=/w60 /h12 /c
+NOFORMATADV_OPTS=/w50 /h5 /c
+NOFORMAT=/s-  "Diskero " /f %1 %2 /f %3 " ankorau ne taugas por legi/skribi."
+FORMAT?="Chu vi volas registri vian diskeron por"/p"legindeco/skribindeco?"
+FORMAT_YES="  Jes - Bonvolu forvishi kaj taugigi diskeron %1."
+FORMATADV_QUICK="  Jes - Vishetu kaj taugigi diskeron %1."
+FORMATADV_SLOW="  Jes - Plenvishegu kaj taugigi diskeron %1."
+; Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Taugigante diskeron " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Manpremu klavon... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w58 /h5 /c
+GATHERING="Kolektante iujn informojn por pretigi enhavigado."
+
+; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+; it will use it over the main FDASK.DEF language file. That is only recommended
+; for add-on questioning prompts that are not part of the main FDI base.
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w62 /h10 /c
+INSTALL_OPTS=/w48 /h4 /c
+INSTALL=/s- "Ne pretas por enhavigi " /f %1 "%2" /f %3 .
+INSTALL?="Chu vi volas enhavigi nuntempe?"
+INSTALL_YES="  Jes - Bonvolu enhavigi %1."
+; Also uses EXIT defined above.
+PREPARING_FRAME=/w32/h5 /c
+PREPARING="Pretigante por enhavigi."
+
+; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+; it will use it over the main FDINS.DEF language file. That is only recommended
+; for add-on installers that are not part of the main FDI base.
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Enhavigo de " /f %1 "%2" /f %3 " nun estas plenumita."
+; Also uses REBOOT?, REBOOT, EXIT defined above.
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " La enhavigo de %1 chesas." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Ne povas funkcii enhavigilan etaghon %1." /p "Eble la enhavigilo disrompis." /p "Bonvolu denove elshutu ghin au prenu malsaman metodon por enhavigi."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Vi jhus manpremis " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Chu vi certas ke vi volas chesi enhavigilon?"
+CTRLCY="  Jes - Bonvolu foriri al DOS."
+CTRLCN="  Ne  - Me deziras dauri."
+CTRLCA="  Ne  - Enshaltu Altsperten."
+CTRLCB="  Ne  - Deshaltu Bazen."
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w64 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Reenvekigho eble plibonigos."
+FAIL?="Chu vi volas reenvekigi nuntempe?"
+FAILY="  Jes - Bonvolu reenvekigi tuj."
+FAILN="  Ne  - Foriru al DOS"
+; At present FAILI is only available in advanced mode.
+FAILI="  Ne  - Malatendu (ne bonege)"
+FAILR="La komputilo nun komencas reenvekigi."
+
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray jam estas enmetita.
+NOTICE.2=/r5/c32 Vi povas memkomenci enhavigilon manpreme per tajpu "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+; Failure messages
+ERROR_BACKZIP="Kreante konservajhan arhhivon %1."
+ERROR_BACKUP="Eraro dum kreado de konservajho."
+ERROR_MKDOS="Ne povas krei '%1' dosierujon."
+ERROR_PACKAGE="Ne povas enhavigi la '%1' pakajhon."
+ERROR_SOURCE="Ne povas enhavigi la '%1' fonttekstojn."
+ERROR_READC="Malsukcesis legi la diskeron C:."
+ERROR_SHELL="Enhavigado ne funckias per via nuntempa demandilo."
+
+ERROR_MEDIA="Unable to locate the installation packages."
+ERROR_REMOS="Had a problem removing old system files."
+ERROR_XSYS="Error transfering system files to %1."
+ERROR_CONFIG="Problem copying new configuration files."
+ERROR_V8="Problem installing V8Power Tools."
+
+; AUTOEXEC.BAT messages
+AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /fCyan %2 /a7
+AUTO_HELP=Tajpu /fWhite %1 /fGray por akiri helpon pri ordonoj kaj veturadon.
+AUTO_WELCOME=Bonvolu al la /fGreen %1 /fCyan %2 /fGray mashinestro (OS) ( /s- /fYellow "%3" /fGray )
+

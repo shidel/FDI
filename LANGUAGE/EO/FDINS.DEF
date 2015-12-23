@@ -1,0 +1,59 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Esperanto Translation.
+Provided by: Rugxulo
+Contact Email: rugxulo@gmail.com
+Created/Modified: Tuesday, December 22, 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Rugxulo
+LANG_NAME=Esperanto
+
+; Debug mode pause
+PRESSKEY="Manpremu klavon..."
+
+; Backing up old OS
+BACKUP_FRAME=/w60 /h7 /c
+BACKUP=Konservante malnovajhon
+TARGET=/s- "'" /f %1 "%2" /f %3 "'"
+BACKUP_DONE=/f %1 Konservado jhus finis.
+
+; Old Package removal
+RMPACK_FRAME=/w60 /h7 /c
+RMPACKS=Forvishante malnovajn kontrauajn pakajhojn.
+RMPACKN=/s- "Forvishante malnovan '" /f %1 %2 /f %3 "' pakajhon."
+
+; Remove old OS files
+RMOS_FRAME=/w60 /h5 /c
+RMOS=/s- "Forvishante malnovajn dosierojn de '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Malnovaj mashinestaj (OS) dosierojn estis eksighitaj."
+
+; Remove old config files
+CLEAN_FRAME=/w60 /h5 /c
+CLEAN="Frotlavante la malnovajn elektilajn (CFG) dosierojn."
+CLEAN_DONE="Malnovaj elektilaj dosieroj estas eksighitaj."
+
+; Transfer system files
+XSYS_FRAME=/w64 /h5 /c
+XSYS= /s- "Kopiante majstrajn levigilajn dosierojn al diskero " /f %1 %2 /f %3 .
+XSYS_DONE="Majstra dosiera kopiado jhus finis."
+
+; Package installation.
+PAC_FRAME=/w60 /h7 /c
+PACBM="Enhavigante programajn pakajhojn."
+PACBI=/s- "Enhavigante programan pakajhon '" /f %1 %2 /f %3 "'"
+PACSM="Enhavigante fonttekstojn."
+PACSI= /s- "Enhavigante fonttekstojn por '" /f %1 %2 /f %3 "'"
+PACDONE_FRAME=/w50 /h5 /c
+PACDONE="Programa pakajho enhavigado jhus plenumis."
+
+; Config file installation
+CONFIGS_FRAME=/w50 /h5 /c
+CONFIGS="Enhavigante novnovajn elektilajn dosierojn."
+CONFIGS_DONE="Novaj elektilaj dosieroj estis enmetitaj."
+
+; V8 Power tools installation
+V8POWER_FRAME=/w56 /h5 /c
+V8POWER=/s- "Enhavigante kopion de '" /f %1 "(V8Power Tools)" /f %2 "'."
+V8POWER_DONE="V8-Fortegaj Iloj (V8Power Tools) estis enmetitaj."
