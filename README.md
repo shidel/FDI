@@ -5,8 +5,14 @@ kit based on [V8Power Tools](http://up.lod.bz/V8Power) batch file enhancement
 utilities.
 
 * * *
+### Installer requirements.
 
-### Creating the install media
+FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
+V8Power Tools located in path environment variable.
+(V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
+
+
+### Creating the Installation Media.
 
 It basically has the same requirements as the installer. It just requires
 less free environment space. I've been using /E:1024 without issue.
@@ -29,12 +35,6 @@ A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)<br>
 
 Please note, a pre-made version [FreeDOS Installer Prototype's](http://up.lod.bz/FDI/latest)
 boot image is also available.
-
-### Installer requirements.
-
-FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
-V8Power Tools located in path environment variable.
-(V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
 
 * * *
 
