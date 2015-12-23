@@ -30,7 +30,7 @@ if not "%PART%" == "" goto %PART%
 if not "%PART%" == "" goto Error
 
 :START
-;RESTART
+:RESTART
 :0
 :1
 :BEGIN
