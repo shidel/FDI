@@ -167,11 +167,11 @@ ERROR_PACKAGE="N'a pas pu installer le paquet '%1'."
 ERROR_SOURCE="N'a pas pu installer le code source '%1'."
 ERROR_READC="J'ai un probläeme Ö lire le disque C:."
 ERROR_SHELL="L'installation n'est pas supportÇ par votre interprÇteur" /p "de commandes.  " /n
-ERROR_MEDIA="Unable to locate the installation packages."
-ERROR_REMOS="Had a problem removing old system files."
-ERROR_XSYS="Error transfering system files to %1."
-ERROR_CONFIG="Problem copying new configuration files."
-ERROR_V8="Problem installing V8Power Tools."
+ERROR_MEDIA="Impossible de localiser les packages d'installation."
+ERROR_REMOS="Eu un probläme en supprimant les fichiers de l'ancien systäme."
+ERROR_XSYS="Erreur systäme de transfert de fichiers Ö %1."
+ERROR_CONFIG="Probläme de copier de nouveaux fichiers de configuration."
+ERROR_V8="Probläme d'installation de V8Power Tools."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Fini "d'installer" les fichiers de dÇmarrage /fCyan %1 /a7 et /fCyan %2 /a7
