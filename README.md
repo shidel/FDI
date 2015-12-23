@@ -21,9 +21,9 @@ FDINST from the FDNPKG package must be installed.
 SHSUFDRV package must also be installed.
 A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
 
-Stick the CD in your CD drive.
-Stick a floppy to destroy in drive A:
-run mkFDI.BAT
+    Stick the CD in your CD drive.
+    Stick a floppy to destroy in drive A:
+    run mkFDI.BAT
 
 (Warning: all previous ramdisks will be shutdown!!)
 
