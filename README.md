@@ -25,7 +25,8 @@ Create a FreeDOS package repository disc. One can be downloaded from
 
 FDINST from the FDNPKG package must be installed.<br>
 SHSUFDRV package must also be installed.<br>
-A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)<br>
+A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
+
 For best results and performance, I recommend booting from the most recent
 pre-made version [FreeDOS Installer Prototype's](http://up.lod.bz/FDI/latest) boot
 image.
