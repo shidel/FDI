@@ -11,8 +11,8 @@ utilities.
 It basically has the same requirements as the installer. It just requires
 less free environment space. I've been using /E:1024 without issue.
 
-Download the latest V8Power Tools from [V8Power Tools](http://up.lod.bz/V8Power/latest)
-and place them in a V8POWER subdirectory.
+Download the latest version of [V8Power Tools](http://up.lod.bz/V8Power/latest)
+and place the binaries in the V8POWER subdirectory.
 
 Create a FreeDOS package repository disc. One can be downloaded from
 [Mateusz's Reopsitory](http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/).
