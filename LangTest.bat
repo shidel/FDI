@@ -149,9 +149,8 @@ call %SELF% FAIL ERROR_SHELL
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:MEDIASEARCH
-call %SELF% CLS MEDIASEARCH FDSETUP
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+:GATHERING
+call %SELF% CLS GATHERING FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME
 vecho /n /t %FLANG% GATHERING
 call %SELF% STANDBY
@@ -177,8 +176,8 @@ vchoice /a %TFC% Ctrl-C /d 2
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:PREP
-call %SELF% CLS PREP FDSETUP
+:PREPARING
+call %SELF% CLS PREPARING FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 call %SELF% STANDBY
@@ -246,8 +245,8 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:PURGE
-call %SELF% CLS PURGE FDASK ADV
+:DELETE
+call %SELF% CLS DELETE FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
 vecho /t %FLANG% DELETE? %TFH% C:\FREE_DOS %TFF%
 vecho
@@ -258,8 +257,8 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:SYSFILES
-call %SELF% CLS SYSFILES FDASK ADV
+:XFER
+call %SELF% CLS XFER FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XFER_FRAME
 vecho /t %FLANG% XFER? %TFH% C: %TFF%
 vecho
