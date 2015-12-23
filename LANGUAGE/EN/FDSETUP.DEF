@@ -19,6 +19,8 @@ LANG_EN=English
 LANG_ES=Spanish
 LANG_FR=French
 LANG_DE=German
+LANG_EO=Esperanto
+
 HELLO_FRAME=/w66 /h10 /c
 HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
