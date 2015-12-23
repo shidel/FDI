@@ -6,6 +6,7 @@ REM Copyright 2015 Jerome Shidel.
 
 set SELF=%0
 if "%1" == "CLS" goto ClearScreen
+if "%1" == "CLEAN" goto ClearScreen
 if "%1" == "BLACK" goto ClearScreen
 if "%1" == "STANDBY" goto StandBy
 if "%1" == "FAIL" goto FAIL
@@ -133,8 +134,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :FORMATTED
-call %SELF% CLS FORMATTED FDSETUP
-vcls /f %TSF% /b %TSB% /y2 /h24
+call %SELF% CLEAN FORMATTED FDSETUP
 vgotoxy down
 vecho /t %FLANG% FORMATTING C:
 vecho
@@ -210,7 +210,7 @@ call %SELF% CLS TARGET FDASK ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
 vecho /t %FLANG% TARGET?
 vecho
-vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% 15 C:\FREE_DOS
+vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% 99 C:\FREE_DOS
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -318,7 +318,6 @@ if "%FADV%" == "" goto %PART%
 
 :MKBACKUPZIP
 call %SELF% CLS MKBACKUPZIP FDINS ADV
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /n /t %FLANG% BACKUP
 vgotoxy /l sop eol right right
@@ -521,7 +520,7 @@ if "%FADV%" == "" goto %PART%
 :STAGEFAIL
 SET FADV="y"
 call %SELF% BLACK STAGEFAIL FDSETUP
-vecho /t %FLANG% STAGE_ERROR nnn
+vecho /t %FLANG% STAGE_ERROR ???
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 
@@ -554,11 +553,13 @@ if "%4" == "ADV" set TADV=y
 set FADV=%TADV%
 set TADV=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
+rem if "%OS_VERSION%" == "$VERSION$" set OS_VERSION=UNDEFINED
 set PART=%2
 set FLANG=LANGUAGE\%LANG%\FDSETUP.DEF
 if "%FADV%" == "" call FDISETUP\SETUP\THEMEDEF.BAT
 if "%FADV%" == "y" call FDISETUP\SETUP\THEMEADV.BAT
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+if "%1" == "CLS" vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+if not "%1" == "CLS" vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy /x1 /y1
 vcls /b %TTB% /f %TTF% EOL
 vgotoxy /x30 /y1
@@ -570,9 +571,9 @@ if "%4" == "ADV" vecho /n ", (Advanced Only)"
 vecho
 vecho "Section: %PART%" /e
 vecho "Resource: %FLANG%" /e
-if not "%1" == "BLACK" goto EndOfBatch
+if "%1" == "CLS" goto EndOfBatch
 vline
-vcls /y6 /h24 /a0x07
+if "%1" == "BLACK" vcls /y6 /h24 /a0x07
 goto EndOfBatch
 
 :FAIL
