@@ -12,6 +12,10 @@ if "%1" == "STANDBY" goto StandBy
 if "%1" == "FAIL" goto FAIL
 
 set OLD_LANG=%LANG%
+set OLD_PATH=%PATH%
+
+if exist V8POWER\VECHO.COM set PATH=%PATH%;V8POWER
+
 set FADV="y"
 
 if "%1" == "" goto DoneParams
@@ -542,7 +546,9 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 
 vcls /a7
-vecho Language %LANG% verification complete.
+vecho /n Language verification /fWhite /t %FLANG% LANG_NAME
+vecho /n /s- /fGray " (" /fYellow %LANG% /fGray ) /s+ by /fLightCyan /t %FLANG% LANG_AUTHOR
+vecho /fGray /c32 has completed.
 
 goto Done
 
@@ -638,7 +644,9 @@ goto Done
 set PART=
 :DropOut
 if not "%OLD_LANG%" == "" set LANG=%OLD_LANG%
+if not "%OLD_PATH%" == "" set PATH=%OLD_PATH%
 set OLD_LANG=
+set OLD_PATH=
 set SELF=
 set FADV=
 call FDISETUP\SETUP\STAGE999.BAT VARSONLY
