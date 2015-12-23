@@ -46,6 +46,23 @@ call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+
+:CTRLC
+call %SELF% CLS CTRLC FDSETUP
+vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
+vecho /t %FLANG% CTRLC %TCH% %TCF%
+vecho
+vecho /t %FLANG% CTRLC?
+vframe /b %TCB% /f %TCF% optionbox /t %FLANG% CTRLC_OPTS
+vecho /t %FLANG% CTRLCY
+vecho /t %FLANG% CTRLCN
+vecho
+if "%FADV%" == "" vecho /n /t %FLANG% CTRLCA
+if "%FADV%" == "y" vecho /n /t %FLANG% CTRLCB
+vchoice /a %TFC% Ctrl-C
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 REM ***** STAGES
 
 :PICKLANG
