@@ -7,8 +7,8 @@ utilities.
 * * *
 ### Installer requirements.
 
-FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
-V8Power Tools located in path environment variable.
+FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)<br>
+V8Power Tools located in path environment variable.<br>
 (V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
 
 
