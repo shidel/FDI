@@ -6,6 +6,38 @@ utilities.
 
 * * *
 
+### Creating the install media
+
+It basically has the same requirements as the installer. It just requires
+less free environment space. I've been using /E:1024 without issue.
+
+Download the latest V8Power Tools from [V8Power Tools](http://up.lod.bz/V8Power/latest)
+and place them in a V8POWER subdirectory.
+
+Create a FreeDOS package repository disc. One can be downloaded from
+[Mateusz's Reopsitory](http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/).
+
+FDINST from the FDNPKG package must be installed.
+SHSUFDRV package must also be installed.
+A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
+
+Stick the CD in your CD drive.
+Stick a floppy to destroy in drive A:
+run mkFDI.BAT
+
+(Warning: all previous ramdisks will be shutdown!!)
+
+Please note, a pre-made version [FreeDOS Installer Prototype's boot image](http://up.lod.bz/FDI/latest)
+is also available.
+
+### Installer requirements.
+
+FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
+V8Power Tools located in path environment variable.
+(V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
+
+* * *
+
 ### File List
 
     README.md   - This file.
@@ -39,33 +71,6 @@ utilities.
     BINARIES\ - If present, mkFDI will copy any files to the install disks
     copy of the FreeDOS binaries and will overwrite any conflicting files.
     These files will not automatically be copied to the installation system.
-
-### Creating the install media
-
-    It basically has the same requirements as the installer. It just requires
-    less free environment space. I've been using /E:1024 without issue.
-
-    Download the latest V8Power Tools from http://up.lod.bz/V8Power/latest
-    and place them in a V8POWER subdirectory.
-
-    Create a FreeDOS package repository disc. One can be downloaded from
-    http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/
-
-    FDINST from the FDNPKG package must be installed.
-    SHSUFDRV package must also be installed.
-    A memory manager the can be used to allocate a 32Mb ram-disk. (like JEMM)
-
-    Stick the CD in your CD drive.
-    Stick a floppy to destroy in drive A:
-    run mkFDI.BAT
-
-    (Warning: all previous ramdisks will be shutdown!!)
-
-### Installer requirements.
-
-    FreeCom and 1024 bytes free enviroment space. (/E:2048 recommended)
-    V8Power Tools located in path environment variable.
-    (V8Power Tools requires an 8086+ or better cpu and EGA or better graphics)
 
 ### What the installer does.
 
