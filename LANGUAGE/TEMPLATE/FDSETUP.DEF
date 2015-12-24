@@ -32,7 +32,7 @@ Created/Modified: (today)
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=
 LANG_NAME=
 
