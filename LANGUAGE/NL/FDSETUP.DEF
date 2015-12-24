@@ -15,11 +15,11 @@ TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installatie"
 
 ; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
 LANG_ASK="Selecteer je taal."
-LANG_EN=English
-LANG_ES=Spanish
-LANG_FR=French
-LANG_DE=German
-LANG_NL=Dutch
+LANG_EN=Engels
+LANG_ES=Spaans
+LANG_FR=Frans
+LANG_DE=Duits
+LANG_NL=Nederlands
 LANG_EO=Esperanto
 
 ; STAGE300 - Initial welcome screen message.
