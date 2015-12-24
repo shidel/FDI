@@ -6,7 +6,7 @@ Created/Modified: Tuesday, December 22, 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Rugxulo
 LANG_NAME=Esperanto
 
@@ -15,17 +15,18 @@ TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Enhavigilo"
 
 ; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
 LANG_ASK="Bonvolu elekti vian lingvon."
-LANG_EN=Angla
-LANG_ES=Hispana
-LANG_FR=Franca
-LANG_DE=Germanaj
-LANG_EO=Esperanto
+LANG_EN=angla
+LANG_ES=hispana
+LANG_FR=franca
+LANG_DE=germana
+LANG_EO=esperanto
+LANG_NL=nederlanda
 
 ; STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w66 /h10 /c
 HELLO_OPTS=/w42 /h4 /c
-HELLO=/s- "Bonvolu al la enhavigilon por " /f %1 "%2" /f %3 .
-HELLO_ADV=/s- "Bonvolu al la altspertan enhavigilon por " /f %1 "%2" /f %3 .
+HELLO=/s- "Bonvenon! Chi tie estas la enhavigilo de " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Bonvenon! Chi tie estas la altspertan enhavigilon de " /f %1 "%2" /f %3 .
 PROCEED?="Chu vi deziras dauri plu?"
 CONTINUE="  Jes - Dauru por enhavigi dosierojn."
 EXIT="  Ne  - Adiau, ghis revido."
@@ -35,7 +36,7 @@ NOPART_FRAME=/w56 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Diskero " /f %1 %2 /f %3 " laushajne ne havas dosieraran specon."
 PART?="Chu vi volas registri vian diskospecon?"
-PART_YES="  Jes - Ekfunkciu la registrilon."
+PART_YES="  Jes - Farigu la registrilon."
 ; Also uses EXIT defined above.
 
 ; STAGE400 - After partitioned specific text.
@@ -48,10 +49,10 @@ REBOOT_YES="  Jes - Bonvolu reenvekigi tuj."
 REBOOT="Via komputilo nun reenvekighas."
 
 ; STAGE500 - Formating specific
-NOFORMAT_FRAME=/w61 /h11 /c
-NOFORMAT_OPTS=/w53 /h4 /c
-NOFORMATADV_FRAME=/w60 /h12 /c
-NOFORMATADV_OPTS=/w50 /h5 /c
+NOFORMAT_FRAME=/w66 /h11 /c
+NOFORMAT_OPTS=/w54 /h4 /c
+NOFORMATADV_FRAME=/w66 /h12 /c
+NOFORMATADV_OPTS=/w54 /h5 /c
 NOFORMAT=/s-  "Diskero " /f %1 %2 /f %3 " ankorau ne taugas por legi/skribi."
 FORMAT?="Chu vi volas registri vian diskeron por"/p"legindeco/skribindeco?"
 FORMAT_YES="  Jes - Bonvolu forvishi kaj taugigi diskeron %1."
@@ -95,7 +96,7 @@ COMPLETE=/s- "Enhavigo de " /f %1 "%2" /f %3 " nun estas plenumita."
 ABORTED=/fWhite /bRed " La enhavigo de %1 chesas." /e /fGray
 
 ; FDSETUP - Missing Stage Error
-STAGE_ERROR=/s- "Ne povas funkcii enhavigilan etaghon %1." /p "Eble la enhavigilo disrompis." /p "Bonvolu denove elshutu ghin au prenu malsaman metodon por enhavigi."
+STAGE_ERROR=/s- "Ne povas farigi enhavigilan etaghon %1." /p "Eble la enhavigilo disrompis." /p "Bonvolu denove elshutu ghin au provu malsaman metodon por enhavigi."
 
 ; FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
@@ -126,18 +127,18 @@ NOTICE.2=/r5/c32 Vi povas memkomenci enhavigilon manpreme per tajpu "'" /s- /fCy
 
 ; Failure messages
 ERROR_BACKZIP="Kreante konservajhan arhhivon %1."
-ERROR_BACKUP="Eraro dum kreado de konservajho."
+ERROR_BACKUP="Eraris dum kreado de konservajho."
 ERROR_MKDOS="Ne povas krei '%1' dosierujon."
 ERROR_PACKAGE="Ne povas enhavigi la '%1' pakajhon."
 ERROR_SOURCE="Ne povas enhavigi la '%1' fonttekstojn."
 ERROR_READC="Malsukcesis legi la diskeron C:."
 ERROR_SHELL="Enhavigado ne funckias per via nuntempa demandilo."
 
-ERROR_MEDIA="Unable to locate the installation packages."
-ERROR_REMOS="Had a problem removing old system files."
-ERROR_XSYS="Error transfering system files to %1."
-ERROR_CONFIG="Problem copying new configuration files."
-ERROR_V8="Problem installing V8Power Tools."
+ERROR_MEDIA="Ne povas trovi la enhavigadajn pakajhojn."
+ERROR_REMOS="Malsukcesis vishi malnovajn majstrajn dosierojn."
+ERROR_XSYS="Eraris transkopiante majstrajn dosierojn al %1."
+ERROR_CONFIG="Eraris kopiante novajn elektilajn dosierojn."
+ERROR_V8="Eraris enhavigante V8-Fortegajn Ilojn (V8Power Tools)."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /fCyan %2 /a7

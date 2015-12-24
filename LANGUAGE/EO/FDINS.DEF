@@ -6,7 +6,7 @@ Created/Modified: Tuesday, December 22, 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Rugxulo
 LANG_NAME=Esperanto
 
@@ -27,12 +27,12 @@ RMPACKN=/s- "Forvishante malnovan '" /f %1 %2 /f %3 "' pakajhon."
 ; Remove old OS files
 RMOS_FRAME=/w60 /h5 /c
 RMOS=/s- "Forvishante malnovajn dosierojn de '" /f %1 %2 /f %3 "'."
-RMOS_DONE="Malnovaj mashinestaj (OS) dosierojn estis eksighitaj."
+RMOS_DONE="Malnovaj mashinestraj (OS) dosieroj estis forvishitaj."
 
 ; Remove old config files
 CLEAN_FRAME=/w60 /h5 /c
-CLEAN="Frotlavante la malnovajn elektilajn (CFG) dosierojn."
-CLEAN_DONE="Malnovaj elektilaj dosieroj estas eksighitaj."
+CLEAN="Forvishante la malnovajn elektilajn (CFG) dosierojn."
+CLEAN_DONE="Malnovaj elektilaj dosieroj estas forvishitaj."
 
 ; Transfer system files
 XSYS_FRAME=/w64 /h5 /c
@@ -41,12 +41,12 @@ XSYS_DONE="Majstra dosiera kopiado jhus finis."
 
 ; Package installation.
 PAC_FRAME=/w60 /h7 /c
-PACBM="Enhavigante programajn pakajhojn."
-PACBI=/s- "Enhavigante programan pakajhon '" /f %1 %2 /f %3 "'"
+PACBM="Enhavigante verkitajn pakajhojn."
+PACBI=/s- "Enhavigante verkitan pakajhon '" /f %1 %2 /f %3 "'"
 PACSM="Enhavigante fonttekstojn."
 PACSI= /s- "Enhavigante fonttekstojn por '" /f %1 %2 /f %3 "'"
 PACDONE_FRAME=/w50 /h5 /c
-PACDONE="Programa pakajho enhavigado jhus plenumis."
+PACDONE="Verk-pakajha enhavigado jhus plenumis."
 
 ; Config file installation
 CONFIGS_FRAME=/w50 /h5 /c
