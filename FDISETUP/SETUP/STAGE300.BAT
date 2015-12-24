@@ -55,6 +55,12 @@ set _WCI=1
 set LANG=EN
 
 :DoChange
+if exist %LANG%\SETLANG.BAT goto UseSetLang
+if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
+goto ApplyLang
+:UseSetLang
+call %LANG%\SETLANG.BAT >NUL
+:ApplyLang
 call FDILANG.BAT FDSETUP
 vgotoxy /x30 /y1
 vecho /n /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
@@ -65,6 +71,12 @@ goto LanguagePrompt
 :LanguageSet
 if "%FCLANG%" == "y" set FCLANG=n
 set _WCI=
+if not exist %LANG%\SETLANG.BAT goto DefaultEnglish
+call %LANG%\SETLANG.BAT >NUL
+goto LanguageDone
+:DefaultEnglish
+if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
+:LanguageDone
 
 REM Draw the welcome screen.
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
