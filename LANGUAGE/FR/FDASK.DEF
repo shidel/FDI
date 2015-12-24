@@ -1,15 +1,14 @@
 *******************************************************************************
-FreeDOS 1.2 Installer french Translation.
+FreeDOS 1.2 Installer French Translation.
 Provided by: Paul Dufresne
 Contact Email: dufresnep@gmail.com
 Created/Modified: December 17, 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
-; DEMO "John Doe"
-LANG_AUTHOR="Paul Dufresne"
-LANG_NAME="fran‡ais"
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+LANG_AUTHOR=Paul Dufresne
+LANG_NAME=fran‡ais
 
 ; FDASK000 - Reserved
 

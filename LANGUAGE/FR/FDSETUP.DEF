@@ -1,29 +1,17 @@
 *******************************************************************************
-FreeDOS 1.2 Installer french Translation.
+FreeDOS 1.2 Installer French Translation.
 Provided by: Paul Dufresne
 Contact Email: dufresnep@gmail.com
 Created/Modified: December 17, 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
-LANG_AUTHOR="Paul Dufresne"
-LANG_NAME="fran‡ais"
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+LANG_AUTHOR=Paul Dufresne
+LANG_NAME=fran‡ais
 
 ; FDICLS - Installer Title Bar
-; %1 %3 are color settings
-; %2 is OS name (FreeDOS)
-; %3 is Version number (like 1.2)
-; Looks something like "FreeDOS 1.2 Installer"
-; Please note that /s- causes no spaces between text strings. This is the
-; opposite of the default /s+ operation of vecho.
-; vecho "FreeDOS 2.2 Installer"
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installateur"
-; This would work as well:
-; TITLE=/f%1 %2 /f%3 %4 /f%1 Installer
-; Just note that the / and any form of quote must be inside quotes to be output
-; as text. To use " quote it like this 'Say "Hello!"' and for ' use something
-; like "Bob's House."
 
 ; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
 LANG_ASK="Veuillez choisir votre langue."
@@ -32,38 +20,21 @@ LANG_ES=Espagnol
 LANG_FR=Fran‡ais
 LANG_DE=Allemand
 LANG_EO=Esp‚ranto
+LANG_NL=Hollandais
 ; add this language if needed.
 
 ; STAGE300 - Initial welcome screen message.
-; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
-; rows) then centered.
 HELLO_FRAME=/w68 /h10 /c
-; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
-; = 2 usable rows)
-; then centered.
 HELLO_OPTS=/w44 /h4 /c
-; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
-; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
-; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
-; then use the /p switch in the HELLO message.
-; vecho "Welcome to the installation program for FreeDOS."
 HELLO=/s- "Bienvenue au programme d'installation de " /f %1 "%2" /f %3 .
-; Alternate, advanced mode welcome message.
-; vecho "Welcome to the advanced installer for FreeDOS."
 HELLO_ADV=/s- "Bienvenue … l'installateur avanc‚ de " /f %1 "%2" /f %3 .
 PROCEED?="Voulez-vous proc‚der?"
-; Do not span lines in option choices. A new line will become an additional
-; choice and will throw off the return value for the following selections.
-; Also, to indent the choice, you can either use white spaces or insert the
-; repeat char switches. Like /r2/c32. Which would be repeat 2 times the ascii
-; character 32. If you prefer, hex can be used like /r2/c0x20.
 CONTINUE="  Oui - Continuer avec l'installation."
 EXIT="  Non - Retourner au DOS."
 
 ; STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
-; vecho "Drive C: does not appear to be partitioned."
 NOPART=/s- "Le disque " /f %1 %2 /f %3 " ne semble pas avoir ‚t‚ partitionn‚."
 PART?="Voulez-vous partitionner votre disque?"
 PART_YES="  Oui - Lancer le Partitionneur."
@@ -72,8 +43,6 @@ PART_YES="  Oui - Lancer le Partitionneur."
 ; STAGE500 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
-; Actually, this uses two lines because of the frame width. Not because it
-; is two strings.
 PARTED=/s- "Vous devez red‚marrer votre ordinateur pour que la" /p "nouvelle table de partition prenne effet."
 REBOOT?="Voulez-vous red‚marrer?"
 REBOOT_YES="  Oui - Red‚marre maintenant."
@@ -85,7 +54,6 @@ NOFORMAT_FRAME=/w60 /h10 /c
 NOFORMAT_OPTS=/w50 /h4 /c
 NOFORMATADV_FRAME=/w70 /h11 /c
 NOFORMATADV_OPTS=/w60 /h5 /c
-; vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Le disque " /f %1 %2 /f %3 " ne semble pas ˆtre format‚."
 FORMAT?="Voulez-vous formater le disque?"
 FORMAT_YES="  Oui - Effacer et formater %1."
@@ -93,7 +61,6 @@ FORMATADV_QUICK="  Oui - Effacer rapidement et formater le disque %1."
 FORMATADV_SLOW="  Oui - Effacer complŠtement et formater le disque %1."
 ; Also uses EXIT defined above.
 FORMATTING=/s- /fGray "Formatage en cours de " /fWhite %1 /fGray ...
-; The /e switch clears the rest of the current line without moving the cursor.
 PAUSE=/fLightGreen " Appuyer une touche... " /e
 
 ; STAGE700 - Install preparation
