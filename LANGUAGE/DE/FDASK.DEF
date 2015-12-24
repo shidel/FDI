@@ -1,0 +1,72 @@
+*******************************************************************************
+FreeDOS 1.2 Installer German Translation.
+Provided by: Christian Imhorst
+Contact Email: christian.imhorst@gmail.com
+Created/Modified: 12/23/2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Christian Imhorst
+LANG_NAME=German
+
+; FDASK000 - Reserved
+
+; FDASK100 - Reserved
+
+; FDASK200 - Backup old OS
+BACKUP_FRAME=/w70 /h10 /c
+BACKUP_OPTS=/w46 /h4 /c
+BACKUPADV_FRAME=/w70 /h11 /c
+BACKUPADV_OPTS=/w50 /h5 /c
+BACKUP=Es wurde ein Betriebssystem erkannt auf Laufwerk /f %1 %2 /f %3 /s- .
+BACKUP?=M”chten Sie die Daten sichern, bevor die Installation beginnt?
+BACKUPY="  Ja - Bitte Daten sichern."
+BACKUPZ="  Ja - Bitte Daten in einem Zip-Archiv sichern."
+BACKUPN="  Nein  - Installiere ohne Datensicherung."
+
+; FSASK100 - Advanced mode
+TARGET_FRAME=/w50 /h7 /c
+TARGET?=Soll das Zielverzeichnis der Installation ge„ndert werden?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+; FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w70 /h8 /c
+REPLACE_OPTS=/w60 /h4 /c
+REPLACE?=Sollen die Konfigurationsdateien des Systems ersetzt werden?
+REPLACEY="  Ja - Kopiere neue Konfigurationsdateien."
+REPLACEN="  Nein  - Behalte die alten Konfigurationsdateien."
+
+; FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w66 /h8 /c
+DELETE_OPTS=/w52 /h4 /c
+DELETE?=L”sche alle alten Dateien von /f %1 %2 /f %3 /s- ?
+DELETEY="  Ja - Starte mit einer frischen Installation."
+DELETEN="  Nein  - Lasse die alten Dateien wo sie sind."
+
+; FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w55 /h8 /c
+XFER_OPTS=/w42 /h4 /c
+XFER?=Kopiere Systemdateien von Laufwerk /f %1 %2 /f %3 /s- ?
+XFERY="  Ja - Kopiere Systemdateien."
+XFERN="  Nein  - Keine Systemdateien kopieren."
+
+; FDASK600 - Package group selection.
+PAC_FRAME=/w70 /h11 /c
+PAC_OPTS=/w52 /h7 /c
+PACS?=What /f %1 %2 /f %3 packages do you want to install?
+PACBO="  Nur Basispakete installieren."
+PACBS="  Nur Basispakete mit Quelldateien installieren."
+PACAO="  Alle Pakete."
+PACAS="  Alle Pakete mit ihren Quelldateien."
+
+; FDASK700 - Reserved
+
+; FDASK800 - Reserved
+
+; FDASK900 - Advanced mode Install V8Power Tools.
+V8_FRAME=/w55 /h8 /c
+V8_OPTS=/w40 /h4 /c
+V8I?=Installiere eine Kopie der /f %1 V8Power Tools /f %2 /s- ?
+V8IY="  Ja - Installiere V8Power Tools."
+V8IN="  Nein  - Installiere sie nicht."

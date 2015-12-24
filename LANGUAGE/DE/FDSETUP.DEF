@@ -1,0 +1,132 @@
+*******************************************************************************
+FreeDOS 1.2 Installer German Translation.
+Provided by: Christian Imhorst
+Contact Email: christian.imhorst@gmail.com
+Created/Modified: 12/23/2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Christian Imhorst
+LANG_NAME=German
+
+; FDICLS - Title
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installationsprogramm"
+
+; STAGE300 - Initial welcome screen message
+LANG_ASK="Bitte Sprache auswÑhlen."
+LANG_EN=English
+LANG_ES=Spanish
+LANG_FR=French
+LANG_DE=German
+LANG_EO=Esperanto
+
+HELLO_FRAME=/w66 /h11 /c
+HELLO_OPTS=/w40 /h4 /c
+HELLO=/s- "Willkommen zum Installationsprogramm fÅr " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Willkommen zum erweiterten Installationsprogramm fÅr " /p /f %1 "%2" /f %3 .
+PROCEED?="Mîchten Sie fortfahren?" /p
+CONTINUE="  Ja - Weiter mit Installation."
+EXIT="  Nein  - ZurÅck zu DOS."
+
+; STAGE400 - Partition screen specific
+NOPART_FRAME=/w60 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Laufwerk " /f  %1 %2 /f %3 " scheint nicht partitioniert zu sein."
+PART?="Soll das Laufwerk partitioniert werden?"
+PART_YES="  Ja - Laufwerk partitionieren."
+; EXIT
+
+; STAGE400 - After partitioned specific
+PARTED_FRAME=/w62 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Der Computer muss neu gestartet werden," /p "damit die neue Partition wirksam wird."
+REBOOT?="Soll jetzt neu gestartet werden?"
+REBOOT_YES="  Ja - Bitte jetzt neu starten."
+; EXIT
+REBOOT="Der Computer sollte jetzt neu starten."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w55 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w75 /h11 /c
+NOFORMATADV_OPTS=/w65 /h5 /c
+NOFORMAT=/s-  "Laufwerk " /f %1 %2 /f %3 " scheint nicht formatiert zu sein."
+FORMAT?="Soll das Laufwerk formatiert werden?"
+FORMAT_YES="  Ja - Bitte lîsche und formatiere Laufwerk %1."
+FORMATADV_QUICK="  Ja - Schnelles lîschen und formatieren von Laufwerk %1."
+FORMATADV_SLOW="  Ja - VollstÑndiges lîschen und formatieren von Laufwerk %1."
+; EXIT
+FORMATTING=/s- /fGray "Formatiere Laufwerk " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " DrÅcken Sie eine beliebige Taste... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w72 /h5 /c
+GATHERING="Sammle ein paar Informationen, um die Installation vorzubereiten."
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w70 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
+INSTALL=/s- "Wir sind nun bereit fÅr die Installation von " /f %1 "%2" /f %3 .
+INSTALL?="Mîchten Sie jetzt installieren?"
+INSTALL_YES="  Ja - Bitte installiere %1."
+; EXIT
+PREPARING_FRAME=/w44 /h5 /c
+PREPARING="Die Installation wird vorbereitet."
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w66 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Installation von " /f %1 "%2" /f %3 " ist jetzt vollstÑndig."
+; REBOOT?, REBOOT, EXIT
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " Die Installation von %1 wurde abgebrochen." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Kann Installationsprogramm nicht ausfÅhren %1." /p "Mîglicherweise ist das Installationsprogramm korrupt." /p "Bitte laden Sie das Installationsprogramm erneut herunter oder probieren Sie" /p "eine andere Methode zur Installation."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Sie haben " /f %1 "CTRL-C gedrÅckt" /f %2 .
+CTRLC?="Mîchten Sie die Installation abbrechen?"
+CTRLCY="  Ja - Bitte kehre zu DOS zurÅck."
+CTRLCN="  Nein  - Ich mîchte fortfahren."
+CTRLCA="  Nein  - Wechsel zum erweiterten Modus."
+CTRLCB="  Nein  - Wechsel zum Basismodus."
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w68 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w68 /h13 /c
+FAILADV_OPTS=/w46 /h6 /c
+FAILH="Ein Neustart kînnte helfen."
+FAIL?="Soll jetzt neu gestartet werden?"
+FAILY="  Ja - Bitte jetzt neu starten."
+FAILN="  Nein  - Kehre zu DOS zurÅck."
+FAILI="  Nein  - Ignorieren (nicht empfohlen)."
+FAILR="Der Computer wird jetzt neu gestartet."
+
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r1/c32 /fGreen %1 /fCyan %2 /fGray ist bereits installiert.
+NOTICE.2=/r1/c32 Das Installationsprogramm kann manuell gestartet werden mit "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+; Failure messages
+ERROR_BACKZIP="Erstelle Datensicherungsarchiv %1."
+ERROR_BACKUP="Fehler beim Erstellen der Datensicherung."
+ERROR_MKDOS="Das Verzeichnis '%1' kann nicht erstellt werden."
+ERROR_PACKAGE="Das Paket '%1' kann nicht installiert werden."
+ERROR_SOURCE="Die Quelldateien von '%1' kînnen nicht installiert werden."
+ERROR_READC="Problem beim Lesen von Laufwerk C:."
+ERROR_SHELL="Die Installation wird von Ihrer aktuellen Shell nicht" /p "unterstÅtzt.  " /n
+ERROR_MEDIA="Installationsdateien kînnen nicht gefunden werden."
+ERROR_REMOS="Problem beim Lîschen alter Systemdateien."
+ERROR_XSYS="Fehler beim Kopieren der Systemdateien nach %1."
+ERROR_CONFIG="Problem beim Kopieren neuer Konfigurationsdateien."
+ERROR_V8="Problem beim Installieren der V8Power Tools."
+
+; AUTOEXEC.BAT messages
+AUTO_DONE=Erfolgreiche AusfÅhrung der Startdateien /fCyan %1 /a7 und /fCyan %2 /a7
+AUTO_HELP=Geben Sie /fWhite %1 /fGray ein, um UnterstÅtzung bei Befehlen und der Navigation zu /p erhalten.
+AUTO_WELCOME=Willkommen zum /fGreen %1 /fCyan %2 /fGray Betriebssystem ( /s- /fYellow "%3" /fGray )

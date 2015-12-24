@@ -1,0 +1,59 @@
+*******************************************************************************
+FreeDOS 1.2 Installer German Translation.
+Provided by: Christian Imhorst
+Contact Email: christian.imhorst@gmail.com
+Created/Modified: 12/23/2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Christian Imhorst
+LANG_NAME=German
+
+; Debug mode pause
+PRESSKEY="DrÅcken Sie eine beliebige Taste..."
+
+; Backing up old OS
+BACKUP_FRAME=/w60 /h7 /c
+BACKUP=Erstelle Datensicherung
+TARGET=/s- "'" /f %1 "%2" /f %3 "'"
+BACKUP_DONE=/f %1 Datensicherung abgeschlossen.
+
+; Old Package removal
+RMPACK_FRAME=/w60 /h7 /c
+RMPACKS=Lîsche alte Pakete die einen Konflikt verursachen.
+RMPACKN=/s- "Lîsche alte '" /f %1 %2 /f %3 "' Pakete."
+
+; Remove old OS files
+RMOS_FRAME=/w60 /h5 /c
+RMOS=/s- "Lîsche alte Dateien von '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Alte Dateien des Betriebssystems wurden gelîscht."
+
+; Remove old config files
+CLEAN_FRAME=/w50 /h5 /c
+CLEAN="Lîsche alte Konfigurationsdateien."
+CLEAN_DONE="Alte Konfigurationsdateien wurden gelîscht."
+
+; Transfer system files
+XSYS_FRAME=/w64 /h5 /c
+XSYS= /s- "Kopiere Systemdateien fÅr den Start nach Laufwerk " /f %1 %2 /f %3 .
+XSYS_DONE="Systemdateien wurden kopiert."
+
+; Package installation.
+PAC_FRAME=/w60 /h7 /c
+PACBM="Installiere Softwarepakete."
+PACBI=/s- "Installiere Softwarepaket '" /f %1 %2 /f %3 "'"
+PACSM="Installiere Quellen."
+PACSI= /s- "Installiere Quelle von '" /f %1 %2 /f %3 "'"
+PACDONE_FRAME=/w54 /h5 /c
+PACDONE="Softwarepakete wurden installiert."
+
+; Config file installation
+CONFIGS_FRAME=/w54 /h5 /c
+CONFIGS="Installiere neue Konfigurationsdateien."
+CONFIGS_DONE="Neue Konfigurationsdateien wurden installiert."
+
+; V8 Power tools installation
+V8POWER_FRAME=/w50 /h5 /c
+V8POWER=/s- "Installiere eine Kopie der '" /f %1 "V8Power Tools" /f %2 "'."
+V8POWER_DONE="V8Power Tools wurden installiert."
