@@ -36,6 +36,7 @@ Released Under GPL v2.0 License.
 LANG_AUTHOR=
 LANG_NAME=
 
+-------------------------------------------------------------------------------
 ; FDICLS - Installer Title Bar
 ; %1 %3 are color settings
 ; %2 is OS name (FreeDOS)
@@ -45,12 +46,15 @@ LANG_NAME=
 ; opposite of the default /s+ operation of vecho.
 ; vecho "FreeDOS 2.2 Installer"
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installer"
+
 ; This would work as well:
 ; TITLE=/f%1 %2 /f%3 %4 /f%1 Installer
+
 ; Just note that the / and any form of quote must be inside quotes to be output
 ; as text. To use " quote it like this 'Say "Hello!"' and for ' use something
 ; like "Bob's House."
 
+-------------------------------------------------------------------------------
 ; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
 LANG_ASK="Please select you language."
 LANG_EN=English
@@ -61,77 +65,98 @@ LANG_EO=Esperanto
 LANG_NL=Dutch
 ; add this language if needed.
 
+-------------------------------------------------------------------------------
 ; STAGE300 - Initial welcome screen message.
 ; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
 ; rows) then centered.
 HELLO_FRAME=/w68 /h10 /c
+
 ; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
 ; = 2 usable rows)
 ; then centered.
 HELLO_OPTS=/w40 /h4 /c
+
 ; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
 ; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
 ; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
 ; then use the /p switch in the HELLO message.
 ; vecho "Welcome to the installation program for FreeDOS."
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
+
 ; Alternate, advanced mode welcome message.
 ; vecho "Welcome to the advanced installer for FreeDOS."
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
+
 PROCEED?="Do you wish to proceed?"
+
 ; Do not span lines in option choices. A new line will become an additional
 ; choice and will throw off the return value for the following selections.
 ; Also, to indent the choice, you can either use white spaces or insert the
 ; repeat char switches. Like /r2/c32. Which would be repeat 2 times the ascii
 ; character 32. If you prefer, hex can be used like /r2/c0x20.
+
 CONTINUE="  Yes - Continue with installation"
 EXIT="  No  - Return to DOS"
 
+-------------------------------------------------------------------------------
 ; STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
+
 ; vecho "Drive C: does not appear to be partitioned."
 NOPART=/s- "Drive " /f %1 %2 /f %3 " does not appear to be partitioned."
+
 PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 ; Also uses EXIT defined above.
 
+-------------------------------------------------------------------------------
 ; STAGE400 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
+
 ; Actually, this uses two lines because of the frame width. Not because it
 ; is two strings.
 PARTED=/s- "You must reboot your computer for the new partitioning" "scheme to take effect."
+
 REBOOT?="Do you wish to reboot now?"
 REBOOT_YES="  Yes - Please reboot now."
 ; Also uses EXIT defined above.
 REBOOT="Your computer should now reboot."
 
+-------------------------------------------------------------------------------
 ; STAGE500 - Formating specific
 NOFORMAT_FRAME=/w60 /h10 /c
 NOFORMAT_OPTS=/w50 /h4 /c
 NOFORMATADV_FRAME=/w60 /h11 /c
 NOFORMATADV_OPTS=/w50 /h5 /c
+
 ; vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
+
 FORMAT?="Do you wish to format your drive?"
 FORMAT_YES="  Yes - Please erase and format drive %1."
 FORMATADV_QUICK="  Yes - Quick erase and format drive %1."
 FORMATADV_SLOW="  Yes - Full erase and format drive %1."
 ; Also uses EXIT defined above.
 FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
+
 ; The /e switch clears the rest of the current line without moving the cursor.
+
 PAUSE=/fLightGreen " Press a key... " /e
 
+-------------------------------------------------------------------------------
 ; STAGE700 - Install preparation
 GATHERING_FRAME=/w66 /h5 /c
 GATHERING="Gathering some information to prepare for the installation."
 
+-------------------------------------------------------------------------------
 ; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
 ; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
 ; it will use it over the main FDASK.DEF language file. That is only recommended
 ; for add-on questioning prompts that are not part of the main FDI base.
 
+-------------------------------------------------------------------------------
 ; STAGE800 - Installing
 INSTALL_FRAME=/w60 /h10 /c
 INSTALL_OPTS=/w46 /h4 /c
@@ -142,23 +167,24 @@ INSTALL_YES="  Yes - Please install %1."
 PREPARING_FRAME=/w60 /h5 /c
 PREPARING="Preparing for the installation."
 
+-------------------------------------------------------------------------------
 ; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
 ; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
 ; it will use it over the main FDINS.DEF language file. That is only recommended
 ; for add-on installers that are not part of the main FDI base.
 
+-------------------------------------------------------------------------------
 ; STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w60 /h10 /c
 COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "Installation of " /f %1 "%2" /f %3 " is now complete."
 ; Also uses REBOOT?, REBOOT, EXIT defined above.
 
+-------------------------------------------------------------------------------
 ; FDSETUP - Installer Aborted
 ABORTED=/fWhite /bRed " The installation of %1 has been aborted." /e /fGray
 
-; FDSETUP - Missing Stage Error
-STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
-
+-------------------------------------------------------------------------------
 ; FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
@@ -169,6 +195,7 @@ CTRLCN="  No  - I want to continue."
 CTRLCA="  No  - Switch to Advanced Mode."
 CTRLCB="  No  - Switch to Basic Mode."
 
+-------------------------------------------------------------------------------
 ; FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w60 /h11 /c
 FAIL_OPTS=/w40 /h4 /c
@@ -182,10 +209,16 @@ FAILN="  No  - Return to DOS"
 FAILI="  No  - Ignore (not recommended)"
 FAILR="The computer will now reboot."
 
+-------------------------------------------------------------------------------
 ; FDNOTICE - Already installed notice.
 NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is already installed.
 NOTICE.2=/r5/c32 You can start the installer manually by running "'" /s- /fCyan SETUP.BAT /fGray "'"
 
+-------------------------------------------------------------------------------
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the installer is corrupt." /p "Please re-download it or try a different method of installation."
+
+-------------------------------------------------------------------------------
 ; Failure messages
 ERROR_BACKZIP="Making backup archive %1."
 ERROR_BACKUP="Error making the backup."
@@ -200,6 +233,7 @@ ERROR_XSYS="Error transfering system files to %1."
 ERROR_CONFIG="Problem copying new configuration files."
 ERROR_V8="Problem installing V8Power Tools."
 
+-------------------------------------------------------------------------------
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
 AUTO_HELP=Type /fWhite %1 /fGray to get support on commands and navigation.
