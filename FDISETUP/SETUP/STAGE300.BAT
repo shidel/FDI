@@ -16,7 +16,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if "%_WCI%" == "" set _WCI=1
 REM If Need to set language then do it now
 if not "%FCLANG%" == "y" goto LanguageSet
-vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h12 /c
+vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h13 /c
 vgotoxy /l /y3
 vline hidden
 :LanguagePrompt
@@ -30,7 +30,8 @@ vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
 vecho /e /r4 /c 0x20 /t %FLANG% LANG_DE
-vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_EO
+vecho /e /r4 /c 0x20 /t %FLANG% LANG_EO
+vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_NL
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
