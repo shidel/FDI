@@ -17,9 +17,6 @@ set TZ=UTC
 REM Formatted volume label
 set OVOL=$OVOL$
 
-REM Drive C Formatting options.
-set FFMT=/U /Z:seriously
-
 REM Pause duration after Format and System file transfers. (seconds)
 set FWAIT=15
 
@@ -85,6 +82,7 @@ if %LANG% == ES set LANG=ES
 if %LANG% == EO set LANG=EO
 if %LANG% == FR set LANG=FR
 if %LANG% == DE set LANG=DE
+if %LANG% == NL set LANG=NL
 
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN

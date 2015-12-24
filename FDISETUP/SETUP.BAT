@@ -93,10 +93,10 @@ FDSETUP\V8POWER\vinfo /d %TEMP%
 if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto NoDriveC
-FDSETUP\BIN\COMMAND.COM /E:512/C FDSETUP\V8POWER\vfdutil /p %0 | set /p TMD=
-FDSETUP\BIN\COMMAND.COM /E:512/C FDSETUP\V8POWER\vfdutil /p %TMD%\FDSETUP\ | set /p TMD=
+FDSETUP\BIN\COMMAND.COM /E:512 /C FDSETUP\V8POWER\vfdutil /p %0 | set /p TMD=
+FDSETUP\BIN\COMMAND.COM /E:512 /C FDSETUP\V8POWER\vfdutil /p %TMD%\FDSETUP\ | set /p TMD=
 set PATH=%TMD%\BIN;%TMD%\V8POWER
-FDSETUP\BIN\COMMAND.COM /E:512/C LBACACHE.COM INFO|grep -i "Caching floppy"|vstr|set /p TMD=
+FDSETUP\BIN\COMMAND.COM /E:512 /C LBACACHE.COM INFO|grep -i "Caching floppy"|vstr|set /p TMD=
 if "%TMD%" == "" LBACACHE.COM buf 20 flop >NUL
 set TMD=
 goto RunInstaller
@@ -110,7 +110,7 @@ if "%1" == "RECOVERY" goto Booted
 
 :Manual
 if not exist FDSETUP\BIN\COMMAND.COM goto Error
-FDSETUP\BIN\COMMAND.COM /E:2048/C FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+FDSETUP\BIN\COMMAND.COM /E:2048 /C FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 goto Afterwards
 
 :Booted

@@ -65,13 +65,13 @@ goto %FDIDFMT%
 
 :QuickFormat
 REM **** Launch Formatting Program ****
-format %FDRIVE% /V:%OVOL% /Q %FFMT%
+format %FDRIVE% /V:%OVOL% /Q /U /Z:seriously
 REM **** Returned from Formatting ****
 goto DoneFormat
 
 :SlowFormat
 REM **** Launch Formatting Program ****
-format %FDRIVE% /V:%OVOL% %FFMT%
+format %FDRIVE% /V:%OVOL% /U /Z:seriously
 REM **** Returned from Formatting ****
 goto DoneFormat
 

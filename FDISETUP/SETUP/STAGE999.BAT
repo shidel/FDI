@@ -21,7 +21,6 @@ set TMP=%TEMP%
 
 :VarsOnly
 rem if "%FDEBUG%" == "y" goto SkipClear
-set FFMT=
 set FTEMP=
 set FTHEME=
 

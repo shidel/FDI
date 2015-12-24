@@ -18,8 +18,8 @@ goto EndOfFile
 :Start
 if "%TEMP%" == "" goto NoTempSet
 pushd
-SET OLDFDNPKG.CFG=%FDNPKG.CFG%
-SET OLDDOSDIR=%DOSDIR%
+SET OLDFDN=%FDNPKG.CFG%
+SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
 
 set FLOPPY=A:
@@ -28,8 +28,8 @@ set RAMDRV=
 set RAMSIZE=32M
 set CDROM=
 set KERNEL=KERNL386.SYS
-set PACKGO=0
-set PACKTRY=3
+set TGO=0
+set TTRY=3
 
 echo FreeDOS install disk creator.
 echo.
@@ -62,6 +62,8 @@ type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VOLUME|vstr /b/f = 2|set /p VOLUME
 if "%VOLUMEID%" == "" goto RepeatID
 
 set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
+set TEMPPATH=
+
 vgotoxy up up
 vecho /fLightGreen "FreeDOS %OS_VERSION% install disk creator." /p
 
@@ -122,9 +124,9 @@ vecho , /fLightGreen OK /fGray /p
 
 if "%1" == "update" goto UpdateOnlyA
 
-vfdutil /d %OLDDOSDIR% | vecho /n Transferring system files from /c32 /fYellow /i /fGrey to Ramdrive
+vfdutil /d %OLDDOS% | vecho /n Transferring system files from /c32 /fYellow /i /fGrey to Ramdrive
 pushd
-vfdutil /c /p %OLDDOSDIR%
+vfdutil /c /p %OLDDOS%
 cd \
 sys %RAMDRV% >NUL
 if errorlevel 1 goto SysError
@@ -132,24 +134,24 @@ popd
 vecho , /fLightGreen OK /fGray /p
 
 vecho Installing packages to /fYellow %RAMDRV% /fGray
-set PACKIDX=0
+set TIDX=0
 :PkgLoop
-type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l %PACKIDX% | set /p PACKFILE=
-if not "%PACKIDX%" == "0" goto PkgCheck
-if "%PACKFILE%" == "" goto PkgLoop
+type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+if not "%TIDX%" == "0" goto PkgCheck
+if "%TFILE%" == "" goto PkgLoop
 :PkgCheck
-if "%PACKFILE%" == "" goto PkgDone
-vmath %PACKIDX% + 1 | set /p PACKIDX=
-vfdutil /n %PACKFILE% | set /p TEMPFILE=
+if "%TFILE%" == "" goto PkgDone
+vmath %TIDX% + 1 | set /p TIDX=
+vfdutil /n %TFILE% | set /p TEMPFILE=
 if exist PACKAGES\%TEMPFILE%.ZIP set OVERRIDE=PACKAGES\%TEMPFILE%.ZIP
-set PACKFILE=%CDROM%\%PACKFILE%.zip
-if not "%OVERRIDE%" == ""  set PACKFILE=%OVERRIDE%
-vecho /n/r4/c32 "%PACKFILE%"
+set TFILE=%CDROM%\%TFILE%.zip
+if not "%OVERRIDE%" == ""  set TFILE=%OVERRIDE%
+vecho /n/r4/c32 "%TFILE%"
 if not "%OVERRIDE%" == "" vecho /s- /n ', ' /fLightRed "OVERRIDE" /fGray
 set OVERRIDE=
 set TEMPFILE=
 verrlvl 250
-fdinst install %PACKFILE% >NUL
+fdinst install %TFILE% >NUL
 
 if errorlevel 250 goto MissingFDINST
 if errorlevel 1 goto PkgError
@@ -167,9 +169,9 @@ vecho /s- ', ' /fLightRed "ERROR" /fGray ', Ignored.'
 goto PkgLoop
 
 :PkgDone
-set PACKFILE=
-set PACKIDX=
-vecho /fLightGreen Done /fGray /p
+set TFILE=
+set TIDX=
+vecho Packages /fLightGreen Done /fGray /s- . /p
 
 vecho /n "Replacing system files on Ramdrive"
 copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
@@ -192,6 +194,60 @@ echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho , /fLightGreen OK /fGray /p
 
+:RepeatLangs
+dir /on /a /b /p- /s LANGUAGE\FDSETUP.DEF >%TEMP%\LANGLIST.LST
+type %TEMP%\LANGLIST.LST |grep -iv TEMPLATE |vstr /b/l TOTAL| set /p LANGS=
+if "%LANGS%" == "" goto RepeatLangs
+del %TEMP%\LANGLIST.LST>NUL
+type LANGUAGE\TEMPLATE\FDSETUP.DEF|grep ^LANG_|grep -v _ASK\=|grep -v _NAME\=|grep -v _AUTHOR\=|vstr /n/f _ 2>%TEMP%\LANGNAME.LST
+type %TEMP%\LANGNAME.LST | vstr /b/l TOTAL | set /p LANGM=
+
+vecho Creating language lists for /fYellow %LANGS% /fGray languages, /fLightCyan %LANGM% /fGray on menu.
+set TIDX=0
+:LangLoop
+if "%TIDX%" == "%LANGM%" goto LangDone
+type %TEMP%\LANGNAME.LST| vstr /b/l %TIDX% | set /p TNAME=
+if "%TNAME%" == "" goto LangLoop
+vmath %TIDX% + 1 | set /p TIDX=
+echo %TNAME% | vstr /b/f = 1 | set /p TFILE=
+vecho /r2/c32 /fYellow %TFILE% /s- /fGray : /n
+set TTRY=0
+set TIDS=
+:IDLoop
+if "%TTRY%" == "%LANGM%" goto IDDone
+type %TEMP%\LANGNAME.LST| vstr /b/l %TTRY%|set /p TID=
+if "%TID%" == "" goto IDLoop
+echo %TID% | vstr /b/f = 1 | set /p TID=
+:IncLoop
+vmath %TTRY% + 1 | set /p TTM=
+if "%TTM%" == "" goto IncLoop
+set TTRY=%TTM%
+set TTM=
+:GOLoop
+type LANGUAGE\%TFILE%\FDSETUP.DEF|grep LANG_%TID%|vstr /b/f = 2|set /p TGO=
+if "%TGO%" == "" goto GOLoop
+if not "%TIDS%" == "" set TIDS=%TIDS%,
+set TIDS=%TIDS% '%TGO%'
+goto IDLoop
+:IDDone
+echo %TIDS% | vstr /n /b /s "'" "" |vecho /i /n
+type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
+echo LANG_LIST=/r4/c32%TIDS% /e  |vstr /n/b/s "," " /e/p/r4/c32">>%TEMP%\FDSETUP.DEF
+type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
+copy /y %TEMP%\FDSETUP.DEF %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
+del %TEMP%\FDSETUP.DEF >NUL
+vgotoxy /l eot next
+vecho , /fLightGreen OK /a7
+set TTRY=
+set TID=
+set TGO=
+set TIDS=
+goto LangLoop
+
+:LangDone
+del %TEMP%\LANGNAME.LST>NUL
+vecho
+
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
 xcopy /y /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
@@ -208,21 +264,21 @@ vecho /n "Removing unnecessary files and folders"
 if exist %DOSDIR%\BIN\README.TXT deltree /Y %DOSDIR%\BIN\README.TXT >NUL
 if exist %DOSDIR%\SETUP\PACKAGES\README.TXT deltree /Y %DOSDIR%\SETUP\PACKAGES\README.TXT >NUL
 if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
-set PACKIDX=0
+set TIDX=0
 :CleanLoop
-type BUILD\CLEANUP.LST | grep -iv ^; | vstr /b/l %PACKIDX% | set /p PACKFILE=
-if not "%PACKIDX%" == "0" goto CleanCheck
-if "%PACKFILE%" == "" goto CleanLoop
+type BUILD\CLEANUP.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+if not "%TIDX%" == "0" goto CleanCheck
+if "%TFILE%" == "" goto CleanLoop
 :CleanCheck
-if "%PACKFILE%" == "" goto CleanDone
-vmath %PACKIDX% + 1 | set /p PACKIDX=
-if exist %DOSDIR%\%PACKFILE%\NUL deltree /Y %DOSDIR%\%PACKFILE%\ >NUL
-if exist %DOSDIR%\%PACKFILE%\NUL rmdir %DOSDIR%\%PACKFILE% >NUL
-if exist %DOSDIR%\%PACKFILE% del %DOSDIR%\%PACKFILE% >NUL
+if "%TFILE%" == "" goto CleanDone
+vmath %TIDX% + 1 | set /p TIDX=
+if exist %DOSDIR%\%TFILE%\NUL deltree /Y %DOSDIR%\%TFILE%\ >NUL
+if exist %DOSDIR%\%TFILE%\NUL rmdir %DOSDIR%\%TFILE% >NUL
+if exist %DOSDIR%\%TFILE% del %DOSDIR%\%TFILE% >NUL
 goto CleanLoop
 :CleanDone
-set PACKFILE=
-set PACKIDX=
+set TFILE=
+set TIDX=
 vecho , /fLightGreen OK /fGray /p
 
 if "%1" == "update" goto UpdateOnlyB
@@ -232,15 +288,18 @@ vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
 vgotoxy left
 vecho /fGray /e /p /p
-vstr /c13/c78/c13 | format %FLOPPY% /V:%VOLUME% /U
+format %FLOPPY% /V:%VOLUME% /U /Z:seriously
 if errorlevel 1 goto Error
+vgotoxy /l eot sor
+vecho /fGray Format, /fLightGreen OK /fGray /e /p
 pushd
 %RAMDRV%
 cd \
 sys a:
 if errorlevel 1 goto SysError
+vgotoxy /l eot
+vecho /fGray , /fLightGreen OK /fGray /p
 popd
-vecho
 
 :UpdateOnlyB
 vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
@@ -313,7 +372,6 @@ if not "%TEMP%" == "" goto Start
 echo TEMP directory not configured.
 goto CleanUp
 
-
 :DumpTemp
 deltree -y %RAMDRV%\*.*
 rmdir %RAMDRV%
@@ -321,37 +379,54 @@ verrlvl 0
 goto CleanUp
 
 :Done
-vecho /p /fLightGreen Creation complete. /e /fGray /bBlack
+type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
+type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
+type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
+dir /on /a /b /p- /s %CDROM%\*.zip | vstr /b/l TOTAL | set /p COUNT=
+
+vecho /p /fYellow %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%)
+vecho /fWhite %LANGS% /fGray languages, /fWhite %LANGM% /fGray on menu.
+vecho /fWhite %USED% /fGray of /fWhite %COUNT% /fGray packages used for boot image.
+vecho Total packages in BASE /fWhite %BASE% /fGray and ALL /fWhite %ALL% /s- /fGray .
+vecho /p /fLightGreen Install Media Creation complete. /e /fGray /bBlack
+
+set ALL=
+set BASE=
+set COUNT=
+set USED=
+
 verrlvl 0
 goto CleanUp
 
 :CleanUp
 set OS_NAME=
 set OS_VERSION=
+set VOLUMEID=
 set FLOPPY=
 set VOLUME=
 set RAMDRV=
 set RAMSIZE=
 set CDROM=
 set KERNEL=
-set PACKFILE=
-set PACKNAME=
-set PACKIDX=
-set PACKCNT=
-set PACKPER=
-set PACKERR=
-set PACKRETRY=
-set PACKGO=
-set PACKTRY=
 set ELOG=
+set LANGS=
+set LANGM=
 
-SET FDNPKG.CFG=%OLDFDNPKG.CFG%
-SET DOSDIR=%OLDDOSDIR%
+set TFILE=
+set TNAME=
+set TIDX=
+set TCNT=
+set TERR=
+set TRETRY=
+set TGO=
+set TTRY=
+
+SET FDNPKG.CFG=%OLDFDN%
+SET DOSDIR=%OLDDOS%
 SET PATH=%OLDPATH%
-SET OLDFDNPKG.CFG=
-SET OLDDOSDIR=
+SET OLDFDN=
+SET OLDDOS=
 SET OLDPATH=
-set TEMPPATH=
 popd
 
 :EndOfFile

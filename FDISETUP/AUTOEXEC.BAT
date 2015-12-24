@@ -48,24 +48,18 @@ goto SkipLanguageData
 
 ***** Language specific text data.
 English (EN)
-HELP.EN=Type /fWhite %1 /fGray to get support on commands and navigation.
-WELCOME.EN=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
-
-Spanish (ES)
-HELP.ES=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
-WELCOME.ES=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
+AUTO_HELP=Type /fWhite %1 /fGray to get support on commands and navigation.
+AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
 
 :SkipLanguageData
 vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 
 if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
-set DEFLANG=EN
-if "%LANG%" == "" goto NoLanguage
-if %LANG% == ES set DEFLANG=ES
-:NoLanguage
-vecho /t %0 HELP.%DEFLANG% HELP
+set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
+if not exist %LANGFILE% set LANGFILE=%0
+vecho /t %LANGFILE% AUTO_HELP HELP
 vecho
-vecho /t %0 WELCOME.%DEFLANG% %OS_NAME% %OS_VERSION% http://www.freedos.org
+vecho /t %LANGFILE% AUTO_WELCOME %OS_NAME% %OS_VERSION% http://www.freedos.org
 vecho
-set DEFLANG=
+set LANGFILE=
