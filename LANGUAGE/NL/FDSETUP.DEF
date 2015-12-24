@@ -158,8 +158,8 @@ FAILI="  Nee  - Negeren (niet aanbevolen)"
 FAILR="De computer zal nu opnieuw opstarten."
 
 ; FDNOTICE - Already installed notice.
-NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is al geinstalleerd.
-NOTICE.2=/r5/c32 Je kan de installatie handmatig starten door "'" /s- /fCyan SETUP.BAT /fGray "'" "te starten"
+NOTICE.1=/r3/c32 /fGreen %1 /fCyan %2 /fGray is al geinstalleerd.
+NOTICE.2=/r3/c32 Je kan de installatie handmatig starten door "'" /s- /fCyan SETUP.BAT /fGray "' te starten."
 
 ; Failure messages
 ERROR_BACKZIP="Backup archief %1 maken."
@@ -178,6 +178,6 @@ ERROR_V8="Probleem bij het installeren van V8Power Tools."
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7
-AUTO_HELP=Typ /fWhite %1 /fGray voor hulp bij commando's en navigatie
+AUTO_HELP=Typ /fWhite %1 /fGray voor hulp bij "commando's" en navigatie.
 AUTO_WELCOME=Welkom bij het /fGreen %1 /fCyan %2 /fGray besturingssysteem ( /s- /fYellow "%3" /fGray )
 
