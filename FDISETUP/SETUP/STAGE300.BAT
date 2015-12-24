@@ -16,13 +16,17 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if "%_WCI%" == "" set _WCI=1
 REM If Need to set language then do it now
 if not "%FCLANG%" == "y" goto LanguageSet
-vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h13 /c
-vgotoxy /l /y3
+
+REM the Language frame height is set automatically as 6 + language count by
+REM mkFDI.bat when the build creates the boot image. The languages order and
+REM count are determined by the order, number and name of the LANG_ variables
+REM stored the LANGUAGE\TEMPLATE\FDSETUP.DEF translation template file.
+
+vframe /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
+vgotoxy /l /y2
 vline hidden
 :LanguagePrompt
-vgotoxy /l sop /g up up
-vecho /n /e
-vgotoxy /l sop
+vgotoxy /l sop /g up up /l sop
 vecho /n /t %FLANG% LANG_ASK
 vecho /n /e
 vgotoxy /l eop /g down down /l sop
@@ -33,7 +37,12 @@ if errorlevel 100 goto LanguageChange
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 goto LanguageSet
 
+REM Everything between the LanguageChange and DoChange Labels is replaced
+REM dynamically by the mkFDI.bat build utility.
 :LanguageChange
+
+REM This static version will be replaced automatically by the mkFDI utility.
+
 set _WCI=6
 set LANG=NL
 if errorlevel 106 goto DoChange

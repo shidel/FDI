@@ -245,8 +245,49 @@ set TIDS=
 goto LangLoop
 
 :LangDone
+
+vecho /p Updating STAGE300 language list /n
+:LangCount
+vmath 6 + %LANGM% | set /p TTM=
+if "%TTM%" == "" goto LangCount
+
+type FDISETUP\SETUP\STAGE300.BAT| grep -B 1000 ^:LanguageChange |vstr /n/b/s "$HEIGHT$" "/h%TTM%">%TEMP%\STAGE300.BAT
+set TIDX=%LANGM%
+echo.>>%TEMP%\STAGE300.BAT
+
+:CodeLoop
+set TTRY=
+vmath %TIDX% + 100 | set /p TTRY=
+if "%TTRY%" == "" goto CodeLoop
+set TGO=%TTRY%
+:CodeName
+set TTRY=
+vmath %TIDX% - 1 | set /p TTRY=
+if "%TTRY%" == "" goto CodeLoop
+type %TEMP%\LANGNAME.LST| vstr /b/l %TTRY% | vstr /b/f = 1 | set /p TNAME=
+if "%TNAME%" == "" goto CodeName
+echo set _WCI=%TIDX%>>%TEMP%\STAGE300.BAT
+echo set LANG=%TNAME%>>%TEMP%\STAGE300.BAT
+if "%TIDX%" == "1" goto CodeDone
+echo if errorlevel %TGO% goto DoChange>>%TEMP%\STAGE300.BAT
+:CodeDec
+set TIDX=%TTRY%
+vecho , /fLightCyan %TNAME% /s- /fGray /n
+goto CodeLoop
+
+:CodeDone
+vecho , /fLightCyan %TNAME% /s- /fGray /n
+echo.>>%TEMP%\STAGE300.BAT
+set TTRY=
+set TGO=
+set TTM=
+set TNAME=
+
+type FDISETUP\SETUP\STAGE300.BAT| grep -A 1000 ^:DoChange >>%TEMP%\STAGE300.BAT
 del %TEMP%\LANGNAME.LST>NUL
-vecho
+copy /y %TEMP%\STAGE300.BAT %RAMDRV%\FDSETUP\SETUP\STAGE300.BAT>NUL
+del %TEMP%\STAGE300.BAT>NUL
+vecho , /fLightGreen Done /fGray /p
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
