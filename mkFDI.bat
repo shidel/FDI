@@ -328,7 +328,7 @@ vecho Press a key to format the disk in drive /fYellow %FLOPPY% /s- /fGray ... /
 vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
 vgotoxy left
-vecho /fGray /e /p /p
+vecho /fGray /e /p
 format %FLOPPY% /V:%VOLUME% /U /Z:seriously
 if errorlevel 1 goto Error
 vgotoxy /l eot sor

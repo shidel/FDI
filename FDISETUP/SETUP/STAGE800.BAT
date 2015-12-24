@@ -19,6 +19,8 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
 :DoInstall
+REM From here on, we will keep the language setting.
+set FCLANG=
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME

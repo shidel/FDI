@@ -88,6 +88,7 @@ set _PA=
 set _PI=
 set _PD=
 set _PM=
+set _PL=
 set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
