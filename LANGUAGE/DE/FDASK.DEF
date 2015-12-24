@@ -6,7 +6,7 @@ Created/Modified: 12/23/2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Christian Imhorst
 LANG_NAME=German
 
@@ -52,9 +52,9 @@ XFERY="  Ja - Kopiere Systemdateien."
 XFERN="  Nein  - Keine Systemdateien kopieren."
 
 ; FDASK600 - Package group selection.
-PAC_FRAME=/w70 /h11 /c
+PAC_FRAME=/w72 /h11 /c
 PAC_OPTS=/w52 /h7 /c
-PACS?=What /f %1 %2 /f %3 packages do you want to install?
+PACS?=Welche /f %1 %2 /f %3 Pakete m”chten Sie installieren?
 PACBO="  Nur Basispakete installieren."
 PACBS="  Nur Basispakete mit Quelldateien installieren."
 PACAO="  Alle Pakete."

@@ -6,7 +6,7 @@ Created/Modified: 12/23/2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Christian Imhorst
 LANG_NAME=German
 
@@ -15,11 +15,12 @@ TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installationsprogramm"
 
 ; STAGE300 - Initial welcome screen message
 LANG_ASK="Bitte Sprache ausw„hlen."
-LANG_EN=English
-LANG_ES=Spanish
-LANG_FR=French
-LANG_DE=German
+LANG_EN=Englisch
+LANG_ES=Spanisch
+LANG_FR=Franz”sisch
+LANG_DE=Deutsche
 LANG_EO=Esperanto
+LANG_NL=Niederl„ndisch
 
 HELLO_FRAME=/w66 /h11 /c
 HELLO_OPTS=/w40 /h4 /c
