@@ -2,11 +2,11 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 23 dec 2015
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 24 dec 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Maarten Vermeulen
 LANG_NAME=Dutch
 
@@ -19,7 +19,6 @@ BACKUP_FRAME=/w60 /h10 /c
 BACKUP_OPTS=/w54 /h4 /c
 BACKUPADV_FRAME=/w70 /h11 /c
 BACKUPADV_OPTS=/w60 /h5 /c
-; vecho "A previous operating system was detected on drive C:."
 BACKUP=Een ander besturingssysteem ontdekt op schijf /f %1 %2 /f %3 /s- .
 BACKUP?=Wilt u de oude bestanden in een backup opslaan?
 BACKUPY="  Ja  - Maak een backup."
@@ -29,20 +28,18 @@ BACKUPN="  Nee - Installeer zonder een backup te maken."
 ; FSASK100 - Advanced mode
 TARGET_FRAME=/w60 /h7 /c
 TARGET?=Verander installatie map?
-; vask "C:\FDOS"
 TARGET_ASK=/f %1 /b %2 /d %3 %4
 
 ; FDASK300 - Advanced mode Replace system files
 REPLACE_FRAME=/w70 /h8 /c
 REPLACE_OPTS=/w60 /h4 /c
 REPLACE?=Vervang systeem configuratie bestanden?
-REPLACEY="  Ja  - KopiÃ«er nieuwe standaard configuratie bestnaden."
+REPLACEY="  Ja  - Kopi‰er nieuwe standaard configuratie bestnaden."
 REPLACEN="  Nee - Hou de oude bestanden."
 
 ; FDASK400 - Advanced mode delete old OS files
 DELETE_FRAME=/w60 /h8 /c
 DELETE_OPTS=/w40 /h4 /c
-; vecho "Remove all old files from C:\FDOS?
 DELETE?=verwijder alle oude bestanden van /f %1 %2 /f %3 /s- ?
 DELETEY="  Ja  - Verwijder alle oude bestanden."
 DELETEN="  Nee - Liever niet."
@@ -50,7 +47,6 @@ DELETEN="  Nee - Liever niet."
 ; FDASK500 - Advanced mode transfer system files
 XFER_FRAME=/w60 /h8 /c
 XFER_OPTS=/w50 /h4 /c
-; vecho "Transfer system files to drive C:?"
 XFER?=Kopieer nieuwe systeem bestanden naar /f %1 %2 /f %3 /s- ?
 XFERY="  Ja  - Kopieer de nieuwe bestanden."
 XFERN="  Nee - Kopieer de nieuwe bestanden NIET."
@@ -58,8 +54,7 @@ XFERN="  Nee - Kopieer de nieuwe bestanden NIET."
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w40 /h7 /c
-; vecho "What FreeDOS packages do you want to install?"
-PACS?=What /f %1 %2 /f %3 packages do you want to install?
+PACS?=welke /f %1 %2 /f %3 pakketten wilt u installeren?
 PACBO="  Alleen oude basis pakketten."
 PACBS="  Alleen basis pakketen met broncode."
 PACAO="  Alle pakketten."
@@ -74,7 +69,6 @@ PACDS_ADV="  Geselecteerde pakketten en hun broncode.
 ; FDASK900 - Advanced mode Install V8Power Tools.
 V8_FRAME=/w60 /h8 /c
 V8_OPTS=/w40 /h4 /c
-; vecho "Installeer een kopie V8Power Tools?"
 V8I?=installeer een kopie /f %1 V8Power Tools /f %2 /s- ?
 V8IY="  Ja - Installeer V8Power Tools."
 V8IN="  Nee  - Niet installeren."
