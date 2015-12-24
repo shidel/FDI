@@ -1,0 +1,181 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Dutch Translation.
+Provided by: Maarten Vermeulen
+Contact Email: netraam70@gmail.com
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 23 dec 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Maarten Vermeulen
+LANG_NAME=Dutch
+
+; FDICLS - Installer Title Bar
+; %1 %3 are color settings
+; %2 is OS name (FreeDOS)
+; %3 is Version number (like 1.2)
+; Looks something like "FreeDOS 1.2 Installer"
+; Please note that /s- causes no spaces between text strings. This is the
+; opposite of the default /s+ operation of vecho.
+; vecho "FreeDOS 2.2 Installer"
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installatie"
+; This would work as well:
+; TITLE=/f%1 %2 /f%3 %4 /f%1 Installer
+; Just note that the / and any form of quote must be inside quotes to be output
+; as text. To use " quote it like this 'Say "Hello!"' and for ' use something
+; like "Bob's House."
+
+; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Selecteer je taal."
+LANG_EN=English
+LANG_ES=Spanish
+LANG_FR=French
+LANG_DE=German
+LANG_NL=Dutch
+; add this language if needed.
+
+; STAGE300 - Initial welcome screen message.
+; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
+; rows) then centered.
+HELLO_FRAME=/w68 /h10 /c
+; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
+; = 2 usable rows)
+; then centered.
+HELLO_OPTS=/w40 /h4 /c
+; Normal default welcome message.  %2 is "FreeDOS". If for some reason, You
+; want the welcome message to span multiple lines. Increase the HELLO_FRAME /h
+; by the number of additional lines and Adjust the HELLO_OPTS /y accordingly.
+; then use the /p switch in the HELLO message.
+; vecho "Welcome to the installation program for FreeDOS."
+HELLO=/s- "Welkom bij het installatie bestand van " /f %1 "%2" /f %3 .
+; Alternate, advanced mode welcome message.
+; vecho "Welcome to the advanced installer for FreeDOS."
+HELLO_ADV=/s- "Welkom bij de geavanceerde installatie van " /f %1 "%2" /f %3 .
+PROCEED?="Wilt u verder gaan?"
+; Do not span lines in option choices. A new line will become an additional
+; choice and will throw off the return value for the following selections.
+; Also, to indent the choice, you can either use white spaces or insert the
+; repeat char switches. Like /r2/c32. Which would be repeat 2 times the ascii
+; character 32. If you prefer, hex can be used like /r2/c0x20.
+CONTINUE="  Ja - Ga door met de installatie"
+EXIT="  Nee  - Ga terug naar DOS"
+
+; STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w70 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+; vecho "Drive C: does not appear to be partitioned."
+NOPART=/s- "Schijf " /f %1 %2 /f %3 " lijkt niet gepartitioneerd te zijn."
+PART?="Wilt u de schijf graag partitioneren?"
+PART_YES="  Ja - Start de 'Partitioner'."
+; Also uses EXIT defined above.
+
+; STAGE500 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+; Actually, this uses two lines because of the frame width. Not because it
+; is two strings.
+PARTED=/s- "U moet uw computer opnieuw opstarten om het nieuwe partitie" "-schema in werking te laten gaan."
+REBOOT?="Wilt u opnieuw opstarten?"
+REBOOT_YES="  Ja - Start de computer opnieuw op."
+; Also uses EXIT defined above.
+REBOOT="Uw computer moet opnieuw opstarten."
+
+; STAGE500 - Formating specific
+NOFORMAT_FRAME=/w60 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w60 /h11 /c
+NOFORMATADV_OPTS=/w54 /h5 /c
+; vecho "Drive C: does not appear to be formatted."
+NOFORMAT=/s-  "Schijf " /f %1 %2 /f %3 " lijkt niet geformatteerd te zijn."
+FORMAT?="Weet u zeker dat u de schijf wilt formatteren?"
+FORMAT_YES="  Ja - Verwijder en formatteer schijf %1."
+FORMATADV_QUICK="  Ja - verwijder en formatteer snel schijf %1."
+FORMATADV_SLOW="  Ja - Verwijder en formatteer schijf %1 volledig."
+; Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Schijf " /fWhite %1 " aan het formatteren"/fGray ...
+; The /e switch clears the rest of the current line without moving the cursor.
+PAUSE=/fLightGreen " Druk op een toets... " /e
+
+; STAGE700 - Install preparation
+GATHERING_FRAME=/w76 /h5 /c
+GATHERING="Informatie aan het verzamelen voor het klaarmaken van de installatie."
+
+; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+; it will use it over the main FDASK.DEF language file. That is only recommended
+; for add-on questioning prompts that are not part of the main FDI base.
+
+; STAGE800 - Installing
+INSTALL_FRAME=/w60 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
+INSTALL=/s- "We zijn klaar om te installeren " /f %1 "%2" /f %3 .
+INSTALL?="Wilt u het nu installeren?"
+INSTALL_YES="  Ja - installeer %1."
+; Also uses EXIT defined above.
+PREPARING_FRAME=/w35 /h5 /c
+PREPARING="Klaarmaken voor installatie."
+
+; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+; it will use it over the main FDINS.DEF language file. That is only recommended
+; for add-on installers that are not part of the main FDI base.
+
+; STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Installatie van " /f %1 "%2" /f %3 " is klaar."
+; Also uses REBOOT?, REBOOT, EXIT defined above.
+
+; FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " De installatie van %1 is afgebroken." /e /fGray
+
+; FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Niet in staat om het stadium %1 te installeren." /p "Het kan zijn dat het installatie bestand corrupt is." /p "Download het programma opnieuw of probeer een andere installatie methode."
+
+; FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w50 /h6 /c
+CTRLC=/s- "je hebt " /f %1 "CTRL-C" /f %2 " ingedrukt."
+CTRLC?="Are you sure you wish to abort the installation?"
+CTRLCY="  Ja  - Ga terug naar DOS."
+CTRLCN="  Nee - Ik wil doorgaan."
+CTRLCA="  Nee - schakel over naar geavanceerde modus."
+CTRLCB="  Nee - schakel over naar de basis modus."
+
+; FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w60 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Herstarten kan mogelijk helpen."
+FAIL?="Wilt u herstarten?"
+FAILY="  Ja - Start de computer opnieuw op."
+FAILN="  Nee  - Ga  terug naar DOS"
+; At present FAILI is only available in advanced mode.
+FAILI="  Nee  - Negeren (niet aanbevolen)"
+FAILR="De computer zal nu opnieuw opstarten."
+
+; FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray is al geinstalleerd.
+NOTICE.2=/r5/c32 Je kan de installatie handmatig starten door "'" /s- /fCyan SETUP.BAT /fGray "'" "te starten"
+
+; Failure messages
+ERROR_BACKZIP="Backup archief %1 maken."
+ERROR_BACKUP="Fout bij het maken van backup."
+ERROR_MKDOS="Niet in staat om '%1' aan te maken."
+ERROR_PACKAGE="Niet in staat om het pakket '%1'" /p "te installeren.  " /n
+ERROR_SOURCE="Niet in staat om de broncode '%1'" /p "te installeren.  " /n
+ERROR_READC="Probleem bij het lezen van schijf C:."
+ERROR_SHELL="Installatie is niet onderstuend bij huidige shell."
+ERROR_MEDIA="Niet in staat om de locatie van de installatie" /p "pakketen te bepalen.  " /n
+ERROR_REMOS="Probleem bij het verwijderen van de oude systeem bestanden."
+ERROR_XSYS="fout bij bestandsoverdracht(en) naar %1."
+ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestanden.  " /n
+ERROR_V8="Probleem bij het installeren van V8Power Tools."
+
+
+; AUTOEXEC.BAT messages
+AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7
+AUTO_HELP=Typ /fWhite %1 /fGray voor hulp bij commando's en navigatie
+AUTO_WELCOME=Welkom bij het /fGreen %1 /fCyan %2 /fGray besturingssysteem ( /s- /fYellow "%3" /fGray )
+

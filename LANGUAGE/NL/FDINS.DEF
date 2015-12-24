@@ -1,0 +1,67 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Dutch Translation.
+Provided by: Maarten Vermeulen
+Contact Email: netraam70@gmail.com
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 23 dec 2015
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+; LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Maarten Vermeulen
+LANG_NAME=Dutch
+
+; Debug mode pause
+PRESSKEY="Druk op een toets..."
+
+; Backing up old OS
+BACKUP_FRAME=/w60 /h7 /c
+BACKUP=Backup aan het maken
+; vecho "'C:\FDOS'"
+TARGET=/s- "'" /f %1 "%2" /f %3 "'"
+BACKUP_DONE=/f %1 het backup proces is compleet.
+
+; Old Package removal
+RMPACK_FRAME=/w60 /h7 /c
+RMPACKS=Verwijderen van tegenstrijdige pakketen.
+; vecho "Verwijderen van oude 'base/append' pakketten."
+RMPACKN=/s- "Oude '" /f %1 %2 /f %3 "' pakketten aan het verwijderen."
+
+; Remove old OS files
+RMOS_FRAME=/w60 /h5 /c
+; vecho "Oude systeem bestanden verwijderen van 'C:\FDOS'."
+RMOS=/s- "Verwijderen oude bestande van '" /f %1 %2 /f %3 "'."
+RMOS_DONE="Oude systeem bestanden zijn verwijderd."
+
+; Remove old config files
+CLEAN_FRAME=/w60 /h5 /c
+CLEAN="Schoonmaken van oude configuratie bestanden."
+CLEAN_DONE="Oude configuratie bestanden zijn verwijderd."
+
+; Transfer system files
+XSYS_FRAME=/w60 /h5 /c
+; vecho "Opstart bestanden aan het kopiëren naar C:."
+XSYS= /s- "Opstart bestanden aan het kopiëren naar schijf " /f %1 %2 /f %3 .
+XSYS_DONE="Het kopiëren van systeem bestanden is voltooid."
+
+; Package installation.
+PAC_FRAME=/w64 /h7 /c
+PACBM="Software pakketten aan het installeren."
+; vecho "Software pakket 'base/command' aan het installeren"
+PACBI=/s- "Software pakket '" /f %1 %2 /f %3 "' aan het installeren"
+PACSM="Installeren van broncode."
+; unused at present:
+; vecho "Installing software package 'base/kernel'"
+PACSI= /s- "Bronnen voor '" /f %1 %2 /f %3 "' aan het installeren"
+PACDONE_FRAME=/w60 /h5 /c
+PACDONE="Software pakket installatie is voltooid."
+
+; Config file installation
+CONFIGS_FRAME=/w60 /h5 /c
+CONFIGS="Installeren van nieuwe configuratie bestanden."
+CONFIGS_DONE="Nieuwe configuratie bestanden zijn geïnstalleerd."
+
+; V8 Power tools installation
+V8POWER_FRAME=/w60 /h5 /c
+; vecho "Een kopie van 'V8Power Tools' aan het installeren."
+V8POWER=/s- "Een koppie van '" /f %1 "V8Power Tools" /f %2 "' aan het installeren."
+V8POWER_DONE="V8Power Tools zijn geïnstalleerd."
