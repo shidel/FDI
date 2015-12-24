@@ -58,7 +58,7 @@ LANG_ES=Spanish
 LANG_FR=French
 LANG_DE=German
 LANG_EO=Esperanto
-
+LANG_NL=Dutch
 ; add this language if needed.
 
 ; STAGE300 - Initial welcome screen message.
