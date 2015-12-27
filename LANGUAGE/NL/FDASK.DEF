@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 24 dec 2015
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 26 dec 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -34,7 +34,7 @@ TARGET_ASK=/f %1 /b %2 /d %3 %4
 REPLACE_FRAME=/w70 /h8 /c
 REPLACE_OPTS=/w60 /h4 /c
 REPLACE?=Vervang systeem configuratie bestanden?
-REPLACEY="  Ja  - Kopi‰er nieuwe standaard configuratie bestnaden."
+REPLACEY="  Ja  - Kopi‰er nieuwe standaard configuratie bestanden."
 REPLACEN="  Nee - Hou de oude bestanden."
 
 ; FDASK400 - Advanced mode delete old OS files
@@ -58,7 +58,7 @@ PACS?=welke /f %1 %2 /f %3 pakketten wilt u installeren?
 PACBO="  Alleen oude basis pakketten."
 PACBS="  Alleen basis pakketen met broncode."
 PACAO="  Alle pakketten."
-PACAS="  Alle pakketten met broncode"
+PACAS="  Alle pakketten met broncode."
 PACDO_ADV="  Geselecteerde binary pakketen."
 PACDS_ADV="  Geselecteerde pakketten en hun broncode.
 
@@ -70,5 +70,5 @@ PACDS_ADV="  Geselecteerde pakketten en hun broncode.
 V8_FRAME=/w60 /h8 /c
 V8_OPTS=/w40 /h4 /c
 V8I?=installeer een kopie /f %1 V8Power Tools /f %2 /s- ?
-V8IY="  Ja - Installeer V8Power Tools."
-V8IN="  Nee  - Niet installeren."
+V8IY="  Ja  - Installeer V8Power Tools."
+V8IN="  Nee - Niet installeren."

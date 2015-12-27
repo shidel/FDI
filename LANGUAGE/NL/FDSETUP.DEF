@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 24 dec 2015
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 26 dec 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -28,8 +28,8 @@ HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welkom bij het installatie bestand van " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welkom bij de geavanceerde installatie van " /f %1 "%2" /f %3 .
 PROCEED?="Wilt u verder gaan?"
-CONTINUE="  Ja - Ga door met de installatie"
-EXIT="  Nee  - Ga terug naar DOS"
+CONTINUE="  Ja  - Ga door met de installatie"
+EXIT="  Nee - Ga terug naar DOS."
 
 ; STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
@@ -37,7 +37,7 @@ NOPART_OPTS=/w40 /h4 /c
 ; vecho "Drive C: does not appear to be partitioned."
 NOPART=/s- "Schijf " /f %1 %2 /f %3 " lijkt niet gepartitioneerd te zijn."
 PART?="Wilt u de schijf graag partitioneren?"
-PART_YES="  Ja - Start de 'Partitioner'."
+PART_YES="  Ja  - Start de 'Partitioner'."
 ; Also uses EXIT defined above.
 
 ; STAGE500 - After partitioned specific text.
@@ -45,9 +45,9 @@ PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 ; Actually, this uses two lines because of the frame width. Not because it
 ; is two strings.
-PARTED=/s- "U moet uw computer opnieuw opstarten om het nieuwe partitie" "-schema in werking te laten gaan."
+PARTED=/s- "U moet uw computer opnieuw opstarten om het nieuwe" /p "partitieschema in werking te laten gaan."
 REBOOT?="Wilt u opnieuw opstarten?"
-REBOOT_YES="  Ja - Start de computer opnieuw op."
+REBOOT_YES="  Ja  - Start de computer opnieuw op."
 ; Also uses EXIT defined above.
 REBOOT="Uw computer moet opnieuw opstarten."
 
@@ -59,9 +59,9 @@ NOFORMATADV_OPTS=/w54 /h5 /c
 ; vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Schijf " /f %1 %2 /f %3 " lijkt niet geformatteerd te zijn."
 FORMAT?="Weet u zeker dat u de schijf wilt formatteren?"
-FORMAT_YES="  Ja - Verwijder en formatteer schijf %1."
-FORMATADV_QUICK="  Ja - verwijder en formatteer snel schijf %1."
-FORMATADV_SLOW="  Ja - Verwijder en formatteer schijf %1 volledig."
+FORMAT_YES="  Ja  - Verwijder en formatteer schijf %1."
+FORMATADV_QUICK="  Ja  - verwijder en formatteer snel schijf %1."
+FORMATADV_SLOW="  Ja  - Verwijder en formatteer schijf %1 volledig."
 ; Also uses EXIT defined above.
 FORMATTING=/s- /fGray "Schijf " /fWhite %1 " aan het formatteren"/fGray ...
 ; The /e switch clears the rest of the current line without moving the cursor.
@@ -79,9 +79,9 @@ GATHERING="Informatie aan het verzamelen voor het klaarmaken van de installatie.
 ; STAGE800 - Installing
 INSTALL_FRAME=/w60 /h10 /c
 INSTALL_OPTS=/w46 /h4 /c
-INSTALL=/s- "We zijn klaar om te installeren " /f %1 "%2" /f %3 .
+INSTALL=/s- "We zijn klaar om " /f %1 "%2" /f %3 " te installeren."
 INSTALL?="Wilt u het nu installeren?"
-INSTALL_YES="  Ja - installeer %1."
+INSTALL_YES="  Ja  - installeer %1."
 ; Also uses EXIT defined above.
 PREPARING_FRAME=/w35 /h5 /c
 PREPARING="Klaarmaken voor installatie."
@@ -115,15 +115,15 @@ CTRLCB="  Nee - schakel over naar de basis modus."
 
 ; FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w60 /h11 /c
-FAIL_OPTS=/w40 /h4 /c
+FAIL_OPTS=/w42 /h4 /c
 FAILADV_FRAME=/w60 /h13 /c
-FAILADV_OPTS=/w40 /h6 /c
+FAILADV_OPTS=/w42 /h6 /c
 FAILH="Herstarten kan mogelijk helpen."
 FAIL?="Wilt u herstarten?"
-FAILY="  Ja - Start de computer opnieuw op."
-FAILN="  Nee  - Ga  terug naar DOS"
+FAILY="  Ja  - Start de computer opnieuw op."
+FAILN="  Nee - Ga terug naar DOS."
 ; At present FAILI is only available in advanced mode.
-FAILI="  Nee  - Negeren (niet aanbevolen)"
+FAILI="  Nee - Negeren. (niet aanbevolen)"
 FAILR="De computer zal nu opnieuw opstarten."
 
 ; FDNOTICE - Already installed notice.

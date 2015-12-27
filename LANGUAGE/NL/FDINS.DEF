@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 24 dec 2015
+Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 26 dec 2015
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -26,7 +26,7 @@ RMPACKN=/s- "Oude '" /f %1 %2 /f %3 "' pakketten aan het verwijderen."
 
 ; Remove old OS files
 RMOS_FRAME=/w60 /h5 /c
-RMOS=/s- "Verwijderen oude bestande van '" /f %1 %2 /f %3 "'."
+RMOS=/s- "Verwijderen oude bestanden van '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Oude systeem bestanden zijn verwijderd."
 
 ; Remove old config files
@@ -42,9 +42,9 @@ XSYS_DONE="Het kopi‰ren van systeem bestanden is voltooid."
 ; Package installation.
 PAC_FRAME=/w64 /h7 /c
 PACBM="Software pakketten aan het installeren."
-PACBI=/s- "Software pakket '" /f %1 %2 /f %3 "' aan het installeren"
+PACBI=/s- "Software pakket '" /f %1 %2 /f %3 "' aan het installeren."
 PACSM="Installeren van broncode."
-PACSI= /s- "Bronnen voor '" /f %1 %2 /f %3 "' aan het installeren"
+PACSI= /s- "Bronnen voor '" /f %1 %2 /f %3 "' aan het installeren."
 PACDONE_FRAME=/w60 /h5 /c
 PACDONE="Software pakket installatie is voltooid."
 
