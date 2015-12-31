@@ -39,7 +39,7 @@ REPLACEN="  Nee - Hou de oude bestanden."
 
 ; FDASK400 - Advanced mode delete old OS files
 DELETE_FRAME=/w60 /h8 /c
-DELETE_OPTS=/w40 /h4 /c
+DELETE_OPTS=/w46 /h4 /c
 DELETE?=verwijder alle oude bestanden van /f %1 %2 /f %3 /s- ?
 DELETEY="  Ja  - Verwijder alle oude bestanden."
 DELETEN="  Nee - Liever niet."
