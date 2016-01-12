@@ -10,6 +10,16 @@ vdelay %FDEL%
 REM Locate installer packages media.
 set _MI=0
 
+REM Check if single source install (packages on same media as installer)
+if not exist ..\..\BASE\NUL goto MediaLoop
+if not exist ..\..\BASE\COMMAND.ZIP goto MediaLoop
+if not exist ..\..\BASE\INDEX.LST goto MediaLoop
+
+pushd
+cd ..\..
+cd | set /p FMEDIA=
+popd
+
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 :MediaLoop
 if "%_MI%" == "27" goto MissingMedia

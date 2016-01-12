@@ -338,10 +338,6 @@ boot image is also available.
 
     Should, verify integrity of backup folder and zip backups.
 
-    Should, in STAGE700, add detection if installing from a folder and skip
-    searching for installation media. Just set FMEDIA to subdirectory. This
-    is waiting on the layout of a ALPHA release to be configured.
-
     Probably, remove need to leave in install media to reboot.
 
     Maybe, add ability to install from Floppy only sources.
@@ -368,3 +364,6 @@ boot image is also available.
     Will not detect Current OS version when it was installed to a directory
     other than the default "C:\FDOS" directory. Might add some common
     locations to check later. Might not. We will see.
+
+    Cannot actually install from folder, SYS transfer fails. This could be
+    worked around but, but I'm not going to bother.
