@@ -127,6 +127,8 @@ ERROR_XSYS="Fehler beim Kopieren der Systemdateien nach %1."
 ERROR_CONFIG="Problem beim Kopieren neuer Konfigurationsdateien."
 ERROR_V8="Problem beim Installieren der V8Power Tools."
 
+REBOOT_PAUSE=/f%1 Remove the installation media and press a key to restart the system or /p/e press /f%2 CTRL+C /f%1 to exit...
+
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Erfolgreiche AusfÅhrung der Startdateien /fCyan %1 /a7 und /fCyan %2 /a7
 AUTO_HELP=Geben Sie /fWhite %1 /fGray ein, um UnterstÅtzung bei Befehlen und der Navigation zu /p erhalten.

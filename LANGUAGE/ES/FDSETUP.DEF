@@ -127,6 +127,8 @@ ERROR_XSYS="Error transferir los archivos del sistema de %1."
 ERROR_CONFIG="Problema copiar nuevos archivos de configuraci¢n."
 ERROR_V8="Problema al instalar 'V8Power Tools'."
 
+REBOOT_PAUSE=/f%1 Remove the installation media and press a key to restart the system or /p/e press /f%2 CTRL+C /f%1 to exit...
+
 AUTO_DONE=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
 AUTO_HELP=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
 AUTO_WELCOME=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )

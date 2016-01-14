@@ -2,7 +2,7 @@
 
 REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
-REM Copyright 2015 Jerome Shidel.
+REM Copyright 2016 Jerome Shidel.
 
 REM Test for Presence of V8Power Tools ****************************************
 
@@ -286,7 +286,14 @@ set FDRIVE=
 goto DontDoAnything
 
 :DoReboot
+call FDILANG.BAT FDSETUP
 vcls /a 0x07
+lbacache SYNC
+lbacache STOP
+vgotoxy eop sor up
+vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
+vpause /fLightCyan /d 30 CTRL+C POSTAL
+if errorlevel 200 goto DoExit
 fdapm warmboot
 goto DontDoAnything
 

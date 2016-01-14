@@ -338,8 +338,6 @@ boot image is also available.
 
     Should, verify integrity of backup folder and zip backups.
 
-    Probably, remove need to leave in install media to reboot.
-
     Maybe, add ability to install from Floppy only sources.
 
     Might, deploy a solution to adjust for the long perceived pauses during
