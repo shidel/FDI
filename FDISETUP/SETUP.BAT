@@ -124,6 +124,9 @@ popd
 if "%FREBOOT%" == "y" goto DoReboot
 goto Done
 
+REM Should never get here anymore since the reboot process used by vpause
+REM will work from a sub shell. But, It doesn't hurt anything. So, I'm just
+REM going to leave it in here.
 :DoReboot
 fdapm warmboot
 goto Done

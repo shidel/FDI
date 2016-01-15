@@ -144,7 +144,7 @@ ERROR_XSYS="fout bij bestandsoverdracht(en) naar %1."
 ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestanden.  " /n
 ERROR_V8="Probleem bij het installeren van V8Power Tools."
 
-REBOOT_PAUSE=/f%1 Remove the installation media and press a key to restart the system or /p/e press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7

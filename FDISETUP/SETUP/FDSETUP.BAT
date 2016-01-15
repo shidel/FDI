@@ -290,10 +290,21 @@ call FDILANG.BAT FDSETUP
 vcls /a 0x07
 lbacache SYNC
 lbacache STOP
-vgotoxy eop sor up
+vline hidden
+vgotoxy eop sor
 vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
+
+REM POSTAL for vpause is an undocumented option. Generally, it should only
+REM be used in extremely rare cases. When specified, instead of returning to
+REM DOS after the pause is completed. vpause will initiate the BIOS POST system.
+REM (Power On Self Test). Basically, it is a forced reboot. If care is not
+REM taken, any disk write caches and buffers will be lost and will result in
+REM file system corruption. For this reason, the POSTAL option will always
+REM remain undocumented.
 vpause /fLightCyan /d 30 CTRL+C POSTAL
 if errorlevel 200 goto DoExit
+
+REM We really cannot get here unless something went really, really wrong.
 fdapm warmboot
 goto DontDoAnything
 

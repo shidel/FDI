@@ -140,7 +140,7 @@ ERROR_XSYS="Eraris transkopiante majstrajn dosierojn al %1."
 ERROR_CONFIG="Eraris kopiante novajn elektilajn dosierojn."
 ERROR_V8="Eraris enhavigante V8-Fortegajn Ilojn (V8Power Tools)."
 
-REBOOT_PAUSE=/f%1 Remove the installation media and press a key to restart the system or /p/e press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /fCyan %2 /a7

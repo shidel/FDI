@@ -140,7 +140,7 @@ ERROR_XSYS="Erreur systäme de transfert de fichiers Ö %1."
 ERROR_CONFIG="Probläme de copier de nouveaux fichiers de configuration."
 ERROR_V8="Probläme d'installation de V8Power Tools."
 
-REBOOT_PAUSE=/f%1 Remove the installation media and press a key to restart the system or /p/e press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Fini "d'installer" les fichiers de dÇmarrage /fCyan %1 /a7 et /fCyan %2 /a7

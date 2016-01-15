@@ -2,7 +2,7 @@
 
 REM FreeDOS 1.2+ Language Tester version 1.00.
 REM Released Under GPL v2.0 License.
-REM Copyright 2015 Jerome Shidel.
+REM Copyright 2016 Jerome Shidel.
 
 set SELF=%0
 if "%1" == "CLS" goto ClearScreen
@@ -564,8 +564,16 @@ vecho
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 
+:BOOTPAUSE
+SET FADV="y"
+call %SELF% BLACK BOOTPAUSE FDSETUP
+vgotoxy eop sor up
+vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
+vpause /fLightCyan /d 30 CTRL+C
+if Errorlevel 200 goto Abort
+
 vcls /a7
-vecho /n Language verification /fWhite /t %FLANG% LANG_NAME
+vecho /n Language verification for /fWhite /t %FLANG% LANG_NAME
 vecho /n /s- /fGray " (" /fYellow %LANG% /fGray ) /s+ by /fLightCyan /t %FLANG% LANG_AUTHOR
 vecho /fGray /c32 has completed.
 
