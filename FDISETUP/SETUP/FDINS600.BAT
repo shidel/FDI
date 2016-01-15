@@ -1,7 +1,5 @@
 @echo off
 
-rem set to C:\ENV.txt
-
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
 vecho /n /t %FLANG% PACBM

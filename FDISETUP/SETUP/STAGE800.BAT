@@ -27,14 +27,12 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
-REM Scan for all install file paths.
-
 REM Configure FDINST package manager.
 set FDNPKG.CFG=%FINSP%\FDNPBIN.CFG
 if "%OSRC%" == "y" SET FDNPKG.CFG=%FINSP%\FDNPSRC.CFG
 set DOSDIR=%FTARGET%
 
-REM Scan each install file path
+REM Scan each installer in program file path
 set _TI=0
 :LoopingList
 vfdutil /c/p %FINSP%\
@@ -57,6 +55,13 @@ vmath %_TI% + 1 | set /p _TI=
 goto LoopingList
 
 :FinishedList
+if exist %DOSDIR%\BIN\FDNPKG.CFG goto ReplaceConfig
+verrlvl 0
+goto Done
+
+:ReplaceConfig
+copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
+copy /y %FDNPKG.CFG% %DOSDIR%\BIN\FDNPKG.CFG>NUL
 verrlvl 0
 goto Done
 

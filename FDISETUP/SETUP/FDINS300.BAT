@@ -10,12 +10,6 @@ vecho /n /t %FLANG% RMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
-set OLDDOS=%DOSDIR%
-set OLDFDN=%FDNPKG.CFG%
-set FDNPKG.CFG=%FINSP%\FDNPBIN.CFG
-if "%OSRC%" == "y" SET FDNPKG.CFG=%FINSP%\FDNPSRC.CFG
-set DOSDIR=%FTARGET%
-
 REM Run through all binaries to be installed.
 set _PI=0
 
@@ -89,10 +83,6 @@ set _PI=
 set _PD=
 set _PM=
 set _PL=
-set DOSDIR=%OLDDOS%
-set OLDDOS=
-set FDNPKG.CFG=%OLDFDN%
-set OLDFDN=
 
 :Done
 verrlvl 0
