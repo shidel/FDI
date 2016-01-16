@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: created at 18 dec 2015 (19:40 UTC +1.00) Finished at 26 dec 2015
+Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 16 jan 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -144,7 +144,7 @@ ERROR_XSYS="fout bij bestandsoverdracht(en) naar %1."
 ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestanden.  " /n
 ERROR_V8="Probleem bij het installeren van V8Power Tools."
 
-REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Verwijder de installatie media uit het station en druk op een toets om opnieuw /p/e/c32 op te starten of op /f%2 CTRL+C /f%1 om setup te sluiten...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7

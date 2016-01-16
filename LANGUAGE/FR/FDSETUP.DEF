@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer French Translation.
 Provided by: Paul Dufresne
 Contact Email: dufresnep@gmail.com
-Created/Modified: December 17, 2015
+Created/Modified: January 16, 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -140,7 +140,7 @@ ERROR_XSYS="Erreur systäme de transfert de fichiers Ö %1."
 ERROR_CONFIG="Probläme de copier de nouveaux fichiers de configuration."
 ERROR_V8="Probläme d'installation de V8Power Tools."
 
-REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Enlevez le mÇdia "d'installation" puis pressez une touche pour redÇmarrer le /p/e/c32 systäme, sinon tapez /f%2 CTRL-C /f%1 pour sortir...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Fini "d'installer" les fichiers de dÇmarrage /fCyan %1 /a7 et /fCyan %2 /a7

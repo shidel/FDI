@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Esperanto Translation.
 Provided by: Rugxulo
 Contact Email: rugxulo@gmail.com
-Created/Modified: Tuesday, December 22, 2015
+Created/Modified: Tuesday, January 16, 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -140,7 +140,7 @@ ERROR_XSYS="Eraris transkopiante majstrajn dosierojn al %1."
 ERROR_CONFIG="Eraris kopiante novajn elektilajn dosierojn."
 ERROR_V8="Eraris enhavigante V8-Fortegajn Ilojn (V8Power Tools)."
 
-REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
+REBOOT_PAUSE=/f%1/c32 Elprenu la enhavigilan diskon kaj manpremu unu klavon por reenvekigi vian /p/e/c32 mashinon au nur manpremu /f%2 CTRL+C /f%1 por foriri...
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /fCyan %2 /a7
