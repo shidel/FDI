@@ -18,6 +18,7 @@ WELCOME.EN=FreeDOS 1.2+ Package Tester version 1.00.
 DOSDIR?.EN=Confirm %DOSDIR% target directory? /c32
 TEMP?.EN=Confirm current %TEMP% directory? /c32
 LOG?.EN=Confirm log file? /c32
+LIST?.EN=Package Listing File? /c32
 SCAN.EN=Locating package installation media
 MEDIA.EN=Package installation media at %1
 TIMES?.EN=Number of install iterations? /c32
@@ -218,6 +219,28 @@ time /t | vstr /b /f is 2 | set /p NOWT=
 if "%NOWT%" == "" goto RepeatTime
 echo Created %NOWD% at %NOWT%|vstr /b/s "  " " "|vstr /b/s "  " " ">%LOG%
 if not exist %LOG% goto SetLogFile
+
+REM Set List File Name
+:SetListFile
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetListFile
+set SETP=
+vfdutil /d %DOSDIR% | set /p DRIVE=
+vfdutil /n %0 | set /p NAME=
+vecho /fYellow /bBlack /n /t %SELF% LIST?.%LNG%
+vask /c /fWhite /bBlue /d10 %DRIVE%\%NAME%.LST | set /p LST=
+if errorlevel 200 goto CtrlCPressed
+vgotoxy sor
+vfdutil /f %LST% | set /p LST=
+if "%LST%" == "" goto SetListFile
+vfdutil /d %LST% | set /p DRIVE=
+vfdutil /u %DRIVE%\TEST????.??? >NUL
+if errorlevel 1 goto SetListFile
+SET DRIVE=
+SET NAME=
+vecho /a7 /n /t %SELF% LIST?.%LNG%
+vecho /a7 /e /fWhite %LST%
+echo Created %NOWD% at %NOWT%|vstr /b/s "  " " "|vstr /b/s "  " " ">%LST%
 SET NOWD=
 SET NOWT=
 
@@ -354,6 +377,12 @@ if not "%TENV%" == "0" goto CaughtError
 
 vgotoxy left
 vecho /n /t %SELF% FDIOK.%LNG%
+
+
+echo %FILE% | vstr /n/d/f \ 2- | vstr /n/s .zip ''>>%LST%
+grep -i "^Title\|^Version\|^Copying" %DOSDIR%\APPINFO\*.LSM>>%LST%
+echo. >>%LST%
+
 goto RemovePackage
 
 :CaughtError
@@ -495,6 +524,7 @@ SET FILE=
 SET PATH=%OLDPATH%
 SET DRIVE=
 SET LOG=
+SET LST=
 SET TIMES=
 SET RETRIES=
 SET FLOG=

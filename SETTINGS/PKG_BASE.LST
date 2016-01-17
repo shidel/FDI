@@ -1,5 +1,6 @@
 ; Package list for BASE only installation.
 
+; This is the BASE set and is also included in the ALL set.
 base\append
 base\assign
 base\attrib
