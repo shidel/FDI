@@ -56,7 +56,6 @@ base\tree
 base\undelete
 base\unformat
 base\xcopy
-base\xmgr
 util\udvd2
 
 ; The remaining packages are only installed when ALL is chosen.
