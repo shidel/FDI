@@ -1,9 +1,9 @@
 @echo off
 
+REM Run entire install process.
+
 set OLDDOS=%DOSDIR%
 set OLDFDN=%FDNPKG.CFG%
-
-REM Run entire install process.
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME

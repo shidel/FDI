@@ -1,6 +1,7 @@
 @echo off
 
 REM Post installer cleanup.
+
 if "%1" == "VARSONLY" goto VarsOnly
 vfdutil /c /p %0
 if "%FCURSOR%" == "" vcursor small
