@@ -45,26 +45,30 @@ if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.001 |grep -A 1000 -i \$LANG_TEXT\$|grep -iv \$LANG_TEXT\$>>%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
 
-rem set LANG variable
+:Sticky
+echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
+if "%DDIR%" == "" goto Sticky
+set DDIR=C:\%DDIR%
+
+rem set LANG, DOSDIR and etc in AUTOEXEC.BAT
 type %TEMP%\REPLACE.002 | vstr /n/s $FLANG$ %LANG% >%TEMP%\REPLACE.003
 if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.003 | vstr /n/s $FTARGET$ %FTARGET% >%TEMP%\REPLACE.004
+type %TEMP%\REPLACE.003 | vstr /n/s $FTARGET$ %DDIR% >%TEMP%\REPLACE.004
 if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.004 | vstr /n/s $FDRIVE$ %FDRIVE% >%TEMP%\REPLACE.005
+type %TEMP%\REPLACE.004 | vstr /n/s $FDRIVE$ C: >%TEMP%\REPLACE.005
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.005 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
-REM Simple CONFIG.SYS creation.
-
-rem Adjust Language and DOS Target.
+rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %FTARGET% >%TEMP%\REPLACE.002
+type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 
-type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ %FDRIVE% >%FDRIVE%\FDCONFIG.SYS
-if errorlevel 1 goto Failed
+set DDIR=
 
 REM Create the installed version ID file.
 echo PLATFORM=%OS_NAME%>%FTARGET%\VERSION.FDI

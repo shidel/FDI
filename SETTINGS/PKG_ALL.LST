@@ -72,12 +72,25 @@ archiver\unzip
 
 ; Some packages I would like to see in ALL.
 util\grep
+util\less
+util\tee
+util\touch
+util\which
+util\xgrep
+
 archiver\tar
 archiver\gzip
 archiver\bz2
+
 devel\nasm
 devel\fpc
+devel\ow
+devel\bwbasic
+devel\bcc
+
 net\wget
 net\rsync
+net\ping
+net\curl
 
 

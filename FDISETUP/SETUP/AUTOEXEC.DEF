@@ -1,4 +1,5 @@
 @ECHO OFF
+SET DOSDIR=$FTARGET$
 SET LANG=$FLANG$
 SET MTCPCFG=%dosdir%\MTCP.CFG
 SET WATTCP.CFG=%dosdir%
@@ -55,14 +56,14 @@ $LANG_TEXT$
 
 :V8Power
 set PATH=%PATH%;%dosdir%\V8POWER
-set DEFLANG=EN
+set LNG=EN
 if "%LANG%" == "" goto NoLanguage
-if %LANG% == $FLANG$ set DEFLANG=$FLANG$
+if %LANG% == $FLANG$ set LNG=$FLANG$
 :NoLanguage
-vecho /p /t %0 DONE.%DEFLANG% %cfgfile% %0
-vecho /p /t %0 HELP.%DEFLANG% HELP
-vecho /p /t %0 WELCOME.%DEFLANG% %OS_NAME% %OS_VERSION% http://www.freedos.org
+vecho /p /t %0 DONE.%LNG% %cfgfile% %0
+vecho /p /t %0 HELP.%LNG% HELP
+vecho /p /t %0 WELCOME.%LNG% %OS_NAME% %OS_VERSION% http://www.freedos.org
 vecho
-SET DEFLANG=
+SET LNG=
 
 :DONE
