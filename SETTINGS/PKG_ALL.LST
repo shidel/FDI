@@ -70,7 +70,6 @@ util\cwsdpmi
 archiver\zip
 archiver\unzip
 
-; Some packages I would like to see in ALL.
 util\grep
 util\tee
 util\touch
