@@ -5,6 +5,7 @@ REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
 rem if "%1" == "RECOVERY" goto RunInstaller
+
 if exist FDSETUP\V8POWER\vfdutil.com goto AdjustPath
 
 REM Test for Presence of V8Power Tools ****************************************
@@ -43,35 +44,38 @@ if "%PATH%" == "A:\FDSetup\BIN;A:\FDSetup\V8Power" set OLDPATH=
 
 REM Temp Directory Test and Auto-configuration ********************************
 :TempTest
-if not "%TEMP%" == "" goto TempSet
+if not "%TEMP%" == "" goto TempWasSet
 FDSETUP\V8POWER\vinfo /d C:
 if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u C:\FDOS\TEST????.??? >NUL
-if errorlevel 1 goto NoFDOS
-if not exist C:\FDOS\TEMP\NUL mkdir C:\FDOS\TEMP
-set TEMP=C:\FDOS\TEMP
+if not errorlevel 1 goto UseFDOS
+FDSETUP\V8POWER\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
+if not errorlevel 1 goto UseFREEDOS
+goto UseCUSTOM
+
+:TempWasSet
+FDSETUP\V8POWER\vinfo /d %TEMP%
+if errorlevel 1 goto ClearTemp
+FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
+if errorlevel 1 goto ClearTemp
 goto HasTemp
 
 :NoDriveC
 goto NoTemp
 
-:NoFDOS
-FDSETUP\V8POWER\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
-if errorlevel 1 goto NoFREEDOS
+:UseFDOS
+if not exist C:\FDOS\TEMP\NUL mkdir C:\FDOS\TEMP
+set TEMP=C:\FDOS\TEMP
+goto HasTemp
+
+:UseFREEDOS
 if not exist C:\FREEDOS\TEMP\NUL mkdir C:\FREEDOS\TEMP
 set TEMP=C:\FREEDOS\TEMP
 goto HasTemp
 
-:NoFREEDOS
-FDSETUP\V8POWER\vfdutil /u C:\TEST????.??? >NUL
-if errorlevel 1 goto NoTEMP
+:UseCUSTOM
 if not exist C:\FDTEMP.$$$\NUL mkdir C:\FDTEMP.$$$
 set TEMP=C:\FDTEMP.$$$
-goto HasTemp
-
-:TempSet
-vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 goto NoTEMP
 goto HasTemp
 
 :NoTEMP
@@ -80,24 +84,33 @@ if errorlevel 1 goto V8Missing
 if exist A:\FDSETUP\V8POWER\vfdutil.com goto IsFloppy
 goto V8Missing
 
-:TempRetry
+:ClearTemp
 SET TEMP=
 goto TempTest
 
 :IsFloppy
 set PATH=A:\FDSETUP\BIN;A:\FDSETUP\V8POWER
-goto RunInstaller
+if exist A:\FDSETUP\BIN\NUL goto RunInstaller
+set PATH=B:\FDSETUP\BIN;B:\FDSETUP\V8POWER
+if exist B:\FDSETUP\BIN\NUL goto RunInstaller
+set PATH=
+echo Unable to locate installer.
+goto Done
 
 :HasTemp
+rem echo %TEMP%
 FDSETUP\V8POWER\vinfo /d %TEMP%
 if errorlevel 1 goto NoDriveC
 FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto NoDriveC
-FDSETUP\BIN\COMMAND.COM /E:512 /C FDSETUP\V8POWER\vfdutil /p %0 | set /p TMD=
-FDSETUP\BIN\COMMAND.COM /E:512 /C FDSETUP\V8POWER\vfdutil /p %TMD%\FDSETUP\ | set /p TMD=
+:PathSetRepeat
+FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\V8POWER\vfdutil /p FDSETUP\ |FDSETUP\V8POWER\vstr /b|set /p TMD=
+if "%TMD%" == "" goto PathSetRepeat
 set PATH=%TMD%\BIN;%TMD%\V8POWER
-FDSETUP\BIN\COMMAND.COM /E:512 /C LBACACHE.COM INFO|grep -i "Caching floppy"|vstr|set /p TMD=
-if "%TMD%" == "" LBACACHE.COM buf 20 flop >NUL
+:RepeatInfo
+LBACACHE.COM INFO|grep "Caching floppy"|vstr /b/l TOTAL|set /p TMD=
+if "%TMD%" == "" goto RepeatInfo
+if "%TMD%" == "0" LBACACHE.COM buf 20 flop >NUL
 set TMD=
 goto RunInstaller
 
@@ -139,3 +152,5 @@ REM End of Batch Script *******************************************************
 :Done
 if not "%OLDPATH%" == "" set PATH=%OLDPATH%
 set OLDPATH=
+
+:EndOfBatch

@@ -67,6 +67,29 @@ set TEMPPATH=
 vgotoxy up up
 vecho /fLightGreen "FreeDOS %OS_VERSION% install disk creator." /p
 
+if not "%1" == "usb" goto NotUSB
+vecho /fLightRed USB Stick creation mode! /fGray /p
+
+set FLOPPY=C:
+
+REM Set Floppy
+:SetFloppy
+echo SETP | set /p SETP=
+if "%SETP%" == "" goto SetFloppy
+set SETP=
+vecho /fYellow /bBlack /n Set Destination for installation media? /c32
+vask /c /fWhite /bBlue /d10 %FLOPPY% | set /p FLOPPY=
+if errorlevel 200 goto CtrlCPressed
+vgotoxy sor
+if "%FLOPPY%" == "" goto SetFloppy
+vfdutil /d %FLOPPY% | set /p FLOPPY=
+if errorlevel 1 goto SetDOSDIR
+if "%FLOPPY%" == "" goto SetFloppy
+vecho /fYellow /bBlack /n Set Destination for installation media? /c32
+vecho /fWhite /bBlack /e %FLOPPY% /fGray /p
+
+:NotUSB
+
 vecho "Searching for CD-ROM containing packages" /n
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
 if "%CDROM%" == "" goto NoCDROM
@@ -336,7 +359,7 @@ vecho /fGray Format, /fLightGreen OK /fGray /e /p
 pushd
 %RAMDRV%
 cd \
-sys a:
+sys %FLOPPY%
 if errorlevel 1 goto SysError
 vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
@@ -347,6 +370,28 @@ vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
 xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 xcopy /y FDISETUP\*.* %FLOPPY%\ >NUL
 vecho ,  /fLightGreen OK /fGray
+
+if not "%1" == "usb" goto Done
+vecho Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /n
+
+:RetryCount
+type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p TCNT=
+if "%TCNT%" == "" goto RetryCount
+set TIDX=0
+
+:CopyLoop
+set TFILE=
+type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+if "%TFILE%" == "" goto RetryCount
+vecho /r5/c32 %TFILE%
+
+:RetryInc
+set TFILE=
+vmath %TIDX% + 1 | set /p TFILE=
+if "%TFILE%" == "" goto RetryInc
+set TIDX=%TFILE%
+goto CopyLoop
+
 goto Done
 
 :MissingV8
@@ -387,6 +432,8 @@ goto Error
 
 :SysError
 popd
+
+:CtrlCPressed
 
 :Error
 vecho /p /bRed /fYellow " An error has occurred." /e /fGray /bBlack
