@@ -12,15 +12,17 @@ vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
+if not exist %2:\BASE\INDEX.LST goto EndOfFile
 set CDROM=%2:
 goto EndOfFile
 
 :Start
-if "%TEMP%" == "" goto NoTempSet
-pushd
 SET OLDFDN=%FDNPKG.CFG%
 SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
+
+if "%TEMP%" == "" goto NoTempSet
+pushd
 
 set FLOPPY=A:
 set VOLUME=FD-SETUP
@@ -88,7 +90,15 @@ if "%FLOPPY%" == "" goto SetFloppy
 vecho /fYellow /bBlack /n Set Destination for installation media? /c32
 vecho /fWhite /bBlack /e %FLOPPY% /fGray /p
 
+vfdutil /d %TEMP% | set /p TDIR=
+if not "%TDIR%" == "%FLOPPY%" goto NotUSB
+
+pushd
+vecho /fLightRed Temp directory cannot be on target filesystem. /fGray
+goto Error
+
 :NotUSB
+set TDIR=
 
 vecho "Searching for CD-ROM containing packages" /n
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
@@ -345,8 +355,28 @@ set TFILE=
 set TIDX=
 vecho , /fLightGreen OK /fGray /p
 
-if "%1" == "update" goto UpdateOnlyB
+if "%FLOPPY%" == "A:" goto FormatDisk
+vecho /n Adjusting installer configuration files
+type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s A:\ %FLOPPY%\>%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+
+type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s "rem SET TEMP=" "SET TEMP=">%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+
+type %RAMDRV%\FDCONFIG.SYS|vstr /n/s A:\ %FLOPPY%\>%RAMDRV%\FDCONFIG.TMP
+copy /y %RAMDRV%\FDCONFIG.TMP %RAMDRV%\FDCONFIG.SYS >NUL
+del %RAMDRV%\FDCONFIG.TMP >NUL
+type %RAMDRV%\FDSETUP\SETUP\STAGE000.BAT|vstr /n/s FDRIVE=C: FDRIVE=D:>%RAMDRV%\STAGE000.TMP
+copy /y %RAMDRV%\STAGE000.TMP %RAMDRV%\FDSETUP\SETUP\STAGE000.BAT >NUL
+del %RAMDRV%\STAGE000.TMP >NUL
+
+if not exist %RAMDRV%\FDSETUP\TEMP\NUL mkdir %RAMDRV%\FDSETUP\TEMP >NUL
+vecho , /fLightGreen OK /fGray /p
+
 :FormatDisk
+if "%1" == "update" goto UpdateOnlyB
 vecho Press a key to format the disk in drive /fYellow %FLOPPY% /s- /fGray ... /c32 /n
 vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
@@ -368,31 +398,45 @@ popd
 :UpdateOnlyB
 vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
 xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
-xcopy /y FDISETUP\*.* %FLOPPY%\ >NUL
+copy /y %RAMDRV%\AUTOEXEC.BAT %FLOPPY%\ >NUL
+copy /y %RAMDRV%\FDCONFIG.SYS %FLOPPY%\ >NUL
+copy /y %RAMDRV%\SETUP.BAT %FLOPPY%\ >NUL
 vecho ,  /fLightGreen OK /fGray
 
 if not "%1" == "usb" goto Done
-vecho Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /n
+vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
+if not exist %FLOPPY%\FDSETUP\TEMP\NUL mkdir %FLOPPY%\FDSETUP\TEMP >NUL
 
 :RetryCount
-type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p TCNT=
+grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /b/l TOTAL | set /p TCNT=
 if "%TCNT%" == "" goto RetryCount
 set TIDX=0
 
 :CopyLoop
 set TFILE=
-type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
-if "%TFILE%" == "" goto RetryCount
-vecho /r5/c32 %TFILE%
+grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /b/l %TIDX% | set /p TFILE=
+if "%TFILE%" == "" goto CopyLoop
+:DestLoop
+vfdutil /p %FLOPPY%\%TFILE% | set /p TDIR=
+if "%TDIR%" == "" goto DestLoop
+rem if exist %TDIR%\%TFILE%.zip goto RetryInc
+vecho /r5/c32 %CDROM%\%TFILE%.zip "-->" %TDIR% /n
+if not exist %TDIR%\NUL mkdir %TDIR% >NUL
+copy /y %CDROM%\%TFILE%.zip %TDIR%\ >NUL
+if errorlevel 1 goto CopyFailed
+vecho , /fLightGreen OK /fGray
 
 :RetryInc
 set TFILE=
 vmath %TIDX% + 1 | set /p TFILE=
 if "%TFILE%" == "" goto RetryInc
 set TIDX=%TFILE%
+if "%TCNT%" == "%TIDX%" goto Done
 goto CopyLoop
 
-goto Done
+:CopyFailed
+vecho , /fLightRed Failed. /fGray /p
+goto Error
 
 :MissingV8
 echo ERROR: V8Power Tools are missing.
@@ -508,6 +552,8 @@ set TERR=
 set TRETRY=
 set TGO=
 set TTRY=
+set TDIR=
+
 
 SET FDNPKG.CFG=%OLDFDN%
 SET DOSDIR=%OLDDOS%

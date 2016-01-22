@@ -64,11 +64,13 @@ grep -i -v "REM " C:\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TE
 
 :NoAuto
 if not exist %TEMP%\FDIMPORT.000 goto Done
-type %TEMP%\FDIMPORT.000|vstr /u/n/s " DOSDIR=" " FTARGET="|vstr /n /s "  " " ">%TEMP%\FDIMPORT.BAT
+type %TEMP%\FDIMPORT.000|vstr /u/n/s " DOSDIR=" " TDOS="|vstr /n /s "  " " ">%TEMP%\FDIMPORT.BAT
 
 call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
 del %TEMP%\FDIMPORT.BAT
+if not "%TDOS%" == "C:\FDSETUP" set FTARGET=%TDOS%
+set TDOS=
 if "%FTARGET%" == "" goto AdjustData
 vfdutil /d %FTARGET% | set /p FDRIVE=
 

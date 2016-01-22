@@ -13,7 +13,7 @@ set _MI=0
 REM Check if single source install (packages on same media as installer)
 if not exist ..\..\BASE\NUL goto MediaLoop
 if not exist ..\..\BASE\COMMAND.ZIP goto MediaLoop
-if not exist ..\..\BASE\INDEX.LST goto MediaLoop
+if not exist ..\..\BASE\KERNEL.ZIP goto MediaLoop
 
 pushd
 cd ..\..
