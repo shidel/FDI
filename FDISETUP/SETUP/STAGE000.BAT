@@ -69,7 +69,9 @@ type %TEMP%\FDIMPORT.000|vstr /u/n/s " DOSDIR=" " TDOS="|vstr /n /s "  " " ">%TE
 call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
 del %TEMP%\FDIMPORT.BAT
-if not "%TDOS%" == "C:\FDSETUP" set FTARGET=%TDOS%
+if "%TDOS%" == "C:\FDSETUP" goto IgnoreDOSDIR
+if not "%TDOS%" == "" set FTARGET=%TDOS%
+:IgnoreDOSDIR
 set TDOS=
 if "%FTARGET%" == "" goto AdjustData
 vfdutil /d %FTARGET% | set /p FDRIVE=
