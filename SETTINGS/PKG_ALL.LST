@@ -90,7 +90,7 @@ devel\bcc
 
 net\wget
 net\rsync
-net\ping
 net\curl
+; net\ping - Included with mtcp
 
 
