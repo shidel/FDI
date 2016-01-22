@@ -72,11 +72,10 @@ archiver\unzip
 
 ; Some packages I would like to see in ALL.
 util\grep
-util\less
 util\tee
 util\touch
 util\which
-util\xgrep
+util\pg
 
 archiver\tar
 archiver\gzip
@@ -85,12 +84,9 @@ archiver\bz2
 devel\nasm
 devel\fpc
 devel\ow
-devel\bwbasic
-devel\bcc
 
 net\wget
 net\rsync
 net\curl
-; net\ping - Included with mtcp
 
 
