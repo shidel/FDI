@@ -1,5 +1,8 @@
 @echo off
 
+REM Display error message box. Option to Exit or reboot.
+REM In advanced mode, it may also provide a Ignore and continue option.
+
 if not "%FINSP%" == "" vfdutil /c/p %FINSP%\
 
 call FDICLS.BAT

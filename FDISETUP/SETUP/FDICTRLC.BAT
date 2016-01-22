@@ -1,6 +1,7 @@
 @echo off
 
 REM Control-C Handler
+
 set TLANG=%FLANG%
 if "%FISNP%" == "" call FDILANG.BAT FDSETUP
 if not "%FISNP%" == "" call %FISNP%\FDILANG.BAT FDSETUP

@@ -1,5 +1,7 @@
 @echo off
 
+REM Package installation mini-batch utility.
+
 :BinPackage
 vfdutil /n %1 | set /p TEMPFILE=
 if exist %FINSP%\PACKAGES\%TEMPFILE%.ZIP goto OverrideA

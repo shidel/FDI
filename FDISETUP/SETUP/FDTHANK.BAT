@@ -1,6 +1,6 @@
 @echo off
 
-REM Reserved for custom error message displaying.
+REM Reserved for custom message display after installation.
 
 REM If a language file FDTHANK.DEF exists, it will be automatically loaded
 REM prior to running this file.

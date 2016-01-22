@@ -1,5 +1,7 @@
 @echo off
 
+REM Set FLANG variable to current needed language translation file.
+
 :Retry
 set FLANG=
 if "%FINSP%" == "" goto PreINSP

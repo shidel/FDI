@@ -1,5 +1,7 @@
 @echo off
 
+REM Install fresh custom AUTOEXEC.BAT and FDCONFIG.SYS
+
 if "%OCFG%" == "y" goto DoOption
 goto AfterOption
 

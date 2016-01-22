@@ -1,5 +1,7 @@
 @echo off
 
+REM Install V8Power Tools.
+
 if "%OV8P%" == "y" goto DoOption
 goto AfterOption
 

@@ -1,6 +1,7 @@
 @echo off
 
-REM Reserved for custom error message displaying.
+REM Reserved for custom message display when installation was not needed or
+REM performed.
 
 REM If a language file FDNOTICE.DEF exists, it will be automatically loaded
 REM prior to running this file.
