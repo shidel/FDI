@@ -1,0 +1,12 @@
+Begin3
+Title:          Welcome
+Version:        $VERSION$
+Entered-date:   $DATE$
+Description:    The welcome to FreeDOS message.
+Keywords:       welcome boot message autoexec config
+Author:         Jerome Shidel <jerome _AT_ shidel.net>
+Maintained-by:  Jerome Shidel <jerome _AT_ shidel.net>
+Primary-site:   https://github.com/shidel/FDI
+Platforms:      DOS
+Copying-policy: GNU General Public License, version 2
+End
