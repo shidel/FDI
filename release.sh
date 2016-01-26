@@ -41,8 +41,13 @@ fi;
 
 rm "${HOME}/${DESTINATION}/${PROJECT}-USB."* >/dev/null
 
+CURDIR="$PWD"
+
+cd "${HOME}/${DESTINATION}"
 cp "${HOME}/Documents/Virtual Machines.localized/Platforms/Development/FDI Builder.vmwarevm/Virtual Disk-flat.vmdk" "${HOME}/${DESTINATION}/${PROJECT}-USB.img"
-zip -9 -r "${HOME}/${DESTINATION}/${PROJECT}-USB.zip" "${HOME}/${DESTINATION}/${PROJECT}-USB.img"
+zip -9 -r -k "${PROJECT}-USB.zip" "${PROJECT}-USB.img"
+
+cd "${CURDIR}"
 
 CURDIR="$PWD"
 cd "${HOME}/${DESTINATION}"
