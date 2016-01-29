@@ -7,20 +7,19 @@ base\xcopy
 base\devload
 base\attrib
 base\shsucdx
+base\more
 util\shsufdrv
 base\fdisk
 base\fdapm
 base\format
 base\fc
+
+util\v8power
+
 base\lbacache
 util\grep
 util\fdnpkg
 archiver\zip
-
-util\v8power
-
-; UDVD2 is replacing UIDE for CD/DVD support.
-util\udvd2
 
 base\himemx
 base\jemm
@@ -29,3 +28,4 @@ base\mem
 base\more
 util\doslfn
 
+util\udvd2
