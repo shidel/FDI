@@ -50,17 +50,27 @@ boot image is also available.
 
 ### Build files and directories
 
-    BUILD\BUILD.CFG - Configuration file for FDINST for install media. (not for
+    SETTINGS\ - General OS installation settings and configurations.
+
+    SETTINGS\BUILD.CFG - Configuration file for FDINST for install media. (not for
     the OS installation, that is located in SETTINGS)
 
-    BUILD\PACKAGES.LST - List of packages to use for install disk.
+    SETTINGS\FDNPKG.CFG  FDINST Package manager template config file for
+    the installation media.
 
-    BUILD\CLEANUP.LST - Files/directories to be removed after all packages
+    SETTINGS\PKG_FDI.LST - List of packages to use for install disk creation.
+
+    SETTINGS\CLEANUP.LST - Files/directories to be removed after all packages
     have been added to the install disk.
 
-    FDISETUP\ - Contains installer files.
+    SETTINGS\PKG_BASE.LST - List of packages installed for BASE.
 
-    SETTINGS\ - General OS installation settings and configurations.
+    SETTINGS\PKG_ALL.LST - List of packages installed for ALL.
+
+    SETTINGS\PKG_XTRA.LST - List of packages not installed but are included
+    on the USB Stick and CD/DVD ISO images.
+
+    FDISETUP\ - Contains installer files.
 
     LANGUAGE\ - Contains language translation directories and files for the
     installer.
@@ -274,8 +284,6 @@ boot image is also available.
                     $FTARGET$ with the installation base directory (like
                     C:\FDOS).
 
-        FDINS900    Install V8Power Tools from installer, maybe.
-
 
 ### Other batch files.
 
@@ -324,21 +332,13 @@ boot image is also available.
                      already installed, this file will be called instead of
                      automatically starting the installer.
 
-### Other Data Files
-
-        SETTINGS\PKG_ALL.LST  List of "All" package files.
-
-        SETTINGS\PKG_BASE.LST List of "Base" package files.
-
-        SETTINGS\FDNPKG.CFG  FDINST Package manager template config file.
-
 ### FDI Roadmap
 
     Verify, sufficient disk space prior to install.
 
     Should, verify integrity of backup folder and zip backups.
 
-    Maybe, add ability to install from Floppy only sources.
+    Maybe, add ability to install from floppy only sources.
 
     Might, deploy a solution to adjust for the long perceived pauses during
     backup and some package installations. Not a bug, but it may appear
@@ -350,7 +350,7 @@ boot image is also available.
 
     Maybe, localization support in exit error messages.
 
-    Someday, advanced mode, individual package selections.
+    Someday, advanced mode, individual package selections. Maybe.
 
 ### Known issues
 
