@@ -1,0 +1,13 @@
+; Package list for extra additionally included packages.
+; These packages are not installed. However, they will be included on the
+; USB stick and CD ISO images.
+
+devel\nasm
+devel\fpc
+devel\ow
+
+net\wget
+net\rsync
+net\curl
+
+

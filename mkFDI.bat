@@ -47,8 +47,8 @@ if errorlevel 1 goto V8Missing
 vfdutil /c /p %0
 :V8TestSkip
 if not exist FDISETUP\SETUP\NUL goto BadLayout
-if not exist BUILD\BUILD.CFG goto BadLayout
-if not exist BUILD\PACKAGES.LST goto BadLayout
+if not exist SETTINGS\BUILD.CFG goto BadLayout
+if not exist SETTINGS\PKG_FDI.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
 
 REM Configure Variables and stuff.
@@ -147,13 +147,9 @@ vecho Ramdrive is /fYellow %RAMDRV% /fGray /p
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
-set FDNPKG.CFG=BUILD\BUILD.CFG
+set FDNPKG.CFG=SETTINGS\BUILD.CFG
 
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
-
-vecho /n "Copying V8Power Tools to Ramdrive"
-xcopy /y /e V8POWER\*.* %RAMDRV%\FDSETUP\V8POWER\ >NUL
-vecho , /fLightGreen OK /fGray /p
 
 if "%1" == "update" goto UpdateOnlyA
 
@@ -169,7 +165,7 @@ vecho , /fLightGreen OK /fGray /p
 vecho Installing packages to /fYellow %RAMDRV% /fGray
 set TIDX=0
 :PkgLoop
-type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
 if not "%TIDX%" == "0" goto PkgCheck
 if "%TFILE%" == "" goto PkgLoop
 :PkgCheck
@@ -322,6 +318,8 @@ copy /y %TEMP%\STAGE300.BAT %RAMDRV%\FDSETUP\SETUP\STAGE300.BAT>NUL
 del %TEMP%\STAGE300.BAT>NUL
 vecho , /fLightGreen Done /fGray /p
 
+if "%1" == "usb" goto NoPackOverrides
+
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
 xcopy /y /E PACKAGES\*.* %RAMDRV%\FDSETUP\SETUP\PACKAGES\ >NUL
@@ -340,7 +338,7 @@ if exist %DOSDIR%\SETUP\PACKAGES\README.TXT deltree /Y %DOSDIR%\SETUP\PACKAGES\R
 if exist %DOSDIR%\SETUP\TEMPLATE\NUL deltree /y %DOSDIR%\SETUP\TEMPLATE >NUL
 set TIDX=0
 :CleanLoop
-type BUILD\CLEANUP.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+type SETTINGS\CLEANUP.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
 if not "%TIDX%" == "0" goto CleanCheck
 if "%TFILE%" == "" goto CleanLoop
 :CleanCheck
@@ -357,7 +355,7 @@ vecho , /fLightGreen OK /fGray /p
 
 if "%FLOPPY%" == "A:" goto FormatDisk
 vecho /n Adjusting installer configuration files
-type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s A:\ %FLOPPY%\>%RAMDRV%\AUTOEXEC.TMP
+type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s A:\ \>%RAMDRV%\AUTOEXEC.TMP
 copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
 
@@ -365,12 +363,9 @@ type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s "rem SET TEMP=" "SET TEMP=">%RAMDRV%\AUTOEX
 copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
 
-type %RAMDRV%\FDCONFIG.SYS|vstr /n/s A:\ %FLOPPY%\>%RAMDRV%\FDCONFIG.TMP
+type %RAMDRV%\FDCONFIG.SYS|vstr /n/s A:\ \>%RAMDRV%\FDCONFIG.TMP
 copy /y %RAMDRV%\FDCONFIG.TMP %RAMDRV%\FDCONFIG.SYS >NUL
 del %RAMDRV%\FDCONFIG.TMP >NUL
-type %RAMDRV%\FDSETUP\SETUP\STAGE000.BAT|vstr /n/s FDRIVE=C: FDRIVE=D:>%RAMDRV%\STAGE000.TMP
-copy /y %RAMDRV%\STAGE000.TMP %RAMDRV%\FDSETUP\SETUP\STAGE000.BAT >NUL
-del %RAMDRV%\STAGE000.TMP >NUL
 
 if not exist %RAMDRV%\FDSETUP\TEMP\NUL mkdir %RAMDRV%\FDSETUP\TEMP >NUL
 vecho , /fLightGreen OK /fGray /p
@@ -408,25 +403,38 @@ vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
 if not exist %FLOPPY%\FDSETUP\TEMP\NUL mkdir %FLOPPY%\FDSETUP\TEMP >NUL
 
 :RetryCount
-grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /b/l TOTAL | set /p TCNT=
+grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /b/l TOTAL | set /p TCNT=
 if "%TCNT%" == "" goto RetryCount
 set TIDX=0
 
 :CopyLoop
 set TFILE=
-grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /b/l %TIDX% | set /p TFILE=
+grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /b/l %TIDX% | set /p TFILE=
 if "%TFILE%" == "" goto CopyLoop
 :DestLoop
 vfdutil /p %FLOPPY%\%TFILE% | set /p TDIR=
 if "%TDIR%" == "" goto DestLoop
-rem if exist %TDIR%\%TFILE%.zip goto RetryInc
+:OvrLoop
+vfdutil /n %FLOPPY%\%TFILE% | set /p TOVR=
+if "%TOVR%" == "" goto OvrLoop
+if exist %TDIR%\%TFILE%.zip goto RetryInc
 vecho /r5/c32 %CDROM%\%TFILE%.zip "-->" %TDIR% /n
 if not exist %TDIR%\NUL mkdir %TDIR% >NUL
+if exist PACKAGES\%TOVR%.zip goto OverideCD
 copy /y %CDROM%\%TFILE%.zip %TDIR%\ >NUL
 if errorlevel 1 goto CopyFailed
+goto CopyOK
+
+:OverideCD
+vecho /n , /fLightRed OVERRIDE /fGray
+copy /y PACKAGES\%TOVR%.zip %TDIR%\ >NUL
+if errorlevel 1 goto CopyFailed
+
+:CopyOK
 vecho , /fLightGreen OK /fGray
 
 :RetryInc
+set TOVR=
 set TFILE=
 vmath %TIDX% + 1 | set /p TFILE=
 if "%TFILE%" == "" goto RetryInc
@@ -489,7 +497,6 @@ vecho /fLightGreen OK /fGray
 
 :SkipReport
 vecho /fGray
-if exist %RAMDRV%\PACKAGES.LST del %RAMDRV%\PACKAGES.LST
 if exist %RAMDRV%\FDINST.LOG del %RAMDRV%\FDINST.LOG
 if "%1" == "test2" goto DumpTemp
 if "%1" == "testb" goto DumpTemp
@@ -511,19 +518,21 @@ verrlvl 0
 goto CleanUp
 
 :Done
-type BUILD\PACKAGES.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
+type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
 type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
 type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
+type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
 dir /on /a /b /p- /s %CDROM%\*.zip | vstr /b/l TOTAL | set /p COUNT=
 
 vecho /p /fYellow %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%)
 vecho /fWhite %LANGS% /fGray languages, /fWhite %LANGM% /fGray on menu.
 vecho /fWhite %USED% /fGray of /fWhite %COUNT% /fGray packages used for boot image.
-vecho Total packages in BASE /fWhite %BASE% /fGray and ALL /fWhite %ALL% /s- /fGray .
+vecho Total packages in BASE /fWhite %BASE% /fGray /s- , /s+ ALL /fWhite %ALL% /fGray & BONUS /fWhite %XTRA% /fGray /s-  .
 vecho /p /fLightGreen Install Media Creation complete. /e /fGray /bBlack
 
 set ALL=
 set BASE=
+set XTRA=
 set COUNT=
 set USED=
 

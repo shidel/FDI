@@ -59,6 +59,8 @@ base\xcopy
 util\udvd2
 
 ; The remaining packages are only installed when ALL is chosen.
+
+util\v8power
 net\mtcp
 util\4dos
 util\doslfn
@@ -79,13 +81,3 @@ util\pg
 archiver\tar
 archiver\gzip
 archiver\bz2
-
-devel\nasm
-devel\fpc
-devel\ow
-
-net\wget
-net\rsync
-net\curl
-
-

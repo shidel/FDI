@@ -1,4 +1,4 @@
-; Package list for install media.
+; Package list for creation of the FDI boot disk image.
 
 base\command
 base\kernel
@@ -17,6 +17,8 @@ util\grep
 util\fdnpkg
 archiver\zip
 
+util\v8power
+
 ; UDVD2 is replacing UIDE for CD/DVD support.
 util\udvd2
 
@@ -26,3 +28,4 @@ base\edit
 base\mem
 base\more
 util\doslfn
+
