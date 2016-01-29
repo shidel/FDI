@@ -2,6 +2,8 @@
 ; These packages are not installed. However, they will be included on the
 ; USB stick and CD ISO images.
 
+net\mtcp
+
 devel\nasm
 devel\fpc
 devel\ow

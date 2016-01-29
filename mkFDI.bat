@@ -527,7 +527,7 @@ dir /on /a /b /p- /s %CDROM%\*.zip | vstr /b/l TOTAL | set /p COUNT=
 vecho /p /fYellow %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%)
 vecho /fWhite %LANGS% /fGray languages, /fWhite %LANGM% /fGray on menu.
 vecho /fWhite %USED% /fGray of /fWhite %COUNT% /fGray packages used for boot image.
-vecho Total packages in BASE /fWhite %BASE% /fGray /s- , /s+ ALL /fWhite %ALL% /fGray & BONUS /fWhite %XTRA% /fGray /s-  .
+vecho Total packages in BASE /fWhite %BASE% /fGray /s- , /s+ ALL /fWhite %ALL% /fGray & EXTRA /fWhite %XTRA% /fGray /s-  .
 vecho /p /fLightGreen Install Media Creation complete. /e /fGray /bBlack
 
 set ALL=

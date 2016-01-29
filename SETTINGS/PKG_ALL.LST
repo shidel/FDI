@@ -61,7 +61,6 @@ util\udvd2
 ; The remaining packages are only installed when ALL is chosen.
 
 util\v8power
-net\mtcp
 util\4dos
 util\doslfn
 util\fdnpkg
