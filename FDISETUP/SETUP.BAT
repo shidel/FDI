@@ -6,7 +6,7 @@ REM Copyright 2016 Jerome Shidel.
 
 rem if "%1" == "RECOVERY" goto RunInstaller
 
-if exist FDSETUP\V8POWER\vfdutil.com goto AdjustPath
+if exist FDSETUP\BIN\vfdutil.com goto AdjustPath
 
 REM Test for Presence of V8Power Tools ****************************************
 
@@ -37,26 +37,26 @@ vfdutil /c /p %0
 goto TempTest
 
 :AdjustPath
-FDSETUP\V8POWER\vfdutil /c /p %0
+FDSETUP\BIN\vfdutil /c /p %0
 
 set OLDPATH=%PATH%
-if "%PATH%" == "A:\FDSetup\BIN;A:\FDSetup\V8Power" set OLDPATH=
+if "%PATH%" == "A:\FDSetup\BIN" set OLDPATH=
 
 REM Temp Directory Test and Auto-configuration ********************************
 :TempTest
 if not "%TEMP%" == "" goto TempWasSet
-FDSETUP\V8POWER\vinfo /d C:
+FDSETUP\BIN\vinfo /d C:
 if errorlevel 1 goto NoDriveC
-FDSETUP\V8POWER\vfdutil /u C:\FDOS\TEST????.??? >NUL
+FDSETUP\BIN\vfdutil /u C:\FDOS\TEST????.??? >NUL
 if not errorlevel 1 goto UseFDOS
-FDSETUP\V8POWER\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
+FDSETUP\BIN\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
 if not errorlevel 1 goto UseFREEDOS
 goto UseCUSTOM
 
 :TempWasSet
-FDSETUP\V8POWER\vinfo /d %TEMP%
+FDSETUP\BIN\vinfo /d %TEMP%
 if errorlevel 1 goto ClearTemp
-FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
+FDSETUP\BIN\vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto ClearTemp
 goto HasTemp
 
@@ -79,9 +79,9 @@ set TEMP=C:\FDTEMP.$$$
 goto HasTemp
 
 :NoTEMP
-FDSETUP\V8POWER\vfdutil /u A:\TEST????.??? >NUL
+FDSETUP\BIN\vfdutil /u A:\TEST????.??? >NUL
 if errorlevel 1 goto V8Missing
-if exist A:\FDSETUP\V8POWER\vfdutil.com goto IsFloppy
+if exist A:\FDSETUP\BIN\vfdutil.com goto IsFloppy
 goto V8Missing
 
 :ClearTemp
@@ -89,9 +89,9 @@ SET TEMP=
 goto TempTest
 
 :IsFloppy
-set PATH=A:\FDSETUP\BIN;A:\FDSETUP\V8POWER
+set PATH=A:\FDSETUP\BIN;A:\FDSETUP\BIN
 if exist A:\FDSETUP\BIN\NUL goto RunInstaller
-set PATH=B:\FDSETUP\BIN;B:\FDSETUP\V8POWER
+set PATH=B:\FDSETUP\BIN;B:\FDSETUP\BIN
 if exist B:\FDSETUP\BIN\NUL goto RunInstaller
 set PATH=
 echo Unable to locate installer.
@@ -99,12 +99,12 @@ goto Done
 
 :HasTemp
 rem echo %TEMP%
-FDSETUP\V8POWER\vinfo /d %TEMP%
+FDSETUP\BIN\vinfo /d %TEMP%
 if errorlevel 1 goto NoDriveC
-FDSETUP\V8POWER\vfdutil /u %TEMP%\TEST????.??? >NUL
+FDSETUP\BIN\vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto NoDriveC
 :PathSetRepeat
-FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\V8POWER\vfdutil /p FDSETUP\ |FDSETUP\V8POWER\vstr /b|set /p TMD=
+FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\BIN\vfdutil /p FDSETUP\ |FDSETUP\BIN\vstr /b|set /p TMD=
 if "%TMD%" == "" goto PathSetRepeat
 set PATH=%TMD%\BIN;%TMD%\V8POWER
 :RepeatInfo

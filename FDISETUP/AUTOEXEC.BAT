@@ -4,7 +4,6 @@ SET LANG=
 rem SET MTCPCFG=%dosdir%\MTCP.CFG
 rem SET WATTCP.CFG=%dosdir%
 SET PATH=%dosdir%\BIN
-SET PATH=%path%;%dosdir%\V8Power
 SET NLSPATH=%dosdir%\NLS
 SET HELPPATH=%dosdir%\HELP
 rem SET TEMP=%dosdir%\TEMP
@@ -61,7 +60,7 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 :SkipLanguageData
 vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 
-if exist SETUP.BAT CALL SETUP.BAT RECOVERY
+rem if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
 set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
 if not exist %LANGFILE% set LANGFILE=%0

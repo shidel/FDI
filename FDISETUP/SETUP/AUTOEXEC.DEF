@@ -12,7 +12,10 @@ SET TMP=%TEMP%
 SET BLASTER=A220 I5 D1 H5 P330
 SET DIRCMD=/P /OGN /4
 SET COPYCMD=/-Y
-if "%config%"=="4" goto end
+
+IF "%config%"=="4" GOTO END
+DEVLOAD /H /Q %dosdir%\BIN\UDVD2.SYS /D:FDCD0001
+
 LH FDAPM APMDOS
 IF "%config%"=="2" LH SHARE
 LH DOSLFN
@@ -28,8 +31,8 @@ REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
 
 MEM /C /N
-IF NOT "%config%"=="4" SHSUCDX /D
-GOTO END
+SHSUCDX /D
+
 :END
 SET AUTOFILE=%0
 SET CFGFILE=$FDRIVE$\FDCONFIG.SYS
@@ -43,27 +46,4 @@ alias auto=edit %0
 set OS_NAME=FreeDOS
 set OS_VERSION=$OSVER$
 
-if exist %dosdir%\V8POWER\NUL goto V8Power
-
-echo Done processing startup files %cfgfile% and %0
-echo Type HELP to get support on commands and navigation
-echo.
-echo  Welcome to the %OS_NAME% %OS_VERSION% operating system (http://www.freedos.org)
-goto DONE
-
-***** V8Power Language specific text data.
-$LANG_TEXT$
-
-:V8Power
-set PATH=%PATH%;%dosdir%\V8POWER
-set LNG=EN
-if "%LANG%" == "" goto NoLanguage
-if %LANG% == $FLANG$ set LNG=$FLANG$
-:NoLanguage
-vecho /p /t %0 DONE.%LNG% %cfgfile% %0
-vecho /p /t %0 HELP.%LNG% HELP
-vecho /p /t %0 WELCOME.%LNG% %OS_NAME% %OS_VERSION% http://www.freedos.org
-vecho
-SET LNG=
-
-:DONE
+if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat

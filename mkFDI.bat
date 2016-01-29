@@ -509,6 +509,7 @@ if exist C:\FREEDOS\TEMP\NUL set TEMP=C:\FREEDOS\TEMP
 if exist C:\TEMP\NUL set TEMP=C:\TEMP
 if not "%TEMP%" == "" goto Start
 echo TEMP directory not configured.
+pushd
 goto CleanUp
 
 :DumpTemp
