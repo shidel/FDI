@@ -7,7 +7,6 @@ base\xcopy
 base\devload
 base\attrib
 base\shsucdx
-base\more
 util\shsufdrv
 base\fdisk
 base\fdapm
