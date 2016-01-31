@@ -1,11 +1,12 @@
 @echo off
 SET DOSDIR=A:\FDSetup
 SET LANG=
+SET PATH=%dosdir%\BIN
+
 rem SET MTCPCFG=%dosdir%\MTCP.CFG
 rem SET WATTCP.CFG=%dosdir%
-SET PATH=%dosdir%\BIN
-SET NLSPATH=%dosdir%\NLS
-SET HELPPATH=%dosdir%\HELP
+rem SET NLSPATH=%dosdir%\NLS
+rem SET HELPPATH=%dosdir%\HELP
 rem SET TEMP=%dosdir%\TEMP
 rem SET TMP=%TEMP%
 rem SET BLASTER=A220 I5 D1 H5 P330
@@ -22,23 +23,24 @@ rem LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
 
 LH FDAPM APMDOS
 
-REM LH SHARE
+rem LH SHARE
 
 LH DOSLFN
-REM NLSFUNC %dosdir%\BIN\COUNTRY.SYS
-REM DISPLAY CON=(EGA),858,2)
-REM MODE CON CP PREP=((858) %dosdir%\CPI\EGA.CPX)
-REM KEYB US,858,%dosdir%\bin\keyboard.sys
-REM CHCP 858
-REM LH PCNTPK INT=0x60
-REM DHCP
-REM MOUSE
+rem NLSFUNC %dosdir%\BIN\COUNTRY.SYS
+rem DISPLAY CON=(EGA),858,2)
+rem MODE CON CP PREP=((858) %dosdir%\CPI\EGA.CPX)
+rem KEYB US,858,%dosdir%\bin\keyboard.sys
+rem CHCP 858
+rem LH PCNTPK INT=0x60
+rem DHCP
+rem MOUSE
 
 rem DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
 
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
 
-REM MEM /C /N
+rem MEM /C /N
+
 SHSUCDX /D
 
 SET AUTOFILE=%0
@@ -63,7 +65,7 @@ vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
 set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
-if not exist %LANGFILE% set LANGFILE=%0
+if not exist %LANGFILE% SET LANGFILE=%0
 vecho /t %LANGFILE% AUTO_HELP HELP
 vecho
 vecho /t %LANGFILE% AUTO_WELCOME %OS_NAME% %OS_VERSION% http://www.freedos.org
