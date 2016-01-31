@@ -1,6 +1,6 @@
 @ECHO off
 
-if not exist %DOSDIR%\V8POWER\VECHO.COM goto SIMPLEMSG
+if not exist %DOSDIR%\BIN\VECHO.COM goto SIMPLEMSG
 if not exist %NLSPATH%\NUL goto SIMPLEMSG
 
 set LANGFILE=%NLSPATH%\WELCOME.%LANG%

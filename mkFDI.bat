@@ -33,6 +33,8 @@ set KERNEL=KERNL386.SYS
 set TGO=0
 set TTRY=3
 
+if "%TZ%" == "" set TZ=EDT
+
 echo FreeDOS install disk creator.
 echo.
 
@@ -292,13 +294,12 @@ set TGO=%TTRY%
 :CodeName
 set TTRY=
 vmath %TIDX% - 1 | set /p TTRY=
-if "%TTRY%" == "" goto CodeLoop
+if "%TTRY%" == "" goto CodeName
 type %TEMP%\LANGNAME.LST| vstr /b/l %TTRY% | vstr /b/f = 1 | set /p TNAME=
 if "%TNAME%" == "" goto CodeName
 echo set _WCI=%TIDX%>>%TEMP%\STAGE300.BAT
 echo set LANG=%TNAME%>>%TEMP%\STAGE300.BAT
 if "%TIDX%" == "1" goto CodeDone
-echo if errorlevel %TGO% goto DoChange>>%TEMP%\STAGE300.BAT
 :CodeDec
 set TIDX=%TTRY%
 vecho , /fLightCyan %TNAME% /s- /fGray /n
@@ -316,6 +317,57 @@ type FDISETUP\SETUP\STAGE300.BAT| grep -A 1000 ^:DoChange >>%TEMP%\STAGE300.BAT
 del %TEMP%\LANGNAME.LST>NUL
 copy /y %TEMP%\STAGE300.BAT %RAMDRV%\FDSETUP\SETUP\STAGE300.BAT>NUL
 del %TEMP%\STAGE300.BAT>NUL
+vecho , /fLightGreen Done /fGray /p
+
+vecho  Creating Welcome install package with /n
+if not exist %TEMP%\WELCOME\NUL mkdir %TEMP%\WELCOME>NUL
+if not exist %TEMP%\WELCOME\APPINFO\NUL mkdir %TEMP%\WELCOME\APPINFO>NUL
+if not exist %TEMP%\WELCOME\BIN\NUL mkdir %TEMP%\WELCOME\BIN>NUL
+if not exist %TEMP%\WELCOME\NLS\NUL mkdir %TEMP%\WELCOME\NLS>NUL
+copy /y WELCOME\WELCOME.BAT %TEMP%\WELCOME\BIN\ >NUL
+:NOWLoop
+date /d | vstr /n/f ' ' 5- | set /p TGO=
+if "%TGO%" == "" goto NOWLoop
+type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ %TGO%>%TEMP%\WELCOME\APPINFO\WELCOME.LSM
+set TGO=
+:NLSCount
+set TCNT=
+dir /a/b/s LANGUAGE\FDSETUP.DEF| grep -iv TEMPLATE\\|vstr /b/l total| set /p TCNT=
+if "%TCNT%" == "" goto NLSCount
+vmath %TCNT% + 1 | set /p TTRY=
+if "%TTRY%" == "" goto NLSCount
+set TIDX=%TCNT%
+vecho /s- /c32 /fYellow %TCNT% /s+ /fGray languages.
+
+:NLSLoop
+if "%TIDX%" == "0" goto NLSDone
+set TTRY=
+vmath %TIDX% - 1 | set /p TTRY=
+if "%TTRY%" == "" goto NLSLoop
+if not "%TIDX%" == "%TCNT%" vecho , /c32 /n
+set TIDX=%TTRY%
+
+:NLSName
+dir /a/b/s LANGUAGE\FDSETUP.DEF|grep -iv TEMPLATE\\|vstr /b/l %TIDX%|vstr /n/f LANGUAGE\ 2-|vstr /n/f \ 1|set /p TNAME=
+if "%TNAME%" == "" goto NLSName
+grep ^AUTO_ LANGUAGE\%TNAME%\FDSETUP.DEF >%TEMP%\WELCOME\NLS\WELCOME.%TNAME%
+vecho /fLightCyan %TNAME% /s- /fGray /n
+goto NLSLoop
+
+:NLSDone
+set TTRY=
+set TGO=
+set TTM=
+set TNAME=
+set TCNT=
+pushd
+vfdutil /c /p %TEMP%\WELCOME\
+if exist ..\WELCOME.ZIP del ..\WELCOME.ZIP >NUL
+zip -r -k -9 ..\WELCOME.ZIP *.* >NUL
+if not exist %DOSDIR%\SETUP\PACKAGES\NUL mkdir %DOSDIR%\SETUP\PACKAGES>NUL
+copy /y ..\WELCOME.ZIP %DOSDIR%\SETUP\PACKAGES\ >NUL
+popd
+
 vecho , /fLightGreen Done /fGray /p
 
 if "%1" == "usb" goto NoPackOverrides
@@ -519,6 +571,7 @@ verrlvl 0
 goto CleanUp
 
 :Done
+rem deltree /y %TEMP%\*.* >NUL
 type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
 type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
 type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=

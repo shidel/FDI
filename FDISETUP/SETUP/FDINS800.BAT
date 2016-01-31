@@ -22,6 +22,9 @@ if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 
+copy /y %TEMP%\REPLACE.001 %TEMP%\REPLACE.002 >NUL
+goto SkipLangText
+
 rem Include translated text.
 type %TEMP%\REPLACE.001|grep -B 1000 -i \$LANG_TEXT\$|grep -iv \$LANG_TEXT\$>%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
@@ -44,6 +47,7 @@ if errorlevel 1 goto Failed
 :NoLangText
 type %TEMP%\REPLACE.001 |grep -A 1000 -i \$LANG_TEXT\$|grep -iv \$LANG_TEXT\$>>%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
+:SkipLangText
 
 :Sticky
 echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
