@@ -319,7 +319,7 @@ copy /y %TEMP%\STAGE300.BAT %RAMDRV%\FDSETUP\SETUP\STAGE300.BAT>NUL
 del %TEMP%\STAGE300.BAT>NUL
 vecho , /fLightGreen Done /fGray /p
 
-vecho  Creating Welcome install package with /n
+vecho  Creating FreeDOS welcome message installation package with /n
 if not exist %TEMP%\WELCOME\NUL mkdir %TEMP%\WELCOME>NUL
 if not exist %TEMP%\WELCOME\APPINFO\NUL mkdir %TEMP%\WELCOME\APPINFO>NUL
 if not exist %TEMP%\WELCOME\BIN\NUL mkdir %TEMP%\WELCOME\BIN>NUL

@@ -60,7 +60,7 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 :SkipLanguageData
 vecho /p Done processing startup files /fCyan %cfgfile% /a7 and /fCyan %0 /a7 /p
 
-rem if exist SETUP.BAT CALL SETUP.BAT RECOVERY
+if exist SETUP.BAT CALL SETUP.BAT RECOVERY
 
 set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
 if not exist %LANGFILE% set LANGFILE=%0
