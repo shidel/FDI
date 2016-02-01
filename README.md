@@ -338,6 +338,8 @@ boot image is also available.
 
     Verify the target drive MBR is not blank.
 
+    These probably wont happen for a very long time:
+
     Maybe, add ability to install from floppy only sources.
 
     Might, deploy a solution to adjust for the long perceived pauses during
