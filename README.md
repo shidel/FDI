@@ -334,9 +334,9 @@ boot image is also available.
 
 ### FDI Roadmap
 
-    Verify, sufficient disk space prior to install.
+    Verify the target drive has sufficient disk space prior to install.
 
-    Should, verify integrity of backup folder and zip backups.
+    Verify the target drive MBR is not blank.
 
     Maybe, add ability to install from floppy only sources.
 
@@ -347,8 +347,6 @@ boot image is also available.
     while coping all the old sources.
 
     (These require some additional tools not yet created for V8Power Tools)
-
-    Maybe, localization support in exit error messages.
 
     Someday, advanced mode, individual package selections. Maybe.
 
@@ -365,3 +363,7 @@ boot image is also available.
 
     Cannot actually install from folder, SYS transfer fails. This could be
     worked around.  But, I'm not going to bother anytime soon.
+
+    If the backup process does not generate an error, corrupt backups will
+    not be detected. Backup file/archive integrety is not validated.
+
