@@ -38,8 +38,8 @@ if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
 REM **** Launch Partitioning Program ****
-if "%FDRIVE%" == "C:" fdisk 1
-if not "%FDRIVE%" == "C:" fdisk 2
+if "%FDRIVE%" == "D:" fdisk 2
+if not "%FDRIVE%" == "D:" fdisk 1
 REM **** Returned from Partitioning ****
 
 vcursor hide
