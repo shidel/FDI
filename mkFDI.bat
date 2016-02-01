@@ -364,7 +364,7 @@ pushd
 vfdutil /c /p %TEMP%\WELCOME\
 if exist ..\WELCOME.ZIP del ..\WELCOME.ZIP >NUL
 zip -r -k -9 ..\WELCOME.ZIP *.* >NUL
-if "%1" == "usb" goto NLSUSB
+
 if not exist %DOSDIR%\SETUP\PACKAGES\NUL mkdir %DOSDIR%\SETUP\PACKAGES>NUL
 copy /y ..\WELCOME.ZIP %DOSDIR%\SETUP\PACKAGES\ >NUL
 popd
@@ -456,13 +456,13 @@ vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
 if not exist %FLOPPY%\FDSETUP\TEMP\NUL mkdir %FLOPPY%\FDSETUP\TEMP >NUL
 
 :RetryCount
-grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /b/l TOTAL | set /p TCNT=
+grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l TOTAL | set /p TCNT=
 if "%TCNT%" == "" goto RetryCount
 set TIDX=0
 
 :CopyLoop
 set TFILE=
-grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /b/l %TIDX% | set /p TFILE=
+grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l %TIDX% | set /p TFILE=
 if "%TFILE%" == "" goto CopyLoop
 :DestLoop
 vfdutil /p %FLOPPY%\%TFILE% | set /p TDIR=
@@ -473,9 +473,14 @@ if "%TOVR%" == "" goto OvrLoop
 if exist %TDIR%\%TFILE%.zip goto RetryInc
 vecho /r5/c32 %CDROM%\%TFILE%.zip "-->" %TDIR% /n
 if not exist %TDIR%\NUL mkdir %TDIR% >NUL
+if "%TFILE%" == "base\welcome" goto SkipPackage
 if exist PACKAGES\%TOVR%.zip goto OverideCD
 copy /y %CDROM%\%TFILE%.zip %TDIR%\ >NUL
 if errorlevel 1 goto CopyFailed
+goto CopyOK
+
+:SkipPackage
+vecho /n , /fLightCyan SKIPPED /fGray
 goto CopyOK
 
 :OverideCD

@@ -2,8 +2,6 @@
 ; These packages are not installed. However, they will be included on the
 ; USB stick and CD ISO images.
 
-net\mtcp
-
 devel\nasm
 devel\fpc
 devel\ow
@@ -12,4 +10,52 @@ net\wget
 net\rsync
 net\curl
 
+devel\fasm
+devel\fbc
+devel\fbc_help
+devel\jwasm
+
+devel\djgpp
+devel\djgpp_bn
+devel\djgpp_bs
+devel\djgpp_db
+devel\djgpp_fq
+devel\djgpp_fx
+devel\djgpp_gc
+devel\djgpp_mk
+devel\djgpp_ob
+devel\djgpp_rh
+devel\djgpp_tx
+
+devel\perl
+devel\upx
+
+net\mtcp
+net\picosntp
+net\picotcp
+net\ping
+net\vmsmount
+net\vncview
+
+util\ansimat
+util\b64
+util\biew
+util\cpied
+util\dos32a
+util\dosidle
+util\gcdrom
+util\less
+util\md5sum
+util\part
+util\tinyaes
+util\slowdos
+util\search
+util\xcdrom
+util\unrtf
+util\utf8tocp
+util\xfdisk
+
+util\opengem
+util\ozonegui
+util\pgme
 
