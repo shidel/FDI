@@ -364,4 +364,4 @@ boot image is also available.
     locations to check later. Might not. We will see.
 
     Cannot actually install from folder, SYS transfer fails. This could be
-    worked around but, but I'm not going to bother.
+    worked around.  But, I'm not going to bother anytime soon.
