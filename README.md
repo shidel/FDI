@@ -334,9 +334,13 @@ boot image is also available.
 
 ### FDI Roadmap
 
+    Verify the target drive MBR is not blank.
+
     Verify the target drive has sufficient disk space prior to install.
 
-    Verify the target drive MBR is not blank.
+    Install language specific command as users default shell.
+
+    Install language specific FDCONFIG.SYS menu items.
 
     These probably wont happen for a very long time:
 
