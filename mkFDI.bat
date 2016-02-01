@@ -300,6 +300,7 @@ if "%TNAME%" == "" goto CodeName
 echo set _WCI=%TIDX%>>%TEMP%\STAGE300.BAT
 echo set LANG=%TNAME%>>%TEMP%\STAGE300.BAT
 if "%TIDX%" == "1" goto CodeDone
+echo if errorlevel %TGO% goto DoChange>>%TEMP%\STAGE300.BAT
 :CodeDec
 set TIDX=%TTRY%
 vecho , /fLightCyan %TNAME% /s- /fGray /n
