@@ -364,6 +364,7 @@ pushd
 vfdutil /c /p %TEMP%\WELCOME\
 if exist ..\WELCOME.ZIP del ..\WELCOME.ZIP >NUL
 zip -r -k -9 ..\WELCOME.ZIP *.* >NUL
+if "%1" == "usb" goto NLSUSB
 if not exist %DOSDIR%\SETUP\PACKAGES\NUL mkdir %DOSDIR%\SETUP\PACKAGES>NUL
 copy /y ..\WELCOME.ZIP %DOSDIR%\SETUP\PACKAGES\ >NUL
 popd

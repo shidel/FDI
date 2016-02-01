@@ -4,6 +4,22 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
+if not "%AUTOFILE%" == "\AUTOEXEC.BAT" goto NotUSBStick
+if "%TEMP%" == "" goto NotUSBStick
+if not exist %TEMP%\NUL goto NotUSBStick
+
+REM Reset Environment Variables on startup of USB stick.
+vfdutil /d %COMSPEC% | set /p DRV=
+
+set DOSDIR=%DRV%\FDSetup
+set PATH=%DOSDIR%\BIN
+set TEMP=%DOSDIR%\TEMP
+set AUTOFILE=%DRV%%AUTOFILE%
+set CFGFILE=%DRV%%CFGFILE%
+set DRV=
+
+:NotUSBStick
+
 rem if "%1" == "RECOVERY" goto RunInstaller
 
 if exist FDSETUP\BIN\vfdutil.com goto AdjustPath
@@ -106,7 +122,7 @@ if errorlevel 1 goto NoDriveC
 :PathSetRepeat
 FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\BIN\vfdutil /p FDSETUP\ |FDSETUP\BIN\vstr /b|set /p TMD=
 if "%TMD%" == "" goto PathSetRepeat
-set PATH=%TMD%\BIN;%TMD%\V8POWER
+set PATH=%TMD%\BIN
 :RepeatInfo
 LBACACHE.COM INFO|grep "Caching floppy"|vstr /b/l TOTAL|set /p TMD=
 if "%TMD%" == "" goto RepeatInfo

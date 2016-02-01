@@ -3,11 +3,12 @@ SET DOSDIR=A:\FDSetup
 SET LANG=
 SET PATH=%dosdir%\BIN
 
+rem SET TEMP=%dosdir%\TEMP
+
 rem SET MTCPCFG=%dosdir%\MTCP.CFG
 rem SET WATTCP.CFG=%dosdir%
 rem SET NLSPATH=%dosdir%\NLS
 rem SET HELPPATH=%dosdir%\HELP
-rem SET TEMP=%dosdir%\TEMP
 rem SET TMP=%TEMP%
 rem SET BLASTER=A220 I5 D1 H5 P330
 rem SET DIRCMD=/P /OGN /4

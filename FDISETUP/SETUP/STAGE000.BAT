@@ -69,12 +69,23 @@ type %TEMP%\FDIMPORT.000|vstr /u/n/s " DOSDIR=" " TDOS="|vstr /n /s "  " " ">%TE
 call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
 del %TEMP%\FDIMPORT.BAT
-if "%TDOS%" == "C:\FDSETUP" goto IgnoreDOSDIR
-if not "%TDOS%" == "" set FTARGET=%TDOS%
-:IgnoreDOSDIR
-set TDOS=
-if "%FTARGET%" == "" goto AdjustData
+
+set FTARGET=%TDOS%
+if "%TDOS%" == "" set FTARGET=C:\FDOS
+if "%TDOS%" == "\FDSetup" set FTARGET=C:\FDOS
+if "%TDOS%" == "\FDSETUP" set FTARGET=C:\FDOS
+
 vfdutil /d %FTARGET% | set /p FDRIVE=
+vfdutil /d \ | set /p TDOS=
+if not "%TDOS%" == "%FDRIVE%" goto NotUSBStick
+set FTARGET=D:\FDOS
+vfdutil /d %FTARGET% | set /p FDRIVE=
+set TDOS=
+
+:NotUSBStick
+vfdutil /f %FBAK% | vstr /f : 2- | set /p TDOS=
+set FBAK=%FDRIVE%%TDOS%
+set TDOS=
 
 :AdjustData
 if not "%HLANG%" == "" set LANG=%HLANG%
@@ -93,3 +104,4 @@ REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN
 set HLANG=
 :Done
+
