@@ -306,6 +306,9 @@ boot image is also available.
                     continue will be also displayed at some points during
                     the installation process.
 
+        FDITEMP.BAT Responsible for creation of TEMP directory that is used
+                    during the installation process.
+
         FDIPKG.BAT  Actual package installer. %1 is package name like "appendx".
                     It is run from the new freedos installation directory
                     %FTARGET% (probably "C:\FDOS") set errorlevel to 0 for
