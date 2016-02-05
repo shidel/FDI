@@ -128,10 +128,7 @@ boot image is also available.
         format, it formats and then rechecks if C is readable. If not, offers
         to reboot or exit.
 
-        STAGE600, Sets up temporary TEMP Directory so I/O redirection can
-        function.  Also, it provides for storage of a couple temporary files.
-        If I/O redirection is still unavailable, it will abort the
-        installation.
+        STAGE600, Reserved
 
         NOTE: Now that a TEMP directory exists, batch files that use I/O
         redirection and utilities like vmath can now be used.
