@@ -38,6 +38,10 @@ REM New config file extension to be used for replacing AUTOEXEC.BAT and
 REM FDCONFIG.SYS.
 set FEXT=DEF
 
+:SetFINSP
+vfdutil /p %0 | set /p FINSP=
+if "%FINSP%" == "" goto SetFINSP
+
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
 set HLANG=%LANG%
 if "%TEMP%" == "" goto AdjustData
