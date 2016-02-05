@@ -27,9 +27,6 @@ REM Target path to install FreeDOS
 set FDRIVE=C:
 set FTARGET=%FDRIVE%\FDOS
 
-REM Default TEMP directory.
-set FTEMP=%FDRIVE%\FDTEMP.$$$
-
 REM Backup path to when archiving.
 set FBAK=%FDRIVE%\FDBACKUP
 

@@ -59,66 +59,10 @@ set OLDPATH=%PATH%
 if "%PATH%" == "A:\FDSetup\BIN" set OLDPATH=
 
 REM Temp Directory Test and Auto-configuration ********************************
-:TempTest
-if not "%TEMP%" == "" goto TempWasSet
-FDSETUP\BIN\vinfo /d C:
-if errorlevel 1 goto NoDriveC
-FDSETUP\BIN\vfdutil /u C:\FDOS\TEST????.??? >NUL
-if not errorlevel 1 goto UseFDOS
-FDSETUP\BIN\vfdutil /u C:\FREEDOS\TEST????.??? >NUL
-if not errorlevel 1 goto UseFREEDOS
-goto UseCUSTOM
-
-:TempWasSet
-FDSETUP\BIN\vinfo /d %TEMP%
-if errorlevel 1 goto ClearTemp
-FDSETUP\BIN\vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 goto ClearTemp
-goto HasTemp
-
-:NoDriveC
-goto NoTemp
-
-:UseFDOS
-if not exist C:\FDOS\TEMP\NUL mkdir C:\FDOS\TEMP
-set TEMP=C:\FDOS\TEMP
-goto HasTemp
-
-:UseFREEDOS
-if not exist C:\FREEDOS\TEMP\NUL mkdir C:\FREEDOS\TEMP
-set TEMP=C:\FREEDOS\TEMP
-goto HasTemp
-
-:UseCUSTOM
-if not exist C:\FDTEMP.$$$\NUL mkdir C:\FDTEMP.$$$
-set TEMP=C:\FDTEMP.$$$
-goto HasTemp
-
-:NoTEMP
-FDSETUP\BIN\vfdutil /u A:\TEST????.??? >NUL
-if errorlevel 1 goto V8Missing
-if exist A:\FDSETUP\BIN\vfdutil.com goto IsFloppy
-goto V8Missing
-
-:ClearTemp
 SET TEMP=
-goto TempTest
+CALL FDSETUP\SETUP\FDITEMP.BAT /Q
+if errorlevel 1 goto NoTemp
 
-:IsFloppy
-set PATH=A:\FDSETUP\BIN;A:\FDSETUP\BIN
-if exist A:\FDSETUP\BIN\NUL goto RunInstaller
-set PATH=B:\FDSETUP\BIN;B:\FDSETUP\BIN
-if exist B:\FDSETUP\BIN\NUL goto RunInstaller
-set PATH=
-echo Unable to locate installer.
-goto Done
-
-:HasTemp
-rem echo %TEMP%
-FDSETUP\BIN\vinfo /d %TEMP%
-if errorlevel 1 goto NoDriveC
-FDSETUP\BIN\vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 goto NoDriveC
 :PathSetRepeat
 FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\BIN\vfdutil /p FDSETUP\ |FDSETUP\BIN\vstr /b|set /p TMD=
 if "%TMD%" == "" goto PathSetRepeat
@@ -146,8 +90,6 @@ goto Afterwards
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 :Afterwards
-vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 set TEMP=
 vfdutil /c /p %0
 popd
 if "%FREBOOT%" == "y" goto DoReboot
@@ -160,6 +102,11 @@ REM going to leave it in here.
 fdapm warmboot
 goto Done
 
+:NoTemp
+vecho "Error creating temporary filesystem used for storage during installation."
+vecho "Unable to continue."
+goto Done
+
 :Error
 vecho "Important installer files were not found. Please verify you have a"
 vecho "complete version or download a new copy."
@@ -168,5 +115,7 @@ REM End of Batch Script *******************************************************
 :Done
 if not "%OLDPATH%" == "" set PATH=%OLDPATH%
 set OLDPATH=
+if not "%OLDTEMP%" == "" set TEMP=%OLDTEMP%
+set OLDTEMP=
 
 :EndOfBatch

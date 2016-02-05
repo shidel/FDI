@@ -149,6 +149,12 @@ if errorlevel 26 set RAMDRV=Z:
 if "%RAMDRV%" == "" goto NoRamDrive
 
 vecho Ramdrive is /fYellow %RAMDRV% /fGray /p
+
+if not exist %TEMP%\NUL goto BadTemp
+vfdutil /d %TEMP% | set /p TDRV=
+if "%TDRV%" == "%RAMDRV%" goto BadTemp
+set TDRV=
+
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
 set DOSDIR=%RAMDRV%\FDSETUP
@@ -540,6 +546,12 @@ goto Error
 :NoRamDrive
 vecho /fLightRed "Unable to create Ramdrive." /fGray
 SHSURDRV /QQ /U
+goto Error
+
+:BadTemp
+vecho /fLightRed "Temp directory %TEMP% cannot be on Ramdrive." /fGray
+set TEMP=
+
 goto Error
 
 :ErrorFDINST

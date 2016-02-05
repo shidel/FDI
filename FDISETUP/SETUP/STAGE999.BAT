@@ -11,18 +11,11 @@ if "%TEMP%" == "" goto IgnoreTemp
 vinfo /d %TEMP%
 if errorlevel 2 goto IgnoreTemp
 
-if exist %TEMP%\FDIPATHS.LST del %TEMP%\FDIPATHS.LST>NUL
-if exist %TEMP%\FDIBINS.LST del %TEMP%\FDIBINS.LST>NUL
-if exist %FTEMP%\NUL DELTREE /y %FTEMP%\*.*>NUL
-if exist %FTEMP%\NUL RMDIR %FTEMP%
-
+if exist %TEMP%\NUL deltree /y %TEMP%\*.*>NUL
 :IgnoreTemp
-set TEMP=%OLDTMP%
-set TMP=%TEMP%
 
 :VarsOnly
 rem if "%FDEBUG%" == "y" goto SkipClear
-set FTEMP=
 set FTHEME=
 
 set FDIDFMT=
