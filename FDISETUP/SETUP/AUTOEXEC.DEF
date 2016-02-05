@@ -43,7 +43,7 @@ alias shutdown=fdapm poweroff
 alias cfg=edit %cfgfile%
 alias auto=edit %0
 
-set OS_NAME=FreeDOS
+set OS_NAME=$OSNAME$
 set OS_VERSION=$OSVER$
 
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat

@@ -61,7 +61,9 @@ type %TEMP%\REPLACE.003 | vstr /n/s $FTARGET$ %DDIR% >%TEMP%\REPLACE.004
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.004 | vstr /n/s $FDRIVE$ C: >%TEMP%\REPLACE.005
 if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.005 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
+type %TEMP%\REPLACE.005 | vstr /n/s $OSNAME$ "%OS_NAME%" >%TEMP%\REPLACE.006
+if errorlevel 1 goto Failed
+type %TEMP%\REPLACE.006 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
