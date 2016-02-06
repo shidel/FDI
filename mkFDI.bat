@@ -162,8 +162,6 @@ set FDNPKG.CFG=SETTINGS\BUILD.CFG
 
 set PATH=%RAMDRV%\FDSETUP\BIN;%RAMDRV%\FDSETUP\V8POWER;%PATH%
 
-if "%1" == "update" goto UpdateOnlyA
-
 vfdutil /d %OLDDOS% | vecho /n Transferring system files from /c32 /fYellow /i /fGrey to Ramdrive
 pushd
 vfdutil /c /p %OLDDOS%
@@ -218,7 +216,6 @@ copy %RAMDRV%\FDSETUP\BIN\COMMAND.COM %RAMDRV%\COMMAND.COM >NUL
 copy %RAMDRV%\FDSETUP\BIN\%KERNEL% %RAMDRV%\KERNEL.SYS >NUL
 vecho ,  /fLightGreen OK /fGray /p
 
-:UpdateOnlyA
 vecho /n "Adding installer files to Ramdrive"
 xcopy /y FDISETUP\*.* %RAMDRV%\ >NUL
 xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
@@ -418,25 +415,7 @@ set TFILE=
 set TIDX=
 vecho , /fLightGreen OK /fGray /p
 
-if "%FLOPPY%" == "A:" goto FormatDisk
-vecho /n Adjusting installer configuration files
-type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s A:\ \>%RAMDRV%\AUTOEXEC.TMP
-copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
-del %RAMDRV%\AUTOEXEC.TMP >NUL
-
-type %RAMDRV%\AUTOEXEC.BAT|vstr /n/s "rem SET TEMP=" "SET TEMP=">%RAMDRV%\AUTOEXEC.TMP
-copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
-del %RAMDRV%\AUTOEXEC.TMP >NUL
-
-type %RAMDRV%\FDCONFIG.SYS|vstr /n/s A:\ \>%RAMDRV%\FDCONFIG.TMP
-copy /y %RAMDRV%\FDCONFIG.TMP %RAMDRV%\FDCONFIG.SYS >NUL
-del %RAMDRV%\FDCONFIG.TMP >NUL
-
-if not exist %RAMDRV%\FDSETUP\TEMP\NUL mkdir %RAMDRV%\FDSETUP\TEMP >NUL
-vecho , /fLightGreen OK /fGray /p
-
 :FormatDisk
-if "%1" == "update" goto UpdateOnlyB
 vecho Press a key to format the disk in drive /fYellow %FLOPPY% /s- /fGray ... /c32 /n
 vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
@@ -455,7 +434,6 @@ vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
 popd
 
-:UpdateOnlyB
 vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
 xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 copy /y %RAMDRV%\AUTOEXEC.BAT %FLOPPY%\ >NUL
@@ -465,7 +443,6 @@ vecho ,  /fLightGreen OK /fGray
 
 if not "%1" == "usb" goto Done
 vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
-if not exist %FLOPPY%\FDSETUP\TEMP\NUL mkdir %FLOPPY%\FDSETUP\TEMP >NUL
 
 :RetryCount
 grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l TOTAL | set /p TCNT=

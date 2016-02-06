@@ -2,6 +2,8 @@
 
 REM Create a Backup folder or Zip archive.
 
+set HTMP=%TEMP%
+
 if "%OBAK%" == "" goto AfterBackup
 if not "%OBAK%" == "n" goto MakeBackup
 goto AfterBackup
@@ -65,7 +67,7 @@ if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 set _BN=1
-if not exist %FTARGET%\NUL goto CopyBackupRun
+if not exist %FTARGET%\NUL goto BackupComplete
 dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :CopyBackupRun
@@ -117,6 +119,8 @@ REM Backup to archive file ****************************************************
 
 if not exist %FBAK%\NUL mkdir %FBAK%
 
+set TEMP=%FBAK%
+
 vfdutil /u %FBAK%\FDOS????.ZIP | set /p _AF=
 set _AL=%TEMP%\FDBACKUP.LST
 date /d>%_AL%
@@ -143,7 +147,7 @@ if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 set _BN=1
-if not exist %FTARGET%\NUL goto ZipBackupRun
+if not exist %FTARGET%\NUL goto BackupComplete
 dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :ZipBackupRun
@@ -199,3 +203,6 @@ set _BN=
 set _BT=
 set _AL=
 set _AF=
+
+set TEMP=%HTMP%
+set HTMP=

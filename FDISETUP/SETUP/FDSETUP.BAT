@@ -4,31 +4,6 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
-REM Test for Presence of V8Power Tools ****************************************
-
-REM Check current errorlevel is 255, then test by clearing it.
-if errorlevel 255 goto ClearError
-
-REM Check by setting errorlevel to 255.
-:CheckPresence
-verrlvl 255
-if errorlevel 255 goto V8Present
-
-REM V8Power Tools are not present.
-:V8Missing
-echo V8Power Tools were not found. Please install them or try booting from the
-echo installation media and trying again.
-goto DontDoAnything
-
-REM Check by setting errorlevel to 0.
-:ClearError
-verrlvl 0
-if errorlevel 1 goto V8Missing
-
-REM V8Power Tools Found *******************************************************
-:V8Present
-verrlvl 0
-
 REM Startup super simple environment free space test **************************
 REM ensure a 1K (Plus a little) of free space is available in the environment.
 REM Should not need this, but here it is anyway.

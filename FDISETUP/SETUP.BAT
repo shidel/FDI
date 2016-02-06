@@ -4,26 +4,6 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
-if not "%AUTOFILE%" == "\AUTOEXEC.BAT" goto NotUSBStick
-if "%TEMP%" == "" goto NotUSBStick
-if not exist %TEMP%\NUL goto NotUSBStick
-
-REM Reset Environment Variables on startup of USB stick.
-vfdutil /d %COMSPEC% | set /p DRV=
-
-set DOSDIR=%DRV%\FDSetup
-set PATH=%DOSDIR%\BIN
-set TEMP=%DOSDIR%\TEMP
-set AUTOFILE=%DRV%%AUTOFILE%
-set CFGFILE=%DRV%%CFGFILE%
-set DRV=
-
-:NotUSBStick
-
-rem if "%1" == "RECOVERY" goto RunInstaller
-
-if exist FDSETUP\BIN\vfdutil.com goto AdjustPath
-
 REM Test for Presence of V8Power Tools ****************************************
 
 REM Check current errorlevel is 255, then test by clearing it.
@@ -50,16 +30,22 @@ REM V8Power Tools Found *******************************************************
 :V8Present
 verrlvl 0
 vfdutil /c /p %0
-goto TempTest
-
-:AdjustPath
 FDSETUP\BIN\vfdutil /c /p %0
 
+REM Reset Environment Variables on startup of USB stick.
+vfdutil /d %COMSPEC% | set /p DRV=
+
 set OLDPATH=%PATH%
-if "%PATH%" == "A:\FDSetup\BIN" set OLDPATH=
+if "%PATH%" == "\FDSetup\BIN" set OLDPATH=
+
+if "%DOSDIR%" == "\FDSetup" set DOSDIR=%DRV%\FDSetup
+if "%PATH%" == "\FDSetup\BIN" set PATH=%DOSDIR%\BIN
+if "%AUTOFILE%" == "\AUTOEXEC.BAT" set AUTOFILE=%DRV%%AUTOFILE%
+if "%AUTOFILE%" == "\FDAUTO.BAT" set AUTOFILE=%DRV%%AUTOFILE%
+if "%CFGFILE%" == "\FDCONFIG.SYS" set CFGFILE=%DRV%%CFGFILE%
+set DRV=
 
 REM Temp Directory Test and Auto-configuration ********************************
-SET TEMP=
 CALL FDSETUP\SETUP\FDITEMP.BAT /Q
 if errorlevel 1 goto NoTemp
 
@@ -67,6 +53,7 @@ if errorlevel 1 goto NoTemp
 FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\BIN\vfdutil /p FDSETUP\ |FDSETUP\BIN\vstr /b|set /p TMD=
 if "%TMD%" == "" goto PathSetRepeat
 set PATH=%TMD%\BIN
+
 :RepeatInfo
 LBACACHE.COM INFO|grep "Caching floppy"|vstr /b/l TOTAL|set /p TMD=
 if "%TMD%" == "" goto RepeatInfo
@@ -108,6 +95,7 @@ vecho "Unable to continue."
 goto Done
 
 :Error
+popd
 vecho "Important installer files were not found. Please verify you have a"
 vecho "complete version or download a new copy."
 

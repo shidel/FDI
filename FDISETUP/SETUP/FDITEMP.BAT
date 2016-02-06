@@ -1,5 +1,6 @@
 @echo off
 
+set TEMP=
 set RETRY=yes
 
 rem if not "%TEMP%" == "" goto TempExists
