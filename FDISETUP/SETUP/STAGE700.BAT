@@ -17,8 +17,11 @@ if not exist ..\..\BASE\KERNEL.ZIP goto MediaLoop
 
 pushd
 cd ..\..
+:SetLoop
 cd | set /p FMEDIA=
+if "%FMEDIA%" == "" goto SetLoop
 popd
+goto MediaFound
 
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 :MediaLoop

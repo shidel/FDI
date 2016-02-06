@@ -12,7 +12,6 @@ vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
-if not exist %2:\BASE\INDEX.LST goto EndOfFile
 set CDROM=%2:
 goto EndOfFile
 
@@ -22,6 +21,7 @@ SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
 
 if "%TEMP%" == "" goto NoTempSet
+deltree /y %TEMP%\*.* >NUL
 pushd
 
 set FLOPPY=A:
