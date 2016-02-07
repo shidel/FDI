@@ -12,13 +12,28 @@ vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
+if not exist %2:\BASE\INDEX.LST goto EndOfFile
 set CDROM=%2:
 goto EndOfFile
 
 :Start
+set SELF=%0
 SET OLDFDN=%FDNPKG.CFG%
 SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
+
+
+set USB=
+
+:ReadSettings
+if "%1" == "" goto ReadDone
+
+if "%1" == "usb" set USB=y
+
+shift
+goto ReadSettings
+
+:ReadDone
 
 if "%TEMP%" == "" goto NoTempSet
 deltree /y %TEMP%\*.* >NUL
@@ -46,15 +61,21 @@ if errorlevel 255 goto V8Found
 verrlvl 0
 if errorlevel 1 goto V8Missing
 :V8Found
-vfdutil /c /p %0
+goto CheckFiles
 :V8TestSkip
+:CheckFiles
+vfdutil /c /p %SELF%
 if not exist FDISETUP\SETUP\NUL goto BadLayout
 if not exist SETTINGS\BUILD.CFG goto BadLayout
 if not exist SETTINGS\PKG_FDI.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
 
 REM Configure Variables and stuff.
-V8POWER\vfdutil /p %0 | set /p TEMPPATH=
+:TempLoop
+cd | set /p TEMPPATH=
+if "%TEMPPATH" == "" goto TempLoop
+V8POWER\vfdutil /p %TEMPPATH%\ | set /p TEMPPATH=
+if "%TEMPPATH" == "" goto TempLoop
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
@@ -74,7 +95,7 @@ set TEMPPATH=
 vgotoxy up up
 vecho /fLightGreen "%OS_NAME% %OS_VERSION% install disk creator." /p
 
-if not "%1" == "usb" goto NotUSB
+if not "%USB%" == "y" goto NotHDImage
 vecho /fLightRed USB Stick creation mode! /fGray /p
 
 set FLOPPY=C:
@@ -96,17 +117,19 @@ vecho /fYellow /bBlack /n Set Destination for installation media? /c32
 vecho /fWhite /bBlack /e %FLOPPY% /fGray /p
 
 vfdutil /d %TEMP% | set /p TDIR=
-if not "%TDIR%" == "%FLOPPY%" goto NotUSB
+if not "%TDIR%" == "%FLOPPY%" goto TempDirOK
 
 pushd
 vecho /fLightRed Temp directory cannot be on target filesystem. /fGray
 goto Error
 
-:NotUSB
+:TempDirOK
+
+:NotHDImage
 set TDIR=
 
 vecho "Searching for CD-ROM containing packages" /n
-for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %0 findcd %%d
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %SELF% findcd %%d
 if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
 vecho /e "Package media is" /fYellow %CDROM% /fGray /p
@@ -337,7 +360,7 @@ copy /y WELCOME\WELCOME.BAT %TEMP%\WELCOME\BIN\ >NUL
 :NOWLoop
 date /d | vstr /n/f ' ' 5- | set /p TGO=
 if "%TGO%" == "" goto NOWLoop
-type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ %TGO%>%TEMP%\WELCOME\APPINFO\WELCOME.LSM
+type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ "%TGO%">%TEMP%\WELCOME\APPINFO\WELCOME.LSM
 set TGO=
 :NLSCount
 set TCNT=
@@ -380,7 +403,7 @@ popd
 
 vecho , /fLightGreen Done /fGray /p
 
-if "%1" == "usb" goto NoPackOverrides
+if "%USB%" == "y" goto NoPackOverrides
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
@@ -441,7 +464,7 @@ copy /y %RAMDRV%\FDCONFIG.SYS %FLOPPY%\ >NUL
 copy /y %RAMDRV%\SETUP.BAT %FLOPPY%\ >NUL
 vecho ,  /fLightGreen OK /fGray
 
-if not "%1" == "usb" goto Done
+if not "%USB%" == "y" goto Done
 vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
 
 :RetryCount
@@ -618,6 +641,8 @@ set TGO=
 set TTRY=
 set TDIR=
 
+set USB=
+
 
 SET FDNPKG.CFG=%OLDFDN%
 SET DOSDIR=%OLDDOS%
@@ -625,6 +650,7 @@ SET PATH=%OLDPATH%
 SET OLDFDN=
 SET OLDDOS=
 SET OLDPATH=
+set SELF=
 popd
 
 :EndOfFile
