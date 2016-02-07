@@ -21,10 +21,10 @@ if "%OBAK%" == "z" goto ZipBackup
 REM Backup to a renamed file  *************************************************
 :SimpleBackup
 vfdutil /u %FDRIVE%\FDOS_OLD.??? | set /p _AF=
-
+if "%_AF" == "" goto SimpleBackup
 mkdir %_AF%
 
-set _AL=%TEMP%\FDBACKUP.LST
+set _AL=%_AF%\FDBACKUP.LST
 date /d>%_AL%
 rem echo %_AL% >>%_AL%
 
