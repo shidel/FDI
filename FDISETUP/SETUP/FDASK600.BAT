@@ -4,10 +4,12 @@ REM Installation package selection.
 
 if exist %FINSP%\FDPLALL.LST goto HasAllPacs
 if "%FADV%" == "y" goto BaseAdvOnly
+:BaseOnly
 set PF=PAC_FRAME_B
 set PO=PAC_OPTS_B
 goto PromptUser
 :BaseAdvOnly
+if not exist %DOSDIR%\BIN\FDIMPLES.EXE goto BaseOnly
 set PF=PAC_FRAME_BD
 set PO=PAC_OPTS_BD
 goto PromptUser
