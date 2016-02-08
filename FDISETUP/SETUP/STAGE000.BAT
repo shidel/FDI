@@ -91,6 +91,7 @@ set TDOS=
 :AdjustData
 if not "%HLANG%" == "" set LANG=%HLANG%
 if "%LANG%" == "" set FCLANG=y
+if "%FADV%" == "y" set FCLANG=y
 if "%LANG%" == "" set LANG=EN
 
 REM Remove trailing spaces from LANG variable.
