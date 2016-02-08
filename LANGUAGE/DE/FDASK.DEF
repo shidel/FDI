@@ -54,11 +54,19 @@ XFERN="  Nein  - Keine Systemdateien kopieren."
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w72 /h11 /c
 PAC_OPTS=/w52 /h7 /c
+PAC_FRAME_B=/w72 /h8 /c
+PAC_OPTS_B=/w52 /h4 /c
+PAC_FRAME_D=/w72 /h14 /c
+PAC_OPTS_D=/w52 /h10 /c
+PAC_FRAME_BD=/w72 /h11 /c
+PAC_OPTS_BD=/w52 /h7 /c
 PACS?=Welche /f %1 %2 /f %3 Pakete m”chten Sie installieren?
 PACBO="  Nur Basispakete installieren."
 PACBS="  Nur Basispakete mit Quelldateien installieren."
 PACAO="  Alle Pakete."
 PACAS="  Alle Pakete mit ihren Quelldateien."
+PACDO_ADV="  Bin„rpakete ausgew„hlt."
+PACDS_ADV="  Ausgew„hlte Pakete und deren Quellen."
 
 ; FDASK700 - Reserved
 

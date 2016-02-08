@@ -299,8 +299,36 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:PACKAGES
-call %SELF% CLS PACKAGES FDASK
+:PACBO
+call %SELF% CLS PACBO FDASK
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_B
+vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS_B
+vecho /t %FLANG% PACBO
+vecho /n /t %FLANG% PACBS
+vchoice /a %TFC% Ctrl-C /d 3
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+set FADV=
+:PACBD
+call %SELF% CLS PACBD FDASK
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_BD
+vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS_BD
+vecho /t %FLANG% PACBO
+vecho /t %FLANG% PACBS
+vecho
+vecho /t %FLANG% PACDO_ADV
+vecho /n /t %FLANG% PACDS_ADV
+vchoice /a %TFC% Ctrl-C /d 3
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:PACAO
+call %SELF% CLS PACAO FDASK
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
@@ -310,6 +338,25 @@ vecho /t %FLANG% PACBS
 vecho
 vecho /t %FLANG% PACAO
 vecho /n /t %FLANG% PACAS
+vchoice /a %TFC% Ctrl-C /d 3
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+set FADV=
+:PACDO
+call %SELF% CLS PACDO FDASK
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_D
+vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS_D
+vecho /t %FLANG% PACBO
+vecho /t %FLANG% PACBS
+vecho
+vecho /t %FLANG% PACAO
+vecho /t %FLANG% PACAS
+vecho
+vecho /t %FLANG% PACDO_ADV
+vecho /n /t %FLANG% PACDS_ADV
 vchoice /a %TFC% Ctrl-C /d 3
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%

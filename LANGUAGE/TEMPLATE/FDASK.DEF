@@ -93,10 +93,13 @@ XFERN="  No  - Do not transfer system files."
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w40 /h7 /c
+; Base only available
 PAC_FRAME_B=/w60 /h8 /c
 PAC_OPTS_B=/w42 /h4 /c
+; All and detailed framing
 PAC_FRAME_D=/w60 /h14 /c
 PAC_OPTS_D=/w42 /h10 /c
+; Base only and detailed
 PAC_FRAME_BD=/w60 /h11 /c
 PAC_OPTS_BD=/w42 /h7 /c
 ; vecho "What FreeDOS packages do you want to install?"

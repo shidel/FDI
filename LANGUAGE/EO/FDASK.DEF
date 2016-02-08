@@ -52,8 +52,14 @@ XFERY="  Jes - Kopiu majstrajn dosierojn."
 XFERN="  Ne  - Ne kopiu majstrajn dosierojn."
 
 ; FDASK600 - Package group selection.
-PAC_FRAME=/w60 /h11 /c
-PAC_OPTS=/w50 /h7 /c
+PAC_FRAME=/w64 /h11 /c
+PAC_OPTS=/w54 /h7 /c
+PAC_FRAME_B=/w64 /h8 /c
+PAC_OPTS_B=/w54 /h4 /c
+PAC_FRAME_D=/w64 /h14 /c
+PAC_OPTS_D=/w54 /h10 /c
+PAC_FRAME_BD=/w64 /h11 /c
+PAC_OPTS_BD=/w54 /h7 /c
 PACS?=Kiuj el tiuj /f %1 %2 /f %3 pakajhoj vi deziras enhavigi?
 PACBO="  Nur bazajn pakajhojn."
 PACBS="  Nur bazajn pakajhojn kun fonttekstoj."

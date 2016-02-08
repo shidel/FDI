@@ -53,14 +53,20 @@ XFERN="  Nee - Kopieer de nieuwe bestanden NIET."
 
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
-PAC_OPTS=/w40 /h7 /c
+PAC_OPTS=/w42 /h7 /c
+PAC_FRAME_B=/w60 /h8 /c
+PAC_OPTS_B=/w42 /h4 /c
+PAC_FRAME_D=/w60 /h14 /c
+PAC_OPTS_D=/w46 /h10 /c
+PAC_FRAME_BD=/w60 /h11 /c
+PAC_OPTS_BD=/w46 /h7 /c
 PACS?=welke /f %1 %2 /f %3 pakketten wilt u installeren?
 PACBO="  Alleen basis pakketten."
 PACBS="  Alleen basis pakketen met broncode."
 PACAO="  Alle pakketten."
 PACAS="  Alle pakketten met broncode."
 PACDO_ADV="  Geselecteerde binary pakketen."
-PACDS_ADV="  Geselecteerde pakketten en hun broncode.
+PACDS_ADV="  Geselecteerde pakketten en hun broncode."
 
 ; FDASK700 - Reserved
 

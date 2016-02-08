@@ -56,8 +56,14 @@ XFERY="  Oui - Transf‚rer les fichiers systŠmes."
 XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
 
 ; FDASK600 - Package group selection.
-PAC_FRAME=/w72 /h11 /c
-PAC_OPTS=/w64 /h7 /c
+PAC_FRAME=/w74 /h11 /c
+PAC_OPTS=/w66 /h7 /c
+PAC_FRAME_B=/w74 /h8 /c
+PAC_OPTS_B=/w66 /h4 /c
+PAC_FRAME_D=/w74 /h14 /c
+PAC_OPTS_D=/w66 /h10 /c
+PAC_FRAME_BD=/w74 /h11 /c
+PAC_OPTS_BD=/w66 /h7 /c
 ; vecho "What FreeDOS packages do you want to install?"
 PACS?=Quels paquetages /f %1 %2 /f %3 d‚sirez-vous installer?
 PACBO="  Uniquement les paquetages essentiels."
@@ -65,7 +71,7 @@ PACBS="  Uniquement les paquetages essentiels avec leur code source."
 PACAO="  Tout les paquetages."
 PACAS="  Tout les paquetages incluant leur code source."
 PACDO_ADV="  Un choix personnel de paquetages binaires."
-PACDS_ADV="  Un choix personnel de paquetages incluant leur code source.
+PACDS_ADV="  Un choix personnel de paquetages incluant leur code source."
 
 ; FDASK700 - Reserved
 
