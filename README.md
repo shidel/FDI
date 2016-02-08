@@ -21,7 +21,7 @@ Download the latest version of [V8Power Tools](http://up.lod.bz/V8Power/latest)
 and place the binaries in the V8POWER subdirectory.
 
 Create a FreeDOS package repository disc. One can be downloaded from
-[Mateusz's Reopsitory](http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/).
+[Mateusz's Repository](http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.1/repos/).
 
 FDINST from the FDNPKG package must be installed.<br>
 SHSUFDRV package must also be installed.<br>
