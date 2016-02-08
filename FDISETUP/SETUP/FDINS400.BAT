@@ -12,9 +12,18 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
 vecho /n /t %FLANG% RMOS %TFH% %FTARGET% %TFF%
 vdelay %FDEL%
 
-attrib -R -S -H %FTARGET% >NUL
+if exist %FDRIVE%\AUTOEXEC.BAT attrib -R -S -H %FDRIVE%\AUTOEXEC.BAT >NUL
+if exist %FDRIVE%\FDAUTO.BAT attrib -R -S -H %FDRIVE%\FDAUTO.BAT >NUL
+if exist %FDRIVE%\CONFIG.SYS attrib -R -S -H %FDRIVE%\CONFIG.SYS >NUL
+if exist %FDRIVE%\FDCONFIG.SYS attrib -R -S -H %FDRIVE%\FDCONFIG.SYS >NUL
+if exist %FDRIVE%\COMMAND.COM attrib -R -S -H %FDRIVE%\COMMAND.SYS >NUL
+if exist %FDRIVE%\KERNEL.SYS attrib -R -S -H %FDRIVE%\KERNEL.SYS >NUL
 
+if exist %FTARGET%\NUL attrib -R -S -H %FTARGET% >NUL
+
+:CountLoop
 dir /ON /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
+if "%_BT%%" == "" goto CountLoop
 
 if "%_BT%" == "0" goto NoFileAttrib
 attrib -R -S -H /D %FTARGET%\ >NUL
