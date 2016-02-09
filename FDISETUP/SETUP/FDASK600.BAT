@@ -1,6 +1,7 @@
 @echo off
 
 REM Installation package selection.
+:Beginning
 
 if exist %FINSP%\FDPLALL.LST goto HasAllPacs
 if "%FADV%" == "y" goto BaseAdvOnly
@@ -89,6 +90,7 @@ set OALL=?
 set OSRC=n
 %DOSDIR%\BIN\FDIMPLES.EXE
 if errorlevel 200 FDICTRLC.BAT %0
+if errorlevel 1 goto Beginning
 goto Done
 
 :OptDetailedSrc
@@ -96,6 +98,7 @@ set OALL=?
 set OSRC=y
 %DOSDIR%\BIN\FDIMPLES.EXE
 if errorlevel 200 FDICTRLC.BAT %0
+if errorlevel 1 goto Beginning
 goto Done
 
 :Done

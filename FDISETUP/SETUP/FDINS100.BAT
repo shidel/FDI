@@ -16,5 +16,13 @@ REM copy %FINSP%\FDPLALL.LST %TEMP%\MYPACKS.LST
 REM type %FINSP%\MYLIST.LST >>%TEMP%\MYPACKS.LST
 REM set FKPGS=%TEMP%\MYPACKS.LST
 
+if not "%OALL%" == "?" goto NotCustom
+if not exist %TEMP%\FDIMPLES.LST goto NotCustom
+set FPKGS=%TEMP%\FDIMPLES.LST
+goto Done
+
+:NotCustom
 set FPKGS=%FINSP%\FDPLBASE.LST
 if "%OALL%" == "y" set FPKGS=%FINSP%\FDPLALL.LST
+
+:Done
