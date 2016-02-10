@@ -37,8 +37,10 @@ image.
 
 (Warning: all previous ramdisks will be shutdown!!)
 
-Please note,
-boot image is also available.
+Please note, a boot image is also available.
+
+Also, a quick and easy "build from scratch" demo is available on YouTube as
+[FreeDOS 1.2+ custom install media](https://youtu.be/9daLiLdG6SM).
 
 * * *
 
