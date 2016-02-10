@@ -54,8 +54,13 @@ vprogres /f %TFP% 100
 vdelay %FDEL%
 
 REM Restore Preserved Package Data and FreeDOS files if Present
-if not exist %TEMP%\SAVED\NUL goto NoSavedData
-xcopy /E /N %TEMP%\SAVED\*.* %FTARGET%\ >NUL
+if "%FPBAK%" == "" goto NoSavedData
+if not exist %FPBAK%\NUL goto NoSavedData
+xcopy /S /N %FPBAK%\*.* %FTARGET%\ >NUL
+deltree /Y %FPBAK%\*.* >NUL
+rmdir %FPBAK% >NUL
+set FPBAK=
+
 :NoSavedData
 verrlvl 0
 goto Success
@@ -83,6 +88,7 @@ vdelay %FDEL%
 verrlvl 0
 
 :Done
+
 set _PA=
 set _PI=
 set _PM=

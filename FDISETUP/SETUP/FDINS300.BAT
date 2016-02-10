@@ -69,11 +69,10 @@ goto AbortPkg
 if not "%OCLEAN%" == "y" goto PkgNoSave
 if not exist %FTARGET%\PACKAGES\NUL goto PkgNoSave
 
-rem xcopy /E %FTARGET%\APPINFO\*.* %TEMP%\SAVED\APPINFO\ >NUL
-xcopy /E %FTARGET%\PACKAGES\*.* %TEMP%\SAVED\PACKAGES\ >NUL
-echo %FTARGET%\ | vstr /n /s '\' '\\' | set /p _PA=
-
-rem grep -h -i %_PA% %FTARGET%\PACKAGES\*.LST to %TEMP%\GREP.LOG
+:ListLoop
+set FPBAK=%DRIVE%\PKGFILES.FDI
+if not exist %FPBAK%\NUL mkdir %FPBAK% >NUL
+xcopy /E /Y %FTARGET%\PACKAGES\*.* %FPBAK%\PACKAGES\ >NUL
 
 :PkgNoSave
 vdelay %FDEL%

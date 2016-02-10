@@ -23,6 +23,7 @@ type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$
 if errorlevel 1 goto Failed
 
 copy /y %TEMP%\REPLACE.001 %TEMP%\REPLACE.002 >NUL
+del %TEMP%\REPLACE.001 >NUL
 
 :Sticky
 echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
@@ -32,22 +33,29 @@ set DDIR=C:\%DDIR%
 rem set LANG, DOSDIR and etc in AUTOEXEC.BAT
 type %TEMP%\REPLACE.002 | vstr /n/s $FLANG$ %LANG% >%TEMP%\REPLACE.003
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.002 >NUL
 type %TEMP%\REPLACE.003 | vstr /n/s $FTARGET$ %DDIR% >%TEMP%\REPLACE.004
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.003 >NUL
 type %TEMP%\REPLACE.004 | vstr /n/s $FDRIVE$ C: >%TEMP%\REPLACE.005
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.004 >NUL
 type %TEMP%\REPLACE.005 | vstr /n/s $OSNAME$ "%OS_NAME%" >%TEMP%\REPLACE.006
+del %TEMP%\REPLACE.005 >NUL
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.006 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.006 >NUL
 
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.001 >NUL
 type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.002 >NUL
 
 set DDIR=
 
