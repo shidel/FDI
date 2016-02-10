@@ -37,6 +37,7 @@ REM Backup to a renamed file  *************************************************
 vfdutil /u %FDRIVE%\FDOS_OLD.??? | set /p _AF=
 if "%_AF" == "" goto SimpleBackup
 mkdir %_AF%
+set TEMP=%_AF%
 
 set _AL=%_AF%\FDBACKUP.LST
 date /d>%_AL%
@@ -48,19 +49,27 @@ vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
 REM copy Config files to root directory as old versions.
+:FDAutoLoop
 vfdutil /u %FDRIVE%\FDAUTO.??? | set /p _BF=
+if "%_BF%" == "" goto FDAutoLoop
 if exist %FDRIVE%\FDAUTO.BAT copy %FDRIVE%\FDAUTO.BAT %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
+:AutoLoop
 vfdutil /u %FDRIVE%\AUTOEXEC.??? | set /p _BF=
+if "%_BF%" == "" goto AutoLoop
 if exist %FDRIVE%\AUTOEXEC.BAT copy %FDRIVE%\AUTOEXEC.BAT %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
+:CfgLoop
 vfdutil /u %FDRIVE%\CONFIG.??? | set /p _BF=
+if "%_BF%" == "" goto CfgLoop
 if exist %FDRIVE%\CONFIG.SYS copy %FDRIVE%\CONFIG.SYS %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
+:FDCfgLoop
 vfdutil /u %FDRIVE%\FDCONFIG.??? | set /p _BF=
+if "%_BF%" == "" goto FDCfgLoop
 if exist %FDRIVE%\FDCONFIG.SYS copy %FDRIVE%\FDCONFIG.SYS %_BF% >NUL
 if errorlevel 1 goto CopyBackupFailed
 
@@ -130,7 +139,6 @@ goto CopyBackupLoop
 
 REM Backup to archive file ****************************************************
 :ZipBackup
-
 if not exist %FBAK%\NUL mkdir %FBAK%
 
 set TEMP=%FBAK%

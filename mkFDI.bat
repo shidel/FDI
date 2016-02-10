@@ -21,7 +21,8 @@ set SELF=%0
 SET OLDFDN=%FDNPKG.CFG%
 SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
-
+SET OSN=%OS_NAME%
+SET OSV=%OS_VERSION%
 
 set USB=
 
@@ -53,13 +54,15 @@ if "%TZ%" == "" set TZ=EDT
 echo FreeDOS install disk creator.
 echo.
 
+:V8Retry
+
 if exist V8POWER\VERRLVL.COM goto V8TestSkip
 if errorlevel 255 goto ClearError
 verrlvl 255
 if errorlevel 255 goto V8Found
 :ClearError
 verrlvl 0
-if errorlevel 1 goto V8Missing
+if errorlevel 1 goto MissingV8
 :V8Found
 goto CheckFiles
 :V8TestSkip
@@ -78,6 +81,7 @@ V8POWER\vfdutil /p %TEMPPATH%\ | set /p TEMPPATH=
 if "%TEMPPATH" == "" goto TempLoop
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 
+set TTRY=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 :RepeatNAME
 type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i PLATFORM|vstr /b/f = 2|set /p OS_NAME=
@@ -92,7 +96,7 @@ if "%VOLUMEID%" == "" goto RepeatID
 type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i URL|vstr /b/f = 2|set /p OS_URL=
 if "%OS_URL%" == "" goto RepeatURL
 
-set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
+set PATH=%TEMPPATH%\V8POWER;%DOSDIR%\BIN
 set TEMPPATH=
 
 vgotoxy up up
@@ -520,12 +524,17 @@ vecho , /fLightRed Failed. /fGray /p
 goto Error
 
 :MissingV8
+if "%TTRY%" == "" goto V8TryAgain
 echo ERROR: V8Power Tools are missing.
 echo.
 echo Download the latest version from 'http://up.lod.bz/V8Power'.
 echo Then extract them making sure the V8PT binaries are located in the
 echo 'V8POWER' subdirectory. Then run this batch file again.
 goto CleanUp
+
+:V8TryAgain
+set TTRY=again
+goto V8Retry
 
 :MissingSHSURDRV
 vecho /fLightRed "Unable to create Ramdrive." /fGray
@@ -605,7 +614,8 @@ type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
 type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
 dir /on /a /b /p- /s %CDROM%\*.zip | vstr /b/l TOTAL | set /p COUNT=
 
-vecho /p /fYellow %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%)
+vecho /p /fLightGreen %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%) /n
+vecho /c32 /fYellow "%OS_URL%" /fGray
 vecho /fWhite %LANGS% /fGray languages, /fWhite %LANGM% /fGray on menu.
 vecho /fWhite %USED% /fGray of /fWhite %COUNT% /fGray packages used for boot image.
 vecho Total packages in BASE /fWhite %BASE% /fGray /s- , /s+ ALL /fWhite %ALL% /fGray & EXTRA /fWhite %XTRA% /fGray /s-  .
@@ -621,8 +631,10 @@ verrlvl 0
 goto CleanUp
 
 :CleanUp
-set OS_NAME=
-set OS_VERSION=
+set OS_NAME=%OSN%
+set OS_VERSION=%OSV%
+set OSN=
+set OSV=
 set VOLUMEID=
 set FLOPPY=
 set VOLUME=
@@ -647,7 +659,6 @@ set TDIR=
 set USB=
 set OS_URL=
 
-
 SET FDNPKG.CFG=%OLDFDN%
 SET DOSDIR=%OLDDOS%
 SET PATH=%OLDPATH%
@@ -656,5 +667,9 @@ SET OLDDOS=
 SET OLDPATH=
 set SELF=
 popd
+
+if "%TEMP%" == "" goto EndOfFile
+if not exist %TEMP%\NUL goto EndOfFile
+deltree /Y %TEMP%\*.* >NUL
 
 :EndOfFile
