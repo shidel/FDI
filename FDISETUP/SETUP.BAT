@@ -67,6 +67,13 @@ pushd
 vfdutil /c /p %0
 if not exist FDSETUP\SETUP\FDSETUP.BAT goto Error
 if "%1" == "RECOVERY" goto Booted
+if "%1" == "/?" goto ShowHelp
+if "%1" == "/h" goto ShowHelp
+if "%1" == "/H" goto ShowHelp
+if "%1" == "/help" goto ShowHelp
+if "%1" == "/HELP" goto ShowHelp
+if "%1" == "help" goto ShowHelp
+if "%1" == "/HELP" goto ShowHelp
 
 :Manual
 if not exist FDSETUP\BIN\COMMAND.COM goto Error
@@ -75,6 +82,13 @@ goto Afterwards
 
 :Booted
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+goto Afterwards
+
+:ShowHelp
+vecho /p /fLightGreen FreeDOS /fLightCyan 1.2 /s- /fWhite + /fGray " Installer (" /fWhite FDI /fGray ") version 1.00."
+vecho Released Under GPL v2.0 License.
+vecho Copyright 2016 Jerome Shidel. /p
+vecho For advanced mode installation, use: /s- /fDarkGray ' "' /fWhite "SETUP adv" /fDarkGray '"' /fGray /p
 
 :Afterwards
 popd
