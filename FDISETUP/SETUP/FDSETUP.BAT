@@ -257,6 +257,7 @@ if "%FREBOOT%" == "y" goto DoReboot
 if "%FREBOOT%" == "n" goto DoExit
 
 set FDRIVE=
+set FTARGET=
 
 goto DontDoAnything
 
@@ -288,10 +289,10 @@ set FREBOOT=
 vcls /a 0x07
 call FDILANG.BAT FDTHANK FDSETUP
 if exist FDTHANK.BAT call FDTHANK.BAT
-if not "%FDRIVE%" == "" %FDRIVE%
-if not "%FDRIVE%" == "" cd \
 set FLANG=
-set FDRIVE=
+if exist FDSWPENV.BAT call FDSWPENV.BAT
+if not "%FDRIVE%" == "" cd %FDRIVE%\
+cd \
 
 REM End of Batch Script *******************************************************
 :DontDoAnything

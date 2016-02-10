@@ -199,6 +199,10 @@ boot image is also available.
         FPKGS       = Set in FPINS600 and points to list of binary packages
                     to be installed.
 
+        FPSKP       = When "y", installer will ignore missing packages.
+                    Otherwise, a missing package will cause an error. Default
+                    is "y".
+
         FEXT        = File extension of new source AUTOEXEC.BAT and FDCONFIG.SYS
                     files that will be used to replace existing versions.
                     The default setting is "DEF". (AUTOEXEC.DEF, FDCONFIG.DEF)
@@ -271,7 +275,9 @@ boot image is also available.
 
         FDINS700    Installs binary and source packages.
 
-        FDINS800    Copy new configuration files, maybe. If so, also
+        FDINS800    Install language specific command.com.
+
+        FDINS900    Copy new configuration files, maybe. If so, also
                     creates the VERSION.FDI file for testing if this
                     version of the OS is already installed. It will use
                     the AUTOEXEC.DEF and FDCONFIG.DEF template files to
@@ -331,6 +337,10 @@ boot image is also available.
         FDNOTICE.BAT If run during the boot process and this version is
                      already installed, this file will be called instead of
                      automatically starting the installer.
+
+        FDSWPENV.BAT If installed and not rebooted, this is run immediately
+                     after the FDTHANK.BAT message to switch to the installed
+                    version of the operating system.
 
 ### FDI Roadmap
 

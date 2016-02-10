@@ -6,14 +6,15 @@ if "%OSYS%" == "y" goto DoOption
 goto AfterOption
 
 :DoOption
-vfdutil /d %FTARGET% | set /p _C=
-
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XSYS_FRAME
-vecho /n /t %FLANG% XSYS %TFH% %_C% %TFF%
+vecho /n /t %FLANG% XSYS %TFH% %FDRIVE% %TFF%
 vdelay %FDEL%
 
-sys %_C%>NUL
+if exist %FDRIVE%\COMMAND.COM attrib -R -S -H %FDRIVE%\COMMAND.COM >NUL
+if exist %FDRIVE%\KERNEL.SYS attrib -R -S -H %FDRIVE%\KERNEL.SYS >NUL
+
+sys %FDRIVE%>NUL
 if errorlevel 1 goto Failed
 verrlvl 0
 
@@ -27,9 +28,8 @@ vdelay %FDEL%
 goto AfterOption
 
 :Failed
-set FERROR="System file transfer to %_C% failed."
-call FDFAIL.BAT cc ERROR_XSYS %_C%
+set FERROR="System file transfer to %FDRIVE% failed."
+call FDFAIL.BAT cc ERROR_XSYS %FDRIVE%
 verrlvl 1
 
 :AfterOption
-set _C=

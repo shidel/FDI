@@ -23,7 +23,6 @@ set FFOUND=
 set FINSP=
 set OLDTMP=
 set FCURSOR=
-set FTARGET=
 set HTARGET=
 set FBAK=
 set FVERB=
@@ -33,6 +32,7 @@ set FLANG=
 if not "%FCLANG%" == "" set LANG=
 set FCLANG=
 set FPKGS=
+set FPSKP=
 
 rem clear built-in installer options settings
 set OVOL=

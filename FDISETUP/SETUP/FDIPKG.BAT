@@ -6,7 +6,7 @@ REM Package installation mini-batch utility.
 vfdutil /n %1 | set /p TEMPFILE=
 if exist %FINSP%\PACKAGES\%TEMPFILE%.ZIP goto OverrideA
 if exist %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP goto OverrideB
-if not exist %FMEDIA%\%1.zip goto Failed
+if not exist %FMEDIA%\%1.zip goto Missing
 fdinst install %FMEDIA%\%1.zip >nul
 :CheckSuccess
 if errorlevel 1 goto Failed
@@ -19,6 +19,9 @@ goto CheckSuccess
 :OverrideB
 fdinst install %FINSP%\..\PACKAGES\%TEMPFILE%.ZIP >nul
 goto CheckSuccess
+
+:Missing
+if "%FPSKP%" == "y" goto Success
 
 :Failed
 verrlvl 1

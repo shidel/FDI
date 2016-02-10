@@ -38,6 +38,9 @@ REM New config file extension to be used for replacing AUTOEXEC.BAT and
 REM FDCONFIG.SYS.
 set FEXT=DEF
 
+REM Skip Missing packages.
+set FPSKP=y
+
 :SetFINSP
 vfdutil /p %0 | set /p FINSP=
 if "%FINSP%" == "" goto SetFINSP

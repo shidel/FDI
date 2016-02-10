@@ -77,9 +77,10 @@ goto Afterwards
 call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 :Afterwards
-vfdutil /c /p %0
 popd
 if "%FREBOOT%" == "y" goto DoReboot
+if not "%FDRIVE%" == "" %FDRIVE%
+cd \
 goto Done
 
 REM Should never get here anymore since the reboot process used by vpause
@@ -107,3 +108,5 @@ if not "%OLDTEMP%" == "" set TEMP=%OLDTEMP%
 set OLDTEMP=
 
 :EndOfBatch
+set FDRIVE=
+set FTARGET=

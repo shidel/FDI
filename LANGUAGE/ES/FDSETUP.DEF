@@ -67,7 +67,7 @@ GATHERING="Recopilaci¢n de informaci¢n para prepararse para la instalaci¢n."
 
 ; STAGE800 - Installing
 INSTALL_FRAME=/w60 /h10 /c
-INSTALL_OPTS=/w46 /h4 /c
+INSTALL_OPTS=/w50 /h4 /c
 INSTALL=/s- "Ahora estamos listos para instalar " /f %1 "%2" /f %3 .
 INSTALL?="¨Quieres instalar ahora?"
 INSTALL_YES="  S¡ - Por favor, instale %1."

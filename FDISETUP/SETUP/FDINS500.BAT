@@ -6,33 +6,38 @@ if "%OCFG%" == "y" goto MaybeOption
 goto AfterOption
 
 :MaybeOption
-vfdutil /d %FTARGET% | set /p _C=
-if exist %_C%\AUTOEXEC.BAT goto DoOption
-if exist %_C%\FDAUTO.BAT goto DoOption
-if exist %_C%\CONFIG.SYS goto DoOption
-if exist %_C%\FDCONFIG.SYS goto DoOption
+if exist %FDRIVE%\AUTOEXEC.BAT goto DoOption
+if exist %FDRIVE%\FDAUTO.BAT goto DoOption
+if exist %FDRIVE%\CONFIG.SYS goto DoOption
+if exist %FDRIVE%\FDCONFIG.SYS goto DoOption
 goto AfterOption
 
 :DoOption
+
+if exist %FDRIVE%\FDAUTO.BAT attrib -R -S -H %FDRIVE%\FDAUTO.BAT >NUL
+if exist %FDRIVE%\AUTOEXEC.BAT attrib -R -S -H %FDRIVE%\AUTOEXEC.BAT >NUL
+if exist %FDRIVE%\CONFIG.SYS attrib -R -S -H %FDRIVE%\CONFIG.SYS >NUL
+if exist %FDRIVE%\FDCONFIG.SYS attrib -R -S -H %FDRIVE%\FDCONFIG.SYS >NUL
+
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
 vecho /n /t %FLANG% CLEAN
 vdelay %FDEL%
 
-if exist %_C%\AUTOEXEC.BAT attrib -R -S -H %_C%\AUTOEXEC.BAT >NUL
-if exist %_C%\AUTOEXEC.BAT del %_C%\AUTOEXEC.BAT
+if exist %FDRIVE%\AUTOEXEC.BAT attrib -R -S -H %FDRIVE%\AUTOEXEC.BAT >NUL
+if exist %FDRIVE%\AUTOEXEC.BAT del %FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
-if exist %_C%\FDAUTO.BAT attrib -R -S -H %_C%\FDAUTO.BAT >NUL
-if exist %_C%\FDAUTO.BAT del %_C%\FDAUTO.BAT
+if exist %FDRIVE%\FDAUTO.BAT attrib -R -S -H %FDRIVE%\FDAUTO.BAT >NUL
+if exist %FDRIVE%\FDAUTO.BAT del %FDRIVE%\FDAUTO.BAT
 if errorlevel 1 goto Failed
 
-if exist %_C%\CONFIG.SYS attrib -R -S -H %_C%\CONFIG.SYS >NUL
-if exist %_C%\CONFIG.SYS del %_C%\CONFIG.SYS
+if exist %FDRIVE%\CONFIG.SYS attrib -R -S -H %FDRIVE%\CONFIG.SYS >NUL
+if exist %FDRIVE%\CONFIG.SYS del %FDRIVE%\CONFIG.SYS
 if errorlevel 1 goto Failed
 
-if exist %_C%\FDCONFIG.SYS attrib -R -S -H %_C%\FDCONFIG.SYS >NUL
-if exist %_C%\FDCONFIG.SYS del %_C%\FDCONFIG.SYS
+if exist %FDRIVE%\FDCONFIG.SYS attrib -R -S -H %FDRIVE%\FDCONFIG.SYS >NUL
+if exist %FDRIVE%\FDCONFIG.SYS del %FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 verrlvl 0
 
@@ -51,4 +56,3 @@ call FDFAIL.BAT cc ERROR_REMOS
 verrlvl 1
 
 :AfterOption
-set _C=

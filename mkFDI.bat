@@ -88,6 +88,9 @@ if "%OS_VERSION%" == "" goto RepeatVER
 :RepeatID
 type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VOLUME|vstr /b/f = 2|set /p VOLUMEID=
 if "%VOLUMEID%" == "" goto RepeatID
+:RepeatURL
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i URL|vstr /b/f = 2|set /p OS_URL=
+if "%OS_URL%" == "" goto RepeatURL
 
 set PATH=%DOSDIR%\BIN;%TEMPPATH%\V8POWER
 set TEMPPATH=
@@ -356,7 +359,7 @@ if not exist %TEMP%\WELCOME\NUL mkdir %TEMP%\WELCOME>NUL
 if not exist %TEMP%\WELCOME\APPINFO\NUL mkdir %TEMP%\WELCOME\APPINFO>NUL
 if not exist %TEMP%\WELCOME\BIN\NUL mkdir %TEMP%\WELCOME\BIN>NUL
 if not exist %TEMP%\WELCOME\NLS\NUL mkdir %TEMP%\WELCOME\NLS>NUL
-copy /y WELCOME\WELCOME.BAT %TEMP%\WELCOME\BIN\ >NUL
+type WELCOME\WELCOME.BAT| vstr /n/s $URL$ "%OS_URL%">%TEMP%\WELCOME\BIN\WELCOME.BAT
 :NOWLoop
 date /d | vstr /n/f ' ' 5- | set /p TGO=
 if "%TGO%" == "" goto NOWLoop
@@ -642,6 +645,7 @@ set TTRY=
 set TDIR=
 
 set USB=
+set OS_URL=
 
 
 SET FDNPKG.CFG=%OLDFDN%
