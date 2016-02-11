@@ -45,26 +45,36 @@ set FPSKP=y
 vfdutil /p %0 | set /p FINSP=
 if "%FINSP%" == "" goto SetFINSP
 
+:CheckAmC
+vfdutil /d \ | set /p TDOS=
+if "%TDOS%" == "" goto CheckAmC
+if not "%TDOS%" == "C:" goto ImNotC
+if not "%TDOS%" == "%FDRIVE%" goto ImNotC
+set FDRIVE=D:
+set FTARGET=D:\FDOS
+:ImNotC
+set TDOS=
+
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
 set HLANG=%LANG%
-if "%TEMP%" == "" goto AdjustData
+
 vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto AdjustData
-vfdutil /u C:\TEST????.??? >NUL
+vfdutil /u %FDRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto AdjustData
 
 echo @ECHO OFF>%TEMP%\FDIMPORT.000
-if not exist C:\FDCONFIG.SYS goto NoFDCONFIG
-grep -i "!SET " C:\FDCONFIG.SYS |grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+if not exist %FDRIVE%\FDCONFIG.SYS goto NoFDCONFIG
+grep -i "!SET " %FDRIVE%\FDCONFIG.SYS |grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
 goto CheckAuto
 
 :NoFDCONFIG
-if not exist C:\CONFIG.SYS goto CheckAuto
-grep -i "!SET " C:\FDCONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+if not exist %FDRIVE%\CONFIG.SYS goto CheckAuto
+grep -i "!SET " %FDRIVE%\FDCONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
 
 :CheckAuto
-if not exist C:\AUTOEXEC.BAT goto NoAuto
-grep -i -v "REM " C:\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
+if not exist %FDRIVE%\AUTOEXEC.BAT goto NoAuto
+grep -i -v "REM " %FDRIVE%\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
 
 :NoAuto
 if not exist %TEMP%\FDIMPORT.000 goto Done
