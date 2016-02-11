@@ -72,15 +72,13 @@ if not exist FDISETUP\SETUP\NUL goto BadLayout
 if not exist SETTINGS\BUILD.CFG goto BadLayout
 if not exist SETTINGS\PKG_FDI.LST goto BadLayout
 if not exist FDISETUP\SETUP\STAGE000.BAT goto BadLayout
-
 REM Configure Variables and stuff.
 :TempLoop
 cd | set /p TEMPPATH=
-if "%TEMPPATH" == "" goto TempLoop
+if "%TEMPPATH%" == "" goto TempLoop
 V8POWER\vfdutil /p %TEMPPATH%\ | set /p TEMPPATH=
-if "%TEMPPATH" == "" goto TempLoop
+if "%TEMPPATH%" == "" goto TempLoop
 if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
-
 set TTRY=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 :RepeatNAME
