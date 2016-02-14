@@ -4,79 +4,20 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
-REM Startup super simple environment free space test **************************
-REM ensure a 1K (Plus a little) of free space is available in the environment.
-REM Should not need this, but here it is anyway.
-set _A=0123456789012345
-set _A=%_A%%_A%%_A%%_A%%_A%%_A%
-set _B=%_A%
-if "%_B%" == "" goto FailEnvTest
-set _C=%_B%
-if "%_C%" == "" goto FailEnvTest
-set _D=%_C%
-if "%_D%" == "" goto FailEnvTest
-set _E=%_D%
-if "%_E%" == "" goto FailEnvTest
-set _F=%_E%
-if "%_F%" == "" goto FailEnvTest
-set _G=%_F%
-if "%_G%" == "" goto FailEnvTest
-set _H=%_G%
-if "%_H%" == "" goto FailEnvTest
-set _I=%_H%
-if "%_I%" == "" goto FailEnvTest
-set _J=%_I%
-if "%_J%" == "" goto FailEnvTest
-set _K=%_J%
-if "%_K%" == "" goto FailEnvTest
-
-verrlvl 0
-goto EnvTestCleanup
-
-:FailEnvTest
-verrlvl 1
-
-:EnvTestCleanup
-set _A=
-set _B=
-set _C=
-set _D=
-set _E=
-set _F=
-set _G=
-set _H=
-set _I=
-set _J=
-set _K=
-
-if errorlevel 1 goto NoEnvSpace
-
-REM Test for I/O redirection **************************************************
-REM Test if SET /P is available. It does not function under DOSBox, PC-DOS,
-REM MS-DOS and under the FreeDOS 4DOS shell. The standard FreeDOS shell and
-REM later versions of Windows DOS support it.
-
-set FPIPES=NO
-if "%TEMP%" == "" goto NoPipeSupport
-echo. | set /p FPIPES=
-if "%FPIPES%" == "NO" goto NoPipeSupport
-echo y| set /p FPIPES=
-if not "%FPIPES%" == "y" goto NoPipeSupport
+set FCURSOR=normal
+if "%TEMP%" == "" goto NoReadCursor
 vcursor | set /p FCURSOR=
-
-:NoPipeSupport
-set FPIPES=
+:NoReadCursor
 
 REM Configure initial mode ****************************************************
 REM Change to directory and path of this batch file.
-vfdutil /c /p "%0"
+vfdutil /c /p %0
 
 REM Configure commmand-line options
 set FADV=
-set FRECOVER=
+set FBOOTED=
 
-if "%1" == "recovery" set FRECOVER=y
-if "%1" == "RECOVERY" set FRECOVER=y
+if "%1" == "BOOT" set FBOOTED=y
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
 
@@ -92,7 +33,7 @@ call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Detect if this version is already installed
-if not "%FRECOVER%" == "y" goto SkipInstallCheck
+if not "%FBOOTED%" == "y" goto SkipInstallCheck
 set FSTAGE=100
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
@@ -136,12 +77,17 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
-REM Pre install configuration and temp directory setups.
+REM Reserved. Final stage prior to testing requirements and user prompts.
 set FSTAGE=600
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
+
+REM Beyond this point, a temp directory is required.
+set FSTAGE=TMP
+call FDITEMP.BAT REQUIRED
+if errorlevel 1 goto Error
 
 REM Check requirements if testing is present.
 call FDILANG.BAT FDCHECK FDSETUP
@@ -201,21 +147,15 @@ goto Finished
 
 REM Installer failed from missing stage file **********************************
 :Error
-set FSTAGE=999
 call FDILANG.BAT FDSETUP
-if not exist STAGE%FSTAGE%.BAT goto NoCleanupStage
-call STAGE%FSTAGE%.BAT
+if not exist STAGE999.BAT goto NoCleanupStage
+call STAGE999.BAT
 :NoCleanupStage
 vcls /a 0x07
 call FDILANG.BAT FDSETUP
 vecho /t %FLANG% STAGE_ERROR %FSTAGE%
 set FDRIVE=
 goto Finished
-
-:NoEnvSpace
-vfdutil /c/p %0
-set FERROR="Insufficient free environment space."
-goto AbortedNoCleanup
 
 REM Installer failed to install or was aborted ********************************
 :Aborted
@@ -244,7 +184,7 @@ REM Post execution cleanup ****************************************************
 vfdutil /c /p %0
 
 set FADV=
-set FRECOVER=
+set FBOOTED=
 set FSTAGE=
 set FCURSOR=
 set FERROR=

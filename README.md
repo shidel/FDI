@@ -90,7 +90,7 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
 
 ### What the installer does.
 
-    AUTOEXEC.BAT calls SETUP.BAT RECOVERY
+    AUTOEXEC.BAT calls SETUP.BAT BOOT
 
     SETUP.BAT
 
@@ -107,7 +107,7 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
         built-in default settings are stored. Things like New Volume Label,
         OS Version and etc.
 
-        If RECOVERY option was present at launceh, tests if this version of
+        If BOOT option was present at launceh, tests if this version of
         FreeDOS is already installed using STAGE100. If so, it just exists to
         the prompt with a welcome message. Otherwise, it proceeds with
         installation process.
@@ -204,10 +204,6 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
         FPSKP       = When "y", installer will ignore missing packages.
                     Otherwise, a missing package will cause an error. Default
                     is "y".
-
-        FEXT        = File extension of new source AUTOEXEC.BAT and FDCONFIG.SYS
-                    files that will be used to replace existing versions.
-                    The default setting is "DEF". (AUTOEXEC.DEF, FDCONFIG.DEF)
 
         FLANG       = Current Language translation file.
 

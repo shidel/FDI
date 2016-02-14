@@ -15,11 +15,11 @@ vdelay %FDEL%
 REM Simple Autoexec.bat creation
 
 rem Embed Language configuration and codepage.
-type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\REPLACE.001
+type %FINSP%\AUTOEXEC.DEF |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
-type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
+type %FINSP%\AUTOEXEC.DEF |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 
 copy /y %TEMP%\REPLACE.001 %TEMP%\REPLACE.002 >NUL
@@ -48,7 +48,7 @@ if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.006 >NUL
 
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
-type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
+type %FINSP%\FDCONFIG.DEF | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed

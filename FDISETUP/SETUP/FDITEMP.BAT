@@ -1,18 +1,23 @@
 @echo off
 
-set TEMP=
 set RETRY=yes
 
-rem if not "%TEMP%" == "" goto TempExists
+if "%TEMP%" == "" goto MakeTemp
+vfdutil /u %TEMP%\TEST????.??? >NUL
+if errorlevel 1 goto MakeTemp
+goto Done
+
+:MakeTemp
+set TEMP=
+if "%1" == "REQUIRED" goto Required
 
 :Begining
 verrlvl 1
-SHSURDRV /QQ /U
+SHSURDRV /QQ /U >NUL
 if errorlevel 2 goto NotLoaded
 if not errorlevel 1 goto NoRamDrive
 :NotLoaded
-SHSURDRV /QQ /D:200K,A
-if errorlevel 28 goto NoRamDrive
+SHSURDRV /QQ /C /D:100K,A >NUL
 if errorlevel 27 goto NoRamDrive
 if errorlevel  1 set RAMDRV=A:
 if errorlevel  2 set RAMDRV=B:
@@ -46,8 +51,7 @@ set TEMP=%RAMDRV%\TEMP
 set RAMDRV=
 set RETRY=
 
-if "%1" == "/Q" goto TempExists
-if "%1" == "/q" goto TempExists
+if "%1" == "QUITE" goto TempExists
 
 echo Temporary directory set to %TEMP%.
 
@@ -66,6 +70,26 @@ goto Begining
 if not "%RETRY%" == "" goto TryAgain
 set RAMDRV=
 set TEMP=
-set RETRY=
 verrlvl 1
+goto Done
+
+:Required
+vinfo /d %FDRIVE%
+if errorlevel 1 goto Failed
+vfdutil /u %FDRIVE%\????????.??? >NUL
+if errorlevel 1 goto Failed
+set FTMP=%FDRIVE%\FDITEMP.$$$
+if exist %FTMP%\NUL goto PathExists
+mkdir %FTMP% >NUL
+if not exist %FTMP%\NUL goto Failed
+:PathExists
+set TEMP=%FTMP%
+goto done
+
+:Failed
+set TEMP=
+set FTMP=
+verrlvl 1
+
 :Done
+set RETRY=

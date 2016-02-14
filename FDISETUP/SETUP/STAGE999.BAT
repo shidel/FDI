@@ -7,6 +7,12 @@ vfdutil /c /p %0
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 
+if "%FTMP%" == "" goto NoHDTemp
+if not exist %FTMP%\NUL goto NoHDTemp
+deltree /Y %FTMP%\*.* >NUL
+rmdir %FTMP% >NUL
+:NoHDTemp
+
 if "%TEMP%" == "" goto IgnoreTemp
 vinfo /d %TEMP%
 if errorlevel 2 goto IgnoreTemp
@@ -27,12 +33,12 @@ set HTARGET=
 set FBAK=
 set FVERB=
 set FMEDIA=
-set FEXT=
 set FLANG=
 if not "%FCLANG%" == "" set LANG=
 set FCLANG=
 set FPKGS=
 set FPSKP=
+set FTMP=
 
 rem clear built-in installer options settings
 set OVOL=

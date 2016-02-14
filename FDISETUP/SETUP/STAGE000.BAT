@@ -24,7 +24,8 @@ REM Pause after displaying non-interactive messages. (milliseconds)
 set FDEL=2000
 
 REM Target path to install FreeDOS
-set FDRIVE=C:
+if not "%FINSD%" == "C:" set FDRIVE=C:
+if "%FINSD%" == "C:" set FDRIVE=D:
 set FTARGET=%FDRIVE%\FDOS
 
 REM Backup path to when archiving.
@@ -34,34 +35,20 @@ REM Show when little operations that complete.
 set FVERB=n
 if "%FADV%" == "y" set FVERB=y
 
-REM New config file extension to be used for replacing AUTOEXEC.BAT and
-REM FDCONFIG.SYS.
-set FEXT=DEF
-
 REM Skip Missing packages.
 set FPSKP=y
 
-:SetFINSP
-vfdutil /p %0 | set /p FINSP=
-if "%FINSP%" == "" goto SetFINSP
-
-:CheckAmC
-vfdutil /d \ | set /p TDOS=
-if "%TDOS%" == "" goto CheckAmC
-if not "%TDOS%" == "C:" goto ImNotC
-if not "%TDOS%" == "%FDRIVE%" goto ImNotC
-set FDRIVE=D:
-set FTARGET=D:\FDOS
-:ImNotC
-set TDOS=
+REM Set installers path
+SET FINSP=%FINSD%\FDSETUP\SETUP
 
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
 set HLANG=%LANG%
 
+if "%TEMP%" == "" goto NoImport
 vfdutil /u %TEMP%\TEST????.??? >NUL
-if errorlevel 1 goto AdjustData
+if errorlevel 1 goto NoImport
 vfdutil /u %FDRIVE%\TEST????.??? >NUL
-if errorlevel 1 goto AdjustData
+if errorlevel 1 goto NoImport
 
 echo @ECHO OFF>%TEMP%\FDIMPORT.000
 if not exist %FDRIVE%\FDCONFIG.SYS goto NoFDCONFIG
@@ -84,21 +71,20 @@ call %TEMP%\FDIMPORT.BAT
 del %TEMP%\FDIMPORT.000
 del %TEMP%\FDIMPORT.BAT
 
-set FTARGET=%TDOS%
-if "%TDOS%" == "" set FTARGET=C:\FDOS
-if "%TDOS%" == "\FDSetup" set FTARGET=C:\FDOS
-if "%TDOS%" == "\FDSETUP" set FTARGET=C:\FDOS
+if "%TDOS%" == "" goto NoImport
+if "%TDOS%" == "\FDSetup" goto NoImport
+if "%TDOS%" == "\FDSETUP" goto NoImport
+SET FTARGET=%TDOS%
 
 vfdutil /d %FTARGET% | set /p FDRIVE=
-vfdutil /d \ | set /p TDOS=
-if not "%TDOS%" == "%FDRIVE%" goto NotUSBStick
+if not "%FBOOTD%" == "%FDRIVE%" goto NotUSBStick
 set FTARGET=D:\FDOS
-vfdutil /d %FTARGET% | set /p FDRIVE=
-set TDOS=
+set FDRIVE=D:
 
 :NotUSBStick
-vfdutil /f %FBAK% | vstr /f : 2- | set /p TDOS=
-set FBAK=%FDRIVE%%TDOS%
+set FBAK=%FDRIVE%\FDBACKUP
+
+:NoImport
 set TDOS=
 
 :AdjustData

@@ -4,123 +4,224 @@ REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
-REM Test for Presence of V8Power Tools ****************************************
+if "%1" == "RELOAD" goto SkipReload
 
-REM Check current errorlevel is 255, then test by clearing it.
-if errorlevel 255 goto ClearError
+REM Change to drive of SETUP.BAT -- Probably **********************************
+if "%1" == "BOOT" goto SkipDriveChange
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP" %%d:
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP.BAT" %%d:
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP" %%d:
+for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP.BAT" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:setup" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:setup.bat" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup.bat" %%d:
+cd \
+:SkipDriveChange
+REM Verify we ar on drive with SETUP.BAT **************************************
+if "%1" == "BOOT" goto DriveCheckPassed
+if exist SETUP.BAT goto DriveCheckPassed
+if exist FDSETUP\BIN\VFDUTIL.COM goto DriveCheckPassed
+goto FailDriveCheck
 
-REM Check by setting errorlevel to 255.
-:CheckPresence
-verrlvl 255
-if errorlevel 255 goto V8Present
+:DriveCheckPassed
+REM Change to drive of SETUP.BAT with V8Power Tools ***************************
+FDSETUP\BIN\VFDUTIL.COM /c /p %0
+REM Set Drive of Installer ****************************************************
+:FDIDrive
 
-REM V8Power Tools are not present. ********************************************
-:V8Missing
-echo.
-echo V8Power Tools were not found. Please install them or try booting from the
-echo installation media and trying again.
+if "%1" == "RELOAD" goto SkipFDIDrive
+set FINSD=
+FDSETUP\BIN\VFDUTIL /x /d %0
+if errorlevel 1 set FINSD=A:
+if errorlevel 2 set FINSD=B:
+if errorlevel 3 set FINSD=C:
+if errorlevel 4 set FINSD=D:
+if errorlevel 5 set FINSD=E:
+if errorlevel 6 set FINSD=F:
+if errorlevel 7 set FINSD=G:
+if errorlevel 8 set FINSD=H:
+if errorlevel 9 set FINSD=I:
+if errorlevel 10 set FINSD=J:
+if errorlevel 11 set FINSD=K:
+if errorlevel 12 set FINSD=L:
+if errorlevel 13 set FINSD=M:
+if errorlevel 14 set FINSD=N:
+if errorlevel 15 set FINSD=O:
+if errorlevel 16 set FINSD=P:
+if errorlevel 17 set FINSD=Q:
+if errorlevel 18 set FINSD=R:
+if errorlevel 19 set FINSD=S:
+if errorlevel 20 set FINSD=T:
+if errorlevel 21 set FINSD=U:
+if errorlevel 22 set FINSD=V:
+if errorlevel 23 set FINSD=W:
+if errorlevel 24 set FINSD=X:
+if errorlevel 25 set FINSD=Y:
+if errorlevel 26 set FINSD=Z:
+if errorlevel 27 set FINSD=
+:SkipFDIDrive
+
+REM Set Boot Drive ************************************************************
+:BootDrive
+
+if "%1" == "RELOAD" goto SkipBootDrive
+set FBOOTD=
+FDSETUP\BIN\VFDUTIL /x /d %COMSPEC%
+if errorlevel 1 set FBOOTD=A:
+if errorlevel 2 set FBOOTD=B:
+if errorlevel 3 set FBOOTD=C:
+if errorlevel 4 set FBOOTD=D:
+if errorlevel 5 set FBOOTD=E:
+if errorlevel 6 set FBOOTD=F:
+if errorlevel 7 set FBOOTD=G:
+if errorlevel 8 set FBOOTD=H:
+if errorlevel 9 set FBOOTD=I:
+if errorlevel 10 set FBOOTD=J:
+if errorlevel 11 set FBOOTD=K:
+if errorlevel 12 set FBOOTD=L:
+if errorlevel 13 set FBOOTD=M:
+if errorlevel 14 set FBOOTD=N:
+if errorlevel 15 set FBOOTD=O:
+if errorlevel 16 set FBOOTD=P:
+if errorlevel 17 set FBOOTD=Q:
+if errorlevel 18 set FBOOTD=R:
+if errorlevel 19 set FBOOTD=S:
+if errorlevel 20 set FBOOTD=T:
+if errorlevel 21 set FBOOTD=U:
+if errorlevel 22 set FBOOTD=V:
+if errorlevel 23 set FBOOTD=W:
+if errorlevel 24 set FBOOTD=X:
+if errorlevel 25 set FBOOTD=Y:
+if errorlevel 26 set FBOOTD=Z:
+if errorlevel 27 set FBOOTD=
+:SkipBootDrive
+
+REM Relaunch with FreeCOM shell ***********************************************
+:ReloadShell
+if "%1" == "BOOT" goto SkipReload
+if not exist FDSETUP\BIN\COMMAND.COM goto MissingFreeCOM
+FDSETUP\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
+if errorlevel 1 goto FailReload
 goto Done
 
-REM Check by setting errorlevel to 0.
-:ClearError
-verrlvl 0
-if errorlevel 1 goto V8Missing
+:SkipReload
 
-REM V8Power Tools Found *******************************************************
-:V8Present
-verrlvl 0
-vfdutil /c /p %0
-FDSETUP\BIN\vfdutil /c /p %0
+REM Startup super simple environment free space test **************************
+REM ensure a 1K (Plus a little) of free space is available in the environment.
+REM Should not need this, but here it is anyway.
+set _A=0123456789012345
+set _A=%_A%%_A%%_A%%_A%%_A%%_A%
+set _B=%_A%
+if "%_B%" == "" goto FailEnvTest
+set _C=%_B%
+if "%_C%" == "" goto FailEnvTest
+set _D=%_C%
+if "%_D%" == "" goto FailEnvTest
+set _E=%_D%
+if "%_E%" == "" goto FailEnvTest
+set _F=%_E%
+if "%_F%" == "" goto FailEnvTest
+set _G=%_F%
+if "%_G%" == "" goto FailEnvTest
+set _H=%_G%
+if "%_H%" == "" goto FailEnvTest
+set _I=%_H%
+if "%_I%" == "" goto FailEnvTest
+set _J=%_I%
+if "%_J%" == "" goto FailEnvTest
+set _K=%_J%
+if "%_K%" == "" goto FailEnvTest
+set _A=
+set _B=
+set _C=
+set _D=
+set _E=
+set _F=
+set _G=
+set _H=
+set _I=
+set _J=
+set _K=
+goto EnvPassed
 
-REM Reset Environment Variables on startup of USB stick.
-vfdutil /d %COMSPEC% | set /p DRV=
+:FailEnvTest
+set _A=
+set _B=
+set _C=
+set _D=
+set _E=
+set _F=
+set _G=
+set _H=
+set _I=
+set _J=
+set _K=
+goto BadOS
 
+:EnvPassed
+
+REM Adjust Booted environment variables ***************************************
+:AdjustEnv
+
+if not "%1" == "BOOT" goto NoAdjustEnv
+set PATH=%FBOOTD%%PATH%
+set DOSDIR=%FBOOTD%%DOSDIR%
+set AUTOFILE=%FBOOTD%%AUTOFILE%
+set CFGFILE=%FBOOTD%%CFGFILE%
+if exist %DOSDIR%\NLS\NUL set NLSPATH=%DOSDIR%\NLS
+if exist %DOSDIR%\HELP\NUL set HELPPATH=%DOSDIR%\HELP
+
+:NoAdjustEnv
+
+REM Adjust pathspec ***********************************************************
 set OLDPATH=%PATH%
-if "%PATH%" == "\FDSetup\BIN" set OLDPATH=
+set PATH=%FINSD%\FDSETUP\BIN;%FINSD%\FDSETUP\SETUP
 
-if "%DOSDIR%" == "\FDSetup" set DOSDIR=%DRV%\FDSetup
-if "%PATH%" == "\FDSetup\BIN" set PATH=%DOSDIR%\BIN
-if "%AUTOFILE%" == "\AUTOEXEC.BAT" set AUTOFILE=%DRV%%AUTOFILE%
-if "%AUTOFILE%" == "\FDAUTO.BAT" set AUTOFILE=%DRV%%AUTOFILE%
-if "%CFGFILE%" == "\FDCONFIG.SYS" set CFGFILE=%DRV%%CFGFILE%
-set DRV=
-
-REM Temp Directory Test and Auto-configuration ********************************
-CALL FDSETUP\SETUP\FDITEMP.BAT /Q
-if errorlevel 1 goto NoTemp
-
-:PathSetRepeat
-FDSETUP\BIN\COMMAND.COM /E:1024 /C FDSETUP\BIN\vfdutil /p FDSETUP\ |FDSETUP\BIN\vstr /b|set /p TMD=
-if "%TMD%" == "" goto PathSetRepeat
-set PATH=%TMD%\BIN
-
-:RepeatInfo
-LBACACHE.COM INFO|grep "Caching floppy"|vstr /b/l TOTAL|set /p TMD=
-if "%TMD%" == "" goto RepeatInfo
-if "%TMD%" == "0" LBACACHE.COM buf 20 flop >NUL
-set TMD=
-goto RunInstaller
+REM Create Temporary Temp *****************************************************
+call FDSETUP\SETUP\FDITEMP.BAT QUITE
 
 REM Run Installer *************************************************************
-:RunInstaller
-pushd
-vfdutil /c /p %0
-if not exist FDSETUP\SETUP\FDSETUP.BAT goto Error
-if "%1" == "RECOVERY" goto Booted
-if "%1" == "/?" goto ShowHelp
-if "%1" == "/h" goto ShowHelp
-if "%1" == "/H" goto ShowHelp
-if "%1" == "/help" goto ShowHelp
-if "%1" == "/HELP" goto ShowHelp
-if "%1" == "help" goto ShowHelp
-if "%1" == "/HELP" goto ShowHelp
+rem echo %1 %2 %3 %4 %5
+rem echo Boot Drive %FBOOTD%
+rem echo Installer Drive %FINSD%
 
-:Manual
-if not exist FDSETUP\BIN\COMMAND.COM goto Error
-FDSETUP\BIN\COMMAND.COM /E:2048 /C FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
-goto Afterwards
-
-:Booted
-call FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
-goto Afterwards
-
-:ShowHelp
-vecho /p /fLightGreen FreeDOS /fLightCyan 1.2 /s- /fWhite + /fGray " Installer (" /fWhite FDI /fGray ") version 1.00."
-vecho Released Under GPL v2.0 License.
-vecho Copyright 2016 Jerome Shidel. /p
-vecho For advanced mode installation, use: /s- /fDarkGray ' "' /fWhite "SETUP adv" /fDarkGray '"' /fGray /p
-
-:Afterwards
-popd
-if "%FREBOOT%" == "y" goto DoReboot
-if not "%FDRIVE%" == "" %FDRIVE%
+if "%1" == "RELOAD" shift
+CALL FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 cd \
-goto Done
 
-REM Should never get here anymore since the reboot process used by vpause
-REM will work from a sub shell. But, It doesn't hurt anything. So, I'm just
-REM going to leave it in here.
-:DoReboot
-fdapm warmboot
-goto Done
-
-:NoTemp
-vecho "Error creating temporary filesystem used for storage during installation."
-vecho "Unable to continue."
-goto Done
-
-:Error
-popd
-vecho "Important installer files were not found. Please verify you have a"
-vecho "complete version or download a new copy."
-
-REM End of Batch Script *******************************************************
-:Done
+REM Restore Settings **********************************************************
 if not "%OLDPATH%" == "" set PATH=%OLDPATH%
-set OLDPATH=
 if not "%OLDTEMP%" == "" set TEMP=%OLDTEMP%
-set OLDTEMP=
 
-:EndOfBatch
+goto Done
+
+REM Failed to locate this file ************************************************
+:FailDriveCheck
+echo Unable to locate some files required for the installation. Please change to the
+echo drive that contains this installation program and try again.
+goto EndOfBatch
+
+REM Failed to pass tests after shell reload ***********************************
+:FailBadOS
+echo Unable to run installer under the current operating system and/or its settings.
+echo Please boot the installer from one of the media provided for the installer.
+goto EndOfBatch
+
+REM Failed to perform shell reload ********************************************
+:FailReload
+echo %LOADFAIL%
+echo Unable to start the FreeCOM shell required for installation. Please boot the
+echo installer from one of the media provided for the installer.
+goto EndOfBatch
+
+:Done
+set OLDPATH=
+set OLDTEMP=
 set FDRIVE=
 set FTARGET=
+set FINSD=
+set FBOOTD=
+
+REM End of Batch Script *******************************************************
+:EndOfBatch

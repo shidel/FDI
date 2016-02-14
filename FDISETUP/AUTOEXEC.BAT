@@ -42,7 +42,7 @@ rem MEM /C /N
 SHSUCDX /D
 
 LH DOSLFN
-LH LBACACHE.COM buf 20 flop
+LH LBACACHE.COM buf 30 flop
 
 SET AUTOFILE=%0
 SET CFGFILE=\FDCONFIG.SYS
@@ -63,7 +63,7 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 :SkipLanguageData
 vecho /p Done processing startup files /fCyan FDCONFIG.SYS /a7 and /fCyan AUTOEXEC.BAT /a7/p
 
-if exist SETUP.BAT CALL SETUP.BAT RECOVERY
+if exist SETUP.BAT CALL SETUP.BAT BOOT
 
 if not exist %DOSDIR%\BIN\WELCOME.BAT goto V8Welcome
 call WELCOME.BAT
