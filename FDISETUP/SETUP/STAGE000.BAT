@@ -57,7 +57,7 @@ goto CheckAuto
 
 :NoFDCONFIG
 if not exist %FDRIVE%\CONFIG.SYS goto CheckAuto
-grep -i "!SET " %FDRIVE%\FDCONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+grep -i "!SET " %FDRIVE%\CONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
 
 :CheckAuto
 if not exist %FDRIVE%\AUTOEXEC.BAT goto NoAuto
