@@ -93,5 +93,3 @@ set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
 set OLDFDN=
-
-vpause
