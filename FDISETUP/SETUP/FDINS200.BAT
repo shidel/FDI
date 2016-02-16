@@ -165,7 +165,7 @@ if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 set _BN=1
 if not exist %FTARGET%\NUL goto BackupComplete
-dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
+dir /ON /A /B /P- %FTARGET%\*.* >>%_AL%
 
 :ZipBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.

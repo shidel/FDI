@@ -34,10 +34,19 @@ set DOSDIR=%FTARGET%
 
 REM Scan each installer in program file path
 set _TI=0
-:LoopingList
+set _TC=
+
 vfdutil /c/p %FINSP%\
-dir /on /a /b /p- FDINS*.BAT | vstr /b /l %_TI% | set /p _TA=
-if "%_TA%" == "" goto FinishedList
+
+:Sticky
+dir /on /a /b /p- %FINSP%\FDINS*.BAT | vstr /b /l TOTAL | set /p _TC=
+if "%_TC%" == "" goto Sticky
+
+:LoopingList
+if "%_TI%" == "%_TC%" goto FinishedList
+dir /on /a /b /p- %FINSP%\FDINS*.BAT | vstr /b /l %_TI% | set /p _TA=
+rem echo TC %_TC% TI %_TI% TA %_TA%
+if "%_TA%" == "" goto LoopingList
 
 vfdutil /n %_TA% | set /p _TL=
 call FDILANG.BAT %_TL% FDINS FDSETUP
@@ -51,17 +60,22 @@ if errorlevel 1 goto FailedInstaller
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 popd
 
-vmath %_TI% + 1 | set /p _TI=
+set _TT=
+:LoopMath
+vmath %_TI% + 1 | set /p _TT=
+if "%_TT%" == "" goto LoopMath
+set _TI=%_TT%
+set _TT=
 goto LoopingList
 
 :FinishedList
-if exist %DOSDIR%\BIN\FDNPKG.CFG goto ReplaceConfig
+if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
 verrlvl 0
 goto Done
 
 :ReplaceConfig
 copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
-type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% %FDRIVE%>%DOSDIR%\BIN\FDNPKG.CFG
+type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% %FDRIVE% >%DOSDIR%\BIN\FDNPKG.CFG
 verrlvl 0
 goto Done
 
@@ -74,7 +88,10 @@ verrlvl 1
 :Done
 set _TI=
 set _TA=
+set _TC=
 set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
 set OLDFDN=
+
+vpause
