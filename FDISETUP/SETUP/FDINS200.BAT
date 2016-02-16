@@ -28,7 +28,7 @@ if exist %FDRIVE%\WINA20.386 attrib -R -S -H %FDRIVE%\WINA20.386 >>NUL
 if exist %FDRIVE%\IBMBIO.COM attrib -R -S -H %FDRIVE%\IBMBIO.COM >NUL
 if exist %FDRIVE%\IBMDOS.COM attrib -R -S -H %FDRIVE%\IBMDOS.COM >NUL
 if exist %FDRIVE%\IO.SYS attrib -R -S -H %FDRIVE%\IO.SYS >NUL
-if exist %FDRIVE%\MSDOS.SYS attrib -R -S -H %FDRIVE%\MSDOS.SYS >NUL%
+if exist %FDRIVE%\MSDOS.SYS attrib -R -S -H %FDRIVE%\MSDOS.SYS >NUL
 
 if "%OBAK%" == "z" goto ZipBackup
 
@@ -36,11 +36,10 @@ REM Backup to a renamed file  *************************************************
 :SimpleBackup
 vfdutil /u %FDRIVE%\FDOS_OLD.??? | set /p _AF=
 if "%_AF" == "" goto SimpleBackup
-mkdir %_AF%
-set TEMP=%_AF%
+mkdir %_AF% >NUL
 
 set _AL=%_AF%\FDBACKUP.LST
-date /d>%_AL%
+date /d >%_AL%
 
 vgotoxy /l sop eol right right
 vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%

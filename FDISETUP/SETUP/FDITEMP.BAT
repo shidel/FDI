@@ -3,14 +3,13 @@
 set RETRY=yes
 
 
-if "%TEMP%" == "" goto NoReset
-if "%1" == "REQUIRED" goto NoReset
+if "%1" == "REQUIRED" goto Required
+if "%TEMP%" == "" goto MakeTemp
 call \FDSETUP\SETUP\FDIDRIVE.BAT PRE %TEMP%
-if "%RESULT%" == "%FINSD%" set TEMP=
-if "%RESULT%" == "%FBOOTD%" set TEMP=
+if "%RESULT%" == "%FINSD%" goto MakeTemp
+if "%RESULT%" == "%FBOOTD%" goto MakeTemp
 
 :NoReset
-set RESULT=
 if "%TEMP%" == "" goto MakeTemp
 vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto MakeTemp
@@ -18,7 +17,6 @@ goto Done
 
 :MakeTemp
 set TEMP=
-if "%1" == "REQUIRED" goto Required
 
 :Begining
 verrlvl 1
@@ -92,7 +90,7 @@ if exist %FTMP%\NUL goto PathExists
 mkdir %FTMP% >NUL
 if not exist %FTMP%\NUL goto Failed
 :PathExists
-set TEMP=%FTMP%
+if "%TEMP%" == "" set TEMP=%FTMP%
 goto done
 
 :Failed
@@ -102,3 +100,5 @@ verrlvl 1
 
 :Done
 set RETRY=
+set RESULT=
+
