@@ -47,6 +47,8 @@ set HLANG=%LANG%
 if "%TEMP%" == "" goto NoImport
 vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto NoImport
+vinfo /d %FDRIVE%
+if errorlevel 1 goto NoImport
 vfdutil /u %FDRIVE%\TEST????.??? >NUL
 if errorlevel 1 goto NoImport
 
@@ -74,17 +76,23 @@ del %TEMP%\FDIMPORT.BAT
 if "%TDOS%" == "" goto NoImport
 if "%TDOS%" == "\FDSetup" goto NoImport
 if "%TDOS%" == "\FDSETUP" goto NoImport
+
 SET FTARGET=%TDOS%
 
+:RepeatDrive
 vfdutil /d %FTARGET% | set /p FDRIVE=
-if not "%FBOOTD%" == "%FDRIVE%" goto NotUSBStick
-set FTARGET=D:\FDOS
-set FDRIVE=D:
+if "%FDRIVE%" == "" goto RepeatDrive
+if not "%FBOOTD%" == "%FDRIVE%" goto NotSelf
+if not "%FDRIVE%" == "C:" set TDOS=C:
+if "%FDRIVE%" == "C:" set TDOS=D:
+set FDRIVE=%TDOS%
+set FTARGET=%FDRIVE%\FDOS
 
-:NotUSBStick
+:NotSelf
 set FBAK=%FDRIVE%\FDBACKUP
 
 :NoImport
+verrlvl 0
 set TDOS=
 
 :AdjustData
