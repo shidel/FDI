@@ -31,70 +31,18 @@ REM Set Drive of Installer ****************************************************
 :FDIDrive
 
 if "%1" == "RELOAD" goto SkipFDIDrive
-set FINSD=
-FDSETUP\BIN\VFDUTIL /x /d %0
-if errorlevel 1 set FINSD=A:
-if errorlevel 2 set FINSD=B:
-if errorlevel 3 set FINSD=C:
-if errorlevel 4 set FINSD=D:
-if errorlevel 5 set FINSD=E:
-if errorlevel 6 set FINSD=F:
-if errorlevel 7 set FINSD=G:
-if errorlevel 8 set FINSD=H:
-if errorlevel 9 set FINSD=I:
-if errorlevel 10 set FINSD=J:
-if errorlevel 11 set FINSD=K:
-if errorlevel 12 set FINSD=L:
-if errorlevel 13 set FINSD=M:
-if errorlevel 14 set FINSD=N:
-if errorlevel 15 set FINSD=O:
-if errorlevel 16 set FINSD=P:
-if errorlevel 17 set FINSD=Q:
-if errorlevel 18 set FINSD=R:
-if errorlevel 19 set FINSD=S:
-if errorlevel 20 set FINSD=T:
-if errorlevel 21 set FINSD=U:
-if errorlevel 22 set FINSD=V:
-if errorlevel 23 set FINSD=W:
-if errorlevel 24 set FINSD=X:
-if errorlevel 25 set FINSD=Y:
-if errorlevel 26 set FINSD=Z:
-if errorlevel 27 set FINSD=
+call FDSETUP\SETUP\FDIDRIVE.BAT PRE %0
+set FINSD=%RESULT%
+set RESULT=
 :SkipFDIDrive
 
 REM Set Boot Drive ************************************************************
 :BootDrive
 
 if "%1" == "RELOAD" goto SkipBootDrive
-set FBOOTD=
-FDSETUP\BIN\VFDUTIL /x /d %COMSPEC%
-if errorlevel 1 set FBOOTD=A:
-if errorlevel 2 set FBOOTD=B:
-if errorlevel 3 set FBOOTD=C:
-if errorlevel 4 set FBOOTD=D:
-if errorlevel 5 set FBOOTD=E:
-if errorlevel 6 set FBOOTD=F:
-if errorlevel 7 set FBOOTD=G:
-if errorlevel 8 set FBOOTD=H:
-if errorlevel 9 set FBOOTD=I:
-if errorlevel 10 set FBOOTD=J:
-if errorlevel 11 set FBOOTD=K:
-if errorlevel 12 set FBOOTD=L:
-if errorlevel 13 set FBOOTD=M:
-if errorlevel 14 set FBOOTD=N:
-if errorlevel 15 set FBOOTD=O:
-if errorlevel 16 set FBOOTD=P:
-if errorlevel 17 set FBOOTD=Q:
-if errorlevel 18 set FBOOTD=R:
-if errorlevel 19 set FBOOTD=S:
-if errorlevel 20 set FBOOTD=T:
-if errorlevel 21 set FBOOTD=U:
-if errorlevel 22 set FBOOTD=V:
-if errorlevel 23 set FBOOTD=W:
-if errorlevel 24 set FBOOTD=X:
-if errorlevel 25 set FBOOTD=Y:
-if errorlevel 26 set FBOOTD=Z:
-if errorlevel 27 set FBOOTD=
+call FDSETUP\SETUP\FDIDRIVE.BAT PRE %COMSPEC%
+set FBOOTD=%RESULT%
+set RESULT=
 :SkipBootDrive
 
 REM Relaunch with FreeCOM shell ***********************************************
@@ -200,20 +148,19 @@ REM Failed to locate this file ************************************************
 :FailDriveCheck
 echo Unable to locate some files required for the installation. Please change to the
 echo drive that contains this installation program and try again.
-goto EndOfBatch
+goto Done
 
 REM Failed to pass tests after shell reload ***********************************
 :FailBadOS
 echo Unable to run installer under the current operating system and/or its settings.
 echo Please boot the installer from one of the media provided for the installer.
-goto EndOfBatch
+goto Done
 
 REM Failed to perform shell reload ********************************************
 :FailReload
-echo %LOADFAIL%
-echo Unable to start the FreeCOM shell required for installation. Please boot the
-echo installer from one of the media provided for the installer.
-goto EndOfBatch
+echo An error occurred while executing the FreeCOM shell. Please try to run the
+echo installer by booting one of the installation media that is available.
+goto Done
 
 :Done
 set OLDPATH=

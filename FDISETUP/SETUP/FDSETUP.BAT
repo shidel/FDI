@@ -77,17 +77,17 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+REM Beyond this point, a temp directory is required.
+set FSTAGE=TMP
+call FDITEMP.BAT REQUIRED
+if errorlevel 1 goto Error
+
 REM Reserved. Final stage prior to testing requirements and user prompts.
 set FSTAGE=600
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
-
-REM Beyond this point, a temp directory is required.
-set FSTAGE=TMP
-call FDITEMP.BAT REQUIRED
-if errorlevel 1 goto Error
 
 REM Check requirements if testing is present.
 call FDILANG.BAT FDCHECK FDSETUP

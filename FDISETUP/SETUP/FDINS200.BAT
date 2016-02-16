@@ -41,7 +41,6 @@ set TEMP=%_AF%
 
 set _AL=%_AF%\FDBACKUP.LST
 date /d>%_AL%
-rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
 vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
@@ -146,7 +145,6 @@ set TEMP=%FBAK%
 vfdutil /u %FBAK%\FDOS????.ZIP | set /p _AF=
 set _AL=%TEMP%\FDBACKUP.LST
 date /d>%_AL%
-rem echo %_AL% >>%_AL%
 
 vgotoxy /l sop eol right right
 vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%

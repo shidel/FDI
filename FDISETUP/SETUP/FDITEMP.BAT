@@ -2,6 +2,15 @@
 
 set RETRY=yes
 
+
+if "%TEMP%" == "" goto NoReset
+if "%1" == "REQUIRED" goto NoReset
+call \FDSETUP\SETUP\FDIDRIVE.BAT PRE %TEMP%
+if "%RESULT%" == "%FINSD%" set TEMP=
+if "%RESULT%" == "%FBOOTD%" set TEMP=
+
+:NoReset
+set RESULT=
 if "%TEMP%" == "" goto MakeTemp
 vfdutil /u %TEMP%\TEST????.??? >NUL
 if errorlevel 1 goto MakeTemp
