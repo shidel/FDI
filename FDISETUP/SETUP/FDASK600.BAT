@@ -92,7 +92,7 @@ goto Done
 set OALL=?
 set OSRC=n
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
-%FDIM%
+%FDIM% /FDI
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 1 goto Beginning
 if not exist %TEMP%\FDIMPLES.LST goto Beginning
@@ -102,7 +102,7 @@ goto Done
 set OALL=?
 set OSRC=y
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
-%FDIM%
+%FDIM% /FDI
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 1 goto Beginning
 if not exist %TEMP%\FDIMPLES.LST goto Beginning
