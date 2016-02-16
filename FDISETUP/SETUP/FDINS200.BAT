@@ -94,8 +94,6 @@ dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 :CopyBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.
 type %_AL%|vstr /L TOTAL|set /p _BM=
-REM So, if it's value does not get set. Do it again. Might have to do
-REM with internal buffers or caching.
 if "%_BM%" == "" goto CopyBackupRun
 
 :CopyBackupLoop

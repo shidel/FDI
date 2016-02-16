@@ -5,6 +5,9 @@ REM Post installation no reboot process. Swap environment to installed.
 REM Only valid installer variables are FDRIVE and FTARGET. All others have
 REM been cleared.
 
+set OLDPATH=
+set OLDDOS=
+
 set DOSDIR=%FTARGET%
 
 set PATH=%DOSDIR%\BIN

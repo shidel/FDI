@@ -61,7 +61,7 @@ goto Done
 
 :ReplaceConfig
 copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
-copy /y %FDNPKG.CFG% %DOSDIR%\BIN\FDNPKG.CFG>NUL
+type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% %FDRIVE%>%DOSDIR%\BIN\FDNPKG.CFG
 verrlvl 0
 goto Done
 

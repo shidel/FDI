@@ -70,7 +70,7 @@ if not "%OCLEAN%" == "y" goto PkgNoSave
 if not exist %FTARGET%\PACKAGES\NUL goto PkgNoSave
 
 :ListLoop
-set FPBAK=%DRIVE%\PKGFILES.FDI
+set FPBAK=%FDRIVE%\PKGFILES.FDI
 if not exist %FPBAK%\NUL mkdir %FPBAK% >NUL
 xcopy /E /Y %FTARGET%\PACKAGES\*.* %FPBAK%\PACKAGES\ >NUL
 

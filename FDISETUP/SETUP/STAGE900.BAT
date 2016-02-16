@@ -1,6 +1,7 @@
 @echo off
 
 REM Thank the user for installing and offer to reboot.
+
 call FDICLS.BAT
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
 vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
@@ -12,12 +13,12 @@ vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
-if errorlevel 2 goto AbortBatch
+if errorlevel 2 goto NoRestart
 
 set FREBOOT=y
 goto Done
 
-:AbortBatch
+:NoRestart
 set FREBOOT=n
 
 :Done

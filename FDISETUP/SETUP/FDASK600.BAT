@@ -1,6 +1,9 @@
 @echo off
 
 REM Installation package selection.
+if exist ..\BIN\FDIMPLES.COM set FDIM=..\BIN\FDIMPLES.COM
+if exist ..\BIN\FDIMPLES.EXE set FDIM=..\BIN\FDIMPLES.EXE
+
 :Beginning
 
 if exist %FINSP%\FDPLALL.LST goto HasAllPacs
@@ -10,12 +13,12 @@ set PF=PAC_FRAME_B
 set PO=PAC_OPTS_B
 goto PromptUser
 :BaseAdvOnly
-if not exist %DOSDIR%\BIN\FDIMPLES.EXE goto BaseOnly
+if "%FDIM%" == "" goto BaseOnly
 set PF=PAC_FRAME_BD
 set PO=PAC_OPTS_BD
 goto PromptUser
 :HasAllPacs
-if not exist %DOSDIR%\BIN\FDIMPLES.EXE goto AllOnly
+if "%FDIM%" == "" goto AllOnly
 if "%FADV%" == "y" goto AllAdv
 :AllOnly
 set PF=PAC_FRAME
@@ -39,7 +42,7 @@ vecho /p
 vecho /t %FLANG% PACAO
 vecho /n /t %FLANG% PACAS
 :HasNoAll
-if not exist %DOSDIR%\BIN\FDIMPLES.EXE goto NotAdv
+if "%FDIM%" == "" goto NotAdv
 if not "%FADV%" == "y" goto NotAdv
 vecho /p
 vecho /t %FLANG% PACDO_ADV
@@ -89,7 +92,7 @@ goto Done
 set OALL=?
 set OSRC=n
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
-%DOSDIR%\BIN\FDIMPLES.EXE
+%FDIM%
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 1 goto Beginning
 if not exist %TEMP%\FDIMPLES.LST goto Beginning
@@ -99,7 +102,7 @@ goto Done
 set OALL=?
 set OSRC=y
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
-%DOSDIR%\BIN\FDIMPLES.EXE
+%FDIM%
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 1 goto Beginning
 if not exist %TEMP%\FDIMPLES.LST goto Beginning
@@ -108,4 +111,5 @@ goto Done
 :Done
 set PF=
 set PO=
+set FDIM=
 verrlvl 0
