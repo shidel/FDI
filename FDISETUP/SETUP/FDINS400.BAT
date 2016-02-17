@@ -12,6 +12,9 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
 vecho /n /t %FLANG% RMOS %TFH% %FTARGET% %TFF%
 vdelay %FDEL%
 
+cd %FDRIVE%\
+vfdutil /c/p %FINSP%\
+
 :CountLoop
 dir /ON /A /B /P- %FTARGET%\*.* | vstr /l total | set /p _BT=
 if "%_BT%%" == "" goto CountLoop

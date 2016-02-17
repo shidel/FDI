@@ -10,7 +10,8 @@ vfdutil /u %FMEDIA%\%1.zip >nul
 if errorlevel 1 goto FoundPackage
 goto Missing
 :FoundPackage
-fdinst install %FMEDIA%\%1.zip >nul
+set /e TEMPFILE=vfdutil /f %FMEDIA%\%1.zip
+fdinst install %TEMPFILE% >nul
 :CheckSuccess
 if errorlevel 1 goto Failed
 goto Success
