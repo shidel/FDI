@@ -25,21 +25,7 @@ SET OSN=%OS_NAME%
 SET OSV=%OS_VERSION%
 
 set USB=
-
-:ReadSettings
-if "%1" == "" goto ReadDone
-
-if "%1" == "usb" set USB=y
-
-shift
-goto ReadSettings
-
-:ReadDone
-
-if "%TEMP%" == "" goto NoTempSet
-deltree /y %TEMP%\*.* >NUL
-pushd
-
+set SLIM=
 set FLOPPY=A:
 set VOLUME=FD-SETUP
 set RAMDRV=
@@ -50,6 +36,27 @@ set TGO=0
 set TTRY=3
 
 if "%TZ%" == "" set TZ=EDT
+
+:ReadSettings
+if "%1" == "" goto ReadDone
+
+if "%1" == "usb" set USB=y
+if "%1" == "slim" set SLIM=y
+
+vfdutil /u %1\????????.??? >nul
+if not errorlevel 1 set /e FLOPPY=vfdutil /d %1\test
+
+shift
+goto ReadSettings
+
+:ReadDone
+
+if "%SLIM%" == "y" set USB=y
+
+if "%TEMP%" == "" goto NoTempSet
+deltree /y %TEMP%\*.* >NUL
+pushd
+
 
 echo FreeDOS install disk creator.
 echo.
@@ -101,9 +108,10 @@ vgotoxy up up
 vecho /fLightGreen "%OS_NAME% %OS_VERSION% install disk creator." /p
 
 if not "%USB%" == "y" goto NotHDImage
-vecho /fLightRed USB Stick creation mode! /fGray /p
+if "%SLIM%" == ""  vecho /fLightRed USB Stick creation mode! /fGray /p
+if "%SLIM%" == "y" vecho /fLightRed Ultra-Slim USB Stick creation mode! /fGray /p
 
-set FLOPPY=C:
+if "%FLOPPY%" == "A:" set FLOPPY=C:
 
 REM Set Floppy
 :SetFloppy
@@ -473,13 +481,23 @@ if not "%USB%" == "y" goto Done
 vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
 
 :RetryCount
+if "%SLIM%" == "y" goto SlimCount
 grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l TOTAL | set /p TCNT=
+goto CheckCount
+:SlimCount
+grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l TOTAL | set /p TCNT=
+:CheckCount
 if "%TCNT%" == "" goto RetryCount
 set TIDX=0
 
 :CopyLoop
 set TFILE=
+if "%SLIM%" == "y" goto SlimFile
 grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l %TIDX% | set /p TFILE=
+goto CheckFile
+:SlimFile
+grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l %TIDX% | set /p TFILE=
+:CheckFile
 if "%TFILE%" == "" goto CopyLoop
 :DestLoop
 vfdutil /p %FLOPPY%\%TFILE% | set /p TDIR=
@@ -609,7 +627,8 @@ rem deltree /y %TEMP%\*.* >NUL
 type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
 type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
 type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
-type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
+if "%SLIM%" == ""  type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
+if "%SLIM%" == "y" set XTRA=0
 dir /on /a /b /p- /s %CDROM%\*.zip | vstr /b/l TOTAL | set /p COUNT=
 
 vecho /p /fLightGreen %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%) /n
