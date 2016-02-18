@@ -1,5 +1,6 @@
 @echo off
 
+if "%1" == "all" goto BuildAll
 if not "%1" == "findcd" goto Start
 
 if not "%CDROM%" == "" goto EndOfFile
@@ -14,6 +15,12 @@ if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
 if not exist %2:\BASE\INDEX.LST goto EndOfFile
 set CDROM=%2:
+goto EndOfFile
+
+:BuildAll
+call %0
+call %0 slim D:
+call %0 usb E:
 goto EndOfFile
 
 :Start
