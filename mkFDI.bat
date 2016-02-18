@@ -547,11 +547,11 @@ vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
 
 :LstCount
-dir /on /a /b /p- /s %FLOPPY%\ | vstr /b /l %TCNT% | set /P TCNT=
+dir /on /a /b /p- %FLOPPY%\ | vstr /b /l TOTAL | set /P TCNT=
 if "%TCNT%" == "" goto LstCount
 
 :LstLoop
-dir /on /a /b /p- /s %FLOPPY%\ | vstr /b /l %TIDX% | set /P TDIR=
+dir /on /a /b /p- %FLOPPY%\ | vstr /b /l %TIDX% | set /P TDIR=
 if "%TDIR%" == "" goto LstLoop
 
 if exist %TDIR%\NUL echo %TDIR%
