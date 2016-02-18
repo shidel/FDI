@@ -554,7 +554,52 @@ if "%TCNT%" == "" goto LstCount
 dir /on /a /b /p- %FLOPPY%\ | vstr /b /l %TIDX% | set /P TDIR=
 if "%TDIR%" == "" goto LstLoop
 
-if exist %TDIR%\NUL echo %TDIR%
+if not exist %FLOPPY%\%TDIR%\NUL goto Excluded
+if not exist %CDROM%\%TDIR%\INDEX.LST goto Excluded
+
+vecho /n /r5/c32 %TDIR%
+
+set SIDX=0
+
+:ScanCount
+dir /on /a /b /p- %FLOPPY%\%TDIR%\*.ZIP | vstr /b /l TOTAL | set /P SCNT=
+if "%SCNT%" == "" goto ScanCount
+if "%SCNT%" == "0" goto Exclude
+
+grep -i ^FD-REPOV1 %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
+if errorlevel 1 goto ScanLoop
+:ScanInfoA
+type %TEMP%\INDEX.LST | vstr /b/t 1 | set /p SPKG=
+if "%SPKG%" == "" goto ScanInfoA
+:ScanInfoB
+type %TEMP%\INDEX.LST | vstr /b/t 3 | set /p STMP=
+if "%STMP%" == "" goto ScanInfoB
+vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%">%FLOPPY%\%TDIR%\INDEX.LST
+vecho /n " (%STMP%:%SCNT%)"
+set SPKG=
+set STMP=
+:ScanLoop
+dir /on /a /b /p- %FLOPPY%\%TDIR%\*.ZIP | vstr /b /l %SIDX% | vstr /u/b/f '.ZIP' 1 | set /P SPKG=
+if "%SPKG%" == "" goto ScanLoop
+
+grep -i ^%SPKG% %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
+if not errorlevel 1 type %TEMP%\INDEX.LST >>%FLOPPY%\%TDIR%\INDEX.LST
+
+rem vecho /n " %SPKG%"
+
+:ScanInc
+vmath %SIDX% + 1 | set /p STMP=
+if "%STMP%" == "" goto ScanInc
+set SIDX=%STMP%
+set STMP=
+if not "%SCNT%" == "%SIDX%" goto ScanLoop
+
+vecho , /fLightGreen OK /fGray
+:Excluded
+set SIDX=
+set SCNT=
+set SPKG=
+set STMP=
 
 :LstInc
 set TFILE=
@@ -563,7 +608,7 @@ if "%TFILE%" == "" goto RetryInc
 set TIDX=%TFILE%
 if not "%TCNT%" == "%TIDX%" goto LstLoop
 
-vecho /fLightGreen Complete. /fGray
+vecho /p/fLightGreen Complete. /fGray
 goto Done
 
 :CopyFailed
