@@ -11,8 +11,8 @@ if errorlevel 5 goto EndOfFile
 :MaybeCD
 vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
-if not exist %2:\BASE\BOOT.IMG goto EndOfFile
-if not exist %2:\BASE\BOOT.CAT goto EndOfFile
+if not exist %2:\BOOT.IMG goto EndOfFile
+if not exist %2:\BOOT.CAT goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
 if not exist %2:\BASE\INDEX.LST goto EndOfFile
@@ -541,8 +541,17 @@ set TFILE=
 vmath %TIDX% + 1 | set /p TFILE=
 if "%TFILE%" == "" goto RetryInc
 set TIDX=%TFILE%
-if "%TCNT%" == "%TIDX%" goto Done
-goto CopyLoop
+if not "%TCNT%" == "%TIDX%" goto CopyLoop
+
+vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
+set TIDX=0
+
+:LstLoop
+set /E TDIR=dir /on /a /b /p- /s | vstr /b /l %TIDX%
+echo %TDIR%
+
+vecho /fLightGreen Complete. /fGray
+goto Done
 
 :CopyFailed
 vecho , /fLightRed Failed. /fGray /p
