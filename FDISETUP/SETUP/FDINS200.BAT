@@ -88,8 +88,7 @@ if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 set _BN=1
-if not exist %FTARGET%\NUL goto BackupComplete
-dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
+if exist %FTARGET%\NUL dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :CopyBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.
@@ -164,8 +163,7 @@ if exist %FDRIVE%\IO.SYS echo %FDRIVE%\IO.SYS >>%_AL%
 if exist %FDRIVE%\MSDOS.SYS echo %FDRIVE%\MSDOS.SYS >>%_AL%
 
 set _BN=1
-if not exist %FTARGET%\NUL goto BackupComplete
-dir /ON /A /B /P- %FTARGET%\*.* >>%_AL%
+if exist %FTARGET%\NUL dir /ON /A /B /P- %FTARGET%\*.*>>%_AL%
 
 :ZipBackupRun
 REM For some reason, DOS sometimes fails to do this next line correctly.
@@ -195,7 +193,7 @@ goto ZipBackupLoop
 
 REM Backup complete ***********************************************************
 :BackupComplete
-if exist %_AL% del %_AL%
+rem if exist %_AL% del %_AL%
 vgotoxy /l eop sor
 vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
 vdelay %FDEL%

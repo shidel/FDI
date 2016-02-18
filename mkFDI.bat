@@ -11,6 +11,8 @@ if errorlevel 5 goto EndOfFile
 :MaybeCD
 vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
+if not exist %2:\BASE\BOOT.IMG goto EndOfFile
+if not exist %2:\BASE\BOOT.CAT goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
 if not exist %2:\BASE\INDEX.LST goto EndOfFile
