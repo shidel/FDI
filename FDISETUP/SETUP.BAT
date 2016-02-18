@@ -122,6 +122,25 @@ if exist %DOSDIR%\HELP\NUL set HELPPATH=%DOSDIR%\HELP
 
 :NoAdjustEnv
 
+REM Help Screen ***************************************************************
+if "%1" == "/?" goto ShowHelp
+if "%1" == "/h" goto ShowHelp
+if "%1" == "/H" goto ShowHelp
+if "%1" == "/help" goto ShowHelp
+if "%1" == "/HELP" goto ShowHelp
+if "%1" == "help" goto ShowHelp
+if "%1" == "/HELP" goto ShowHelp
+goto NoHelpDisplay
+
+:ShowHelp
+vecho /p /fLightGreen FreeDOS /fLightCyan 1.2 /s- /fWhite + /fGray " Installer (" /fWhite FDI /fGray ") version 1.00."
+vecho Released Under GPL v2.0 License.
+vecho Copyright 2016 Jerome Shidel. /p
+vecho For advanced mode installation, use: /s- /fDarkGray ' "' /fWhite "SETUP adv" /fDarkGray '"' /fGray /p
+goto Done
+
+:NoHelpDisplay
+
 REM Adjust pathspec ***********************************************************
 set OLDPATH=%PATH%
 set PATH=%FINSD%\FDSETUP\BIN;%FINSD%\FDSETUP\SETUP
