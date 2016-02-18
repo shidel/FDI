@@ -546,9 +546,22 @@ if not "%TCNT%" == "%TIDX%" goto CopyLoop
 vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
 
+:LstCount
+dir /on /a /b /p- /s %FLOPPY%\ | vstr /b /l %TCNT% | set /P TCNT=
+if "%TCNT%" == "" goto LstCount
+
 :LstLoop
-set /E TDIR=dir /on /a /b /p- /s | vstr /b /l %TIDX%
-echo %TDIR%
+dir /on /a /b /p- /s %FLOPPY%\ | vstr /b /l %TIDX% | set /P TDIR=
+if "%TDIR%" == "" goto LstLoop
+
+if exist %TDIR%\NUL echo %TDIR%
+
+:LstInc
+set TFILE=
+vmath %TIDX% + 1 | set /p TFILE=
+if "%TFILE%" == "" goto RetryInc
+set TIDX=%TFILE%
+if not "%TCNT%" == "%TIDX%" goto LstLoop
 
 vecho /fLightGreen Complete. /fGray
 goto Done
