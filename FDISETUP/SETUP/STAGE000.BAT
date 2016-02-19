@@ -83,6 +83,8 @@ SET FTARGET=%TDOS%
 vfdutil /d %FTARGET% | set /p FDRIVE=
 if "%FDRIVE%" == "" goto RepeatDrive
 if not "%FBOOTD%" == "%FDRIVE%" goto NotSelf
+if not "%FINSD%" == "%FBOOTD%" goto NotSelf
+
 if not "%FDRIVE%" == "C:" set TDOS=C:
 if "%FDRIVE%" == "C:" set TDOS=D:
 set FDRIVE=%TDOS%

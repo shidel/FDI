@@ -69,10 +69,29 @@ goto AbortPkg
 if not "%OCLEAN%" == "y" goto PkgNoSave
 if not exist %FTARGET%\PACKAGES\NUL goto PkgNoSave
 
-:ListLoop
 set FPBAK=%FDRIVE%\PKGFILES.FDI
+
+:OldPkgLoop
+if not exist %FTARGET%\PACKAGES\NUL goto OldAppLoop
+dir /on /a /b /p- %FTARGET%\PACKAGES\*.* | vstr /b/l total | set /p _PA=
+if "%_PA%" == "" goto OldPkgLoop
+if "%_PA%" == "0" goto OldAppLoop
 if not exist %FPBAK%\NUL mkdir %FPBAK% >NUL
 xcopy /E /Y %FTARGET%\PACKAGES\*.* %FPBAK%\PACKAGES\ >NUL
+:OldAppLoop
+if not exist %FTARGET%\APPINFO\NUL goto OldLnkLoop
+dir /on /a /b /p- %FTARGET%\APPINFO\*.* | vstr /b/l total | set /p _PA=
+if "%_PA%" == "" goto OldAppLoop
+if "%_PA%" == "0" goto OldLnkLoop
+if not exist %FPBAK%\NUL mkdir %FPBAK% >NUL
+xcopy /E /Y %FTARGET%\APPINFO\*.* %FPBAK%\APPINFO\ >NUL
+:OldLnkLoop
+if not exist %FTARGET%\LINKS\NUL goto PkgNoSave
+dir /on /a /b /p- %FTARGET%\LINKS\*.* | vstr /b/l total | set /p _PA=
+if "%_PA%" == "" goto OldLnkLoop
+if "%_PA%" == "0" goto PkgNoSave
+if not exist %FPBAK%\NUL mkdir %FPBAK% >NUL
+xcopy /E /Y %FTARGET%\LINKS\*.* %FPBAK%\LINKS\ >NUL
 
 :PkgNoSave
 vdelay %FDEL%
