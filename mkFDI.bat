@@ -568,6 +568,10 @@ if "%SCNT%" == "0" goto Exclude
 
 grep -i ^FD-REPOV1 %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
 if errorlevel 1 goto ScanLoop
+
+ %TEMP%\INDEX.LST >%FLOPPY%\%TDIR%\INDEX.LST
+ goto ScanLoop
+
 :ScanInfoA
 type %TEMP%\INDEX.LST | vstr /b/t 1 | set /p SPKG=
 if "%SPKG%" == "" goto ScanInfoA
