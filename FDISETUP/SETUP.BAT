@@ -17,6 +17,7 @@ for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" ==
 for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup" %%d:
 for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup.bat" %%d:
 cd \
+
 :SkipDriveChange
 REM Verify we ar on drive with SETUP.BAT **************************************
 if "%1" == "BOOT" goto DriveCheckPassed
@@ -47,6 +48,7 @@ set RESULT=
 
 REM Relaunch with FreeCOM shell ***********************************************
 :ReloadShell
+
 if "%1" == "BOOT" goto SkipReload
 if not exist FDSETUP\BIN\COMMAND.COM goto MissingFreeCOM
 FDSETUP\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
@@ -105,7 +107,7 @@ set _H=
 set _I=
 set _J=
 set _K=
-goto BadOS
+goto FailBadOS
 
 :EnvPassed
 
