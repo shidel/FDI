@@ -263,6 +263,21 @@ vecho ,  /fLightGreen OK /fGray /p
 
 vecho /n "Adding installer files to Ramdrive"
 xcopy /y FDISETUP\*.* %RAMDRV%\ >NUL
+
+type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LH$ ' '' >%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+if "%USB%" == "y" goto USBAuto
+type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LBA$ ' '' >%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+goto USBAutoDone
+:USBAuto
+type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LBA$ ' 'rem ' >%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+:USBAutoDone
+
 xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 copy /y SETTINGS\PKG_ALL.LST %RAMDRV%\FDSETUP\SETUP\FDPLALL.LST >NUL
@@ -274,6 +289,7 @@ type %TEMP%\STAGE000.BAT|vstr /n/s "$VERSION$" "%OS_VERSION%">%TEMP%\STAGE000.00
 type %TEMP%\STAGE000.000|vstr /n/s "$OVOL$" "%VOLUMEID%">%DOSDIR%\SETUP\STAGE000.BAT
 del %TEMP%\STAGE000.000
 del %TEMP%\STAGE000.BAT
+
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 vecho , /fLightGreen OK /fGray /p
@@ -570,7 +586,6 @@ grep -i ^FD-REPOV1 %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
 if errorlevel 1 goto ScanLoop
 
 type %TEMP%\INDEX.LST >%FLOPPY%\%TDIR%\INDEX.LST
- goto ScanLoop
 
 :ScanInfoA
 type %TEMP%\INDEX.LST | vstr /b/t 1 | set /p SPKG=
@@ -578,7 +593,7 @@ if "%SPKG%" == "" goto ScanInfoA
 :ScanInfoB
 type %TEMP%\INDEX.LST | vstr /b/t 3 | set /p STMP=
 if "%STMP%" == "" goto ScanInfoB
-vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%">%FLOPPY%\%TDIR%\INDEX.LST
+rem vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%" -to- %FLOPPY%\%TDIR%\INDEX.LST
 vecho /n " (%STMP%:%SCNT%)"
 set SPKG=
 set STMP=

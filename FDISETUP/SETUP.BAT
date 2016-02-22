@@ -149,10 +149,6 @@ REM Create Temporary Temp *****************************************************
 call FDSETUP\SETUP\FDITEMP.BAT QUITE
 
 REM Run Installer *************************************************************
-rem echo %1 %2 %3 %4 %5
-rem echo Boot Drive %FBOOTD%
-rem echo Installer Drive %FINSD%
-
 if "%1" == "RELOAD" shift
 CALL FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 cd \
