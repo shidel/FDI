@@ -117,7 +117,7 @@ vgotoxy up up
 vecho /fLightGreen "%OS_NAME% %OS_VERSION% install disk creator." /p
 
 if not "%USB%" == "y" goto NotHDImage
-if "%SLIM%" == ""  vecho /fLightRed USB Stick creation mode! /fGray /p
+if "%SLIM%" == ""  vecho /fLightRed Full USB Stick creation mode! /fGray /p
 if "%SLIM%" == "y" vecho /fLightRed Ultra-Slim USB Stick creation mode! /fGray /p
 
 if "%FLOPPY%" == "A:" set FLOPPY=C:
