@@ -489,7 +489,7 @@ vecho /fGray Format, /fLightGreen OK /fGray /e /p
 pushd
 %RAMDRV%
 cd \
-sys %FLOPPY%
+sys %FLOPPY% /BOTH
 if errorlevel 1 goto SysError
 vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
