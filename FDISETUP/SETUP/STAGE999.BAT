@@ -38,6 +38,7 @@ if not "%FCLANG%" == "" set LANG=
 set FCLANG=
 set FPKGS=
 set FPSKP=
+set FTSET=
 set FTMP=
 
 rem clear built-in installer options settings
