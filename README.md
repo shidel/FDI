@@ -167,8 +167,10 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
         OS_VERSION  = Current OS Version.
 
         FADV        = "y" if running in advanced mode.
+
         FDIDFMT     = "y" if during this execution the batch file formatted
                     drive C.
+
         FWAIT       = If your going to use vpause, This is how many seconds you
                     should pause. Example: vpause /t %FWAIT%
 
@@ -229,10 +231,15 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
                     "y" to transfer system boot files. In advanced mode,
                     it is set to either "y" or "n" depended on choice.
 
-        OALL        Set in FDASK600. If user wants all binary packages, it is
+        OBSS        Set in FDASK600, in basic mode it is set to 'y' or 'n'
+                    automatically based on the installers best guess. In
+                    advanced mode user is prompted. Force boot sector
+                    update.
+
+        OALL        Set in FDASK700. If user wants all binary packages, it is
                     set to 'y'
 
-        OSRC        Set in FDASK600. If user wans sources for selected packages
+        OSRC        Set in FDASK700. If user wans sources for selected packages
                     installed it is set to 'y'
 
 
