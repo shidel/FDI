@@ -123,13 +123,13 @@ if exist %DOSDIR%\HELP\NUL set HELPPATH=%DOSDIR%\HELP
 :NoAdjustEnv
 
 REM Help Screen ***************************************************************
-if "%1" == "/?" goto ShowHelp
-if "%1" == "/h" goto ShowHelp
-if "%1" == "/H" goto ShowHelp
-if "%1" == "/help" goto ShowHelp
-if "%1" == "/HELP" goto ShowHelp
-if "%1" == "help" goto ShowHelp
-if "%1" == "/HELP" goto ShowHelp
+if "%2" == "/?" goto ShowHelp
+if "%2" == "/h" goto ShowHelp
+if "%2" == "/H" goto ShowHelp
+if "%2" == "/help" goto ShowHelp
+if "%2" == "/HELP" goto ShowHelp
+if "%2" == "help" goto ShowHelp
+if "%2" == "HELP" goto ShowHelp
 goto NoHelpDisplay
 
 :ShowHelp
