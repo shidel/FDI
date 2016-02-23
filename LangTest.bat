@@ -299,6 +299,18 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:OBSS
+call %SELF% CLS OBSS FDASK ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME
+vecho /t %FLANG% OBSS? %TFH% C: %TFF%
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% OBSS_OPTS
+vecho /t %FLANG% OBSSY
+vecho /n /t %FLANG% OBSSN
+vchoice /a %TFC% Ctrl-C /d 1
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 :PACBO
 call %SELF% CLS PACBO FDASK
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_B

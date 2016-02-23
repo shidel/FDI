@@ -49,7 +49,15 @@ XFER?=/s- "¨Sistema de transferencia de archivos a la unidad " /f %1 %2 /f %3 ?
 XFERY="  S¡ - Los archivos del sistema de transferencia."
 XFERN="  No - No transferir los archivos del sistema."
 
-; FDASK600 - Package group selection.
+; FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w68 /h8 /c
+OBSS_OPTS=/w50 /h4 /c
+; vecho "Force new boot sector code on drive C:?"
+OBSS?=¨Forzar nuevo c¢digo de sector de arranque en la unidad /f %1 %2 /f %3 /s- ?
+OBSSY="  S¡ - Registro de inicio maestro ovewrite."
+OBSSN="  No - No obligue a uno nuevo."
+
+; FDASK700 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w40 /h7 /c
 PAC_FRAME_B=/w60 /h8 /c

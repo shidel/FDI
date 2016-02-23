@@ -51,7 +51,15 @@ XFER?=Kopieer nieuwe systeem bestanden naar /f %1 %2 /f %3 /s- ?
 XFERY="  Ja  - Kopieer de nieuwe bestanden."
 XFERN="  Nee - Kopieer de nieuwe bestanden NIET."
 
-; FDASK600 - Package group selection.
+; FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w60 /h8 /c
+OBSS_OPTS=/w40 /h4 /c
+; vecho "Force new boot sector code on dive C:?"
+OBSS?=Dwingen nieuwe bootsector code op duik /f %1 %2 /f %3 /s- ?
+OBSSY="  Yes - Dwing nieuwe MBR."
+OBSSN="  No  - Forceer dan schrijftafeltje."
+
+; FDASK700 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w42 /h7 /c
 PAC_FRAME_B=/w60 /h8 /c

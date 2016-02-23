@@ -51,7 +51,15 @@ XFER?=Chu kopiu majstrajn dosierojn sur diskeron /f %1 %2 /f %3 /s- ?
 XFERY="  Jes - Kopiu majstrajn dosierojn."
 XFERN="  Ne  - Ne kopiu majstrajn dosierojn."
 
-; FDASK600 - Package group selection.
+; FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w60 /h8 /c
+OBSS_OPTS=/w44 /h4 /c
+; vecho "Force new boot sector code on dive C:?"
+OBSS?=Devigi novajn boot sektoro kodo sur disko /f %1 %2 /f %3 /s- ?
+OBSSY="  Jes - Anstatauigi cefeksargrikordo."
+OBSSN="  Ne  - Ne perfortu anstatauigi."
+
+; FDASK700 - Package group selection.
 PAC_FRAME=/w64 /h11 /c
 PAC_OPTS=/w54 /h7 /c
 PAC_FRAME_B=/w64 /h8 /c

@@ -90,7 +90,16 @@ XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
 -------------------------------------------------------------------------------
-; FDASK600 - Package group selection.
+; FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w60 /h8 /c
+OBSS_OPTS=/w40 /h4 /c
+; vecho "Force new boot sector code on dive C:?"
+OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 /s- ?
+OBSSY="  Yes - Overwrite MBR."
+OBSSN="  No  - Don't force new MBR."
+
+-------------------------------------------------------------------------------
+; FDASK700 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w40 /h7 /c
 ; Base only available

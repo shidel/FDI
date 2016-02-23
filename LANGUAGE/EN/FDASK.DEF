@@ -51,6 +51,13 @@ XFER?=Transfer system files to drive /f %1 %2 /f %3 /s- ?
 XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
+OBSS_FRAME=/w46 /h8 /c
+OBSS_OPTS=/w34 /h4 /c
+OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 /s- ?
+OBSSY="  Yes - Overwrite MBR."
+OBSSN="  No  - Don't force new MBR."
+
+
 ; FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
 PAC_OPTS=/w42 /h7 /c

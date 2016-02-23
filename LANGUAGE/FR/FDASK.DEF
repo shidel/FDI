@@ -55,7 +55,15 @@ XFER?=Transf‚rer les fichiers systŠmes vers le disque /f %1 %2 /f %3 /s- ?
 XFERY="  Oui - Transf‚rer les fichiers systŠmes."
 XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
 
-; FDASK600 - Package group selection.
+; FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w64 /h8 /c
+OBSS_OPTS=/w44 /h4 /c
+; vecho "Force new boot sector code on dive C:?"
+OBSS?=Forcer nouveau du secteur de d‚marrage sur plong‚e /f %1 %2 /f %3 /s- ?
+OBSSY="  Oui - Essuyez mon secteur d'amor‡age."
+OBSSN="  Non - Ne forcez pas nouvelle."
+
+; FDASK700 - Package group selection.
 PAC_FRAME=/w74 /h11 /c
 PAC_OPTS=/w66 /h7 /c
 PAC_FRAME_B=/w74 /h8 /c
