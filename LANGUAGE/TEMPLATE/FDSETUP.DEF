@@ -69,7 +69,7 @@ LANG_NL=Dutch
 ; STAGE300 - Initial welcome screen message.
 ; Hello window frame 68 wide (-6 = 62 usable columns). 10 high (-4 = 6 usable
 ; rows) then centered.
-HELLO_FRAME=/w68 /h10 /c
+HELLO_FRAME=/w70 /h15 /c
 
 ; OptionBox frame for choice options 40 wide (-2 = 38 usable columns). 4 high (-2
 ; = 2 usable rows)
@@ -87,7 +87,13 @@ HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 ; vecho "Welcome to the advanced installer for FreeDOS."
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
 
-PROCEED?="Do you wish to proceed?"
+HELLO_WARN.1=/f%1 "%2" /f%3 is a complete operating system. If you choose to /p install this on your computer, you may overwrite the operating /p system you have now (for example, Windows.)
+HELLO_WARN.2=/c32 If this is not what you intend, please stop now.
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
+
+PROCEED?=/p/p "Do you wish to proceed?"
 
 ; Do not span lines in option choices. A new line will become an additional
 ; choice and will throw off the return value for the following selections.
@@ -236,6 +242,14 @@ ERROR_V8="Problem installing V8Power Tools."
 -------------------------------------------------------------------------------
 ; Just Prior to reboot message
 REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
+
+; Message that is only shown when the user did not force an update of their MBR.
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
+REBOOT_WARN.2=/c32 you system does fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please /p reboot
+REBOOT_WARN.3=/c32 using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force /p new boot code to the MBR.
+REBOOT_WARN.5=
 
 -------------------------------------------------------------------------------
 ; AUTOEXEC.BAT messages

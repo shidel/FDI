@@ -22,10 +22,15 @@ LANG_DE=Alem n
 LANG_EO=Esperanto
 LANG_NL=Holand‚s
 
-HELLO_FRAME=/w68 /h10 /c
+HELLO_FRAME=/w72 /h10 /c
 HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Bienvenido al programa de instalaci¢n para " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Bienvenido al instalador avanzado para " /f %1 "%2" /f %3 .
+HELLO_WARN.1=
+HELLO_WARN.2=
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
 PROCEED?="¨Desea continuar?"
 CONTINUE="  S¡ - Contin£e con la instalaci¢n"
 EXIT="  No - Volver a DOS"
@@ -128,6 +133,12 @@ ERROR_CONFIG="Problema copiar nuevos archivos de configuraci¢n."
 ERROR_V8="Problema al instalar 'V8Power Tools'."
 
 REBOOT_PAUSE=/f%1/c32 Retire el medio de instalaci¢n y presione una tecla para reiniciar el sistema /p/e/c32 o presionar /f%2 CTRL+C /f%1 para salir...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
+REBOOT_WARN.2=/c32 you system does fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please /p reboot
+REBOOT_WARN.3=/c32 using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force /p new boot code to the MBR.
+REBOOT_WARN.5=
 
 AUTO_DONE=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
 AUTO_HELP=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.

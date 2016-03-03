@@ -27,6 +27,11 @@ HELLO_FRAME=/w68 /h10 /c
 HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welkom bij het installatie bestand van " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welkom bij de geavanceerde installatie van " /f %1 "%2" /f %3 .
+HELLO_WARN.1=
+HELLO_WARN.2=
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
 PROCEED?="Wilt u verder gaan?"
 CONTINUE="  Ja  - Ga door met de installatie"
 EXIT="  Nee - Ga terug naar DOS."
@@ -145,6 +150,12 @@ ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestande
 ERROR_V8="Probleem bij het installeren van V8Power Tools."
 
 REBOOT_PAUSE=/f%1/c32 Verwijder de installatie media uit het station en druk op een toets om opnieuw /p/e/c32 op te starten of op /f%2 CTRL+C /f%1 om setup te sluiten...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
+REBOOT_WARN.2=/c32 you system does fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please /p reboot
+REBOOT_WARN.3=/c32 using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force /p new boot code to the MBR.
+REBOOT_WARN.5=
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7

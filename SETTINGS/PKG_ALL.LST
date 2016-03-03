@@ -58,19 +58,19 @@ base\unformat
 base\xcopy
 util\udvd2
 base\welcome
-
-; The remaining packages are only installed when ALL is chosen.
-
-util\v8power
-util\4dos
-util\doslfn
 util\fdnpkg
-util\memtest
-util\bootfix
-util\shsufdrv
 util\cwsdpmi
 archiver\zip
 archiver\unzip
+util\v8power
+util\shsufdrv
+
+; The remaining packages are only installed when ALL is chosen.
+
+util\4dos
+util\doslfn
+util\memtest
+util\bootfix
 
 util\grep
 util\tee
@@ -81,3 +81,7 @@ util\pg
 archiver\tar
 archiver\gzip
 archiver\bz2
+
+net\mtcp
+net\wget
+net\vmsmount

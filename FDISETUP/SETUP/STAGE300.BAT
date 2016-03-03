@@ -93,7 +93,11 @@ goto Spacer
 :AdvancedMesssage
 vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
-vecho
+vecho /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF%
 vecho /t %FLANG% PROCEED?
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
 vecho /t %FLANG% CONTINUE

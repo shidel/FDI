@@ -95,7 +95,11 @@ goto Spacer
 :AdvancedMesssage
 vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
-vecho
+vecho /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF%
 vecho /t %FLANG% PROCEED?
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
 vecho /t %FLANG% CONTINUE
@@ -628,7 +632,21 @@ SET FADV="y"
 call %SELF% BLACK BOOTPAUSE FDSETUP
 vgotoxy eop sor up
 vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
-vpause /fLightCyan /d 30 CTRL+C
+vpause /fLightCyan /d 60 CTRL+C
+if Errorlevel 200 goto Abort
+
+:BOOTWARN
+SET FADV="y"
+call %SELF% BLACK BOOTWARN FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
+vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vgotoxy /g eop sor up
+vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
+vpause /fLightCyan /d 60 CTRL+C
 if Errorlevel 200 goto Abort
 
 vcls /a7

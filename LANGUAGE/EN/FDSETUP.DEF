@@ -22,11 +22,17 @@ LANG_DE=German
 LANG_EO=Esperanto
 LANG_NL=Dutch
 
-HELLO_FRAME=/w66 /h10 /c
+HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w40 /h4 /c
 HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
-PROCEED?="Do you wish to proceed?"
+HELLO_WARN.1=/f%1 "%2" /f%3 is a complete operating system. If you choose to /p install this on your computer, you may overwrite the operating /p system you have now (for example, Windows.)
+HELLO_WARN.2=/c32 If this is not what you intend, please stop now.
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
+
+PROCEED?=/p/p "Do you wish to proceed?"
 CONTINUE="  Yes - Continue with installation."
 EXIT="  No  - Return to DOS."
 
@@ -128,6 +134,12 @@ ERROR_CONFIG="Problem copying new configuration files."
 ERROR_V8="Problem installing V8Power Tools."
 
 REBOOT_PAUSE=/f%1/c32 Remove the installation media and press a key to restart the system or /p/e/c32 press /f%2 CTRL+C /f%1 to exit...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
+REBOOT_WARN.2=/c32 you system does fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please /p reboot
+REBOOT_WARN.3=/c32 using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force /p new boot code to the MBR.
+REBOOT_WARN.5=
 
 ; AUTOEXEC.BAT messages
 AUTO_DONE=Done processing startup files /fCyan %1 /a7 and /fCyan %2 /a7
