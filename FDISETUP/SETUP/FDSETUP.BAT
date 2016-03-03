@@ -20,6 +20,7 @@ set FBOOTED=
 if "%1" == "BOOT" set FBOOTED=y
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
+if "%1" == "MBRZAP" set FADV=y
 
 REM Run Installer Stages ******************************************************
 
@@ -54,6 +55,8 @@ call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
+
+if "%1" == "MBRZAP" goto DiskTesting
 
 REM Welcome
 set FSTAGE=300
@@ -94,6 +97,8 @@ call FDILANG.BAT FDCHECK FDSETUP
 if exist FDCHECK.BAT call FDCHECK.BAT
 if errorlevel 1 goto Aborted
 
+if "%1" == "MBRZAP" goto MBRZAP
+
 REM Ask the user all of the Questions.
 SET HTARGET=%FTARGET%
 set FSTAGE=700
@@ -111,6 +116,7 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+:PostInstall
 REM Post install stuff, like recommend reboot.
 set FSTAGE=900
 call FDILANG.BAT FDSETUP
@@ -118,7 +124,9 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+:CleanUp
 REM Run cleanup stage.
+if "%FREBOOT%" == "y" goto DoReboot
 set FSTAGE=999
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
@@ -127,6 +135,38 @@ call STAGE%FSTAGE%.BAT
 REM Ran all installer stages **************************************************
 verrlvl 0
 goto Completed
+
+REM Ran all installer stages **************************************************
+:MBRZAP
+SET HTARGET=%FTARGET%
+set FSTAGE=700
+set OSYS=y
+vcursor hide
+call FDICLS.BAT
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+if not exist FDASK100.BAT goto Error
+call FDILANG.BAT FDASK100 FDASK FDSETUP
+verrlvl 0
+call FDASK100.BAT
+if errorlevel 1 goto Aborted
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+if not "%HTARGET%" == "%FTARGET%" goto DiskTesting
+SET HTARGET=
+if not exist FDASK600.BAT goto Error
+call FDILANG.BAT FDASK600 FDASK FDSETUP
+verrlvl 0
+call FDASK600.BAT
+if errorlevel 1 goto Aborted
+if not "%OBSS%" == "y" vcls /g /a7
+if not "%OBSS%" == "y" goto CleanUp
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+if not exist FDINS700.BAT goto Error
+call FDILANG.BAT FDINS700 FDINS FDSETUP
+verrlvl 0
+call FDINS700.BAT
+if errorlevel 1 goto Aborted
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+goto PostInstall
 
 :NoInstallNeeded
 REM Run cleanup stage.
@@ -183,6 +223,8 @@ REM Post execution cleanup ****************************************************
 :Finished
 vfdutil /c /p %0
 
+if "%FREBOOT%" == "y" goto DoReboot
+
 set FADV=
 set FBOOTED=
 set FSTAGE=
@@ -193,7 +235,6 @@ set FWAIT=
 set FDEL=
 set FLANG=
 
-if "%FREBOOT%" == "y" goto DoReboot
 if "%FREBOOT%" == "n" goto DoExit
 
 set FDRIVE=
@@ -206,6 +247,18 @@ call FDILANG.BAT FDSETUP
 vcls /a 0x07
 lbacache SYNC
 lbacache STOP
+if not "%OSYS%" == "y" goto RebootWarning
+if not "%OBSS%" == "y" goto RebootWarning
+goto NoWarning
+:RebootWarning
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
+vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vgotoxy /l eop /g sor down down down
+:NoWarning
 vline hidden
 vgotoxy eop sor
 vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
@@ -217,12 +270,16 @@ REM (Power On Self Test). Basically, it is a forced reboot. If care is not
 REM taken, any disk write caches and buffers will be lost and will result in
 REM file system corruption. For this reason, the POSTAL option will always
 REM remain undocumented.
-vpause /fLightCyan /d 30 CTRL+C POSTAL
-if errorlevel 200 goto DoExit
+vpause /fLightCyan /d 60 CTRL+C POSTAL
+if errorlevel 200 goto SkipReboot
 
 REM We really cannot get here unless something went really, really wrong.
 fdapm warmboot
-goto DontDoAnything
+REM goto DontDoAnything
+
+:SkipReboot
+set FREBOOT=n
+goto CleanUp
 
 :DoExit
 set FREBOOT=

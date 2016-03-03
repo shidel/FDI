@@ -66,7 +66,6 @@ if "%TEMP%" == "" goto NoTempSet
 deltree /y %TEMP%\*.* >NUL
 pushd
 
-
 echo FreeDOS install disk creator.
 echo.
 

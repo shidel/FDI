@@ -1,6 +1,6 @@
 @echo off
 
-REM if advanced mode prompt for transfer system files.
+REM if advanced mode prompt for force MBR update.
 
 if "%FADV%" == "" goto AssumeYes
 if "%OSYS%" == "n" goto SkipSysXfer
