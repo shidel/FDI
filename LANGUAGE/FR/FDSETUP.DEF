@@ -148,9 +148,9 @@ ERROR_V8="ProblŠme d'installation de V8Power Tools."
 REBOOT_PAUSE=/f%1/c32 Enlevez le m‚dia "d'installation" puis pressez une touche pour red‚marrer le /p/e/c32 systŠme, sinon tapez /f%2 CTRL-C /f%1 pour sortir...
 REBOOT_FRAME=/w70 /h8 /c
 REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
-REBOOT_WARN.2=/c32 you system does fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please /p reboot
-REBOOT_WARN.3=/c32 using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
-REBOOT_WARN.4=/c32 force /p new boot code to the MBR.
+REBOOT_WARN.2=/c32 you system fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please reboot /p
+REBOOT_WARN.3=using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force new /p boot code to the MBR.
 REBOOT_WARN.5=
 
 ; AUTOEXEC.BAT messages
