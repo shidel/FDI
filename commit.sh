@@ -1,7 +1,7 @@
 #!/bin/sh
 
 git add *.bat *.md LICENSE
-git add BINARIES\*.TXT
+git add BINARIES\*.TXT BINARIES\*.BAT
 git add PACKAGES\*.TXT
 git add V8POWER\*.TXT
 git add WELCOME\*
