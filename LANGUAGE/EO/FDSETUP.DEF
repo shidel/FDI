@@ -23,15 +23,15 @@ LANG_EO=esperanto
 LANG_NL=nederlanda
 
 ; STAGE300 - Initial welcome screen message.
-HELLO_FRAME=/w70 /h10 /c
+HELLO_FRAME=/w70 /h16 /c
 HELLO_OPTS=/w42 /h4 /c
 HELLO=/s- "Bonvenon! Chi tie estas la enhavigilo de " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Bonvenon! Chi tie estas la altspertan enhavigilon de " /f %1 "%2" /f %3 .
-HELLO_WARN.1=
-HELLO_WARN.2=
-HELLO_WARN.3=
+HELLO_WARN.1=/f%1 "%2" /f%3 estas plenumita mashinestrumo. Se vi elektus chi /p
+HELLO_WARN.2=tion por enhavigi komputilen, vi povus tute forvishi la /p mashinestrumon
+HELLO_WARN.3=/c32 ekzistan (ekz. Vindozo). Se vi ne celas tiel, /p bonvolu chesi tuj!
 HELLO_WARN.4=
-HELLO_WARN.5=
+HELLO_WARN.5=/p/p
 PROCEED?="Chu vi deziras dauri plu?"
 CONTINUE="  Jes - Dauru por enhavigi dosierojn."
 EXIT="  Ne  - Adiau, ghis revido."
@@ -147,10 +147,10 @@ ERROR_V8="Eraris enhavigante V8-Fortegajn Ilojn (V8Power Tools)."
 
 REBOOT_PAUSE=/f%1/c32 Elprenu la enhavigilan diskon kaj manpremu unu klavon por reenvekigi vian /p/e/c32 mashinon au nur manpremu /f%2 CTRL+C /f%1 por foriri...
 REBOOT_FRAME=/w70 /h8 /c
-REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
-REBOOT_WARN.2=/c32 you system fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please reboot /p
-REBOOT_WARN.3=using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
-REBOOT_WARN.4=/c32 force new /p boot code to the MBR.
+REBOOT_WARN.1=Estas konata ke vi ne senpere registris vian MBR-an komencan /p
+REBOOT_WARN.2=kodon. Se via mashino malsukcesos uzi /s- /c32 /f%1 "%2" /f%3 , /s+ bonvolu /p
+REBOOT_WARN.3=reenvekigi per la enhavigilan diskon kaj farigi "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ /p
+REBOOT_WARN.4=por forte registri novan komencan kodon en la MBR-n.
 REBOOT_WARN.5=
 
 ; AUTOEXEC.BAT messages
