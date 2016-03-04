@@ -25,7 +25,7 @@ RMPACKS=Forvishante malnovajn kontrauajn pakajhojn.
 RMPACKN=/s- "Forvishante malnovan '" /f %1 %2 /f %3 "' pakajhon."
 
 ; Remove old OS files
-RMOS_FRAME=/w60 /h5 /c
+RMOS_FRAME=/w62 /h5 /c
 RMOS=/s- "Forvishante malnovajn dosierojn de '" /f %1 %2 /f %3 "'."
 RMOS_DONE="Malnovaj mashinestraj (OS) dosieroj estis forvishitaj."
 

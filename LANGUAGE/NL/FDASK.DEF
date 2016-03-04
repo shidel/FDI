@@ -56,8 +56,8 @@ OBSS_FRAME=/w60 /h8 /c
 OBSS_OPTS=/w40 /h4 /c
 ; vecho "Force new boot sector code on dive C:?"
 OBSS?=Dwingen nieuwe bootsector code op duik /f %1 %2 /f %3 /s- ?
-OBSSY="  Yes - Dwing nieuwe MBR."
-OBSSN="  No  - Forceer dan schrijftafeltje."
+OBSSY="  Ja  - Dwing nieuwe MBR."
+OBSSN="  Nee - Forceer dan schrijftafeltje."
 
 ; FDASK700 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
