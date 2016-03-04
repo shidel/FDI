@@ -6,14 +6,14 @@ Created/Modified: January 16, 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+# LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
 LANG_AUTHOR=Paul Dufresne
 LANG_NAME=fran‡ais
 
-; FDICLS - Installer Title Bar
+# FDICLS - Installer Title Bar
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installateur"
 
-; STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+# STAGE300 - Before welcome screen if LANG is not set and could not be detected.
 LANG_ASK="Veuillez choisir votre langue."
 LANG_EN=Anglais
 LANG_ES=Espagnol
@@ -21,9 +21,9 @@ LANG_FR=Fran‡ais
 LANG_DE=Allemand
 LANG_EO=Esp‚ranto
 LANG_NL=Hollandais
-; add this language if needed.
+# add this language if needed.
 
-; STAGE300 - Initial welcome screen message.
+# STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w70 /h10 /c
 HELLO_OPTS=/w44 /h4 /c
 HELLO=/s- "Bienvenue au programme d'installation de " /f %1 "%2" /f %3 .
@@ -37,24 +37,24 @@ PROCEED?="Voulez-vous proc‚der?"
 CONTINUE="  Oui - Continuer avec l'installation."
 EXIT="  Non - Retourner au DOS."
 
-; STAGE400 - Partition screen specific dialog text.
+# STAGE400 - Partition screen specific dialog text.
 NOPART_FRAME=/w70 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Le disque " /f %1 %2 /f %3 " ne semble pas avoir ‚t‚ partitionn‚."
 PART?="Voulez-vous partitionner votre disque?"
 PART_YES="  Oui - Lancer le Partitionneur."
-; Also uses EXIT defined above.
+# Also uses EXIT defined above.
 
-; STAGE500 - After partitioned specific text.
+# STAGE500 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 PARTED=/s- "Vous devez red‚marrer votre ordinateur pour que la" /p "nouvelle table de partition prenne effet."
 REBOOT?="Voulez-vous red‚marrer?"
 REBOOT_YES="  Oui - Red‚marre maintenant."
-; Also uses EXIT defined above.
+# Also uses EXIT defined above.
 REBOOT="Votre ordinateur red‚marre."
 
-; STAGE500 - Formating specific
+# STAGE500 - Formating specific
 NOFORMAT_FRAME=/w60 /h10 /c
 NOFORMAT_OPTS=/w50 /h4 /c
 NOFORMATADV_FRAME=/w70 /h11 /c
@@ -64,47 +64,47 @@ FORMAT?="Voulez-vous formater le disque?"
 FORMAT_YES="  Oui - Effacer et formater %1."
 FORMATADV_QUICK="  Oui - Effacer rapidement et formater le disque %1."
 FORMATADV_SLOW="  Oui - Effacer complŠtement et formater le disque %1."
-; Also uses EXIT defined above.
+# Also uses EXIT defined above.
 FORMATTING=/s- /fGray "Formatage en cours de " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Appuyer une touche... " /e
 
-; STAGE700 - Install preparation
+# STAGE700 - Install preparation
 GATHERING_FRAME=/w72 /h5 /c
 GATHERING="Cueillette de quelques information n‚cessaire … l'installation."
 
-; Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
-; to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
-; it will use it over the main FDASK.DEF language file. That is only recommended
-; for add-on questioning prompts that are not part of the main FDI base.
+# Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+# to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+# it will use it over the main FDASK.DEF language file. That is only recommended
+# for add-on questioning prompts that are not part of the main FDI base.
 
-; STAGE800 - Installing
+# STAGE800 - Installing
 INSTALL_FRAME=/w60 /h10 /c
 INSTALL_OPTS=/w46 /h4 /c
 INSTALL=/s- "Prˆt pour l'installation " /f %1 "%2" /f %3 .
 INSTALL?="Voulez-vous intaller maintenant?"
 INSTALL_YES="  Oui - Installer %1."
-; Also uses EXIT defined above.
+# Also uses EXIT defined above.
 PREPARING_FRAME=/w40 /h5 /c
 PREPARING="Preparation de l'installation."
 
-; Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
-; to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
-; it will use it over the main FDINS.DEF language file. That is only recommended
-; for add-on installers that are not part of the main FDI base.
+# Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+# to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+# it will use it over the main FDINS.DEF language file. That is only recommended
+# for add-on installers that are not part of the main FDI base.
 
-; STAGE900 - All Done reboot?
+# STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w68 /h10 /c
 COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "Installation de " /f %1 "%2" /f %3 " est maintenant termin‚e."
-; Also uses REBOOT?, REBOOT, EXIT defined above.
+# Also uses REBOOT?, REBOOT, EXIT defined above.
 
-; FDSETUP - Installer Aborted
+# FDSETUP - Installer Aborted
 ABORTED=/fWhite /bRed " L'installation de %1 a ‚t‚ interrompue." /e /fGray
 
-; FDSETUP - Missing Stage Error
+# FDSETUP - Missing Stage Error
 STAGE_ERROR=/s- "Incapable d'ex‚cuter l'‚tape %1 de l'installateur." /p "Il est possible que l'installateur soit corrompu." /p "Veuillez le ret‚l‚charger ou tenter une m‚thode diff‚rente d'installation."
 
-; FDICTRLC - Control-C specific
+# FDICTRLC - Control-C specific
 CTRLC_FRAME=/w64 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "Vous avez press‚ " /f %1 "CTRL-C" /f %2 .
@@ -114,7 +114,7 @@ CTRLCN="  Non - je veux continuer."
 CTRLCA="  Non - Passer au Mode Avanc‚."
 CTRLCB="  Non - Passer au Mode Normal"
 
-; FDIFAIL - Installation failure error message box
+# FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w64 /h11 /c
 FAIL_OPTS=/w46 /h4 /c
 FAILADV_FRAME=/w64 /h13 /c
@@ -123,15 +123,15 @@ FAILH="Un red‚marrage pourrait aider."
 FAIL?="Voulez-vous red‚marrer maintenant?"
 FAILY="  Oui - Red‚marrez maintenant."
 FAILN="  Non - Retournez au DOS."
-; At present FAILI is only available in advanced mode.
+# At present FAILI is only available in advanced mode.
 FAILI="  Non - Ignorer. (non recommend‚)"
 FAILR="L'ordinateur va maintenant red‚marrer."
 
-; FDNOTICE - Already installed notice.
+# FDNOTICE - Already installed notice.
 NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray est d‚j… install‚.
 NOTICE.2=/r5/c32 "Vous pouvez lancer l'installateur manuellement en ex‚cutant '" /s- /fCyan SETUP /fGray "'"
 
-; Failure messages
+# Failure messages
 ERROR_BACKZIP="Archivage %1."
 ERROR_BACKUP="Erreur lors de l'archivage."
 ERROR_MKDOS="N'a pas pu cr‚er le r‚pertoire '%1'."
@@ -143,7 +143,6 @@ ERROR_MEDIA="Impossible de localiser les packages d'installation."
 ERROR_REMOS="Eu un problŠme en supprimant les fichiers de l'ancien systŠme."
 ERROR_XSYS="Erreur systŠme de transfert de fichiers … %1."
 ERROR_CONFIG="ProblŠme de copier de nouveaux fichiers de configuration."
-ERROR_V8="ProblŠme d'installation de V8Power Tools."
 
 REBOOT_PAUSE=/f%1/c32 Enlevez le m‚dia "d'installation" puis pressez une touche pour red‚marrer le /p/e/c32 systŠme, sinon tapez /f%2 CTRL-C /f%1 pour sortir...
 REBOOT_FRAME=/w70 /h8 /c
@@ -153,8 +152,130 @@ REBOOT_WARN.3=using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /
 REBOOT_WARN.4=/c32 force new /p boot code to the MBR.
 REBOOT_WARN.5=
 
-; AUTOEXEC.BAT messages
+# AUTOEXEC.BAT messages
 AUTO_DONE=Fini "d'installer" les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %2 /a7
 AUTO_HELP=Taper /fWhite %1 /fGray pour obtenir du support concernant les commandes et la navigation.
 AUTO_WELCOME=Bienvenue au systŠme "d'exploitation" /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
 
+
+# FDASK000 - Reserved
+
+# FDASK100 - Reserved
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w72 /h10 /c
+BACKUP_OPTS=/w60 /h4 /c
+BACKUPADV_FRAME=/w72 /h11 /c
+BACKUPADV_OPTS=/w60 /h5 /c
+# vecho "A previous operating system was detected on drive C:."
+BACKUP="Un systŠme d'exploitation existe d‚j… sur le disque" /f %1 %2 /f %3 /s- .
+BACKUP?="D‚sirez vous savegarder les anciens fichier avant l'installation?"
+BACKUPY="  Oui - Sauvegarder les fichiers avant."
+BACKUPZ="  Oui - Sauvegarder dans un fichier .zip avant."
+BACKUPN="  Non - Installer sans sauvegarder les anciens fichiers."
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c
+TARGET?=Changer le r‚pertoire de destination?
+# vask "C:\FDOS"
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w72 /h8 /c
+REPLACE_OPTS=/w62 /h4 /c
+REPLACE?=Remplacer les fichiers de configuration systŠme?
+REPLACEY="  Oui - Transf‚rer les nouveaux fichiers de configuration."
+REPLACEN="  Non - Conserver les anciens fichiers."
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
+DELETE_OPTS=/w40 /h4 /c
+# vecho "Remove all old files from C:\FDOS?
+DELETE?=Enlever tous les anciens fichiers de /f %1 %2 /f %3 /s- ?
+DELETEY="  Oui - R‚installer … neuf."
+DELETEN="  Non - Ajouter … ce qui ‚tait l…."
+
+# FDASK400 - Advanced mode transfer system files
+XFER_FRAME=/w68 /h8 /c
+XFER_OPTS=/w52 /h4 /c
+# vecho "Transfer system files to drive C:?"
+XFER?=Transf‚rer les fichiers systŠmes vers le disque /f %1 %2 /f %3 /s- ?
+XFERY="  Oui - Transf‚rer les fichiers systŠmes."
+XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
+
+# FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w64 /h8 /c
+OBSS_OPTS=/w44 /h4 /c
+# vecho "Force new boot sector code on dive C:?"
+OBSS?=Forcer nouveau du secteur de d‚marrage sur plong‚e /f %1 %2 /f %3 /s- ?
+OBSSY="  Oui - Essuyez mon secteur d'amor‡age."
+OBSSN="  Non - Ne forcez pas nouvelle."
+
+# FDASK700 - Package group selection.
+PAC_FRAME=/w74 /h11 /c
+PAC_OPTS=/w66 /h7 /c
+PAC_FRAME_B=/w74 /h8 /c
+PAC_OPTS_B=/w66 /h4 /c
+PAC_FRAME_D=/w74 /h14 /c
+PAC_OPTS_D=/w66 /h10 /c
+PAC_FRAME_BD=/w74 /h11 /c
+PAC_OPTS_BD=/w66 /h7 /c
+# vecho "What FreeDOS packages do you want to install?"
+PACS?=Quels paquetages /f %1 %2 /f %3 d‚sirez-vous installer?
+PACBO="  Uniquement les paquetages essentiels."
+PACBS="  Uniquement les paquetages essentiels avec leur code source."
+PACAO="  Tout les paquetages."
+PACAS="  Tout les paquetages incluant leur code source."
+PACDO_ADV="  Un choix personnel de paquetages binaires."
+PACDS_ADV="  Un choix personnel de paquetages incluant leur code source."
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Appuyer une touche..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Sauvgarde en cours
+# vecho "'C:\FDOS'"
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 Sauvgarde achev‚e.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Supprimant les anciens paquetages en conflit.
+# vecho "Removing old 'base/append' package."
+IRMPACKN=/s- "Supprimant l'ancien paquet '" /f %1 %2 /f %3 "'."
+
+# Remove old OS files
+IRMOS_FRAME=/w74 /h5 /c
+# vecho "Removing old files from 'C:\FDOS'."
+IRMOS=/s- "Supprimant les anciens fichiers de '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Les fichiers de l'ancien systŠme d'exploitation ont ‚t‚ supprim‚s."
+
+# Remove old config files
+ICLEAN_FRAME=/w66 /h5 /c
+ICLEAN="Nettoyage en cours des anciens fichiers de configuration."
+ICLEAN_DONE="Nettoyage termin‚ des anciens fichiers de configuration."
+
+# Transfer system files
+IXSYS_FRAME=/w60 /h5 /c
+# vecho "Transferring system boot files to drive C:."
+IXSYS= /s- "Copiant les fichiers de d‚marrage vers le disque " /f %1 %2 /f %3 .
+IXSYS_DONE="Copie termin‚e des fichiers de d‚marrage."
+
+# Package installation.
+IPAC_FRAME=/w60 /h7 /c
+IPACBM="Installant les paquetages."
+IPACBI=/s- "Installant le paquet '" /f %1 %2 /f %3 "'"
+IPACSM="Installing sources."
+IPACSI= /s- "Installant les sources de '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w46 /h5 /c
+IPACDONE="Installation termin‚e des paquetages."
+
+# Config file installation
+ICONFIGS_FRAME=/w64 /h5 /c
+ICONFIGS="Installant les nouveaux fichiers de configuration."
+ICONFIGS_DONE="Les nouveaux fichiers de configuration ont ‚t‚ install‚s."

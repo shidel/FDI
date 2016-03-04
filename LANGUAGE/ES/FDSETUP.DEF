@@ -6,14 +6,14 @@ Created/Modified: 1/16/2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
-; LANG_AUTHOR is unused at present, but you should set it to your name.
+# LANG_AUTHOR is unused at present, but you should set it to your name.
 LANG_AUTHOR=Jerome Shidel
 LANG_NAME=Espa§ol
 
-; FDICLS - Title
+# FDICLS - Title
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Instalador"
 
-; STAGE300 - Initial welcome screen message
+# STAGE300 - Initial welcome screen message
 LANG_ASK="Por favor seleccione usted idioma."
 LANG_EN=InglÇs
 LANG_ES=Espa§ol
@@ -35,24 +35,24 @@ PROCEED?="®Desea continuar?"
 CONTINUE="  S° - Contin£e con la instalaci¢n"
 EXIT="  No - Volver a DOS"
 
-; STAGE400 - Partition screen specific
+# STAGE400 - Partition screen specific
 NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "La unidad " /f  %1 %2 /f %3 " no parece ser particionado."
 PART?="®Quiere crear particiones en la unidad?"
 PART_YES="  S° - Partitioner Lanzamiento."
-; EXIT
+# EXIT
 
-; STAGE400 - After partitioned specific
+# STAGE400 - After partitioned specific
 PARTED_FRAME=/w60 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 PARTED="Debe reiniciar el equipo para el nuevo esquema de " /p "partici¢n entre en vigor."
 REBOOT?="®Desea reiniciar ahora?"
 REBOOT_YES="  S° - Por favor, reiniciar ahora."
-; EXIT
+# EXIT
 REBOOT="Su equipo ahora debe reiniciar el sistema."
 
-; STAGE500 - Formating specific
+# STAGE500 - Formating specific
 NOFORMAT_FRAME=/w62 /h10 /c
 NOFORMAT_OPTS=/w56 /h4 /c
 NOFORMATADV_FRAME=/w64 /h11 /c
@@ -62,37 +62,37 @@ FORMAT?="®Quiere formatear la unidad?"
 FORMAT_YES="  S° - Por favor, borrar y formatear la unidad %1."
 FORMATADV_QUICK="  S° - Borrado r†pido y formatear la unidad %1."
 FORMATADV_SLOW="  S° - Borrado completo y el formato la unidad %1."
-; EXIT
+# EXIT
 FORMATTING=/fGray /s- "Unidad de formato " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Presione una tecla... " /e
 
-; STAGE700 - Install preparation
+# STAGE700 - Install preparation
 GATHERING_FRAME=/w72 /h5 /c
 GATHERING="Recopilaci¢n de informaci¢n para prepararse para la instalaci¢n."
 
-; STAGE800 - Installing
-INSTALL_FRAME=/w60 /h10 /c
+# STAGE800 - Installing
+INSTALL_FRAME=/w64 /h10 /c
 INSTALL_OPTS=/w50 /h4 /c
 INSTALL=/s- "Ahora estamos listos para instalar " /f %1 "%2" /f %3 .
 INSTALL?="®Quieres instalar ahora?"
 INSTALL_YES="  S° - Por favor, instale %1."
-; EXIT
+# EXIT
 PREPARING_FRAME=/w44 /h5 /c
 PREPARING="Preparaci¢n para la instalaci¢n."
 
-; STAGE900 - All Done reboot?
+# STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w60 /h10 /c
 COMPLETE_OPTS=/w40 /h4 /c
 COMPLETE=/s- "La instalaci¢n de " /f %1 "%2" /f %3 " ha finalizado."
-; REBOOT?, REBOOT, EXIT
+# REBOOT?, REBOOT, EXIT
 
-; FDSETUP - Installer Aborted
+# FDSETUP - Installer Aborted
 ABORTED=/fWhite /bRed "La instalaci¢n de %1 ha sido abortada." /e /fGray
 
-; FDSETUP - Missing Stage Error
+# FDSETUP - Missing Stage Error
 STAGE_ERROR="No se puede ejecutar la etapa de instalaci¢n de %1." /p "Es posible que el instalador est† da§ado." /p "Por favor, vuelva a descargarlo o probar un mÇtodo diferente de la instalaci¢n."
 
-; FDICTRLC - Control-C specific
+# FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "Ha pulsado " /f %1 "CTRL-C" /f %2 .
@@ -102,7 +102,7 @@ CTRLCN="  No - Quiero seguir."
 CTRLCA="  No - Cambiar al modo avanzado."
 CTRLCB="  No - Cambiar a modo b†sico."
 
-; FDIFAIL - Installation failure error message box
+# FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w70 /h11 /c
 FAIL_OPTS=/w40 /h4 /c
 FAILADV_FRAME=/w70 /h13 /c
@@ -114,11 +114,11 @@ FAILN="  No - Volver a DOS."
 FAILI="  No - Ignorar (no recomendado)"
 FAILR="El ordenador se reiniciar†."
 
-; FDNOTICE - Already installed notice.
+# FDNOTICE - Already installed notice.
 NOTICE.1=/c32 /fGreen %1 /fCyan %2 /fGray ya est† instalado.
 NOTICE.2=/c32 Puede iniciar el programa de instalaci¢n manualmente ejecutando /fCyan SETUP.BAT /fGray
 
-; Failure messages
+# Failure messages
 ERROR_BACKZIP="Hacer copia de seguridad de archivo %1."
 ERROR_BACKUP="Error de hacer la copia de seguridad."
 ERROR_MKDOS="No se puede crear el directorio '%1'."
@@ -130,7 +130,6 @@ ERROR_MEDIA="No se puede encontrar paquetes de instalaci¢n."
 ERROR_REMOS="Tuvimos un problema eliminando los archivos del sistema de antigÅedad."
 ERROR_XSYS="Error transferir los archivos del sistema de %1."
 ERROR_CONFIG="Problema copiar nuevos archivos de configuraci¢n."
-ERROR_V8="Problema al instalar 'V8Power Tools'."
 
 REBOOT_PAUSE=/f%1/c32 Retire el medio de instalaci¢n y presione una tecla para reiniciar el sistema /p/e/c32 o presionar /f%2 CTRL+C /f%1 para salir...
 REBOOT_FRAME=/w70 /h9 /c
@@ -144,3 +143,113 @@ AUTO_DONE=Inicio transformaci¢n efectuada archivos /fCyan %1 /a7 y /fCyan %2 /a7
 AUTO_HELP=Escriba /fWhite %1 /fGray para conseguir el apoyo de los comandos y de navegaci¢n.
 AUTO_WELCOME=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
 
+# FDASK000 - Reserved
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c
+TARGET?=®Cambie el directorio destino de la instalaci¢n?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w65 /h10 /c
+BACKUP_OPTS=/w50 /h4 /c
+BACKUPADV_OPTS=/w57 /h5 /c
+BACKUPADV_FRAME=/w65 /h11 /c
+BACKUP=/s- "Un sistema operativo anterior se detect¢ en la unidad " /f %1 %2 /f %3 .
+BACKUP?="®Deseas hacer copias de seguridad de los archivos viejos?"
+BACKUPY="  S° - Por favor, copia de seguridad primero."
+BACKUPZ="  S° - Por favor copia de seguridad como archivo zip."
+BACKUPN="  No - Instalar y sin marcha atr†s."
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w60 /h8 /c
+REPLACE_OPTS=/w40 /h4 /c
+REPLACE?="®Reemplazar archivos de sistema?"
+REPLACEY="  S° - Reemplazar los archivos"
+REPLACEN="  No - Mantener los archivos viejos."
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
+DELETE_OPTS=/w40 /h4 /c
+DELETE?=/s- "®Eliminar todos los archivos viejos de " /f %1 %2 /f %3 ?
+DELETEY="  S° - Nuevo comienzo."
+DELETEN="  No - DÇjalo desordenada."
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w64 /h8 /c
+XFER_OPTS=/w54 /h4 /c
+XFER?=/s- "®Sistema de transferencia de archivos a la unidad " /f %1 %2 /f %3 ?
+XFERY="  S° - Los archivos del sistema de transferencia."
+XFERN="  No - No transferir los archivos del sistema."
+
+# FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w68 /h8 /c
+OBSS_OPTS=/w50 /h4 /c
+# vecho "Force new boot sector code on drive C:?"
+OBSS?=®Forzar nuevo c¢digo de sector de arranque en la unidad /f %1 %2 /f %3 /s- ?
+OBSSY="  S° - Registro de inicio maestro ovewrite."
+OBSSN="  No - No obligue a uno nuevo."
+
+# FDASK700 - Package group selection.
+PAC_FRAME=/w60 /h11 /c
+PAC_OPTS=/w40 /h7 /c
+PAC_FRAME_B=/w60 /h8 /c
+PAC_OPTS_B=/w40 /h4 /c
+PAC_FRAME_D=/w60 /h14 /c
+PAC_OPTS_D=/w50 /h10 /c
+PAC_FRAME_BD=/w60 /h11 /c
+PAC_OPTS_BD=/w50 /h7 /c
+PACS?=/s- "®QuÇ paquetes de " /f %1 %2 /f %3 " quieres instalar?"
+PACBO="  Paquetes b†sicos solamente."
+PACBS="  Paquetes b†sicos con s¢lo fuentes."
+PACAO="  Todos los paquetes."
+PACAS="  Todos los paquetes y sus fuentes."
+PACDO_ADV="  Seleccionado paquetes binarios."
+PACDS_ADV="  Los paquetes seleccionados y sus fuentes."
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Press a key..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w66 /h7 /c
+IBACKUP="Creaci¢n de copias de seguridad"
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 "Proceso de copia de seguridad se ha completado."
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS="Extracci¢n de paquetes en conflicto viejos."
+IRMPACKN=/s- "Extracci¢n paquete antiguo '" /f %1 %2 /f %3 "'."
+
+# Remove old OS files
+IRMOS_FRAME=/w64 /h5 /c
+IRMOS=/s- "La eliminaci¢n de archivos viejos de '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Se eliminaron los archivos del sistema operativo antiguo."
+
+# Remove old config files
+ICLEAN_FRAME=/w65 /h5 /c
+ICLEAN="La limpieza de los archivos de configuraci¢n antiguos."
+ICLEAN_DONE="Se han eliminado los archivos de configuraci¢n antiguos."
+
+# Transfer system files
+IXSYS_FRAME=/w60 /h6 /c
+IXSYS=/s- "Transferencia de archivos de arranque del sistema a " /p "la unidad " /f %1 %2 /f %3 '.'
+IXSYS_DONE="Transferencia de archivos del sistema ha completado."
+
+# Package installation.
+IPAC_FRAME=/w64 /h7 /c
+IPACBM="Instalaci¢n de paquetes de software."
+IPACBI=/s- "Instalaci¢n de paquete de software '" /f %1 %2 /f %3 "'"
+IPACSM="Instalaci¢n de fuentes."
+IPACSI=/s- "Instalaci¢n de fuentes para '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w60 /h5 /c
+IPACDONE="Instalaci¢n del paquete de software se ha completado."
+
+# Config file installation
+ICONFIGS_FRAME=/w60 /h5 /c
+ICONFIGS="Instalaci¢n de los archivos de configuraci¢n frescas."
+ICONFIGS_DONE="Se instalaron nuevos archivos de configuraci¢n."

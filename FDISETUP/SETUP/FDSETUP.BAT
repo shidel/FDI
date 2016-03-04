@@ -244,6 +244,7 @@ goto DontDoAnything
 
 :DoReboot
 call FDILANG.BAT FDSETUP
+if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
 lbacache SYNC
 lbacache STOP
@@ -260,7 +261,7 @@ vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
 vgotoxy /l eop /g sor down down down
 :NoWarning
 vline hidden
-vgotoxy eop sor
+vgotoxy /g eop sor
 vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
 
 REM POSTAL for vpause is an undocumented option. Generally, it should only

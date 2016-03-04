@@ -4,8 +4,11 @@ REM Post installer cleanup.
 
 if "%1" == "VARSONLY" goto VarsOnly
 vfdutil /c /p %0
+
+if "%1" == "TEMPONLY" goto KeepCursor
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
+:KeepCursor
 
 if "%FTMP%" == "" goto NoHDTemp
 if not exist %FTMP%\NUL goto NoHDTemp
@@ -19,6 +22,8 @@ if errorlevel 2 goto IgnoreTemp
 
 if exist %TEMP%\NUL deltree /y %TEMP%\*.*>NUL
 :IgnoreTemp
+
+if "%1" == "TEMPONLY" goto SkipClear
 
 :VarsOnly
 rem if "%FDEBUG%" == "y" goto SkipClear
@@ -50,6 +55,7 @@ set OCLEAN=
 set OALL=
 set OSRC=
 set OBSS=
+
 
 REM Clear Theme Variables
 set TSF=

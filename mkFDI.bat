@@ -333,7 +333,9 @@ echo %TIDS% | vstr /n /b /s "'" "" |vecho /i /n
 type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
 echo LANG_LIST=/r4/c32%TIDS% /e  |vstr /n/b/s "," " /e/p/r4/c32">>%TEMP%\FDSETUP.DEF
 type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
-copy /y %TEMP%\FDSETUP.DEF %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
+grep -A 1000 "^\*\*\*" %TEMP%\FDSETUP.DEF | grep -iv "^;\|^#|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
+copy /y %TEMP%\FDSETUP.TMP %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
+del %TEMP%\FDSETUP.TMP >NUL
 del %TEMP%\FDSETUP.DEF >NUL
 vgotoxy /l eot next
 vecho , /fLightGreen OK /a7
@@ -777,10 +779,15 @@ SET OLDFDN=
 SET OLDDOS=
 SET OLDPATH=
 set SELF=
+
+if "%TEMP%" == "" goto NoTempRM
+if not exist %TEMP%\NUL goto NoTempRM
+vfdutil /c /d %TEMP%
+cd \
+deltree /Y %TEMP%\*.* >NUL
+:NoTempRM
+
 popd
 
-if "%TEMP%" == "" goto EndOfFile
-if not exist %TEMP%\NUL goto EndOfFile
-deltree /Y %TEMP%\*.* >NUL
 
 :EndOfFile

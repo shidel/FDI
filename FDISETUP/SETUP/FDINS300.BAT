@@ -5,8 +5,8 @@ REM Remove old conflicting packages.
 if not exist %FTARGET%\APPINFO\NUL goto Done
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
-vecho /n /t %FLANG% RMPACKS
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMPACK_FRAME
+vecho /n /t %FLANG% IRMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -39,7 +39,7 @@ if exist %FTARGET%\PACKAGES\%_PA%.LST goto PkgRemove
 goto PkgSkip
 :PkgRemove
 vgotoxy /l sop
-vecho /e /n /t %FLANG% RMPACKN %TFH% %_PA% %TFF%
+vecho /e /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 FDINST remove %_PA% >>NUL
 set _PL=y
 goto PkgNext
@@ -54,7 +54,7 @@ if exist %FTARGET%\PACKAGES\%_PA%\NUL deltree /y %FTARGET%\PACKAGES\%_PA% >NUL
 if not "%_PL%" == "y" goto PkgNext
 set _PL=
 vgotoxy /l sop
-vecho /e /n /t %FLANG% RMPACKS
+vecho /e /n /t %FLANG% IRMPACKS
 
 :PkgNext
 vmath %_PI% + 1 | set /p _PI=

@@ -11,8 +11,8 @@ goto AfterBackup
 :MakeBackup
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
-vecho /n /t %FLANG% BACKUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IBACKUP_FRAME
+vecho /n /t %FLANG% IBACKUP
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -42,7 +42,7 @@ set _AL=%_AF%\FDBACKUP.LST
 date /d >%_AL%
 
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
+vecho /n /t %FLANG% ITARGET %TFH% %_AF% %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
@@ -143,7 +143,7 @@ set _AL=%TEMP%\FDBACKUP.LST
 date /d>%_AL%
 
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% %_AF% %TFF%
+vecho /n /t %FLANG% ITARGET %TFH% %_AF% %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 5
 
@@ -195,7 +195,7 @@ REM Backup complete ***********************************************************
 :BackupComplete
 rem if exist %_AL% del %_AL%
 vgotoxy /l eop sor
-vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
+vecho /n /e /t %FLANG% IBACKUP_DONE %TFF%
 vdelay %FDEL%
 goto AfterBackup
 

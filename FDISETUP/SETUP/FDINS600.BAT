@@ -3,8 +3,8 @@
 REM Install Packages.
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
-vecho /n /t %FLANG% PACBM
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /n /t %FLANG% IPACBM
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 
@@ -28,7 +28,7 @@ verrlvl 0
 if "%_PA%" == "" goto PkgDone
 rem if not exist %FMEDIA%\%_PA%.zip goto PkgSkip
 vgotoxy /l sop
-vecho /e /n /t %FLANG% PACBI %TFH% %_PA% %TFF%
+vecho /e /n /t %FLANG% IPACBI %TFH% %_PA% %TFF%
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0
@@ -82,8 +82,8 @@ goto PkgSkip
 :Success
 if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PACDONE_FRAME
-vecho /n /t %FLANG% PACDONE
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPACDONE_FRAME
+vecho /n /t %FLANG% IPACDONE
 vdelay %FDEL%
 verrlvl 0
 
