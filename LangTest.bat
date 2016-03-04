@@ -231,9 +231,9 @@ vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-REM ***** FDASK
+REM ***** FDSETUP
 :TARGET
-call %SELF% CLS TARGET FDASK ADV
+call %SELF% CLS TARGET FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
 vecho /t %FLANG% TARGET?
 vecho
@@ -242,7 +242,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :BACKUP
-call %SELF% CLS BACKUP FDASK
+call %SELF% CLS BACKUP FDSETUP
 if "%FADV%" == "y" goto BACKUPADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
 vecho /t %FLANG% BACKUP %TFH% C: %TFF%
@@ -268,7 +268,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :CONFIGFILES
-call %SELF% CLS CONFIGFILES FDASK ADV
+call %SELF% CLS CONFIGFILES FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
 vecho /t %FLANG% REPLACE?
 vecho
@@ -280,7 +280,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :DELETE
-call %SELF% CLS DELETE FDASK ADV
+call %SELF% CLS DELETE FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
 vecho /t %FLANG% DELETE? %TFH% C:\FREE_DOS %TFF%
 vecho
@@ -292,7 +292,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :XFER
-call %SELF% CLS XFER FDASK ADV
+call %SELF% CLS XFER FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XFER_FRAME
 vecho /t %FLANG% XFER? %TFH% C: %TFF%
 vecho
@@ -304,7 +304,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :OBSS
-call %SELF% CLS OBSS FDASK ADV
+call %SELF% CLS OBSS FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME
 vecho /t %FLANG% OBSS? %TFH% C: %TFF%
 vecho
@@ -316,7 +316,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :PACBO
-call %SELF% CLS PACBO FDASK
+call %SELF% CLS PACBO FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_B
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
@@ -329,7 +329,7 @@ if "%FADV%" == "" goto %PART%
 
 set FADV=
 :PACBD
-call %SELF% CLS PACBD FDASK
+call %SELF% CLS PACBD FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_BD
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
@@ -344,7 +344,7 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :PACAO
-call %SELF% CLS PACAO FDASK
+call %SELF% CLS PACAO FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
@@ -360,7 +360,7 @@ if "%FADV%" == "" goto %PART%
 
 set FADV=
 :PACDO
-call %SELF% CLS PACDO FDASK
+call %SELF% CLS PACDO FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME_D
 vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
@@ -377,25 +377,13 @@ vchoice /a %TFC% Ctrl-C /d 3
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
-:V8FILES
-call %SELF% CLS V8FILES FDASK ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8_FRAME
-vecho /t %FLANG% V8I? %TFH% %TFF%
-vecho
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% V8_OPTS
-vecho /t %FLANG% V8IY
-vecho /n /t %FLANG% V8IN
-vchoice /a %TFC% Ctrl-C /d 1
-if Errorlevel 200 goto Abort
-if "%FADV%" == "" goto %PART%
-
-REM ***** FDINS
+REM ***** FDSETUP
 :MKBACKUP
-call %SELF% CLS MKBACKUP FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
-vecho /n /t %FLANG% BACKUP
+call %SELF% CLS MKBACKUP FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IBACKUP_FRAME
+vecho /n /t %FLANG% IBACKUP
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
+vecho /n /t %FLANG% ITARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 50
 call %SELF% STANDBY
@@ -403,11 +391,11 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :MKBACKUPZIP
-call %SELF% CLS MKBACKUPZIP FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
-vecho /n /t %FLANG% BACKUP
+call %SELF% CLS MKBACKUPZIP FDSETUP ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IBACKUP_FRAME
+vecho /n /t %FLANG% IBACKUP
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% C:\FDBACKUP\FDOS0000.ZIP %TFF%
+vecho /n /t %FLANG% ITARGET %TFH% C:\FDBACKUP\FDOS0000.ZIP %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 50
 call %SELF% STANDBY
@@ -415,13 +403,13 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :MKBACKUPDONE
-call %SELF% CLS MKBACKUPDONE FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% BACKUP_FRAME
-vecho /n /t %FLANG% BACKUP
+call %SELF% CLS MKBACKUPDONE FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IBACKUP_FRAME
+vecho /n /t %FLANG% IBACKUP
 vgotoxy /l sop eol right right
-vecho /n /t %FLANG% TARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
+vecho /n /t %FLANG% ITARGET %TFH% C:\FREE_DOS_OLD.000 %TFF%
 vgotoxy /l eop sor
-vecho /n /e /t %FLANG% BACKUP_DONE %TFF%
+vecho /n /e /t %FLANG% IBACKUP_DONE %TFF%
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
@@ -439,9 +427,9 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDPKG
-call %SELF% CLS RMOLDPKG FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
-vecho /n /t %FLANG% RMPACKS
+call %SELF% CLS RMOLDPKG FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMPACK_FRAME
+vecho /n /t %FLANG% IRMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 call %SELF% STANDBY
@@ -449,55 +437,55 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDPKGPART
-call %SELF% CLS RMOLDPKGPART FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMPACK_FRAME
-vecho /n /t %FLANG% RMPACKS
+call %SELF% CLS RMOLDPKGPART FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMPACK_FRAME
+vecho /n /t %FLANG% IRMPACKS
 vgotoxy /l eop sor
 vprogres /f %TFP% 50
 vgotoxy /l sop
-vecho /e /n /t %FLANG% RMPACKN %TFH% PACKAGES %TFF%
+vecho /e /n /t %FLANG% IRMPACKN %TFH% PACKAGES %TFF%
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDDOS
-call %SELF% CLS RMOLDDOS FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
-vecho /n /t %FLANG% RMOS %TFH% C:\FREE_DOS %TFF%
+call %SELF% CLS RMOLDDOS FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
+vecho /n /t %FLANG% IRMOS %TFH% C:\FREE_DOS %TFF%
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDDOSDONE
-call %SELF% CLS RMOLDDOSDONE FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% RMOS_FRAME
+call %SELF% CLS RMOLDDOSDONE FDSETUP ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
 vgotoxy /l sop
-vecho /n /e /t %FLANG% RMOS_DONE
+vecho /n /e /t %FLANG% IRMOS_DONE
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDCFG
-call %SELF% CLS RMOLDCFG FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
-vecho /n /t %FLANG% CLEAN
+call %SELF% CLS RMOLDCFG FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
+vecho /n /t %FLANG% ICLEAN
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :RMOLDCFGDONE
-call %SELF% CLS RMOLDCFGDONE FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CLEAN_FRAME
+call %SELF% CLS RMOLDCFGDONE FDSETUP ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
 vgotoxy /l sop
-vecho /n /e /t %FLANG% CLEAN_DONE
+vecho /n /e /t %FLANG% ICLEAN_DONE
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSPKG
-call %SELF% CLS INSPKG FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
-vecho /n /t %FLANG% PACBM
+call %SELF% CLS INSPKG FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /n /t %FLANG% IPACBM
 vgotoxy /l eop sor
 vprogres /f %TFP% 0
 call %SELF% STANDBY
@@ -505,9 +493,9 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSPKGPART
-call %SELF% CLS INSPKGPART FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
-vecho /e /n /t %FLANG% PACBI %TFH% "packages\filename" %TFF%
+call %SELF% CLS INSPKGPART FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /e /n /t %FLANG% IPACBI %TFH% "packages\filename" %TFF%
 vgotoxy /l eop sor
 vprogres /f %TFP% 50
 call %SELF% STANDBY
@@ -515,9 +503,9 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSPKGDONE
-call %SELF% CLS INSPKGDONE FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PACDONE_FRAME
-vecho /n /t %FLANG% PACDONE
+call %SELF% CLS INSPKGDONE FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPACDONE_FRAME
+vecho /n /t %FLANG% IPACDONE
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
@@ -535,18 +523,18 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSSYS
-call %SELF% CLS INSSYS FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XSYS_FRAME
-vecho /n /t %FLANG% XSYS %TFH% C: %TFF%
+call %SELF% CLS INSSYS FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
+vecho /n /t %FLANG% IXSYS %TFH% C: %TFF%
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSSYSDONE
-call %SELF% CLS INSSYSDONE FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% XSYS_FRAME
+call %SELF% CLS INSSYSDONE FDSETUP ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
 vgotoxy /l sop
-vecho /n /e /t %FLANG% XSYS_DONE
+vecho /n /e /t %FLANG% IXSYS_DONE
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
@@ -558,18 +546,18 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSCFG
-call %SELF% CLS INSCFG FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
-vecho /n /t %FLANG% CONFIGS
+call %SELF% CLS INSCFG FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
+vecho /n /t %FLANG% ICONFIGS
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 :INSCFGDONE
-call %SELF% CLS INSCFGDONE FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% CONFIGS_FRAME
+call %SELF% CLS INSCFGDONE FDSETUP ADV
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
 vgotoxy /l sop
-vecho /n /e /t %FLANG% CONFIGS_DONE
+vecho /n /e /t %FLANG% ICONFIGS_DONE
 call %SELF% STANDBY
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
@@ -577,29 +565,6 @@ if "%FADV%" == "" goto %PART%
 :INSCFGFAIL
 call %SELF% CLS INSCFGFAIL FDSETUP
 call %SELF% FAIL cc ERROR_CONFIG
-if Errorlevel 200 goto Abort
-if "%FADV%" == "" goto %PART%
-
-:INSV8
-call %SELF% CLS INSV8 FDINS
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
-vecho /n /t %FLANG% V8POWER %TFH% %TFF%
-call %SELF% STANDBY
-if Errorlevel 200 goto Abort
-if "%FADV%" == "" goto %PART%
-
-:INSV8DONE
-call %SELF% CLS INSV8DONE FDINS ADV
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% V8POWER_FRAME
-vgotoxy /l sop
-vecho /n /e /t %FLANG% V8POWER_DONE
-call %SELF% STANDBY
-if Errorlevel 200 goto Abort
-if "%FADV%" == "" goto %PART%
-
-:INSV8FAIL
-call %SELF% CLS INSV8FAIL FDSETUP
-call %SELF% FAIL cc ERROR_V8
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
