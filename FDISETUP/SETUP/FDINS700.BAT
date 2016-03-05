@@ -59,7 +59,7 @@ goto AfterOption
 
 :Failed
 set FERROR="System file transfer to %FDRIVE% failed."
-call FDFAIL.BAT cc ERROR_XSYS %FDRIVE%
+call FDIFAIL.BAT cc ERROR_XSYS %FDRIVE%
 verrlvl 1
 
 :AfterOption

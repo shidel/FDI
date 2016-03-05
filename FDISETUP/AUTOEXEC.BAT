@@ -3,6 +3,8 @@ SET DOSDIR=\FDSetup
 SET LANG=
 SET PATH=%dosdir%\BIN
 
+SET DIRCMD=/P /OGN /Y
+
 rem SET TEMP=%dosdir%\TEMP
 rem SET TMP=%TEMP%
 
@@ -11,7 +13,6 @@ rem SET WATTCP.CFG=%dosdir%
 rem SET NLSPATH=%dosdir%\NLS
 rem SET HELPPATH=%dosdir%\HELP
 rem SET BLASTER=A220 I5 D1 H5 P330
-rem SET DIRCMD=/P /OGN /4
 rem SET COPYCMD=/-Y
 
 DEVLOAD /H /Q %dosdir%\BIN\UDVD2.SYS /D:FDCD0001

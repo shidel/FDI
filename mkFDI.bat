@@ -35,12 +35,13 @@ SET OSV=%OS_VERSION%
 
 set USB=
 set SLIM=
+set KERNEL=
+set PKGDIR=
 set FLOPPY=A:
 set VOLUME=FD-SETUP
 set RAMDRV=
 set RAMSIZE=32M
 set CDROM=
-set KERNEL=KERNL386.SYS
 set TGO=0
 set TTRY=3
 
@@ -97,17 +98,23 @@ if not exist %TEMPPATH%\V8POWER\VERRLVL.COM goto MissingV8
 set TTRY=
 call FDISETUP\SETUP\STAGE000.BAT VersionOnly
 :RepeatNAME
-type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i PLATFORM|vstr /b/f = 2|set /p OS_NAME=
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^PLATFORM|vstr /b/f = 2|set /p OS_NAME=
 if "%OS_NAME%" == "" goto RepeatNAME
 :RepeatVER
-type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VERSION|vstr /b/f = 2|set /p OS_VERSION=
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^VERSION|vstr /b/f = 2|set /p OS_VERSION=
 if "%OS_VERSION%" == "" goto RepeatVER
 :RepeatID
-type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i VOLUME|vstr /b/f = 2|set /p VOLUMEID=
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^VOLUME|vstr /b/f = 2|set /p VOLUMEID=
 if "%VOLUMEID%" == "" goto RepeatID
 :RepeatURL
-type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i URL|vstr /b/f = 2|set /p OS_URL=
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^URL|vstr /b/f = 2|set /p OS_URL=
 if "%OS_URL%" == "" goto RepeatURL
+:RepeatDIR
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^PKGDIR|vstr /b/f = 2|set /p PKGDIR=
+if "%PKGDIR%" == "" goto RepeatDIR
+:RepeatKERN
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^KERNEL|vstr /b/f = 2|set /p KERNEL=
+if "%KERNEL%" == "" goto RepeatKERN
 
 set PATH=%TEMPPATH%\V8POWER;%DOSDIR%\BIN
 set TEMPPATH=
@@ -225,6 +232,9 @@ if "%TFILE%" == "" goto PkgLoop
 if "%TFILE%" == "" goto PkgDone
 vmath %TIDX% + 1 | set /p TIDX=
 vfdutil /n %TFILE% | set /p TEMPFILE=
+if exist %CDROM%\%TFILE%.zip goto NotExtra
+if exist %CDROM%\EXTRAS\%TEMPFILE%.zip set TFILE=EXTRAS\%TEMPFILE%
+:NotExtra
 if exist PACKAGES\%TEMPFILE%.ZIP set OVERRIDE=PACKAGES\%TEMPFILE%.ZIP
 set TFILE=%CDROM%\%TFILE%.zip
 if not "%OVERRIDE%" == ""  set TFILE=%OVERRIDE%
@@ -277,20 +287,31 @@ copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
 :USBAutoDone
 
+:PDIRLoopB
+vfdutil /p \%PKGDIR%\NUL | vstr /b /f : 2- | set /p PDIR=
+if "%PDIR%" == "" goto PDIRLoopB
+
 xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 copy /y SETTINGS\PKG_ALL.LST %RAMDRV%\FDSETUP\SETUP\FDPLALL.LST >NUL
 copy /y SETTINGS\PKG_BASE.LST %RAMDRV%\FDSETUP\SETUP\FDPLBASE.LST >NUL
 type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "0">%RAMDRV%\FDSETUP\SETUP\FDNPBIN.CFG
 type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "1">%RAMDRV%\FDSETUP\SETUP\FDNPSRC.CFG
+
 type FDISETUP\SETUP\STAGE000.BAT|vstr /n/s "$PLATFORM$" "%OS_NAME%">%TEMP%\STAGE000.BAT
 type %TEMP%\STAGE000.BAT|vstr /n/s "$VERSION$" "%OS_VERSION%">%TEMP%\STAGE000.000
 type %TEMP%\STAGE000.000|vstr /n/s "$OVOL$" "%VOLUMEID%">%DOSDIR%\SETUP\STAGE000.BAT
-del %TEMP%\STAGE000.000
-del %TEMP%\STAGE000.BAT
+del %TEMP%\STAGE000.000 >nul
+del %TEMP%\STAGE000.BAT >nul
+
+type FDISETUP\SETUP\STAGE700.BAT|vstr /n/s "$PKGDIR$" "%PDIR%">%TEMP%\STAGE700.BAT
+copy /y %TEMP%\STAGE700.BAT %DOSDIR%\SETUP\STAGE700.BAT>NUL
+del %TEMP%\STAGE700.BAT >nul
+set PDIR=
 
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
 echo VERSION=%OS_VERSION%>>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
+
 vecho , /fLightGreen OK /fGray /p
 
 :RepeatLangs
@@ -490,10 +511,15 @@ vecho /fGray Format, /fLightGreen OK /fGray /e /p
 pushd
 %RAMDRV%
 cd \
-sys %FLOPPY% /BOTH
+sys %RAMDRV% %FLOPPY% /BOTH
 if errorlevel 1 goto SysError
 vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
+rem if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\COMMAND.COM
+rem if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\KERNEL.SYS
+rem if not "%FLOPPY%" == "A:" attrib +S %FLOPPY%\COMMAND.COM
+rem if not "%FLOPPY%" == "A:" attrib +S %FLOPPY%\KERNEL.SYS
+rem vecho
 popd
 
 vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
@@ -501,6 +527,12 @@ xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
 copy /y %RAMDRV%\AUTOEXEC.BAT %FLOPPY%\ >NUL
 copy /y %RAMDRV%\FDCONFIG.SYS %FLOPPY%\ >NUL
 copy /y %RAMDRV%\SETUP.BAT %FLOPPY%\ >NUL
+if "%PKGDIR%" == "\" goto NoPKGFile
+if "%PKGDIR%" == "\PACKAGES\" goto NoPKGFile
+if "%PKGDIR%" == "\FDSETUP\PACKAGES\" goto NoPKGFile
+if not exist %FLOPPY%\FDSETUP\BIN\FDIMPLES.EXE goto NoPKGFile
+echo %PKGDIR% >%FLOPPY%\FDSETUP\BIN\FDIMPLES.DAT
+:NoPKGFile
 vecho ,  /fLightGreen OK /fGray
 
 if not "%USB%" == "y" goto Done
@@ -525,8 +557,13 @@ goto CheckFile
 grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l %TIDX% | set /p TFILE=
 :CheckFile
 if "%TFILE%" == "" goto CopyLoop
+:DirLoop
+vfdutil /p %FLOPPY%\%PKGDIR%\ | set /p TDIR=
+if "%TDIR%" == "" goto DirLoop
+if not exist %TDIR%\NUL mkdir %TDIR% >NUL
+set TDIR=
 :DestLoop
-vfdutil /p %FLOPPY%\%TFILE% | set /p TDIR=
+vfdutil /p %FLOPPY%\%PKGDIR%\%TFILE% | set /p TDIR=
 if "%TDIR%" == "" goto DestLoop
 :OvrLoop
 vfdutil /n %FLOPPY%\%TFILE% | set /p TOVR=
@@ -564,14 +601,14 @@ vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
 
 :LstCount
-dir /on /a /b /p- %FLOPPY%\ | vstr /b /l TOTAL | set /P TCNT=
+dir /on /a /b /p- %FLOPPY%\%PKGDIR% | vstr /b /l TOTAL | set /P TCNT=
 if "%TCNT%" == "" goto LstCount
 
 :LstLoop
-dir /on /a /b /p- %FLOPPY%\ | vstr /b /l %TIDX% | set /P TDIR=
+dir /on /a /b /p- %FLOPPY%\%PKGDIR% | vstr /b /l %TIDX% | set /P TDIR=
 if "%TDIR%" == "" goto LstLoop
 
-if not exist %FLOPPY%\%TDIR%\NUL goto Excluded
+if not exist %FLOPPY%\%PKGDIR%\%TDIR%\NUL goto Excluded
 if not exist %CDROM%\%TDIR%\INDEX.LST goto Excluded
 
 vecho /n /r5/c32 %TDIR%
@@ -579,14 +616,14 @@ vecho /n /r5/c32 %TDIR%
 set SIDX=0
 
 :ScanCount
-dir /on /a /b /p- %FLOPPY%\%TDIR%\*.ZIP | vstr /b /l TOTAL | set /P SCNT=
+dir /on /a /b /p- %FLOPPY%\%PKGDIR%\%TDIR%\*.ZIP | vstr /b /l TOTAL | set /P SCNT=
 if "%SCNT%" == "" goto ScanCount
 if "%SCNT%" == "0" goto Exclude
 
 grep -i ^FD-REPOV1 %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
 if errorlevel 1 goto ScanLoop
 
-type %TEMP%\INDEX.LST >%FLOPPY%\%TDIR%\INDEX.LST
+type %TEMP%\INDEX.LST >%FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
 
 :ScanInfoA
 type %TEMP%\INDEX.LST | vstr /b/t 1 | set /p SPKG=
@@ -594,16 +631,16 @@ if "%SPKG%" == "" goto ScanInfoA
 :ScanInfoB
 type %TEMP%\INDEX.LST | vstr /b/t 3 | set /p STMP=
 if "%STMP%" == "" goto ScanInfoB
-rem vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%" -to- %FLOPPY%\%TDIR%\INDEX.LST
+rem vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%" -to- %FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
 vecho /n " (%STMP%:%SCNT%)"
 set SPKG=
 set STMP=
 :ScanLoop
-dir /on /a /b /p- %FLOPPY%\%TDIR%\*.ZIP | vstr /b /l %SIDX% | vstr /u/b/f '.ZIP' 1 | set /P SPKG=
+dir /on /a /b /p- %FLOPPY%\%PKGDIR%\%TDIR%\*.ZIP | vstr /b /l %SIDX% | vstr /u/b/f '.ZIP' 1 | set /P SPKG=
 if "%SPKG%" == "" goto ScanLoop
 
 grep -i ^%SPKG% %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
-if not errorlevel 1 type %TEMP%\INDEX.LST >>%FLOPPY%\%TDIR%\INDEX.LST
+if not errorlevel 1 type %TEMP%\INDEX.LST >>%FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
 
 rem vecho /n " %SPKG%"
 
@@ -755,6 +792,7 @@ set RAMDRV=
 set RAMSIZE=
 set CDROM=
 set KERNEL=
+set PKGDIR=
 set ELOG=
 set LANGS=
 set LANGM=

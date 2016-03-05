@@ -48,7 +48,7 @@ if not exist %FTARGET%\NUL mkdir %FTARGET% >NUL
 if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
 
 set FERROR="Cleaning up old system files."
-call FDFAIL.BAT cc "Had a problem removing old system files."
+call FDIFAIL.BAT cc "Had a problem removing old system files."
 verrlvl 1
 
 :AfterOption

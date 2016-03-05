@@ -1,6 +1,16 @@
+
 ; Package list for extra additionally included packages.
 ; These packages are not installed. However, they will be included on the
 ; USB stick and CD ISO images.
+
+archiver\arj
+archiver\cabext
+archiver\lha
+archiver\lzip
+archiver\p7zip
+archiver\lzop
+archiver\lpq1
+archiver\zoo
 
 devel\nasm
 devel\fpc
@@ -9,6 +19,10 @@ devel\ow
 net\wget
 net\rsync
 net\curl
+
+devel\bcc
+devel\bwbasic
+devel\cpp2ccmt
 
 devel\fasm
 devel\fbc
@@ -30,19 +44,46 @@ devel\djgpp_tx
 devel\perl
 devel\upx
 
+devel\euphoria
+devel\pacificc
+devel\regina
+
+edit\blocek
+edit\doshexed
+edit\e3
+edit\elvis
+edit\fed
+edit\mbedit
+edit\pico
+edit\uhex
+
 net\mtcp
 net\picosntp
 net\picotcp
 net\ping
 net\vmsmount
 net\vncview
+net\curl
+net\ethtools
+net\gopherus
+net\htget
+net\rsync
+net\vmsmount
+net\vncview
+
 
 util\ansimat
 util\b64
 util\biew
+util\bmp2png
+util\bootfix
 util\cpied
+util\daa2iso
+util\desi3
+util\dn2
 util\dos32a
 util\dosidle
+util\doszip
 util\gcdrom
 util\less
 util\md5sum
@@ -54,8 +95,24 @@ util\xcdrom
 util\unrtf
 util\utf8tocp
 util\xfdisk
+util\foxcalc
+util\foxtype
+util\hiram
+util\hip
+util\pbox
+util\password
+util\localcfg
+util\pngcrush
+util\sqlite
+util\umbpci
+util\wde
+util\which
+util\touch
+util\tee
+util\savepart
 
 util\opengem
+
 util\ozonegui
 util\pgme
 

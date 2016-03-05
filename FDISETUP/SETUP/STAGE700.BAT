@@ -8,24 +8,33 @@ vecho /n /t %FLANG% GATHERING
 vdelay %FDEL%
 
 REM Locate installer packages media.
-set _MI=0
 
 REM Check if single source install (packages on same media as installer)
-if not exist ..\..\BASE\NUL goto MediaLoop
-if not exist ..\..\BASE\COMMAND.ZIP goto MediaLoop
-if not exist ..\..\BASE\KERNEL.ZIP goto MediaLoop
 
+REM TEST REPO CD
+set _MI=..\..
+if not exist %_MI%\BASE\NUL goto NotRepoCD
+if not exist %_MI%\BASE\COMMAND.ZIP goto NotRepoCD
+if not exist %_MI%\BASE\KERNEL.ZIP goto NotRepoCD
+
+:SingleSource
 pushd
-cd ..\..
+cd %_MI% >NUL
 :SetLoop
-cd | set /p FMEDIA=
+set /e FMEDIA=cd
 if "%FMEDIA%" == "" goto SetLoop
 popd
 goto MediaFound
 
+:NotRepoCD
+set PKGDIR=$PKGDIR$
+
+:FindMedia
+set _MI=0
+
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 :MediaLoop
-if "%_MI%" == "27" goto MissingMedia
+if "%_MI%" == "26" goto MissingMedia
 vmath %_MI% + 1 | set /p _MT=
 if "%_MT%" == "" goto MediaLoop
 set _MI=%_MT%
@@ -39,7 +48,7 @@ goto MediaLoop
 
 :MissingMedia
 set FERROR="Unable to locate installation packages."
-call FDFAIL.BAT ERROR_MEDIA
+call FDIFAIL.BAT ERROR_MEDIA
 goto AbortBatch
 
 :MediaFound
@@ -86,3 +95,4 @@ verrlvl 1
 :Done
 set _TI=
 set _TA=
+set PKGDIR=
