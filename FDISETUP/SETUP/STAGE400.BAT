@@ -7,6 +7,8 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
+if not "%TEMP%" == "" goto FDiskTest
+
 vinfo /d %FDRIVE%
 
 if errorlevel 100 goto Done
@@ -18,6 +20,25 @@ if errorlevel 2 goto WrongTypeDrive
 REM Drive C exists.
 verrlvl 0
 goto Done
+
+:FDiskTest
+fdisk /info 1 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 2 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 3 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 4 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 5 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 6 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 7 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+fdisk /info 8 | grep "^ %FDRIVE%" >NUL
+if not errorlevel 1 goto IgnoreThisError
+goto NoSuchDrive
 
 :NoSuchDrive
 :WrongTypeDrive
@@ -33,6 +54,11 @@ vchoice /a %TFC% Ctrl-C /d 2
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
 
+if "%FADV%" == "y" goto ManualPartition
+if not "%TEMP%" == "" goto AutoPartition
+
+:ManualPartition
+verrlvl 0
 vcls /a0x07
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
@@ -43,6 +69,27 @@ if not "%FDRIVE%" == "D:" fdisk 1
 REM **** Returned from Partitioning ****
 
 vcursor hide
+goto AfterPartitioned
+
+:AutoPartition
+verrlvl 0
+
+if "%FDRIVE%" == "D:" fdisk /info 2 | grep %>NUL
+if not "%FDRIVE%" == "D:" fdisk /info 1 | grep %>NUL
+if not errorlevel 1 goto ManualPartition
+
+if "%FDRIVE%" == "D:" fdisk /auto 2>NUL
+if not "%FDRIVE%" == "D:" fdisk /auto 1>NUL
+if errorlevel 1 goto ManualPartition
+
+if "%FDRIVE%" == "D:" fdisk /mbr 2>NUL
+if not "%FDRIVE%" == "D:" fdisk /mbr 1>NUL
+if errorlevel 1 goto ManualPartition
+
+if "%FDRIVE%" == "D:" fdisk /activate:1 2>NUL
+if not "%FDRIVE%" == "D:" fdisk /activate:1 1>NUL
+if errorlevel 1 goto ManualPartition
+
 :AfterPartitioned
 call FDICLS.BAT
 

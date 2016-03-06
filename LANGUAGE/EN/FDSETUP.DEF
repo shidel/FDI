@@ -67,7 +67,7 @@ NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
-PART_YES="  Yes - Launch Partitioner."
+PART_YES="  Yes - Partitioner drive %1."
 # EXIT
 
 # STAGE400 - After partitioned specific
@@ -212,9 +212,9 @@ XFER?=Transfer system files to drive /f %1 %2 /f %3 /s- ?
 XFERY="  Yes - Transfer system files."
 XFERN="  No  - Do not transfer system files."
 
-OBSS_FRAME=/w46 /h8 /c
+OBSS_FRAME=/w52 /h8 /c
 OBSS_OPTS=/w34 /h4 /c
-OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 /s- ?
+OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Yes - Overwrite MBR."
 OBSSN="  No  - Don't force new MBR."
 

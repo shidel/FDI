@@ -186,10 +186,10 @@ XFERY="  Ja  - Kopiere Systemdateien."
 XFERN="  Nein - Keine Systemdateien kopieren."
 
 # FDASK600 - Advanced mode force new boot sector
-OBSS_FRAME=/w56 /h8 /c
+OBSS_FRAME=/w60 /h8 /c
 OBSS_OPTS=/w36 /h4 /c
 # vecho "Force new boot sector code on dive C:?"
-OBSS?=Erzwingen neuen Bootsektor auf dem Laufwerk /f %1 %2 /f %3 /s- ?
+OBSS?=Erzwingen neuen Bootsektor auf dem Laufwerk /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Ja   - šberschreiben MBR."
 OBSSN="  Nein - Nicht mit Gewalt."
 

@@ -154,6 +154,18 @@ goto Error
 :TempDirOK
 
 :NotHDImage
+set FNUM=
+rem if "%FLOPPY%" == "A:" set FNUM=0
+rem if "%FLOPPY%" == "B:" set FNUM=0
+if "%FLOPPY%" == "C:" set FNUM=1
+if "%FLOPPY%" == "D:" set FNUM=2
+if "%FLOPPY%" == "E:" set FNUM=3
+if "%FLOPPY%" == "F:" set FNUM=4
+if "%FLOPPY%" == "G:" set FNUM=5
+if "%FLOPPY%" == "H:" set FNUM=6
+if "%FLOPPY%" == "I:" set FNUM=7
+if "%FLOPPY%" == "J:" set FNUM=8
+
 set TDIR=
 
 vecho "Searching for CD-ROM containing packages" /n
@@ -512,15 +524,25 @@ pushd
 %RAMDRV%
 cd \
 sys %RAMDRV% %FLOPPY% /BOTH
-if errorlevel 1 goto SysError
 vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
-rem if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\COMMAND.COM
-rem if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\KERNEL.SYS
-rem if not "%FLOPPY%" == "A:" attrib +S %FLOPPY%\COMMAND.COM
-rem if not "%FLOPPY%" == "A:" attrib +S %FLOPPY%\KERNEL.SYS
-rem vecho
 popd
+
+if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\COMMAND.COM
+if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\KERNEL.SYS
+if not "%FLOPPY%" == "A:" attrib +S +R %FLOPPY%\COMMAND.COM
+if not "%FLOPPY%" == "A:" attrib +S +R %FLOPPY%\KERNEL.SYS
+vecho
+
+if "%FNUM%" == "" goto NoMBR
+vecho Updating MBR for floppy disk /fYellow %FLOPPY% /fGray /n
+fdisk /mbr %FNUM%>NUL
+if errorlevel 1 goto CopyFailed
+fdisk /activate:1 %FNUM%>NUL
+if errorlevel 1 goto CopyFailed
+vgotoxy /l eot
+vecho /fGray , /fLightGreen OK /fGray /p
+:NoMBR
 
 vecho Copying files to floppy disk /fYellow %FLOPPY% /fGray /n
 xcopy /y /S %RAMDRV%\FDSETUP %FLOPPY%\FDSETUP\ >NUL
@@ -787,6 +809,7 @@ set OSN=
 set OSV=
 set VOLUMEID=
 set FLOPPY=
+set FNUM=
 set VOLUME=
 set RAMDRV=
 set RAMSIZE=

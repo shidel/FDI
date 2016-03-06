@@ -183,10 +183,10 @@ XFERY="  S¡ - Los archivos del sistema de transferencia."
 XFERN="  No - No transferir los archivos del sistema."
 
 # FDASK600 - Advanced mode force new boot sector
-OBSS_FRAME=/w68 /h8 /c
+OBSS_FRAME=/w72 /h8 /c
 OBSS_OPTS=/w50 /h4 /c
 # vecho "Force new boot sector code on drive C:?"
-OBSS?=¨Forzar nuevo c¢digo de sector de arranque en la unidad /f %1 %2 /f %3 /s- ?
+OBSS?=¨Forzar nuevo c¢digo de sector de arranque en la unidad /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  S¡ - Registro de inicio maestro ovewrite."
 OBSSN="  No - No obligue a uno nuevo."
 

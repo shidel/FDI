@@ -33,21 +33,40 @@ if exist %FDRIVE%\IO.SYS del %FDRIVE%\IO.SYS >NUL
 if exist %FDRIVE%\MSDOS.SYS attrib -R -S -H %FDRIVE%\MSDOS.SYS >NUL
 if exist %FDRIVE%\MSDOS.SYS del %FDRIVE%\MSDOS.SYS >NUL
 
-if exist %FTARGET%\ORIGINAL.BSS attrib -R -S -H %FTARGET%\ORIGINAL.BSS >NUL
-if exist %FTARGET%\ORIGINAL.BSS del %FTARGET%\ORIGINAL.BSS >NUL
+if exist %FTARGET%\BOOT.BSS attrib -R -S -H %FTARGET%\BOOT.BSS >NUL
+if exist %FTARGET%\BOOT.BSS del %FTARGET%\BOOT.BSS >NUL
+
+REM Backup MBR
+if "%OBPD%" == "" goto NoMBRBackup
+pushd
+vfdutil /c /p %FTARGET%\
+fdisk /SMBR %OBPD% >NUL
+popd
+:NoMBRBackup
 
 if not "%OBSS%" == "y" goto NotForceBSS
-sys %FDRIVE% /BOTH /BACKUPBS %FTARGET%\ORIGINAL.BSS >NUL
+sys %FDRIVE% /BOTH /BACKUPBS %FTARGET%\BOOT.BSS >NUL
 if errorlevel 1 goto Failed
-verrlvl 0
+
+if "%OBPD%" == "" goto AfterSys
+fdisk /MBR %OBPD% >NUL
+if errorlevel 1 goto Failed
+
+if "%OBPN%" == "" goto AfterSys
+fdisk /ACTIVATE:%OBPN% %OBPD% >NUL
+if errorlevel 1 goto Failed
 goto AfterSYS
 
 :NotForceBSS
-sys %FDRIVE% /BACKUPBS %FTARGET%\ORIGINAL.BSS >NUL
+sys %FDRIVE% /BACKUPBS %FTARGET%\BOOT.BSS >NUL
 if errorlevel 1 goto Failed
-verrlvl 0
+
+goto AfterSYS
 
 :AfterSYS
+verrlvl 0
+set FN=
+set FP=
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME

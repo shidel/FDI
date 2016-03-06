@@ -200,10 +200,10 @@ XFERY="  Jes - Kopiu majstrajn dosierojn."
 XFERN="  Ne  - Ne kopiu majstrajn dosierojn."
 
 # FDASK600 - Advanced mode force new boot sector
-OBSS_FRAME=/w60 /h8 /c
+OBSS_FRAME=/w58 /h8 /c
 OBSS_OPTS=/w44 /h4 /c
 # vecho "Force new boot sector code on dive C:?"
-OBSS?=Devigi novajn boot sektoro kodo sur disko /f %1 %2 /f %3 /s- ?
+OBSS?=Devigi novajn boot sektoro kodo sur disko /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Jes - Anstatauigi cefeksargrikordo."
 OBSSN="  Ne  - Ne perfortu anstatauigi."
 

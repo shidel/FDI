@@ -204,10 +204,10 @@ XFERY="  Oui - Transf‚rer les fichiers systŠmes."
 XFERN="  Non - Ne pas transf‚rer les fichiers systŠmes."
 
 # FDASK600 - Advanced mode force new boot sector
-OBSS_FRAME=/w64 /h8 /c
+OBSS_FRAME=/w68 /h8 /c
 OBSS_OPTS=/w44 /h4 /c
 # vecho "Force new boot sector code on dive C:?"
-OBSS?=Forcer nouveau du secteur de d‚marrage sur plong‚e /f %1 %2 /f %3 /s- ?
+OBSS?=Forcer nouveau du secteur de d‚marrage sur plong‚e /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Oui - Essuyez mon secteur d'amor‡age."
 OBSSN="  Non - Ne forcez pas nouvelle."
 
