@@ -40,7 +40,17 @@ goto PkgSkip
 :PkgRemove
 vgotoxy /l sop
 vecho /e /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
-FDINST remove %_PA% >>NUL
+
+if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
+type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%" >%FTARGET%\PACKAGES\FDISETUP.LST
+FDINST remove FDISETUP >NUL
+del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
+
+set _PL=y
+goto PkgNext
+
+:TryAnyway
+FDINST remove %_PA% >NUL
 set _PL=y
 goto PkgNext
 

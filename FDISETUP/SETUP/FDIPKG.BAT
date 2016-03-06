@@ -14,6 +14,11 @@ set /e TEMPFILE=vfdutil /f %FMEDIA%\%1.zip
 fdinst install %TEMPFILE% >nul
 :CheckSuccess
 if errorlevel 1 goto Failed
+set /e TEMPFILE=vfdutil /n %1
+if not exist %FTARGET%\PACKAGES\%TEMPFILE%.LST goto Success
+type %FTARGET%\PACKAGES\%TEMPFILE%.LST |vstr /n /s "%FDRIVE%" "C:\">%FTARGET%\PACKAGES\FDISETUP.LST
+copy /y %FTARGET%\PACKAGES\FDISETUP.LST %FTARGET%\PACKAGES\%TEMPFILE%.LST >NUL
+del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
 goto Success
 
 :OverrideA

@@ -65,6 +65,7 @@ archiver\zip
 archiver\unzip
 util\v8power
 util\shsufdrv
+util\fdimples
 
 ; The remaining packages are only installed when ALL is chosen.
 
