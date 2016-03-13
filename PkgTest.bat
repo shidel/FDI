@@ -378,7 +378,6 @@ if not "%TENV%" == "0" goto CaughtError
 vgotoxy left
 vecho /n /t %SELF% FDIOK.%LNG%
 
-
 echo %FILE% | vstr /n/d/f \ 2- | vstr /n/s .zip ''>>%LST%
 grep -i "^Title\|^Version\|^Copying" %DOSDIR%\APPINFO\*.LSM>>%LST%
 echo. >>%LST%

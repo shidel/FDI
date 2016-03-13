@@ -45,7 +45,7 @@ set CDROM=
 set TGO=0
 set TTRY=3
 
-if "%TZ%" == "" set TZ=EDT
+if "%TZ%" == "" set TZ=EST
 
 :ReadSettings
 if "%1" == "" goto ReadDone
@@ -630,6 +630,14 @@ vecho , /fLightGreen OK /fGray
 vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
 
+mkdir %TEMP%\BIN >nul
+set OD=%DOSDIR%
+set DOSDIR=%TEMP%
+fdinst install %FLOPPY%%PKGDIR%ARCHIVER\unzip.zip >nul
+fdinst install %FLOPPY%%PKGDIR%util\cwsdpmi.zip >nul
+set DOSDIR=%OD%
+set OD=
+
 :LstCount
 dir /on /a /b /p- %FLOPPY%\%PKGDIR% | vstr /b /l TOTAL | set /P TCNT=
 if "%TCNT%" == "" goto LstCount
@@ -671,6 +679,25 @@ if "%SPKG%" == "" goto ScanLoop
 
 grep -i ^%SPKG% %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
 if not errorlevel 1 type %TEMP%\INDEX.LST >>%FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
+
+pushd
+vfdutil /c/p %TEMP%\
+bin\unzip -o -qq -C %FLOPPY%%PKGDIR%%TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm >nul
+bin\unzip -l %FLOPPY%%PKGDIR%%TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
+if not exist appinfo\%SPKG%.lsm goto NoData
+if not exist %TEMP%\%SPKG%.lst goto NoData
+type appinfo\%SPKG%.lsm | vstr /b >%SPKG%.PKG
+type %SPKG%.lst | vstr /b/d >>%SPKG%.PKG
+if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
+copy /y %SPKG%.PKG %FLOPPY%\FDSETUP\PKGINFO\%SPKG%.TXT >nul
+vecho /n /fDarkGray . /fGray
+goto ThisDone
+:NoData
+vecho /n /fLightRed . /fGray
+:ThisDone
+if exist appinfo\%SPKG%.lsm del appinfo\%SPKG%.lsm >nul
+if exist %TEMP%\%SPKG%.lst del %TEMP%\%SPKG%.lst >nul
+popd
 
 rem vecho /n " %SPKG%"
 
@@ -786,7 +813,6 @@ verrlvl 0
 goto CleanUp
 
 :Done
-rem deltree /y %TEMP%\*.* >NUL
 type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
 type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
 type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
@@ -827,6 +853,7 @@ set PKGDIR=
 set ELOG=
 set LANGS=
 set LANGM=
+set SLIM=
 
 set TFILE=
 set TNAME=
@@ -849,6 +876,7 @@ SET OLDDOS=
 SET OLDPATH=
 set SELF=
 
+rem goto NoTempRM
 if "%TEMP%" == "" goto NoTempRM
 if not exist %TEMP%\NUL goto NoTempRM
 vfdutil /c /d %TEMP%
