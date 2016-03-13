@@ -622,7 +622,7 @@ if "%TFILE%" == "" goto RetryInc
 set TIDX=%TFILE%
 if not "%TCNT%" == "%TIDX%" goto CopyLoop
 
-vecho /r5/c32 %TEMP%\welcome.zip "-->" %FLOPPY%%PKGDIR%BASE\ /n
+vecho /r5/c32 %TEMP%\welcome.zip "-->" %FLOPPY%%PKGDIR%BASE /n
 copy /y %TEMP%\welcome.zip %FLOPPY%%PKGDIR%BASE >NUL
 if errorlevel 1 goto CopyFailed
 vecho , /fLightGreen OK /fGray
