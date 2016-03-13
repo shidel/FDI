@@ -469,8 +469,10 @@ vfdutil /c /p %TEMP%\WELCOME\
 if exist ..\WELCOME.ZIP del ..\WELCOME.ZIP >NUL
 zip -r -k -9 ..\WELCOME.ZIP *.* >NUL
 
+if "%USB%" == "y" goto NotOnFloppy
 if not exist %DOSDIR%\SETUP\PACKAGES\NUL mkdir %DOSDIR%\SETUP\PACKAGES>NUL
 copy /y ..\WELCOME.ZIP %DOSDIR%\SETUP\PACKAGES\ >NUL
+:NotOnFloppy
 popd
 
 vecho , /fLightGreen Done /fGray /p
@@ -579,6 +581,7 @@ goto CheckFile
 grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l %TIDX% | set /p TFILE=
 :CheckFile
 if "%TFILE%" == "" goto CopyLoop
+if "%TFILE%" == "base\welcome" goto RetryInc
 :DirLoop
 vfdutil /p %FLOPPY%\%PKGDIR%\ | set /p TDIR=
 if "%TDIR%" == "" goto DirLoop
@@ -618,6 +621,11 @@ vmath %TIDX% + 1 | set /p TFILE=
 if "%TFILE%" == "" goto RetryInc
 set TIDX=%TFILE%
 if not "%TCNT%" == "%TIDX%" goto CopyLoop
+
+vecho /r5/c32 %TEMP%\welcome.zip "-->" %FLOPPY%%PKGDIR%BASE\ /n
+copy /y %TEMP%\welcome.zip %FLOPPY%%PKGDIR%BASE >NUL
+if errorlevel 1 goto CopyFailed
+vecho , /fLightGreen OK /fGray
 
 vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
