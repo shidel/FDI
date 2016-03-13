@@ -42,7 +42,7 @@ rem MEM /C /N
 
 SHSUCDX /D
 
-$LH$ DOSLFN
+rem $LH$ DOSLFN
 $LBA$ $LH$ LBACACHE.COM buf 20 flop
 
 SET AUTOFILE=%0
