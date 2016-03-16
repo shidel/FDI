@@ -111,8 +111,14 @@ util\touch
 util\tee
 util\savepart
 
-util\opengem
+util\cdrcache
+util\fdshell
+util\graphics
+util\localize
+util\usbdos
 
+util\opengem
 util\ozonegui
 util\pgme
+util\seal
 
