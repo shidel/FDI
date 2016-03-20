@@ -11,8 +11,8 @@ if errorlevel 5 goto EndOfFile
 :MaybeCD
 vfdutil /u %2:\TEMP????.??? >NUL
 if errorlevel 1 goto EndOfFile
-if not exist %2:\BOOT.IMG goto EndOfFile
-if not exist %2:\BOOT.CAT goto EndOfFile
+rem if not exist %2:\BOOT.IMG goto EndOfFile
+rem if not exist %2:\BOOT.CAT goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
 if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
 if not exist %2:\BASE\INDEX.LST goto EndOfFile
@@ -21,6 +21,7 @@ goto EndOfFile
 
 :BuildAll
 call %0
+call %0 info
 call %0 slim D:
 call %0 usb E:
 goto EndOfFile
@@ -44,6 +45,8 @@ set RAMSIZE=32M
 set CDROM=
 set TGO=0
 set TTRY=3
+set /e IDIR=vfdutil /d %TEMP%
+set IDIR=%IDIR%\PKGINFO
 
 if "%TZ%" == "" set TZ=EST
 
@@ -52,6 +55,7 @@ if "%1" == "" goto ReadDone
 
 if "%1" == "usb" set USB=y
 if "%1" == "slim" set SLIM=y
+if "%1" == "info" set INFO=y
 
 vfdutil /u %1\????????.??? >nul
 if not errorlevel 1 set /e FLOPPY=vfdutil /d %1\test
@@ -217,6 +221,14 @@ if not exist %TEMP%\NUL goto BadTemp
 vfdutil /d %TEMP% | set /p TDRV=
 if "%TDRV%" == "%RAMDRV%" goto BadTemp
 set TDRV=
+
+if "%INFO%" == "y" goto MakeInfo
+if not "%USB%" == "y" goto NotUSB
+if exist %IDIR%\COMMAND.TXT goto NotUSB
+pushd
+vecho Error, missing package information files. Run "'mkfdi info'"
+goto CleanUp
+:NotUSB
 
 mkdir %RAMDRV%\FDSETUP
 mkdir %RAMDRV%\FDSETUP\BIN
@@ -612,6 +624,16 @@ copy /y PACKAGES\%TOVR%.zip %TDIR%\ >NUL
 if errorlevel 1 goto CopyFailed
 
 :CopyOK
+set /e TFILE=vfdutil /n %TFILE%
+rem vecho /n ,%IDIR%\%TFILE%.txt
+if not exist %IDIR%\%TFILE%.txt goto NoData
+if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
+copy /y %IDIR%\%TFILE%.txt %FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT >nul
+vecho /n , /fLightGreen DATA /fGray
+goto ShowOK
+:NoData
+vecho /n , /fLightRed No Data /fGray
+:ShowOK
 vecho , /fLightGreen OK /fGray
 
 :RetryInc
@@ -627,103 +649,174 @@ copy /y %TEMP%\welcome.zip %FLOPPY%%PKGDIR%BASE >NUL
 if errorlevel 1 goto CopyFailed
 vecho , /fLightGreen OK /fGray
 
-vecho /p Creating package data files for /fYellow %FLOPPY% /fGray /p
+REM Create LIST INDEX FILES
+vecho /p Creating package index files for /fYellow %FLOPPY% /fGray /p
 set TIDX=0
 
-mkdir %TEMP%\BIN >nul
-set OD=%DOSDIR%
-set DOSDIR=%TEMP%
-fdinst install %FLOPPY%%PKGDIR%ARCHIVER\unzip.zip >nul
-fdinst install %FLOPPY%%PKGDIR%util\cwsdpmi.zip >nul
-set DOSDIR=%OD%
-set OD=
-
-:LstCount
+:ListDirCount
 dir /on /a /b /p- %FLOPPY%\%PKGDIR% | vstr /b /l TOTAL | set /P TCNT=
-if "%TCNT%" == "" goto LstCount
+if "%TCNT%" == "" goto ListDirCount
 
-:LstLoop
+:ListDirLoop
 dir /on /a /b /p- %FLOPPY%\%PKGDIR% | vstr /b /l %TIDX% | set /P TDIR=
-if "%TDIR%" == "" goto LstLoop
+if "%TDIR%" == "" goto ListDirLoop
 
-if not exist %FLOPPY%\%PKGDIR%\%TDIR%\NUL goto Excluded
-if not exist %CDROM%\%TDIR%\INDEX.LST goto Excluded
+if not exist %FLOPPY%\%PKGDIR%\%TDIR%\NUL goto ListExcluded
+if not exist %CDROM%\%TDIR%\INDEX.LST goto ListExcluded
 
 vecho /n /r5/c32 %TDIR%
 
 set SIDX=0
 
-:ScanCount
-dir /on /a /b /p- %FLOPPY%\%PKGDIR%\%TDIR%\*.ZIP | vstr /b /l TOTAL | set /P SCNT=
-if "%SCNT%" == "" goto ScanCount
-if "%SCNT%" == "0" goto Exclude
+dir /on /a /b /p- %FLOPPY%\%PKGDIR%\%TDIR%\*.ZIP >%TEMP%\FILELIST.DIR
+:ListScanCount
+type %TEMP%\FILELIST.DIR | vstr /b /l TOTAL | set /P SCNT=
+if "%SCNT%" == "" goto ListScanCount
+if "%SCNT%" == "0" goto ListExcluded
 
+if not exist %CDROM%\%TDIR%\INDEX.LST goto ListScanLoop
 grep -i ^FD-REPOV1 %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
-if errorlevel 1 goto ScanLoop
+if errorlevel 1 goto ListScanLoop
 
 type %TEMP%\INDEX.LST >%FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
 
-:ScanInfoA
+:ListScanInfoA
 type %TEMP%\INDEX.LST | vstr /b/t 1 | set /p SPKG=
-if "%SPKG%" == "" goto ScanInfoA
-:ScanInfoB
+if "%SPKG%" == "" goto ListScanInfoA
+:ListScanInfoB
 type %TEMP%\INDEX.LST | vstr /b/t 3 | set /p STMP=
-if "%STMP%" == "" goto ScanInfoB
-rem vstr /p "%SPKG%" /c9/p "Build time: 0" /c9/p "%STMP%" /c9/p "%SCNT%" -to- %FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
+if "%STMP%" == "" goto ListScanInfoB
 vecho /n " (%STMP%:%SCNT%)"
 set SPKG=
 set STMP=
-:ScanLoop
-dir /on /a /b /p- %FLOPPY%\%PKGDIR%\%TDIR%\*.ZIP | vstr /b /l %SIDX% | vstr /u/b/f '.ZIP' 1 | set /P SPKG=
-if "%SPKG%" == "" goto ScanLoop
+:ListScanLoop
+type %TEMP%\FILELIST.DIR | vstr /b /l %SIDX% | vstr /u/b/f .ZIP 1 | set /P SPKG=
+if "%SPKG%" == "" goto ListScanLoop
 
 grep -i ^%SPKG% %CDROM%\%TDIR%\INDEX.LST >%TEMP%\INDEX.LST
 if not errorlevel 1 type %TEMP%\INDEX.LST >>%FLOPPY%\%PKGDIR%\%TDIR%\INDEX.LST
 
-pushd
-vfdutil /c/p %TEMP%\
-bin\unzip -o -qq -C %FLOPPY%%PKGDIR%%TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm >nul
-bin\unzip -l %FLOPPY%%PKGDIR%%TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
-if not exist appinfo\%SPKG%.lsm goto NoData
-if not exist %TEMP%\%SPKG%.lst goto NoData
-type appinfo\%SPKG%.lsm | vstr /b >%SPKG%.PKG
-type %SPKG%.lst | vstr /b/d >>%SPKG%.PKG
-if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
-copy /y %SPKG%.PKG %FLOPPY%\FDSETUP\PKGINFO\%SPKG%.TXT >nul
-vecho /n /fDarkGray . /fGray
-goto ThisDone
-:NoData
-vecho /n /fLightRed . /fGray
-:ThisDone
-if exist appinfo\%SPKG%.lsm del appinfo\%SPKG%.lsm >nul
-if exist %TEMP%\%SPKG%.lst del %TEMP%\%SPKG%.lst >nul
-popd
-
-rem vecho /n " %SPKG%"
-
-:ScanInc
+:ListScanInc
 vmath %SIDX% + 1 | set /p STMP=
-if "%STMP%" == "" goto ScanInc
+if "%STMP%" == "" goto ListScanInc
 set SIDX=%STMP%
 set STMP=
-if not "%SCNT%" == "%SIDX%" goto ScanLoop
+if not "%SCNT%" == "%SIDX%" goto ListScanLoop
 
 vecho , /fLightGreen OK /fGray
-:Excluded
+:ListExcluded
+if exist %TEMP%\FILELIST.DIR del %TEMP%\FILELIST.DIR >nul
 set SIDX=
 set SCNT=
 set SPKG=
 set STMP=
 
-:LstInc
+:ListDirInc
 set TFILE=
 vmath %TIDX% + 1 | set /p TFILE=
-if "%TFILE%" == "" goto RetryInc
+if "%TFILE%" == "" goto ListDirInc
 set TIDX=%TFILE%
-if not "%TCNT%" == "%TIDX%" goto LstLoop
+if not "%TCNT%" == "%TIDX%" goto ListDirLoop
 
 vecho /p/fLightGreen Complete. /fGray
 goto Done
+
+:MakeInfo
+popd
+pushd
+if "%FLOPPY%" == "A:" goto UseTempDrive
+set /e IDIR=vfdutil /d %FLOPPY%
+set IDIR=%IDIR%\PKGINFO
+:UseTempDrive
+REM Create LIST DATA FILES
+vecho Creating package data files for /fYellow %CDROM% /fGray at /fYellow %IDIR% /fGray /p
+set TIDX=0
+
+mkdir %TEMP%\BIN >nul
+set OD=%DOSDIR%
+set DOSDIR=%TEMP%
+echo maxcachetime 7200>%DOSDIR%\BIN\FDNPKG.CFG
+echo installsources 1>>%DOSDIR%\BIN\FDNPKG.CFG
+echo skiplinks 0>>%DOSDIR%\BIN\FDNPKG.CFG
+echo dir drivers %%DOSDIR%%\drivers>>%DOSDIR%\BIN\FDNPKG.CFG
+echo dir games %%DOSDIR%%\games>>%DOSDIR%\BIN\FDNPKG.CFG
+echo dir source %%DOSDIR%%\source>>%DOSDIR%\BIN\FDNPKG.CFG
+echo dir progs %%DOSDIR%%\progs>>%DOSDIR%\BIN\FDNPKG.CFG
+echo dir links %%DOSDIR%%\links>>%DOSDIR%\BIN\FDNPKG.CFG
+
+fdinst install %CDROM%\ARCHIVER\unzip.zip >nul
+fdinst install %CDROM%\UTIL\cwsdpmi.zip >nul
+set DOSDIR=%OD%
+set OD=
+
+set SIDX=0
+
+:SetFilter
+echo %TEMP% | vstr /s \ \\ | set /p FILTER=
+if "%FILTER%" == "" goto SetFilter
+dir /on /a /b /p- /s %CDROM%\*.ZIP |grep -v \\_ | grep -iv ^%FILTER% >%TEMP%\FILELIST.DIR
+set FILTER=
+
+:PkgInfScanCount
+type %TEMP%\FILELIST.DIR | vstr /b /l TOTAL | set /P SCNT=
+if "%SCNT%" == "" goto PkgInfScanCount
+if "%SCNT%" == "0" goto PkgInfExcluded
+
+:PkgInfScanLoop
+type %TEMP%\FILELIST.DIR | vstr /b /l %SIDX% | vstr /u/b/f .ZIP 1 | set /P SPKG=
+if "%SPKG%" == "" goto PkgInfScanLoop
+
+:AdjustTDIR
+set /e TDIR=vfdutil /p %SPKG%
+set /e SPKG=vfdutil /n %SPKG%
+
+:PkgInfScanInc
+vmath %SIDX% + 1 | set /p STMP=
+if "%STMP%" == "" goto PkgInfScanInc
+set SIDX=%STMP%
+set STMP=
+
+if not exist %TDIR%\%SPKG%.zip goto PkgInfSkip
+
+vecho /n /r2/c32 /FDarkGray "(%SIDX%/%SCNT%)" /fGray %TDIR%\%SPKG%.ZIP
+
+pushd
+vfdutil /c/p %TEMP%\
+mkdir TEMPDOS >nul
+cd TEMPDOS
+..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm >nul
+..\bin\unzip -l %TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
+cd ..
+if not exist TEMPDOS\appinfo\%SPKG%.lsm goto PkgInfNoData
+if not exist %TEMP%\%SPKG%.lst goto PkgInfNoData
+
+type TEMPDOS\appinfo\%SPKG%.lsm | vstr /b >%SPKG%.PKG
+type %SPKG%.lst | vstr /b/d >>%SPKG%.PKG
+if not exist %IDIR%\nul mkdir %IDIR% >nul
+copy /y %SPKG%.PKG %IDIR%\%SPKG%.TXT >nul
+vecho , /fLightGreen OK /fGray
+goto PkgInfThisDone
+:PkgInfNoData
+vecho , /fLightRed Failed /fGray
+:PkgInfThisDone
+if exist appinfo\%SPKG%.lsm del appinfo\%SPKG%.lsm >nul
+if exist %TEMP%\%SPKG%.lst del %TEMP%\%SPKG%.lst >nul
+deltree /y %TEMP%\TEMPDOS >nul
+popd
+
+:PkgInfSkip
+if not "%SCNT%" == "%SIDX%" goto PkgInfScanLoop
+
+:PkgInfExcluded
+if exist %TEMP%\FILELIST.DIR del %TEMP%\FILELIST.DIR >nul
+set SIDX=
+set SCNT=
+set SPKG=
+set STMP=
+
+vecho /p/fLightGreen Complete. /fGray
+verrlvl 0
+goto CleanUp
 
 :CopyFailed
 vecho , /fLightRed Failed. /fGray /p
@@ -854,6 +947,7 @@ set ELOG=
 set LANGS=
 set LANGM=
 set SLIM=
+set IDIR=
 
 set TFILE=
 set TNAME=
@@ -875,6 +969,7 @@ SET OLDFDN=
 SET OLDDOS=
 SET OLDPATH=
 set SELF=
+set INFO=
 
 rem goto NoTempRM
 if "%TEMP%" == "" goto NoTempRM
