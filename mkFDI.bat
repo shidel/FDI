@@ -911,7 +911,7 @@ type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
 type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
 if "%SLIM%" == ""  type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
 if "%SLIM%" == "y" set XTRA=0
-dir /on /a /b /p- /s %CDROM%\*.zip | grep -iv ^\\_ | vstr /b/l TOTAL | set /p COUNT=
+dir /on /a /b /p- /s %CDROM%\*.zip | grep -iv \\_ | vstr /b/l TOTAL | set /p COUNT=
 
 vecho /p /fLightGreen %OS_NAME% /fLightCyan %OS_VERSION% /fGray (%VOLUMEID%) /n
 vecho /c32 /fYellow "%OS_URL%" /fGray
