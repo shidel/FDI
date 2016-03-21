@@ -784,14 +784,48 @@ pushd
 vfdutil /c/p %TEMP%\
 mkdir TEMPDOS >nul
 cd TEMPDOS
-..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm >nul
+rem ..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm
+..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip>nul
+set TDATA=
+:ILoop:
+dir /on/a/s/p-/b- | grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto ILoop
+:IFLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|set /p IFILES=
+if "%IFILES%" == "" goto IFLoop
+:ISLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|set /p ISIZE=
+if "%ISIZE%" == "" goto ISLoop
+if not exist SOURCE\NUL goto NoSources
+:SLoop
+set TDATA=
+dir /on/a/s/p-/b- SOURCE| grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto SLoop
+:SFLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|set /p SFILES=
+if "%SFILES%" == "" goto SFLoop
+:SSLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|set /p SSIZE=
+if "%SSIZE%" == "" goto SSLoop
+:NoSources
+set TDATA=
 ..\bin\unzip -l %TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
 cd ..
 if not exist TEMPDOS\appinfo\%SPKG%.lsm goto PkgInfNoData
 if not exist %TEMP%\%SPKG%.lst goto PkgInfNoData
 
-type TEMPDOS\appinfo\%SPKG%.lsm | vstr /b >%SPKG%.PKG
+type TEMPDOS\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
+if not "%ISIZE%" == "" echo Total-size:     %ISIZE%>>%SPKG%.PKG
+if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
+if not "%IFILES%" == "" echo Total-files:    %IFILES%>>%SPKG%.PKG
+if not "%SFILES%" == "" echo Source-files:   %SFILES%>>%SPKG%.PKG
+type TEMPDOS\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
 type %SPKG%.lst | vstr /b/d >>%SPKG%.PKG
+set ISIZE=
+set SSIZE=
+set IFILES=
+set SFILES=
+
 if not exist %IDIR%\nul mkdir %IDIR% >nul
 copy /y %SPKG%.PKG %IDIR%\%SPKG%.TXT >nul
 vecho , /fLightGreen OK /fGray
