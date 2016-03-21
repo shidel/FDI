@@ -2,282 +2,282 @@
 ; in the ALL and BASE list. However, these packages are not installed. But, they
 ; will be included on the USB stick and CD ISO images.
 
-archiver\arj.zip
-archiver\bz2.zip
-archiver\cabext.zip
-archiver\gzip.zip
-archiver\lha.zip
-archiver\lpq1.zip
-archiver\lzip.zip
-archiver\lzma.zip
-archiver\lzop.zip
-archiver\p7zip.zip
-archiver\tar.zip
-archiver\unrar.zip
-archiver\unzip.zip
-archiver\zip.zip
-; archiver\zoo.zip # No license specified, Public Domain?
+archiver\arj
+archiver\bz2
+archiver\cabext
+archiver\gzip
+archiver\lha
+archiver\lpq1
+archiver\lzip
+archiver\lzma
+archiver\lzop
+archiver\p7zip
+archiver\tar
+archiver\unrar
+archiver\unzip
+archiver\zip
+; archiver\zoo # No license specified, Public Domain?
 
-base\append.zip
-base\assign.zip
-base\attrib.zip
-base\chkdsk.zip
-base\choice.zip
-base\command.zip
-base\comp.zip
-base\cpidos.zip
-base\ctmouse.zip
-base\debug.zip
-base\defrag.zip
-base\deltree.zip
-base\devload.zip
-base\diskcomp.zip
-base\diskcopy.zip
-base\display.zip
-base\dosfsck.zip
-base\edit.zip
-base\edlin.zip
-base\exe2bin.zip
-base\fc.zip
-base\fdapm.zip
-base\fdisk.zip
-base\fdxms.zip
-base\fdxms286.zip
-base\find.zip
-base\format.zip
-base\help.zip
-base\himemx.zip
-base\jemm.zip
-base\kernel.zip
-base\keyb.zip
-base\keyb_lay.zip
-base\label.zip
-base\lbacache.zip
-base\mem.zip
-base\mirror.zip
-base\mkeyb.zip
-base\mode.zip
-base\more.zip
-base\move.zip
-base\nansi.zip
-base\nlsfunc.zip
-base\print.zip
-; base\rdisk.zip
-base\recover.zip
-base\replace.zip
-base\share.zip
-base\shsucdx.zip
-base\sort.zip
-base\swsubst.zip
-base\tree.zip
-base\undelete.zip
-base\unformat.zip
-base\xcopy.zip
-; base\xmgr.zip
+base\append
+base\assign
+base\attrib
+base\chkdsk
+base\choice
+base\command
+base\comp
+base\cpidos
+base\ctmouse
+base\debug
+base\defrag
+base\deltree
+base\devload
+base\diskcomp
+base\diskcopy
+base\display
+base\dosfsck
+base\edit
+base\edlin
+base\exe2bin
+base\fc
+base\fdapm
+base\fdisk
+base\fdxms
+base\fdxms286
+base\find
+base\format
+base\help
+base\himemx
+base\jemm
+base\kernel
+base\keyb
+base\keyb_lay
+base\label
+base\lbacache
+base\mem
+base\mirror
+base\mkeyb
+base\mode
+base\more
+base\move
+base\nansi
+base\nlsfunc
+base\print
+; base\rdisk
+base\recover
+base\replace
+base\share
+base\shsucdx
+base\sort
+base\swsubst
+base\tree
+base\undelete
+base\unformat
+base\xcopy
+; base\xmgr
 
-devel\bcc.zip
-devel\bwbasic.zip
-devel\cpp2ccmt.zip
-devel\djgpp.zip
-devel\djgpp_bn.zip
-devel\djgpp_bs.zip
-devel\djgpp_db.zip
-devel\djgpp_fq.zip
-devel\djgpp_fx.zip
-devel\djgpp_gc.zip
-devel\djgpp_gp.zip
-devel\djgpp_mk.zip
-devel\djgpp_ob.zip
-devel\djgpp_rh.zip
-devel\djgpp_tx.zip
-devel\euphoria.zip
-devel\fasm.zip
-devel\fbc.zip
-devel\fbc_help.zip
-devel\fpc.zip
-devel\insight.zip
-devel\jwasm.zip
-; devel\lua.zip # ZLib alike license?
-devel\nasm.zip
-devel\ow.zip
-; devel\pacificc.zip # No Sources
-devel\perl.zip
-devel\regina.zip
-devel\runtime.zip
-devel\tppatch.zip
-devel\upx.zip
+devel\bcc
+devel\bwbasic
+devel\cpp2ccmt
+devel\djgpp
+devel\djgpp_bn
+devel\djgpp_bs
+devel\djgpp_db
+devel\djgpp_fq
+devel\djgpp_fx
+devel\djgpp_gc
+devel\djgpp_gp
+devel\djgpp_mk
+devel\djgpp_ob
+devel\djgpp_rh
+devel\djgpp_tx
+devel\euphoria
+devel\fasm
+devel\fbc
+devel\fbc_help
+devel\fpc
+devel\insight
+devel\jwasm
+; devel\lua # ZLib alike license?
+devel\nasm
+devel\ow
+; devel\pacificc # No Sources
+devel\perl
+devel\regina
+devel\runtime
+devel\tppatch
+devel\upx
 
-edit\blocek.zip
-edit\doshexed.zip
-edit\e3.zip
-edit\elvis.zip
-edit\fed.zip
-edit\mbedit.zip
-edit\msedit.zip
-edit\pico.zip
-edit\tde.zip
-; edit\te.zip
-edit\uhex.zip
+edit\blocek
+edit\doshexed
+edit\e3
+edit\elvis
+edit\fed
+edit\mbedit
+edit\msedit
+edit\pico
+edit\tde
+; edit\te
+edit\uhex
 
-emulator\atari800.zip
-emulator\chip8.zip
-emulator\fceu.zip
-; emulator\glaunch.zip # No License Specified
-emulator\meka.zip
-emulator\mines.zip
-; emulator\nesticle.zip # No License Specified
-emulator\nosefart.zip
-; emulator\rocknes.zip # No License Specified
-emulator\simcoupe.zip
-emulator\sneese.zip
-emulator\teo.zip
-emulator\vice.zip
-emulator\xf25.zip
-emulator\z26.zip
-emulator\zboy.zip
-; emulator\zsnes.zip # No License Specified
-; emulator\zxspectr.zip # No License Specified
+emulator\atari800
+emulator\chip8
+emulator\fceu
+; emulator\glaunch # No License Specified
+emulator\meka
+emulator\mines
+; emulator\nesticle # No License Specified
+emulator\nosefart
+; emulator\rocknes # No License Specified
+emulator\simcoupe
+emulator\sneese
+emulator\teo
+emulator\vice
+emulator\xf25
+emulator\z26
+emulator\zboy
+; emulator\zsnes # No License Specified
+; emulator\zxspectr # No License Specified
 
-; games\bolitare.zip # No License Specified
-games\boom.zip
-games\btitanic.zip
-; games\chicken2.zip # Emailware
-games\eliza.zip
-games\empong.zip
-games\ewsnake.zip
-games\fmines.zip
-games\freedoom.zip
-games\frotz.zip
-games\gnuchess.zip
-games\hangman.zip
-games\happylnd.zip
-games\ivan.zip
-; games\jumpbump.zip # Emailware
-games\kiloblas.zip
-games\kraptor.zip
-games\lincrawl.zip
-games\liquiwar.zip
-games\magnetic.zip
-games\mirmagic.zip
-games\nethack.zip
-games\nge_nibb.zip
-games\nyet.zip
-; games\pakupaku.zip # No License
-; games\pede.zip # No License
-games\psrinvad.zip
-games\qtetris.zip
-games\quadnet.zip
-games\snova.zip
-games\sudoku86.zip
-games\tetris2k.zip
-games\vertigo.zip
-games\vitetris.zip
-games\wing.zip
-games\ww1.zip
-games\xargon.zip
-games\zmiy.zip
+; games\bolitare # No License Specified
+games\boom
+games\btitanic
+; games\chicken2 # Emailware
+games\eliza
+games\empong
+games\ewsnake
+games\fmines
+games\freedoom
+games\frotz
+games\gnuchess
+games\hangman
+games\happylnd
+games\ivan
+; games\jumpbump # Emailware
+games\kiloblas
+games\kraptor
+games\lincrawl
+games\liquiwar
+games\magnetic
+games\mirmagic
+games\nethack
+games\nge_nibb
+games\nyet
+; games\pakupaku # No License
+; games\pede # No License
+games\psrinvad
+games\qtetris
+games\quadnet
+games\snova
+games\sudoku86
+games\tetris2k
+games\vertigo
+games\vitetris
+games\wing
+games\ww1
+games\xargon
+games\zmiy
 
-; net\crynwr.zip # No License w/sources?
-net\ctorrent.zip
-net\curl.zip
-net\dillo.zip
-net\ethtools.zip
-net\gopherus.zip
-net\htget.zip
-net\mtcp.zip
-net\newsnuz.zip
-net\ntool.zip
-net\picosntp.zip
-net\picotcp.zip
-net\ping.zip
-net\rsync.zip
-net\vmsmount.zip
-net\vncview.zip
-net\wget.zip
+; net\crynwr # No License w/sources?
+net\ctorrent
+net\curl
+net\dillo
+net\ethtools
+net\gopherus
+net\htget
+net\mtcp
+net\newsnuz
+net\ntool
+net\picosntp
+net\picotcp
+net\ping
+net\rsync
+net\vmsmount
+net\vncview
+net\wget
 
-sound\adplay.zip
-; sound\adt2.zip # Fair License?
-sound\bladeenc.zip
-sound\dosmid.zip
-sound\dwj.zip
-sound\gsplay.zip
-sound\lame.zip
-sound\mplayer.zip
-sound\mpxplay.zip
-sound\opencp.zip
+sound\adplay
+; sound\adt2 # Fair License?
+sound\bladeenc
+sound\dosmid
+sound\dwj
+sound\gsplay
+sound\lame
+sound\mplayer
+sound\mpxplay
+sound\opencp
 
-util\4dos.zip
-util\ansimat.zip
-util\b64.zip
-util\biew.zip
-util\bmp2png.zip
-util\bootfix.zip
-util\cdrcache.zip
-util\clamav.zip
-util\clamdb.zip
-util\cpied.zip
-util\cwsdpmi.zip
-util\daa2iso.zip
-util\desi3.zip
-util\dialog.zip
-util\dn2.zip
-util\dos32a.zip
-; util\dosidle.zip # License conflict
-util\doslfn.zip
-util\doszip.zip
-util\fdimples.zip
-util\fdnpkg.zip
-util\fdshell.zip
-util\foxcalc.zip
-util\foxtype.zip
-util\gcdrom.zip
-util\gifsicle.zip
-util\gnubc.zip
-util\graphics.zip
-util\grep.zip
-util\hexcomp.zip
-util\hip.zip
-util\hiram.zip
-util\less.zip
-util\localcfg.zip
-util\localize.zip
-util\lptdrv.zip
-util\lscolor.zip
-util\md5sum.zip
-util\memtest.zip
-util\ntfs.zip
-util\opengem.zip
-util\ozonegui.zip
-util\part.zip
-util\password.zip
-util\pbox.zip
-util\pcisleep.zip
-util\pg.zip
-util\pgme.zip
-util\pngcrush.zip
-util\savepart.zip
-util\seal.zip
-util\search.zip
-util\shsufdrv.zip
-; util\slowdos.zip # No Sources
-util\sqlite.zip
-util\srdisk.zip
-util\tee.zip
-util\terminal.zip
-util\testdisk.zip
-util\tinyaes.zip
-util\touch.zip
-util\udvd2.zip
-; util\uide.zip
-; util\umbpci.zip # No Sources
-util\unrtf.zip
-util\usbdos.zip
-util\utf8tocp.zip
-util\v8power.zip
-util\wde.zip
-util\which.zip
-; util\xcdrom.zip
-util\xfdisk.zip
-util\xgrep.zip
-; util\xmsdsk.zip # No Sources
-util\zerofill.zip
+util\4dos
+util\ansimat
+util\b64
+util\biew
+util\bmp2png
+util\bootfix
+util\cdrcache
+util\clamav
+util\clamdb
+util\cpied
+util\cwsdpmi
+util\daa2iso
+util\desi3
+util\dialog
+util\dn2
+util\dos32a
+; util\dosidle # License conflict
+util\doslfn
+util\doszip
+util\fdimples
+util\fdnpkg
+util\fdshell
+util\foxcalc
+util\foxtype
+util\gcdrom
+util\gifsicle
+util\gnubc
+util\graphics
+util\grep
+util\hexcomp
+util\hip
+util\hiram
+util\less
+util\localcfg
+util\localize
+util\lptdrv
+util\lscolor
+util\md5sum
+util\memtest
+util\ntfs
+util\opengem
+util\ozonegui
+util\part
+util\password
+util\pbox
+util\pcisleep
+util\pg
+util\pgme
+util\pngcrush
+util\savepart
+util\seal
+util\search
+util\shsufdrv
+; util\slowdos # No Sources
+util\sqlite
+util\srdisk
+util\tee
+util\terminal
+util\testdisk
+util\tinyaes
+util\touch
+util\udvd2
+; util\uide
+; util\umbpci # No Sources
+util\unrtf
+util\usbdos
+util\utf8tocp
+util\v8power
+util\wde
+util\which
+; util\xcdrom
+util\xfdisk
+util\xgrep
+; util\xmsdsk # No Sources
+util\zerofill
