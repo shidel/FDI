@@ -53,15 +53,36 @@ if "%TZ%" == "" set TZ=EST
 :ReadSettings
 if "%1" == "" goto ReadDone
 
+if "%1" == "help" goto Help
 if "%1" == "usb" set USB=y
 if "%1" == "slim" set SLIM=y
 if "%1" == "info" set INFO=y
+if "%INFO%" == "y" goto InfoOnly
 
 vfdutil /u %1\????????.??? >nul
 if not errorlevel 1 set /e FLOPPY=vfdutil /d %1\test
 
 shift
 goto ReadSettings
+
+:InfoOnly
+shift
+if not "%1" == "" set INFOPKG=%1
+goto ReadSettings
+
+:Help
+pushd
+echo FreeDOS Installer (FDI) Install Media Creator Utility
+echo usage: mkfdi.bat [options]
+echo.
+echo [No Option]     Create Install Floppy on Drive A:
+echo info  [package] Create all info files or specific package file.
+echo slim  [drive]   Create Lite USB stick image on [drive]
+echo usb   [drive]   Create Full USB stick image on [drive]
+echo.
+echo all             Run all of the above with "slim D:" and "usb E:"
+echo.
+goto CleanUp
 
 :ReadDone
 
@@ -477,6 +498,7 @@ set TTM=
 set TNAME=
 set TCNT=
 pushd
+
 vfdutil /c /p %TEMP%\WELCOME\
 if exist ..\WELCOME.ZIP del ..\WELCOME.ZIP >NUL
 zip -r -k -9 ..\WELCOME.ZIP *.* >NUL
@@ -647,6 +669,56 @@ if not "%TCNT%" == "%TIDX%" goto CopyLoop
 vecho /r5/c32 %TEMP%\welcome.zip "-->" %FLOPPY%%PKGDIR%BASE /n
 copy /y %TEMP%\welcome.zip %FLOPPY%%PKGDIR%BASE >NUL
 if errorlevel 1 goto CopyFailed
+if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
+
+set SPKG=WELCOME
+pushd
+vfdutil /c /p %TEMP%\WELCOME\
+
+set TDATA=
+:WILoop:
+dir /on/a/s/p-/b- | grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto WILoop
+:WIFLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p IFILES=
+if "%IFILES%" == "" goto WIFLoop
+:WISLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p ISIZE=
+if "%ISIZE%" == "" goto WISLoop
+if not exist SOURCE\NUL goto WNoSources
+:WSLoop
+set TDATA=
+dir /on/a/s/p-/b- SOURCE| grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto WSLoop
+:WSFLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SFILES=
+if "%SFILES%" == "" goto WSFLoop
+:WSSLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SSIZE=
+if "%SSIZE%" == "" goto WSSLoop
+:WNoSources
+set TDATA=
+cd ..
+if not exist WELCOME\appinfo\%SPKG%.lsm goto WPkgInfNoData
+
+type WELCOME\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
+if not "%ISIZE%" == "" echo Total-size:     %ISIZE%>>%SPKG%.PKG
+if not "%IFILES%" == "" echo Total-files:    %IFILES%>>%SPKG%.PKG
+if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
+if not "%SFILES%" == "" echo Source-files:   %SFILES%>>%SPKG%.PKG
+if not "%ISIZE%" == "" vecho /n , /s- /fGray '(I-' /fCyan %IFILES% /fGray '/' /fYellow %ISIZE% /fGray )
+if not "%SSIZE%" == "" vecho /n , /s- /fGray '(S-' /fCyan %SFILES% /fGray '/' /fYellow %SSIZE% /fGray )
+type WELCOME\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
+dir /on/a/s/p-/b  %TEMP%\WELCOME\ |vstr /d/b/f "\welcome\" 2- | grep -i \\ >>%TEMP%\%SPKG%.PKG
+type %SPKG%.PKG | vstr /b >%FLOPPY%\FDSETUP\PKGINFO\%SPKG%.TXT
+:WPkgInfNoData
+set ISIZE=
+set SSIZE=
+set IFILES=
+set SFILES=
+set SPKG=
+popd
+
 vecho , /fLightGreen OK /fGray
 
 REM Create LIST INDEX FILES
@@ -755,7 +827,12 @@ set SIDX=0
 :SetFilter
 echo %TEMP% | vstr /s \ \\ | set /p FILTER=
 if "%FILTER%" == "" goto SetFilter
+if "%INFOPKG%" == "" goto AllPackages
+dir /on /a /b /p- /s %CDROM%\%INFOPKG%.ZIP |grep -v \\_ | grep -iv ^%FILTER% >%TEMP%\FILELIST.DIR
+goto DoneFilter
+:AllPackages
 dir /on /a /b /p- /s %CDROM%\*.ZIP |grep -v \\_ | grep -iv ^%FILTER% >%TEMP%\FILELIST.DIR
+:DoneFilter
 set FILTER=
 
 :PkgInfScanCount
@@ -810,7 +887,7 @@ echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /
 if "%SSIZE%" == "" goto SSLoop
 :NoSources
 set TDATA=
-..\bin\unzip -l %TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
+..\bin\unzip -l %TDIR%\%SPKG%.zip|vstr /f : 2-|vstr /b/f ' ' 4-|vstr /s " " ""|vstr /b>%TEMP%\%SPKG%.lst
 cd ..
 if not exist %TEMPDOS%\appinfo\%SPKG%.lsm goto PkgInfNoData
 if not exist %TEMP%\%SPKG%.lst goto PkgInfNoData
@@ -850,6 +927,7 @@ set SIDX=
 set SCNT=
 set SPKG=
 set STMP=
+set INFOPKG=
 
 vecho /p/fLightGreen Complete. /fGray
 verrlvl 0
