@@ -722,6 +722,7 @@ vecho /p/fLightGreen Complete. /fGray
 goto Done
 
 :MakeInfo
+set TEMPDOS=T
 popd
 pushd
 if "%FLOPPY%" == "A:" goto UseTempDrive
@@ -782,8 +783,8 @@ vecho /n /r2/c32 /FDarkGray "(%SIDX%/%SCNT%)" /fGray %TDIR%\%SPKG%.ZIP
 
 pushd
 vfdutil /c/p %TEMP%\
-mkdir TEMPDOS >nul
-cd TEMPDOS
+mkdir %TEMPDOS%>nul
+cd %TEMPDOS%
 rem ..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip appinfo/%SPKG%.lsm
 ..\bin\unzip -o -qq -C %TDIR%\%SPKG%.zip>nul
 set TDATA=
@@ -791,10 +792,10 @@ set TDATA=
 dir /on/a/s/p-/b- | grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
 if "%TDATA%" == "" goto ILoop
 :IFLoop
-echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|set /p IFILES=
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p IFILES=
 if "%IFILES%" == "" goto IFLoop
 :ISLoop
-echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|set /p ISIZE=
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p ISIZE=
 if "%ISIZE%" == "" goto ISLoop
 if not exist SOURCE\NUL goto NoSources
 :SLoop
@@ -802,24 +803,26 @@ set TDATA=
 dir /on/a/s/p-/b- SOURCE| grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
 if "%TDATA%" == "" goto SLoop
 :SFLoop
-echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|set /p SFILES=
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SFILES=
 if "%SFILES%" == "" goto SFLoop
 :SSLoop
-echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|set /p SSIZE=
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SSIZE=
 if "%SSIZE%" == "" goto SSLoop
 :NoSources
 set TDATA=
 ..\bin\unzip -l %TDIR%\%SPKG%.zip | vstr /f : 2- | vstr /d/b/f ' ' 4- >%TEMP%\%SPKG%.lst
 cd ..
-if not exist TEMPDOS\appinfo\%SPKG%.lsm goto PkgInfNoData
+if not exist %TEMPDOS%\appinfo\%SPKG%.lsm goto PkgInfNoData
 if not exist %TEMP%\%SPKG%.lst goto PkgInfNoData
 
-type TEMPDOS\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
+type %TEMPDOS%\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
 if not "%ISIZE%" == "" echo Total-size:     %ISIZE%>>%SPKG%.PKG
-if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
 if not "%IFILES%" == "" echo Total-files:    %IFILES%>>%SPKG%.PKG
+if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
 if not "%SFILES%" == "" echo Source-files:   %SFILES%>>%SPKG%.PKG
-type TEMPDOS\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
+if not "%ISIZE%" == "" vecho /n , /s- /fGray '(I-' /fCyan %IFILES% /fGray '/' /fYellow %ISIZE% /fGray )
+if not "%SSIZE%" == "" vecho /n , /s- /fGray '(S-' /fCyan %SFILES% /fGray '/' /fYellow %SSIZE% /fGray )
+type %TEMPDOS%\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
 type %SPKG%.lst | vstr /b/d >>%SPKG%.PKG
 set ISIZE=
 set SSIZE=
@@ -835,7 +838,7 @@ vecho , /fLightRed Failed /fGray
 :PkgInfThisDone
 if exist appinfo\%SPKG%.lsm del appinfo\%SPKG%.lsm >nul
 if exist %TEMP%\%SPKG%.lst del %TEMP%\%SPKG%.lst >nul
-deltree /y %TEMP%\TEMPDOS >nul
+deltree /y %TEMP%\%TEMPDOS% >nul
 popd
 
 :PkgInfSkip
@@ -850,6 +853,7 @@ set STMP=
 
 vecho /p/fLightGreen Complete. /fGray
 verrlvl 0
+set TEMPDOS=
 goto CleanUp
 
 :CopyFailed
