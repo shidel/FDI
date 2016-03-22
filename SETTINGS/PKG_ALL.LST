@@ -45,7 +45,7 @@ base\move
 base\nansi
 base\nlsfunc
 base\print
-base\rdisk
+; base\rdisk
 base\recover
 base\replace
 base\share
@@ -89,4 +89,6 @@ net\wget
 net\vmsmount
 
 edit\msedit
+
+util\xfdisk
 
