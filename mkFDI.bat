@@ -907,7 +907,7 @@ set IFILES=
 set SFILES=
 
 if not exist %IDIR%\nul mkdir %IDIR% >nul
-copy /y %SPKG%.PKG %IDIR%\%SPKG%.TXT >nul
+type %SPKG%.PKG | vstr /b >%IDIR%\%SPKG%.TXT
 vecho , /fLightGreen OK /fGray
 goto PkgInfThisDone
 :PkgInfNoData
