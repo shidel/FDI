@@ -322,9 +322,8 @@ Also, a quick and easy "build from scratch" demo is available on YouTube as
                     %FTARGET% (probably "C:\FDOS") set errorlevel to 0 for
                     sucess, 1 for failure on leaving this batch.
 
-        FDILANG.BAT Uses current %LANG% setting and %1, %2, %3... and %FADV%
-                    to locate the current text translation file and point
-                    %FLANG% to it.
+        FDILANG.BAT Uses current %LANG% setting to locate the current text
+                    translation file and point %FLANG% to it.
 
         FDCHECK.BAT If it exists, use to test system for compatibilty prior to
                     installation of FreeDOS.

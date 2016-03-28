@@ -72,7 +72,6 @@ dir /on /a /b /p- FDASK*.BAT | vstr /b /l %_TI% | set /p _TA=
 if "%_TA%" == "" goto Finished
 
 vfdutil /n %_TA% | set /p _TL=
-call FDILANG.BAT %_TL% FDASK FDSETUP
 set _TL=
 verrlvl 0
 

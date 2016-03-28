@@ -7,9 +7,6 @@ if not "%FINSP%" == "" vfdutil /c/p %FINSP%\
 
 call FDICLS.BAT
 
-set TLANG=%FLANG%
-call FDILANG.BAT FDSETUP
-
 if not "%FADV%" == "y" goto NoContinue
 
 if "%1" == "cc" goto CanContinue
@@ -61,8 +58,6 @@ set FREBOOT=y
 goto AbortBatch
 
 :CtrlCPress
-set FLANG=%TLANG%
-set TLANG=
 FDICTRLC.BAT %0 %1 %2 %3 %4 %5 %6 %7 %8
 
 :AbortBatch
@@ -75,5 +70,3 @@ verrlvl 0
 goto Done
 
 :Done
-set FLANG=%TLANG%
-set TLANG=

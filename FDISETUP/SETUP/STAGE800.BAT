@@ -49,7 +49,6 @@ rem echo TC %_TC% TI %_TI% TA %_TA%
 if "%_TA%" == "" goto LoopingList
 
 vfdutil /n %_TA% | set /p _TL=
-call FDILANG.BAT %_TL% FDINS FDSETUP
 set _TL=
 
 verrlvl 0

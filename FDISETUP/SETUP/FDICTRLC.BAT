@@ -2,10 +2,6 @@
 
 REM Control-C Handler
 
-set TLANG=%FLANG%
-if "%FISNP%" == "" call FDILANG.BAT FDSETUP
-if not "%FISNP%" == "" call %FISNP%\FDILANG.BAT FDSETUP
-
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
 vecho /t %FLANG% CTRLC %TCH% %TCF%
@@ -17,8 +13,6 @@ vecho /t %FLANG% CTRLCN
 vecho
 if "%FADV%" == "" vecho /n /t %FLANG% CTRLCA
 if "%FADV%" == "y" vecho /n /t %FLANG% CTRLCB
-set FLANG=%TLANG%
-set TLANG=
 
 vchoice /a %TCC% /d 2 Ctrl-C
 

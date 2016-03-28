@@ -38,9 +38,6 @@ set HTARGET=
 set FBAK=
 set FVERB=
 set FMEDIA=
-set FLANG=
-if not "%FCLANG%" == "" set LANG=
-set FCLANG=
 set FPKGS=
 set FPSKP=
 set FTSET=

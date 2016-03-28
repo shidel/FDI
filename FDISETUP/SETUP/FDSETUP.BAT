@@ -45,13 +45,11 @@ verrlvl 0
 :SkipInstallCheck
 
 REM Show Logo file if present.
-call FDILANG.BAT FDSPLASH FDSETUP
 if exist FDSPLASH.BAT call FDSPLASH.BAT
 if errorlevel 1 goto Aborted
 
 REM Set Installer theme.
 set FSTAGE=200
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -60,7 +58,6 @@ if "%1" == "MBRZAP" goto DiskTesting
 
 REM Welcome
 set FSTAGE=300
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -68,14 +65,12 @@ if errorlevel 1 goto Aborted
 :DiskTesting
 REM Partitoned
 set FSTAGE=400
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Formatted
 set FSTAGE=500
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -87,13 +82,11 @@ if errorlevel 1 goto Error
 
 REM Reserved. Final stage prior to testing requirements and user prompts.
 set FSTAGE=600
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
 REM Check requirements if testing is present.
-call FDILANG.BAT FDCHECK FDSETUP
 if exist FDCHECK.BAT call FDCHECK.BAT
 if errorlevel 1 goto Aborted
 
@@ -102,7 +95,6 @@ if "%1" == "MBRZAP" goto MBRZAP
 REM Ask the user all of the Questions.
 SET HTARGET=%FTARGET%
 set FSTAGE=700
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -119,7 +111,6 @@ if errorlevel 1 goto Aborted
 :PostInstall
 REM Post install stuff, like recommend reboot.
 set FSTAGE=900
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
@@ -128,7 +119,6 @@ if errorlevel 1 goto Aborted
 REM Run cleanup stage.
 if "%FREBOOT%" == "y" goto DoReboot
 set FSTAGE=999
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 
@@ -142,10 +132,10 @@ SET HTARGET=%FTARGET%
 set FSTAGE=700
 set OSYS=y
 vcursor hide
+call FDILANG.BAT FDSETUP
 call FDICLS.BAT
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not exist FDASK100.BAT goto Error
-call FDILANG.BAT FDASK100 FDASK FDSETUP
 verrlvl 0
 call FDASK100.BAT
 if errorlevel 1 goto Aborted
@@ -153,7 +143,6 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not "%HTARGET%" == "%FTARGET%" goto DiskTesting
 SET HTARGET=
 if not exist FDASK600.BAT goto Error
-call FDILANG.BAT FDASK600 FDASK FDSETUP
 verrlvl 0
 call FDASK600.BAT
 if errorlevel 1 goto Aborted
@@ -161,7 +150,6 @@ if not "%OBSS%" == "y" vcls /g /a7
 if not "%OBSS%" == "y" goto CleanUp
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not exist FDINS700.BAT goto Error
-call FDILANG.BAT FDINS700 FDINS FDSETUP
 verrlvl 0
 call FDINS700.BAT
 if errorlevel 1 goto Aborted
@@ -171,10 +159,8 @@ goto PostInstall
 :NoInstallNeeded
 REM Run cleanup stage.
 set FSTAGE=999
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
-call FDILANG.BAT FDNOTICE FDSETUP
 if exist FDNOTICE.BAT call FDNOTICE.BAT
 verrlvl 0
 set FDRIVE=
@@ -187,12 +173,10 @@ goto Finished
 
 REM Installer failed from missing stage file **********************************
 :Error
-call FDILANG.BAT FDSETUP
 if not exist STAGE999.BAT goto NoCleanupStage
 call STAGE999.BAT
 :NoCleanupStage
 vcls /a 0x07
-call FDILANG.BAT FDSETUP
 vecho /t %FLANG% STAGE_ERROR %FSTAGE%
 set FDRIVE=
 goto Finished
@@ -200,11 +184,9 @@ goto Finished
 REM Installer failed to install or was aborted ********************************
 :Aborted
 set FSTAGE=999
-call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 :AbortedNoCleanup
-call FDILANG.BAT FDSETUP
 vcls /a 0x07
 if "%FREBOOT%" == "y" goto DoReboot
 if "%OS_NAME%" == "" goto NoOSName
@@ -214,7 +196,6 @@ vecho
 if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n
 if not "%FERROR%" == "" vecho %FERROR%
 if not "%FERROR%" == "" vecho
-call FDILANG.BAT FDERROR FDSETUP
 if exist FDERROR.BAT call FDERROR.BAT
 set FDRIVE=
 goto Finished
@@ -243,7 +224,6 @@ set FTARGET=
 goto DontDoAnything
 
 :DoReboot
-call FDILANG.BAT FDSETUP
 if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
 lbacache SYNC
@@ -285,12 +265,14 @@ goto CleanUp
 :DoExit
 set FREBOOT=
 vcls /a 0x07
-call FDILANG.BAT FDTHANK FDSETUP
 if exist FDTHANK.BAT call FDTHANK.BAT
-set FLANG=
+rem set FLANG=
 if exist FDSWPENV.BAT call FDSWPENV.BAT
 if not "%FDRIVE%" == "" cd %FDRIVE%\
 cd \
 
 REM End of Batch Script *******************************************************
 :DontDoAnything
+rem set FLANG=
+if not "%FCLANG%" == "" set LANG=
+set FCLANG=
