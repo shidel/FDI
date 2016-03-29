@@ -7,6 +7,13 @@ goto AfterOption
 
 :DoOption
 
+set FEXT=DEF
+vinfo /m
+if errorlevel 102 goto NotDOSBox
+if errorlevel 101 set FEXT=DBX
+:NotDOSBox
+verrlvl 0
+
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
 vecho /n /t %FLANG% ICONFIGS
@@ -15,11 +22,12 @@ vdelay %FDEL%
 REM Simple Autoexec.bat creation
 
 rem Embed Language configuration and codepage.
-type %FINSP%\AUTOEXEC.DEF |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\REPLACE.001
+if not exist %FINSP%\AUTOEXEC.%FEXT% goto SkipAutoExec
+type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
-type %FINSP%\AUTOEXEC.DEF |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
+type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 
 copy /y %TEMP%\REPLACE.001 %TEMP%\REPLACE.002 >NUL
@@ -47,8 +55,12 @@ type %TEMP%\REPLACE.006 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BA
 if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.006 >NUL
 
+
+:SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
-type %FINSP%\FDCONFIG.DEF | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
+
+if not exist %FINSP%\FDCONFIG.%FEXT% goto SkipFDConfig
+type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
 if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
@@ -57,6 +69,7 @@ type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.002 >NUL
 
+:SkipFDConfig
 set DDIR=
 
 REM Create the installed version ID file.
@@ -80,3 +93,4 @@ call FDIFAIL.BAT cc ERROR_CONFIG
 verrlvl 1
 
 :AfterOption
+set FEXT=

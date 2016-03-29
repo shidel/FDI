@@ -1,0 +1,50 @@
+@ECHO OFF
+
+if "%1" == "FREEDOS" goto ShellLoaded
+$FDRIVE$
+CD\
+if exist $FTARGET$\bin\command.com $FTARGET$\bin\command.com /e:2048 /k %0 FREEDOS
+goto END
+
+:ShellLoaded
+SET DOSDIR=$FTARGET$
+SET LANG=$FLANG$
+SET PATH=%dosdir%\BIN
+if exist %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
+SET PATH=%PATH%;Z:\
+
+SET NLSPATH=%dosdir%\NLS
+SET HELPPATH=%dosdir%\HELP
+SET TEMP=%dosdir%\TEMP
+SET TMP=%TEMP%
+
+SET BLASTER=A220 I5 D1 H5 P330
+SET DIRCMD=/P /OGN /Y
+SET COPYCMD=/-Y
+
+REM LH FDAPM APMDOS
+REM LH SHARE
+REM IF EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
+$LANG_SET$
+REM LH PCNTPK INT=0x60
+REM DHCP
+REM MOUSE
+REM CTMOUSE
+
+REM LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
+REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
+
+MEM /C /N
+echo.
+
+SET AUTOFILE=%0
+SET CFGFILE=$FDRIVE$\FDCONFIG.SYS
+alias cfg=edit %cfgfile%
+alias auto=edit %0
+
+set OS_NAME=$OSNAME$
+set OS_VERSION=$OSVER$
+
+if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
+
+:END

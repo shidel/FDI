@@ -2,6 +2,12 @@
 
 REM if advanced mode prompt for transfer system files.
 
+vinfo /m
+if errorlevel 102 goto NotDOSBox
+if errorlevel 101 goto IsDOSBox
+:NotDOSBox
+verrlvl 0
+
 if "%FADV%" == "" goto AssumeYes
 
 :AdvancedMode
@@ -22,6 +28,7 @@ set OSYS=y
 verrlvl 0
 goto Done
 
+:IsDOSBox
 :SkipSysXfer
 set OSYS=n
 verrlvl 0

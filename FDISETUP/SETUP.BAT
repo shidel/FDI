@@ -6,6 +6,13 @@ REM Copyright 2016 Jerome Shidel.
 
 if "%1" == "RELOAD" goto SkipReload
 
+REM Quick and Simple DOSBox Check *********************************************
+if not exist FDSETUP\BIN\VINFO.COM goto CantTestDOSBoxNow
+FDSETUP\BIN\VINFO.COM /M
+if errorlevel 102 goto CantTestDOSBoxNow
+if errorlevel 101 goto SkipDriveChange
+:CantTestDOSBoxNow
+
 REM Change to drive of SETUP.BAT -- Probably **********************************
 if "%1" == "BOOT" goto SkipDriveChange
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP" %%d:

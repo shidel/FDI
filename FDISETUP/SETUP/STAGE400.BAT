@@ -3,6 +3,12 @@
 REM Check state of drive %FDRIVE% (C:), check if it needs partitioned.
 REM If so, prompt to run partitioner then reboot.
 
+vinfo /m
+if errorlevel 102 goto NotDOSBox
+if errorlevel 101 goto IsDOSBox
+:NotDOSBox
+verrlvl 0
+
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
@@ -16,6 +22,7 @@ if errorlevel 15 goto NoSuchDrive
 if errorlevel 5 goto IgnoreThisError
 if errorlevel 2 goto WrongTypeDrive
 
+:IsDOSBox
 :IgnoreThisError
 REM Drive C exists.
 verrlvl 0

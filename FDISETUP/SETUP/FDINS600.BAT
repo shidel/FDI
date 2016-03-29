@@ -112,8 +112,8 @@ set FERROR="Unable to install '%_PA%' package."
 call %FINSP%\FDIFAIL.BAT cc ERROR_PACKAGE %_PA%
 if errorlevel 1 goto Done
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PAC_FRAME
-vecho /n /t %FLANG% PACBM
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /n /t %FLANG% IPACBM
 goto PkgSkip
 
 :Success

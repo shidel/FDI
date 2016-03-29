@@ -2,6 +2,12 @@
 
 REM if advanced mode prompt for force MBR update if possible and not blank.
 
+vinfo /m
+if errorlevel 102 goto NotDOSBox
+if errorlevel 101 goto IsDOSBox
+:NotDOSBox
+verrlvl 0
+
 set OBPC=2
 
 if "%OSYS%" == "n" goto SkipSysXfer
@@ -85,6 +91,7 @@ if "%OBPN%" == "?" set OBPN=
 verrlvl 0
 goto Done
 
+:IsDOSBox
 :SkipSysXfer
 set OBSS=n
 set OBPD=

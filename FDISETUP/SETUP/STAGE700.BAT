@@ -30,9 +30,13 @@ goto MediaFound
 set PKGDIR=$PKGDIR$
 
 :FindMedia
-set _MI=0
 
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
+echo %FINSD% | vstr /b /f : 1 | set /P _MA=
+call FDIMEDIA.BAT %_MA%
+set _MA=
+
+set _MI=0
 :MediaLoop
 if "%_MI%" == "26" goto MissingMedia
 vmath %_MI% + 1 | set /p _MT=

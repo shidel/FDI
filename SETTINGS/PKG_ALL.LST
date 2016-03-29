@@ -95,7 +95,7 @@ edit\msedit
 util\biew
 util\bmp2png
 util\cdrcache
-util\cpid
+util\cpied
 util\daa2iso
 util\dos32a
 util\foxcalc
@@ -111,6 +111,3 @@ util\srdisk
 util\usbdos
 util\xfdisk
 util\zerofill
-
-util\xfdisk
-
