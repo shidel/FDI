@@ -83,12 +83,34 @@ util\pg
 archiver\tar
 archiver\gzip
 archiver\bz2
+archiver\lzip
+archiver\lzma
+archiver\lzop
 
 net\mtcp
 net\wget
 net\vmsmount
 
 edit\msedit
+util\biew
+util\bmp2png
+util\cdrcache
+util\cpid
+util\daa2iso
+util\dos32a
+util\foxcalc
+util\gcdrom
+util\gnubc
+util\graphics
+util\less
+util\localize
+util\lscolor
+util\md5sum
+util\part
+util\srdisk
+util\usbdos
+util\xfdisk
+util\zerofill
 
 util\xfdisk
 
