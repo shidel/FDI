@@ -18,6 +18,12 @@ goto Done
 :MakeTemp
 set TEMP=
 
+vinfo /m
+if errorlevel 102 goto NotDOSBox
+if errorlevel 101 goto IsDOSBox
+:NotDOSBox
+verrlvl 0
+
 :Begining
 verrlvl 1
 SHSURDRV /QQ /U >NUL
@@ -93,6 +99,7 @@ if not exist %FTMP%\NUL goto Failed
 if "%TEMP%" == "" set TEMP=%FTMP%
 goto done
 
+:IsDOSBox
 :Failed
 set TEMP=
 set FTMP=
