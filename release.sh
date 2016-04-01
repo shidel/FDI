@@ -46,9 +46,14 @@ CURDIR="$PWD"
 
 cd "${HOME}/${DESTINATION}"
 cp "${HOME}/Documents/Virtual Machines.localized/Platforms/Development/FDI Builder.vmwarevm/USB-512MB-flat.vmdk" "${HOME}/${DESTINATION}/${PROJECT}-USB.img"
-zip -9 -r -k "${PROJECT}-USB.zip" "${PROJECT}-USB.img"
+cat "${HOME}/Documents/Virtual Machines.localized/Platforms/Development/FDI Builder.vmwarevm/USB-512MB.vmdk" | sed 's/USB-512MB-flat.vmdk/FDI-USB.img/g' >"${HOME}/${DESTINATION}/${PROJECT}-USB.vmdk"
+zip -9 -r "${PROJECT}-USB.zip" "${PROJECT}-USB.img" "${PROJECT}-USB.vmdk"
 cp "${HOME}/Documents/Virtual Machines.localized/Platforms/Development/FDI Builder.vmwarevm/USB-32MB-flat.vmdk" "${HOME}/${DESTINATION}/${PROJECT}-SLIM.img"
-zip -9 -r -k "${PROJECT}-SLIM.zip" "${PROJECT}-SLIM.img"
+cat "${HOME}/Documents/Virtual Machines.localized/Platforms/Development/FDI Builder.vmwarevm/USB-32MB.vmdk" | sed 's/USB-32MB-flat.vmdk/FDI-SLIM.img/g' >"${HOME}/${DESTINATION}/${PROJECT}-SLIM.vmdk"
+zip -9 -r "${PROJECT}-SLIM.zip" "${PROJECT}-SLIM.img" "${PROJECT}-SLIM.vmdk"
+
+rm "${HOME}/${DESTINATION}/${PROJECT}-"*.img >/dev/null
+rm "${HOME}/${DESTINATION}/${PROJECT}-"*.vmdk >/dev/null
 
 cd "${CURDIR}"
 
