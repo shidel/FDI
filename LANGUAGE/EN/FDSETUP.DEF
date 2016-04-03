@@ -67,7 +67,7 @@ NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
 PART?="Do you wish to partition your drive?"
-PART_YES="  Yes - Partitioner drive %1."
+PART_YES="  Yes - Partition drive %1."
 # EXIT
 
 # STAGE400 - After partitioned specific
