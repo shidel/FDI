@@ -19,8 +19,10 @@ goto Done
 set TEMP=
 
 vinfo /m
-if errorlevel 102 goto NotDOSBox
+if errorlevel 103 goto NotDOSBox
+if errorlevel 102 goto IsQEMU
 if errorlevel 101 goto IsDOSBox
+
 :NotDOSBox
 verrlvl 0
 
@@ -99,6 +101,7 @@ if not exist %FTMP%\NUL goto Failed
 if "%TEMP%" == "" set TEMP=%FTMP%
 goto done
 
+:IsQEMU
 :IsDOSBox
 :Failed
 set TEMP=
