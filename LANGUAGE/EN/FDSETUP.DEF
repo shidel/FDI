@@ -40,7 +40,7 @@ LANG_NAME=English
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installer"
 
 # STAGE300 - Initial welcome screen message
-LANG_ASK="Please select you language."
+LANG_ASK="What is your preferred language?"
 LANG_EN=English
 LANG_ES=Spanish
 LANG_FR=French
@@ -58,26 +58,26 @@ HELLO_WARN.3=
 HELLO_WARN.4=
 HELLO_WARN.5=
 
-PROCEED?=/p/p "Do you wish to proceed?"
-CONTINUE="  Yes - Continue with installation."
-EXIT="  No  - Return to DOS."
+PROCEED?=/p/p "Do you want to proceed?"
+CONTINUE="  Yes - Continue with installation"
+EXIT="  No  - Return to DOS"
 
 # STAGE400 - Partition screen specific
 NOPART_FRAME=/w60 /h10 /c
 NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Drive " /f  %1 %2 /f %3 " does not appear to be partitioned."
-PART?="Do you wish to partition your drive?"
-PART_YES="  Yes - Partition drive %1."
+PART?="Do you want to partition your drive?"
+PART_YES="  Yes - Partition drive %1"
 # EXIT
 
 # STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
 PARTED_OPTS=/w40 /h4 /c
 PARTED=/s- "You must reboot your computer for the new partitioning" /p "scheme to take effect."
-REBOOT?="Do you wish to reboot now?"
-REBOOT_YES="  Yes - Please reboot now."
+REBOOT?="Do you want to reboot now?"
+REBOOT_YES="  Yes - Please reboot now"
 # EXIT
-REBOOT="Your computer should now reboot."
+REBOOT="Your computer should now reboot"
 
 # STAGE500 - Formating specific
 NOFORMAT_FRAME=/w55 /h10 /c
@@ -85,10 +85,10 @@ NOFORMAT_OPTS=/w45 /h4 /c
 NOFORMATADV_FRAME=/w55 /h11 /c
 NOFORMATADV_OPTS=/w45 /h5 /c
 NOFORMAT=/s-  "Drive " /f %1 %2 /f %3 " does not appear to be formatted."
-FORMAT?="Do you wish to format your drive?"
-FORMAT_YES="  Yes - Please erase and format drive %1."
-FORMATADV_QUICK="  Yes - Quick erase and format drive %1."
-FORMATADV_SLOW="  Yes - Full erase and format drive %1."
+FORMAT?="Do you want to format your drive?"
+FORMAT_YES="  Yes - Please erase and format drive %1"
+FORMATADV_QUICK="  Yes - Quick erase and format drive %1"
+FORMATADV_SLOW="  Yes - Full erase and format drive %1"
 # EXIT
 FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Press a key... " /e
@@ -102,7 +102,7 @@ INSTALL_FRAME=/w62 /h10 /c
 INSTALL_OPTS=/w48 /h4 /c
 INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
 INSTALL?="Do you want to install now?"
-INSTALL_YES="  Yes - Please install %1."
+INSTALL_YES="  Yes - Please install %1"
 # EXIT
 PREPARING_FRAME=/w38 /h5 /c
 PREPARING="Preparing for the installation."
@@ -123,11 +123,11 @@ STAGE_ERROR=/s- "Unable to execute installer stage %1." /p "It is possible the i
 CTRLC_FRAME=/w60 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "You have pressed " /f %1 "CTRL-C" /f %2 .
-CTRLC?="Are you sure you wish to abort the installation?"
-CTRLCY="  Yes - Please return to DOS."
-CTRLCN="  No  - I want to continue."
-CTRLCA="  No  - Switch to Advanced Mode."
-CTRLCB="  No  - Switch to Basic Mode."
+CTRLC?="Are you sure you want to abort the installation?"
+CTRLCY="  Yes - Please return to DOS"
+CTRLCN="  No  - I want to continue"
+CTRLCA="  No  - Switch to Advanced Mode"
+CTRLCB="  No  - Switch to Basic Mode"
 
 # FDIFAIL - Installation failure error message box
 FAIL_FRAME=/w62 /h11 /c
@@ -135,9 +135,9 @@ FAIL_OPTS=/w40 /h4 /c
 FAILADV_FRAME=/w62 /h13 /c
 FAILADV_OPTS=/w40 /h6 /c
 FAILH="A reboot may help."
-FAIL?="Do you wish to reboot now?"
-FAILY="  Yes - Please reboot now."
-FAILN="  No  - Return to DOS."
+FAIL?="Do you want to reboot now?"
+FAILY="  Yes - Please reboot"
+FAILN="  No  - Return to DOS"
 FAILI="  No  - Ignore. (not recommended)"
 FAILR="The computer will now reboot."
 
@@ -181,10 +181,10 @@ BACKUP_OPTS=/w42 /h4 /c
 BACKUPADV_FRAME=/w65 /h11 /c
 BACKUPADV_OPTS=/w42 /h5 /c
 BACKUP=A previous operating system was detected on drive /f %1 %2 /f %3 /s- .
-BACKUP?=Do you wish to backup the old files before installing?
-BACKUPY="  Yes - Please backup first."
-BACKUPZ="  Yes - Please backup as zip archive."
-BACKUPN="  No  - Install without backing up."
+BACKUP?=Do you want to backup the old files before installing?
+BACKUPY="  Yes - Please backup first"
+BACKUPZ="  Yes - Please backup as zip archive"
+BACKUPN="  No  - Install without backing up"
 
 # FSASK100 - Advanced mode
 TARGET_FRAME=/w50 /h7 /c
@@ -195,28 +195,28 @@ TARGET_ASK=/f %1 /b %2 /d %3 %4
 REPLACE_FRAME=/w55 /h8 /c
 REPLACE_OPTS=/w40 /h4 /c
 REPLACE?=Replace the system configuration files?
-REPLACEY="  Yes - Transfer new default files."
-REPLACEN="  No  - Keep the old files."
+REPLACEY="  Yes - Transfer new default files"
+REPLACEN="  No  - Keep the old files"
 
 # FDASK400 - Advanced mode delete old OS files
 DELETE_FRAME=/w55 /h8 /c
 DELETE_OPTS=/w42 /h4 /c
 DELETE?=Remove all old files from /f %1 %2 /f %3 /s- ?
-DELETEY="  Yes - Start fresh."
-DELETEN="  No  - Leave it cluttered."
+DELETEY="  Yes - Start fresh"
+DELETEN="  No  - Leave it cluttered"
 
 # FDASK500 - Advanced mode transfer system files
 XFER_FRAME=/w55 /h8 /c
 XFER_OPTS=/w42 /h4 /c
 XFER?=Transfer system files to drive /f %1 %2 /f %3 /s- ?
-XFERY="  Yes - Transfer system files."
-XFERN="  No  - Do not transfer system files."
+XFERY="  Yes - Transfer system files"
+XFERN="  No  - Do not transfer system files"
 
 OBSS_FRAME=/w52 /h8 /c
 OBSS_OPTS=/w34 /h4 /c
 OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 (%4:%5)?
-OBSSY="  Yes - Overwrite MBR."
-OBSSN="  No  - Don't force new MBR."
+OBSSY="  Yes - Overwrite MBR"
+OBSSN="  No  - Don't force new MBR"
 
 # FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
@@ -228,12 +228,12 @@ PAC_OPTS_D=/w42 /h10 /c
 PAC_FRAME_BD=/w60 /h11 /c
 PAC_OPTS_BD=/w42 /h7 /c
 PACS?=What /f %1 %2 /f %3 packages do you want to install?
-PACBO="  Basic packages only."
-PACBS="  Basic packages with sources only."
-PACAO="  All the packages."
-PACAS="  All the packages and their sources."
-PACDO_ADV="  Selected binary packages."
-PACDS_ADV="  Selected packages and their sources."
+PACBO="  Basic packages only"
+PACBS="  Basic packages with sources only"
+PACAO="  All the packages"
+PACAS="  All the packages and their sources"
+PACDO_ADV="  Selected binary packages"
+PACDS_ADV="  Selected packages and their sources"
 
 # FDASK700 - Reserved
 
