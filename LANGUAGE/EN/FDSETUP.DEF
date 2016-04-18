@@ -37,7 +37,7 @@ LANG_AUTHOR=Jerome Shidel
 LANG_NAME=English
 
 # FDICLS - Title
-TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installer"
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " - Install"
 
 # STAGE300 - Initial welcome screen message
 LANG_ASK="What is your preferred language?"
