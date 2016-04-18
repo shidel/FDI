@@ -49,8 +49,8 @@ LANG_EO=Esperanto
 LANG_NL=Dutch
 
 HELLO_FRAME=/w70 /h15 /c
-HELLO_OPTS=/w40 /h4 /c
-HELLO=/s- "Welcome to the installation program for " /f %1 "%2" /f %3 .
+HELLO_OPTS=/w43 /h4 /c
+HELLO=/s- "Welcome to the " /f %1 "%2" /f %3 " installation program."
 HELLO_ADV=/s- "Welcome to the advanced installer for " /f %1 "%2" /f %3 .
 HELLO_WARN.1=/f%1 "%2" /f%3 is a complete operating system. If you choose to /p install this on your computer, you may overwrite the operating /p system you have now (for example, Windows.)
 HELLO_WARN.2=/c32 If this is not what you intend, please stop now.
@@ -59,7 +59,7 @@ HELLO_WARN.4=
 HELLO_WARN.5=
 
 PROCEED?=/p/p "Do you want to proceed?"
-CONTINUE="  Yes - Continue with installation"
+CONTINUE="  Yes - Continue with the installation"
 EXIT="  No  - Return to DOS"
 
 # STAGE400 - Partition screen specific
