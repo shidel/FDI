@@ -8,9 +8,18 @@ goto AfterOption
 :DoOption
 
 set FEXT=DEF
+set DMNU=1
+
 vinfo /m
+if errorlevel 104 goto NotDOSBox
+if errorlevel 103 goto IsVirtualBox
 if errorlevel 102 goto NotDOSBox
 if errorlevel 101 set FEXT=DBX
+goto NotDOSBox
+
+:IsVirtualBox
+set DMNU=2
+
 :NotDOSBox
 verrlvl 0
 
@@ -65,7 +74,10 @@ if errorlevel 1 goto Failed
 type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
 if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.001 >NUL
-type %TEMP%\REPLACE.002 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
+type %TEMP%\REPLACE.002 | vstr /n /s $FDEFMENU$ %DMNU% >%TEMP%\REPLACE.003
+if errorlevel 1 goto Failed
+del %TEMP%\REPLACE.002 >NUL
+type %TEMP%\REPLACE.003 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.002 >NUL
 
@@ -94,3 +106,4 @@ verrlvl 1
 
 :AfterOption
 set FEXT=
+set DMNU=
