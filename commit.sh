@@ -9,7 +9,7 @@ git add *.sh
 git add $(find -P SETTINGS -type f)
 git add $(find -P FDISETUP -type f)
 git add $(find -P LANGUAGE -type f -iname *.def)
-git add $(find -P LANGUAGE -type f -iname SETLANG.BAT)
+git add $(find -P LANGUAGE -type f -iname *.BAT)
 
 git commit -m "$*"
 git push
