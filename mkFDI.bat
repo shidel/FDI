@@ -20,8 +20,8 @@ set CDROM=%2:
 goto EndOfFile
 
 :BuildAll
+rem call %0 info
 call %0
-call %0 info
 call %0 slim D:
 call %0 usb E:
 goto EndOfFile
@@ -80,7 +80,7 @@ echo info  [package] Create all info files or specific package file.
 echo slim  [drive]   Create Lite USB stick image on [drive]
 echo usb   [drive]   Create Full USB stick image on [drive]
 echo.
-echo all             Run all of the above with "slim D:" and "usb E:"
+echo all             Build all FDI versions Floppy, "slim D:" and "usb E:"
 echo.
 goto CleanUp
 
