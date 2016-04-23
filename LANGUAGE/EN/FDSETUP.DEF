@@ -97,7 +97,7 @@ PAUSE=/fLightGreen " Press a key... " /e
 
 # STAGE600 - Install preparation
 GATHERING_FRAME=/w68 /h5 /c
-GATHERING="Gathering some information to prepare for the installation."
+GATHERING="Gathering some information to prepare for the installation..."
 
 # STAGE800 - Installing
 INSTALL_FRAME=/w62 /h10 /c
@@ -106,8 +106,8 @@ INSTALL=/s- "We are now ready to install " /f %1 "%2" /f %3 .
 INSTALL?="Do you want to install now?"
 INSTALL_YES="  Yes - Please install %1"
 # EXIT
-PREPARING_FRAME=/w38 /h5 /c
-PREPARING="Preparing for the installation."
+PREPARING_FRAME=/w42 /h5 /c
+PREPARING="Preparing for the installation..."
 
 # STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w60 /h10 /c
