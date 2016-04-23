@@ -42,7 +42,8 @@ NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Diskero " /f %1 %2 /f %3 " laushajne ne havas dosieraran specon."
 PART?="Chu vi volas registri vian diskospecon?"
 PART_YES="  Jes - Farigu la registrilon."
-# Also uses EXIT defined above.
+PARTING_FRAME=/w40 /h5 /c
+PARTING="Dispartiganta malmola disko..."
 
 # STAGE400 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c

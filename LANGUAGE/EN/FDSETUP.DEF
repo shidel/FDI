@@ -78,6 +78,8 @@ REBOOT?="Do you want to reboot now?"
 REBOOT_YES="  Yes - Please reboot now"
 # EXIT
 REBOOT="Your computer should now reboot"
+PARTING_FRAME=/w34 /h5 /c
+PARTING="Partitioning hard drive..."
 
 # STAGE500 - Formating specific
 NOFORMAT_FRAME=/w55 /h10 /c
@@ -93,8 +95,8 @@ FORMATADV_SLOW="  Yes - Full erase and format drive %1"
 FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Press a key... " /e
 
-# STAGE700 - Install preparation
-GATHERING_FRAME=/w66 /h5 /c
+# STAGE600 - Install preparation
+GATHERING_FRAME=/w68 /h5 /c
 GATHERING="Gathering some information to prepare for the installation."
 
 # STAGE800 - Installing

@@ -183,6 +183,14 @@ call %SELF% FAIL ERROR_SHELL
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
+:PARTING
+call %SELF% CLS PARTING FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
+vecho /n /t %FLANG% PARTING
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
 :GATHERING
 call %SELF% CLS GATHERING FDSETUP
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME

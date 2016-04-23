@@ -41,6 +41,8 @@ NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "La unidad " /f  %1 %2 /f %3 " no parece ser particionado."
 PART?="¨Quiere crear particiones en la unidad?"
 PART_YES="  S¡ - Partitioner Lanzamiento."
+PARTING_FRAME=/w38 /h5 /c
+PARTING="La partici¢n de disco duro..."
 # EXIT
 
 # STAGE400 - After partitioned specific

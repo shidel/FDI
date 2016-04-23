@@ -43,6 +43,8 @@ NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Schijf " /f %1 %2 /f %3 " lijkt niet gepartitioneerd te zijn."
 PART?="Wilt u de schijf graag partitioneren?"
 PART_YES="  Ja  - Start de 'Partitioner'."
+PARTING_FRAME=/w46 /h5 /c
+PARTING="Partitioneren van de harde schijf..."
 # Also uses EXIT defined above.
 
 # STAGE500 - After partitioned specific text.

@@ -43,6 +43,8 @@ NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Le disque " /f %1 %2 /f %3 " ne semble pas avoir ‚t‚ partitionn‚."
 PART?="Voulez-vous partitionner votre disque?"
 PART_YES="  Oui - Lancer le Partitionneur."
+PARTING_FRAME=/w36 /h5 /c
+PARTING="Partitionner disque dur..."
 # Also uses EXIT defined above.
 
 # STAGE500 - After partitioned specific text.

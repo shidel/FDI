@@ -116,6 +116,10 @@ PART?="Do you wish to partition your drive?"
 PART_YES="  Yes - Launch Partitioner."
 # Also uses EXIT defined above.
 
+# Displayed when auto-partitioning
+PARTING_FRAME=/w34 /h5 /c
+PARTING="Partitioning hard drive..."
+
 -------------------------------------------------------------------------------
 # STAGE400 - After partitioned specific text.
 PARTED_FRAME=/w60 /h11 /c
@@ -152,7 +156,7 @@ FORMATTING=/s- /fGray "Formatting drive " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Press a key... " /e
 
 -------------------------------------------------------------------------------
-# STAGE700 - Install preparation
+# STAGE600 - Install preparation, locating media
 GATHERING_FRAME=/w66 /h5 /c
 GATHERING="Gathering some information to prepare for the installation."
 

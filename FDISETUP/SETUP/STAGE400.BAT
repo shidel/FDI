@@ -79,6 +79,11 @@ vcursor hide
 goto AfterPartitioned
 
 :AutoPartition
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
+vecho /n /t %FLANG% PARTING
+vdelay %FDEL%
+
 verrlvl 0
 
 if "%FDRIVE%" == "D:" fdisk /info 2 | grep %>NUL
@@ -88,6 +93,11 @@ if not errorlevel 1 goto ManualPartition
 if "%FDRIVE%" == "D:" fdisk /auto 2>NUL
 if not "%FDRIVE%" == "D:" fdisk /auto 1>NUL
 if errorlevel 1 goto ManualPartition
+
+vdelay %FDEL%
+
+goto AfterPartitioned
+REM This is done later when we do System File Transfer
 
 if "%FDRIVE%" == "D:" fdisk /mbr 2>NUL
 if not "%FDRIVE%" == "D:" fdisk /mbr 1>NUL

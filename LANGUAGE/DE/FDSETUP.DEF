@@ -41,7 +41,8 @@ NOPART_OPTS=/w40 /h4 /c
 NOPART=/s- "Laufwerk " /f  %1 %2 /f %3 " scheint nicht partitioniert zu sein."
 PART?="Soll das Laufwerk partitioniert werden?"
 PART_YES="  Ja - Laufwerk partitionieren."
-# EXIT
+PARTING_FRAME=/w42 /h5 /c
+PARTING="Partitionieren der Festplatte..."
 
 # STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
