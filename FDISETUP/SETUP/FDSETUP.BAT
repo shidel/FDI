@@ -80,17 +80,17 @@ set FSTAGE=TMP
 call FDITEMP.BAT REQUIRED
 if errorlevel 1 goto Error
 
-REM Reserved. Final stage prior to testing requirements and user prompts.
-set FSTAGE=600
-if not exist STAGE%FSTAGE%.BAT goto Error
-call STAGE%FSTAGE%.BAT
-if errorlevel 1 goto Aborted
-
 REM Check requirements if testing is present.
 if exist FDCHECK.BAT call FDCHECK.BAT
 if errorlevel 1 goto Aborted
 
 if "%1" == "MBRZAP" goto MBRZAP
+
+REM Locate Package Media.
+set FSTAGE=600
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
+if errorlevel 1 goto Aborted
 
 REM Ask the user all of the Questions.
 SET HTARGET=%FTARGET%

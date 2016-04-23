@@ -64,7 +64,6 @@ type %TEMP%\REPLACE.006 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BA
 if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.006 >NUL
 
-
 :SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 
@@ -79,7 +78,7 @@ if errorlevel 1 goto Failed
 del %TEMP%\REPLACE.002 >NUL
 type %TEMP%\REPLACE.003 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.002 >NUL
+del %TEMP%\REPLACE.003 >NUL
 
 :SkipFDConfig
 set DDIR=

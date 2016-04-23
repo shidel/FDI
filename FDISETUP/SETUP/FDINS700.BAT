@@ -65,8 +65,6 @@ goto AfterSYS
 
 :AfterSYS
 verrlvl 0
-set FN=
-set FP=
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
