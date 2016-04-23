@@ -226,8 +226,10 @@ goto DontDoAnything
 :DoReboot
 if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
+
 lbacache SYNC
-lbacache STOP
+rem lbacache STOP
+
 if not "%OSYS%" == "y" goto RebootWarning
 if not "%OBSS%" == "y" goto RebootWarning
 goto NoWarning
