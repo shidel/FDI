@@ -73,8 +73,10 @@ goto Done
 :V8Welcome
 set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
 if not exist %LANGFILE% SET LANGFILE=%0
+if not exist %DOSDIR%\BIN\HELP.EXE goto NoHelp
 vecho /t %LANGFILE% AUTO_HELP HELP
 vecho
+:NoHelp
 vecho /t %LANGFILE% AUTO_WELCOME %OS_NAME% %OS_VERSION% http://www.freedos.org
 vecho
 set LANGFILE=
