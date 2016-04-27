@@ -65,3 +65,5 @@ archiver\zip
 archiver\unzip
 util\v8power
 util\shsufdrv
+
+util\graphics
