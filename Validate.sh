@@ -1,5 +1,9 @@
 #!/bin/sh
 
+declare -a CFIND
+declare -a CWITH
+CCOUNT=0
+
 check_dir () {
 
     [[ ! -d "$1" ]] && mkdir "$1"
@@ -33,6 +37,14 @@ save_settings () {
     echo "SRCDIR=\"${SRCDIR}\"">>"${CFG}"
     echo "DSTDIR=\"${DSTDIR}\"">>"${CFG}"
     echo "WRKDIR=\"${WRKDIR}\"">>"${CFG}"
+    echo >>"${CFG}"
+    echo "CCOUNT=${CCOUNT}">>"${CFG}"
+    local T=0
+    while [[ $T -lt $CCOUNT ]] ; do
+        echo "CFIND[$T]=\"${CFIND[$T]}\"">>"${CFG}"
+        echo "CWITH[$T]=\"${CWITH[$T]}\"">>"${CFG}"
+        (( T++ ))
+    done;
 
 }
 
@@ -111,11 +123,59 @@ check_settings () {
 
 }
 
+datestamp () {
+
+:;
+
+}
+
+show_package () {
+
+# grep -B 1000 -i ^end "$1" | grep -iv "^end\|^begin"
+:;
+
+}
+
+update_package () {
+
+    show_package "$1"
+    return 1
+
+}
+
 process () {
 
+    [[ "${1%%/*}" != "BASE" ]] && return 0
+
+    local PKG="${1##*/}"
+    local PKG="${PKG%.*}"
     local HWD="${PWD}"
-    cd "${WRKDIR}"
-    echo $1
+    cd "${WRKDIR}" || return 1
+    [[ -d "${PKG}" ]] && {
+        chmod -R 775 "${PKG}"
+        rm -rf "${PKG}" || return 1
+    }
+    mkdir "${PKG}" || return 1
+    cd "${PKG}" || return 1
+    unzip -qq -L "${SRCDIR}/${1}" || return 1
+    local LSM=$( echo "APPINFO/${PKG}.LSM" | tr "[:upper:]" "[:lower:]" )
+    [[ ! -f "${LSM}" ]] && {
+        echo "ERROR: unable to locate LSM for ${PKG}"
+        return 1
+    }
+    update_package "${LSM}" && {
+        datestamp
+        zip -9 -r -k "../${PKG}.ZIP" *
+        [[ ! -d "${DSTDIR}/${1%%/*}" ]] && {
+            mkdir -p "${DSTDIR}/${1%%/*}" || return 1
+            mv "../${PKG}.ZIP" "${DSTDIR}/${1%%/*}" || return 1
+        }
+    }
+    cd ..
+    [[ -d "${PKG}" ]] && {
+        chmod -R 775 "${PKG}"
+        rm -rf "${PKG}" || return 1
+    }
     cd "${HWD}"
 
 }
@@ -125,7 +185,10 @@ process_all () {
     local HWD="${PWD}"
     cd "${SRCDIR}"
     while read PACKAGE ; do
-        process "${PACKAGE:2}"
+        process "${PACKAGE:2}" || {
+            echo "ERROR: handling package ${PACKAGE:2}"
+            exit 1
+        }
     done<<<"$(find '.' -name '*.ZIP' -o -name '*.zip')"
     cd "${HWD}"
 
@@ -134,3 +197,4 @@ process_all () {
 load_settings
 check_settings
 process_all
+save_settings
