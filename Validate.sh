@@ -4,6 +4,22 @@ declare -a CFIND
 declare -a CWITH
 CCOUNT=0
 
+echox () {
+
+    if [[ -f /bin/echo ]] ; then
+        /bin/echo -n "${@}"
+    else
+        echo -n "${@}"
+    fi
+
+}
+
+edit_variable () {
+
+    read -e "${1}"
+
+}
+
 check_dir () {
 
     [[ ! -d "$1" ]] && mkdir "$1"
@@ -15,8 +31,8 @@ check_dir () {
 
 load_settings () {
 
-    [[ -f "${0%.*}.cfg" ]] && {
-        CFG="${0%.*}.cfg"
+    [[ -f "${PWD}/${0%.*}.cfg" ]] && {
+        CFG="${PWD}/${0%.*}.cfg"
         . "${CFG}"
     }
 
@@ -38,6 +54,7 @@ save_settings () {
     echo "DSTDIR=\"${DSTDIR}\"">>"${CFG}"
     echo "WRKDIR=\"${WRKDIR}\"">>"${CFG}"
     echo >>"${CFG}"
+    echo >>"${CFG}"
     echo "CCOUNT=${CCOUNT}">>"${CFG}"
     local T=0
     while [[ $T -lt $CCOUNT ]] ; do
@@ -45,7 +62,6 @@ save_settings () {
         echo "CWITH[$T]=\"${CWITH[$T]}\"">>"${CFG}"
         (( T++ ))
     done;
-
 }
 
 check_settings () {
@@ -60,7 +76,7 @@ check_settings () {
             t="(${PWD})"
         fi;
         echo "Packages source directory${t}?"
-        read val
+        read -e val
         if [[ "${val}" == "" ]] && [[ "${t}" != "" ]] ; then
             SRCDIR="${PWD}"
         else
@@ -81,7 +97,7 @@ check_settings () {
         local t="(${SRCDIR}/../OUTPUT)"
         local val=
         echo "Packages destination directory${t}?"
-        read val
+        read -e val
         if [[ "${val}" == "" ]] && [[ "${t}" != "" ]] ; then
             DSTDIR="${SRCDIR}/../OUTPUT"
         else
@@ -104,7 +120,7 @@ check_settings () {
         local t="(${SRCDIR}/../TEMP)"
         local val=
         echo "Packages working directory${t}?"
-        read val
+        read -e val
         if [[ "${val}" == "" ]] && [[ "${t}" != "" ]] ; then
             WRKDIR="${SRCDIR}/../TEMP"
         else
@@ -123,29 +139,155 @@ check_settings () {
 
 }
 
+get_varaible () {
+
+    local T=$(grep -m 1 -i "^${2}" "${1}" | tr -d "\r")
+    echo ${T#*:}
+
+}
+
+set_varaible () {
+
+    local T=$(grep -m 1 -i "^${2}:" "${1}" | tr -d "\r")
+    local INDENT=0
+    while [[ "${T:${INDENT}:1}" != ":" ]] ; do
+        (( INDENT++ ))
+    done;
+    (( INDENT++ ))
+    while [[ "${T:${INDENT}:1}" == " " ]] ; do
+        (( INDENT++ ))
+    done;
+    local MIN=$(( ${#2} + 2 ))
+    [[ $INDENT -lt $(( ${#2} + 2 )) ]] && (( INDENT++ ))
+    cat "${1}" | tr -d '\r' | grep -B 1000 -i "^${2}" | grep -iv "^${2}" | tr -d '\r' >TEMPORARY.LSM
+    local T=$(echo ${2:0:1} | tr "[:lower:]" "[:upper:]")$(echo ${2:1} | tr "[:upper:]" "[:lower:]")
+    local T="${T}:                                 "
+    echo "${T:0:$INDENT}${3}" | tr -d '\r' >>TEMPORARY.LSM
+    cat "${1}" | tr -d '\r' | grep -A 1000 -i "^${2}" "${1}" | grep -iv "^${2}" | tr -d '\r'>>TEMPORARY.LSM
+    mv TEMPORARY.LSM "${1}" || return 1
+
+}
+
 datestamp () {
 
-:;
+    set_varaible "${1}" "Entered-date" "$(date +'%Y-%m-%d')"
 
+}
+
+read_package () {
+
+    TITLE=$(get_varaible "${1}" title)
+    VERSION=$(get_varaible "${1}" version)
+    AUTHOR=$(get_varaible "${1}" author)
+    POLICY=$(get_varaible "${1}" copying-policy)
+    CPOLICY=
+
+    local C=0
+    local PC=$(echo ${POLICY} | tr "[:upper:]" "[:lower:]")
+    while [[ $C -lt $CCOUNT ]] && [[ "$CPOLICY" == "" ]] ; do
+        local PF=$(echo ${CFIND[$C]} | tr "[:upper:]" "[:lower:]")
+        [[ "${PF}" == "${PC}" ]] && {
+            CPOLICY=${CWITH[$C]}
+            C=$CCOUNT
+        }
+        (( C++ ))
+    done;
+
+    [[ "$TITLE"   == "" ]] && return 1
+    [[ "$VERSION" == "" ]] && return 1
+    [[ "$AUTHOR"  == "" ]] && return 1
+    [[ "$POLICY"  == "" ]] && return 1
+    [[ "$CPOLICY"  == "" ]] && return 1
+    [[ "$POLICY" != "$CPOLICY" ]] && return 1
+
+    return 0
 }
 
 show_package () {
 
-# grep -B 1000 -i ^end "$1" | grep -iv "^end\|^begin"
-:;
+#    echo "Title:   $TITLE"
+#    echo "Version: $VERSION"
+#    echo "Author:  $AUTHOR"
+#    echo "License: $POLICY"
 
+    grep -B 1000 -i "^end" "${1}" | grep -A 1000 -i "^begin3" | grep -iv "^begin3\|^end"  # | sed  's/^/   /'
+    echo
+
+}
+
+missing_data () {
+
+    while [[ "${!2}" == "" ]] ; do
+        show_package "${1}"
+        echox "Missing ${2}?"
+        edit_variable "${2}"
+        echo
+        set_varaible "${1}" "${2}" "${!2}"
+        read_package "${1}"
+    done
+
+}
+
+check_policy () {
+
+    while [[ "${CPOLICY}" == "" ]] ; do
+        show_package "${1}"
+        echox "Unknown copying policy \`${POLICY}' (enter to accept)?"
+        edit_variable CPOLICY
+        CPOLICY=$(echo "$CPOLICY" | tr -d "\r")
+        [[ "${CPOLICY}" == "" ]] && CPOLICY="${POLICY}"
+        CFIND[$CCOUNT]="${POLICY}"
+        CWITH[$CCOUNT]="${CPOLICY}"
+        (( CCOUNT++ ))
+        echo
+        save_settings
+        set_varaible "${1}" "copying-policy" "${CPOLICY}"
+        read_package "${1}"
+    done
 }
 
 update_package () {
 
-    show_package "$1"
+    local MODIFIED=N
+    echo "Processing package ${2}"
+    read_package "${1}" && return 1
+
+    echo
+    missing_data "${1}" "TITLE"
+    missing_data "${1}" "VERSION"
+    missing_data "${1}" "AUTHOR"
+    # missing_data "${1}" "POLICY"
+
+    local LATER=
+    [[ "${CPOLICY}" != "" ]] && [[ "${CPOLICY}" != "${POLICY}" ]] && {
+        local LATER="Copy-policy \`${POLICY}' updated to \`${CPOLICY}'"
+        set_varaible "${1}" "copying-policy" "${CPOLICY}"
+        read_package "${1}"
+    }
+
+    check_policy "${1}"
+
+    datestamp "${1}"
+    show_package "${1}"
+    [[ "${LATER}" != "" ]] && {
+        echo "${LATER}"
+        echo
+    }
+    echox "Confirm (Y/n)?"
+    read -n 1 MODIFIED
+    echo
+    [[ "${MODIFIED}" == "" ]] && MODIFIED=y
+    [[ "${MODIFIED}" == [y/Y] ]] && {
+        echo "Update package ${2}"
+        return 0
+    }
     return 1
 
 }
 
 process () {
 
-    [[ "${1%%/*}" != "BASE" ]] && return 0
+    # [[ "${1%%/*}" != "BASE" ]] && return 0
 
     local PKG="${1##*/}"
     local PKG="${PKG%.*}"
@@ -157,19 +299,20 @@ process () {
     }
     mkdir "${PKG}" || return 1
     cd "${PKG}" || return 1
-    unzip -qq -L "${SRCDIR}/${1}" || return 1
+    unzip -qq -L -o "${SRCDIR}/${1}" || return 1
     local LSM=$( echo "APPINFO/${PKG}.LSM" | tr "[:upper:]" "[:lower:]" )
     [[ ! -f "${LSM}" ]] && {
         echo "ERROR: unable to locate LSM for ${PKG}"
         return 1
     }
-    update_package "${LSM}" && {
-        datestamp
-        zip -9 -r -k "../${PKG}.ZIP" *
+    update_package "${LSM}" "${1}" && {
+        zip -9 -r -k -q "../${PKG}.ZIP" *
+        unzip -qt "../${PKG}.ZIP" || return 1
+        echo
         [[ ! -d "${DSTDIR}/${1%%/*}" ]] && {
             mkdir -p "${DSTDIR}/${1%%/*}" || return 1
-            mv "../${PKG}.ZIP" "${DSTDIR}/${1%%/*}" || return 1
         }
+        mv "../${PKG}.ZIP" "${DSTDIR}/${1%%/*}" || return 1
     }
     cd ..
     [[ -d "${PKG}" ]] && {
@@ -184,12 +327,12 @@ process_all () {
 
     local HWD="${PWD}"
     cd "${SRCDIR}"
-    while read PACKAGE ; do
+    for PACKAGE in $(find '.' -name '*.ZIP' -o -name '*.zip') ; do
         process "${PACKAGE:2}" || {
             echo "ERROR: handling package ${PACKAGE:2}"
             exit 1
         }
-    done<<<"$(find '.' -name '*.ZIP' -o -name '*.zip')"
+    done
     cd "${HWD}"
 
 }
