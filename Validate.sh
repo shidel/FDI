@@ -54,7 +54,6 @@ save_settings () {
     echo "DSTDIR=\"${DSTDIR}\"">>"${CFG}"
     echo "WRKDIR=\"${WRKDIR}\"">>"${CFG}"
     echo >>"${CFG}"
-    echo >>"${CFG}"
     echo "CCOUNT=${CCOUNT}">>"${CFG}"
     local T=0
     while [[ $T -lt $CCOUNT ]] ; do
