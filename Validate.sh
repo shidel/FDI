@@ -2,7 +2,9 @@
 
 declare -a CFIND
 declare -a CWITH
+declare -a IPACKAGE
 CCOUNT=0
+ICOUNT=0
 
 echox () {
 
@@ -58,6 +60,13 @@ save_settings () {
     echo "SRCDIR=\"${SRCDIR}\"">>"${CFG}"
     echo "DSTDIR=\"${DSTDIR}\"">>"${CFG}"
     echo "WRKDIR=\"${WRKDIR}\"">>"${CFG}"
+    echo >>"${CFG}"
+    echo "ICOUNT=${ICOUNT}">>"${CFG}"
+    local T=0
+    while [[ $T -lt $ICOUNT ]] ; do
+        echo "IPACKAGE[$T]=\"${IPACKAGE[$T]}\"">>"${CFG}"
+        (( T++ ))
+    done;
     echo >>"${CFG}"
     echo "CCOUNT=${CCOUNT}">>"${CFG}"
     local T=0
@@ -181,6 +190,22 @@ datestamp () {
 
 }
 
+ignore_package () {
+
+    local C=0
+    local PF=
+    while [[ $C -lt $ICOUNT ]] && [[ "$PF" != "${1}" ]] ; do
+        local PF="${IPACKAGE[$C]}"
+        [[ "${PF}" == "${1}" ]] && {
+            C=$CCOUNT
+        }
+        (( C++ ))
+    done;
+
+    [[ "${PF}" == "${1}" ]] && return 0 || return 1
+
+}
+
 read_package () {
 
     TITLE=$(get_varaible "${1}" title)
@@ -265,6 +290,8 @@ check_policy () {
 
 update_package () {
 
+    ignore_package "${2}" && return 1
+
     local MODIFIED=N
     echo "Processing package ${2}"
     read_package "${1}" && {
@@ -296,10 +323,17 @@ update_package () {
         echo "${LATER}"
         echo
     }
-    echox "Confirm (Y/n)?"
+    echox "Confirm (Y/n,i)?"
     read -n 1 MODIFIED
     echo
     [[ "${MODIFIED}" == "" ]] && MODIFIED=y
+    [[ "${MODIFIED}" == [i/I] ]] && {
+        echo "Ignore package ${2}"
+        IPACKAGE[$ICOUNT]="${2}"
+        (( ICOUNT++ ))
+        save_settings
+        return 1
+    }
     [[ "${MODIFIED}" == [y/Y] ]] && {
         echo "Update package ${2}"
         return 0
