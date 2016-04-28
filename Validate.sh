@@ -143,6 +143,19 @@ check_settings () {
 
 }
 
+get_indent () {
+    local T=$(grep -m 1 -i "^${2}:" "${1}" | tr -d "\r")
+    INDENT=0
+    while [[ "${T:${INDENT}:1}" != ":" ]] ; do
+        (( INDENT++ ))
+    done;
+    (( INDENT++ ))
+    while [[ "${T:${INDENT}:1}" == " " ]] ; do
+        (( INDENT++ ))
+    done;
+    [[ $INDENT -lt $(( ${#2} + 2 )) ]] && (( INDENT++ ))
+}
+
 get_varaible () {
 
     local T=$(grep -m 1 -i "^${2}" "${1}" | tr -d "\r")
@@ -152,17 +165,7 @@ get_varaible () {
 
 set_varaible () {
 
-    local T=$(grep -m 1 -i "^${2}:" "${1}" | tr -d "\r")
-    local INDENT=0
-    while [[ "${T:${INDENT}:1}" != ":" ]] ; do
-        (( INDENT++ ))
-    done;
-    (( INDENT++ ))
-    while [[ "${T:${INDENT}:1}" == " " ]] ; do
-        (( INDENT++ ))
-    done;
-    local MIN=$(( ${#2} + 2 ))
-    [[ $INDENT -lt $(( ${#2} + 2 )) ]] && (( INDENT++ ))
+    get_indent "${1}" "Copying-policy"
     cat "${1}" | tr -d '\r' | grep -B 1000 -i "^${2}" | grep -iv "^${2}" | tr -d '\r' >TEMPORARY.LSM
     local T=$(echo ${2:0:1} | tr "[:lower:]" "[:upper:]")$(echo ${2:1} | tr "[:upper:]" "[:lower:]")
     local T="${T}:                                 "
@@ -185,6 +188,8 @@ read_package () {
     AUTHOR=$(get_varaible "${1}" author)
     POLICY=$(get_varaible "${1}" copying-policy)
     CPOLICY=
+
+    [[ -d source ]] && SOURCES=Y || SOURCES=N
 
     local C=0
     local PC=$(echo ${POLICY} | tr "[:upper:]" "[:lower:]")
@@ -215,6 +220,14 @@ show_package () {
 #    echo "License: $POLICY"
 
     grep -B 1000 -i "^end" "${1}" | grep -A 1000 -i "^begin3" | grep -iv "^begin3\|^end"  # | sed  's/^/   /'
+    [[ "$SOURCES" != "" ]] && {
+        [[ "$SOURCES" == "N" ]] && SOURCES=Missing || SOURCES=Present
+        get_indent "${1}" "title"
+        [[ $INDENT -lt 15 ]] && INDENT=15
+        local T="Source Files:                       "
+        echo "${T:0:$INDENT}${SOURCES}"
+
+    }
     echo
 
 }
@@ -254,8 +267,14 @@ update_package () {
 
     local MODIFIED=N
     echo "Processing package ${2}"
-    read_package "${1}" && return 1
-
+    read_package "${1}" && {
+        [[ "$SOURCES" == "N" ]] && {
+            echo "Sources Missing. (press enter to continue)"
+            read SOURCES
+            SOURCES=
+        }
+        return 1
+    }
     echo
     missing_data "${1}" "TITLE"
     missing_data "${1}" "VERSION"
@@ -264,7 +283,7 @@ update_package () {
 
     local LATER=
     [[ "${CPOLICY}" != "" ]] && [[ "${CPOLICY}" != "${POLICY}" ]] && {
-        local LATER="Copy-policy \`${POLICY}' updated to \`${CPOLICY}'"
+        local LATER="Copying-policy \`${POLICY}' updated to \`${CPOLICY}'"
         set_varaible "${1}" "copying-policy" "${CPOLICY}"
         read_package "${1}"
     }
