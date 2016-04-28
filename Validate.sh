@@ -6,6 +6,8 @@ declare -a IPACKAGE
 CCOUNT=0
 ICOUNT=0
 
+CANSKIP=Y
+
 echox () {
 
     if [[ -f /bin/echo ]] ; then
@@ -60,6 +62,7 @@ save_settings () {
     echo "SRCDIR=\"${SRCDIR}\"">>"${CFG}"
     echo "DSTDIR=\"${DSTDIR}\"">>"${CFG}"
     echo "WRKDIR=\"${WRKDIR}\"">>"${CFG}"
+    echo "CANSKIP=\"${CANSKIP}\"">>"${CFG}"
     echo >>"${CFG}"
     echo "ICOUNT=${ICOUNT}">>"${CFG}"
     local T=0
@@ -261,9 +264,13 @@ missing_data () {
 
     while [[ "${!2}" == "" ]] ; do
         show_package "${1}"
-        echox "Missing ${2}?"
+        [[ "$CANSKIP" == "Y" ]] && echox "Missing ${2} (enter to skip)?" || echox "Missing ${2}?"
         edit_variable "${2}"
         echo
+        [[ "${!2}" == "" ]] && [[ "$CANSKIP" == "Y" ]] && {
+            read_package "${1}"
+            return 0
+        }
         set_varaible "${1}" "${2}" "${!2}"
         read_package "${1}"
     done
