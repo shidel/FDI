@@ -44,6 +44,11 @@ load_settings () {
         . "${CFG}"
     }
 
+    [[ "${CFG}" == "" ]] && {
+        CFG="${PWD}/${0%.*}.cfg"
+        echo >"${CFG}"
+    }
+
 }
 
 save_settings () {
