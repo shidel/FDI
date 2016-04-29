@@ -228,6 +228,10 @@ if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
 
 if "%CACHED%" == "NO" goto NoFlush
+if "%TEMP%" == "" goto JustFlush
+lbacache STAT | grep -i caching >null
+if errorlevel 1 goto NoFlush
+:JustFlush
 lbacache SYNC
 lbacache STOP
 :NoFlush

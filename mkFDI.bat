@@ -35,6 +35,7 @@ SET OSN=%OS_NAME%
 SET OSV=%OS_VERSION%
 
 set USB=
+set ELT=
 set SLIM=
 set KERNEL=
 set PKGDIR=
@@ -54,6 +55,7 @@ if "%TZ%" == "" set TZ=EST
 if "%1" == "" goto ReadDone
 
 if "%1" == "help" goto Help
+if "%1" == "cdrom" set ELT=y
 if "%1" == "usb" set USB=y
 if "%1" == "slim" set SLIM=y
 if "%1" == "info" set INFO=y
@@ -76,11 +78,12 @@ echo FreeDOS Installer (FDI) Install Media Creator Utility
 echo usage: mkfdi.bat [options]
 echo.
 echo [No Option]     Create Install Floppy on Drive A:
+echo cdrom           Create CDROM Floppy on Drive A:
 echo info  [package] Create all info files or specific package file.
 echo slim  [drive]   Create Lite USB stick image on [drive]
 echo usb   [drive]   Create Full USB stick image on [drive]
 echo.
-echo all             Build all FDI versions Floppy, "slim D:" and "usb E:"
+echo all             Build most FDI versions Floppy, "slim D:" and "usb E:"
 echo.
 goto CleanUp
 
@@ -322,6 +325,7 @@ type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LH$ ' '' >%RAMDRV%\AUTOEXEC.TMP
 copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
 if "%USB%" == "y" goto USBAuto
+if "%ELT%" == "y" goto USBAuto
 type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LBA$ ' '' >%RAMDRV%\AUTOEXEC.TMP
 copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
@@ -1075,6 +1079,7 @@ set TGO=
 set TTRY=
 set TDIR=
 
+set ELT=
 set USB=
 set OS_URL=
 
