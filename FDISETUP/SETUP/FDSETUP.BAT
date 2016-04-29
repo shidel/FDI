@@ -229,7 +229,7 @@ vcls /a 0x07
 
 if "%CACHED%" == "NO" goto NoFlush
 if "%TEMP%" == "" goto JustFlush
-lbacache STAT | grep -i caching >null
+lbacache STAT | grep -i caching >NUL
 if errorlevel 1 goto NoFlush
 :JustFlush
 lbacache SYNC
