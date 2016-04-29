@@ -84,5 +84,8 @@ set TPH=
 set TQF=
 set TQB=
 
+set PF=
+set PO=
+
 :SkipClear
 verrlvl 0
