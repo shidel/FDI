@@ -36,6 +36,9 @@ if exist %FDRIVE%\MSDOS.SYS del %FDRIVE%\MSDOS.SYS >NUL
 if exist %FTARGET%\BOOT.BSS attrib -R -S -H %FTARGET%\BOOT.BSS >NUL
 if exist %FTARGET%\BOOT.BSS del %FTARGET%\BOOT.BSS >NUL
 
+if exist %FTARGET%\BOOT.MBR attrib -R -S -H %FTARGET%\BOOT.MBR >NUL
+if exist %FTARGET%\BOOT.MBR del %FTARGET%\BOOT.MBR >NUL
+
 REM Backup MBR
 if "%OBPD%" == "" goto NoMBRBackup
 pushd
@@ -45,7 +48,7 @@ popd
 :NoMBRBackup
 
 if not "%OBSS%" == "y" goto NotForceBSS
-sys %FDRIVE% /BOTH /BACKUPBS %FTARGET%\BOOT.BSS >NUL
+sys %FBOOTD% %FDRIVE% /BOTH /BACKUPBS %FTARGET%\BOOT.BSS >NUL
 if errorlevel 1 goto Failed
 
 if "%OBPD%" == "" goto AfterSys
@@ -58,7 +61,7 @@ if errorlevel 1 goto Failed
 goto AfterSYS
 
 :NotForceBSS
-sys %FDRIVE% /BACKUPBS %FTARGET%\BOOT.BSS >NUL
+sys %FBOOTD% %FDRIVE% /BACKUPBS %FTARGET%\BOOT.BSS >NUL
 if errorlevel 1 goto Failed
 
 goto AfterSYS
