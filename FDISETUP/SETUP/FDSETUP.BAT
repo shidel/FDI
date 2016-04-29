@@ -227,7 +227,7 @@ goto DontDoAnything
 if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
 
-if not "%CACHED%" == "Y" goto NoFlush
+if "%CACHED%" == "NO" goto NoFlush
 lbacache SYNC
 lbacache STOP
 :NoFlush
