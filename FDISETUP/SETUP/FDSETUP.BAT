@@ -227,8 +227,10 @@ goto DontDoAnything
 if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
 vcls /a 0x07
 
+if not "%CACHED%" == "Y" goto NoFlush
 lbacache SYNC
-rem lbacache STOP
+lbacache STOP
+:NoFlush
 
 if not "%OSYS%" == "y" goto RebootWarning
 if not "%OBSS%" == "y" goto RebootWarning
