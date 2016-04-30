@@ -1,0 +1,14 @@
+Begin3
+Title:          FDI Sources
+Version:        $VERSION$
+Entered-date:   $DATE$
+Description:    FDI - The FreeDOS Installer source files.
+Keywords:       dos batch
+Author:         Jerome Shidel <jerome _AT_ shidel.net>
+Maintained-by:  Jerome Shidel <jerome _AT_ shidel.net>
+Primary-site:   https://github.com/shidel/FDI
+Alternate-site:
+Original-site:  http://up.lod.bz/FDI/
+Platforms:      DOS
+Copying-policy: GNU General Public License, version 2
+End
