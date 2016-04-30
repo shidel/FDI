@@ -9,6 +9,7 @@ goto END
 :ShellLoaded
 SET DOSDIR=$FTARGET$
 SET LANG=$FLANG$
+SET TZ=UTC
 SET PATH=%dosdir%\BIN
 if exist %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
 SET PATH=%PATH%;Z:\
