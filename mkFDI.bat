@@ -150,6 +150,10 @@ set TEMPPATH=
 vgotoxy up up
 vecho /fLightGreen "%OS_NAME% %OS_VERSION% install disk creator." /p
 
+:NOWLoop
+date /d | vstr /n/f ' ' 5- | set /p TNOW=
+if "%TNOW%" == "" goto NOWLoop
+
 if not "%USB%" == "y" goto NotHDImage
 if "%SLIM%" == ""  vecho /fLightRed Full USB Stick creation mode! /fGray /p
 if "%SLIM%" == "y" vecho /fLightRed Ultra-Slim USB Stick creation mode! /fGray /p
@@ -466,11 +470,8 @@ if not exist %TEMP%\WELCOME\APPINFO\NUL mkdir %TEMP%\WELCOME\APPINFO>NUL
 if not exist %TEMP%\WELCOME\BIN\NUL mkdir %TEMP%\WELCOME\BIN>NUL
 if not exist %TEMP%\WELCOME\NLS\NUL mkdir %TEMP%\WELCOME\NLS>NUL
 type WELCOME\WELCOME.BAT| vstr /n/s $URL$ "%OS_URL%">%TEMP%\WELCOME\BIN\WELCOME.BAT
-:NOWLoop
-date /d | vstr /n/f ' ' 5- | set /p TGO=
-if "%TGO%" == "" goto NOWLoop
-type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ "%TGO%">%TEMP%\WELCOME\APPINFO\WELCOME.LSM
-set TGO=
+type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ "%TNOW%">%TEMP%\WELCOME\APPINFO\WELCOME.LSM
+set TNOW=
 :NLSCount
 set TCNT=
 dir /a/b/s LANGUAGE\FDSETUP.DEF| grep -iv TEMPLATE\\|vstr /b/l total| set /p TCNT=
@@ -497,7 +498,6 @@ goto NLSLoop
 
 :NLSDone
 set TTRY=
-set TGO=
 set TTM=
 set TNAME=
 set TCNT=
@@ -515,7 +515,32 @@ popd
 
 vecho , /fLightGreen Done /fGray /p
 
+if "%USB%" == "y" goto MakeFDISources
+if "%ELT%" == "y" goto MakeFDISources
+REM goto NoFDISources
+:MakeFDISources
+vecho /n "Creating FDI build environment source package"
+copy /y TOOLS\FDIDEV.BAT %DOSDIR%\BIN\ >NUL
+
+mkdir %TEMP%\FDISRC >NUL
+mkdir %TEMP%\FDISRC\APPINFO >NUL
+mkdir %TEMP%\FDISRC\SOURCE >NUL
+xcopy /y /E *.* %TEMP%\FDISRC\SOURCE\ >NUL
+del %TEMP%\FDISRC\SOURCE\V8POWER\V*.* >NUL
+set /e TGO=cd
+pushd
+vfdutil /c /p %TEMP%\FDISRC\
+type %TGO%\FDISETUP\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ "%TNOW%">APPINFO\FDISRC.LSM
+if exist ..\FDISRC.ZIP del ..\FDISRC.ZIP >NUL
+zip -r -k -9 ..\FDISRC.ZIP *.* >NUL
+popd
+
+vecho , /fLightGreen Done /fGray /p
+set TGO=
+:NoFDISources
+
 if "%USB%" == "y" goto NoPackOverrides
+if "%ELT%" == "y" goto NoPackOverrides
 
 if not exist PACKAGES\NUL goto NoPackOverrides
 vecho /n "Adding package overrides to Ramdrive"
@@ -568,10 +593,15 @@ vgotoxy /l eot
 vecho /fGray , /fLightGreen OK /fGray /p
 popd
 
-if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\COMMAND.COM
-if "%FLOPPY%" == "A:" attrib +R %FLOPPY%\KERNEL.SYS
-if not "%FLOPPY%" == "A:" attrib +S +R %FLOPPY%\COMMAND.COM
-if not "%FLOPPY%" == "A:" attrib +S +R %FLOPPY%\KERNEL.SYS
+if "%USB%" == "y" goto ROsys
+if "%ELT%" == "y" goto ROsys
+attrib +R %FLOPPY%\COMMAND.COM
+attrib +R %FLOPPY%\KERNEL.SYS
+goto sysDone
+:ROsys
+attrib +S +R %FLOPPY%\COMMAND.COM
+attrib +S +R %FLOPPY%\KERNEL.SYS
+:sysDone
 vecho
 
 if "%FNUM%" == "" goto NoMBR
@@ -677,7 +707,7 @@ if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
 
 set SPKG=WELCOME
 pushd
-vfdutil /c /p %TEMP%\WELCOME\
+vfdutil /c /p %TEMP%\%SPKG%\
 
 set TDATA=
 :WILoop:
@@ -705,15 +735,15 @@ set TDATA=
 cd ..
 if not exist WELCOME\appinfo\%SPKG%.lsm goto WPkgInfNoData
 
-type WELCOME\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
+type %SPKG%\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
 if not "%ISIZE%" == "" echo Total-size:     %ISIZE%>>%SPKG%.PKG
 if not "%IFILES%" == "" echo Total-files:    %IFILES%>>%SPKG%.PKG
 if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
 if not "%SFILES%" == "" echo Source-files:   %SFILES%>>%SPKG%.PKG
 if not "%ISIZE%" == "" vecho /n , /s- /fGray '(I-' /fCyan %IFILES% /fGray '/' /fYellow %ISIZE% /fGray )
 if not "%SSIZE%" == "" vecho /n , /s- /fGray '(S-' /fCyan %SFILES% /fGray '/' /fYellow %SSIZE% /fGray )
-type WELCOME\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
-dir /on/a/s/p-/b  %TEMP%\WELCOME\ |vstr /d/b/f "\welcome\" 2- | grep -i \\ >>%TEMP%\%SPKG%.PKG
+type %SPKG%\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
+dir /on/a/s/p-/b  %TEMP%\%SPKG%\ |vstr /d/b/f "\welcome\" 2- | grep -i \\ >>%TEMP%\%SPKG%.PKG
 type %SPKG%.PKG | vstr /b >%FLOPPY%\FDSETUP\PKGINFO\%SPKG%.TXT
 :WPkgInfNoData
 set ISIZE=
@@ -722,8 +752,62 @@ set IFILES=
 set SFILES=
 set SPKG=
 popd
-
 vecho , /fLightGreen OK /fGray
+
+
+vecho /r5/c32 %TEMP%\fdisrc.zip "-->" %FLOPPY%%PKGDIR%UTIL /n
+copy /y %TEMP%\fdisrc.zip %FLOPPY%%PKGDIR%UTIL >NUL
+if errorlevel 1 goto CopyFailed
+
+set SPKG=FDISRC
+pushd
+vfdutil /c /p %TEMP%\%SPKG%\
+
+set TDATA=
+:FSLoop
+dir /on/a/s/p-/b- | grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto FSLoop
+:FSFLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p IFILES=
+if "%IFILES%" == "" goto FSFLoop
+:FSSLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p ISIZE=
+if "%ISIZE%" == "" goto FSSLoop
+if not exist SOURCE\NUL goto FNoSources
+:FSBLoop
+set TDATA=
+dir /on/a/s/p-/b- SOURCE| grep -A 1 "^Total "|grep -iv ^Total|vstr /b|set /p TDATA=
+if "%TDATA%" == "" goto FSBLoop
+:FSFBLoop
+echo %TDATA%|vstr /f " f" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SFILES=
+if "%SFILES%" == "" goto FSFBLoop
+:FSSBLoop
+echo %TDATA%|vstr /f ")" 2|vstr /f "b" 1|vstr /b/s " " ""|vstr /b/s "," ""|set /p SSIZE=
+if "%SSIZE%" == "" goto FSSBLoop
+:FNoSources
+set TDATA=
+cd ..
+if not exist %SPKG%\appinfo\%SPKG%.lsm goto FPkgInfNoData
+
+type %SPKG%\appinfo\%SPKG%.lsm|grep -B 1000 -i ^Copying-policy:|vstr /b>%SPKG%.PKG
+if not "%ISIZE%" == "" echo Total-size:     %ISIZE%>>%SPKG%.PKG
+if not "%IFILES%" == "" echo Total-files:    %IFILES%>>%SPKG%.PKG
+if not "%SSIZE%" == "" echo Source-size:    %SSIZE%>>%SPKG%.PKG
+if not "%SFILES%" == "" echo Source-files:   %SFILES%>>%SPKG%.PKG
+if not "%ISIZE%" == "" vecho /n , /s- /fGray '(I-' /fCyan %IFILES% /fGray '/' /fYellow %ISIZE% /fGray )
+if not "%SSIZE%" == "" vecho /n , /s- /fGray '(S-' /fCyan %SFILES% /fGray '/' /fYellow %SSIZE% /fGray )
+type %SPKG%\appinfo\%SPKG%.lsm|grep -A 1000 -i ^Copying-policy:|grep -iv ^Copying-policy:|vstr /b>>%SPKG%.PKG
+dir /on/a/s/p-/b  %TEMP%\%SPKG%\ |vstr /d/b/f "\fdisrc\" 2- | grep -i \\ >>%TEMP%\%SPKG%.PKG
+type %SPKG%.PKG | vstr /b >%FLOPPY%\FDSETUP\PKGINFO\%SPKG%.TXT
+:FPkgInfNoData
+set ISIZE=
+set SSIZE=
+set IFILES=
+set SFILES=
+set SPKG=
+popd
+vecho , /fLightGreen OK /fGray
+
 
 REM Create LIST INDEX FILES
 vecho /p Creating package index files for /fYellow %FLOPPY% /fGray /p
@@ -1075,7 +1159,7 @@ set TIDX=
 set TCNT=
 set TERR=
 set TRETRY=
-set TGO=
+set TNOW=
 set TTRY=
 set TDIR=
 
