@@ -520,13 +520,16 @@ if "%ELT%" == "y" goto MakeFDISources
 REM goto NoFDISources
 :MakeFDISources
 vecho /n "Creating FDI build environment source package"
-copy /y TOOLS\FDIDEV.BAT %DOSDIR%\BIN\ >NUL
+grep -B 1000 -i "^goto SkipList" TOOLS\FDIDEV.BAT >%DOSDIR%\BIN\FDIDEV.BAT
+grep -iv "^;" SETTINGS\PKG_FDI.LST | vstr /n/b >>%DOSDIR%\BIN\FDIDEV.BAT
+grep -A 1000 -i "^:SkipList" TOOLS\FDIDEV.BAT >>%DOSDIR%\BIN\FDIDEV.BAT
 
 mkdir %TEMP%\FDISRC >NUL
 mkdir %TEMP%\FDISRC\APPINFO >NUL
 mkdir %TEMP%\FDISRC\SOURCE >NUL
-xcopy /y /E *.* %TEMP%\FDISRC\SOURCE\ >NUL
-del %TEMP%\FDISRC\SOURCE\V8POWER\V*.* >NUL
+mkdir %TEMP%\FDISRC\SOURCE\FDISRC >NUL
+xcopy /y /E *.* %TEMP%\FDISRC\SOURCE\FDISRC >NUL
+del %TEMP%\FDISRC\SOURCE\FDISRC\V8POWER\V*.* >NUL
 set /e TGO=cd
 pushd
 vfdutil /c /p %TEMP%\FDISRC\
