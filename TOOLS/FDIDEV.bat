@@ -6,6 +6,8 @@ REM Copyright 2016 Jerome Shidel.
 
 if "%TEMP%" == "" goto Error
 
+if not exist %0 goto BadSelf
+
 set SRC=
 set DRV=D:
 set /e SRC=vfdutil /d %COMSPEC%
@@ -36,6 +38,14 @@ vecho /bBlack /fGray /e /n Type "'yes'" to continue? /fWhite %ASK% /fGray /p /p
 if "%ASK%" == "yes" goto MakeEnv
 goto AbortC
 
+:BadSelf
+pushd
+vfdutil /c/d %COMSPEC%
+cd \FDSetup\BIN
+call FDIDEV.BAT
+popd
+goto Done
+
 :MakeEnv
 REM Format Drive **************************************************************
 vecho /n /fLightGreen Creating FDI build environment on drive /fWhite %DRV%
@@ -44,8 +54,10 @@ vdelay 1000
 vecho Formatting drive /fWhite %DRV% /fGray /s- .
 format %DRV% /V:FDIDEVEL /Q /U /S /Z:seriously
 if errorlevel 1 goto Error
-fdisk /MBR 1 >NUL
-fdisk /ACTIVATE:1 1 >NUL
+if "%DRV%" == "C:" fdisk /MBR 1 >NUL
+if "%DRV%" == "C:" fdisk /ACTIVATE:1 1 >NUL
+if "%DRV%" == "D:" fdisk /MBR 2 >NUL
+if "%DRV%" == "D:" fdisk /ACTIVATE:1 2 >NUL
 vdelay 500
 vecho
 
