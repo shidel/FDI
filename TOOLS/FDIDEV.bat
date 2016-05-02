@@ -6,7 +6,11 @@ REM Copyright 2016 Jerome Shidel.
 
 if "%TEMP%" == "" goto Error
 
-set DRV=C:
+set SRC=
+set DRV=D:
+set SRC=vfdutil /d %COMSPEC%
+if "%SRC%" == "" goto ERROR
+if not "%SRC%" == "C:" set DRV=C:
 
 set OLD.TEMP=%TEMP%
 set OLD.DOSDIR=%DOSDIR%
@@ -48,10 +52,6 @@ vecho
 REM Setup Install Environment *************************************************
 vecho /n /fGray Preparing environment for installation
 vdelay 1000
-
-set SRC=vfdutil /d %COMSPEC%
-
-set SRC=D:
 
 set PKG=
 set INF=
@@ -210,15 +210,16 @@ REM Create system config ******************************************************
 vecho /n Creating system configuration for build environment
 type %DRV%\FDI\FDISETUP\FDCONFIG.SYS|vstr /n/s \FDSetup C:\FreeDOS>%TEMP%\FDCONFIG.SYS
 type %TEMP%\FDCONFIG.SYS |vstr /n/s "/P=\" "/P=C:\">%DRV%\FDCONFIG.SYS
-type %DRV%\FDI\FDISETUP\AUTOEXEC.BAT|vstr /n/s \FDSetup C:\FreeDOS>%TEMP%\AUTO.BAT
+type %DRV%\FDI\FDISETUP\AUTOEXEC.BAT|vstr /n/s '\FDSetup' "C:\FreeDOS">%TEMP%\AUTO.BAT
 type %TEMP%\AUTO.BAT|vstr /n/s $LBA$ REM|vstr /n/s "$LH$ " "">%TEMP%\EXEC.BAT
-type %TEMP%\EXEC.BAT|vstr /l 0:1>%DRV%\AUTOEXEC.BAT
+type %TEMP%\EXEC.BAT|vstr /s "%%OS_NAME%%" "%OS_NAME%"|vstr /s "%%OS_VERSION%%" "%OS_VERSION%">%TEMP%\AUTO.BAT
+type %TEMP%\AUTO.BAT|vstr /b/l 0>%DRV%\AUTOEXEC.BAT
 echo SET TEMP=C:\TEMP>>%DRV%\AUTOEXEC.BAT
 echo SET TMP=C:\TEMP>>%DRV%\AUTOEXEC.BAT
 echo SET TZ=UTC>>%DRV%\AUTOEXEC.BAT
 echo SET LANG=EN>>%DRV%\AUTOEXEC.BAT
-type %TEMP%\EXEC.BAT|vstr /l 1:1000|grep -iv "^SET LANG=\|^rem">>%DRV%\AUTOEXEC.BAT
-
+type %TEMP%\AUTO.BAT|vstr /b/l 1:1000|grep -iv "^SET LANG=\|^rem">>%DRV%\AUTOEXEC.BAT
+echo vecho /fLightCyan FreeDOS Installer /fGray build environment. /p>>%DRV%\AUTOEXEC.BAT
 echo @echo off>%DRV%\mkFDI.bat
 echo.>>%DRV%\mkFDI.bat
 echo set TEMP=C:\TEMP>>%DRV%\mkFDI.bat
@@ -229,7 +230,7 @@ echo cd \FDI>>%DRV%\mkFDI.bat
 echo call C:\fdi\mkfdi.bat %%1 %%2 %%3 %%4 %%5 %%6 %%7 %%8 %%9>>%DRV%\mkFDI.bat
 echo popd>>%DRV%\mkFDI.bat
 
-type %SRC%\FDSETUP\SETUP\FDNPBIN.CFG|vstr /s %%FDRIVE%% C:>%DOSDIR%\FDNPKG.CFG
+type %SRC%\FDSETUP\SETUP\FDNPBIN.CFG|vstr /s "%%FDRIVE%%" "C:">%DOSDIR%\FDNPKG.CFG
 
 vecho , /fLightGreen OK /fGray /s- .
 vdelay 500
@@ -239,9 +240,12 @@ deltree /y %TEMP%\*.* >NUL
 
 vecho /fLightGreen Drive /fWhite %DRV% /fLightGreen has been setup for /n
 vecho /fWhite /c32 FDI /fLightGreen development. /fGray
-vecho Please reboot now. /p
-
-goto Restore
+vecho /p /n Please shutdown now.
+vpause /fLightRed /d 30 CTRL+C
+if errorlevel 200 goto Restore
+vecho /p/p
+shutdown
+goto Done
 :Error
 vecho /bBlack /fGray /p /p
 vecho /bRed /fWhite /e ERROR: Aborted. /BBlack /fGray /p
