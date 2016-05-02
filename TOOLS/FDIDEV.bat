@@ -8,7 +8,7 @@ if "%TEMP%" == "" goto Error
 
 set SRC=
 set DRV=D:
-set SRC=vfdutil /d %COMSPEC%
+set /e SRC=vfdutil /d %COMSPEC%
 if "%SRC%" == "" goto ERROR
 if not "%SRC%" == "C:" set DRV=C:
 
