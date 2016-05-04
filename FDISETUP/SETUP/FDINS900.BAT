@@ -32,15 +32,13 @@ REM Simple Autoexec.bat creation
 
 rem Embed Language configuration and codepage.
 if not exist %FINSP%\AUTOEXEC.%FEXT% goto SkipAutoExec
-type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\REPLACE.001
-if errorlevel 1 goto Failed
-if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\REPLACE.001
-if errorlevel 1 goto Failed
-type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\REPLACE.001
-if errorlevel 1 goto Failed
 
-copy /y %TEMP%\REPLACE.001 %TEMP%\REPLACE.002 >NUL
-del %TEMP%\REPLACE.001 >NUL
+type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\AUTOEXEC.BAT
+if errorlevel 1 goto Failed
+if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\AUTOEXEC.BAT
+if errorlevel 1 goto Failed
+type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
+if errorlevel 1 goto Failed
 
 :Sticky
 echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
@@ -48,37 +46,28 @@ if "%DDIR%" == "" goto Sticky
 set DDIR=C:\%DDIR%
 
 rem set LANG, DOSDIR and etc in AUTOEXEC.BAT
-type %TEMP%\REPLACE.002 | vstr /n/s $FLANG$ %LANG% >%TEMP%\REPLACE.003
+CALL FDISET.BAT BEGIN %TEMP%\AUTOEXEC.BAT
+CALL FDISET.BAT SET $TZ$ %TZ%
+CALL FDISET.BAT SET $FLANG$ %LANG%
+CALL FDISET.BAT SET $FTARGET$ %DDIR%
+CALL FDISET.BAT SET $FDRIVE$ C:
+CALL FDISET.BAT SET $OSNAME$ "%OS_NAME%"
+CALL FDISET.BAT SET $OSVER$ "%OS_VERSION%"
+CALL FDISET.BAT END %FDRIVE%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.002 >NUL
-type %TEMP%\REPLACE.003 | vstr /n/s $FTARGET$ %DDIR% >%TEMP%\REPLACE.004
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.003 >NUL
-type %TEMP%\REPLACE.004 | vstr /n/s $FDRIVE$ C: >%TEMP%\REPLACE.005
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.004 >NUL
-type %TEMP%\REPLACE.005 | vstr /n/s $OSNAME$ "%OS_NAME%" >%TEMP%\REPLACE.006
-del %TEMP%\REPLACE.005 >NUL
-if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.006 | vstr /n/s $OSVER$ "%OS_VERSION%" >%FDRIVE%\AUTOEXEC.BAT
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.006 >NUL
+del %TEMP%\AUTOEXEC.BAT>NUL
 
 :SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 
 if not exist %FINSP%\FDCONFIG.%FEXT% goto SkipFDConfig
-type %FINSP%\FDCONFIG.%FEXT% | vstr /n /s $FLANG$ %LANG% >%TEMP%\REPLACE.001
+CALL FDISET.BAT BEGIN %FINSP%\FDCONFIG.%FEXT%
+CALL FDISET.BAT SET $FLANG$ %LANG%
+CALL FDISET.BAT SET $FTARGET$ %DDIR%
+CALL FDISET.BAT SET $FDEFMENU$ %DMNU%
+CALL FDISET.BAT SET $FDRIVE$ C:
+CALL FDISET.BAT END %FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
-type %TEMP%\REPLACE.001 | vstr /n /s $FTARGET$ %DDIR% >%TEMP%\REPLACE.002
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.001 >NUL
-type %TEMP%\REPLACE.002 | vstr /n /s $FDEFMENU$ %DMNU% >%TEMP%\REPLACE.003
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.002 >NUL
-type %TEMP%\REPLACE.003 | vstr /n /s $FDRIVE$ C: >%FDRIVE%\FDCONFIG.SYS
-if errorlevel 1 goto Failed
-del %TEMP%\REPLACE.003 >NUL
 
 :SkipFDConfig
 set DDIR=

@@ -11,9 +11,6 @@ if "%1" == "VersionOnly" goto Done
 REM Debug Mode
 set FDEBUG=n
 
-REM Set Timezone so unzip doesn't complain.
-set TZ=UTC
-
 REM Formatted volume label
 set OVOL=$OVOL$
 
@@ -43,6 +40,7 @@ SET FINSP=%FINSD%\FDSETUP\SETUP
 
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
 set HLANG=%LANG%
+set HTZ=%TZ%
 
 if "%TEMP%" == "" goto NoImport
 vfdutil /u %TEMP%\TEST????.??? >NUL
@@ -55,15 +53,18 @@ if errorlevel 1 goto NoImport
 echo @ECHO OFF>%TEMP%\FDIMPORT.000
 if not exist %FDRIVE%\FDCONFIG.SYS goto NoFDCONFIG
 grep -i "!SET " %FDRIVE%\FDCONFIG.SYS |grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+grep -i "!SET " %FDRIVE%\FDCONFIG.SYS |grep -i " TZ="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
 goto CheckAuto
 
 :NoFDCONFIG
 if not exist %FDRIVE%\CONFIG.SYS goto CheckAuto
 grep -i "!SET " %FDRIVE%\CONFIG.SYS|grep -i " LANG=\| DOSDIR="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
+grep -i "!SET " %FDRIVE%\CONFIG.SYS |grep -i " TZ="|vstr /n /s ! "">>%TEMP%\FDIMPORT.000
 
 :CheckAuto
 if not exist %FDRIVE%\AUTOEXEC.BAT goto NoAuto
 grep -i -v "REM " %FDRIVE%\AUTOEXEC.BAT|grep -i "SET "|grep -i " LANG=\| DOSDIR=">>%TEMP%\FDIMPORT.000
+grep -i -v "REM " %FDRIVE%\AUTOEXEC.BAT|grep -i "SET "|grep -i " TZ=">>%TEMP%\FDIMPORT.000
 
 :NoAuto
 if not exist %TEMP%\FDIMPORT.000 goto Done
@@ -103,6 +104,9 @@ if "%LANG%" == "" set FCLANG=y
 if "%FADV%" == "y" set FCLANG=y
 if "%LANG%" == "" set LANG=EN
 
+if not "%HTZ%" == "" set TZ=%HTZ%
+if "%TZ%" == "" set TZ=UTC
+
 REM Remove trailing spaces from LANG variable.
 if %LANG% == EN set LANG=EN
 if %LANG% == ES set LANG=ES
@@ -114,5 +118,6 @@ if %LANG% == NL set LANG=NL
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN
 set HLANG=
+set HTZ=
 :Done
 
