@@ -25,7 +25,8 @@ type %FPKGS% | grep -iv ^; | vstr /b/l %_PI% | set /p _PA=
 if "%_PA%" == "" goto PkgLoop
 
 vgotoxy /l sop
-vecho /e /n /t %FLANG% IPACBI %TFH% %_PA% %TFF%
+vecho /n /t %FLANG% IPACBI %TFH% %_PA% %TFF%
+vecho /f %TFF% /e /n
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0

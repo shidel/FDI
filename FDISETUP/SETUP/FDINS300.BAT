@@ -39,7 +39,8 @@ if exist %FTARGET%\PACKAGES\%_PA%.LST goto PkgRemove
 goto PkgSkip
 :PkgRemove
 vgotoxy /l sop
-vecho /e /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
+vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
+vecho /f %TFF% /e /n
 
 if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
 type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST
@@ -64,7 +65,8 @@ if exist %FTARGET%\PACKAGES\%_PA%\NUL deltree /y %FTARGET%\PACKAGES\%_PA% >NUL
 if not "%_PL%" == "y" goto PkgNext
 set _PL=
 vgotoxy /l sop
-vecho /e /n /t %FLANG% IRMPACKS
+vecho /n /t %FLANG% IRMPACKS
+vecho /e /n
 
 :PkgNext
 vmath %_PI% + 1 | set /p _PI=
