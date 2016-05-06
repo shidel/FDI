@@ -255,3 +255,7 @@ IPACDONE="Instalaci¢n del paquete de software se ha completado."
 ICONFIGS_FRAME=/w60 /h5 /c
 ICONFIGS="Instalaci¢n de los archivos de configuraci¢n frescas."
 ICONFIGS_DONE="Se instalaron nuevos archivos de configuraci¢n."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Por desgracia, este m‚todo de instalaci¢n no es compatible con esta
+NORUN.2=/p plataforma de hardware. Por favor, intente un m‚todo de instalaci¢n /p diferente.

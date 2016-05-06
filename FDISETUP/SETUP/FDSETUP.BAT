@@ -18,6 +18,7 @@ set FADV=
 set FBOOTED=
 
 if "%1" == "BOOT" set FBOOTED=y
+if "%1" == "CDROM" set FBOOTED=CDROM
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
 if "%1" == "MBRZAP" set FADV=y
@@ -33,13 +34,19 @@ if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 
+:DetectPreviousInstall
 REM Detect if this version is already installed
-if not "%FBOOTED%" == "y" goto SkipInstallCheck
+if "%FBOOTED%" == "" goto SkipInstallCheck
 set FSTAGE=100
 call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
+if not "%FBOOTED%" == "CDROM" goto PlatformSupported
+vinfo /m
+if errorlevel 104 goto PlatformSupported
+if errorlevel 103 goto PlatformNotSupported
+:PlatformSupported
 if "%FFOUND%" == "y" goto NoInstallNeeded
 verrlvl 0
 :SkipInstallCheck
@@ -162,6 +169,16 @@ set FSTAGE=999
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if exist FDNOTICE.BAT call FDNOTICE.BAT
+verrlvl 0
+set FDRIVE=
+goto Finished
+
+:PlatformNotSupported
+REM Run cleanup stage.
+set FSTAGE=999
+if not exist STAGE%FSTAGE%.BAT goto Error
+call STAGE%FSTAGE%.BAT
+if exist FDNORUN.BAT call FDNORUN.BAT
 verrlvl 0
 set FDRIVE=
 goto Finished

@@ -15,6 +15,7 @@ if errorlevel 101 goto SkipDriveChange
 
 REM Change to drive of SETUP.BAT -- Probably **********************************
 if "%1" == "BOOT" goto SkipDriveChange
+if "%1" == "CDROM" goto SkipDriveChange
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP.BAT" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP" %%d:
@@ -28,6 +29,7 @@ cd \
 :SkipDriveChange
 REM Verify we ar on drive with SETUP.BAT **************************************
 if "%1" == "BOOT" goto DriveCheckPassed
+if "%1" == "CDROM" goto DriveCheckPassed
 if exist SETUP.BAT goto DriveCheckPassed
 if exist FDSETUP\BIN\VFDUTIL.COM goto DriveCheckPassed
 goto FailDriveCheck
@@ -57,6 +59,7 @@ REM Relaunch with FreeCOM shell ***********************************************
 :ReloadShell
 
 if "%1" == "BOOT" goto SkipReload
+if "%1" == "CDROM" goto SkipReload
 if not exist FDSETUP\BIN\COMMAND.COM goto MissingFreeCOM
 FDSETUP\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 goto FailReload
@@ -122,6 +125,7 @@ REM Adjust Booted environment variables ***************************************
 :AdjustEnv
 
 if not "%1" == "BOOT" goto NoAdjustEnv
+if not "%1" == "CDROM" goto NoAdjustEnv
 set PATH=%FBOOTD%%PATH%
 set DOSDIR=%FBOOTD%%DOSDIR%
 set AUTOFILE=%FBOOTD%%AUTOFILE%

@@ -271,3 +271,7 @@ IPACDONE="Verk-pakajha enhavigado jhus plenumis."
 ICONFIGS_FRAME=/w50 /h5 /c
 ICONFIGS="Enhavigante novnovajn elektilajn dosierojn."
 ICONFIGS_DONE="Novaj elektilaj dosieroj estis enmetitaj."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Bedaurinde , ci tiu metodo de instalado ne estas subtenata en ci tiu
+NORUN.2=/p aparataro platformo. Bonvolu provi malsaman instalado metodo.

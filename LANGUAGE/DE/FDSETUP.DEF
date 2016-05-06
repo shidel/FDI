@@ -257,3 +257,7 @@ IPACDONE="Softwarepakete wurden installiert."
 ICONFIGS_FRAME=/w54 /h5 /c
 ICONFIGS="Installiere neue Konfigurationsdateien."
 ICONFIGS_DONE="Neue Konfigurationsdateien wurden installiert."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Leider ist dieses Verfahren der Installation auf dieser Hardwareplattform
+NORUN.2=/p nicht unterstÅtzt. Bitte versuchen Sie einen anderen Installationsmethode.

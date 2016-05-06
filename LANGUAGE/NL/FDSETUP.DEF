@@ -275,3 +275,7 @@ IPACDONE="Software pakket installatie is voltooid."
 ICONFIGS_FRAME=/w60 /h5 /c
 ICONFIGS="Installeren van nieuwe configuratie bestanden."
 ICONFIGS_DONE="Nieuwe configuratie bestanden zijn ge‹nstalleerd."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Helaas wordt deze manier van installatie niet ondersteund op dit /p
+NORUN.2=hardwareplatform. Probeer een andere installatiemethode.

@@ -65,7 +65,7 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 :SkipLanguageData
 vecho /p Done processing startup files /fCyan FDCONFIG.SYS /a7 and /fCyan AUTOEXEC.BAT /a7/p
 
-if exist SETUP.BAT CALL SETUP.BAT BOOT
+if exist SETUP.BAT CALL SETUP.BAT $BOOT$
 
 if not exist %DOSDIR%\BIN\WELCOME.BAT goto V8Welcome
 call WELCOME.BAT

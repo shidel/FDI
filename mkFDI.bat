@@ -20,10 +20,16 @@ set CDROM=%2:
 goto EndOfFile
 
 :BuildAll
+if "%2" == "off" set ALLOFF=y
 rem call %0 info
+
 call %0
+call %0 cdrom B:
 call %0 slim D:
 call %0 usb E:
+
+if "%ALLOFF%" == "y" shutdown
+
 goto EndOfFile
 
 :Start
@@ -83,11 +89,13 @@ echo info  [package] Create all info files or specific package file.
 echo slim  [drive]   Create Lite USB stick image on [drive]
 echo usb   [drive]   Create Full USB stick image on [drive]
 echo.
-echo all             Build most FDI versions Floppy, "slim D:" and "usb E:"
+echo all  [off]      Build most FDI versions Floppy, cdrom B:, slim D: and usb E:
+echo                 If off, then automatically power down afterwards.
 echo.
 goto CleanUp
 
 :ReadDone
+
 
 if "%SLIM%" == "y" set USB=y
 
@@ -154,6 +162,8 @@ vecho /fLightGreen "%OS_NAME% %OS_VERSION% install disk creator." /p
 date /d | vstr /n/f ' ' 5- | set /p TNOW=
 if "%TNOW%" == "" goto NOWLoop
 
+if "%ELT%" == "y" vecho /fLightRed El Torito Floppy creation image mode! /fGray /p
+
 if not "%USB%" == "y" goto NotHDImage
 if "%SLIM%" == ""  vecho /fLightRed Full USB Stick creation mode! /fGray /p
 if "%SLIM%" == "y" vecho /fLightRed Ultra-Slim USB Stick creation mode! /fGray /p
@@ -166,8 +176,10 @@ echo SETP | set /p SETP=
 if "%SETP%" == "" goto SetFloppy
 set SETP=
 vecho /fYellow /bBlack /n Set Destination for installation media? /c32
+if "%ALLOFF%" == "y" goto NoAsk
 vask /c /fWhite /bBlue /d10 %FLOPPY% | set /p FLOPPY=
 if errorlevel 200 goto CtrlCPressed
+:NoAsk
 vgotoxy sor
 if "%FLOPPY%" == "" goto SetFloppy
 vfdutil /d %FLOPPY% | set /p FLOPPY=
@@ -328,6 +340,14 @@ xcopy /y FDISETUP\*.* %RAMDRV%\ >NUL
 type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LH$ ' '' >%RAMDRV%\AUTOEXEC.TMP
 copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
 del %RAMDRV%\AUTOEXEC.TMP >NUL
+
+set FBOOT=BOOT
+if "%ELT%" == "y" set FBOOT=CDROM
+
+type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$BOOT$' %FBOOT% >%RAMDRV%\AUTOEXEC.TMP
+copy /y %RAMDRV%\AUTOEXEC.TMP %RAMDRV%\AUTOEXEC.BAT >NUL
+del %RAMDRV%\AUTOEXEC.TMP >NUL
+
 if "%USB%" == "y" goto USBAuto
 if "%ELT%" == "y" goto USBAuto
 type %RAMDRV%\AUTOEXEC.BAT | vstr /n /s '$LBA$ ' '' >%RAMDRV%\AUTOEXEC.TMP
@@ -580,7 +600,7 @@ vecho , /fLightGreen OK /fGray /p
 
 :FormatDisk
 vecho Press a key to format the disk in drive /fYellow %FLOPPY% /s- /fGray ... /c32 /n
-vpause /fCyan /t 15 CTRL-C
+if not "%ALLOFF%" == "y" vpause /fCyan /t 15 CTRL-C
 if errorlevel 100 goto Error
 vgotoxy left
 vecho /fGray /e /p

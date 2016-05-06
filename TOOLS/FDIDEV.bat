@@ -146,6 +146,10 @@ vecho /n /r5/c32 %NAME%
 if not exist %PKG%\%NAME%.zip goto PackageMissing
 fdinst install %PKG%\%NAME%.zip >NUL
 if errorlevel 1 goto PackageError
+set /e NAME=vfdutil /n %NAME%
+type %DOSDIR%\PACKAGES\%NAME%.LST | vstr /s %DRV%\ C:\>%TEMP%\PACKAGE.LST
+copy /y %TEMP%\PACKAGE.LST %DOSDIR%\PACKAGES\%NAME%.LST>NUL
+del %TEMP%\PACKAGE.LST>NUL
 vecho , /fLightGreen OK /fGray /s- .
 
 :IndexInc
@@ -255,7 +259,7 @@ vecho /fWhite /c32 FDI /fLightGreen development. /fGray
 vecho /p /n Please shutdown now.
 vpause /fLightRed /d 30 CTRL+C
 if errorlevel 200 goto Restore
-vecho /p/p
+vecho /fGray /bBlack /p/p
 shutdown
 goto Done
 :Error

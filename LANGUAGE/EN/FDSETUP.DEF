@@ -283,3 +283,7 @@ IPACDONE="Software package installation has completed."
 ICONFIGS_FRAME=/w46 /h5 /c
 ICONFIGS="Installing fresh configuration files."
 ICONFIGS_DONE="New configuration files were installed."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Unfortunately, this method of installation is not supported on this
+NORUN.2=/p hardware platform. Please try a different installation method.

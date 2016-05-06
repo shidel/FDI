@@ -281,3 +281,8 @@ IPACDONE="Installation termin‚e des paquetages."
 ICONFIGS_FRAME=/w64 /h5 /c
 ICONFIGS="Installant les nouveaux fichiers de configuration."
 ICONFIGS_DONE="Les nouveaux fichiers de configuration ont ‚t‚ install‚s."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Malheureusement, cette m‚thode d'installation ne sont pas pris en charge /p
+NORUN.2=sur cette plate-forme mat‚rielle. S'il vous plaŒt essayer une m‚thode /p d'installation diff‚rente.
+
