@@ -35,13 +35,15 @@ check_dir () {
 
 load_settings () {
 
-    [[ -f "${PWD}/${0%.*}.cfg" ]] && {
-        CFG="${PWD}/${0%.*}.cfg"
+    local BASE="${0##*/}"
+    local BASE="${BASE%.*}"
+
+    [[ -f "${PWD}/${BASE}.cfg" ]] && {
+        CFG="${PWD}/${BASE}.cfg"
         . "${CFG}"
     }
 
-    local T="${0%/*}"
-    local T="${HOME}/${T%.*}.cfg"
+    local T="${HOME}/${BASE}.cfg"
 
     [[ -f "${T}" ]] && {
         CFG="${T}"
@@ -49,7 +51,7 @@ load_settings () {
     }
 
     [[ "${CFG}" == "" ]] && {
-        CFG="${PWD}/${0%.*}.cfg"
+        CFG="${PWD}/${BASE}.cfg"
         echo >"${CFG}"
     }
 
