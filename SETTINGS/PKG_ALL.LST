@@ -111,3 +111,6 @@ util\srdisk
 util\usbdos
 util\xfdisk
 util\zerofill
+
+util\xdel
+

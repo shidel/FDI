@@ -277,6 +277,7 @@ util\v8power
 util\wde
 util\which
 ; util\xcdrom
+util\xdel
 util\xfdisk
 util\xgrep
 ; util\xmsdsk # No Sources
