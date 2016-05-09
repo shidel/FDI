@@ -115,7 +115,7 @@ vecho /t %FLANG% NOPART %TFH% C: %TFF%
 vecho
 vecho /t %FLANG% PART?
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOPART_OPTS
-vecho /t %FLANG% PART_YES %FDRIVE%
+vecho /t %FLANG% PART_YES C:
 vecho /n /t %FLANG% EXIT
 vchoice /a %TFC% Ctrl-C /d 2
 if Errorlevel 200 goto Abort
