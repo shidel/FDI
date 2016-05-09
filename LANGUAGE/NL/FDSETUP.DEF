@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 16 jan 2016
+Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 9 mar 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -25,14 +25,14 @@ LANG_EO=Esperanto
 # STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w68 /h15 /c
 HELLO_OPTS=/w40 /h4 /c
-HELLO=/s- "Welkom bij het installatie bestand van " /f %1 "%2" /f %3 .
-HELLO_ADV=/s- "Welkom bij de geavanceerde installatie van " /f %1 "%2" /f %3 .
+HELLO=/s- "Welkom bij de setup van " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Welkom bij de geavanceerde setup van " /f %1 "%2" /f %3 .
 HELLO_WARN.1=/f%1 "%2" /f%3 is een compleet besturingssysteem. Als je ervoor /p
 HELLO_WARN.2=kiest om dit te installeren, kan het zijn dat je het huidige /p
 HELLO_WARN.3=besturingssysteem op je computer kwijt raakt. Als dit niet is /p
-HELLO_WARN.4=wat je wilt, stop dan hier.
+HELLO_WARN.4=wat je wilt, ga dan niet verder.
 HELLO_WARN.5=/p/p
-PROCEED?="Wilt u verder gaan?"
+PROCEED?="Weet je zeker dat je verder wilt gaan?"
 CONTINUE="  Ja  - Ga door met de installatie"
 EXIT="  Nee - Ga terug naar DOS."
 
@@ -42,7 +42,7 @@ NOPART_OPTS=/w40 /h4 /c
 # vecho "Drive C: does not appear to be partitioned."
 NOPART=/s- "Schijf " /f %1 %2 /f %3 " lijkt niet gepartitioneerd te zijn."
 PART?="Wilt u de schijf graag partitioneren?"
-PART_YES="  Ja  - Start de 'Partitioner'."
+PART_YES="  Ja  - Partitie schijf %1."
 PARTING_FRAME=/w46 /h5 /c
 PARTING="Partitioneren van de harde schijf..."
 # Also uses EXIT defined above.
@@ -67,7 +67,7 @@ NOFORMATADV_OPTS=/w54 /h5 /c
 NOFORMAT=/s-  "Schijf " /f %1 %2 /f %3 " lijkt niet geformatteerd te zijn."
 FORMAT?="Weet u zeker dat u de schijf wilt formatteren?"
 FORMAT_YES="  Ja  - Verwijder en formatteer schijf %1."
-FORMATADV_QUICK="  Ja  - verwijder en formatteer snel schijf %1."
+FORMATADV_QUICK="  Ja  - verwijder en formatteer schijf %1 snel."
 FORMATADV_SLOW="  Ja  - Verwijder en formatteer schijf %1 volledig."
 # Also uses EXIT defined above.
 FORMATTING=/s- /fGray "Schijf " /fWhite %1 " aan het formatteren"/fGray ...
@@ -99,9 +99,9 @@ PREPARING="Klaarmaken voor installatie."
 # for add-on installers that are not part of the main FDI base.
 
 # STAGE900 - All Done reboot?
-COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_FRAME=/w64 /h10 /c
 COMPLETE_OPTS=/w40 /h4 /c
-COMPLETE=/s- "Installatie van " /f %1 "%2" /f %3 " is klaar."
+COMPLETE=/s- "De installatie van " /f %1 "%2" /f %3 " is klaar."
 # Also uses REBOOT?, REBOOT, EXIT defined above.
 
 # FDSETUP - Installer Aborted
@@ -152,7 +152,7 @@ ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestande
 
 REBOOT_PAUSE=/f%1/c32 Verwijder de installatie media uit het station en druk op een toets om opnieuw /p/e/c32 op te starten of op /f%2 CTRL+C /f%1 om setup te sluiten...
 REBOOT_FRAME=/w70 /h9 /c
-REBOOT_WARN.1=let op: Je hebt niet de update van de MBR code geforceerd. Het /p
+REBOOT_WARN.1=let op: Je hebt de update van de MBR code niet geforceerd. Het /p
 REBOOT_WARN.2=kan zijn dat je systeem faalt bij het opstarten. Als dit het /p
 REBOOT_WARN.3=geval is dan kun je je computer opnieuw opstarten met de /p
 REBOOT_WARN.4=installatie media en "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ uitvoeren.
@@ -277,5 +277,5 @@ ICONFIGS="Installeren van nieuwe configuratie bestanden."
 ICONFIGS_DONE="Nieuwe configuratie bestanden zijn ge‹nstalleerd."
 
 # Virtual machine not supported with this install media.
-NORUN.1=Helaas wordt deze manier van installatie niet ondersteund op dit /p
+NORUN.1=Helaas wordt deze manier van installeren niet ondersteund op dit /p
 NORUN.2=hardwareplatform. Probeer een andere installatiemethode.
