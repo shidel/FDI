@@ -4,6 +4,10 @@ The [FreeDOS](http://freedos.org) Installer is a customizable and flexible
 batch based installation kit based on [V8Power Tools](http://up.lod.bz/V8Power)
 batch file enhancement utilities.
 
+If you do not want to use one of the pre-built installer image files and want
+to build a operating system release, please see the
+[FDI wiki](https://github.com/shidel/FDI/wiki) on [Github](https://github.com).
+
 * * *
 ### Installation Requirements
 
