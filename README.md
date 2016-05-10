@@ -30,5 +30,14 @@ There are basically four ways to install FreeDOS using FDI.
   * All Virtual Machines
   * Nearly any computer with a CD-ROM.
 * Separate Hard Disk
-  * Any computer or machine that supports FreeDOS.
+  * Any computer or machine that supports FreeDOS. (Copy all files and
+directories from one of the USB sticks to the root directory of the spare hard
+disk drive.)
 
+A special note for DOSBox users. FDI can install to DOSBox using the "Separate
+Hard Disk" method. This assumes you have already setup a drive C: and know
+how to mount the Spare Drive into DOSBox. It will perform the install and
+prepare a AUTOEXEC.BAT file on drive C: to use the FreeDOS binaries and the
+FreeCOM shell. This does not cause the FreeDOS kernel to be used. So,
+technically this not a FreeDOS install. It really is just enhancing DOSBox with
+the FreeDOS binaries.
