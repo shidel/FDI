@@ -42,11 +42,8 @@ call FDILANG.BAT FDSETUP
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
-if not "%FBOOTED%" == "CDROM" goto PlatformSupported
-vinfo /m
-if errorlevel 104 goto PlatformSupported
-if errorlevel 103 goto PlatformNotSupported
-:PlatformSupported
+if exist FDCHECK.BAT call FDCHECK.BAT FIRST
+if errorlevel 1 goto PlatformNotSupported
 if "%FFOUND%" == "y" goto NoInstallNeeded
 verrlvl 0
 :SkipInstallCheck
@@ -88,7 +85,7 @@ call FDITEMP.BAT REQUIRED
 if errorlevel 1 goto Error
 
 REM Check requirements if testing is present.
-if exist FDCHECK.BAT call FDCHECK.BAT
+if exist FDCHECK.BAT call FDCHECK.BAT SECOND
 if errorlevel 1 goto Aborted
 
 if "%1" == "MBRZAP" goto MBRZAP
@@ -107,6 +104,9 @@ call STAGE%FSTAGE%.BAT
 if errorlevel 1 goto Aborted
 if not "%HTARGET%" == "%FTARGET%" goto DiskTesting
 SET HTARGET=
+
+if exist FDCHECK.BAT call FDCHECK.BAT THIRD
+if errorlevel 1 goto Aborted
 
 REM Do the installation.
 set FSTAGE=800
