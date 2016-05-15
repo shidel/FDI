@@ -69,11 +69,7 @@ util\fdimples
 
 ; The remaining packages are only installed when ALL is chosen.
 
-util\4dos
-util\doslfn
-util\memtest
 util\bootfix
-
 util\grep
 util\tee
 util\touch
@@ -92,25 +88,27 @@ net\wget
 net\vmsmount
 
 edit\msedit
-util\biew
 util\bmp2png
 util\cdrcache
 util\cpied
 util\daa2iso
 util\dos32a
 util\foxcalc
-util\gcdrom
 util\gnubc
 util\graphics
 util\less
 util\localize
-util\lscolor
 util\md5sum
 util\part
 util\srdisk
 util\usbdos
+util\slowdown
 util\xfdisk
 util\zerofill
-
 util\xdel
+
+util\4dos
+util\doslfn
+; util\memtest
+
 

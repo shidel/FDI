@@ -2,7 +2,7 @@ Begin3
 Title:          FDI Sources
 Version:        $VERSION$
 Entered-date:   $DATE$
-Description:    FDI - The FreeDOS Installer source files.
+Description:    The FreeDOS Installer (FDI) source files.
 Keywords:       dos batch
 Author:         Jerome Shidel <jerome _AT_ shidel.net>
 Maintained-by:  Jerome Shidel <jerome _AT_ shidel.net>

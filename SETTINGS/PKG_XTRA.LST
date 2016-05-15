@@ -16,7 +16,7 @@ archiver\tar
 archiver\unrar
 archiver\unzip
 archiver\zip
-; archiver\zoo # No license specified, Public Domain?
+; archiver\zoo          # No license specified
 
 base\append
 base\assign
@@ -62,7 +62,7 @@ base\move
 base\nansi
 base\nlsfunc
 base\print
-; base\rdisk
+; base\rdisk            # Removed
 base\recover
 base\replace
 base\share
@@ -73,7 +73,7 @@ base\tree
 base\undelete
 base\unformat
 base\xcopy
-; base\xmgr
+; base\xmgr             # Removed
 
 devel\bcc
 devel\bwbasic
@@ -97,14 +97,15 @@ devel\fbc_help
 devel\fpc
 devel\insight
 devel\jwasm
-; devel\lua # ZLib alike license?
+devel\lua
 devel\nasm
+devel\nasm211
 devel\ow
-; devel\pacificc # No Sources
+; devel\pacificc        # Free, No Sources
 devel\perl
 devel\regina
 devel\runtime
-devel\tppatch
+; devel\tppatch         # Free, No Sources
 devel\upx
 
 edit\blocek
@@ -119,29 +120,29 @@ edit\tde
 ; edit\te
 edit\uhex
 
-emulator\atari800
-emulator\chip8
-emulator\fceu
-; emulator\glaunch # No License Specified
+; emulator\atari800     # No Sources
+; emulator\chip8        # No Sources
+; emulator\fceu         # No Sources
+; emulator\glaunch      # No Sources, No License Specified
 emulator\meka
 emulator\mines
-; emulator\nesticle # No License Specified
+; emulator\nesticle     # No Sources, No License Specified
 emulator\nosefart
-; emulator\rocknes # No License Specified
+; emulator\rocknes      # No License Specified
 emulator\simcoupe
 emulator\sneese
 emulator\teo
 emulator\vice
-emulator\xf25
+; emulator\xf25         # Free, no source, incompatible license
 emulator\z26
 emulator\zboy
-; emulator\zsnes # No License Specified
-; emulator\zxspectr # No License Specified
+emulator\zsnes
+; emulator\zxspectr     # ROM Images
 
-; games\bolitare # No License Specified
+games\bolitare
 games\boom
 games\btitanic
-; games\chicken2 # Emailware
+; games\chicken2        # Emailware
 games\eliza
 games\empong
 games\ewsnake
@@ -150,9 +151,9 @@ games\freedoom
 games\frotz
 games\gnuchess
 games\hangman
-games\happylnd
+; games\happylnd        # Freeware, No Sources.
 games\ivan
-; games\jumpbump # Emailware
+; games\jumpbump        # Emailware
 games\kiloblas
 games\kraptor
 games\lincrawl
@@ -161,55 +162,55 @@ games\magnetic
 games\mirmagic
 games\nethack
 games\nge_nibb
-games\nyet
-; games\pakupaku # No License
-; games\pede # No License
+; games\nyet            # No Sources
+; games\pakupaku        # No License
+; games\pede            # No License
 games\psrinvad
 games\qtetris
-games\quadnet
+; games\quadnet         # No Sources
 games\snova
 games\sudoku86
-games\tetris2k
+; games\tetris2k        # Unknown License
 games\vertigo
 games\vitetris
 games\wing
 games\ww1
-games\xargon
+; games\xargon          # Two Licenses
 games\zmiy
 
-; net\crynwr # No License w/sources?
-net\ctorrent
-net\curl
+; net\crynwr            # No License w/sources?
+; net\ctorrent          # No License, no sources.
+; net\curl              # No Sources
 net\dillo
 net\ethtools
 net\gopherus
 net\htget
 net\mtcp
-net\newsnuz
+; net\newsnuz           # Incomplete License info and sources.
 net\ntool
 net\picosntp
 net\picotcp
-net\ping
+; net\ping              # No Sources
 net\rsync
 net\vmsmount
 net\vncview
 net\wget
 
 sound\adplay
-; sound\adt2 # Fair License?
+; sound\adt2            # Fair License?
 sound\bladeenc
 sound\dosmid
-sound\dwj
-sound\gsplay
+; sound\dwj             # No Source
+; sound\gsplay          # No Source
 sound\lame
 sound\mplayer
-sound\mpxplay
+; sound\mpxplay         # Unknown License
 sound\opencp
 
 util\4dos
 util\ansimat
 util\b64
-util\biew
+; util\biew             # No Sources
 util\bmp2png
 util\bootfix
 util\cdrcache
@@ -218,11 +219,11 @@ util\clamdb
 util\cpied
 util\cwsdpmi
 util\daa2iso
-util\desi3
-util\dialog
+; util\desi3            # Unknown License, No Sources
+; util\dialog           # No Sources
 util\dn2
 util\dos32a
-; util\dosidle # License conflict
+; util\dosidle          # License conflict
 util\doslfn
 util\doszip
 util\fdimples
@@ -230,7 +231,7 @@ util\fdnpkg
 util\fdshell
 util\foxcalc
 util\foxtype
-util\gcdrom
+; util\gcdrom           # Removed
 util\gifsicle
 util\gnubc
 util\graphics
@@ -242,9 +243,9 @@ util\less
 util\localcfg
 util\localize
 util\lptdrv
-util\lscolor
+; util\lscolor          # No Sources
 util\md5sum
-util\memtest
+; util\memtest          # No Sources
 util\ntfs
 util\opengem
 util\ozonegui
@@ -255,30 +256,31 @@ util\pcisleep
 util\pg
 util\pgme
 util\pngcrush
-util\savepart
+; util\savepart         # No Sources
 util\seal
 util\search
 util\shsufdrv
-; util\slowdos # No Sources
+; util\slowdos          # No Sources
+util\slowdown
 util\sqlite
 util\srdisk
 util\tee
 util\terminal
 util\testdisk
-util\tinyaes
+; util\tinyaes          # Unknown License
 util\touch
 util\udvd2
-; util\uide
-; util\umbpci # No Sources
+; util\uide             # Removed
+; util\umbpci           # No Sources
 util\unrtf
 util\usbdos
 util\utf8tocp
 util\v8power
 util\wde
 util\which
-; util\xcdrom
+; util\xcdrom           # Removed
 util\xdel
 util\xfdisk
 util\xgrep
-; util\xmsdsk # No Sources
+; util\xmsdsk           # No Sources
 util\zerofill
