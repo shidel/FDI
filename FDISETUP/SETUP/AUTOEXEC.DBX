@@ -7,12 +7,15 @@ if exist $FTARGET$\bin\command.com $FTARGET$\bin\command.com /e:2048 /k %0 FREED
 goto END
 
 :ShellLoaded
+SET OLDPATH=%PATH%
 SET DOSDIR=$FTARGET$
-SET LANG=$FLANG$
-SET TZ=$TZ$
+IF "%LANG%" == "" SET LANG=$FLANG$
+IF "%TZ%" == "" SET TZ=$TZ$
 SET PATH=%dosdir%\BIN
-if exist %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
+IF EXIST %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
 SET PATH=%PATH%;Z:\
+IF NOT "%OLDPATH%" == "" PATH=%PATH%;%OLDPATH%
+SET OLDPATH=
 
 SET NLSPATH=%dosdir%\NLS
 SET HELPPATH=%dosdir%\HELP
