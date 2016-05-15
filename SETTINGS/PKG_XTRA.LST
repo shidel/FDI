@@ -49,6 +49,8 @@ base\help
 base\himemx
 base\jemm
 base\kernel
+base\kernel16
+base\kernel32
 base\keyb
 base\keyb_lay
 base\label

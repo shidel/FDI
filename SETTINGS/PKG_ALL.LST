@@ -31,7 +31,7 @@ base\fdxms286
 base\help
 base\jemm
 base\himemx
-base\kernel
+base\kernel32
 base\keyb
 base\keyb_lay
 base\label
@@ -83,10 +83,6 @@ archiver\lzip
 archiver\lzma
 archiver\lzop
 
-net\mtcp
-net\wget
-net\vmsmount
-
 edit\msedit
 util\bmp2png
 util\cdrcache
@@ -109,6 +105,9 @@ util\xdel
 
 util\4dos
 util\doslfn
-; util\memtest
 
-
+; No longer installed to due insufficient disk space on slim USB stick
+; There are still included as extras on the Big USB and CD-ROM versions.
+; net\mtcp
+; net\wget
+; net\vmsmount
