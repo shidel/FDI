@@ -1022,6 +1022,8 @@ set SFILES=
 if not exist %IDIR%\nul mkdir %IDIR% >nul
 type %SPKG%.PKG | vstr /b >%IDIR%\%SPKG%.TXT
 vecho , /fLightGreen OK /fGray
+if "%INFOPKG%" == "" goto PkgInfThisDone
+grep -i "^Title\|^version\|^entered" %SPKG%.PKG
 goto PkgInfThisDone
 :PkgInfNoData
 vecho , /fLightRed Failed /fGray
