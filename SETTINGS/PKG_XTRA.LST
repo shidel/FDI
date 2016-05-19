@@ -291,7 +291,6 @@ util\zerofill
 boot\syslnx
 base\samcfg
 base\dosutil
-base\ripcord
 util\callver
 util\fdshield
 util\flashrom
