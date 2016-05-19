@@ -106,7 +106,6 @@ util\xdel
 util\4dos
 util\doslfn
 
-boot\syslnx
 base\dosutil
 base\ripcord
 util\callver
@@ -117,3 +116,4 @@ util\fdshield
 ; net\mtcp
 ; net\wget
 ; net\vmsmount
+; boot\syslnx
