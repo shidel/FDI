@@ -106,6 +106,12 @@ util\xdel
 util\4dos
 util\doslfn
 
+boot\syslnx
+base\dosutil
+base\ripcord
+util\callver
+util\fdshield
+
 ; No longer installed to due insufficient disk space on slim USB stick
 ; There are still included as extras on the Big USB and CD-ROM versions.
 ; net\mtcp

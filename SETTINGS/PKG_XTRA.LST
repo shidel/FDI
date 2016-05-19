@@ -182,7 +182,7 @@ games\zmiy
 
 ; net\crynwr            # No License w/sources?
 ; net\ctorrent          # No License, no sources.
-; net\curl              # No Sources
+net\curl
 net\dillo
 net\ethtools
 net\gopherus
@@ -286,3 +286,12 @@ util\xfdisk
 util\xgrep
 ; util\xmsdsk           # No Sources
 util\zerofill
+
+; Old FreeDOS 1.1 packages
+boot\syslnx
+base\samcfg
+base\dosutil
+base\ripcord
+util\callver
+util\fdshield
+util\flashrom
