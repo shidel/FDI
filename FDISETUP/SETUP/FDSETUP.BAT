@@ -125,9 +125,7 @@ if errorlevel 1 goto Aborted
 :CleanUp
 REM Run cleanup stage.
 if "%FREBOOT%" == "y" goto DoReboot
-set FSTAGE=999
-if not exist STAGE%FSTAGE%.BAT goto Error
-call STAGE%FSTAGE%.BAT
+call FDICLEAN.BAT
 
 REM Ran all installer stages **************************************************
 verrlvl 0
@@ -165,9 +163,7 @@ goto PostInstall
 
 :NoInstallNeeded
 REM Run cleanup stage.
-set FSTAGE=999
-if not exist STAGE%FSTAGE%.BAT goto Error
-call STAGE%FSTAGE%.BAT
+call FDICLEAN.BAT
 if exist FDNOTICE.BAT call FDNOTICE.BAT
 verrlvl 0
 set FDRIVE=
@@ -175,9 +171,7 @@ goto Finished
 
 :PlatformNotSupported
 REM Run cleanup stage.
-set FSTAGE=999
-if not exist STAGE%FSTAGE%.BAT goto Error
-call STAGE%FSTAGE%.BAT
+call FDICLEAN.BAT
 if exist FDNORUN.BAT call FDNORUN.BAT
 verrlvl 0
 set FDRIVE=
@@ -190,8 +184,7 @@ goto Finished
 
 REM Installer failed from missing stage file **********************************
 :Error
-if not exist STAGE999.BAT goto NoCleanupStage
-call STAGE999.BAT
+call FDICLEAN.BAT
 :NoCleanupStage
 vcls /a 0x07
 vecho /t %FLANG% STAGE_ERROR %FSTAGE%
@@ -200,9 +193,7 @@ goto Finished
 
 REM Installer failed to install or was aborted ********************************
 :Aborted
-set FSTAGE=999
-if not exist STAGE%FSTAGE%.BAT goto Error
-call STAGE%FSTAGE%.BAT
+call FDICLEAN.BAT
 :AbortedNoCleanup
 vcls /a 0x07
 if "%FREBOOT%" == "y" goto DoReboot
@@ -241,7 +232,7 @@ set FTARGET=
 goto DontDoAnything
 
 :DoReboot
-if exist STAGE999.BAT call STAGE999.BAT TEMPONLY
+call FDICLEAN.BAT TEMPONLY
 vcls /a 0x07
 
 if "%CACHED%" == "NO" goto NoFlush
@@ -253,18 +244,6 @@ lbacache SYNC
 lbacache STOP
 :NoFlush
 
-if not "%OSYS%" == "y" goto RebootWarning
-if not "%OBSS%" == "y" goto RebootWarning
-goto NoWarning
-:RebootWarning
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
-vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
-vgotoxy /l eop /g sor down down down
-:NoWarning
 vline hidden
 vgotoxy /g eop sor
 vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow

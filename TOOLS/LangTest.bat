@@ -726,7 +726,7 @@ set OLD_LANG=
 set OLDPATH=
 set SELF=
 set FADV=
-call FDISETUP\SETUP\STAGE999.BAT VARSONLY
+call FDISETUP\SETUP\FDICLEAN.BAT VARSONLY
 if not "%PART%" == "" verrlvl 200
 
 REM The very last command line of the batch file (for Sub-utilties) ***********

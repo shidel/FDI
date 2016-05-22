@@ -2,7 +2,7 @@
 
 REM Thank the user for installing and offer to reboot.
 
-call STAGE999.BAT TEMPONLY
+call FDICLEAN.BAT TEMPONLY
 call FDICLS.BAT
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
 vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%

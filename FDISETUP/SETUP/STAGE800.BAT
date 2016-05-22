@@ -70,16 +70,37 @@ goto LoopingList
 :FinishedList
 if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
 verrlvl 0
-goto Done
+goto DoneCheckWarning
 
 :ReplaceConfig
 copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
 type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.CFG
 verrlvl 0
-goto Done
+goto DoneCheckWarning
 
 :FailedInstaller
 popd
+goto AbortBatch
+
+:DoneCheckWarning
+if not "%OSYS%" == "y" goto RebootWarning
+if not "%OBSS%" == "y" goto RebootWarning
+goto NoWarning
+:RebootWarning
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
+vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vdelay 5000
+vgotoxy /g eop sor
+vecho /n /t %FLANG% PAUSE
+vpause /fLightCyan /t %FWAIT% CTRL-C
+:NoWarning
+verrlvl 0
+goto Done
 
 :AbortBatch
 verrlvl 1

@@ -101,7 +101,7 @@ devel\insight
 devel\jwasm
 devel\lua
 devel\nasm
-devel\nasm211
+; devel\nasm211         # Not needed default is newer
 devel\ow
 ; devel\pacificc        # Free, No Sources
 devel\perl
@@ -165,7 +165,7 @@ games\mirmagic
 games\nethack
 games\nge_nibb
 ; games\nyet            # No Sources
-; games\pakupaku        # No License
+games\pakupaku
 ; games\pede            # No License
 games\psrinvad
 games\qtetris
@@ -212,7 +212,7 @@ sound\opencp
 util\4dos
 util\ansimat
 util\b64
-; util\biew             # No Sources
+util\biew
 util\bmp2png
 util\bootfix
 util\cdrcache
@@ -222,7 +222,7 @@ util\cpied
 util\cwsdpmi
 util\daa2iso
 ; util\desi3            # Unknown License, No Sources
-; util\dialog           # No Sources
+util\dialog
 util\dn2
 util\dos32a
 ; util\dosidle          # License conflict
@@ -248,6 +248,7 @@ util\lptdrv
 ; util\lscolor          # No Sources
 util\md5sum
 ; util\memtest          # No Sources
+util\memteste
 util\ntfs
 util\opengem
 util\ozonegui
