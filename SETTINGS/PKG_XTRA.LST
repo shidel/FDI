@@ -16,7 +16,7 @@ archiver\tar
 archiver\unrar
 archiver\unzip
 archiver\zip
-; archiver\zoo          # No license specified
+archiver\zoo
 
 base\append
 base\assign
@@ -103,11 +103,11 @@ devel\lua
 devel\nasm
 ; devel\nasm211         # Not needed default is newer
 devel\ow
-; devel\pacificc        # Free, No Sources
+devel\pacificc
 devel\perl
 devel\regina
 devel\runtime
-; devel\tppatch         # Free, No Sources
+devel\tppatch
 devel\upx
 
 edit\blocek
@@ -144,7 +144,7 @@ emulator\zsnes
 games\bolitare
 games\boom
 games\btitanic
-; games\chicken2        # Emailware
+games\chicken2
 games\eliza
 games\empong
 games\ewsnake
@@ -155,7 +155,7 @@ games\gnuchess
 games\hangman
 ; games\happylnd        # Freeware, No Sources.
 games\ivan
-; games\jumpbump        # Emailware
+games\jumpbump
 games\kiloblas
 games\kraptor
 games\lincrawl
@@ -169,7 +169,7 @@ games\pakupaku
 ; games\pede            # No License
 games\psrinvad
 games\qtetris
-; games\quadnet         # No Sources
+games\quadnet
 games\snova
 games\sudoku86
 ; games\tetris2k        # Unknown License
@@ -180,7 +180,7 @@ games\ww1
 ; games\xargon          # Two Licenses
 games\zmiy
 
-; net\crynwr            # No License w/sources?
+net\crynwr
 ; net\ctorrent          # No License, no sources.
 net\curl
 net\dillo
@@ -188,18 +188,18 @@ net\ethtools
 net\gopherus
 net\htget
 net\mtcp
-; net\newsnuz           # Incomplete License info and sources.
+net\newsnuz
 net\ntool
 net\picosntp
 net\picotcp
-; net\ping              # No Sources
+net\ping
 net\rsync
 net\vmsmount
 net\vncview
 net\wget
 
 sound\adplay
-; sound\adt2            # Fair License?
+sound\adt2
 sound\bladeenc
 sound\dosmid
 ; sound\dwj             # No Source
