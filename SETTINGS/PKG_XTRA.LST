@@ -48,9 +48,8 @@ base\format
 base\help
 base\himemx
 base\jemm
-base\kernel
-base\kernel16
-base\kernel32
+base\krnl2042
+base\krnl2041
 base\keyb
 base\keyb_lay
 base\label
@@ -197,6 +196,7 @@ net\rsync
 net\vmsmount
 net\vncview
 net\wget
+net\wattcp
 
 sound\adplay
 sound\adt2

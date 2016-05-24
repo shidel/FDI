@@ -14,7 +14,7 @@ if errorlevel 1 goto EndOfFile
 rem if not exist %2:\BOOT.IMG goto EndOfFile
 rem if not exist %2:\BOOT.CAT goto EndOfFile
 if not exist %2:\BASE\COMMAND.ZIP goto EndOfFile
-if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
+rem if not exist %2:\BASE\KERNEL.ZIP goto EndOfFile
 if not exist %2:\BASE\INDEX.LST goto EndOfFile
 set CDROM=%2:
 goto EndOfFile
@@ -941,7 +941,7 @@ set SIDX=0
 echo %TEMP% | vstr /s \ \\ | set /p FILTER=
 if "%FILTER%" == "" goto SetFilter
 if "%INFOPKG%" == "" goto AllPackages
-dir /on /a /b /p- /s %CDROM%\%INFOPKG%.ZIP |grep -v \\_ | grep -iv ^%FILTER% >%TEMP%\FILELIST.DIR
+dir /on /a /b /p- /s %CDROM%\*.ZIP|grep -i %INFOPKG%|grep -v \\_|grep -iv ^%FILTER%>%TEMP%\FILELIST.DIR
 goto DoneFilter
 :AllPackages
 dir /on /a /b /p- /s %CDROM%\*.ZIP |grep -v \\_ | grep -iv ^%FILTER% >%TEMP%\FILELIST.DIR

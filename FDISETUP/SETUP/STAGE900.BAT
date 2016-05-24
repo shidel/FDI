@@ -3,6 +3,13 @@
 REM Thank the user for installing and offer to reboot.
 
 call FDICLEAN.BAT TEMPONLY
+if "%TEMP%" == "" goto NoTemp
+if not exist %TEMP%\NUL goto NoTemp
+goto HasTemp
+:NoTemp
+set TEMP=%FTARGET%\TEMP
+if not exist %TEMP%\NUL mkdir %TEMP% >NUL
+:HasTemp
 call FDICLS.BAT
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% COMPLETE_FRAME
 vecho /t %FLANG% COMPLETE %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
