@@ -15,7 +15,7 @@ REM TEST REPO CD
 set _MI=..\..
 if not exist %_MI%\BASE\NUL goto NotRepoCD
 if not exist %_MI%\BASE\COMMAND.ZIP goto NotRepoCD
-if not exist %_MI%\BASE\KERNEL.ZIP goto NotRepoCD
+rem if not exist %_MI%\BASE\KERNEL.ZIP goto NotRepoCD
 
 :SingleSource
 pushd
