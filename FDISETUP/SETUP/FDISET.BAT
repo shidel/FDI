@@ -9,15 +9,15 @@ goto Error
 
 :SetData
 if not exist %TEMP%\FDISET.TMP goto Error
-type %TEMP%\FDISET.TMP | vstr /n/s "%2" "%3" >%TEMP%\FDISET.OUT
+type %TEMP%\FDISET.TMP|vstr /n/s "%2" "%3">%TEMP%\FDISET.OUT
 if not exist %TEMP%\FDISET.OUT goto Error
-copy /y %TEMP%\FDISET.OUT %TEMP%\FDISET.TMP >NUL
-del %TEMP%\FDISET.OUT >NUL
+copy /y %TEMP%\FDISET.OUT %TEMP%\FDISET.TMP>NUL
+del %TEMP%\FDISET.OUT>NUL
 goto Success
 
 :Prepare
 if exist %TEMP%\FDISET.TMP goto Error
-copy /y %2 %TEMP%\FDISET.TMP >NUL
+copy /y %2 %TEMP%\FDISET.TMP>NUL
 if errorlevel 1 goto Error
 if not exist %TEMP%\FDISET.TMP goto Error
 goto Success
@@ -26,7 +26,7 @@ goto Success
 if not exist %TEMP%\FDISET.TMP goto Error
 copy /y %TEMP%\FDISET.TMP %2>NUL
 if not exist %2 goto Error
-del %TEMP%\FDISET.TMP >NUL
+del %TEMP%\FDISET.TMP>NUL
 if exist %TEMP%\FDISET.TMP goto Error
 goto Success
 

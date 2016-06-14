@@ -33,7 +33,7 @@ if "%ALLOFF%" == "y" shutdown
 goto EndOfFile
 
 :Start
-set SELF=%0
+SET SELF=%0
 SET OLDFDN=%FDNPKG.CFG%
 SET OLDDOS=%DOSDIR%
 SET OLDPATH=%PATH%
@@ -54,6 +54,7 @@ set TGO=0
 set TTRY=3
 set /e IDIR=vfdutil /d %TEMP%
 set IDIR=%IDIR%\PKGINFO
+set FDISET=call FDISETUP\SETUP\FDISET.BAT
 
 if "%TZ%" == "" set TZ=EST
 
@@ -95,7 +96,6 @@ echo.
 goto CleanUp
 
 :ReadDone
-
 
 if "%SLIM%" == "y" set USB=y
 
@@ -151,6 +151,9 @@ if "%PKGDIR%" == "" goto RepeatDIR
 :RepeatKERN
 type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^KERNEL|vstr /b/f = 2|set /p KERNEL=
 if "%KERNEL%" == "" goto RepeatKERN
+:RepeatREPO
+type SETTINGS\VERSION.CFG|grep -iv ^;|grep -i ^REPO|vstr /b/f = 2|set /p REPO=
+if "%REPO%" == "" goto RepeatREPO
 
 set PATH=%TEMPPATH%\V8POWER;%DOSDIR%\BIN
 set TEMPPATH=
@@ -368,18 +371,26 @@ xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 copy /y SETTINGS\PKG_ALL.LST %RAMDRV%\FDSETUP\SETUP\FDPLALL.LST >NUL
 copy /y SETTINGS\PKG_BASE.LST %RAMDRV%\FDSETUP\SETUP\FDPLBASE.LST >NUL
-type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "0">%RAMDRV%\FDSETUP\SETUP\FDNPBIN.CFG
-type SETTINGS\FDNPKG.CFG|vstr /n/s "$SOURCES$" "1">%RAMDRV%\FDSETUP\SETUP\FDNPSRC.CFG
 
-type FDISETUP\SETUP\STAGE000.BAT|vstr /n/s "$PLATFORM$" "%OS_NAME%">%TEMP%\STAGE000.BAT
-type %TEMP%\STAGE000.BAT|vstr /n/s "$VERSION$" "%OS_VERSION%">%TEMP%\STAGE000.000
-type %TEMP%\STAGE000.000|vstr /n/s "$OVOL$" "%VOLUMEID%">%DOSDIR%\SETUP\STAGE000.BAT
-del %TEMP%\STAGE000.000 >nul
-del %TEMP%\STAGE000.BAT >nul
+%FDISET% BEGIN SETTINGS\FDNPKG.CFG
+%FDISET% SET "$SOURCES$" "0"
+%FDISET% SET "$REPO$" "%REPO%"
+%FDISET% END %RAMDRV%\FDSETUP\SETUP\FDNPBIN.CFG
+%FDISET% BEGIN SETTINGS\FDNPKG.CFG
+%FDISET% SET "$SOURCES$" "0"
+%FDISET% SET "$REPO$" "%REPO%"
+%FDISET% END %RAMDRV%\FDSETUP\SETUP\FDNPSRC.CFG
 
-type FDISETUP\SETUP\STAGE600.BAT|vstr /n/s "$PKGDIR$" "%PDIR%">%TEMP%\STAGE600.BAT
-copy /y %TEMP%\STAGE600.BAT %DOSDIR%\SETUP\STAGE600.BAT>NUL
-del %TEMP%\STAGE600.BAT >nul
+%FDISET% BEGIN FDISETUP\SETUP\STAGE000.BAT
+%FDISET% SET "$PLATFORM$" "%OS_NAME%"
+%FDISET% SET "$VERSION$" "%OS_VERSION%"
+%FDISET% SET "$OVOL$" "%VOLUMEID%"
+%FDISET% END %DOSDIR%\SETUP\STAGE000.BAT
+
+%FDISET% BEGIN FDISETUP\SETUP\STAGE600.BAT
+%FDISET% SET "$PKGDIR$" "%PDIR%"
+%FDISET% END %DOSDIR%\SETUP\STAGE600.BAT
+
 set PDIR=
 
 echo PLATFORM=%OS_NAME%>%RAMDRV%\FDSETUP\SETUP\VERSION.FDI
@@ -779,7 +790,6 @@ set SPKG=
 popd
 vecho , /fLightGreen OK /fGray
 
-
 vecho /r5/c32 %TEMP%\fdisrc.zip "-->" %FLOPPY%%PKGDIR%UTIL /n
 copy /y %TEMP%\fdisrc.zip %FLOPPY%%PKGDIR%UTIL >NUL
 if errorlevel 1 goto CopyFailed
@@ -832,7 +842,6 @@ set SFILES=
 set SPKG=
 popd
 vecho , /fLightGreen OK /fGray
-
 
 REM Create LIST INDEX FILES
 vecho /p Creating package index files for /fYellow %FLOPPY% /fGray /p
@@ -1202,6 +1211,7 @@ SET OLDDOS=
 SET OLDPATH=
 set SELF=
 set INFO=
+set FDISET=
 
 rem goto NoTempRM
 if "%TEMP%" == "" goto NoTempRM
@@ -1212,6 +1222,5 @@ deltree /Y %TEMP%\*.* >NUL
 :NoTempRM
 
 popd
-
 
 :EndOfFile
