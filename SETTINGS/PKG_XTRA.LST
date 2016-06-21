@@ -48,8 +48,7 @@ base\format
 base\help
 base\himemx
 base\jemm
-base\krnl2042
-base\krnl2041
+base\kernel
 base\keyb
 base\keyb_lay
 base\label
@@ -100,7 +99,6 @@ devel\insight
 devel\jwasm
 devel\lua
 devel\nasm
-; devel\nasm211         # Not needed default is newer
 devel\ow
 devel\pacificc
 devel\perl

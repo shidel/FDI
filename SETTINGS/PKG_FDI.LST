@@ -1,7 +1,7 @@
 ; Package list for creation of the FDI boot disk image.
 
 base\command
-base\krnl2042
+base\kernel
 base\deltree
 base\xcopy
 base\devload
