@@ -6,7 +6,7 @@ batch based installation kit based on the
 
 If you do not want to use one of the
 [pre-built install images](http://up.lod.bz/FDI)
-and want to build a operating system release, please see
+and want to build an custom operating system release, please see
 the [FDI wiki](https://github.com/shidel/FDI/wiki)
 on [Github](https://github.com).
 
@@ -49,7 +49,9 @@ be a spare and completely separate drive.
 A special note for DOSBox users. FDI can install to DOSBox using the "Separate
 Hard Disk" method. This assumes you have already setup a drive C: and know
 how to mount the Spare Drive into DOSBox. It will perform the install and
-prepare a AUTOEXEC.BAT file on drive C: to use the FreeDOS binaries and the
-FreeCOM shell. This does not cause the FreeDOS kernel to be used. So,
-technically this not a FreeDOS install. It really is just enhancing DOSBox with
-the FreeDOS binaries.
+prepare a *AUTOEXEC.BAT* file on drive *C:* to use the
+[FreeDOS](http://freedos.org) binaries and the
+FreeCOM shell. This does not cause the [FreeDOS](http://freedos.org) kernel to
+be used. So, technically this not a FreeDOS[FreeDOS](http://freedos.org)
+install. It really is just enhancing DOSBox with the
+[FreeDOS](http://freedos.org) binaries.
