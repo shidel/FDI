@@ -37,8 +37,8 @@ There are basically four methods using FDI to install
   * All supported virtual machines
   * Nearly any computer with a CD-ROM.
 * Separate Hard Disk
-  * Any computer or machine that supports FreeDOS and meets the minimum
-  requirements.
+  * Any computer or machine that supports [FreeDOS](http://freedos.org) and
+  meets the minimum requirements.
 
 To use the "Separate Hard Disk" method, you must copy all files and directories
 from one of the USB sticks to the root directory of the spare hard disk drive.
@@ -46,12 +46,12 @@ If performing this from DOS, you can use xcopy with the /e switch. This is not
 the drive where you will be installing [FreeDOS](http://freedos.org). It should
 be a spare and completely separate drive.
 
-A special note for DOSBox users. FDI can install to DOSBox using the "Separate
-Hard Disk" method. This assumes you have already setup a drive C: and know
-how to mount the Spare Drive into DOSBox. It will perform the install and
-prepare a *AUTOEXEC.BAT* file on drive *C:* to use the
-[FreeDOS](http://freedos.org) binaries and the
-FreeCOM shell. This does not cause the [FreeDOS](http://freedos.org) kernel to
-be used. So, technically this not a FreeDOS[FreeDOS](http://freedos.org)
-install. It really is just enhancing DOSBox with the
-[FreeDOS](http://freedos.org) binaries.
+A special note for [DOSBox](http://dosbox.com) users. FDI can install to
+[DOSBox](http://dosbox.com) using the "Separate Hard Disk" method. This assumes
+you have already setup a drive *C:* and know how to mount the _Spare Drive_
+into [DOSBox](http://dosbox.com). It will perform the install and prepare an
+*AUTOEXEC.BAT* file on drive *C:* to use the [FreeDOS](http://freedos.org)
+binaries and the FreeCOM shell. This does not cause the
+[FreeDOS](http://freedos.org) kernel to be used. So, technically this not a
+[FreeDOS](http://freedos.org) install. It really is just enhancing
+[DOSBox](http://dosbox.com) with the [FreeDOS](http://freedos.org) binaries.
