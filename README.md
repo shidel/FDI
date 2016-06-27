@@ -1,11 +1,11 @@
 # The FreeDOS Installer (FDI)
 
 The [FreeDOS](http://freedos.org) Installer is a customizable and flexible
-batch based installation kit based on [V8Power Tools](http://up.lod.bz/V8Power)
-batch file enhancement utilities.
+batch based installation kit based on the
+[V8Power Tools](http://up.lod.bz/V8Power) batch file enhancement utilities.
 
 If you do not want to use one of the
-[pre-built installer image files](http://up.lod.bz/FDI)
+[pre-built install images](http://up.lod.bz/FDI)
 and want to build a operating system release, please see
 the [FDI wiki](https://github.com/shidel/FDI/wiki)
 on [Github](https://github.com).
@@ -19,28 +19,32 @@ FDI has a fairly modest set of requirements.
 * 80386 or better CPU.
 * 640k RAM (under 4Mb is untested)
 
-(Although V8Power Tools only requires an 8086, some other utilities that are
-currently required by FDI do not support CPUs lower than a 386.)
+_(Although V8Power Tools only requires an 8086, some other utilities that are
+currently required by FDI do not support CPUs lower than a 386.)_
 
 ### FreeDOS installation methods
 
-There are basically four ways to install FreeDOS using FDI.
+There are basically four methods using FDI to install
+[FreeDOS](http://freedos.org).
 
 * The Big USB or Slim USB stick
-  * All Virtual Machines
+  * All supported virtual machines
   * Many modern computers
 * Bootable CD-ROM
-  * Most Virtual Machines (excluding VirtualBox)
+  * Most virtual machines (not VirtualBox)
   * Most 486 or better computers
 * Bootable Floppy + CD-ROM (or USB Stick).
-  * All Virtual Machines
+  * All supported virtual machines
   * Nearly any computer with a CD-ROM.
 * Separate Hard Disk
-  * Any computer or machine that supports FreeDOS.
+  * Any computer or machine that supports FreeDOS and meets the minimum
+  requirements.
 
-To use the "Separate Hard Disk" method. You must copy all files and directories
+To use the "Separate Hard Disk" method, you must copy all files and directories
 from one of the USB sticks to the root directory of the spare hard disk drive.
-If performing this from DOS, you can use xcopy with the /e switch.
+If performing this from DOS, you can use xcopy with the /e switch. This is not
+the drive where you will be installing [FreeDOS](http://freedos.org). It should
+be a spare and completely separate drive.
 
 A special note for DOSBox users. FDI can install to DOSBox using the "Separate
 Hard Disk" method. This assumes you have already setup a drive C: and know

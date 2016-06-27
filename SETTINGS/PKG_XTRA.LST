@@ -293,3 +293,9 @@ base\dosutil
 util\callver
 util\fdshield
 util\flashrom
+
+; New additions
+util\cdrom2ui
+util\finddisk
+util\whichfat
+
