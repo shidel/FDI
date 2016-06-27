@@ -6,7 +6,7 @@ batch based installation kit based on the
 
 If you do not want to use one of the
 [pre-built install images](http://up.lod.bz/FDI)
-and want to build an custom operating system release, please see
+and want to build a custom operating system release, please see
 the [FDI wiki](https://github.com/shidel/FDI/wiki)
 on [Github](https://github.com).
 
