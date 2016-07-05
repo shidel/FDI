@@ -58,6 +58,7 @@ base\unformat
 base\xcopy
 util\udvd2
 base\welcome
+base\graphics
 
 util\fdnpkg
 util\cwsdpmi
@@ -66,6 +67,5 @@ archiver\unzip
 util\v8power
 util\shsufdrv
 
-util\graphics
 util\callver
 

@@ -74,6 +74,7 @@ base\undelete
 base\unformat
 base\xcopy
 ; base\xmgr             # Removed
+base\graphics
 
 devel\bcc
 devel\bwbasic
@@ -234,7 +235,6 @@ util\foxtype
 ; util\gcdrom           # Removed
 util\gifsicle
 util\gnubc
-util\graphics
 util\grep
 util\hexcomp
 util\hip

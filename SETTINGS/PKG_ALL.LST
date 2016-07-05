@@ -66,6 +66,7 @@ archiver\unzip
 util\v8power
 util\shsufdrv
 util\fdimples
+base\graphics
 
 ; The remaining packages are only installed when ALL is chosen.
 
@@ -91,7 +92,6 @@ util\daa2iso
 util\dos32a
 util\foxcalc
 util\gnubc
-util\graphics
 util\less
 util\localize
 util\md5sum
