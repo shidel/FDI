@@ -106,7 +106,7 @@ util\xdel
 util\4dos
 util\doslfn
 
-base\dosutil
+util\dosutil
 util\callver
 util\fdshield
 

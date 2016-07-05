@@ -289,7 +289,7 @@ util\zerofill
 ; Old FreeDOS 1.1 packages
 boot\syslnx
 base\samcfg
-base\dosutil
+util\dosutil
 util\callver
 util\fdshield
 util\flashrom
