@@ -56,19 +56,23 @@ base\tree
 base\undelete
 base\unformat
 base\xcopy
-util\udvd2
-
+base\graphics
 base\welcome
+
+util\udvd2
+util\callver
+
 util\fdnpkg
 util\cwsdpmi
-archiver\zip
-archiver\unzip
 util\v8power
 util\shsufdrv
-util\fdimples
-base\graphics
+
+archiver\zip
+archiver\unzip
 
 ; The remaining packages are only installed when ALL is chosen.
+
+util\fdimples
 
 util\bootfix
 util\grep
@@ -85,6 +89,7 @@ archiver\lzma
 archiver\lzop
 
 edit\msedit
+
 util\bmp2png
 util\cdrcache
 util\cpied
@@ -107,11 +112,11 @@ util\4dos
 util\doslfn
 
 util\dosutil
-util\callver
 util\fdshield
 
 ; No longer installed to due insufficient disk space on slim USB stick
 ; There are still included as extras on the Big USB and CD-ROM versions.
+
 ; net\mtcp
 ; net\wget
 ; net\vmsmount
