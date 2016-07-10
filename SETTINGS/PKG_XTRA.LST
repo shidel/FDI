@@ -227,6 +227,7 @@ util\dos32a
 ; util\dosidle          # License conflict
 util\doslfn
 util\doszip
+util\du
 util\fdimples
 util\fdnpkg
 util\fdshell
@@ -299,3 +300,12 @@ util\cdrom2ui
 util\finddisk
 util\whichfat
 
+; More new additions on 7/10/16
+util\doszip
+util\dzemm
+util\head
+util\dog
+util\lfndos
+util\gnuchcp
+util\gnufonts
+util\tail
