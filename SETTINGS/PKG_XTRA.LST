@@ -313,3 +313,23 @@ util\gnused
 
 ; 7/17/16 additions
 net\links
+net\sshdos
+util\nro
+util\pdtree
+util\raread
+util\rawrite
+boot\romdsk
+boot\romos
+util\setlock
+util\shareext
+util\sleep
+util\spool
+util\stamp
+util\start
+util\switchar
+util\topspin
+util\trch
+util\uptime
+util\wcd
+util\xkeyb
+util\wptail
