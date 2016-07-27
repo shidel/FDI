@@ -27,7 +27,7 @@ currently required by FDI do not support CPUs lower than a 386.)_
 There are basically four methods using FDI to install
 [FreeDOS](http://freedos.org).
 
-* The Big USB or Slim USB stick
+* The FULL USB or LITE USB stick
   * All supported virtual machines
   * Many modern computers
 * Bootable CD-ROM
