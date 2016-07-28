@@ -325,16 +325,14 @@ create_release () {
     }
 
     DEST="${OUTPUT}/${PROJECT}-${TODAY}"
-#    while [[ -e "$DEST" ]] ; do
-#        (( RELEASE++ ))
-#        DEST="${OUTPUT}/${PROJECT}-${TODAY}-${RELEASE}"
-#    done
+    while [[ -e "$DEST" ]] ; do
+        (( RELEASE++ ))
+        DEST="${OUTPUT}/${PROJECT}-${TODAY}-${RELEASE}"
+    done
 
-    mkdir -p "$DEST"
-#     || {
-#        echo "error: unable to make project release directory \`$DEST'"
-#    }
-
+    mkdir -p "$DEST" || {
+        echo "error: unable to make project release directory \`$DEST'"
+    }
 
     echo
     echo "  OUTPUT PATH:       $DEST"

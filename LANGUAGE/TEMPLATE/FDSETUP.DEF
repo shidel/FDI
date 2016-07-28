@@ -340,12 +340,12 @@ PAC_FRAME_BD=/w60 /h11 /c
 PAC_OPTS_BD=/w42 /h7 /c
 # vecho "What FreeDOS packages do you want to install?"
 PACS?=What /f %1 %2 /f %3 packages do you want to install?
-PACBO="  Basic packages only."
-PACBS="  Basic packages with sources only."
-PACAO="  All the packages."
-PACAS="  All the packages and their sources."
-PACDO_ADV="  Selected binary packages."
-PACDS_ADV="  Selected packages and their sources.
+PACBO="  Base packages only"
+PACBS="  Base packages with sources only"
+PACAO="  Full installation"
+PACAS="  Full installation with sources"
+PACDO_ADV="  Selected binary packages"
+PACDS_ADV="  Selected packages with sources"
 
 -------------------------------------------------------------------------------
 # FDASK700 - Reserved
