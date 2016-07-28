@@ -12,7 +12,7 @@ REM
 REM If you wanted to always include non-standard packages, you could do
 REM something like the following in the additional FDINS batch file.
 REM
-REM copy %FINSP%\FDPLALL.LST %TEMP%\MYPACKS.LST
+REM copy %FINSP%\FDPLFULL.LST %TEMP%\MYPACKS.LST
 REM type %FINSP%\MYLIST.LST (into) %TEMP%\MYPACKS.LST
 REM set FKPGS=%TEMP%\MYPACKS.LST
 
@@ -23,6 +23,6 @@ goto Done
 
 :NotCustom
 set FPKGS=%FINSP%\FDPLBASE.LST
-if "%OALL%" == "y" set FPKGS=%FINSP%\FDPLALL.LST
+if "%OALL%" == "y" set FPKGS=%FINSP%\FDPLFULL.LST
 
 :Done

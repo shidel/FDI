@@ -369,7 +369,7 @@ if "%PDIR%" == "" goto PDIRLoopB
 
 xcopy /y /e LANGUAGE\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
 xcopy /y /e FDISETUP\SETUP\*.* %RAMDRV%\FDSETUP\SETUP\ >NUL
-copy /y SETTINGS\PKG_ALL.LST %RAMDRV%\FDSETUP\SETUP\FDPLALL.LST >NUL
+copy /y SETTINGS\PKG_FULL.LST %RAMDRV%\FDSETUP\SETUP\FDPLFULL.LST >NUL
 copy /y SETTINGS\PKG_BASE.LST %RAMDRV%\FDSETUP\SETUP\FDPLBASE.LST >NUL
 
 %FDISET% BEGIN SETTINGS\FDNPKG.CFG
@@ -668,10 +668,10 @@ vecho /p Copying required packages to floppy disk /fYellow %FLOPPY% /fGray /p
 
 :RetryCount
 if "%SLIM%" == "y" goto SlimCount
-grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l TOTAL | set /p TCNT=
+grep -iv ^; SETTINGS\PKG_FULL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l TOTAL | set /p TCNT=
 goto CheckCount
 :SlimCount
-grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l TOTAL | set /p TCNT=
+grep -iv ^; SETTINGS\PKG_FULL.LST | vstr /d/b/l TOTAL | set /p TCNT=
 :CheckCount
 if "%TCNT%" == "" goto RetryCount
 set TIDX=0
@@ -679,10 +679,10 @@ set TIDX=0
 :CopyLoop
 set TFILE=
 if "%SLIM%" == "y" goto SlimFile
-grep -iv ^; SETTINGS\PKG_ALL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l %TIDX% | set /p TFILE=
+grep -iv ^; SETTINGS\PKG_FULL.LST SETTINGS\PKG_XTRA.LST | vstr /f : 2- | vstr /d/b/l %TIDX% | set /p TFILE=
 goto CheckFile
 :SlimFile
-grep -iv ^; SETTINGS\PKG_ALL.LST | vstr /d/b/l %TIDX% | set /p TFILE=
+grep -iv ^; SETTINGS\PKG_FULL.LST | vstr /d/b/l %TIDX% | set /p TFILE=
 :CheckFile
 if "%TFILE%" == "" goto CopyLoop
 if "%TFILE%" == "base\welcome" goto RetryInc
@@ -1148,7 +1148,7 @@ goto CleanUp
 :Done
 type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l TOTAL | set /p USED=
 type SETTINGS\PKG_BASE.LST | grep -iv ^; | vstr /b/l TOTAL | set /p BASE=
-type SETTINGS\PKG_ALL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
+type SETTINGS\PKG_FULL.LST | grep -iv ^; | vstr /b/l TOTAL | set /p ALL=
 if "%SLIM%" == ""  type SETTINGS\PKG_XTRA.LST | grep -iv ^; | vstr /b/l TOTAL | set /p XTRA=
 if "%SLIM%" == "y" set XTRA=0
 dir /on /a /b /p- /s %CDROM%\*.zip | grep -iv \\_ | vstr /b/l TOTAL | set /p COUNT=

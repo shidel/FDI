@@ -6,7 +6,7 @@ if exist ..\BIN\FDIMPLES.EXE set FDIM=..\BIN\FDIMPLES.EXE
 
 :Beginning
 
-if exist %FINSP%\FDPLALL.LST goto HasAllPacs
+if exist %FINSP%\FDPLFULL.LST goto HasAllPacs
 if "%FADV%" == "y" goto BaseAdvOnly
 :BaseOnly
 set PF=PAC_FRAME_B
@@ -37,7 +37,7 @@ vecho
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% %PO%
 vecho /t %FLANG% PACBO
 vecho /n /t %FLANG% PACBS
-if not exist %FINSP%\FDPLALL.LST goto HasNoAll
+if not exist %FINSP%\FDPLFULL.LST goto HasNoAll
 vecho /p
 vecho /t %FLANG% PACAO
 vecho /n /t %FLANG% PACAS
@@ -55,7 +55,7 @@ if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 6 goto OptDetailedSrc
 if errorlevel 5 goto OptDetailed
 
-if not exist %FINSP%\FDPLALL.LST goto CheckOptShift
+if not exist %FINSP%\FDPLFULL.LST goto CheckOptShift
 if errorlevel 4 goto OptAllSrc
 if errorlevel 3 goto OptAll
 goto CheckBase
