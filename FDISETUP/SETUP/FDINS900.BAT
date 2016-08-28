@@ -7,14 +7,23 @@ goto AfterOption
 
 :DoOption
 
-set FEXT=DEF
 set DMNU=1
 
+REM DBX=DosBox, QEM=QEMU, VBX=VirtualBox, VMW=VMware, EMU=Other Emulated
+set FEXT=DEF
 vinfo /m
-if errorlevel 104 goto NotDOSBox
-if errorlevel 103 goto IsVirtualBox
-if errorlevel 102 goto NotDOSBox
+if errorlevel 1 set FEXT=186
+if errorlevel 2 set FEXT=286
+if errorlevel 3 set FEXT=386
+if errorlevel 4 set FEXT=486
+if errorlevel 5 set FEXT=586
+if errorlevel 6 set FEXT=686
 if errorlevel 101 set FEXT=DBX
+if errorlevel 102 set FEXT=QEM
+if errorlevel 103 set FEXT=VBX
+if errorlevel 104 set FEXT=VMW
+if errorlevel 200 set FEXT=EMU
+if FEXT=VBX goto IsVirtualBox
 goto NotDOSBox
 
 :IsVirtualBox
@@ -31,11 +40,14 @@ vdelay %FDEL%
 REM Simple Autoexec.bat creation
 
 rem Embed Language configuration and codepage.
+if not exist %FINSP%\AUTOEXEC.%FEXT% set FEXT=DEF
 if not exist %FINSP%\AUTOEXEC.%FEXT% goto SkipAutoExec
 
 type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\AUTOEXEC.BAT
+if errorlevel 1 goto Failed
+vstr >>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
@@ -59,6 +71,20 @@ del %TEMP%\AUTOEXEC.BAT>NUL
 
 :SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
+
+set FEXT=DEF
+vinfo /m
+if errorlevel 1 set FEXT=186
+if errorlevel 2 set FEXT=286
+if errorlevel 3 set FEXT=386
+if errorlevel 4 set FEXT=486
+if errorlevel 5 set FEXT=586
+if errorlevel 6 set FEXT=686
+if errorlevel 101 set FEXT=DBX
+if errorlevel 102 set FEXT=QEM
+if errorlevel 103 set FEXT=VBX
+if errorlevel 104 set FEXT=VMW
+if errorlevel 200 set FEXT=EMU
 
 if not exist %FINSP%\FDCONFIG.%FEXT% goto SkipFDConfig
 CALL FDISET.BAT BEGIN %FINSP%\FDCONFIG.%FEXT%

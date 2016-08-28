@@ -8,8 +8,6 @@ SET DIRCMD=/P /OGN /Y
 rem SET TEMP=%dosdir%\TEMP
 rem SET TMP=%TEMP%
 
-rem SET MTCPCFG=%dosdir%\MTCP.CFG
-rem SET WATTCP.CFG=%dosdir%
 rem SET NLSPATH=%dosdir%\NLS
 rem SET HELPPATH=%dosdir%\HELP
 rem SET BLASTER=A220 I5 D1 H5 P330

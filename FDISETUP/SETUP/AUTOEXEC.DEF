@@ -2,8 +2,6 @@
 SET DOSDIR=$FTARGET$
 SET LANG=$FLANG$
 SET TZ=$TZ$
-SET MTCPCFG=%dosdir%\MTCP.CFG
-SET WATTCP.CFG=%dosdir%
 SET PATH=%dosdir%\BIN
 if exist %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
 SET NLSPATH=%dosdir%\NLS
@@ -21,8 +19,6 @@ LH FDAPM APMDOS
 IF "%config%"=="2" LH SHARE
 rem IF EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
 $LANG_SET$
-REM LH PCNTPK INT=0x60
-REM DHCP
 REM MOUSE
 CTMOUSE
 
@@ -47,4 +43,5 @@ alias auto=edit %0
 set OS_NAME=$OSNAME$
 set OS_VERSION=$OSVER$
 
+if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat

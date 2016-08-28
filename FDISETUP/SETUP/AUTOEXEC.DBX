@@ -30,8 +30,6 @@ REM LH FDAPM APMDOS
 REM LH SHARE
 REM IF EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
 $LANG_SET$
-REM LH PCNTPK INT=0x60
-REM DHCP
 REM MOUSE
 REM CTMOUSE
 
@@ -49,6 +47,7 @@ alias auto=edit %0
 set OS_NAME=$OSNAME$
 set OS_VERSION=$OSVER$
 
+if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
 
 :END
