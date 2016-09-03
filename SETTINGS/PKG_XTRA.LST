@@ -101,7 +101,7 @@ devel\jwasm
 devel\lua
 devel\nasm
 devel\ow
-devel\pacificc
+; devel\pacificc        # Removed
 devel\perl
 devel\regina
 devel\runtime
@@ -109,6 +109,7 @@ devel\tppatch
 devel\upx
 
 edit\blocek
+edit\biew
 edit\doshexed
 edit\e3
 edit\elvis
@@ -119,6 +120,7 @@ edit\pico
 edit\tde
 ; edit\te
 edit\uhex
+edit\freemacs
 
 ; emulator\atari800     # No Sources
 ; emulator\chip8        # No Sources
@@ -142,7 +144,7 @@ emulator\zsnes
 games\bolitare
 games\boom
 games\btitanic
-games\chicken2
+; games\chicken2        # Emailware, pulled
 games\eliza
 games\empong
 games\ewsnake
@@ -153,7 +155,7 @@ games\gnuchess
 games\hangman
 ; games\happylnd        # Freeware, No Sources.
 games\ivan
-games\jumpbump
+; games\jumpbump        # Emailware, pulled
 games\kiloblas
 games\kraptor
 games\lincrawl
@@ -198,7 +200,7 @@ net\wget
 net\wattcp
 
 sound\adplay
-sound\adt2
+; sound\adt2            # Licensing Issue
 sound\bladeenc
 sound\dosmid
 ; sound\dwj             # No Source
@@ -211,7 +213,6 @@ sound\opencp
 util\4dos
 util\ansimat
 util\b64
-util\biew
 util\bmp2png
 util\bootfix
 util\cdrcache
