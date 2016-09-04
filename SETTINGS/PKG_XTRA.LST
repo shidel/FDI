@@ -215,6 +215,7 @@ util\ansimat
 util\b64
 util\bmp2png
 util\bootfix
+util\cal
 util\cdrcache
 util\clamav
 util\clamdb
