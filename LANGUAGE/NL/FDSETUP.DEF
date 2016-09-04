@@ -2,7 +2,7 @@
 FreeDOS 1.2 Installer Dutch Translation.
 Provided by: Maarten Vermeulen
 Contact Email: netraam70@gmail.com
-Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 9 mar 2016
+Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 4 sept 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -59,18 +59,18 @@ REBOOT_YES="  Ja  - Start de computer opnieuw op."
 REBOOT="Uw computer moet opnieuw opstarten."
 
 # STAGE500 - Formating specific
-NOFORMAT_FRAME=/w60 /h10 /c
-NOFORMAT_OPTS=/w50 /h4 /c
-NOFORMATADV_FRAME=/w60 /h11 /c
-NOFORMATADV_OPTS=/w54 /h5 /c
+NOFORMAT_FRAME=/w72 /h10 /c
+NOFORMAT_OPTS=/w62 /h4 /c
+NOFORMATADV_FRAME=/w74 /h11 /c
+NOFORMATADV_OPTS=/w70 /h5 /c
 # vecho "Drive C: does not appear to be formatted."
 NOFORMAT=/s-  "Schijf " /f %1 %2 /f %3 " lijkt niet geformatteerd te zijn."
 FORMAT?="Weet u zeker dat u de schijf wilt formatteren?"
-FORMAT_YES="  Ja  - Verwijder en formatteer schijf %1."
-FORMATADV_QUICK="  Ja  - verwijder en formatteer schijf %1 snel."
-FORMATADV_SLOW="  Ja  - Verwijder en formatteer schijf %1 volledig."
+FORMAT_YES="  Ja  - Verwijder alle bestanden en formatteer schijf %1."
+FORMATADV_QUICK="   Ja - Verwijder alle bestanden en formatteer schijf %1 snel."
+FORMATADV_SLOW="   Ja - Verwijder alle bestanden en formatteer schijf %1 volledig."
 # Also uses EXIT defined above.
-FORMATTING=/s- /fGray "Schijf " /fWhite %1 " aan het formatteren"/fGray ...
+FORMATTING=/s- /fGray "Schijf " /fWhite %1 /fGray " aan het formatteren" /fGray ...
 # The /e switch clears the rest of the current line without moving the cursor.
 PAUSE=/fLightGreen " Druk op een toets... " /e
 
