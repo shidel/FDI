@@ -412,8 +412,14 @@ set TIDX=0
 if "%TIDX%" == "%LANGM%" goto LangDone
 type %TEMP%\LANGNAME.LST| vstr /b/l %TIDX% | set /p TNAME=
 if "%TNAME%" == "" goto LangLoop
-vmath %TIDX% + 1 | set /p TIDX=
+:NoIDXA
+vmath %TIDX% + 1 | set /p TTIDX=
+if "%TTIDX%" == "" goto NoIDXA
+set TIDX=%TTIDX%
+set TTIDX=
+:NoTFILEA
 echo %TNAME% | vstr /b/f = 1 | set /p TFILE=
+if "%TFILE%" == "" goto NoTFILEA
 vecho /r2/c32 /fYellow %TFILE% /s- /fGray : /n
 set TTRY=0
 set TIDS=
@@ -421,7 +427,11 @@ set TIDS=
 if "%TTRY%" == "%LANGM%" goto IDDone
 type %TEMP%\LANGNAME.LST| vstr /b/l %TTRY%|set /p TID=
 if "%TID%" == "" goto IDLoop
-echo %TID% | vstr /b/f = 1 | set /p TID=
+:NoTTID
+echo %TID% | vstr /b/f = 1 | set /p TTID=
+if "%TTID%" == "" goto NoTTID
+set TID=%TTID%
+set TTID=
 :IncLoop
 vmath %TTRY% + 1 | set /p TTM=
 if "%TTM%" == "" goto IncLoop
