@@ -23,7 +23,7 @@ if errorlevel 102 set FEXT=QEM
 if errorlevel 103 set FEXT=VBX
 if errorlevel 104 set FEXT=VMW
 if errorlevel 200 set FEXT=EMU
-if FEXT=VBX goto IsVirtualBox
+if "%FEXT%" == "VBX" goto IsVirtualBox
 goto NotDOSBox
 
 :IsVirtualBox
