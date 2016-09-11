@@ -182,8 +182,18 @@ make_Readme () {
 }
 make_Floppy () {
 
+#    mkdir -p "$DEST/${PROJECT}${LABEL_FLOPPY}"
+#    cp "${FD0_IMG}" "$DEST/${PROJECT}${LABEL_FLOPPY}/${PROJECT}${LABEL_FLOPPY}.img" || {
+#        echo "error: failed to copy boot floppy image"
+#        exit 1
+#    }
+#    cp "${PWD}/README."* "$DEST/${PROJECT}${LABEL_FLOPPY}/" || {
+#        echo "error: failed to copy readme file"
+#        exit 1
+#    }
+
     mkdir -p "$DEST/${PROJECT}${LABEL_FLOPPY}"
-    cp "${FD0_IMG}" "$DEST/${PROJECT}${LABEL_FLOPPY}/${PROJECT}${LABEL_FLOPPY}.img" || {
+    cp "${FD0_IMG}" "$DEST/${PROJECT}${LABEL_FLOPPY}/${LABEL_FLOPPY}.img" || {
         echo "error: failed to copy boot floppy image"
         exit 1
     }

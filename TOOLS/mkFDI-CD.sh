@@ -70,7 +70,7 @@ check_dir "$HOME/FDI/CDROM"
 
 check_dir "$HOME/FDI/CDROM/PKGINFO"
 
-cp -v "${FLOPPY}" "$HOME/FDI"
+cp -v "${FLOPPY}" "$HOME/FDI/FDI.img"
 cp -v "${USB}" "$HOME/FDI/FDI-USB.img"
 
 START=
