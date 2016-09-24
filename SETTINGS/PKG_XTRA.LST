@@ -126,19 +126,19 @@ edit\freemacs
 ; emulator\chip8        # No Sources
 ; emulator\fceu         # No Sources
 ; emulator\glaunch      # No Sources, No License Specified
-emulator\meka
-emulator\mines
+; emulator\meka
+; emulator\mines
 ; emulator\nesticle     # No Sources, No License Specified
-emulator\nosefart
+; emulator\nosefart
 ; emulator\rocknes      # No License Specified
-emulator\simcoupe
-emulator\sneese
-emulator\teo
-emulator\vice
+; emulator\simcoupe
+; emulator\sneese
+; emulator\teo
+; emulator\vice
 ; emulator\xf25         # Free, no source, incompatible license
-emulator\z26
-emulator\zboy
-emulator\zsnes
+; emulator\z26
+; emulator\zboy
+; emulator\zsnes
 ; emulator\zxspectr     # ROM Images
 
 games\bolitare
@@ -169,7 +169,7 @@ games\pakupaku
 ; games\pede            # No License
 games\psrinvad
 games\qtetris
-games\quadnet
+; games\quadnet         # No Sources
 games\snova
 games\sudoku86
 ; games\tetris2k        # Unknown License
@@ -249,7 +249,7 @@ util\lptdrv
 ; util\lscolor          # No Sources
 util\md5sum
 ; util\memtest          # No Sources
-util\memteste
+; util\memteste         # Pulled until sources and licensing issues resolved
 util\ntfs
 util\opengem
 util\ozonegui
@@ -291,7 +291,7 @@ util\zerofill
 
 ; Old FreeDOS 1.1 packages
 boot\syslnx
-base\samcfg
+; base\samcfg           # FART source version issues
 util\dosutil
 util\callver
 util\fdshield
@@ -310,7 +310,7 @@ util\dog
 util\lfndos
 util\gnuchcp
 util\gnufonts
-util\tail
+; util\tail
 util\gnused
 
 ; 7/17/16 additions

@@ -122,7 +122,7 @@ util\head
 util\lfndos
 util\gnuchcp
 util\xgrep
-util\tail
+; util\tail
 
 util\nro
 util\password
