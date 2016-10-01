@@ -246,7 +246,7 @@ echo cd \FDI>>%DRV%\mkFDI.bat
 echo call C:\fdi\mkfdi.bat %%1 %%2 %%3 %%4 %%5 %%6 %%7 %%8 %%9>>%DRV%\mkFDI.bat
 echo popd>>%DRV%\mkFDI.bat
 
-type %SRC%\FDSETUP\SETUP\FDNPBIN.CFG|vstr /s "%%FDRIVE%%" "C:">%DOSDIR%\FDNPKG.CFG
+type %SRC%\FDSETUP\SETUP\FDNPBIN.CFG|vstr /s "%%FDRIVE%%" "C:">%DOSDIR%\BIN\FDNPKG.CFG
 
 vecho , /fLightGreen OK /fGray /s- .
 vdelay 500
