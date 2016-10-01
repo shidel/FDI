@@ -141,6 +141,8 @@ util\uptime
 util\xkeyb
 util\shareext
 
+net\fdnet
+
 ; No longer installed to due insufficient disk space on slim USB stick
 ; There are still included as extras on the Big USB and CD-ROM versions.
 

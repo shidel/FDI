@@ -198,6 +198,7 @@ net\vmsmount
 net\vncview
 net\wget
 net\wattcp
+net\fdnet
 
 sound\adplay
 ; sound\adt2            # Licensing Issue
