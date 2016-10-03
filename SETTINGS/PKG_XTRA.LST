@@ -180,7 +180,7 @@ games\ww1
 ; games\xargon          # Two Licenses
 games\zmiy
 
-net\crynwr
+; net\crynwr
 ; net\ctorrent          # No License, no sources.
 net\curl
 net\dillo
