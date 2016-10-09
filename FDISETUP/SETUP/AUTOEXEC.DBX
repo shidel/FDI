@@ -1,5 +1,9 @@
 @ECHO OFF
 
+rem FreeDOS DOSBox specific AUTOEXEC.BAT file. You may wish to have your
+rem Z:\AUTOEXEC.BAT file check for and automatically launch this batch file
+rem at DOSBox startup.
+
 if "%1" == "FREEDOS" goto ShellLoaded
 $FDRIVE$
 CD\
