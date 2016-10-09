@@ -204,6 +204,7 @@ vecho
 
 REM Copy FDI Sources to root *************************************************
 vecho /n Copying FDI Sources to %DRV%\FDI directory
+if not exist  %DOSDIR%\SOURCE\FDISRC\NUL goto Error
 mkdir %DRV%\FDI >NUL
 xcopy /y /E %DOSDIR%\SOURCE\FDISRC\*.* %DRV%\FDI\>NUL
 vecho , /fLightGreen OK /fGray /s- .
@@ -290,3 +291,5 @@ set OLD.TEMP=
 set OLD.DOSDIR=
 set OLD.FDNPKG=
 set OLD.PATH=
+
+:VeryEnd
