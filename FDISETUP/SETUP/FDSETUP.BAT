@@ -48,14 +48,14 @@ if "%FFOUND%" == "y" goto NoInstallNeeded
 verrlvl 0
 :SkipInstallCheck
 
-REM Show Logo file if present.
-if exist FDSPLASH.BAT call FDSPLASH.BAT
-if errorlevel 1 goto Aborted
-
 REM Set Installer theme.
 set FSTAGE=200
 if not exist STAGE%FSTAGE%.BAT goto Error
 call STAGE%FSTAGE%.BAT
+if errorlevel 1 goto Aborted
+
+REM Show Logo file if present.
+if exist FDSPLASH.BAT call FDSPLASH.BAT
 if errorlevel 1 goto Aborted
 
 if "%1" == "MBRZAP" goto DiskTesting
