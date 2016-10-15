@@ -1,0 +1,57 @@
+; Package list for additional packages that are installed onto the FULL version
+; of the FDI USB Stick image.
+
+; These are the same as all other install media versions.
+
+base\command
+base\kernel
+base\deltree
+base\xcopy
+base\devload
+base\attrib
+base\shsucdx
+util\shsufdrv
+base\fdisk
+base\fdapm
+base\format
+base\fc
+
+util\v8power
+util\fdimples
+
+base\lbacache
+util\grep
+util\fdnpkg
+archiver\zip
+
+base\himemx
+base\jemm
+base\edit
+base\mem
+base\more
+util\doslfn
+
+util\udvd2
+
+; These are additional packages only on FULL USB Stick.
+; DO NOT duplicate package entries.
+
+archiver\bz2
+archiver\gzip
+archiver\tar
+archiver\unzip
+
+net\fdnet
+
+util\bootfix
+util\cwsdpmi
+util\md5sum
+util\part
+util\raread
+util\rawrite
+util\usbdos
+util\which
+util\whichfat
+util\xfdisk
+
+

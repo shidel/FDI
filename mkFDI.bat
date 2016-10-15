@@ -289,10 +289,17 @@ if errorlevel 1 goto SysError
 popd
 vecho , /fLightGreen OK /fGray /p
 
+set PLIST=SETTINGS\PKG_FDI.LST
+if not "%USB%" == "y" goto SmallPList
+if "%SLIM%" == "y" goto SmallPList
+if "%ELT%" == "y" goto SmallPList
+set PLIST=SETTINGS\PKG_LIVE.LST
+:SmallPList
+
 vecho Installing packages to /fYellow %RAMDRV% /fGray
 set TIDX=0
 :PkgLoop
-type SETTINGS\PKG_FDI.LST | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
+type %PLIST% | grep -iv ^; | vstr /b/l %TIDX% | set /p TFILE=
 if not "%TIDX%" == "0" goto PkgCheck
 if "%TFILE%" == "" goto PkgLoop
 :PkgCheck
@@ -330,6 +337,7 @@ goto PkgLoop
 :PkgDone
 set TFILE=
 set TIDX=
+set PLIST=
 vecho Packages /fLightGreen Done /fGray /s- . /p
 
 vecho /n "Replacing system files on Ramdrive"
@@ -444,16 +452,17 @@ if not "%TIDS%" == "" set TIDS=%TIDS%,
 set TIDS=%TIDS% '%TGO%'
 goto IDLoop
 :IDDone
-echo %TIDS% | vstr /n /b /s "'" "" |vecho /i /n
-type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
-echo LANG_LIST=/r4/c32%TIDS% /e  |vstr /n/b/s "," " /e/p/r4/c32">>%TEMP%\FDSETUP.DEF
-type LANGUAGE\%TFILE%\FDSETUP.DEF| grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
-grep -A 1000 "^\*\*\*" %TEMP%\FDSETUP.DEF | grep -iv "^;\|^#|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
+echo %TIDS% | vstr /n /b /s "'" "" | vecho /i /n
+type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
+echo LANG_LIST=/r4/c32%TIDS% /e | vstr /n/b/s "," " /e/p/r4/c32" >>%TEMP%\FDSETUP.DEF
+type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
+type %TEMP%\FDSETUP.DEF | grep -A 1000 "^\*\*\*" | grep -iv "^;\|^#|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
 copy /y %TEMP%\FDSETUP.TMP %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
+vgotoxy /l eot next
+vecho /n /fCyan " +"
 del %TEMP%\FDSETUP.TMP >NUL
 del %TEMP%\FDSETUP.DEF >NUL
-vgotoxy /l eot next
-vecho , /fLightGreen OK /a7
+vecho /fLightGreen " OK" /a7
 set TTRY=
 set TID=
 set TGO=

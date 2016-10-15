@@ -257,7 +257,7 @@ deltree /y %TEMP%\*.* >NUL
 
 vecho /fLightGreen Drive /fWhite %DRV% /fLightGreen has been setup for /n
 vecho /fWhite /c32 FDI /fLightGreen development. /fGray
-vecho /p /n Please shutdown now.
+vecho /p /n "Please shutdown now... "
 vpause /fLightRed /d 30 CTRL+C
 if errorlevel 200 goto Restore
 vecho /fGray /bBlack /p/p
