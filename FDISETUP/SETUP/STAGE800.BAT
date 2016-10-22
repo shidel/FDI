@@ -87,6 +87,10 @@ if not "%OSYS%" == "y" goto RebootWarning
 if not "%OBSS%" == "y" goto RebootWarning
 goto NoWarning
 :RebootWarning
+vinfo /m
+if errorlevel 102 goto vmWarning
+if errorlevel 101 goto NoWarning
+:vmWarning
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
 vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
