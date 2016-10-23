@@ -42,6 +42,7 @@ set FPKGS=
 set FPSKP=
 set FTSET=
 set FTMP=
+set FKB=
 
 rem clear built-in installer options settings
 set OVOL=

@@ -37,7 +37,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
 vecho /n /t %FLANG% ICONFIGS
 vdelay %FDEL%
 
-REM Simple Autoexec.bat creation
+REM Simple AUTOEXEC.BAT creation
 
 rem Embed Language configuration and codepage.
 if not exist %FINSP%\AUTOEXEC.%FEXT% set FEXT=DEF
@@ -48,6 +48,10 @@ if errorlevel 1 goto Failed
 if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 vstr >>%TEMP%\AUTOEXEC.BAT
+if not exist %LANG%\KEYBOARD.LST goto NoKeyboards
+type %LANG%\KEYBOARD.LST | grep -i "^VALUE.%FKB%=" | vstr /f = 2 | vstr /b/n>>%TEMP%\AUTOEXEC.BAT
+vstr >>%TEMP%\AUTOEXEC.BAT
+:NoKeyboards
 if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed

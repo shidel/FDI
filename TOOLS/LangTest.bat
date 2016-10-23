@@ -240,6 +240,34 @@ if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
 REM ***** FDSETUP
+:KEYMAP
+call %SELF% CLS KEYMAP FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBS_FRAME
+vecho /t %FLANG% KBS?
+vecho
+vframe /b %TFB% /f %TFF% optionbox /t %FLANG% KBS_OPTS
+vecho /n /t %FLANG% KBO.1
+vecho /n /t %FLANG% KBO.2
+vecho /n /t %FLANG% KBM
+
+vchoice /a %TFC% Ctrl-C /d 1
+
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+:KEYMAP_ALL
+call %SELF% CLS KEYMAP_ALL FDSETUP
+vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBA_FRAME
+vecho /n " Language 1" /p " Language 2" /p " Language 3" /p " Language 4"
+vecho /p " Language 5" /p " Language 6" /p " Language 7" /p " Language 8"
+vecho /n /t %FLANG% KBL
+
+vchoice /a %TFC% Ctrl-C /d 1
+
+if Errorlevel 200 goto Abort
+if "%FADV%" == "" goto %PART%
+
+
 :TARGET
 call %SELF% CLS TARGET FDSETUP ADV
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME

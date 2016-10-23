@@ -158,10 +158,15 @@ AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /f
 AUTO_HELP=Tajpu /fWhite %1 /fGray por akiri helpon pri ordonoj kaj veturadon.
 AUTO_WELCOME=Bonvolu al la /fGreen %1 /fCyan %2 /fGray mashinestro (OS) ( /s- /fYellow "%3" /fGray )
 
-
-# FDASK000 - Reserved
-
 # FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Bonvolu elekti via klavararango.
+KBO.1=" Usona angla (Defaulta)" /p " Britio angla" /p " hispana" /p " franca" /p " germana" /p
+KBO.2=" germana (Alterna Arango)" /p " nederlando"
+KBM=/p/p " Pli klavaro elektoj..."
+KBL=" Malpli klavaro elektoj..."
+KBA_FRAME=/w58 /h13 /c
 
 # FDASK200 - Backup old OS
 BACKUP_FRAME=/w62 /h10 /c

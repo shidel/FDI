@@ -159,10 +159,17 @@ AUTO_DONE=Fini "d'installer" les fichiers de d‚marrage /fCyan %1 /a7 et /fCyan %
 AUTO_HELP=Taper /fWhite %1 /fGray pour obtenir du support concernant les commandes et la navigation.
 AUTO_WELCOME=Bienvenue au systŠme "d'exploitation" /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
 
-
 # FDASK000 - Reserved
 
 # FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?="S'il vous plaŒt s‚lectionnez votre disposition" /p "de clavier."
+KBO.1=" US Anglais (par d‚faut)" /p " UK Anglais" /p " Espagnol" /p " Fran‡ais" /p " Allemand" /p
+KBO.2=" Allemand (autre clavier)" /p " Hollandais"
+KBM=/p/p " Plus de choix de clavier..."
+KBL=" choix clavier Moins..."
+KBA_FRAME=/w58 /h13 /c
 
 # FDASK200 - Backup old OS
 BACKUP_FRAME=/w72 /h10 /c
@@ -176,7 +183,6 @@ BACKUPY="  Oui - Sauvegarder les fichiers avant."
 BACKUPZ="  Oui - Sauvegarder dans un fichier .zip avant."
 BACKUPN="  Non - Installer sans sauvegarder les anciens fichiers."
 
-# FSASK100 - Advanced mode
 TARGET_FRAME=/w60 /h7 /c
 TARGET?=Changer le r‚pertoire de destination?
 # vask "C:\FDOS"

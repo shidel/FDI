@@ -165,7 +165,16 @@ AUTO_WELCOME=Welkom bij het /fGreen %1 /fCyan %2 /fGray besturingssysteem ( /s- 
 
 # FDASK000 - Reserved
 
+
 # FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Selecteer uw toetsenbordindeling.
+KBO.1=" Engels (standaard)" /p " Verenigd Koninkrijk Engels" /p " Spaans" /p " Frans" /p " Duits" /p
+KBO.2=" Duits (alternatieve versie) " /p " Nederlands "
+KBM=/p/p " Meer toetsenbord opties..."
+KBL=" Minder toetsenbord opties..."
+KBA_FRAME=/w58 /h13 /c
 
 # FDASK200 - Backup old OS
 BACKUP_FRAME=/w60 /h10 /c

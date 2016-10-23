@@ -266,6 +266,14 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 
 -------------------------------------------------------------------------------
 # FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Please select your keyboard layout.
+KBO.1=" US English (Default)" /p " UK English" /p " Spanish" /p " French" /p " German" /p
+KBO.2=" German (Alternate) " /p " Netherlands "
+KBM=/p/p " More keyboard choices..."
+KBL=" Fewer keyboard choices..."
+KBA_FRAME=/w48 /h13 /c
 
 -------------------------------------------------------------------------------
 # FDASK200 - Backup old OS

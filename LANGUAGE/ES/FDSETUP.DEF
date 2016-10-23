@@ -145,9 +145,16 @@ AUTO_DONE=Completado el procesamiento de los archivos de arranque /p /fCyan %1 /
 AUTO_HELP=Escriba /fWhite %1 /fGray para obtener ayuda sobre los comandos y la navegaci¢n.
 AUTO_WELCOME=Bienvenido al sistema operativo /fGreen %1 /fCyan %2 /fGray ( /s- /fYellow "%3" /fGray )
 
-# FDASK000 - Reserved
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w42 /h11 /c
+KBS?=Por favor seleccione la distribuci¢n del teclado.
+KBO.1=" Ingl‚s de Estados Unidos (por defecto)" /p " Reino Unido Ingl‚s" /p " Espa¤ol" /p
+KBO.2=" Franc‚s" /p " Alem n" /p " Alem n (Disposici¢n alternativo)" /p " Holand‚s Pa¡ses Bajos"
+KBM=/p/p " M s opciones de teclado..."
+KBL=" Menos opciones de teclado..."
+KBA_FRAME=/w58 /h13 /c
 
-# FSASK100 - Advanced mode
 TARGET_FRAME=/w60 /h7 /c
 TARGET?=¨Cambiar el directorio destino de la instalaci¢n?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
