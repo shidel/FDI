@@ -452,14 +452,12 @@ if not "%TIDS%" == "" set TIDS=%TIDS%,
 set TIDS=%TIDS% '%TGO%'
 goto IDLoop
 :IDDone
-echo %TIDS% | vstr /n /b /s "'" "" | vecho /i /n
+echo %TIDS% | vstr /n /b /s "'" "" | vecho /i /n /fCyan "+"
 type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
 echo LANG_LIST=/r4/c32%TIDS% /e | vstr /n/b/s "," " /e/p/r4/c32" >>%TEMP%\FDSETUP.DEF
 type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
 type %TEMP%\FDSETUP.DEF | grep -A 1000 "^\*\*\*" | grep -iv "^;\|^#|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
 copy /y %TEMP%\FDSETUP.TMP %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
-vgotoxy /l eot next
-vecho /n /fCyan " +"
 del %TEMP%\FDSETUP.TMP >NUL
 del %TEMP%\FDSETUP.DEF >NUL
 vecho /fLightGreen " OK" /a7
@@ -514,6 +512,73 @@ copy /y %TEMP%\STAGE300.BAT %RAMDRV%\FDSETUP\SETUP\STAGE300.BAT>NUL
 del %TEMP%\STAGE300.BAT>NUL
 vecho , /fLightGreen Done /fGray /p
 
+REM ---
+vecho Adding additional keyboard layouts. /n
+
+:DirCount
+dir /on/a/b/p- LANGUAGE | grep -iv "^TEMPLATE\|^_" | vstr /b/l total | set /p TLC=
+if "%TLC%" == "" goto DirCount
+:KeyCount
+dir /on/a/b/p- KEYBOARD\*.KYB | grep -iv "^_" | vstr /b/l total | set /p TKC=
+if "%TKC%" == "" goto KeyCount
+vecho /c32 /fYellow %TKC% /fGray keymaps for /fYellow %TLC% /fGray Languages.
+
+set TID=7
+
+set TKI=0
+:KeyLoop
+if "%TKI%" == "%TKC%" goto KeyDone
+
+:KeyID
+vmath %TID% + 1 | set /p TTT=
+if "%TTT%" == "" goto KeyLangMath
+set TID=%TTT%
+
+:KeyName
+dir /on/a/b/p- KEYBOARD\*.KYB | grep -iv "^_" | vstr /b/l %TKI% | vstr /f . 1 | set /p TKN=
+if "%TKN%" == "" goto KeyName
+vecho /n/r2/c32 /fYellow %TKN% /fGray /s- : /s+
+set TLI=0
+:KeyLangLoop
+if "%TLI%" == "%TLC%" goto KeyLangDone
+:KeyLangID
+dir /on/a/b/p- LANGUAGE | grep -iv "^TEMPLATE\|^_" | vstr /b/l %TLI% | set /p TLN=
+if "%TLN%" == "" goto KeyLangID
+if not "%TLI%" == "0" vecho /n ,
+vecho /n /c32 %TLN%
+
+vstr >%TEMP%\KEYBOARD.LST
+type KEYBOARD\%TKN%.KYB|grep -i "^;\|^%TLN%="|vstr /s %TLN%= TITLE.=>>%TEMP%\KEYBOARD.LST
+type KEYBOARD\%TKN%.KYB|grep -i "^CMD="|vstr /s CMD= VALUE.=>>%TEMP%\KEYBOARD.LST
+vstr >>%RAMDRV%\FDSETUP\SETUP\%TLN%\KEYBOARD.LST
+type %TEMP%\KEYBOARD.LST|vstr /s .= .%TID%= |vstr /b/n>>%RAMDRV%\FDSETUP\SETUP\%TLN%\KEYBOARD.LST
+del %TEMP%\KEYBOARD.LST>NUL
+
+:KeyLangMath
+vmath %TLI% + 1 | set /p TTT=
+if "%TTT%" == "" goto KeyLangMath
+set TLI=%TTT%
+goto KeyLangLoop
+
+:KeyLangDone
+vecho /c32 /fCyan + /fGreen OK /fGray
+:KeyMath
+vmath %TKI% + 1 | set /p TTT=
+if "%TTT%" == "" goto KeyMath
+set TKI=%TTT%
+goto KeyLoop
+
+:KeyDone
+vecho /fLightGreen Done /fGray /p
+set TKC=
+set TLC=
+set TKI=
+set TLI=
+set TTT=
+set TKN=
+set TLN=
+REM ---
+
 vecho  Creating FreeDOS welcome message installation package with /n
 if not exist %TEMP%\WELCOME\NUL mkdir %TEMP%\WELCOME>NUL
 if not exist %TEMP%\WELCOME\APPINFO\NUL mkdir %TEMP%\WELCOME\APPINFO>NUL
@@ -524,7 +589,7 @@ type WELCOME\APPINFO.LSM|vstr /s $VERSION$ "%OS_VERSION%"|vstr /b/s $DATE$ "%TNO
 set TNOW=
 :NLSCount
 set TCNT=
-dir /a/b/s LANGUAGE\FDSETUP.DEF| grep -iv TEMPLATE\\|vstr /b/l total| set /p TCNT=
+dir /on/a/b/s/p- LANGUAGE\FDSETUP.DEF| grep -iv TEMPLATE\\|vstr /b/l total| set /p TCNT=
 if "%TCNT%" == "" goto NLSCount
 vmath %TCNT% + 1 | set /p TTRY=
 if "%TTRY%" == "" goto NLSCount
@@ -540,7 +605,7 @@ if not "%TIDX%" == "%TCNT%" vecho , /c32 /n
 set TIDX=%TTRY%
 
 :NLSName
-dir /a/b/s LANGUAGE\FDSETUP.DEF|grep -iv TEMPLATE\\|vstr /b/l %TIDX%|vstr /n/f LANGUAGE\ 2-|vstr /n/f \ 1|set /p TNAME=
+dir /on/a/b/s/p- LANGUAGE\FDSETUP.DEF|grep -iv TEMPLATE\\|vstr /b/l %TIDX%|vstr /n/f LANGUAGE\ 2-|vstr /n/f \ 1|set /p TNAME=
 if "%TNAME%" == "" goto NLSName
 grep ^AUTO_ LANGUAGE\%TNAME%\FDSETUP.DEF >%TEMP%\WELCOME\NLS\WELCOME.%TNAME%
 vecho /fLightCyan %TNAME% /s- /fGray /n
