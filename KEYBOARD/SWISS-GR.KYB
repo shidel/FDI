@@ -1,0 +1,11 @@
+; Optional Swiss German Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Swiss German
+ES=Suizo Alem n
+DE=Schweizerdeutsch
+FR=Suisse allemand
+NL=Zwitserduits
+EO=svislando germana
+
+CMD=mkeyb SV

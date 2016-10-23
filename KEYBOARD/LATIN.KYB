@@ -1,0 +1,11 @@
+; Optional Latin American Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Latin American
+ES=Latinoamericano
+DE=Lateinamerikanisch
+FR=Latino-Am‚ricain
+NL=Latijns-Amerikaans
+EO=latinamerikaj
+
+CMD=mkeyb LA

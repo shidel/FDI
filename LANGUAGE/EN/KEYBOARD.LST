@@ -1,0 +1,17 @@
+; The first 7 keyboard mapping settings are defaults and built into installer.
+
+TITLE.1=US English (Default)
+VALUE.1=
+TITLE.2=UK English
+VALUE.2=mkeyb UK
+TITLE.3=Spanish
+VALUE.3=mkeyb SP
+TITLE.4=French
+VALUE.4=mkeyb FR
+TITLE.5=German
+VALUE.5=mkeyb GR
+TITLE.6=German (Alternate Layout)
+VALUE.6=mkeyb GR2
+TITLE.7=Netherlands
+VALUE.7=mkeyb NE
+
