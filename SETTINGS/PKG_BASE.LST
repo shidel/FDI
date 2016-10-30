@@ -45,7 +45,6 @@ base\move
 base\nansi
 base\nlsfunc
 base\print
-; base\rdisk
 base\recover
 base\replace
 base\share
@@ -69,4 +68,3 @@ util\shsufdrv
 
 archiver\zip
 archiver\unzip
-

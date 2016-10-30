@@ -45,7 +45,6 @@ base\move
 base\nansi
 base\nlsfunc
 base\print
-; base\rdisk
 base\recover
 base\replace
 base\share
@@ -122,7 +121,6 @@ util\head
 util\lfndos
 util\gnuchcp
 util\xgrep
-; util\tail
 
 util\nro
 util\password

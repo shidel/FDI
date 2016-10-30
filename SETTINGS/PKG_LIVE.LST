@@ -36,12 +36,36 @@ util\udvd2
 ; These are additional packages only on FULL USB Stick.
 ; DO NOT duplicate package entries.
 
+base\chkdsk
+base\ctmouse
+base\defrag
+base\devload
+base\diskcomp
+base\diskcopy
+base\display
+base\dosfsck
+base\find
+base\keyb
+base\keyb_lay
+base\mkeyb
+base\mode
+base\more
+base\move
+base\replace
+base\share
+base\sort
+base\tree
+base\undelete
+base\unformat
+
 archiver\bz2
 archiver\gzip
 archiver\tar
 archiver\unzip
 
 net\fdnet
+net\wget
+net\vmsmount
 
 util\bootfix
 util\cwsdpmi
@@ -53,5 +77,6 @@ util\usbdos
 util\which
 util\whichfat
 util\xfdisk
+util\xkeyb
 
 
