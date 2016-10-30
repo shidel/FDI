@@ -1,0 +1,11 @@
+; Optional Spanish Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Spanish
+ES=Espa¤ol
+DE=Spanisch
+FR=Espagnol
+NL=Spaans
+EO=hispana
+
+CMD=mkeyb SP

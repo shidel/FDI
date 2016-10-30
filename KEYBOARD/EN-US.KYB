@@ -1,0 +1,11 @@
+; Optional United States of America English Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=US English
+ES=Ingl‚s de Estados Unidos
+DE=US-Englisch
+FR=US Anglais
+NL=Engels
+EO=Usona angla
+
+CMD=mkeyb UK

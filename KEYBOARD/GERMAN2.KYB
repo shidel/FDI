@@ -1,0 +1,11 @@
+; Optional Alternate German Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=German (Alternate Layout)
+ES=Alem n (Disposici¢n alternativo)
+DE=Deutsche (Wechseln)
+FR=Allemand (autre clavier)
+NL=Duits (alternatieve versie)
+EO=germana (Alterna Arango)
+
+CMD=mkeyb GR2

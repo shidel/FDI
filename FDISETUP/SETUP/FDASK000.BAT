@@ -3,8 +3,12 @@
 REM Keyboard Keymap selection
 
 if "%KLST%" == "y" goto KBAdv
-if "%FADV%" == "y" goto KBSimple
-if "%LANG%" == "EN" goto Done
+
+REM Remove the REM statements to only show keyboard layout selection for
+REM non-English and advanced mode users.
+
+REM if "%FADV%" == "y" goto KBSimple
+REM if "%LANG%" == "EN" goto Done
 
 :KBSimple
 set KLST=
@@ -50,7 +54,7 @@ if errorlevel 108 set KBI=8
 goto KBPoll
 
 :ScrollUp
-if "%KBP%" == "0" goto AtTop
+if "%KBP%" == "9" goto AtTop
 :UpCheck
 vmath %KBP% - 1 | set /p KTT=
 if "%KTT%" == "" goto UpCheck
@@ -95,6 +99,14 @@ if not exist %LANG%\KEYBOARD.LST goto KBSimple
 :CountCheck
 type %LANG%\KEYBOARD.LST | grep -i "^TITLE." | vstr /B/L TOTAL | set /p KBM=
 if "%KBM%" == "" goto CountCheck
+:GetMaxLine
+vmath %KBM% - 1 | set /p KTT=
+if "%KTT%" == "" goto GetMaxLine
+set KBM=%KTT%
+:GetMaxValue
+type %LANG%\KEYBOARD.LST|grep -i "^TITLE."|vstr /B/L%KBM%|vstr /f. 2|vstr /f= 1|set /p KTT=
+if "%KTT%" == "" goto GetMaxValue
+set KBM=%KTT%
 :AddReturnCheck
 vmath %KBM% + 1 | set /p KTT=
 if "%KTT%" == "" goto AddReturnCheck
@@ -103,15 +115,20 @@ set KTT=
 
 set KLST=y
 set KBI=1
-set KBP=0
+set KBP=9
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBA_FRAME
 
-vecho /n /t %FLANG% KBO.1
-vecho /t %FLANG% KBO.2
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.8
-vecho /n /c32 /t %LANG%\KEYBOARD.LST TITLE.9
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.10
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.11
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.12
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.13
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.14
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.15
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.16
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.17
+vecho /n /c32 /t %LANG%\KEYBOARD.LST TITLE.18
 
 :KBPoll
 set KBT=

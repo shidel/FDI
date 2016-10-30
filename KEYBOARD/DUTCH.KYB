@@ -1,0 +1,11 @@
+; Optional Dutch Netherlands Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Netherlands
+ES=Holand‚s Pa¡ses Bajos
+DE=Niederlande
+FR=Hollandais
+NL=Nederlands
+EO=nederlando
+
+CMD=mkeyb NE

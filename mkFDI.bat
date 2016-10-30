@@ -523,7 +523,7 @@ dir /on/a/b/p- KEYBOARD\*.KYB | grep -iv "^_" | vstr /b/l total | set /p TKC=
 if "%TKC%" == "" goto KeyCount
 vecho /c32 /fYellow %TKC% /fGray keymaps for /fYellow %TLC% /fGray Languages.
 
-set TID=7
+set TID=9
 
 set TKI=0
 :KeyLoop

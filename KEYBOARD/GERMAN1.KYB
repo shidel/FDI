@@ -1,0 +1,11 @@
+; Optional German Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=German
+ES=Alem n
+DE=Deutsche
+FR=Allemand
+NL=Duits
+EO=germana
+
+CMD=mkeyb GR

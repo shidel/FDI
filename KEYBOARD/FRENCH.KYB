@@ -1,0 +1,11 @@
+; Optional French Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=French
+ES=Franc‚s
+DE=Franz”sisch
+FR=Fran‡ais
+NL=Frans
+EO=franca
+
+CMD=mkeyb FR
