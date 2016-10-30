@@ -1,0 +1,11 @@
+; Optional Brazil Extended Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Brazil extended
+ES=Brasil extendi¢
+DE=Brasilien verl„ngert
+FR=Br‚sil ‚tendu
+NL=Brazili‰ verlengd
+EO=brazilo etendis
+
+CMD=mkeyb BX

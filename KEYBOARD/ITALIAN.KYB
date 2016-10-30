@@ -1,0 +1,11 @@
+; Optional Italian Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Italian
+ES=Italiano
+DE=Italienisch
+FR=Italien
+NL=Italiaans
+EO=itala
+
+CMD=mkeyb IT

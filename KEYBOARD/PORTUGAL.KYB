@@ -1,0 +1,11 @@
+; Optional Portugal Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Portugal
+ES=Portugal
+DE=Portugal
+FR=Le Portugal
+NL=Portugal
+EO=portugal
+
+CMD=mkeyb PO

@@ -1,0 +1,11 @@
+; Optional Hebrew Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Hebrew
+ES=Hebreo
+DE=Hebr„isch
+FR=H‚breu
+NL=Hebreeuws
+EO=hebrea
+
+CMD=mkeyb HE

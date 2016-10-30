@@ -1,0 +1,11 @@
+; Optional Polish Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Polish
+ES=Polaco
+DE=Polieren
+FR=Polonais
+NL=Pools
+EO=pola
+
+CMD=mkeyb PL

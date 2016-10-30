@@ -1,0 +1,11 @@
+; Optional Swedish Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Swedish
+ES=Sueco
+DE=Schwedisch
+FR=Su‚dois
+NL=Zweeds
+EO=sveda
+
+CMD=mkeyb SV

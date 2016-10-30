@@ -1,0 +1,11 @@
+; Optional Brazil Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Brazil
+ES=Brasil
+DE=Brasilien
+FR=Br‚sil
+NL=Brazili‰
+EO=brazilo
+
+CMD=mkeyb BR

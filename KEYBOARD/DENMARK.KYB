@@ -1,0 +1,11 @@
+; Optional Denamrk Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Denmark
+ES=Dinamarca
+DE=D„nemark
+FR=Danemark
+NL=Denemarken
+EO=danio
+
+CMD=mkeyb DK
