@@ -39,7 +39,6 @@ util\udvd2
 base\chkdsk
 base\ctmouse
 base\defrag
-base\devload
 base\diskcomp
 base\diskcopy
 base\display
@@ -49,7 +48,6 @@ base\keyb
 base\keyb_lay
 base\mkeyb
 base\mode
-base\more
 base\move
 base\replace
 base\share
