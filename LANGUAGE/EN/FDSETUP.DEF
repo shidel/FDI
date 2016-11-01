@@ -198,7 +198,7 @@ XFERN="  No  - Do not transfer system files"
 
 OBSS_FRAME=/w52 /h8 /c
 OBSS_OPTS=/w34 /h4 /c
-OBSS?=Force new boot sector code on dive /f %1 %2 /f %3 (%4:%5)?
+OBSS?=Force new boot sector code on drive /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Yes - Overwrite MBR"
 OBSSN="  No  - Don't force new MBR"
 
