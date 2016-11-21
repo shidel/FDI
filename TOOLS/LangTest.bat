@@ -636,6 +636,15 @@ vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
 vpause /fLightCyan /d 60 CTRL+C
 if Errorlevel 200 goto Abort
 
+:NORUN
+SET FADV="y"
+call %SELF% BLACK NORUN FDSETUP
+vgotoxy eop sor up
+vecho /n /t %FLANG% NORUN.1
+vecho /t %FLANG% NORUN.2
+call %SELF% STANDBY
+if Errorlevel 200 goto Abort
+
 :BOOTWARN
 SET FADV="y"
 call %SELF% BLACK BOOTWARN FDSETUP
