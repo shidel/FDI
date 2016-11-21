@@ -1,0 +1,12 @@
+; Optional Turkish QWERTY Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Turkish
+ES=Turco
+DE=TÅrkisch
+FR=Turc
+NL=Turks
+EO=turkish
+TR=TÅrkáe
+
+CMD=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS

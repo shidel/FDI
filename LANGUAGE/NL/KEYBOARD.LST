@@ -13,5 +13,5 @@ VALUE.5=mkeyb GR
 TITLE.6=Nederlands
 VALUE.6=mkeyb NE
 TITLE.7=Turks
-VALUE.7=
+VALUE.7=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS
 
