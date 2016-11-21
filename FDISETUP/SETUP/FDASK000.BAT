@@ -16,7 +16,8 @@ set KTT=1
 if "%LANG%" == "ES" set KTT=3
 if "%LANG%" == "FR" set KTT=4
 if "%LANG%" == "DE" set KTT=5
-if "%LANG%" == "NL" set KTT=7
+if "%LANG%" == "NL" set KTT=6
+if "%LANG%" == "TR" set KTT=7
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBS_FRAME

@@ -144,7 +144,7 @@ REBOOT_WARN.4=/c32 MBR alançna /p yeni înyÅkleme kodu yazdçracaktçr.
 REBOOT_WARN.5=
 
 # AUTOEXEC.BAT messages
-AUTO_DONE=ûu baülangçá dosyalarçnçn iülenmesi sona erdi: /fCyan %1 /a7 ve /fCyan %2 /a7
+AUTO_DONE=ûu baülangçá dosyalarçnçn iülenmesi sona erdi:/p /fCyan %1 /a7 ve /fCyan %2 /a7
 AUTO_HELP=Type Komutlar ve gezinti hakkçnda yardçm iáin: /fWhite %1 /fGray /s- .
 AUTO_WELCOME=/fGreen %1 /fCyan %2 /fGray iületim sistemine hoü geldiniz ( /s- /fYellow "%3" /fGray )
 
