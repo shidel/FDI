@@ -1,12 +1,12 @@
 ; Optional Turkish QWERTY Keyboard Layout Definition
 ; by Jerome Shidel
 
-EN=Turkish
-ES=Turco
-DE=TÅrkisch
-FR=Turc
-NL=Turks
-EO=turkish
-TR=TÅrkáe
+EN=Turkish (Q Keyboard)
+ES=Turco (Q Teclado)
+DE=TÅrkisch (Q Tastatur)
+FR=Turc (Q Clavier)
+NL=Turks (Q Toetsenbord)
+EO=turkish (Q klavaro)
+TR=TÅrkáe (Q klavye)
 
 CMD=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS

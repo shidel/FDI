@@ -1,0 +1,12 @@
+; Optional Turkish FGGIOD Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Turkish (F Keyboard)
+ES=Turco (F Teclado)
+DE=TÅrkisch (F Tastatur)
+FR=Turc (F Clavier)
+NL=Turks (F Toetsenbord)
+EO=turkish (F klavaro)
+TR=TÅrkáe (F klavye)
+
+CMD=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS /ID:440
