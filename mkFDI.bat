@@ -456,7 +456,7 @@ echo %TIDS% | vstr /n /b /s "'" "" | vecho /i /n /fCyan "+"
 type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -B 1000 ^LANG_ASK\= >%TEMP%\FDSETUP.DEF
 echo LANG_LIST=/r4/c32%TIDS% /e | vstr /n/b/s "," " /e/p/r4/c32" >>%TEMP%\FDSETUP.DEF
 type LANGUAGE\%TFILE%\FDSETUP.DEF | grep -A 1000 ^LANG_ASK\= | grep -A 1000 -v ^LANG_ASK\= >>%TEMP%\FDSETUP.DEF
-type %TEMP%\FDSETUP.DEF | grep -A 1000 "^\*\*\*" | grep -iv "^;\|^#|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
+type %TEMP%\FDSETUP.DEF | grep -A 1000 "^\*\*\*" | grep -iv "^;\|^#\|^\-" | vstr /b >%TEMP%\FDSETUP.TMP
 copy /y %TEMP%\FDSETUP.TMP %RAMDRV%\FDSETUP\SETUP\%TFILE%\FDSETUP.DEF >NUL
 del %TEMP%\FDSETUP.TMP >NUL
 del %TEMP%\FDSETUP.DEF >NUL
@@ -548,7 +548,7 @@ if not "%TLI%" == "0" vecho /n ,
 vecho /n /c32 %TLN%
 
 vstr >%TEMP%\KEYBOARD.LST
-type KEYBOARD\%TKN%.KYB|grep -i "^;\|^%TLN%="|vstr /s %TLN%= TITLE.=>>%TEMP%\KEYBOARD.LST
+type KEYBOARD\%TKN%.KYB|grep -i "^%TLN%="|vstr /s %TLN%= TITLE.=>>%TEMP%\KEYBOARD.LST
 type KEYBOARD\%TKN%.KYB|grep -i "^CMD="|vstr /s CMD= VALUE.=>>%TEMP%\KEYBOARD.LST
 vstr >>%RAMDRV%\FDSETUP\SETUP\%TLN%\KEYBOARD.LST
 type %TEMP%\KEYBOARD.LST|vstr /s .= .%TID%= |vstr /b/n>>%RAMDRV%\FDSETUP\SETUP\%TLN%\KEYBOARD.LST
@@ -809,7 +809,7 @@ copy /y %IDIR%\%TFILE%.txt %FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT >nul
 vecho /n , /fLightGreen DATA /fGray
 goto ShowOK
 :SlimData
-type %IDIR%\%TFILE%.txt | grep -B 1000 -i ^End >%FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT
+type %IDIR%\%TFILE%.txt| grep -B 1000 -i ^End|grep -iv ^Defunct>%FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT
 vecho /n , /fLightGreen LITE /fGray
 goto ShowOK
 
