@@ -1,0 +1,272 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Turkish Translation.
+Provided by: anonymous
+Contact Email:
+Created/Modified: 11 November 2016
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+# LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=anonymous
+LANG_NAME=Turkish
+
+# FDICLS - Title
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " - Kurulum"
+
+# STAGE300 - Initial welcome screen message
+LANG_ASK="Tercih ettißiniz dil hangisidir?"
+LANG_EN=òngilizce
+LANG_ES=òspanyolca
+LANG_FR=Fransçzca
+LANG_DE=Almanca
+LANG_EO=Esperanto
+LANG_NL=Felemenkáe
+LANG_TR=TÅrkáe
+
+HELLO_FRAME=/w70 /h15 /c
+HELLO_OPTS=/w43 /h4 /c
+HELLO=/s- /f %1 "%2" /f %3 " kurulum programçna hoü geldiniz."
+HELLO_ADV=/s- /f %1 "%2" /f %3 "iáin geliümiü kuruluma hoü geldiniz."
+HELLO_WARN.1=/f%1 "%2" /f%3 tam bir iületim sistemidir. Onu bilgisayarçnçza /p
+HELLO_WARN.2=kurarsançz, üu anda mevcut olan iületin sisteminin (mesela /p
+HELLO_WARN.3=Windows) Åzerine yazçp eskisini silebilirsiniz./c32 Eßer yapmak /p
+HELLO_WARN.4=istedißiniz bu deßilse, lÅtfen üimdi durun.
+HELLO_WARN.5=
+
+PROCEED?=/p/p "Devam etmek istiyor musunuz?"
+CONTINUE="  Evet  - Kurluma devam et"
+EXIT="  Hayçr - DOS'a dîn"
+
+# STAGE400 - Partition screen specific
+NOPART_FRAME=/w60 /h10 /c
+NOPART_OPTS=/w42 /h4 /c
+NOPART=/s- "SÅrÅcÅ " /f  %1 %2 /f %3 " bîlÅmlenmemiü gibi gîrÅnÅyor."
+PART?="SÅrÅcÅnÅzde bîlÅm oluüturmak istiyor musunuz?"
+PART_YES="  Evet  - %1 sÅrÅcÅsÅnde bîlÅm oluütur"
+# EXIT
+
+# STAGE400 - After partitioned specific
+PARTED_FRAME=/w62 /h11 /c
+PARTED_OPTS=/w42 /h4 /c
+PARTED=/s- "Yeni bîlÅm üemasçnçn etkinleümesi iáin bilgisayarçnçzç" /p "yeniden baülatmançz gerekmektedir."
+REBOOT?="ûimdi yeniden baülatmak istiyor musunuz?"
+REBOOT_YES="  Evet  - LÅtfen üimdi yeniden baülat"
+# EXIT
+REBOOT="Bilgisayarçnçz üimdi yeniden baülayacaktçr"
+PARTING_FRAME=/w45 /h5 /c
+PARTING="Sabit diskte bîlÅm oluüturuluyor..."
+
+# STAGE500 - Formating specific
+NOFORMAT_FRAME=/w65 /h10 /c
+NOFORMAT_OPTS=/w55 /h4 /c
+NOFORMATADV_FRAME=/w65 /h11 /c
+NOFORMATADV_OPTS=/w55 /h5 /c
+NOFORMAT=/s-  "SÅrÅcÅ " /f %1 %2 /f %3 " biáimlendirilmemiü gîrÅnÅyor."
+FORMAT?="SÅrÅcÅnÅzÅ biáimlendirmek (formatlamak) istiyor musunuz?"
+FORMAT_YES="  Evet  - LÅtfen %1 sÅrÅcÅsÅnÅ sil ve biáimlendir"
+FORMATADV_QUICK="  Evet  - %1 sÅrÅcÅsÅnÅ áabuk sil ve biáimlendir"
+FORMATADV_SLOW="  Evet  - %1 sÅrÅcÅsÅnÅ tam sil ve biáimlendir"
+# EXIT
+FORMATTING=/s- /fGray "SÅrÅcÅ biáimlendiriliyor " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Herhangi bir tuüa basçnçz... " /e
+
+# STAGE600 - Install preparation
+GATHERING_FRAME=/w68 /h5 /c
+GATHERING="Kurulum iáin hazçrlanmak amacçyla bazç bilgiler toplançyor..."
+
+# STAGE800 - Installing
+INSTALL_FRAME=/w64 /h10 /c
+INSTALL_OPTS=/w50 /h4 /c
+INSTALL=/s- "Artçk üunu kurmaya hazçrçz: " /f %1 "%2" /f %3 .
+INSTALL?="ûimdi kurmak istiyor musunuz?"
+INSTALL_YES="  Evet  - LÅtfen üunu kur: %1"
+# EXIT
+PREPARING_FRAME=/w42 /h5 /c
+PREPARING="Kurulum iáin hazçrlançlçyor..."
+
+# STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w64 /h10 /c
+COMPLETE_OPTS=/w44 /h4 /c
+COMPLETE=/s- "ûunun kurulumu " /f %1 "%2" /f %3 " artçk tamamlanmçütçr."
+# REBOOT?, REBOOT, EXIT
+
+# FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " %1 kurulumu iptal edildi." /e /fGray
+
+# FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Kurulumcunun %1 sayçlç etabç áalçütçrçlamadç." /p "Kurulumcunun bozulmuü olmasç mÅmkÅndÅr." /p "LÅtfen onu tekrar indirin veya baüka bir kurulum metodu deneyin."
+
+# FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "ûu tuüa bastçnçz: " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Kurulumu iptal etmek istedißinizden emin misiniz?"
+CTRLCY="  Evet  - LÅtfen DOS'a dîn"
+CTRLCN="  Hayçr - Devam etmek istiyorum"
+CTRLCA="  Hayçr - Geliümiü Kipe geá"
+CTRLCB="  Hayçr - Temel Kipe geá"
+
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w72 /h11 /c
+FAIL_OPTS=/w50 /h4 /c
+FAILADV_FRAME=/w72 /h13 /c
+FAILADV_OPTS=/w50 /h6 /c
+FAILH="Tekrar baülatmak yardçmcç olabilir."
+FAIL?="Bilgisayarç üimdi tekrar baülatmak istiyor musunuz?"
+FAILY="  Evet  - LÅtfen yeniden baülat"
+FAILN="  Hayçr - DOS'a dîn"
+FAILI="  Hayçr - Gîrmezden gel. (tavsiye edilmez)"
+FAILR="Bilgisayar üimdi yeniden baülayacaktçr."
+
+# FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray zaten kuruludur.
+NOTICE.2=/r5/c32 Kurulumcuyu elle baülatmak iáin "'" /s- /fCyan SETUP.BAT /fGray "' yazabilirsiniz."
+
+# Failure messages
+ERROR_BACKZIP="%1 yedekleme arüivi oluüturuluyor."
+ERROR_BACKUP="Yedeklemenin oluüturulmasçnda hata."
+ERROR_MKDOS="'%1' dizini oluüturulamadç."
+ERROR_PACKAGE="'%1' paketi kurulamadç."
+ERROR_SOURCE="'%1' kaynaßç kurulamadç."
+ERROR_READC="C: sÅrÅcÅsÅnÅn okunmasçnda bir problem var."
+ERROR_SHELL="Kurulum gÅncel kabußunuzda desteklenmemektedir."
+ERROR_MEDIA="Kurulum paketlerinin yeri bulunamçyor."
+ERROR_REMOS="Eski sistem dosyalarçnçn kaldçrçlmasçnda bir sorun áçktç."
+ERROR_XSYS="Sistem dosyalarçnçn %1 konumuna aktarçlmasç sçrasçnda hata."
+ERROR_CONFIG="Yeni yapçlandçrma dosyalarçnçn kopyalanmasçnda bir sorun áçktç."
+
+REBOOT_PAUSE=/f%1/c32 Kurulum ortamçnç áçkartçp sistemi tekrar baülatmak iáin bir tuüa basçn veya /p/e/c32 áçkmak iáin üuna basçn: /f%2 CTRL+C /f%1 /s- ...
+REBOOT_FRAME=/w70 /h9 /c
+REBOOT_WARN.1=MBR înyÅkleme kodunun gÅncellemesini zorlamadçßçnçzç not /p etmenizi rica ederiz. Eßer
+REBOOT_WARN.2=/c32 sisteminiz înyÅklemeyi baüaramçyorsa /p /s- /f%1 "%2" /f%3 , /s+ lÅtfen kurulum ortamçnç
+REBOOT_WARN.3=kullanarak onu tekrar /p baülatçn ve üu komutu áalçütçrçn: "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+. Bu,
+REBOOT_WARN.4=/c32 MBR alançna /p yeni înyÅkleme kodu yazdçracaktçr.
+REBOOT_WARN.5=
+
+# AUTOEXEC.BAT messages
+AUTO_DONE=ûu baülangçá dosyalarçnçn iülenmesi sona erdi: /fCyan %1 /a7 ve /fCyan %2 /a7
+AUTO_HELP=Type Komutlar ve gezinti hakkçnda yardçm iáin: /fWhite %1 /fGray /s- .
+AUTO_WELCOME=/fGreen %1 /fCyan %2 /fGray iületim sistemine hoü geldiniz ( /s- /fYellow "%3" /fGray )
+
+# FDASK000 - Select Keyboard Layout
+
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=LÅtfen klavye dÅzeninizi seáin.
+KBO.1=" ABD òngilizce (Varsayçlan)" /p " òngiltere òngilizce" /p " òspanyolca" /p " Fransçzca" /p " Almanca" /p
+KBO.2=" Almanca (Alternatif DÅzen) " /p " Hollanda "
+KBM=/p/p " Daha fazla klavye seáeneßi..."
+KBL=" Daha az klavye seáeneßi..."
+KBA_FRAME=/w58 /h13 /c
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w68 /h10 /c
+BACKUP_OPTS=/w42 /h4 /c
+BACKUPADV_FRAME=/w68 /h11 /c
+BACKUPADV_OPTS=/w46 /h5 /c
+BACKUP=ûu sÅrÅcÅde înceki bir iületim sistemi tespit edilmiütir /f %1 %2 /f %3 /s- .
+BACKUP?=Kurulumdan înce eski dosyalarç yedeklemek istiyor musunuz?
+BACKUPY="  Evet  - LÅtfen înce yedekle"
+BACKUPZ="  Evet  - LÅtfen zip arüivi olarak yedekle"
+BACKUPN="  Hayçr - Yedeklemeden kuruluma geá"
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w50 /h7 /c
+TARGET?=Kurulumun hedef dizini deßiütirilsin mi?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w70 /h8 /c
+REPLACE_OPTS=/w46 /h4 /c
+REPLACE?=Sistemin yapçlandçrma dosyalarçnçn yerine yenileri konulsun mu?
+REPLACEY="  Evet  - Yeni varsayçlan dosyalarç aktar"
+REPLACEN="  Hayçr - Eski dosyalarç sakla"
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w68 /h8 /c
+DELETE_OPTS=/w42 /h4 /c
+DELETE?=ûuradan tÅm eski dosyalar kaldçrçlsçn mç: /f %1 %2 /f %3 /s- ?
+DELETEY="  Evet  - Taze bir baülangçá"
+DELETEN="  Hayçr - Darmadaßçn bçrak"
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c
+XFER_OPTS=/w42 /h4 /c
+XFER?=Yeni sistem dosyalarç üu sÅrÅcÅye aktarçlsçn mç: /f %1 %2 /f %3 /s- ?
+XFERY="  Evet  - Sistem dosyalarçnç aktar"
+XFERN="  Hayçr - Sistem dosyalarçnç aktarma"
+
+OBSS_FRAME=/w70 /h8 /c
+OBSS_OPTS=/w34 /h4 /c
+OBSS?=ûu sÅrÅcÅde yeni baülatma kesimi kodu zorlansçn mç: /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Evet  - MBR Åzerine yaz"
+OBSSN="  Hayçr - Yeni MBR'ç zorlama"
+
+# FDASK600 - Package group selection.
+PAC_FRAME=/w60 /h11 /c
+PAC_OPTS=/w42 /h7 /c
+PAC_FRAME_B=/w60 /h8 /c
+PAC_OPTS_B=/w42 /h4 /c
+PAC_FRAME_D=/w60 /h14 /c
+PAC_OPTS_D=/w42 /h10 /c
+PAC_FRAME_BD=/w60 /h11 /c
+PAC_OPTS_BD=/w42 /h7 /c
+PACS?=Hangi /f %1 %2 /f %3 paketlerini kurmak istiyorsunuz?
+PACBO="  Sadece temel paketleri"
+PACBS="  Sadece kaynaklarçyla temel paketleri"
+PACAO="  Tam kurulum"
+PACAS="  Kaynaklarçyla tam kurulum"
+PACDO_ADV="  Seáilen ikili paketler"
+PACDS_ADV="  Seáilen paketler, kaynaklarçyla"
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Herhangi bir tuüa basçnçz..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Yedekleme oluüturuluyor
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 Yedekleme iülemi tamamlandç.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Eski áakçüan paketler kaldçrçlçyor.
+IRMPACKN=/s- "Eski '" /f %1 %2 /f %3 "' paketi kaldçrçlçyor."
+
+# Remove old OS files
+IRMOS_FRAME=/w60 /h5 /c
+IRMOS=/s- "ûuradan eski dosyalar kaldçrçlçyor: '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Eski iületim sistemi dosyalarç kaldçrçldç."
+
+# Remove old config files
+ICLEAN_FRAME=/w50 /h5 /c
+ICLEAN="Eski yapçlandçrma dosyalarç temizleniyor."
+ICLEAN_DONE="Eski yapçlandçrma dosyalarç kaldçrçldç."
+
+# Transfer system files
+IXSYS_FRAME=/w62 /h5 /c
+IXSYS= /s- "Sistem înyÅkleme dosyalarç üu sÅrÅcÅye aktarçlçyor: " /f %1 %2 /f %3 .
+IXSYS_DONE="Sistem dosya aktarçmç tamamlandç."
+
+# Package installation.
+IPAC_FRAME=/w60 /h7 /c
+IPACBM="Yazçlçm paketleri kuruluyor."
+IPACBI=/s- "ûu yazçlçm paketi kuruluyor: '" /f %1 %2 /f %3 "'"
+IPACSM="Kaynak kodlar kuruluyor."
+IPACSI= /s- "ûu paket iáin kaynaklar kuruluyor: '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w54 /h5 /c
+IPACDONE="Yazçlçm paketlerinin kurulmasç tamamlandç."
+
+# Config file installation
+ICONFIGS_FRAME=/w46 /h5 /c
+ICONFIGS="Yeni yapçlandçrma dosyalarç kuruluyor."
+ICONFIGS_DONE="Yeni yapçlandçrma dosyalarç kuruldu."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Maalesef bu kurulum metodu bu donançm platformunda desteklenmemektedir.
+NORUN.2=/p LÅtfen baüka bir kurulum metodu deneyin.

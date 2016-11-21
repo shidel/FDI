@@ -1,5 +1,5 @@
 Begin3
-Title:          Welcome
+Title:          Welcome to FreeDOS
 Version:        $VERSION$
 Entered-date:   $DATE$
 Description:    The "Welcome to FreeDOS $VERSION$" message that is displayed at system start up.
