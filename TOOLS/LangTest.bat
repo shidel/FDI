@@ -88,6 +88,8 @@ if "%FADV%" == "" goto %PART%
 
 :WELCOME
 call %SELF% CLS WELCOME FDSETUP
+REM vgotoxy /g eop sor
+REM vecho /b %TSB% /f %TSF% /n /t %FLANG% RELDATE 11/24/2016
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
 vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%

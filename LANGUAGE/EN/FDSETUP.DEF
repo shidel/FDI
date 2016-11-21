@@ -33,6 +33,8 @@ HELLO_WARN.3=
 HELLO_WARN.4=
 HELLO_WARN.5=
 
+# RELDATE=/r56 /c32 "Release date %1" /e
+
 PROCEED?=/p/p "Do you want to proceed?"
 CONTINUE="  Yes - Continue with the installation"
 EXIT="  No  - Return to DOS"
