@@ -21,6 +21,7 @@ LANG_FR=Frans
 LANG_DE=Duits
 LANG_NL=Nederlands
 LANG_EO=Esperanto
+LANG_TR=Turks
 
 # STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w68 /h15 /c
@@ -171,7 +172,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?=Selecteer uw toetsenbordindeling.
 KBO.1=" Engels (standaard)" /p " Verenigd Koninkrijk Engels" /p " Spaans" /p " Frans" /p " Duits" /p
-KBO.2=" Duits (alternatieve versie) " /p " Nederlands "
+KBO.2=" Nederlands " /p " Turks "
 KBM=/p/p " Meer toetsenbord opties..."
 KBL=" Minder toetsenbord opties..."
 KBA_FRAME=/w58 /h13 /c

@@ -21,6 +21,7 @@ LANG_FR=franca
 LANG_DE=germana
 LANG_EO=esperanto
 LANG_NL=nederlanda
+LANG_TR=turkish
 
 # STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w70 /h16 /c
@@ -163,7 +164,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?=Bonvolu elekti via klavararango.
 KBO.1=" Usona angla (Defaulta)" /p " Britio angla" /p " hispana" /p " franca" /p " germana" /p
-KBO.2=" germana (Alterna Arango)" /p " nederlando"
+KBO.2=" nederlando" /p " turkish"
 KBM=/p/p " Pli klavaro elektoj..."
 KBL=" Malpli klavaro elektoj..."
 KBA_FRAME=/w58 /h13 /c

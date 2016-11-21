@@ -21,6 +21,7 @@ LANG_FR=Franc‚s
 LANG_DE=Alem n
 LANG_EO=Esperanto
 LANG_NL=Holand‚s
+LANG_TR=Turco
 
 HELLO_FRAME=/w72 /h15 /c
 HELLO_OPTS=/w40 /h4 /c
@@ -150,7 +151,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w42 /h11 /c
 KBS?=Por favor seleccione la distribuci¢n del teclado.
 KBO.1=" Ingl‚s de Estados Unidos (por defecto)" /p " Reino Unido Ingl‚s" /p " Espa¤ol" /p
-KBO.2=" Franc‚s" /p " Alem n" /p " Alem n (Disposici¢n alternativo)" /p " Holand‚s Pa¡ses Bajos"
+KBO.2=" Franc‚s" /p " Alem n" /p " Holand‚s Pa¡ses Bajos" /p " Turco "
 KBM=/p/p " M s opciones de teclado..."
 KBL=" Menos opciones de teclado..."
 KBA_FRAME=/w58 /h13 /c

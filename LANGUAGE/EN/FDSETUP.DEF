@@ -21,6 +21,7 @@ LANG_FR=French
 LANG_DE=German
 LANG_EO=Esperanto
 LANG_NL=Dutch
+LANG_TR=Turkish
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c
@@ -154,7 +155,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?=Please select your keyboard layout.
 KBO.1=" US English (Default)" /p " UK English" /p " Spanish" /p " French" /p " German" /p
-KBO.2=" German (Alternate Layout) " /p " Netherlands "
+KBO.2=" Netherlands " /p " Turkish "
 KBM=/p/p " More keyboard choices..."
 KBL=" Fewer keyboard choices..."
 KBA_FRAME=/w58 /h13 /c

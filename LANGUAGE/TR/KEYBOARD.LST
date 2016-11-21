@@ -1,17 +1,16 @@
 ; The first 7 keyboard mapping settings are defaults and built into installer.
 
-TITLE.1=Engels (standaard)
+TITLE.1=ABD òngilizce (Varsayçlan)
 VALUE.1=
-TITLE.2=Verenigd Koninkrijk Engels
+TITLE.2=òngiltere òngilizce
 VALUE.2=mkeyb UK
-TITLE.3=Spaans
+TITLE.3=òspanyolca
 VALUE.3=mkeyb SP
-TITLE.4=Frans
+TITLE.4=Fransçzca
 VALUE.4=mkeyb FR
-TITLE.5=Duits
+TITLE.5=Almanca
 VALUE.5=mkeyb GR
-TITLE.6=Duits (alternatieve versie)
-VALUE.6=mkeyb GR2
-TITLE.7=Nederlands
-VALUE.7=mkeyb NE
-
+TITLE.6=Hollanda
+VALUE.6=mkeyb NE
+TITLE.7=TÅrkáe
+VALUE.7=

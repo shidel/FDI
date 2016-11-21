@@ -22,6 +22,7 @@ LANG_DE=Allemand
 LANG_EO=Esp‚ranto
 LANG_NL=Hollandais
 LANG_TR=Turc
+
 # add this language if needed.
 
 # STAGE300 - Initial welcome screen message.
@@ -167,7 +168,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?="S'il vous plaŒt s‚lectionnez votre disposition" /p "de clavier."
 KBO.1=" US Anglais (par d‚faut)" /p " UK Anglais" /p " Espagnol" /p " Fran‡ais" /p " Allemand" /p
-KBO.2=" Allemand (autre clavier)" /p " Hollandais"
+KBO.2=" Hollandais" /p " Turc "
 KBM=/p/p " Plus de choix de clavier..."
 KBL=" Moins de choix de clavier..."
 KBA_FRAME=/w58 /h13 /c

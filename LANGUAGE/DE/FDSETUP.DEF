@@ -21,6 +21,7 @@ LANG_FR=Franzîsisch
 LANG_DE=Deutsche
 LANG_EO=Esperanto
 LANG_NL=NiederlÑndisch
+LANG_TR=TÅrkisch
 
 HELLO_FRAME=/w70 /h11 /c
 HELLO_OPTS=/w40 /h4 /c
@@ -150,7 +151,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?=Bitte wÑhlen Sie Ihre Art der Tastatur.
 KBO.1=" US-Englisch (Standard)" /p " UK Englisch" /p " Spanisch" /p " Franzîsisch" /p
-KBO.2=" Deutsche" /p " Deutsche (Wechseln) " /p " Niederlande "
+KBO.2=" Deutsche" /p " Niederlande " /p " TÅrkisch "
 KBM=/p/p " Mehr Tastatur Auswahl..."
 KBL=" Weniger Tastatur Auswahl..."
 KBA_FRAME=/w58 /h13 /c
