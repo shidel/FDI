@@ -804,9 +804,15 @@ set /e TFILE=vfdutil /n %TFILE%
 rem vecho /n ,%IDIR%\%TFILE%.txt
 if not exist %IDIR%\%TFILE%.txt goto NoData
 if not exist %FLOPPY%\FDSETUP\PKGINFO\nul mkdir %FLOPPY%\FDSETUP\PKGINFO >nul
+if "%SLIM%" == "y" goto SlimData
 copy /y %IDIR%\%TFILE%.txt %FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT >nul
 vecho /n , /fLightGreen DATA /fGray
 goto ShowOK
+:SlimData
+type %IDIR%\%TFILE%.txt | grep -B 1000 -i ^End >%FLOPPY%\FDSETUP\PKGINFO\%TFILE%.TXT
+vecho /n , /fLightGreen LITE /fGray
+goto ShowOK
+
 :NoData
 vecho /n , /fLightRed No Data /fGray
 :ShowOK
