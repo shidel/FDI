@@ -31,8 +31,11 @@ There are basically four methods using FDI to install
   * All supported virtual machines
   * Many modern computers
 * Bootable CD-ROM
-  * Most virtual machines (not VirtualBox)
+  * Most virtual machines (including VirtualBox)
   * Most 486 or better computers
+* Alternate Legacy CD-ROM
+  * Virtual Machines (excluding VirtualBox)
+  * Most computers that support CD booting.
 * Bootable Floppy + CD-ROM (or USB Stick).
   * All supported virtual machines
   * Nearly any computer with a CD-ROM.
