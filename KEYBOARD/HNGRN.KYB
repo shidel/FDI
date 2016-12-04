@@ -1,0 +1,12 @@
+; Optional Hungarian Keyboard Layout Definition
+; by Jerome Shidel
+
+EN=Hungarian
+ES=H£ngaro
+DE=Ungarisch
+FR=Hongrois
+NL=Hongaars
+EO=hungara
+TR=Macarca
+
+CMD=keyb hu,852 /ID:208
