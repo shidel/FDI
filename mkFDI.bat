@@ -630,9 +630,10 @@ popd
 
 vecho , /fLightGreen Done /fGray /p
 
+if "%SLIM%" == "y" goto NoFDISources
 if "%USB%" == "y" goto MakeFDISources
-if "%ELT%" == "y" goto MakeFDISources
-REM goto NoFDISources
+rem if "%ELT%" == "y" goto MakeFDISources
+goto NoFDISources
 :MakeFDISources
 vecho /n "Creating FDI build environment source package"
 grep -B 1000 -i "^goto SkipList" TOOLS\FDIDEV.BAT >%DOSDIR%\BIN\FDIDEV.BAT
@@ -880,9 +881,12 @@ set SPKG=
 popd
 vecho , /fLightGreen OK /fGray
 
+if not exist %temp%\fdisrc.zip goto NoSourceZip
 vecho /r5/c32 %TEMP%\fdisrc.zip "-->" %FLOPPY%%PKGDIR%UTIL /n
 copy /y %TEMP%\fdisrc.zip %FLOPPY%%PKGDIR%UTIL >NUL
 if errorlevel 1 goto CopyFailed
+
+:NoSourceZip
 
 set SPKG=FDISRC
 pushd
