@@ -26,15 +26,15 @@ LANG_TR=Turc
 # add this language if needed.
 
 # STAGE300 - Initial welcome screen message.
-HELLO_FRAME=/w70 /h16 /c
+HELLO_FRAME=/w71 /h15 /c
 HELLO_OPTS=/w44 /h4 /c
 HELLO=/s- "Bienvenue au programme d'installation de " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Bienvenue Ö l'installateur avancÇ de " /f %1 "%2" /f %3 .
-HELLO_WARN.1=/f%1 "%2" /f%3 est un systäme "d'exploitation complet. Si vous l'installez sur votre" /p ordinateur, il pourra Çcraser et remplacer votre /p systäme "d'exploitation" actuel (par exemple Windows).
-HELLO_WARN.2="Si ce n'est pas ce que vous voulez faire, arràtez maintenant."
+HELLO_WARN.1=/f%1 "%2" /f%3 est un systäme "d'exploitation complet. Si vous" /p "l'installez sur votre" ordinateur, il pourra Çcraser et remplacer /p votre systäme "d'exploitation" actuel (par exemple Windows).
+HELLO_WARN.2=" Si ce n'est pas ce que vous voulez faire, arràtez maintenant."
 HELLO_WARN.3=
 HELLO_WARN.4=
-HELLO_WARN.5=
+HELLO_WARN.5=/p/p
 PROCEED?="Voulez-vous procÇder ?"
 CONTINUE="  Oui - Continuer l'installation."
 EXIT="  Non - Retourner au DOS."
