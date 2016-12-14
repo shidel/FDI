@@ -30,8 +30,8 @@ HELLO_FRAME=/w70 /h16 /c
 HELLO_OPTS=/w44 /h4 /c
 HELLO=/s- "Bienvenue au programme d'installation de " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Bienvenue Ö l'installateur avancÇ de " /f %1 "%2" /f %3 .
-HELLO_WARN.1=/f%1 "%2" /f%3 est un systäme "d'exploitation complet. Si vous" /p "l'installez sur votre ordinateur, il pourra Çcraser et" /p "remplacer votre systäme d'exploitation actuel (par exemple" /p Windows).
-HELLO_WARN.2=/c32 "Si ce n'est pas ce que vous voulez faire," /p "arràtez maintenant." /p /p
+HELLO_WARN.1=/f%1 "%2" /f%3 est un systäme "d'exploitation complet. Si vous l'installez sur votre" /p ordinateur, il pourra Çcraser et remplacer votre /p systäme "d'exploitation" actuel (par exemple Windows).
+HELLO_WARN.2="Si ce n'est pas ce que vous voulez faire, arràtez maintenant."
 HELLO_WARN.3=
 HELLO_WARN.4=
 HELLO_WARN.5=
@@ -74,7 +74,7 @@ PAUSE=/fLightGreen " Appuyez sur une touche... " /e
 
 # STAGE700 - Install preparation
 GATHERING_FRAME=/w72 /h5 /c
-GATHERING="Collecte de quelques informations nÇcessaire Ö l'installation."
+GATHERING="Collecte de quelques informations nÇcessaires Ö l'installation."
 
 # Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
 # to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
