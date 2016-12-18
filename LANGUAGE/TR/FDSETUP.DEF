@@ -10,7 +10,7 @@ Released Under GPL v2.0 License.
 LANG_AUTHOR=anonymous
 LANG_NAME=Turkish
 
-# FDiCLS - Title
+# FDICLS - Title
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " - Kurulum"
 
 # STAGE300 - initial welcome screen message
@@ -96,7 +96,7 @@ ABORTED=/fWhite /bRed " %1 kurulumu iptal edildi." /e /fGray
 # FDSETUP - Missing Stage Error
 STAGE_ERROR=/s- "Kurulumcunun %1 sayili etabi áalistirilamadi." /p "Kurulumcunun bozulmus olmasi mÅmkÅndÅr." /p "LÅtfen onu tekrar indirin veya baska bir kurulum metodu deneyin."
 
-# FDiCTRLC - Control-C specific
+# FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
 CTRLC=/s- "su tusa bastiniz: " /f %1 "CTRL-C" /f %2 .
@@ -106,7 +106,7 @@ CTRLCN="  Hayir - Devam etmek istiyorum"
 CTRLCA="  Hayir - Gelismis Kipe geá"
 CTRLCB="  Hayir - Temel Kipe geá"
 
-# FDiFAIL - installation failure error message box
+# FDIFAIL - installation failure error message box
 FAIL_FRAME=/w72 /h11 /c
 FAIL_OPTS=/w50 /h4 /c
 FAILADV_FRAME=/w72 /h13 /c
@@ -118,7 +118,7 @@ FAILN="  Hayir - DOS'a dîn"
 FAILI="  Hayir - Gîrmezden gel. (tavsiye edilmez)"
 FAILR="Bilgisayar simdi yeniden baslayacaktir."
 
-# FDNOTiCE - Already installed notice.
+# FDNOTICE - Already installed notice.
 NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray zaten kuruludur.
 NOTICE.2=/r5/c32 Kurulumcuyu elle baslatmak iáin "'" /s- /fCyan SETUP.BAT /fGray "' yazabilirsiniz."
 
@@ -155,7 +155,7 @@ KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h11 /c
 KBS?=LÅtfen klavye dÅzeninizi seáin.
 KBO.1=" ABD ingilizce (Varsayilan)" /p " ingiltere ingilizce" /p " ispanyolca" /p " Fransizca" /p " Almanca" /p
-KBO.2=" Almanca (Alternatif DÅzen) " /p " Hollanda "
+KBO.2=" Hollanda " /p " TÅrkáe"
 KBM=/p/p " Daha fazla klavye seáenegi..."
 KBL=" Daha az klavye seáenegi..."
 KBA_FRAME=/w58 /h13 /c
@@ -171,7 +171,7 @@ BACKUPY="  Evet  - LÅtfen înce yedekle"
 BACKUPZ="  Evet  - LÅtfen zip arsivi olarak yedekle"
 BACKUPN="  Hayir - Yedeklemeden kuruluma geá"
 
-# FSASK100 - Advanced mode
+# FDASK100 - Advanced mode
 TARGET_FRAME=/w50 /h7 /c
 TARGET?=Kurulumun hedef dizini degistirilsin mi?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
