@@ -284,3 +284,9 @@ util\uptime
 util\wcd
 util\xkeyb
 util\wptail
+
+; New packages added 4/9/17
+net\dwol
+net\e1000pkt
+net\ssh2dos
+
