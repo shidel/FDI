@@ -1,0 +1,19 @@
+; Первые 8 раскладок клавиатуры идут по-умолчанию и встроены в программу установки.
+
+TITLE.1=Английская (US)
+VALUE.1=
+TITLE.2=Английская (UK)
+VALUE.2=mkeyb UK
+TITLE.3=Испанская
+VALUE.3=mkeyb SP
+TITLE.4=Французская
+VALUE.4=mkeyb FR
+TITLE.5=Немецкая
+VALUE.5=mkeyb GR
+TITLE.6=Голландская
+VALUE.6=mkeyb NE
+TITLE.7=Турецкая
+VALUE.7=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS
+TITLE.8=Русская
+VALUE.8=keyb RU,,%DOSDIR%\BIN\KEYBRD2.SYS
+
