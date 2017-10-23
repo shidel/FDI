@@ -1,0 +1,169 @@
+/* keydefru.h */
+/* country=7, code page†6, languageD1, keyboard=ru */
+
+/*
+ * history
+ * 24 apr 02: tom ehlert - creation
+ * 2002.05.10: fixed by Arkady Belousov <ark@mos.ru>
+ * 22 May 2003: use fastswitch, Anton Zinoviev <anton@lml.bas.bg>
+ * 12 Oct 2017: fix for dos computers, Petr Akhlamov <petr-akhlamov@yandex.ru>
+ */
+
+#define LANGUAGE "russia"
+#define STATUS   "by Arkady"
+
+#define NAME(x) x##_RU
+
+#include <dos.h>
+#include "mkeyb.h"
+
+
+/********************************************************
+ * RUSSIAN keyboard mappings				*
+ ********************************************************/
+
+/* keyboard image (contributed by Arkady Belousov <ark@mos.ru>)
+
+Standard layout characters+scancodes:
+‰‘‘‘‘‘‘‘‘‘‘‘‘‘»
+ó~29³!02³@03³#04³$05³³^07³&08³*09³(0A³)0B³-0C³
+³Backsp 0Eó
+‡ÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄ¶
+óTab 0F³q10³w11³e12³r13³t14³y15³u16³i17³o18³p19³[1A³]1B³      ó
+‡ÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚Ä™ <ÄÄ™ ó
+ó Caps 3A³a1E³s1F³d20³f21³g22³h23³j24³k25³l26³;27³'28³Enter 1Có
+‡ÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄ¶
+ó Shift 2A ³z2C³x2D³c2E³v2F³b30³n31³m32³,33³.34³/35³ Shift 36 ó
+‡ÄÄÄÄÄÄÄÄ‚ÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄ‚ÄÄÄÄÄÄÄÄ¶
+ó Ctrl 1D³ Alt 38³\56³    Spacebar 39    ³\2B³Alt E38³Ctrl E1Dó
+ˆŒ
+
+normal:
+‰‘‘‘‘‘‘‘‘‘‘‘‘‘»
+ó ñ ³ 1 ³ 2 ³ 3 ³ 4 ³ 5 ³ 6 ³ 7 ³ 8 ³ 9 ³ 0 ³ - ³ = ³  Backsp ó
+‡ÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄ¶
+ó Tab  ³ © ³ æ ³ ã ³ ª ³ ¥ ³ ­ ³ £ ³ è ³ é ³ § ³ å ³ ê ³      ó
+‡ÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚Ä™ <ÄÄ™ ó
+ó  Caps  ³ ä ³ ë ³ ¢ ³   ³ ¯ ³ à ³ ® ³ « ³ ¬ ³ Š ³ í ³  Enter ó
+‡ÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄ¶
+ó  Shift   ³ ï ³ ç ³ á ³ ¬ ³ š ³ â ³ ì ³ ¡ ³ î ³ / ³   Shift  ó
+‡ÄÄÄÄÄÄ‚ÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄ‚ÄÄÄÄÄÄ¶
+ó Ctrl ³ Alt ³ \ ³          Spacebar         ³ \ ³ Alt ³ Ctrl ó
+ˆŒ
+
+Shift:
+‰‘‘‘‘‘‘‘‘‘‘‘‘‘»
+ó ğ ³ ! ³ " ³ ü ³ ; ³ : ³ , ³ . ³ * ³ ( ³ ) ³ _ ³ + ³  Backsp ó
+‡ÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄ¶
+ó Tab  ³ ‰ ³ – ³ “ ³ Š ³ … ³  ³ ƒ ³ ˜ ³ ™ ³ ‡ ³ • ³ š ³      ó
+‡ÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚Ä™ <ÄÄ™ ó
+ó  Caps  ³ ” ³ › ³ ‚ ³ € ³  ³  ³  ³ ‹ ³ „ ³ † ³  ³  Enter ó
+‡ÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄ¶
+ó  Shift   ³ Ÿ ³ — ³ ‘ ³ Œ ³ ˆ ³ ’ ³ œ ³  ³  ³ ? ³   Shift  ó
+‡ÄÄÄÄÄÄ‚ÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄ‚ÄÄÄÄÄÄ¶
+ó Ctrl ³ Alt ³ | ³          Spacebar         ³ % ³ Alt ³ Ctrl ó
+ˆŒ
+
+Caps Lock:
+‰‘‘‘‘‘‘‘‘‘‘‘‘‘»
+ó ğ ³ 1 ³ 2 ³ 3 ³ 4 ³ 5 ³ 6 ³ 7 ³ 8 ³ 9 ³ 0 ³ - ³ = ³  Backsp ó
+‡ÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄ¶
+ó Tab  ³ ‰ ³ – ³ “ ³ Š ³ … ³  ³ ƒ ³ ˜ ³ ™ ³ ‡ ³ • ³ š ³      ó
+‡ÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚Ä™ <ÄÄ™ ó
+ó  Caps  ³ ” ³ › ³ ‚ ³ € ³  ³  ³  ³ ‹ ³ „ ³ † ³  ³  Enter ó
+‡ÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄ¶
+ó  Shift   ³ Ÿ ³ — ³ ‘ ³ Œ ³ ˆ ³ ’ ³ œ ³  ³  ³ / ³   Shift  ó
+‡ÄÄÄÄÄÄ‚ÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄ‚ÄÄÄÄÄÄ¶
+ó Ctrl ³ Alt ³ \ ³          Spacebar         ³ \ ³ Alt ³ Ctrl ó
+ˆŒ
+
+Caps Lock+Shift:
+‰‘‘‘‘‘‘‘‘‘‘‘‘‘»
+ó ñ ³ ! ³ " ³ ü ³ ; ³ : ³ , ³ . ³ * ³ ( ³ ) ³ _ ³ + ³  Bacskp ó
+‡ÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄ¶
+ó Tab  ³ © ³ æ ³ ã ³ ª ³ ¥ ³ ­ ³ £ ³ è ³ é ³ § ³ å ³ ê ³      ó
+‡ÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚Ä™ <ÄÄ™ ó
+ó  Caps  ³ ä ³ ë ³ ¢ ³   ³ ¯ ³ à ³ ® ³ « ³ ¬ ³ Š ³ í ³  Enter ó
+‡ÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄ¶
+ó  Shift   ³ ï ³ ç ³ á ³ ¬ ³ š ³ â ³ ì ³ ¡ ³ î ³ ? ³   Shift  ó
+‡ÄÄÄÄÄÄ‚ÄÄÄÄ‚ÄÄ‚ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ‚ÄÄ‚ÄÄÄÄ‚ÄÄÄÄÄÄ¶
+ó Ctrl ³ Alt ³ | ³          Spacebar         ³ % ³ Alt ³ Ctrl ó
+ˆŒ
+*/
+
+uchar NAME(scancodetable)[] = {
+
+//* 1 */ PUNCT(0x02, '1', '!')
+ /* 2 */ PUNCT(0x03, '2', '"')
+ /* 3 */ PUNCT(0x04, '3', '#')
+ /* 4 */ PUNCT(0x05, '4', 'ı')
+ /* 5 */ PUNCT(0x06, '5', ':')
+ /* 6 */ PUNCT(0x07, '6', ',')
+ /* 7 */ PUNCT(0x08, '7', '.')
+//* 8 */ PUNCT(0x09, '8', ';')
+//* 9 */ PUNCT(0x0A, '9', '?')
+//* 0 */ PUNCT(0x0B, '0', '%')
+//* - */ PUNCT(0x0C, '-', '_')
+//* = */ PUNCT(0x0D, '=', '+')
+
+ /* q */ ALPHA(0x10, '©', '‰')
+ /* w */ ALPHA(0x11, 'æ', '–')
+ /* e */ ALPHA(0x12, 'ã', '“')
+ /* r */ ALPHA(0x13, 'ª', 'Š')
+ /* t */ ALPHA(0x14, '¥', '…')
+ /* y */ ALPHA(0x15, '­', '')
+ /* u */ ALPHA(0x16, '£', 'ƒ')
+ /* i */ ALPHA(0x17, 'è', '˜')
+ /* o */ ALPHA(0x18, 'é', '™')
+ /* p */ ALPHA(0x19, '§', '‡')
+ /* [ */ ALPHA(0x1A, 'å', '•')
+ /* ] */ ALPHA(0x1B, 'ê', 'š')
+
+ /* a */ ALPHA(0x1E, 'ä', '”')
+ /* s */ ALPHA(0x1F, 'ë', '›')
+ /* d */ ALPHA(0x20, '¢', '‚')
+ /* f */ ALPHA(0x21, ' ', '€')
+ /* g */ ALPHA(0x22, '¯', '')
+ /* h */ ALPHA(0x23, 'à', '')
+ /* j */ ALPHA(0x24, '®', '')
+ /* k */ ALPHA(0x25, '«', '‹')
+ /* l */ ALPHA(0x26, '¤', '„')
+ /* ; */ ALPHA(0x27, '¦', '†')
+ /* ' */ ALPHA(0x28, 'í', '')
+
+ /* ~ */ ALPHA(0x29, ')', '(')
+ /* \ */ PUNCT(0x2B, '\\','|')
+
+ /* z */ ALPHA(0x2C, 'ï', 'Ÿ')
+ /* x */ ALPHA(0x2D, 'ç', '—')
+ /* c */ ALPHA(0x2E, 'á', '‘')
+ /* v */ ALPHA(0x2F, '¬', 'Œ')
+ /* b */ ALPHA(0x30, '¨', 'ˆ')
+ /* n */ ALPHA(0x31, 'â', '’')
+ /* m */ ALPHA(0x32, 'ì', 'œ')
+ /* , */ ALPHA(0x33, '¡', '')
+ /* . */ ALPHA(0x34, 'î', '')
+//* / */ PUNCT(0x35, 'ñ', 'ğ')
+	 0
+};
+
+// define this, if after starting the default layout is still international
+
+struct KeyboardDefinition NAME(Keyboard) = {
+	"RU",                             //char LanguageShort[4];			// "GR",                    
+	"RUSSIA - Russian keyboard (dos), right Ctrl to switch (by Arkady)",  //char *Description;				// created by, "with combis"
+	DRIVER_FUNCTION_FASTSWITCH,          //char DriverFunctionRequired;                                  
+	NAME(scancodetable),              //char *ScancodeTable;                                          
+#ifdef COMBI
+	{	NAME(combi1table),NAME(combi2table),NAME(combi3table),
+		NAME(combi4table),NAME(combi5table),NAME(combi6table) },
+#else
+	{ 0 },
+#endif			
+	0,                                //char DezimalDingsbums;                                          
+	1,                                //char DefaultLayoutUS;			// TRUE for russian               
+	} ;                               
+                                      
+                                      
+                                      
+
