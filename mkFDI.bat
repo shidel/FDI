@@ -67,6 +67,7 @@ if "%1" == "usb" set USB=y
 if "%1" == "slim" set SLIM=y
 if "%1" == "info" set INFO=y
 if "%INFO%" == "y" goto InfoOnly
+if "%1" == "nocd" set NOCDROM=y
 
 vfdutil /u %1\????????.??? >nul
 if not errorlevel 1 set /e FLOPPY=vfdutil /d %1\test
@@ -92,6 +93,8 @@ echo usb   [drive]   Create Full USB stick image on [drive]
 echo.
 echo all  [off]      Build most FDI versions Floppy, cdrom B:, slim D: and usb E:
 echo                 If off, then automatically power down afterwards.
+echo.
+echo nocd            Use C:\PACKAGES for source packages.
 echo.
 goto CleanUp
 
@@ -215,10 +218,15 @@ if "%FLOPPY%" == "J:" set FNUM=8
 
 set TDIR=
 
+if "%NOCDROM%" == "y" goto SkipCD
 vecho "Searching for CD-ROM containing packages" /n
 for %%d in ( C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %SELF% findcd %%d
 if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
+goto ShowMedia
+:SkipCD
+set CDROM C:\PACKAGES
+:ShowMedia
 vecho /e "Package media is" /fYellow %CDROM% /fGray /p
 
 REM Making Ramdisk.
