@@ -216,7 +216,7 @@ if "%FLOPPY%" == "J:" set FNUM=8
 set TDIR=
 
 vecho "Searching for CD-ROM containing packages" /n
-for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %SELF% findcd %%d
+for %%d in ( C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call %SELF% findcd %%d
 if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
 vecho /e "Package media is" /fYellow %CDROM% /fGray /p
