@@ -225,7 +225,7 @@ if "%CDROM%" == "" goto NoCDROM
 vgotoxy sol
 goto ShowMedia
 :SkipCD
-set CDROM C:\PACKAGES
+set CDROM=C:\PACKAGES
 :ShowMedia
 vecho /e "Package media is" /fYellow %CDROM% /fGray /p
 
