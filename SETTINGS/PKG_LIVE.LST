@@ -33,7 +33,7 @@ util\doslfn
 
 util\udvd2
 
-; These are additional packages intalled only on FULL USB Stick media.
+; These are additional packages intalled only onto the LIVE CD media.
 ; DO NOT duplicate package entries.
 
 base\chkdsk

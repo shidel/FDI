@@ -13,7 +13,7 @@ archiver\lzma
 archiver\lzop
 archiver\p7zip
 archiver\tar
-archiver\unrar
+; archiver\unrar    # Will no longer be distributed on official release media
 archiver\unzip
 archiver\zip
 archiver\zoo
@@ -174,7 +174,7 @@ sound\lame
 sound\mplayer
 sound\opencp
 
-util\4dos
+; util\4dos         # Will no longer be distributed on official release media
 util\ansimat
 util\b64
 util\bmp2png
