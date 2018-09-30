@@ -1,0 +1,10 @@
+; Optional Keyboard Layout Definition
+
+EN=English
+ES=Spanish
+DE=German
+FR=French
+NL=Dutch
+EO=Esperanto
+
+CMD=if exist %DOSDIR%\bin\mkeyb.exe %DOSDIR%\bin\mkeyb.exe US
