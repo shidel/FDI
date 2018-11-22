@@ -1,5 +1,5 @@
 @echo off
-SET DOSDIR=\FDSetup
+SET DOSDIR=\FREEDOS
 SET LANG=
 SET PATH=%dosdir%\BIN
 
@@ -45,7 +45,7 @@ rem $LH$ DOSLFN
 $LBA$ $LH$ LBACACHE.COM buf 20 flop
 
 SET AUTOFILE=%0
-SET CFGFILE=\FDCONFIG.SYS
+SET CFGFILE=\$CONFIG$
 alias reboot=fdapm warmboot
 alias reset=fdisk /reboot
 alias halt=fdapm poweroff
