@@ -27,7 +27,7 @@ popd
 goto MediaFound
 
 :NotRepoCD
-set PKGDIR=$PKGDIR$
+set PKGDIR=$PACKAGES$
 
 :FindMedia
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
