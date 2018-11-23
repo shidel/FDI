@@ -5,7 +5,7 @@ REM Keyboard Keymap selection
 if "%KLST%" == "y" goto KBAdv
 
 REM Remove the REM statements to only show keyboard layout selection for
-REM non-English and advanced mode users.
+REM non-English or advanced mode users.
 
 REM if "%FADV%" == "y" goto KBSimple
 REM if "%LANG%" == "EN" goto Done
@@ -55,7 +55,7 @@ if errorlevel 108 set KBI=8
 goto KBPoll
 
 :ScrollUp
-if "%KBP%" == "9" goto AtTop
+if "%KBP%" == "99" goto AtTop
 :UpCheck
 vmath %KBP% - 1 | set /p KTT=
 if "%KTT%" == "" goto UpCheck
@@ -72,7 +72,7 @@ set KBI=1
 goto KBPoll
 
 :ScrollDown
-vmath %KBP% + 9 | set /p KTT=
+vmath %KBP% + 99 | set /p KTT=
 if "%KTT%" == "" goto ScrollDown
 if "%KTT%" == "%KBM%" goto AtBottom
 :DownCheck
@@ -80,7 +80,7 @@ vmath %KBP% + 1 | set /p KTT=
 if "%KTT%" == "" goto DownCheck
 set KBP=%KTT%
 :BottomCheck
-vmath %KBP% + 9 | set /p KTT=
+vmath %KBP% + 99 | set /p KTT=
 if "%KTT%" == "" goto BottomCheck
 vgotoxy /l sop
 vdelete
@@ -121,15 +121,15 @@ set KBP=9
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBA_FRAME
 
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.10
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.11
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.12
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.13
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.14
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.15
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.16
-vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.17
-vecho /n /c32 /t %LANG%\KEYBOARD.LST TITLE.18
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.100
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.101
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.102
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.103
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.104
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.105
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.106
+vecho /c32 /t %LANG%\KEYBOARD.LST TITLE.107
+vecho /n /c32 /t %LANG%\KEYBOARD.LST TITLE.108
 
 :KBPoll
 set KBT=
