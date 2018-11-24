@@ -17,8 +17,13 @@ REM Configure commmand-line options
 set FADV=
 set FBOOTED=
 
-if "%1" == "BOOT" set FBOOTED=y
-if "%1" == "CDROM" set FBOOTED=CDROM
+if "%1" == "boot" set FBOOTED=y
+if "%1" == "cdrom" set FBOOTED=CDROM
+if "%1" == "floppy" set FBOOTED=y
+if "%1" == "eltorito" set FBOOTED=CDROM
+if "%1" == "live" set FBOOTED=CDROM
+if "%1" == "usb" set FBOOTED=y
+
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y
 if "%1" == "MBRZAP" set FADV=y

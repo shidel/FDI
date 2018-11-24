@@ -128,7 +128,7 @@ goto FailBadOS
 REM Adjust Booted environment variables ***************************************
 :AdjustEnv
 
-if not "%NOTEST%" == "y" goto NoAdjustEnv
+if "%NOTEST%" == "" goto NoAdjustEnv
 set PATH=%FBOOTD%%PATH%
 set DOSDIR=%FBOOTD%%DOSDIR%
 set AUTOFILE=%FBOOTD%%AUTOFILE%
@@ -200,6 +200,7 @@ set FDRIVE=
 set FTARGET=
 set FINSD=
 set FBOOTD=
+set NOTEST=
 
 REM End of Batch Script *******************************************************
 :EndOfBatch
