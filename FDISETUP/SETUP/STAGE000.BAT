@@ -23,7 +23,7 @@ set FDEL=2000
 REM Target path to install FreeDOS
 if not "%FINSD%" == "C:" set FDRIVE=C:
 if "%FINSD%" == "C:" set FDRIVE=D:
-set FTARGET=%FDRIVE%\FDOS
+set FTARGET=%FDRIVE%\FREEDOS
 
 REM Backup path to when archiving.
 set FBAK=%FDRIVE%\FDBACKUP
@@ -36,7 +36,7 @@ REM Skip Missing packages.
 set FPSKP=y
 
 REM Set installers path
-SET FINSP=%FINSD%\FDSETUP\SETUP
+SET FINSP=%FINSD%\FREEDOS\SETUP
 
 REM Try to import some stuff from autoexec.bat and fdconfig.sys
 set HLANG=%LANG%

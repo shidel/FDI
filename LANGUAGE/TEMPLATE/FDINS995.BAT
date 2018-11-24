@@ -8,7 +8,7 @@ REM %FDRIVE%   Drive letter of install target C: or D:
 REM %FTARGET%  The DOSDIR path of the install target. (like C:\FDOS)
 REM %FMEDIA%   Base directory of the media package tree.
 REM %FBOOTD%   Drive letter for the install media. (A:, B:, C:, D:, E: .....)
-REM %FINSP%    Path for installer files like this one. (?:\FDSETUP\SETUP)
+REM %FINSP%    Path for installer files like this one. (?:\FREEDOS\SETUP)
 REM %OALL%     n = Base Only, y = All Packages, ? = Customized by FDIMPLES
 REM %OSRC%     n = sources not installed, y = sources installed
 

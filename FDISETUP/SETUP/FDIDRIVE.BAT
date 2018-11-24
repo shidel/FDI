@@ -1,8 +1,8 @@
 @echo off
 
 set RESULT=
-if "%1" == "PRE" \FDSETUP\BIN\VFDUTIL /x /d %2
-if not "%1" == "PRE" \FDSETUP\BIN\VFDUTIL /x /d %1
+if "%1" == "PRE" \FREEDOS\BIN\VFDUTIL /x /d %2
+if not "%1" == "PRE" \FREEDOS\BIN\VFDUTIL /x /d %1
 if errorlevel 1 set RESULT=A:
 if errorlevel 2 set RESULT=B:
 if errorlevel 3 set RESULT=C:

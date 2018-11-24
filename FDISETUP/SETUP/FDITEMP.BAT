@@ -5,7 +5,7 @@ set RETRY=yes
 
 if "%1" == "REQUIRED" goto Required
 if "%TEMP%" == "" goto MakeTemp
-call \FDSETUP\SETUP\FDIDRIVE.BAT PRE %TEMP%
+call \FREEDOS\SETUP\FDIDRIVE.BAT PRE %TEMP%
 if "%RESULT%" == "%FINSD%" goto MakeTemp
 if "%RESULT%" == "%FBOOTD%" goto MakeTemp
 

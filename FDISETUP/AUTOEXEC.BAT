@@ -61,7 +61,7 @@ AUTO_HELP=Type /fWhite %1 /fGray to get support on commands and navigation.
 AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /fYellow "%3" /fGray )
 
 :SkipLanguageData
-vecho /p Done processing startup files /fCyan FDCONFIG.SYS /a7 and /fCyan AUTOEXEC.BAT /a7/p
+vecho /p Done processing startup files /fCyan FDCONFIG.SYS /a7 and /fCyan $AUTOEXEC$ /a7/p
 
 if exist SETUP.BAT CALL SETUP.BAT $BOOT$
 
@@ -70,7 +70,7 @@ call WELCOME.BAT
 goto Done
 
 :V8Welcome
-set LANGFILE=FDSETUP\SETUP\%LANG%\FDSETUP.DEF
+set LANGFILE=FREEDOS\SETUP\%LANG%\FDSETUP.DEF
 if not exist %LANGFILE% SET LANGFILE=%0
 if not exist %DOSDIR%\BIN\HELP.EXE goto NoHelp
 vecho /t %LANGFILE% AUTO_HELP HELP

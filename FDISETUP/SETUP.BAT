@@ -7,8 +7,8 @@ REM Copyright 2016 Jerome Shidel.
 if "%1" == "RELOAD" goto SkipReload
 
 REM Quick and Simple DOSBox Check *********************************************
-if not exist FDSETUP\BIN\VINFO.COM goto CantTestDOSBoxNow
-FDSETUP\BIN\VINFO.COM /M
+if not exist FREEDOS\BIN\VINFO.COM goto CantTestDOSBoxNow
+FREEDOS\BIN\VINFO.COM /M
 if errorlevel 102 goto CantTestDOSBoxNow
 if errorlevel 101 goto SkipDriveChange
 :CantTestDOSBoxNow
@@ -31,17 +31,17 @@ REM Verify we ar on drive with SETUP.BAT **************************************
 if "%1" == "BOOT" goto DriveCheckPassed
 if "%1" == "CDROM" goto DriveCheckPassed
 if exist SETUP.BAT goto DriveCheckPassed
-if exist FDSETUP\BIN\VFDUTIL.COM goto DriveCheckPassed
+if exist FREEDOS\BIN\VFDUTIL.COM goto DriveCheckPassed
 goto FailDriveCheck
 
 :DriveCheckPassed
 REM Change to drive of SETUP.BAT with V8Power Tools ***************************
-FDSETUP\BIN\VFDUTIL.COM /c /p %0
+FREEDOS\BIN\VFDUTIL.COM /c /p %0
 REM Set Drive of Installer ****************************************************
 :FDIDrive
 
 if "%1" == "RELOAD" goto SkipFDIDrive
-call FDSETUP\SETUP\FDIDRIVE.BAT PRE %0
+call FREEDOS\SETUP\FDIDRIVE.BAT PRE %0
 set FINSD=%RESULT%
 set RESULT=
 :SkipFDIDrive
@@ -50,7 +50,7 @@ REM Set Boot Drive ************************************************************
 :BootDrive
 
 if "%1" == "RELOAD" goto SkipBootDrive
-call FDSETUP\SETUP\FDIDRIVE.BAT PRE %COMSPEC%
+call FREEDOS\SETUP\FDIDRIVE.BAT PRE %COMSPEC%
 set FBOOTD=%RESULT%
 set RESULT=
 :SkipBootDrive
@@ -60,8 +60,8 @@ REM Relaunch with FreeCOM shell ***********************************************
 
 if "%1" == "BOOT" goto SkipReload
 if "%1" == "CDROM" goto SkipReload
-if not exist FDSETUP\BIN\COMMAND.COM goto MissingFreeCOM
-FDSETUP\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
+if not exist FREEDOS\BIN\COMMAND.COM goto MissingFreeCOM
+FREEDOS\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 goto FailReload
 goto Done
 
@@ -156,14 +156,14 @@ goto Done
 
 REM Adjust pathspec ***********************************************************
 set OLDPATH=%PATH%
-set PATH=%FINSD%\FDSETUP\BIN;%FINSD%\FDSETUP\SETUP
+set PATH=%FINSD%\FREEDOS\BIN;%FINSD%\FREEDOS\SETUP
 
 REM Create Temporary Temp *****************************************************
-call FDSETUP\SETUP\FDITEMP.BAT QUITE
+call FREEDOS\SETUP\FDITEMP.BAT QUITE
 
 REM Run Installer *************************************************************
 if "%1" == "RELOAD" shift
-CALL FDSETUP\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+CALL FREEDOS\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
 cd \
 
 REM Restore Settings **********************************************************
