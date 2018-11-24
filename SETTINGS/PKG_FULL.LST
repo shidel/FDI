@@ -74,7 +74,8 @@ archiver\unzip
 util\fdimples
 
 util\bootfix
-util\grep
+; util\grep
+unix\grep
 util\tee
 util\touch
 util\which

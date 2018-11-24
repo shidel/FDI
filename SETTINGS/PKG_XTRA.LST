@@ -199,7 +199,8 @@ util\foxcalc
 util\foxtype
 util\gifsicle
 util\gnubc
-util\grep
+; util\grep
+unix\grep
 util\hexcomp
 util\hip
 util\hiram
