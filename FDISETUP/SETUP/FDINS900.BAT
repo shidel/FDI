@@ -109,6 +109,8 @@ echo PLATFORM=%OS_NAME%>%FTARGET%\VERSION.FDI
 if errorlevel 1 goto Failed
 echo VERSION=%OS_VERSION%>>%FTARGET%\VERSION.FDI
 if errorlevel 1 goto Failed
+grep -i "^RELEASE=" %FINSP%\VERSION.FDI>>%FTARGET%\VERSION.FDI
+verrlvl 0
 
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
