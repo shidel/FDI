@@ -14,8 +14,14 @@ if errorlevel 101 goto SkipDriveChange
 :CantTestDOSBoxNow
 
 REM Change to drive of SETUP.BAT -- Probably **********************************
-if "%1" == "BOOT" goto SkipDriveChange
-if "%1" == "CDROM" goto SkipDriveChange
+set NOTEST=
+if "%1" == "boot" set NOTEST=y
+if "%1" == "cdrom" set NOTEST=y
+if "%1" == "floppy" set NOTEST=y
+if "%1" == "eltorito" set NOTEST=y
+if "%1" == "live" set NOTEST=y
+if "%1" == "usb" set NOTEST=y
+if "%NOTEST%" == "y" goto SkipDriveChange
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP.BAT" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP" %%d:
@@ -28,8 +34,7 @@ cd \
 
 :SkipDriveChange
 REM Verify we ar on drive with SETUP.BAT **************************************
-if "%1" == "BOOT" goto DriveCheckPassed
-if "%1" == "CDROM" goto DriveCheckPassed
+if "%NOTEST%" == "y" goto DriveCheckPassed
 if exist SETUP.BAT goto DriveCheckPassed
 if exist FREEDOS\BIN\VFDUTIL.COM goto DriveCheckPassed
 goto FailDriveCheck
@@ -58,8 +63,7 @@ set RESULT=
 REM Relaunch with FreeCOM shell ***********************************************
 :ReloadShell
 
-if "%1" == "BOOT" goto SkipReload
-if "%1" == "CDROM" goto SkipReload
+if "%NOTEST%" == "y" goto SkipReload
 if not exist FREEDOS\BIN\COMMAND.COM goto MissingFreeCOM
 FREEDOS\BIN\COMMAND.COM /E:2048 /C %0 RELOAD %1 %2 %3 %4 %5 %6 %7 %8 %9
 if errorlevel 1 goto FailReload
@@ -124,8 +128,7 @@ goto FailBadOS
 REM Adjust Booted environment variables ***************************************
 :AdjustEnv
 
-if not "%1" == "BOOT" goto NoAdjustEnv
-if not "%1" == "CDROM" goto NoAdjustEnv
+if not "%NOTEST%" == "y" goto NoAdjustEnv
 set PATH=%FBOOTD%%PATH%
 set DOSDIR=%FBOOTD%%DOSDIR%
 set AUTOFILE=%FBOOTD%%AUTOFILE%
