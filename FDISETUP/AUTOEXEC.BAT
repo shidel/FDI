@@ -44,6 +44,8 @@ rem $LH$ DOSLFN
 
 $LBA$ $LH$ LBACACHE.COM buf 20 flop
 
+SET OS_NAME=$OSNAME$
+SET OS_VERSION=$OSVER$
 SET AUTOFILE=%0
 SET CFGFILE=\$CONFIG$
 alias reboot=fdapm warmboot

@@ -90,9 +90,9 @@ if errorlevel 103 set FEXT=VBX
 if errorlevel 104 set FEXT=VMW
 if errorlevel 200 set FEXT=EMU
 
-if not exist %FINSP%\FDCONFIG.%FEXT% set FEXT=DEF
-if not exist %FINSP%\FDCONFIG.%FEXT% goto SkipFDConfig
-CALL FDISET.BAT BEGIN %FINSP%\FDCONFIG.%FEXT%
+if not exist %FINSP%\CONFIG.%FEXT% set FEXT=DEF
+if not exist %FINSP%\CONFIG.%FEXT% goto SkipFDConfig
+CALL FDISET.BAT BEGIN %FINSP%\CONFIG.%FEXT%
 CALL FDISET.BAT SET $FLANG$ %LANG%
 CALL FDISET.BAT SET $FTARGET$ %DDIR%
 CALL FDISET.BAT SET $FDEFMENU$ %DMNU%
@@ -101,6 +101,7 @@ CALL FDISET.BAT END %FDRIVE%\FDCONFIG.SYS
 if errorlevel 1 goto Failed
 
 :SkipFDConfig
+verrlvl 0
 set DDIR=
 
 REM Create the installed version ID file.
