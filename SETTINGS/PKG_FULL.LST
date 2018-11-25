@@ -71,7 +71,7 @@ util\topspin
 util\trch
 util\uptime
 util\xkeyb
-util\shext
+util\shareext
 
 ; No longer installed to due insufficient disk space on slim USB stick
 ; There are still included as extras on the Big USB and CD-ROM versions.
