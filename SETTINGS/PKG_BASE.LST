@@ -1,12 +1,19 @@
 ; Package list for BASE only installation.
 
-; This is the BASE set and is also included in the ALL set.
-base\append
-base\assign
+; This is the BASE set and is also included in the FULL and LIVE sets.
+base\kernel
+base\command
+base\jemm
+base\himemx
+base\fdisk
+base\format
+base\xcopy
+
 base\attrib
 base\chkdsk
+base\append
+base\assign
 base\choice
-base\command
 base\comp
 base\cpidos
 base\ctmouse
@@ -23,15 +30,10 @@ base\edlin
 base\exe2bin
 base\fc
 base\fdapm
-base\fdisk
 base\find
-base\format
 base\fdxms
 base\fdxms286
 base\help
-base\jemm
-base\himemx
-base\kernel
 base\keyb
 base\keyb_lay
 base\label
@@ -54,7 +56,6 @@ base\swsubst
 base\tree
 base\undelete
 base\unformat
-base\xcopy
 base\graphics
 base\welcome
 

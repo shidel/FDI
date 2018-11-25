@@ -1,60 +1,8 @@
-; Package list for additional packages that are installed onto the FULL version
-; of the FDI USB Stick image.
+; Package list for additional packages that are installed onto the LIVE media
 
 ; These are the same as all other install media versions.
 
 $PKG_BASE$
 $PKG_FDI$
 
-; These are additional packages intalled only onto the LIVE CD media.
-; DO NOT duplicate package entries.
-
-unix\xgrep
-unix\nro
-unix\head
-unix\du
-unix\sleep
-unix\tee
-unix\touch
-unix\which
-
-archiver\tar
-archiver\gzip
-archiver\bz2
-
-edit\msedit
-
-util\bootfix
-util\pg
-util\cdrcache
-util\gnubc
-util\less
-util\localize
-util\md5sum
-util\part
-util\srdisk
-util\usbdos
-util\slowdown
-util\xfdisk
-util\zerofill
-util\xdel
-
-util\doslfn
-
-util\dosutil
-
-util\doszip
-util\dzemm
-util\foxtype
-util\gnuchcp
-
-util\pcisleep
-util\raread
-util\rawrite
-util\setlock
-util\stamp
-util\switchar
-util\topspin
-util\trch
-util\uptime
-util\xkeyb
+; These are additional packages that are intalled onto the LIVE CD media.

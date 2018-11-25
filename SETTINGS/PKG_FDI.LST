@@ -1,4 +1,4 @@
-; Package list for creation of the FDI boot disk image.
+; Package list for creation of the boot media and installer images.
 
 base\command
 base\kernel

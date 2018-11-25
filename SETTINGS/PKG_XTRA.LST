@@ -1,6 +1,5 @@
-; Package list for extra additionally included packages. It can include packages
-; in the ALL and BASE list. However, these packages are not installed. But, they
-; will be included on the USB stick and CD ISO images.
+; Package list for extra additionally included packages. These packages are not
+; installed. But, they will be included on media for the user's convenience.
 
 $PKG_BASE$
 $PKG_FDI$

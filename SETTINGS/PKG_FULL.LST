@@ -7,15 +7,15 @@ $PKG_FDI$
 
 util\fdimples
 
-unix\grep
-unix\xgrep
-unix\nro
-unix\head
-unix\du
-unix\sleep
-unix\tee
-unix\touch
-unix\which
+util\grep
+util\xgrep
+util\nro
+util\head
+util\du
+util\sleep
+util\tee
+util\touch
+util\which
 
 archiver\tar
 archiver\gzip
@@ -46,7 +46,6 @@ util\xfdisk
 util\zerofill
 util\xdel
 
-util\4dos
 util\doslfn
 
 util\dosutil
@@ -65,18 +64,15 @@ util\rawrite
 util\setlock
 util\spool
 util\stamp
-util\start
 util\switchar
 util\topspin
 util\trch
-util\uptime
 util\xkeyb
 util\shareext
 
 ; No longer installed to due insufficient disk space on slim USB stick
 ; There are still included as extras on the Big USB and CD-ROM versions.
 
-; net\fdnet
 ; util\wcd
 ; net\mtcp
 ; net\wget
