@@ -1,9 +1,7 @@
-; Package list for ALL package installation.
+; Package list for FULL package installation.
 
 $PKG_BASE$
 $PKG_FDI$
-
-; The remaining packages are only installed when ALL is chosen.
 
 util\fdimples
 
