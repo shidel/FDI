@@ -3,8 +3,6 @@
 $PKG_BASE$
 $PKG_FDI$
 
-util\fdimples
-
 util\grep
 util\xgrep
 util\nro

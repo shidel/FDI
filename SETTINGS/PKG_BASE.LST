@@ -59,13 +59,16 @@ base\unformat
 base\graphics
 base\welcome
 
+; Not actually part of BASE, but installed with it.
+util\fdnpkg
+util\v8power
+util\fdimples
+archiver\unzip
+
+; Probably should always include these as well.
+archiver\zip
 util\udvd2
 util\callver
-
-util\fdnpkg
 util\cwsdpmi
-util\v8power
 util\shsufdrv
 
-archiver\zip
-archiver\unzip
