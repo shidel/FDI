@@ -3,79 +3,58 @@
 
 ; These are the same as all other install media versions.
 
-base\command
-base\kernel
-base\deltree
-base\xcopy
-base\devload
-base\attrib
-base\shsucdx
-util\shsufdrv
-base\fdisk
-base\fdapm
-base\format
-base\fc
-
-util\v8power
-util\fdimples
-
-base\lbacache
-; util\grep
-unix\grep
-util\fdnpkg
-archiver\zip
-
-base\himemx
-base\jemm
-base\edit
-base\mem
-base\more
-util\doslfn
-
-util\udvd2
+$PKG_FDI$
+$PKG_BASE$
 
 ; These are additional packages intalled only onto the LIVE CD media.
 ; DO NOT duplicate package entries.
 
-base\chkdsk
-base\ctmouse
-base\defrag
-base\diskcomp
-base\diskcopy
-base\display
-base\dosfsck
-base\find
-base\keyb
-base\keyb_lay
-base\mkeyb
-base\mode
-base\move
-base\replace
-base\share
-base\sort
-base\tree
-base\undelete
-base\unformat
+unix\xgrep
+unix\nro
+unix\head
+unix\du
+unix\sleep
+unix\tee
+unix\touch
+unix\which
 
-archiver\bz2
-archiver\gzip
 archiver\tar
-archiver\unzip
+archiver\gzip
+archiver\bz2
 
-net\fdnet
-net\wget
-net\vmsmount
+edit\msedit
 
 util\bootfix
-util\cwsdpmi
+util\pg
+util\cdrcache
+util\gnubc
+util\less
+util\localize
 util\md5sum
 util\part
+util\srdisk
+util\usbdos
+util\slowdown
+util\xfdisk
+util\zerofill
+util\xdel
+
+util\doslfn
+
+util\dosutil
+
+util\doszip
+util\dzemm
+util\foxtype
+util\gnuchcp
+
+util\pcisleep
 util\raread
 util\rawrite
-util\usbdos
-util\which
-util\whichfat
-util\xfdisk
+util\setlock
+util\stamp
+util\switchar
+util\topspin
+util\trch
+util\uptime
 util\xkeyb
-
-

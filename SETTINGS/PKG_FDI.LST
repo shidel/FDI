@@ -16,10 +16,9 @@ base\fc
 util\v8power
 util\fdimples
 
-base\lbacache
-
-; util\grep
 unix\grep
+
+base\lbacache
 
 util\fdnpkg
 archiver\zip
