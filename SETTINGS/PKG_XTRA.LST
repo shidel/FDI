@@ -2,7 +2,7 @@
 ; in the ALL and BASE list. However, these packages are not installed. But, they
 ; will be included on the USB stick and CD ISO images.
 
-$PKG_FDI$
 $PKG_BASE$
+$PKG_FDI$
 $PKG_FULL$
 $PKG_LIVE$
