@@ -179,3 +179,16 @@ util\wcd
 util\wde
 util\whichfat
 util\wptail
+
+; New packages without translations
+devel\i16budoc
+devel\i16butil
+devel\i16gcc
+devel\i16gcdoc
+devel\i16newli
+devel\i16src
+net\etherdfs
+util\edict
+util\fdtui
+
+
