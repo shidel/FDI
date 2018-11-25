@@ -45,7 +45,6 @@ util\xdel
 util\doslfn
 
 util\dosutil
-util\fdshield
 
 util\doszip
 util\dzemm
@@ -64,8 +63,9 @@ util\switchar
 util\topspin
 util\trch
 util\xkeyb
-util\shareext
 
+util\shareext
 util\wcd
 net\mtcp
 net\wget
+util\fdshield
