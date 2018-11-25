@@ -1,6 +1,7 @@
 ; Package list for ALL package installation.
 
 $PKG_BASE$
+$PKG_FDI$
 
 ; The remaining packages are only installed when ALL is chosen.
 
