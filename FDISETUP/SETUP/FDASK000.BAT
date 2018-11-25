@@ -72,7 +72,7 @@ set KBI=1
 goto KBPoll
 
 :ScrollDown
-vmath %KBP% + 99 | set /p KTT=
+vmath %KBP% + 9 | set /p KTT=
 if "%KTT%" == "" goto ScrollDown
 if "%KTT%" == "%KBM%" goto AtBottom
 :DownCheck
@@ -80,7 +80,7 @@ vmath %KBP% + 1 | set /p KTT=
 if "%KTT%" == "" goto DownCheck
 set KBP=%KTT%
 :BottomCheck
-vmath %KBP% + 99 | set /p KTT=
+vmath %KBP% + 9 | set /p KTT=
 if "%KTT%" == "" goto BottomCheck
 vgotoxy /l sop
 vdelete
@@ -116,7 +116,7 @@ set KTT=
 
 set KLST=y
 set KBI=1
-set KBP=9
+set KBP=99
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBA_FRAME
