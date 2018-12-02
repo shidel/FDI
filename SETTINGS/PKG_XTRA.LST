@@ -161,7 +161,6 @@ util\ntfs
 util\opengem
 util\ospimg
 util\ozonegui
-util\paint2
 util\pbox
 util\pdtree
 util\pgme
@@ -191,4 +190,5 @@ net\etherdfs
 util\edict
 util\fdtui
 
-
+; Probably should also be excluded
+util\paint2
