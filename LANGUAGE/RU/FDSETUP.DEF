@@ -24,15 +24,15 @@ LANG_NL=Голландский
 LANG_TR=Турецкий
 LANG_RU=Русский
 
-HELLO_FRAME=/w70 /h15 /c
+HELLO_FRAME=/w72 /h17 /c
 HELLO_OPTS=/w43 /h4 /c
-HELLO=/s- "Добро пожаловать в программу установки " /f %1 "%2" /f %3"!"
+HELLO=/s- "Добро пожаловать в программу установки " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Добро пожаловать в расширенную программу установки " /f %1 "%2" /f %3 .
-HELLO_WARN.1=/f%1 "%2" /f%3 является завершенной операционной системой. Если вы решите установить ее на /p свой компьютер, то вы можете перезаписать операционную систему, /p которая у вас уже есть (например, Windows.)
-HELLO_WARN.2=/c32 Если вы этого не хотите, то прекратите установку сейчас.
-HELLO_WARN.3=
-HELLO_WARN.4=
-HELLO_WARN.5=
+HELLO_WARN.1=/f%1 "%2" /f%3 является завершенной операционной системой. Если /p
+HELLO_WARN.2=вы решите установить ее на свой компьютер, то вы можете /p
+HELLO_WARN.3=перезаписать операционную систему, которая у вас уже есть /p
+HELLO_WARN.4=(например, Windows.) Если вы этого не хотите, то прекратите /p
+HELLO_WARN.5=установку сейчас.
 
 # RELDATE=/r56 /c32 "Дата выпуска %1" /e
 
@@ -41,17 +41,17 @@ CONTINUE="  Да - Продолжить установку"
 EXIT="  Нет  - Вернуться DOS"
 
 # STAGE400 - Partition screen specific
-NOPART_FRAME=/w60 /h10 /c
-NOPART_OPTS=/w40 /h4 /c
+NOPART_FRAME=/w50 /h10 /c
+NOPART_OPTS=/w34 /h4 /c
 NOPART=/s- "Диск " /f  %1 %2 /f %3 " не размечен."
 PART?="Вы хотите разметить диск?"
 PART_YES="  Да - Разметить диск %1"
 # EXIT
 
 # STAGE400 - After partitioned specific
-PARTED_FRAME=/w62 /h11 /c
+PARTED_FRAME=/w62 /h12 /c
 PARTED_OPTS=/w40 /h4 /c
-PARTED=/s- "Необходимо перезагрузить компьютер для завершения разметки диска."
+PARTED=/s- "Необходимо перезагрузить компьютер для завершения" /p "разметки диска."
 REBOOT?="Перезагрузить компьютер?"
 REBOOT_YES="  Да"
 # EXIT
@@ -60,10 +60,10 @@ PARTING_FRAME=/w34 /h5 /c
 PARTING="Разметка жесткого диска..."
 
 # STAGE500 - Formating specific
-NOFORMAT_FRAME=/w55 /h10 /c
-NOFORMAT_OPTS=/w45 /h4 /c
-NOFORMATADV_FRAME=/w55 /h11 /c
-NOFORMATADV_OPTS=/w45 /h5 /c
+NOFORMAT_FRAME=/w70 /h10 /c
+NOFORMAT_OPTS=/w62 /h4 /c
+NOFORMATADV_FRAME=/w70 /h11 /c
+NOFORMATADV_OPTS=/w62 /h5 /c
 NOFORMAT=/s-  "Диск" /f %1 %2 /f %3 " не отформатирован."
 FORMAT?="Вы хотите отформатировать диск?"
 FORMAT_YES="  Да - Выполнить очистку и форматирование диска %1"
@@ -101,7 +101,7 @@ STAGE_ERROR=/s- "Невозможно выполнить этап установки %1." /p "Возможно, программ
 
 # FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
-CTRLC_OPTS=/w44 /h6 /c
+CTRLC_OPTS=/w48 /h6 /c
 CTRLC=/s- "Вы нажали " /f %1 "CTRL-C" /f %2 .
 CTRLC?="Вы хотите прервать установку системы?"
 CTRLCY="  Да - Вернуться в DOS"
@@ -110,10 +110,10 @@ CTRLCA="  Нет  - Переключиться в расширенный режим"
 CTRLCB="  Нет  - Переключиться в базовый режим"
 
 # FDIFAIL - Installation failure error message box
-FAIL_FRAME=/w62 /h11 /c
+FAIL_FRAME=/w72 /h11 /c
 FAIL_OPTS=/w40 /h4 /c
-FAILADV_FRAME=/w62 /h13 /c
-FAILADV_OPTS=/w40 /h6 /c
+FAILADV_FRAME=/w72 /h13 /c
+FAILADV_OPTS=/w46 /h6 /c
 FAILH="Может помочь перезапуск компьютера."
 FAIL?="Выполнить перезагрузку?"
 FAILY="  Да - перезагрузить компьютер"
@@ -138,24 +138,24 @@ ERROR_REMOS="Возникла проблема при удалении старых системных файлов."
 ERROR_XSYS="Ошибка при копировании системных файлов на %1."
 ERROR_CONFIG="Возникла проблема при копировании новых конфигурационных файлов."
 
-REBOOT_PAUSE=/f%1/c32 Извлеките установочный носитель и нажмите любую клавишу, чтобы перезапустить систему или /p/e/c32 нажмите /f%2 CTRL+C /f%1 для выходаЕ
-REBOOT_FRAME=/w70 /h8 /c
-REBOOT_WARN.1=Обратите внимание, что вы не обновили принудительно загрузочную запись /p MBR. Если
+REBOOT_PAUSE=/f%1/c32 Извлеките установочный носитель и нажмите любую клавишу, чтобы перезапустить /p/e/c32 систему или /p/e/c32 нажмите /f%2 CTRL+C /f%1 для выходаЕ /c32
+REBOOT_FRAME=/w70 /h9 /c
+REBOOT_WARN.1=Обратите внимание, что вы не обновили принудительно загрузочную /p запись  MBR. Если
 REBOOT_WARN.2=/c32 /s- /c32 /f%1 "%2" /f%3 не загружается, /s+ перезагрузитесь /p
-REBOOT_WARN.3=с помощью установочного носителя и выполните команду "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ чтобы
-REBOOT_WARN.4=/c32 принудительно установить /p загрузочную запись в MBR.
-REBOOT_WARN.5=
+REBOOT_WARN.3=с помощью установочного носителя и выполните команду /p "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ чтобы
+REBOOT_WARN.4=/c32 принудительно установить /p загрузочную запись в MBR. /n
+REBOOT_WARN.5=/n
 
 # AUTOEXEC.BAT messages
 AUTO_DONE=Выполнена обработка файлов автозапуска /fCyan %1 /a7 и /fCyan %2 /a7
-AUTO_HELP=Для получения справки по командам и навигации введите /fWhite %1 /fGray .
-AUTO_WELCOME=Добро пожаловать в /fGreen %1 /fCyan %2 /fGray! ( /s- /fYellow "%3" /fGray )
+AUTO_HELP=Для получения справки по командам и навигации введите /fWhite %1 /fGray /s- .
+AUTO_WELCOME=Добро пожаловать в /fGreen %1 /fCyan %2 /fGray /s- ! /s+ ( /s- /fYellow "%3" /fGray )
 
 # FDASK000 - Выбор раскладки клавиатуры
 
 # FDASK100 - Reserved
-KBS_FRAME=/w55 /h16 /c
-KBS_OPTS=/w38 /h11 /c
+KBS_FRAME=/w58 /h17 /c
+KBS_OPTS=/w38 /h12 /c
 KBS?=Выберите, пожалуйста, раскладку своей клавиатуры.
 KBO.1=" Английская (US) (Default)" /p " Английская (UK)" /p " Испанская" /p " Французская" /p " Немецкая" /p
 KBO.2=" Голландская " /p " Турецкая " /p " Русская"
@@ -164,10 +164,10 @@ KBL=" Меньше раскладок..."
 KBA_FRAME=/w58 /h13 /c
 
 # FDASK200 - Backup old OS
-BACKUP_FRAME=/w65 /h10 /c
-BACKUP_OPTS=/w42 /h4 /c
-BACKUPADV_FRAME=/w65 /h11 /c
-BACKUPADV_OPTS=/w42 /h5 /c
+BACKUP_FRAME=/w70 /h10 /c
+BACKUP_OPTS=/w60 /h4 /c
+BACKUPADV_FRAME=/w70 /h11 /c
+BACKUPADV_OPTS=/w60 /h5 /c
 BACKUP=На диске /f %1 %2 /f %3 /s- обнаружена уже установленная операционная система.
 BACKUP?=Создать резервную копию старых файлов перед установкой?
 BACKUPY="  Да - Создать резервную копию"
@@ -180,8 +180,8 @@ TARGET?=Изменить каталог для установки системы?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
 
 # FDASK300 - Advanced mode Replace system files
-REPLACE_FRAME=/w55 /h8 /c
-REPLACE_OPTS=/w40 /h4 /c
+REPLACE_FRAME=/w62 /h8 /c
+REPLACE_OPTS=/w56 /h4 /c
 REPLACE?=Заменить системные конфигурационные файлы?
 REPLACEY="  Да - Скопировать новые, со стандартными значениями"
 REPLACEN="  Нет  - Оставить старые"
@@ -200,8 +200,8 @@ XFER?=Перенести системные файлы на диск /f %1 %2 /f %3 /s- ?
 XFERY="  Да - Перенести"
 XFERN="  Нет  - Не переносить"
 
-OBSS_FRAME=/w52 /h8 /c
-OBSS_OPTS=/w34 /h4 /c
+OBSS_FRAME=/w56 /h8 /c
+OBSS_OPTS=/w42 /h4 /c
 OBSS?=Заменить загрузочную запись на диске /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Да - Перезаписать MBR"
 OBSSN="  Нет  - Не заменять принудительно MBR"
@@ -247,12 +247,12 @@ IRMOS=/s- "Удаление старых файлов из '" /f %1 %2 /f %3 "'."
 IRMOS_DONE="Файлы старой операционной системы удалены."
 
 # Remove old config files
-ICLEAN_FRAME=/w50 /h5 /c
+ICLEAN_FRAME=/w60 /h5 /c
 ICLEAN="Удаление старых конфигурационных файлов."
 ICLEAN_DONE="Удаление старых конфигурационных файлов завершено."
 
 # Transfer system files
-IXSYS_FRAME=/w52 /h5 /c
+IXSYS_FRAME=/w62 /h5 /c
 IXSYS= /s- "Копирование системных загрузочных файлов на диск " /f %1 %2 /f %3 .
 IXSYS_DONE="Копирование загрузочных файлов завершено."
 
@@ -266,7 +266,7 @@ IPACDONE_FRAME=/w54 /h5 /c
 IPACDONE="Установка программного обеспечения завершена."
 
 # Config file installation
-ICONFIGS_FRAME=/w46 /h5 /c
+ICONFIGS_FRAME=/w50 /h5 /c
 ICONFIGS="Установка конфигурационных файлов."
 ICONFIGS_DONE="Новые конфигурационные файлы установлены."
 
