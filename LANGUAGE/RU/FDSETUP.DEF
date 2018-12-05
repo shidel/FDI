@@ -1,0 +1,275 @@
+*******************************************************************************
+FreeDOS 1.2 Installer Russian Translation.
+Provided by: Petr Akhlamov
+Contact Email: petr-akhlamov@yandex.ru
+Created/Modified: 08/oct/2017
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+# LANG_AUTHOR is unused at present, but you should set it to your name.
+LANG_AUTHOR=Petr Akhlamov
+LANG_NAME=Russian
+
+# FDICLS - Title
+TITLE="Установка "/s- /f %1 "%2 " /f %3 "%4" /f %1
+
+# STAGE300 - Initial welcome screen message
+LANG_ASK="Выберите свой язык"
+LANG_EN=Английский
+LANG_ES=Испанский
+LANG_FR=Французский
+LANG_DE=Немецкий
+LANG_EO=Эсперанто
+LANG_NL=Голландский
+LANG_TR=Турецкий
+LANG_RU=Русский
+
+HELLO_FRAME=/w70 /h15 /c
+HELLO_OPTS=/w43 /h4 /c
+HELLO=/s- "Добро пожаловать в программу установки " /f %1 "%2" /f %3"!"
+HELLO_ADV=/s- "Добро пожаловать в расширенную программу установки " /f %1 "%2" /f %3 .
+HELLO_WARN.1=/f%1 "%2" /f%3 является завершенной операционной системой. Если вы решите установить ее на /p свой компьютер, то вы можете перезаписать операционную систему, /p которая у вас уже есть (например, Windows.)
+HELLO_WARN.2=/c32 Если вы этого не хотите, то прекратите установку сейчас.
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
+
+# RELDATE=/r56 /c32 "Дата выпуска %1" /e
+
+PROCEED?=/p/p "Вы хотите продолжить?"
+CONTINUE="  Да - Продолжить установку"
+EXIT="  Нет  - Вернуться DOS"
+
+# STAGE400 - Partition screen specific
+NOPART_FRAME=/w60 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Диск " /f  %1 %2 /f %3 " не размечен."
+PART?="Вы хотите разметить диск?"
+PART_YES="  Да - Разметить диск %1"
+# EXIT
+
+# STAGE400 - After partitioned specific
+PARTED_FRAME=/w62 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Необходимо перезагрузить компьютер для завершения разметки диска."
+REBOOT?="Перезагрузить компьютер?"
+REBOOT_YES="  Да"
+# EXIT
+REBOOT="Компьютер будет перезагружен..."
+PARTING_FRAME=/w34 /h5 /c
+PARTING="Разметка жесткого диска..."
+
+# STAGE500 - Formating specific
+NOFORMAT_FRAME=/w55 /h10 /c
+NOFORMAT_OPTS=/w45 /h4 /c
+NOFORMATADV_FRAME=/w55 /h11 /c
+NOFORMATADV_OPTS=/w45 /h5 /c
+NOFORMAT=/s-  "Диск" /f %1 %2 /f %3 " не отформатирован."
+FORMAT?="Вы хотите отформатировать диск?"
+FORMAT_YES="  Да - Выполнить очистку и форматирование диска %1"
+FORMATADV_QUICK="  Да - Выполнить быстрые очистку и форматирование диска %1"
+FORMATADV_SLOW="  Да - Выполнить полные очистку и форматирование диска %1"
+# EXIT
+FORMATTING=/s- /fGray "Форматирование диска " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Нажмите любую клавишу... " /e
+
+# STAGE600 - Install preparation
+GATHERING_FRAME=/w68 /h5 /c
+GATHERING="Сбор информации, необходимой для установки..."
+
+# STAGE800 - Installing
+INSTALL_FRAME=/w62 /h10 /c
+INSTALL_OPTS=/w48 /h4 /c
+INSTALL=/s- "Все готово к установке " /f %1 "%2" /f %3 .
+INSTALL?="Начать установку?"
+INSTALL_YES="  Да - Начать установку %1"
+# EXIT
+PREPARING_FRAME=/w42 /h5 /c
+PREPARING="Подготовка к установке..."
+
+# STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Установка " /f %1 "%2" /f %3 " завершена."
+# REBOOT?, REBOOT, EXIT
+
+# FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " Установка %1 была прервана." /e /fGray
+
+# FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Невозможно выполнить этап установки %1." /p "Возможно, программа установки повреждена." /p "Пожалуйста, загрузите ее заново или попробуйте другой способ установки."
+
+# FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Вы нажали " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Вы хотите прервать установку системы?"
+CTRLCY="  Да - Вернуться в DOS"
+CTRLCN="  Нет  - Продолжить установку"
+CTRLCA="  Нет  - Переключиться в расширенный режим"
+CTRLCB="  Нет  - Переключиться в базовый режим"
+
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w62 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w62 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Может помочь перезапуск компьютера."
+FAIL?="Выполнить перезагрузку?"
+FAILY="  Да - перезагрузить компьютер"
+FAILN="  Нет - Вернуться в DOS"
+FAILI="  Нет  - Игнорировать. (не рекомендуется)"
+FAILR="Компьютер будет перезагружен."
+
+# FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray уже установлена.
+NOTICE.2=/r5/c32 Вы можете запустить установку вручную выполнив "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+# Failure messages
+ERROR_BACKZIP="Создание архива резервной копии %1."
+ERROR_BACKUP="Ошибка при создании резервной копии."
+ERROR_MKDOS="Невозможно создать каталог '%1'."
+ERROR_PACKAGE="Невозможно установить пакет '%1'."
+ERROR_SOURCE="Невозможно извлечь исходный код '%1'."
+ERROR_READC="Возникли проблемы с чтением диска C:."
+ERROR_SHELL="Установка не поддерживается в вашей текущей оболочке."
+ERROR_MEDIA="Не удалось найти пакеты для установки."
+ERROR_REMOS="Возникла проблема при удалении старых системных файлов."
+ERROR_XSYS="Ошибка при копировании системных файлов на %1."
+ERROR_CONFIG="Возникла проблема при копировании новых конфигурационных файлов."
+
+REBOOT_PAUSE=/f%1/c32 Извлеките установочный носитель и нажмите любую клавишу, чтобы перезапустить систему или /p/e/c32 нажмите /f%2 CTRL+C /f%1 для выходаЕ
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Обратите внимание, что вы не обновили принудительно загрузочную запись /p MBR. Если
+REBOOT_WARN.2=/c32 /s- /c32 /f%1 "%2" /f%3 не загружается, /s+ перезагрузитесь /p
+REBOOT_WARN.3=с помощью установочного носителя и выполните команду "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ чтобы
+REBOOT_WARN.4=/c32 принудительно установить /p загрузочную запись в MBR.
+REBOOT_WARN.5=
+
+# AUTOEXEC.BAT messages
+AUTO_DONE=Выполнена обработка файлов автозапуска /fCyan %1 /a7 и /fCyan %2 /a7
+AUTO_HELP=Для получения справки по командам и навигации введите /fWhite %1 /fGray .
+AUTO_WELCOME=Добро пожаловать в /fGreen %1 /fCyan %2 /fGray! ( /s- /fYellow "%3" /fGray )
+
+# FDASK000 - Выбор раскладки клавиатуры
+
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Выберите, пожалуйста, раскладку своей клавиатуры.
+KBO.1=" Английская (US) (Default)" /p " Английская (UK)" /p " Испанская" /p " Французская" /p " Немецкая" /p
+KBO.2=" Голландская " /p " Турецкая " /p " Русская"
+KBM=/p/p " Больше раскладок..."
+KBL=" Меньше раскладок..."
+KBA_FRAME=/w58 /h13 /c
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w65 /h10 /c
+BACKUP_OPTS=/w42 /h4 /c
+BACKUPADV_FRAME=/w65 /h11 /c
+BACKUPADV_OPTS=/w42 /h5 /c
+BACKUP=На диске /f %1 %2 /f %3 /s- обнаружена уже установленная операционная система.
+BACKUP?=Создать резервную копию старых файлов перед установкой?
+BACKUPY="  Да - Создать резервную копию"
+BACKUPZ="  Да - Создать резервную копию в виде zip-архива"
+BACKUPN="  Нет  - Продолжить установку без резервной копии"
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w50 /h7 /c
+TARGET?=Изменить каталог для установки системы?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w55 /h8 /c
+REPLACE_OPTS=/w40 /h4 /c
+REPLACE?=Заменить системные конфигурационные файлы?
+REPLACEY="  Да - Скопировать новые, со стандартными значениями"
+REPLACEN="  Нет  - Оставить старые"
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w55 /h8 /c
+DELETE_OPTS=/w42 /h4 /c
+DELETE?=Удалить все старые файлы из /f %1 %2 /f %3 /s- ?
+DELETEY="  Да - Начать очистку"
+DELETEN="  Нет - Оставить"
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w55 /h8 /c
+XFER_OPTS=/w42 /h4 /c
+XFER?=Перенести системные файлы на диск /f %1 %2 /f %3 /s- ?
+XFERY="  Да - Перенести"
+XFERN="  Нет  - Не переносить"
+
+OBSS_FRAME=/w52 /h8 /c
+OBSS_OPTS=/w34 /h4 /c
+OBSS?=Заменить загрузочную запись на диске /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Да - Перезаписать MBR"
+OBSSN="  Нет  - Не заменять принудительно MBR"
+
+# FDASK600 - Package group selection.
+PAC_FRAME=/w60 /h11 /c
+PAC_OPTS=/w42 /h7 /c
+PAC_FRAME_B=/w60 /h8 /c
+PAC_OPTS_B=/w42 /h4 /c
+PAC_FRAME_D=/w60 /h14 /c
+PAC_OPTS_D=/w42 /h10 /c
+PAC_FRAME_BD=/w60 /h11 /c
+PAC_OPTS_BD=/w42 /h7 /c
+PACS?=Какие пакеты /f %1 %2 /f %3 вы хотите установить?
+PACBO="  Только базовые"
+PACBS="  Только базовые +исходный код"
+PACAO="  Полная установка"
+PACAS="  Полная установка +исходный код"
+PACDO_ADV="  Выбраны бинарные пакеты"
+PACDS_ADV="  Выбраны пакеты с исходным кодом"
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Нажмите любую клавишу..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Создание резервной копии
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 Резервная копия успешно создана.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Удаление старых конфликтных пакетов.
+IRMPACKN=/s- "Удаление пакета '" /f %1 %2 /f %3 "'..."
+
+# Remove old OS files
+IRMOS_FRAME=/w60 /h5 /c
+IRMOS=/s- "Удаление старых файлов из '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Файлы старой операционной системы удалены."
+
+# Remove old config files
+ICLEAN_FRAME=/w50 /h5 /c
+ICLEAN="Удаление старых конфигурационных файлов."
+ICLEAN_DONE="Удаление старых конфигурационных файлов завершено."
+
+# Transfer system files
+IXSYS_FRAME=/w52 /h5 /c
+IXSYS= /s- "Копирование системных загрузочных файлов на диск " /f %1 %2 /f %3 .
+IXSYS_DONE="Копирование загрузочных файлов завершено."
+
+# Package installation.
+IPAC_FRAME=/w60 /h7 /c
+IPACBM="Установка пакетов с ПО."
+IPACBI=/s- "Установка пакета '" /f %1 %2 /f %3 "'"
+IPACSM="Установка пакетов с исходным кодом."
+IPACSI= /s- "Извлечение исходного кода  '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w54 /h5 /c
+IPACDONE="Установка программного обеспечения завершена."
+
+# Config file installation
+ICONFIGS_FRAME=/w46 /h5 /c
+ICONFIGS="Установка конфигурационных файлов."
+ICONFIGS_DONE="Новые конфигурационные файлы установлены."
+
+# Virtual machine not supported with this install media.
+NORUN.1=К сожалению, данный способ установки не поддерживается на данном
+NORUN.2=/p оборудовании. Пожалуйста, попробуйте другой способ установки.

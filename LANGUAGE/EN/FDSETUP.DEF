@@ -22,6 +22,7 @@ LANG_DE=German
 LANG_EO=Esperanto
 LANG_NL=Dutch
 LANG_TR=Turkish
+LANG_RU=Russian
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c

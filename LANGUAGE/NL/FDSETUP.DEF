@@ -22,6 +22,7 @@ LANG_DE=Duits
 LANG_NL=Nederlands
 LANG_EO=Esperanto
 LANG_TR=Turks
+LANG_RU=Russisch
 
 # STAGE300 - Initial welcome screen message.
 HELLO_FRAME=/w68 /h15 /c

@@ -22,6 +22,7 @@ LANG_DE=Almanca
 LANG_EO=Esperanto
 LANG_NL=Felemenkáe
 LANG_TR=TÅrkáe
+LANG_RU=Rusáa
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c
