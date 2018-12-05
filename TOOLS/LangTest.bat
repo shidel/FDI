@@ -361,7 +361,7 @@ vecho
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS_B
 vecho /t %FLANG% PACBO
 vecho /n /t %FLANG% PACBS
-vchoice /a %TFC% Ctrl-C /d 3
+vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -377,7 +377,7 @@ vecho /t %FLANG% PACBS
 vecho
 vecho /t %FLANG% PACDO_ADV
 vecho /n /t %FLANG% PACDS_ADV
-vchoice /a %TFC% Ctrl-C /d 3
+vchoice /a %TFC% Ctrl-C /d 1
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -388,11 +388,11 @@ vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS
 vecho /t %FLANG% PACBO
-vecho /t %FLANG% PACBS
-vecho
 vecho /t %FLANG% PACAO
+vecho
+vecho /t %FLANG% PACBS
 vecho /n /t %FLANG% PACAS
-vchoice /a %TFC% Ctrl-C /d 3
+vchoice /a %TFC% Ctrl-C /d 2
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 
@@ -404,14 +404,14 @@ vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
 vecho
 vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PAC_OPTS_D
 vecho /t %FLANG% PACBO
-vecho /t %FLANG% PACBS
-vecho
 vecho /t %FLANG% PACAO
+vecho
+vecho /t %FLANG% PACBS
 vecho /t %FLANG% PACAS
 vecho
 vecho /t %FLANG% PACDO_ADV
 vecho /n /t %FLANG% PACDS_ADV
-vchoice /a %TFC% Ctrl-C /d 3
+vchoice /a %TFC% Ctrl-C /d 2
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 

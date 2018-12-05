@@ -207,16 +207,16 @@ OBSSN="  No  - Don't force new MBR"
 
 # FDASK600 - Package group selection.
 PAC_FRAME=/w70 /h11 /c
-PAC_OPTS=/w54 /h7 /c
+PAC_OPTS=/w58 /h7 /c
 PAC_FRAME_B=/w70 /h8 /c
 PAC_OPTS_B=/w54 /h4 /c
 PAC_FRAME_D=/w70 /h14 /c
-PAC_OPTS_D=/w54 /h10 /c
+PAC_OPTS_D=/w58 /h10 /c
 PAC_FRAME_BD=/w70 /h11 /c
 PAC_OPTS_BD=/w54 /h7 /c
 PACS?=What /f %1 %2 /f %3 packages do you want to install?
 PACBO="  Plain DOS system"
-PACBS="  Plain DOS system, with sources only"
+PACBS="  Plain DOS system, with sources"
 PACAO="  Full installation including applications and games"
 PACAS="  Full installation with sources"
 PACDO_ADV="  Selected binary packages"
