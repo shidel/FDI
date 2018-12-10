@@ -1,0 +1,19 @@
+; The first 7 keyboard mapping settings are defaults and built into installer.
+
+TITLE.1=US Anglais (par d‚faut)
+VALUE.1=
+TITLE.2=UK Anglais
+VALUE.2=mkeyb UK
+TITLE.3=Espagnol
+VALUE.3=mkeyb SP
+TITLE.4=Fran‡ais
+VALUE.4=mkeyb FR
+TITLE.5=Allemand
+VALUE.5=mkeyb GR
+TITLE.6=Hollandais
+VALUE.6=mkeyb NE
+TITLE.7=Turc
+VALUE.7=keyb TR,857,%DOSDIR%\BIN\KEYBRD2.SYS
+TITLE.8=Russe
+VALUE.8=keyb RU,,%DOSDIR%\BIN\KEYBRD2.SYS
+

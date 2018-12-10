@@ -1,0 +1,284 @@
+*******************************************************************************
+FreeDOS Installer Esperanto Translation.
+Provided by: Rugxulo
+Contact Email: rugxulo@gmail.com
+Created/Modified: Tuesday, January 16, 2016
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+# LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+LANG_AUTHOR=Rugxulo
+LANG_NAME=Esperanto
+
+# FDICLS - Installer Title Bar
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Enhavigilo"
+
+# STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Bonvolu elekti vian lingvon."
+LANG_EN=angla
+LANG_ES=hispana
+LANG_FR=franca
+LANG_DE=germana
+LANG_EO=esperanto
+LANG_NL=nederlanda
+LANG_TR=turkish
+LANG_RU=rusa
+
+# STAGE300 - Initial welcome screen message.
+HELLO_FRAME=/w70 /h16 /c
+HELLO_OPTS=/w42 /h4 /c
+HELLO=/s- "Bonvenon! Chi tie estas la enhavigilo de " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Bonvenon! Chi tie estas la altspertan enhavigilon de " /f %1 "%2" /f %3 .
+HELLO_WARN.1=/f%1 "%2" /f%3 estas plenumita mashinestrumo. Se vi elektus chi /p
+HELLO_WARN.2=tion por enhavigi komputilen, vi povus tute forvishi la /p mashinestrumon
+HELLO_WARN.3=/c32 ekzistan (ekz. Vindozo). Se vi ne celas tiel, /p bonvolu chesi tuj!
+HELLO_WARN.4=
+HELLO_WARN.5=/p/p
+PROCEED?="Chu vi deziras dauri plu?"
+CONTINUE="  Jes - Dauru por enhavigi dosierojn."
+EXIT="  Ne  - Adiau, ghis revido."
+
+# STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w56 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Diskero " /f %1 %2 /f %3 " laushajne ne havas dosieraran specon."
+PART?="Chu vi volas registri vian diskospecon?"
+PART_YES="  Jes - Farigu la registrilon."
+PARTING_FRAME=/w40 /h5 /c
+PARTING="Dispartiganta malmola disko..."
+
+# STAGE400 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Vi reenvekigu vian komputilon por sukcesi la novan" /p "disk-registrilan metodon."
+REBOOT?="Chu vi volas reenvekigi nuntempe?"
+REBOOT_YES="  Jes - Bonvolu reenvekigi tuj."
+# Also uses EXIT defined above.
+REBOOT="Via komputilo nun reenvekighas."
+
+# STAGE500 - Formating specific
+NOFORMAT_FRAME=/w66 /h11 /c
+NOFORMAT_OPTS=/w54 /h4 /c
+NOFORMATADV_FRAME=/w66 /h12 /c
+NOFORMATADV_OPTS=/w54 /h5 /c
+NOFORMAT=/s-  "Diskero " /f %1 %2 /f %3 " ankorau ne taugas por legi/skribi."
+FORMAT?="Chu vi volas registri vian diskeron por"/p"legindeco/skribindeco?"
+FORMAT_YES="  Jes - Bonvolu forvishi kaj taugigi diskeron %1."
+FORMATADV_QUICK="  Jes - Vishetu kaj taugigi diskeron %1."
+FORMATADV_SLOW="  Jes - Plenvishegu kaj taugigi diskeron %1."
+# Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Taugigante diskeron " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Manpremu klavon... " /e
+
+# STAGE700 - Install preparation
+GATHERING_FRAME=/w58 /h5 /c
+GATHERING="Kolektante iujn informojn por pretigi enhavigado."
+
+# Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+# to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+# it will use it over the main FDASK.DEF language file. That is only recommended
+# for add-on questioning prompts that are not part of the main FDI base.
+
+# STAGE800 - Installing
+INSTALL_FRAME=/w62 /h10 /c
+INSTALL_OPTS=/w50 /h4 /c
+INSTALL=/s- "Ne pretas por enhavigi " /f %1 "%2" /f %3 .
+INSTALL?="Chu vi volas enhavigi nuntempe?"
+INSTALL_YES="  Jes - Bonvolu enhavigi %1."
+# Also uses EXIT defined above.
+PREPARING_FRAME=/w32/h5 /c
+PREPARING="Pretigante por enhavigi."
+
+# Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+# to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+# it will use it over the main FDINS.DEF language file. That is only recommended
+# for add-on installers that are not part of the main FDI base.
+
+# STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Enhavigo de " /f %1 "%2" /f %3 " nun estas plenumita."
+# Also uses REBOOT?, REBOOT, EXIT defined above.
+
+# FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " La enhavigo de %1 chesas." /e /fGray
+
+# FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Ne povas farigi enhavigilan etaghon %1." /p "Eble la enhavigilo disrompis." /p "Bonvolu denove elshutu ghin au provu malsaman metodon por enhavigi."
+
+# FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Vi jhus manpremis " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Chu vi certas ke vi volas chesi enhavigilon?"
+CTRLCY="  Jes - Bonvolu foriri al DOS."
+CTRLCN="  Ne  - Me deziras dauri."
+CTRLCA="  Ne  - Enshaltu Altsperten."
+CTRLCB="  Ne  - Deshaltu Bazen."
+
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w64 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Reenvekigho eble plibonigos."
+FAIL?="Chu vi volas reenvekigi nuntempe?"
+FAILY="  Jes - Bonvolu reenvekigi tuj."
+FAILN="  Ne  - Foriru al DOS"
+# At present FAILI is only available in advanced mode.
+FAILI="  Ne  - Malatendu (ne bonege)"
+FAILR="La komputilo nun komencas reenvekigi."
+
+# FDNOTICE - Already installed notice.
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray jam estas enmetita.
+NOTICE.2=/r5/c32 Vi povas memkomenci enhavigilon manpreme per tajpu "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+# Failure messages
+ERROR_BACKZIP="Kreante konservajhan arhhivon %1."
+ERROR_BACKUP="Eraris dum kreado de konservajho."
+ERROR_MKDOS="Ne povas krei '%1' dosierujon."
+ERROR_PACKAGE="Ne povas enhavigi la '%1' pakajhon."
+ERROR_SOURCE="Ne povas enhavigi la '%1' fonttekstojn."
+ERROR_READC="Malsukcesis legi la diskeron C:."
+ERROR_SHELL="Enhavigado ne funckias per via nuntempa demandilo."
+
+ERROR_MEDIA="Ne povas trovi la enhavigadajn pakajhojn."
+ERROR_REMOS="Malsukcesis vishi malnovajn majstrajn dosierojn."
+ERROR_XSYS="Eraris transkopiante majstrajn dosierojn al %1."
+ERROR_CONFIG="Eraris kopiante novajn elektilajn dosierojn."
+
+REBOOT_PAUSE=/f%1/c32 Elprenu la enhavigilan diskon kaj manpremu unu klavon por reenvekigi vian /p/e/c32 mashinon au nur manpremu /f%2 CTRL+C /f%1 por foriri...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Estas konata ke vi ne senpere registris vian MBR-an komencan /p
+REBOOT_WARN.2=kodon. Se via mashino malsukcesos uzi /s- /c32 /f%1 "%2" /f%3 , /s+ bonvolu /p
+REBOOT_WARN.3=reenvekigi per la enhavigilan diskon kaj farigi "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ /p
+REBOOT_WARN.4=por forte registri novan komencan kodon en la MBR-n.
+REBOOT_WARN.5=
+
+# AUTOEXEC.BAT messages
+AUTO_DONE=Traktado finas pri majstrajn levigilajn dosierojn /fCyan %1 /a7 kaj /fCyan %2 /a7
+AUTO_HELP=Tajpu /fWhite %1 /fGray por akiri helpon pri ordonoj kaj veturadon.
+AUTO_WELCOME=Bonvolu al la /fGreen %1 /fCyan %2 /fGray mashinestro (OS) ( /s- /fYellow "%3" /fGray )
+
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Bonvolu elekti via klavararango.
+KBO.1=" Usona angla (Defaulta)" /p " Britio angla" /p " hispana" /p " franca" /p " germana" /p
+KBO.2=" nederlando" /p " turkish"
+KBM=/p/p " Pli klavaro elektoj..."
+KBL=" Malpli klavaro elektoj..."
+KBA_FRAME=/w58 /h13 /c
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w62 /h10 /c
+BACKUP_OPTS=/w40 /h4 /c
+BACKUPADV_FRAME=/w66 /h11 /c
+BACKUPADV_OPTS=/w46 /h5 /c
+BACKUP=Antaua mashinestro (OS) trovighis sur diskero /f %1 %2 /f %3 /s- .
+BACKUP?=Chu konservu la malnovajn dosierojn antau ol enhavigi?
+BACKUPY="  Jes - Bonvolu konservi antaue."
+BACKUPZ="  Jes - Bonvolu konservi en .ZIP arhhiven."
+BACKUPN="  Ne  - Enhavigu sen konservi."
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c
+TARGET?=Chu shanghu enhavan celotan dosierujon?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w68 /h8 /c
+REPLACE_OPTS=/w53 /h4 /c
+REPLACE?=Chu "remetu/ghisdatigu" la chefajn elektilajn (CFG) dosierojn?
+REPLACEY="  Jes - Kopiu la novajn oft-elektilajn dosierojn."
+REPLACEN="  Ne  - Restu kun la malnovajn dosierojn."
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
+DELETE_OPTS=/w40 /h4 /c
+DELETE?=Chu vishu cxiujn malnovajn dosierojn de /f %1 %2 /f %3 /s- ?
+DELETEY="  Jes - Komencu pure."
+DELETEN="  Ne  - Allasu kiel rubajho."
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c
+XFER_OPTS=/w42 /h4 /c
+XFER?=Chu kopiu majstrajn dosierojn sur diskeron /f %1 %2 /f %3 /s- ?
+XFERY="  Jes - Kopiu majstrajn dosierojn."
+XFERN="  Ne  - Ne kopiu majstrajn dosierojn."
+
+# FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w58 /h8 /c
+OBSS_OPTS=/w44 /h4 /c
+# vecho "Force new boot sector code on dive C:?"
+OBSS?=Devigi novajn boot sektoro kodo sur disko /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Jes - Anstatauigi cefeksargrikordo."
+OBSSN="  Ne  - Ne perfortu anstatauigi."
+
+# FDASK700 - Package group selection.
+PAC_FRAME=/w64 /h11 /c
+PAC_OPTS=/w54 /h7 /c
+PAC_FRAME_B=/w64 /h8 /c
+PAC_OPTS_B=/w54 /h4 /c
+PAC_FRAME_D=/w64 /h14 /c
+PAC_OPTS_D=/w54 /h10 /c
+PAC_FRAME_BD=/w64 /h11 /c
+PAC_OPTS_BD=/w54 /h7 /c
+PACS?=Kiuj el tiuj /f %1 %2 /f %3 pakajhoj vi deziras enhavigi?
+PACBO="  Nur bazajn pakajhojn."
+PACBS="  Nur bazajn pakajhojn kun fonttekstoj."
+PACAO="  Chiujn de la pakajhoj."
+PACAS="  Chiujn de la pakajhoj kaj de iliaj fonttekstoj."
+PACDO_ADV="  Elmetitajn nefontajn pakajhojn."
+PACDS_ADV="  Elmetitajn pakajhojn kaj iliajn fonttekstojn."
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Manpremu klavon..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Konservante malnovajhon
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 Konservado jhus finis.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Forvishante malnovajn kontrauajn pakajhojn.
+IRMPACKN=/s- "Forvishante malnovan '" /f %1 %2 /f %3 "' pakajhon."
+
+# Remove old OS files
+IRMOS_FRAME=/w62 /h5 /c
+IRMOS=/s- "Forvishante malnovajn dosierojn de '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Malnovaj mashinestraj (OS) dosieroj estis forvishitaj."
+
+# Remove old config files
+ICLEAN_FRAME=/w60 /h5 /c
+ICLEAN="Forvishante la malnovajn elektilajn (CFG) dosierojn."
+ICLEAN_DONE="Malnovaj elektilaj dosieroj estas forvishitaj."
+
+# Transfer system files
+IXSYS_FRAME=/w64 /h5 /c
+IXSYS= /s- "Kopiante majstrajn levigilajn dosierojn al diskero " /f %1 %2 /f %3 .
+IXSYS_DONE="Majstra dosiera kopiado jhus finis."
+
+# Package installation.
+IPAC_FRAME=/w60 /h7 /c
+IPACBM="Enhavigante verkitajn pakajhojn."
+IPACBI=/s- "Enhavigante verkitan pakajhon '" /f %1 %2 /f %3 "'"
+IPACSM="Enhavigante fonttekstojn."
+IPACSI= /s- "Enhavigante fonttekstojn por '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w50 /h5 /c
+IPACDONE="Verk-pakajha enhavigado jhus plenumis."
+
+# Config file installation
+ICONFIGS_FRAME=/w50 /h5 /c
+ICONFIGS="Enhavigante novnovajn elektilajn dosierojn."
+ICONFIGS_DONE="Novaj elektilaj dosieroj estis enmetitaj."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Bedaurinde, ci tiu metodo de instalado ne estas subtenata en ci tiu
+NORUN.2=/p aparataro platformo. Bonvolu provi malsaman instalado metodo.

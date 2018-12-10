@@ -1,0 +1,292 @@
+*******************************************************************************
+FreeDOS Installer Dutch Translation.
+Provided by: Maarten Vermeulen
+Contact Email: netraam70@gmail.com
+Created/Modified: Created: 18 dec 2015 (19:40 UTC +1.00) Finished: 4 sept 2016
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+# LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+LANG_AUTHOR=Maarten Vermeulen
+LANG_NAME=Dutch
+
+# FDICLS - Installer Title Bar
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installatie"
+
+# STAGE300 - Before welcome screen if LANG is not set and could not be detected.
+LANG_ASK="Selecteer je taal."
+LANG_EN=Engels
+LANG_ES=Spaans
+LANG_FR=Frans
+LANG_DE=Duits
+LANG_NL=Nederlands
+LANG_EO=Esperanto
+LANG_TR=Turks
+LANG_RU=Russisch
+
+# STAGE300 - Initial welcome screen message.
+HELLO_FRAME=/w68 /h15 /c
+HELLO_OPTS=/w40 /h4 /c
+HELLO=/s- "Welkom bij de setup van " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Welkom bij de geavanceerde setup van " /f %1 "%2" /f %3 .
+HELLO_WARN.1=/f%1 "%2" /f%3 is een compleet besturingssysteem. Als je ervoor /p
+HELLO_WARN.2=kiest om dit te installeren, kan het zijn dat je het huidige /p
+HELLO_WARN.3=besturingssysteem op je computer kwijt raakt. Als dit niet is /p
+HELLO_WARN.4=wat je wilt, ga dan niet verder.
+HELLO_WARN.5=/p/p
+PROCEED?="Weet je zeker dat je verder wilt gaan?"
+CONTINUE="  Ja  - Ga door met de installatie"
+EXIT="  Nee - Ga terug naar DOS."
+
+# STAGE400 - Partition screen specific dialog text.
+NOPART_FRAME=/w70 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+# vecho "Drive C: does not appear to be partitioned."
+NOPART=/s- "Schijf " /f %1 %2 /f %3 " lijkt niet gepartitioneerd te zijn."
+PART?="Wilt u de schijf graag partitioneren?"
+PART_YES="  Ja  - Partitioneer schijf %1."
+PARTING_FRAME=/w46 /h5 /c
+PARTING="Partitioneren van de harde schijf..."
+# Also uses EXIT defined above.
+
+# STAGE500 - After partitioned specific text.
+PARTED_FRAME=/w60 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+# Actually, this uses two lines because of the frame width. Not because it
+# is two strings.
+PARTED=/s- "U moet uw computer opnieuw opstarten om het nieuwe" /p "partitieschema in werking te laten gaan."
+REBOOT?="Wilt u opnieuw opstarten?"
+REBOOT_YES="  Ja  - Start de computer opnieuw op."
+# Also uses EXIT defined above.
+REBOOT="Uw computer moet opnieuw opstarten."
+
+# STAGE500 - Formating specific
+NOFORMAT_FRAME=/w72 /h10 /c
+NOFORMAT_OPTS=/w62 /h4 /c
+NOFORMATADV_FRAME=/w74 /h11 /c
+NOFORMATADV_OPTS=/w70 /h5 /c
+# vecho "Drive C: does not appear to be formatted."
+NOFORMAT=/s-  "Schijf " /f %1 %2 /f %3 " lijkt niet geformatteerd te zijn."
+FORMAT?="Weet u zeker dat u de schijf wilt formatteren?"
+FORMAT_YES="  Ja  - Verwijder alle bestanden en formatteer schijf %1."
+FORMATADV_QUICK="   Ja - Verwijder alle bestanden en formatteer schijf %1 snel."
+FORMATADV_SLOW="   Ja - Verwijder alle bestanden en formatteer schijf %1 volledig."
+# Also uses EXIT defined above.
+FORMATTING=/s- /fGray "Schijf " /fWhite %1 /fGray " aan het formatteren" /fGray ...
+# The /e switch clears the rest of the current line without moving the cursor.
+PAUSE=/fLightGreen " Druk op een toets... " /e
+
+# STAGE700 - Install preparation
+GATHERING_FRAME=/w76 /h5 /c
+GATHERING="Informatie aan het verzamelen voor het klaarmaken van de installatie."
+
+# Stage 700 calls all of the FDASK???.BAT files. It also sets up the installer
+# to use the FDASK.DEF language file. If a FDASK???.DEF language is present,
+# it will use it over the main FDASK.DEF language file. That is only recommended
+# for add-on questioning prompts that are not part of the main FDI base.
+
+# STAGE800 - Installing
+INSTALL_FRAME=/w60 /h10 /c
+INSTALL_OPTS=/w46 /h4 /c
+INSTALL=/s- "We zijn klaar om " /f %1 "%2" /f %3 " te installeren."
+INSTALL?="Wilt u het nu installeren?"
+INSTALL_YES="  Ja  - installeer %1."
+# Also uses EXIT defined above.
+PREPARING_FRAME=/w35 /h5 /c
+PREPARING="Klaarmaken voor installatie."
+
+# Stage 800 calls all of the FDINS???.BAT files. It also sets up the installer
+# to use the FDINS.DEF language file. If a FDINS???.DEF language is present,
+# it will use it over the main FDINS.DEF language file. That is only recommended
+# for add-on installers that are not part of the main FDI base.
+
+# STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w64 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "De installatie van " /f %1 "%2" /f %3 " is klaar."
+# Also uses REBOOT?, REBOOT, EXIT defined above.
+
+# FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " De installatie van %1 is afgebroken." /e /fGray
+
+# FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Niet in staat om het stadium %1 te installeren." /p "Het kan zijn dat het installatie bestand corrupt is." /p "Download het programma opnieuw of probeer een andere installatie methode."
+
+# FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w50 /h6 /c
+CTRLC=/s- "je hebt " /f %1 "CTRL-C" /f %2 " ingedrukt."
+CTRLC?="Weet u zeker dat u de installatie wilt be‹ndigen?"
+CTRLCY="  Ja  - Ga terug naar DOS."
+CTRLCN="  Nee - Ik wil doorgaan."
+CTRLCA="  Nee - schakel over naar geavanceerde modus."
+CTRLCB="  Nee - schakel over naar de basis modus."
+
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w60 /h11 /c
+FAIL_OPTS=/w42 /h4 /c
+FAILADV_FRAME=/w60 /h13 /c
+FAILADV_OPTS=/w42 /h6 /c
+FAILH="Herstarten kan mogelijk helpen."
+FAIL?="Wilt u herstarten?"
+FAILY="  Ja  - Start de computer opnieuw op."
+FAILN="  Nee - Ga terug naar DOS."
+# At present FAILI is only available in advanced mode.
+FAILI="  Nee - Negeren. (niet aanbevolen)"
+FAILR="De computer zal nu opnieuw opstarten."
+
+# FDNOTICE - Already installed notice.
+NOTICE.1=/r3/c32 /fGreen %1 /fCyan %2 /fGray is al geinstalleerd.
+NOTICE.2=/r3/c32 Je kan de installatie handmatig starten door "'" /s- /fCyan SETUP.BAT /fGray "' te starten."
+
+# Failure messages
+ERROR_BACKZIP="Backup archief %1 maken."
+ERROR_BACKUP="Fout bij het maken van backup."
+ERROR_MKDOS="Niet in staat om '%1' aan te maken."
+ERROR_PACKAGE="Niet in staat om het pakket '%1'" /p "te installeren.  " /n
+ERROR_SOURCE="Niet in staat om de broncode '%1'" /p "te installeren.  " /n
+ERROR_READC="Probleem bij het lezen van schijf C:."
+ERROR_SHELL="Installatie is niet onderstuend bij huidige shell."
+ERROR_MEDIA="Niet in staat om de locatie van de installatie" /p "pakketen te bepalen.  " /n
+ERROR_REMOS="Probleem bij het verwijderen van de oude systeem bestanden."
+ERROR_XSYS="fout bij bestandsoverdracht(en) naar %1."
+ERROR_CONFIG="Probleem bij het kopieren van de nieuwe configuratie" /p "bestanden.  " /n
+
+REBOOT_PAUSE=/f%1/c32 Verwijder de installatie media uit het station en druk op een toets om opnieuw /p/e/c32 op te starten of op /f%2 CTRL+C /f%1 om setup te sluiten...
+REBOOT_FRAME=/w70 /h9 /c
+REBOOT_WARN.1=let op: Je hebt de update van de MBR code niet geforceerd. Het /p
+REBOOT_WARN.2=kan zijn dat je systeem faalt bij het opstarten. Als dit het /p
+REBOOT_WARN.3=geval is dan kun je je computer opnieuw opstarten met de /p
+REBOOT_WARN.4=installatie media en "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ uitvoeren.
+REBOOT_WARN.5=/c32 Dit zorgt ervoor /p dat de nieuwe opstartcode naar de MBR te forceren.
+
+# AUTOEXEC.BAT messages
+AUTO_DONE=KLaar met de verwerking van de startup bestanden /fCyan %1 /a7 and /fCyan %2 /a7
+AUTO_HELP=Typ /fWhite %1 /fGray voor hulp bij "commando's" en navigatie.
+AUTO_WELCOME=Welkom bij het /fGreen %1 /fCyan %2 /fGray besturingssysteem ( /s- /fYellow "%3" /fGray )
+
+# FDASK000 - Reserved
+
+
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Selecteer uw toetsenbordindeling.
+KBO.1=" Engels (standaard)" /p " Verenigd Koninkrijk Engels" /p " Spaans" /p " Frans" /p " Duits" /p
+KBO.2=" Nederlands " /p " Turks "
+KBM=/p/p " Meer toetsenbord opties..."
+KBL=" Minder toetsenbord opties..."
+KBA_FRAME=/w58 /h13 /c
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w60 /h10 /c
+BACKUP_OPTS=/w54 /h4 /c
+BACKUPADV_FRAME=/w70 /h11 /c
+BACKUPADV_OPTS=/w60 /h5 /c
+BACKUP=Een ander besturingssysteem ontdekt op schijf /f %1 %2 /f %3 /s- .
+BACKUP?=Wilt u de oude bestanden in een backup opslaan?
+BACKUPY="  Ja  - Maak een backup."
+BACKUPZ="  Ja  - Maak een backup en sla op in een zip archief."
+BACKUPN="  Nee - Installeer zonder een backup te maken."
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w60 /h7 /c
+TARGET?=Verander installatie map?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w70 /h8 /c
+REPLACE_OPTS=/w60 /h4 /c
+REPLACE?=Vervang systeem configuratie bestanden?
+REPLACEY="  Ja  - Kopi‰er nieuwe standaard configuratie bestanden."
+REPLACEN="  Nee - Hou de oude bestanden."
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w60 /h8 /c
+DELETE_OPTS=/w46 /h4 /c
+DELETE?=verwijder alle oude bestanden van /f %1 %2 /f %3 /s- ?
+DELETEY="  Ja  - Verwijder alle oude bestanden."
+DELETEN="  Nee - Liever niet."
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w60 /h8 /c
+XFER_OPTS=/w50 /h4 /c
+XFER?=Kopieer nieuwe systeem bestanden naar /f %1 %2 /f %3 /s- ?
+XFERY="  Ja  - Kopieer de nieuwe bestanden."
+XFERN="  Nee - Kopieer de nieuwe bestanden NIET."
+
+# FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w56 /h8 /c
+OBSS_OPTS=/w40 /h4 /c
+# vecho "Force new boot sector code on dive C:?"
+OBSS?=Dwingen nieuwe bootsector code op duik /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Ja  - Dwing nieuwe MBR."
+OBSSN="  Nee - Forceer dan schrijftafeltje."
+
+# FDASK700 - Package group selection.
+PAC_FRAME=/w60 /h11 /c
+PAC_OPTS=/w42 /h7 /c
+PAC_FRAME_B=/w60 /h8 /c
+PAC_OPTS_B=/w42 /h4 /c
+PAC_FRAME_D=/w60 /h14 /c
+PAC_OPTS_D=/w46 /h10 /c
+PAC_FRAME_BD=/w60 /h11 /c
+PAC_OPTS_BD=/w46 /h7 /c
+PACS?=welke /f %1 %2 /f %3 pakketten wilt u installeren?
+PACBO="  Alleen basis pakketten."
+PACBS="  Alleen basis pakketen met broncode."
+PACAO="  Alle pakketten."
+PACAS="  Alle pakketten met broncode."
+PACDO_ADV="  Geselecteerde binary pakketen."
+PACDS_ADV="  Geselecteerde pakketten en hun broncode."
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="Druk op een toets..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Backup aan het maken
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 het backup proces is compleet.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Verwijderen van tegenstrijdige pakketen.
+IRMPACKN=/s- "Oude '" /f %1 %2 /f %3 "' pakketten aan het verwijderen."
+
+# Remove old OS files
+IRMOS_FRAME=/w60 /h5 /c
+IRMOS=/s- "Verwijderen oude bestanden van '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Oude systeem bestanden zijn verwijderd."
+
+# Remove old config files
+ICLEAN_FRAME=/w60 /h5 /c
+ICLEAN="Schoonmaken van oude configuratie bestanden."
+ICLEAN_DONE="Oude configuratie bestanden zijn verwijderd."
+
+# Transfer system files
+IXSYS_FRAME=/w60 /h5 /c
+IXSYS= /s- "Opstart bestanden aan het kopi‰ren naar schijf " /f %1 %2 /f %3 .
+IXSYS_DONE="Het kopi‰ren van systeem bestanden is voltooid."
+
+# Package installation.
+IPAC_FRAME=/w64 /h7 /c
+IPACBM="Software pakketten aan het installeren."
+IPACBI=/s- "Software pakket '" /f %1 %2 /f %3 "' aan het installeren."
+IPACSM="Installeren van broncode."
+IPACSI= /s- "Bronnen voor '" /f %1 %2 /f %3 "' aan het installeren."
+IPACDONE_FRAME=/w60 /h5 /c
+IPACDONE="Software pakket installatie is voltooid."
+
+# Config file installation
+ICONFIGS_FRAME=/w60 /h5 /c
+ICONFIGS="Installeren van nieuwe configuratie bestanden."
+ICONFIGS_DONE="Nieuwe configuratie bestanden zijn ge‹nstalleerd."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Helaas wordt deze manier van installeren niet ondersteund op dit /p
+NORUN.2=hardwareplatform. Probeer een andere installatiemethode.

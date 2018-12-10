@@ -8,8 +8,13 @@ $PKG_LIVE$
 
 ; License for 'net\fdnet' is still under review
 net\fdnet
+
 ; License for 'emulator\meka' is still under review
 emulator\meka
+
+; Excluded, lacks a clear license.
+; util\paint2
+
 
 archiver\7zdec
 archiver\arj
@@ -189,6 +194,3 @@ devel\i16src
 net\etherdfs
 util\edict
 util\fdtui
-
-; Probably should also be excluded
-util\paint2

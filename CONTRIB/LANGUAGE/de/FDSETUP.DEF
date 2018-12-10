@@ -1,0 +1,271 @@
+*******************************************************************************
+FreeDOS Installer German Translation.
+Provided by: Christian Imhorst
+Contact Email: christian.imhorst@gmail.com
+Created/Modified: 01/15/2016
+Released Under GPL v2.0 License.
+*******************************************************************************
+
+# LANG_AUTHOR and LANG_NAME are used for comment creation in new config files.
+LANG_AUTHOR=Christian Imhorst
+LANG_NAME=German
+
+# FDICLS - Title
+TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installationsprogramm"
+
+# STAGE300 - Initial welcome screen message
+LANG_ASK="Bitte Sprache auswÑhlen."
+LANG_EN=Englisch
+LANG_ES=Spanisch
+LANG_FR=Franzîsisch
+LANG_DE=Deutsche
+LANG_EO=Esperanto
+LANG_NL=NiederlÑndisch
+LANG_TR=TÅrkisch
+LANG_RU=Russisch
+
+HELLO_FRAME=/w70 /h11 /c
+HELLO_OPTS=/w40 /h4 /c
+HELLO=/s- "Willkommen zum Installationsprogramm fÅr " /f %1 "%2" /f %3 .
+HELLO_ADV=/s- "Willkommen zum erweiterten Installationsprogramm fÅr " /p /f %1 "%2" /f %3 .
+HELLO_WARN.1=
+HELLO_WARN.2=
+HELLO_WARN.3=
+HELLO_WARN.4=
+HELLO_WARN.5=
+PROCEED?="Mîchten Sie fortfahren?"
+CONTINUE="  Ja   - Weiter mit Installation."
+EXIT="  Nein - ZurÅck zu DOS."
+
+# STAGE400 - Partition screen specific
+NOPART_FRAME=/w60 /h10 /c
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Laufwerk " /f  %1 %2 /f %3 " scheint nicht partitioniert zu sein."
+PART?="Soll das Laufwerk partitioniert werden?"
+PART_YES="  Ja - Laufwerk partitionieren."
+PARTING_FRAME=/w42 /h5 /c
+PARTING="Partitionieren der Festplatte..."
+
+# STAGE400 - After partitioned specific
+PARTED_FRAME=/w62 /h11 /c
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Der Computer muss neu gestartet werden," /p "damit die neue Partition wirksam wird."
+REBOOT?="Soll jetzt neu gestartet werden?"
+REBOOT_YES="  Ja - Bitte jetzt neu starten."
+# EXIT
+REBOOT="Der Computer sollte jetzt neu starten."
+
+# STAGE500 - Formating specific
+NOFORMAT_FRAME=/w55 /h10 /c
+NOFORMAT_OPTS=/w50 /h4 /c
+NOFORMATADV_FRAME=/w75 /h11 /c
+NOFORMATADV_OPTS=/w65 /h5 /c
+NOFORMAT=/s-  "Laufwerk " /f %1 %2 /f %3 " scheint nicht formatiert zu sein."
+FORMAT?="Soll das Laufwerk formatiert werden?"
+FORMAT_YES="  Ja - Bitte lîsche und formatiere Laufwerk %1."
+FORMATADV_QUICK="  Ja - Schnelles lîschen und formatieren von Laufwerk %1."
+FORMATADV_SLOW="  Ja - VollstÑndiges lîschen und formatieren von Laufwerk %1."
+# EXIT
+FORMATTING=/s- /fGray "Formatiere Laufwerk " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " DrÅcken Sie eine beliebige Taste... " /e
+
+# STAGE700 - Install preparation
+GATHERING_FRAME=/w72 /h5 /c
+GATHERING="Sammle ein paar Informationen, um die Installation vorzubereiten."
+
+# STAGE800 - Installing
+INSTALL_FRAME=/w74 /h10 /c
+INSTALL_OPTS=/w50 /h4 /c
+INSTALL=/s- "Wir sind nun bereit fÅr die Installation von " /f %1 "%2" /f %3 .
+INSTALL?="Mîchten Sie jetzt installieren?"
+INSTALL_YES="  Ja - Bitte installiere %1."
+# EXIT
+PREPARING_FRAME=/w44 /h5 /c
+PREPARING="Die Installation wird vorbereitet."
+
+# STAGE900 - All Done reboot?
+COMPLETE_FRAME=/w68 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- "Installation von " /f %1 "%2" /f %3 " ist jetzt vollstÑndig."
+# REBOOT?, REBOOT, EXIT
+
+# FDSETUP - Installer Aborted
+ABORTED=/fWhite /bRed " Die Installation von %1 wurde abgebrochen." /e /fGray
+
+# FDSETUP - Missing Stage Error
+STAGE_ERROR=/s- "Kann Installationsprogramm nicht ausfÅhren %1." /p "Mîglicherweise ist das Installationsprogramm korrupt." /p "Bitte laden Sie das Installationsprogramm erneut herunter oder probieren Sie" /p "eine andere Methode zur Installation."
+
+# FDICTRLC - Control-C specific
+CTRLC_FRAME=/w60 /h12 /c
+CTRLC_OPTS=/w44 /h6 /c
+CTRLC=/s- "Sie haben " /f %1 "CTRL-C gedrÅckt" /f %2 .
+CTRLC?="Mîchten Sie die Installation abbrechen?"
+CTRLCY="  Ja   - Bitte kehre zu DOS zurÅck."
+CTRLCN="  Nein - Ich mîchte fortfahren."
+CTRLCA="  Nein - Wechsel zum erweiterten Modus."
+CTRLCB="  Nein - Wechsel zum Basismodus."
+
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w68 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w68 /h13 /c
+FAILADV_OPTS=/w46 /h6 /c
+FAILH="Ein Neustart kînnte helfen."
+FAIL?="Soll jetzt neu gestartet werden?"
+FAILY="  Ja   - Bitte jetzt neu starten."
+FAILN="  Nein - Kehre zu DOS zurÅck."
+FAILI="  Nein - Ignorieren (nicht empfohlen)."
+FAILR="Der Computer wird jetzt neu gestartet."
+
+# FDNOTICE - Already installed notice.
+NOTICE.1=/r1/c32 /fGreen %1 /fCyan %2 /fGray ist bereits installiert.
+NOTICE.2=/r1/c32 Das Installationsprogramm kann manuell gestartet werden mit "'" /s- /fCyan SETUP.BAT /fGray "'"
+
+# Failure messages
+ERROR_BACKZIP="Erstelle Datensicherungsarchiv %1."
+ERROR_BACKUP="Fehler beim Erstellen der Datensicherung."
+ERROR_MKDOS="Das Verzeichnis '%1' kann nicht erstellt werden."
+ERROR_PACKAGE="Das Paket '%1' kann nicht installiert werden."
+ERROR_SOURCE="Die Quelldateien von '%1' kînnen nicht installiert werden."
+ERROR_READC="Problem beim Lesen von Laufwerk C:."
+ERROR_SHELL="Die Installation wird von Ihrer aktuellen Shell nicht" /p "unterstÅtzt.  " /n
+ERROR_MEDIA="Installationsdateien kînnen nicht gefunden werden."
+ERROR_REMOS="Problem beim Lîschen alter Systemdateien."
+ERROR_XSYS="Fehler beim Kopieren der Systemdateien nach %1."
+ERROR_CONFIG="Problem beim Kopieren neuer Konfigurationsdateien."
+
+REBOOT_PAUSE=/f%1/c32 Entfernen Sie das Installationsmedium und drÅcken Sie eine Taste, um neu zu /p/e/c32 starten, oder /f%2 STRG+C /f%1 zum beenden...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=Please note that you did not force an update of your MBR boot /p code. If
+REBOOT_WARN.2=/c32 you system fails to boot /s- /c32 /f%1 "%2" /f%3 , /s+ please reboot /p
+REBOOT_WARN.3=using the install media and run "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+ to
+REBOOT_WARN.4=/c32 force new /p boot code to the MBR.
+REBOOT_WARN.5=
+
+# AUTOEXEC.BAT messages
+AUTO_DONE=Erfolgreiche AusfÅhrung der Startdateien /fCyan %1 /a7 und /fCyan %2 /a7
+AUTO_HELP=Geben Sie /fWhite %1 /fGray ein, um UnterstÅtzung bei Befehlen und der Navigation zu /p erhalten.
+AUTO_WELCOME=Willkommen zum /fGreen %1 /fCyan %2 /fGray Betriebssystem ( /s- /fYellow "%3" /fGray )
+
+# FDASK100 - Reserved
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Bitte wÑhlen Sie Ihre Art der Tastatur.
+KBO.1=" US-Englisch (Standard)" /p " UK Englisch" /p " Spanisch" /p " Franzîsisch" /p
+KBO.2=" Deutsche" /p " Niederlande " /p " TÅrkisch "
+KBM=/p/p " Mehr Tastatur Auswahl..."
+KBL=" Weniger Tastatur Auswahl..."
+KBA_FRAME=/w58 /h13 /c
+
+# FDASK200 - Backup old OS
+BACKUP_FRAME=/w70 /h10 /c
+BACKUP_OPTS=/w46 /h4 /c
+BACKUPADV_FRAME=/w70 /h11 /c
+BACKUPADV_OPTS=/w50 /h5 /c
+BACKUP=Es wurde ein Betriebssystem erkannt auf Laufwerk /f %1 %2 /f %3 /s- .
+BACKUP?=Mîchten Sie die Daten sichern, bevor die Installation beginnt?
+BACKUPY="  Ja - Bitte Daten sichern."
+BACKUPZ="  Ja - Bitte Daten in einem Zip-Archiv sichern."
+BACKUPN="  Nein - Installiere ohne Datensicherung."
+
+# FSASK100 - Advanced mode
+TARGET_FRAME=/w50 /h7 /c
+TARGET?=Soll das Zielverzeichnis der Installation geÑndert werden?
+TARGET_ASK=/f %1 /b %2 /d %3 %4
+
+# FDASK300 - Advanced mode Replace system files
+REPLACE_FRAME=/w70 /h8 /c
+REPLACE_OPTS=/w60 /h4 /c
+REPLACE?=Sollen die Konfigurationsdateien des Systems ersetzt werden?
+REPLACEY="  Ja - Kopiere neue Konfigurationsdateien."
+REPLACEN="  Nein - Behalte die alten Konfigurationsdateien."
+
+# FDASK400 - Advanced mode delete old OS files
+DELETE_FRAME=/w66 /h8 /c
+DELETE_OPTS=/w52 /h4 /c
+DELETE?=Lîsche alle alten Dateien von /f %1 %2 /f %3 /s- ?
+DELETEY="  Ja - Starte mit einer frischen Installation."
+DELETEN="  Nein - Lasse die alten Dateien wo sie sind."
+
+# FDASK500 - Advanced mode transfer system files
+XFER_FRAME=/w55 /h8 /c
+XFER_OPTS=/w42 /h4 /c
+XFER?=Kopiere Systemdateien von Laufwerk /f %1 %2 /f %3 /s- ?
+XFERY="  Ja  - Kopiere Systemdateien."
+XFERN="  Nein - Keine Systemdateien kopieren."
+
+# FDASK600 - Advanced mode force new boot sector
+OBSS_FRAME=/w60 /h8 /c
+OBSS_OPTS=/w36 /h4 /c
+# vecho "Force new boot sector code on dive C:?"
+OBSS?=Erzwingen neuen Bootsektor auf dem Laufwerk /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Ja   - öberschreiben MBR."
+OBSSN="  Nein - Nicht mit Gewalt."
+
+# FDASK700 - Package group selection.
+PAC_FRAME=/w72 /h11 /c
+PAC_OPTS=/w52 /h7 /c
+PAC_FRAME_B=/w72 /h8 /c
+PAC_OPTS_B=/w52 /h4 /c
+PAC_FRAME_D=/w72 /h14 /c
+PAC_OPTS_D=/w52 /h10 /c
+PAC_FRAME_BD=/w72 /h11 /c
+PAC_OPTS_BD=/w52 /h7 /c
+PACS?=Welche /f %1 %2 /f %3 Pakete mîchten Sie installieren?
+PACBO="  Nur Basispakete installieren."
+PACBS="  Nur Basispakete mit Quelldateien installieren."
+PACAO="  Alle Pakete."
+PACAS="  Alle Pakete mit ihren Quelldateien."
+PACDO_ADV="  BinÑrpakete ausgewÑhlt."
+PACDS_ADV="  AusgewÑhlte Pakete und deren Quellen."
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
+
+# Debug mode pause
+PRESSKEY="DrÅcken Sie eine beliebige Taste..."
+
+# Backing up old OS
+IBACKUP_FRAME=/w60 /h7 /c
+IBACKUP=Erstelle Datensicherung
+ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
+IBACKUP_DONE=/f %1 Datensicherung abgeschlossen.
+
+# Old Package removal
+IRMPACK_FRAME=/w60 /h7 /c
+IRMPACKS=Lîsche alte Pakete die einen Konflikt verursachen.
+IRMPACKN=/s- "Lîsche alte '" /f %1 %2 /f %3 "' Pakete."
+
+# Remove old OS files
+IRMOS_FRAME=/w60 /h5 /c
+IRMOS=/s- "Lîsche alte Dateien von '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Alte Dateien des Betriebssystems wurden gelîscht."
+
+# Remove old config files
+ICLEAN_FRAME=/w50 /h5 /c
+ICLEAN="Lîsche alte Konfigurationsdateien."
+ICLEAN_DONE="Alte Konfigurationsdateien wurden gelîscht."
+
+# Transfer system files
+IXSYS_FRAME=/w64 /h5 /c
+IXSYS= /s- "Kopiere Systemdateien fÅr den Start nach Laufwerk " /f %1 %2 /f %3 .
+IXSYS_DONE="Systemdateien wurden kopiert."
+
+# Package installation.
+IPAC_FRAME=/w60 /h7 /c
+IPACBM="Installiere Softwarepakete."
+IPACBI=/s- "Installiere Softwarepaket '" /f %1 %2 /f %3 "'"
+IPACSM="Installiere Quellen."
+IPACSI= /s- "Installiere Quelle von '" /f %1 %2 /f %3 "'"
+IPACDONE_FRAME=/w54 /h5 /c
+IPACDONE="Softwarepakete wurden installiert."
+
+# Config file installation
+ICONFIGS_FRAME=/w54 /h5 /c
+ICONFIGS="Installiere neue Konfigurationsdateien."
+ICONFIGS_DONE="Neue Konfigurationsdateien wurden installiert."
+
+# Virtual machine not supported with this install media.
+NORUN.1=Leider ist dieses Verfahren der Installation auf dieser Hardwareplattform
+NORUN.2=/p nicht unterstÅtzt. Bitte versuchen Sie einen anderen Installationsmethode.
