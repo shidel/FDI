@@ -8,10 +8,10 @@ unixlike\xgrep
 unixlike\nro
 unixlike\head
 unixlike\du
-unix\sleep
+util\sleep
 unixlike\tee
 unixlike\touch
-unix\which
+util\which
 
 archiver\tar
 archiver\gzip
