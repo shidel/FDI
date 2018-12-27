@@ -8,10 +8,10 @@ unixlike\xgrep
 unixlike\nro
 unixlike\head
 unixlike\du
-unixlike\sleep
+unix\sleep
 unixlike\tee
 unixlike\touch
-unixlike\which
+unix\which
 
 archiver\tar
 archiver\gzip
@@ -33,7 +33,7 @@ util\foxcalc
 unixlike\gnubc
 unixlike\less
 util\localize
-util\md5sum
+unixlike\md5sum
 util\part
 util\srdisk
 util\usbdos
