@@ -15,7 +15,6 @@ emulator\meka
 ; Excluded, lacks a clear license.
 ; util\paint2
 
-
 archiver\7zdec
 archiver\arj
 archiver\cabext
@@ -142,7 +141,7 @@ sound\opencp
 util\ansimat
 util\b64
 util\bsum
-util\cal
+unixlike\cal
 util\cdrom2ui
 util\clamav
 util\clamdb
@@ -155,7 +154,7 @@ util\finddisk
 util\flashrom
 util\gifsicle
 util\gnufonts
-util\gnused
+unixlike\gnused
 util\hexcomp
 util\hip
 util\hiram
@@ -163,21 +162,21 @@ util\localcfg
 util\lptdrv
 util\memteste
 util\ntfs
-util\opengem
+gui\opengem
 util\ospimg
-util\ozonegui
+gui\ozonegui
 util\pbox
 util\pdtree
 util\pgme
 util\pngcrush
 util\rcal
-util\seal
+gui\seal
 util\search
 util\sqlite
 util\terminal
 util\testdisk
 util\unrtf
-util\uptimec
+unixlike\uptimec
 util\utf8tocp
 util\wcd
 util\wde

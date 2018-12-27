@@ -3,15 +3,15 @@
 $PKG_BASE$
 $PKG_FDI$
 
-util\grep
-util\xgrep
-util\nro
-util\head
-util\du
-util\sleep
-util\tee
-util\touch
-util\which
+unixlike\grep
+unixlike\xgrep
+unixlike\nro
+unixlike\head
+unixlike\du
+unixlike\sleep
+unixlike\tee
+unixlike\touch
+unixlike\which
 
 archiver\tar
 archiver\gzip
@@ -30,8 +30,8 @@ util\cpied
 util\daa2iso
 util\dos32a
 util\foxcalc
-util\gnubc
-util\less
+unixlike\gnubc
+unixlike\less
 util\localize
 util\md5sum
 util\part
@@ -61,7 +61,7 @@ util\spool
 util\stamp
 util\switchar
 util\topspin
-util\trch
+unixlike\trch
 util\xkeyb
 
 util\shareext
