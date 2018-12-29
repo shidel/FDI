@@ -1,4 +1,7 @@
-; Package list for creation of the boot media and installer images.
+; Package list for FDI install media
+
+; These are the minimum packages required to run the FreeDOS Installer (FDI).
+; They are present on the filesystem for all of the install media.
 
 base\command
 base\kernel
@@ -23,11 +26,15 @@ base\lbacache
 util\fdnpkg
 archiver\zip
 
+; Only required for CD install media
+
+util\udvd2
+
+; These are not technically required. But, are extremely useful.
+
 base\himemx
 base\jemm
 base\edit
 base\mem
 base\more
 util\doslfn
-
-util\udvd2

@@ -1,6 +1,6 @@
-; Package list for BASE only installation.
+; Package list for BASE only installation of FreeDOS.
 
-; This is the BASE set and is also included in the FULL and LIVE sets.
+; This is the BASE package set. It contains the packages used Plain DOS system.
 base\kernel
 base\command
 base\jemm
@@ -60,12 +60,14 @@ base\graphics
 base\welcome
 
 ; Not actually part of BASE, but installed with it.
+
 util\fdnpkg
 util\v8power
 util\fdimples
 archiver\unzip
 
 ; Probably should always include these as well.
+
 archiver\zip
 util\udvd2
 util\callver

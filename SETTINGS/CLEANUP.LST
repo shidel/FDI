@@ -1,5 +1,9 @@
 ; Cleanup file list.
-; These files will be removed and not copied to the install media.
+
+; In order to save space on the smaller install media, these unnecessary files
+; will be removed after there packages are installed. They will not be present
+; on the filesystem of the install media. (They are still in their associated
+; packages.)
 
 BIN\KERNL86.SYS
 BIN\KERNL386.SYS

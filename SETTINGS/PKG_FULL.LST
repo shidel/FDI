@@ -1,8 +1,12 @@
 ; Package list for FULL package installation.
 
+; This is the package list for a FULL install of FreeDOS
+
+; Always include all BASE and FDI packages
 $PKG_BASE$
 $PKG_FDI$
 
+; Additional packages installed with FULL
 unixlike\grep
 unixlike\xgrep
 unixlike\nro

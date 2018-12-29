@@ -1,10 +1,16 @@
-; Package list for extra additionally included packages. These packages are not
-; installed. But, they will be included on media for the user's convenience.
+; Package list for EXTRA packages.
 
+; This is the package list used for the packages included on larger install
+; media. Not every package is installed. Depending on the users selection,
+; only the packages in BASE or FULL are installed by the installer.
+
+; Include all package sets to make sure there packages are present.
 $PKG_BASE$
 $PKG_FDI$
 $PKG_FULL$
 $PKG_LIVE$
+
+; Extra packages that are not automatically installed.
 
 ; License for 'net\fdnet' is still under review
 net\fdnet

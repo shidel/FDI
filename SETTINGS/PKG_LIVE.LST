@@ -1,7 +1,9 @@
-; Package list for additional packages that are installed onto the LIVE media
+; Package list for LIVE media.
 
-; These are the same as all other install media versions.
+; This LIVE list contains the packages that will be made LIVE on the LIVE
+; media.
 
+; Make sure entire BASE and FDI packages are available.
 $PKG_BASE$
 $PKG_FDI$
 
