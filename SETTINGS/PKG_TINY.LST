@@ -1,0 +1,28 @@
+; Package list for TINY-LIVES media startup image.
+
+; This list contains the packages that required by the type 1 LiveCD to bring
+; up a microscopic portion of FreeDOS that then can load the additional
+; packages in the LIVE list.
+
+base\cwsdpmi
+base\devload
+base\fdapm
+util\fdnpkg
+base\format
+base\shsucdx
+util\udvd2
+util\xcopy
+util\v8power
+
+util\fdimples
+base\ctmouse
+base\edit
+base\fc
+base\mem
+base\more
+util\raread
+util\rawrite
+
+archiver\gzip
+
+
