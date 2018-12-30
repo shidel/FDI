@@ -11,7 +11,7 @@ util\fdnpkg
 base\format
 base\shsucdx
 util\udvd2
-util\xcopy
+base\xcopy
 util\v8power
 
 util\fdimples
