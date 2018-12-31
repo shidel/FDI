@@ -39,9 +39,6 @@ unixlike\trch
 util\xkeyb
 
 util\wcd
-net\mtcp
-net\wget
-util\fdshield
 
 devel\nasm
 devel\upx
