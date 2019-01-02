@@ -32,8 +32,8 @@ vfdutil /u %1:%PKGDIR%\BASE\COMMAND.ZIP >NUL
 if not errorlevel 1 goto RepoCDCheck
 rem vfdutil /u %1:%PKGDIR%\BASE\KERNEL.ZIP >NUL
 rem if not errorlevel 1 goto RepoCDCheck
-vfdutil /u %1:%PKGDIR%\BASE\INDEX.LST >NUL
-if not errorlevel 1 goto RepoCDCheck
+rem vfdutil /u %1:%PKGDIR%\BASE\INDEX.LST >NUL
+rem if not errorlevel 1 goto RepoCDCheck
 set FMEDIA=%1:%PKGDIR%
 goto CheckFound
 
@@ -44,8 +44,8 @@ vfdutil /u %1:\BASE\COMMAND.ZIP >NUL
 if not errorlevel 1 goto CheckDone
 rem vfdutil /u %1:\BASE\KERNEL.ZIP >NUL
 rem if not errorlevel 1 goto CheckDone
-vfdutil /u %1:\BASE\INDEX.LST >NUL
-if not errorlevel 1 goto CheckDone
+rem vfdutil /u %1:\BASE\INDEX.LST >NUL
+rem if not errorlevel 1 goto CheckDone
 
 set FMEDIA=%1:
 goto CheckFound
