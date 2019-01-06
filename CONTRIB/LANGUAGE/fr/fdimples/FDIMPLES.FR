@@ -1,0 +1,96 @@
+{
+
+FDIMPLES French Translation File
+
+}
+
+0:FR
+1:paramätre invalide
+2:Veuillez patienter...
+3:Patientez
+4:Appuyez sur une touche...
+5:Groupe
+6:Le mÇdia de paquets n'a pu àtre trouvÇ !
+7:Seuls les paquets installÇs sont affichÇs.
+8:impossible de localiser le gestionnaire de paquets FDINST.
+9:La variable d'environnement TEMP n'est pas dÇfinie.
+10:inconnu
+11:installÇ
+12:Aucune information
+13:VERROUILLê
+14:Paquet
+15:non trouvÇ sous
+16:Modifications de paquets en attente :
+17:enlever
+18:installer
+19:Aucun changement.
+
+{ Plural String Values }
+20:modifications
+21:modification
+22:octets
+23:octet
+24:Kilooctets
+25:Kilooctet
+26:MÇgaoctets
+27:MÇgaoctet
+28:fichiers
+29:fichier
+30:fichiers source
+31:fichier source
+
+{ Basic Load and save stuff }
+32:Inclure les suppressions de paquets.
+33:Charger les personnalisations de la liste de paquets :
+34:Sauvegarder les personnalisations de la liste de paquets :
+
+{ Buttons }
+35:OK
+36:Annuler
+
+{ More Status Bar Text }
+39:Titre
+38:version
+39:utilisation :
+40:[options]
+
+{ Help Messages and such }
+50:PubliÇ sous GNU General Public License, Version 2.0
+51:Copyright 2018 Jerome Shidel
+52:FDIMPLES fournit une interface texte simple Ö utiliser pour le gestionnaire de paquets en ligne de commande FDINST.
+
+53:Affiche cette aide.
+54:Afficher la liste de fichiers dans les descriptions des paquets.
+55:[NE PAS] SÇlectionner automatiquement les paquets mettables Ö jour.
+56:CrÇer des fichiers de liste de paquets Ö utiliser avec l'utilitaire FDI.
+57:Reconfigurer les listes de paquets BASE et AL de l'installateur FDI.
+
+58:Commandes de clavier de l'interface utilisateur:
+59:Inverser la sÇlection.
+60:Modifier la section ou le bouton qui a le focus.
+61:DÇplacer le focus en haut ou en bas d'une fois, aussi Page Up/Down.
+62:Quitter sans effectuer ou enregistrer les modifications.
+63:Afficher l'Çcran d'aide.
+64:Basculer l'Çtat de tous les paquets mettables Ö jour dans le groupe.
+65:Basculer l'Çtat de tous les paquets mettables Ö jour.
+66:Visualiser les modifications en attente.
+67:Nettoyer toutes les modifications en attente.
+68:êcrire un fichier de personnalisation de la liste de paquets contenant les modifications.
+69:Lire un fichier de personnalisation de la liste de paquets et appliquer les modifications.
+
+{ Package ID's Are all 100 }
+100:=InstallÇ!
+100:BASE=FreeDOS Base
+100:ARCHIVER=Gestionnaires d'archives
+100:BOOT=Outils d'amoráage
+100:DEVEL=DÇveloppement
+100:EDIT=êditeurs
+100:EMULATOR=êmulateurs
+100:GAMES=Jeux
+100:GUI=Bureaux graphiques
+100:NET=RÇseau
+100:SOUND=Outils de sons et musique
+100:UNIXLIKE=Outils similaires Ö ceux d'Unix
+100:UTIL=Utilitaires
+100:UNIX=Outils similaires Ö ceux d'Unix
+100:OBSOLETE=Paquets obsolätes

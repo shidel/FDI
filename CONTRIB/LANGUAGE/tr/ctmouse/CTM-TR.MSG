@@ -1,0 +1,53 @@
+; This file is a part of CuteMouse source
+; Here are messages in Turkish
+
+E_needvga       db 'VGA yok mu? EGA RIL desteßi lazçmsa eski CTMOUSE kullançn',nl,eos
+E_error		db nl,'Hata: Geáersiz seáenek'
+E_option	db eos
+E_argument	db ' argÅman',eos
+E_help		db 5,nl,'Yardçm iáin komut satçrçnda /? girin',eos
+
+E_mousepresent	db 5,'Fare hizmetleri zaten mevcut',eos
+E_notfound	db 5,'Hata: cihaz bulunamadç',eos
+;;+E_noIRQ	db 5,'Hata: IRQ satçrç algçlanmadç',eos
+
+E_nocute	db 1,'CuteMouse sÅrÅcÅsÅ kurulu deßil!',eos
+E_notunload	db 2,'SÅrÅcÅ kaldçrçlmasç baüarçsçz: bazç interrupt'lar algçlandç...',eos
+S_unloaded	db 0,'SÅrÅcÅ baüarçyla kaldçrçldç...',eos
+
+S_reset		db 'Yerleüik paráa üuna sçfçrlandç ',eos
+S_installed	db 'ûuraya kuruldu ',eos
+S_atPS2		db 'PS/2 giriüi',eos
+S_atCOM		db 'COM'
+com_port	db ?,' ('
+S_atIO		db '0000h/IRQ'
+IRQno		db ?
+S_in		db ') üunda ',eos
+S_inMSYS	db 'Fare sistemleri kipi',eos
+S_inMS		db 'Microsoft kipi',eos
+S_inLT		db 'Logitech kipi',eos
+S_wheel		db ' (tekerlek mevcut)'
+S_CRLF		db nl,eos
+
+Copyright	db nl,'CuteMouse v',CTMRELEASE,' [FreeDOS]',nl,eos
+Syntax		label byte
+    db 0,nl,'Seáenekler:',nl
+    db '  /V	   - ters arama: PS/2'yi seri fareden sonra bul',nl
+    db '  /P	   - PS/2 fare kipini zorla, seri portlarç yoklama',nl
+    db '  /S[c[i]] - IRQ i (1-7) ile COM port c (1-4)'de seri fare kipini zorla',nl
+    db '  /3	   - Microsoft veya PS/2 faresi bulunursa 3 dÅßme kipini zorla',nl
+; Note: /O now acts inverse compared to 2.1 beta 3
+    db '  /O       - PS2 ve BIOS USB tekerlek algçlamasçnç etkinleütir-donabilir',nl
+; 2008: made /Y (ignore MSys) the default and introduced /M (enable MSys)
+;   db '  /Y	   - do not try Mouse Systems mode for non-PnP devices',nl,nl
+    db '  /M       - PnP'siz fareler iáin *eski* Fare Sistemlerini / Genius'u dene',nl,nl
+    db '  /R[h[v]] - yatay / dikey áîzÅnÅrlÅk: h,v = 1-9, veya otomatik iáin 0',nl
+    db '	     (deßersiz = varsayçlanç kullan: h iáin otomatik, veya v iáin "h gibi")',nl
+    db '  /L	   - sol ve saß dÅßmeleri deßiütir',nl,nl
+;
+    db '  /B	   - fare hizmetleri zaten mevcutsa áalçütçrmayç iptal et',nl
+    db '  /N	   - CuteMouse'u zaten yÅklÅysede yerleüik olarak yÅkle',nl
+    db '	     (CuteMouse'u sonunda kaldçran batch dosyalarç iáin faydalçdçr)',nl
+    db '  /W	   - CuteMouse'un kendini UMB'ye taüçmasçna izin verme',nl
+    db '  /U	   - sÅrÅcÅyÅ kaldçr, yerleüißi bellekten sil',nl
+    db '  /?	   - bu yardçmç gîster',eos

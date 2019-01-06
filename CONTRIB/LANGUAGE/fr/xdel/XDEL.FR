@@ -1,0 +1,34 @@
+# Help text
+
+0.0:XDEL Effaceur de fichiers ‚tendu libre    Ver
+0.1:Copyright (c) 2002 Alain Mouette - GNU GPL
+0.2:XDEL [/options] [@][d:][chemin]nomdefichier[.ext]... [/options]
+0.3:  @             le nom de fichier suivant est le nom d'une liste de fichiers
+0.4:  d:            lecteur dans lequel xdel doit rechercher
+0.5:  chemin        dossier dans lequel la recherche doit d‚marrer
+0.6:  nomfich.ext   fichier … effacer (caractŠres g‚n‚riques autoris‚s)
+0.7:  /D            enlever les sous-dossiers vides
+0.8:  /N ou /Y      effacer les fichiers sp‚cifi‚s sans avertir (PRUDENCE!)
+0.9:  /O            ‚craser avant effacement - contenu DFINITIVEMENT PERDU
+0.10:  /P            demander avant d'effacer chaque fichier
+0.11:  /R            effacer les fichiers en lecture seule
+0.12:  /S            effacer les fichiers dans les sous-dossiers
+0.13:  /H ou /?      ce message d'aide
+0.14:Des fichiers multiples peuvent ˆtre sp‚cifi‚s sur la ligne de commande.
+
+# Several messages
+
+1.0:Effacer le fichier ? [yn]
+1.1:Aucun nom de fichier sp‚cifi‚
+1.2:Option invalide dans
+1.3:Nom invalide dans
+1.4:Le fichier n'a pu ˆtre effac‚
+1.5:Le dossier n'a pu ˆtre effac‚
+1.6:Erreur lors de la lecture du fichier
+1.7:Erreur: m‚moire insuffisante
+
+# Confirmation
+
+2.0:chemin
+2.1:fichier
+2.2:Est-ce bien ce que vous voulez faire ? [yn]

@@ -1,0 +1,34 @@
+# Help text
+
+0.0:ôzgÅr XDEL Geniületilmiü dosya silicisi    Ver
+0.1:Copyright (c) 2002 Alain Mouette - GNU GPL
+0.2:XDEL [/seáenekler] [@][d:][yol]dosyaismi[.uzantç]... [/seáenekler]
+0.3:  @             aüaßçdaki dosya adç bir dosya listesinin ismidir
+0.4:  d:            xdel'in arama yapacaßç sÅrÅcÅ
+0.5:  yol           aramançn baülayacaßç dizin
+0.6:  dosyaadç.uza  silinecek dosya (jokerlere izin verilir)
+0.7:  /D            boü alt dizinleri kaldçr
+0.8:  /N veya /Y    belirtilen dosyalarç ikazsçz sil (DòKKATLò KULLANIN!)
+0.9:  /O            silmeden înce Åzerine yaz - iáerik DAòMò OLARAK SòLòNòR
+0.10:  /P            her bir dosyayç silmeden înce sor
+0.11:  /R            salt-okunur dosyalarç sil
+0.12:  /S            alt dizinlerdeki dosyalarç sil
+0.13:  /H veya /?    bu yardçm mesajç
+0.14:Komut satçrçnda birden áok dosya belirtilebilir.
+
+# Several messages
+
+1.0:Dosya silinsin mi? [yn]
+1.1:Hiábir dosya ismi belirtilmedi
+1.2:ûunda geáersiz seáenek
+1.3:ûunda geáersiz isim
+1.4:Dosya silinemedi
+1.5:Dizin silinemedi
+1.6:Dosya okunmasçnda hata
+1.7:Hata: Yetersiz bellek
+
+# Confirmation
+
+2.0:yol
+2.1:dosya
+2.2:Yapmak istedißiniz bu mudur? [yn]
