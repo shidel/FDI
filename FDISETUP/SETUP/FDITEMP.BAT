@@ -2,7 +2,6 @@
 
 set RETRY=yes
 
-
 if "%1" == "REQUIRED" goto Required
 if "%TEMP%" == "" goto MakeTemp
 call \FREEDOS\SETUP\FDIDRIVE.BAT PRE %TEMP%
@@ -62,6 +61,7 @@ if errorlevel 25 set RAMDRV=Y:
 if errorlevel 26 set RAMDRV=Z:
 if "%RAMDRV%" == "" goto NoRamDrive
 
+:SetTempPath
 set TEMP=%RAMDRV%\TEMP
 set RAMDRV=
 set RETRY=
