@@ -8,21 +8,21 @@ util\cwsdpmi
 base\devload
 base\fdapm
 util\fdnpkg
-base\format
 base\shsucdx
 util\udvd2
 base\xcopy
 util\v8power
 
+; not required but really should be there
 util\fdimples
-base\ctmouse
-
 base\fc
 base\mem
+base\more
+base\format
 
 ; nice but not needed
+base\ctmouse
 base\edit
-base\more
 util\raread
 util\rawrite
 
