@@ -19,8 +19,9 @@ set FBOOTED=
 
 if "%1" == "boot" set FBOOTED=y
 if "%1" == "cdrom" set FBOOTED=CDROM
+if "%1" == "standard" set FBOOTED=CDROM
 if "%1" == "floppy" set FBOOTED=y
-if "%1" == "eltorito" set FBOOTED=CDROM
+if "%1" == "eltorito" set FBOOTED=LEGACY
 if "%1" == "live" set FBOOTED=CDROM
 if "%1" == "usb" set FBOOTED=y
 

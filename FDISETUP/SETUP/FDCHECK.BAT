@@ -19,7 +19,7 @@ goto FAILED
 REM At present VirtualBox is not supported when installing from a booted
 REM EL Torito CD-ROM.
 :FIRST
-if not "%FBOOTED%" == "CDROM" goto SUCCESS
+if not "%FBOOTED%" == "LEGACY" goto SUCCESS
 vinfo /m
 if errorlevel 104 goto SUCCESS
 if errorlevel 103 goto FAILED
