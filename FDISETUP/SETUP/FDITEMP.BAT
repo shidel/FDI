@@ -26,6 +26,7 @@ if errorlevel 101 goto IsDOSBox
 verrlvl 0
 
 :Begining
+if not "%FDRAMDRV%" == "" goto Assimilate
 verrlvl 1
 SHSURDRV /QQ /U >NUL
 if errorlevel 2 goto NotLoaded
@@ -76,6 +77,10 @@ if not exist %TEMP%\NUL goto NoRamDrive
 
 verrlvl 0
 goto Done
+
+:Assimilate
+set RAMDRV=%FDRAMDRV%
+goto SetTempPath
 
 :TryAgain
 set RETRY=
