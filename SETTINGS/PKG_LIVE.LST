@@ -45,3 +45,9 @@ devel\upx
 util\wcd
 util\edict
 util\fdtui
+
+; Network Stuff
+net\fdnet
+net\wget
+net\links
+
