@@ -16,9 +16,12 @@ util\v8power
 
 util\fdimples
 base\ctmouse
-base\edit
+
 base\fc
 base\mem
+
+; nice but not needed
+base\edit
 base\more
 util\raread
 util\rawrite
