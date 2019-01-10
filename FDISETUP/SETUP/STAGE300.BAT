@@ -62,11 +62,12 @@ set _WCI=1
 set LANG=EN
 
 :DoChange
-if exist %LANG%\SETLANG.BAT goto UseSetLang
-if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
+if exist %FLANG%\SETFONT.BAT call %FLANG%\SETFONT.BAT LOAD >NUL
+if exist %LANG%\SETFONT.BAT goto UseSetFont
+if exist EN\SETFONT.BAT call EN\SETFONT.BAT LOAD >NUL
 goto ApplyLang
 :UseSetLang
-call %LANG%\SETLANG.BAT >NUL
+call %LANG%\SETFONT.BAT LOAD >NUL
 :ApplyLang
 call FDILANG.BAT FDSETUP
 vgotoxy /x30 /y1

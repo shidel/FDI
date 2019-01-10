@@ -1,7 +1,6 @@
 @ECHO OFF
 
-REM Language settings that are always loaded. These are also applied for
-REM every language change made while running FDI.
+REM Language settings that are always loaded at system startup.
 
 IF NOT EXIST %DOSDIR%\BIN\MKEYB.EXE GOTO NoKeyB
 
