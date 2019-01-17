@@ -1,0 +1,6 @@
+RU866.V8F file is a Russian character subset that has been exported from the
+CPIDOS package (EGA3.CPX) and converted into the V8Power Tools font file format.
+It is licensed under the original package license as GNU GPL v2 or newer.
+For more information regarding the original file, please check the CPIDOS 
+package.
+
