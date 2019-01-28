@@ -9,6 +9,6 @@ vfont /d
 goto End
 
 :LoadFont
-vfont /f16 ru866.v8f
+vfont /f16 ru\ru866.v8f
 
 :End
