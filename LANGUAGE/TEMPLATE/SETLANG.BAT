@@ -1,6 +1,8 @@
 @ECHO OFF
 
-REM Language settings that are always loaded at system startup.
+REM Language settings that are always loaded at system startup. It is also
+REM called in FDI when the user makes a final language selection. Care should
+REM be taken to ensure the required programs and files are present.
 
 IF NOT EXIST %DOSDIR%\BIN\MKEYB.EXE GOTO NoKeyB
 
