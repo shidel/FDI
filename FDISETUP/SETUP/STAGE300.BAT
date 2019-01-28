@@ -26,6 +26,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
 vgotoxy /l /y2
 vline hidden
 :LanguagePrompt
+set _XLNG=%LANG%
 vgotoxy /l sop /g up up /l sop
 vecho /n /t %FLANG% LANG_ASK
 vecho /n /e
@@ -62,11 +63,13 @@ set _WCI=1
 set LANG=EN
 
 :DoChange
-if exist %FLANG%\SETFONT.BAT call %FLANG%\SETFONT.BAT LOAD >NUL
+if  "%_XLNG%" == "" goto NoPrevLang
+if exist %_XLNG%\SETFONT.BAT call %_XLNG%\SETFONT.BAT UNLOAD >NUL
+:NoPrevLang
 if exist %LANG%\SETFONT.BAT goto UseSetFont
-if exist EN\SETFONT.BAT call EN\SETFONT.BAT LOAD >NUL
+rem if exist EN\SETFONT.BAT call EN\SETFONT.BAT LOAD >NUL
 goto ApplyLang
-:UseSetLang
+:UseSetFont
 call %LANG%\SETFONT.BAT LOAD >NUL
 :ApplyLang
 call FDILANG.BAT FDSETUP
@@ -79,6 +82,7 @@ goto LanguagePrompt
 :LanguageSet
 if "%FCLANG%" == "y" set FCLANG=n
 set _WCI=
+set _XLNG=
 if not exist %LANG%\SETLANG.BAT goto DefaultEnglish
 call %LANG%\SETLANG.BAT >NUL
 goto LanguageDone
