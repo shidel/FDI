@@ -148,8 +148,8 @@ AUTO_HELP=Geben Sie /fWhite %1 /fGray ein, um UnterstÅtzung bei Befehlen und der
 AUTO_WELCOME=Willkommen zum /fGreen %1 /fCyan %2 /fGray Betriebssystem ( /s- /fYellow "%3" /fGray )
 
 # FDASK100 - Reserved
-KBS_FRAME=/w55 /h16 /c
-KBS_OPTS=/w38 /h11 /c
+KBS_FRAME=/w55 /h17 /c
+KBS_OPTS=/w38 /h12 /c
 KBS?=Bitte wÑhlen Sie Ihre Art der Tastatur.
 KBO.1=" US-Englisch (Standard)" /p " UK Englisch" /p " Spanisch" /p " Franzîsisch" /p
 KBO.2=" Deutsche" /p " Niederlande " /p " TÅrkisch "

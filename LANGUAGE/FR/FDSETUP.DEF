@@ -165,8 +165,8 @@ AUTO_WELCOME="Bienvenue au systŠme d'exploitation" /fGreen %1 /fCyan %2 /fGray (
 # FDASK000 - Reserved
 
 # FDASK100 - Reserved
-KBS_FRAME=/w55 /h16 /c
-KBS_OPTS=/w38 /h11 /c
+KBS_FRAME=/w55 /h17 /c
+KBS_OPTS=/w38 /h12 /c
 KBS?="S'il vous plaŒt s‚lectionnez votre disposition" /p "de clavier."
 KBO.1=" US Anglais (par d‚faut)" /p " UK Anglais" /p " Espagnol" /p " Fran‡ais" /p " Allemand" /p
 KBO.2=" Hollandais" /p " Turc "

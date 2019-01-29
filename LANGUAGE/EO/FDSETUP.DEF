@@ -161,8 +161,8 @@ AUTO_HELP=Tajpu /fWhite %1 /fGray por akiri helpon pri ordonoj kaj veturadon.
 AUTO_WELCOME=Bonvolu al la /fGreen %1 /fCyan %2 /fGray mashinestro (OS) ( /s- /fYellow "%3" /fGray )
 
 # FDASK100 - Reserved
-KBS_FRAME=/w55 /h16 /c
-KBS_OPTS=/w38 /h11 /c
+KBS_FRAME=/w55 /h17 /c
+KBS_OPTS=/w38 /h12 /c
 KBS?=Bonvolu elekti via klavararango.
 KBO.1=" Usona angla (Defaulta)" /p " Britio angla" /p " hispana" /p " franca" /p " germana" /p
 KBO.2=" nederlando" /p " turkish"
