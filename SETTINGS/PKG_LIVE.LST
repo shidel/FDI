@@ -15,39 +15,27 @@ util\sleep
 unixlike\tee
 unixlike\touch
 util\which
-
-edit\msedit
-
-util\foxcalc
+util\wcd
 unixlike\less
-unixlike\md5sum
-util\part
-util\slowdown
-util\xfdisk
-util\xdel
+unixlike\trch
 
+unixlike\md5sum
+util\crc32
+
+util\slowdown
 util\doslfn
 
-util\dosutil
-
-util\foxtype
-util\lfndos
+util\part
+util\xfdisk
+util\xdel
+util\xkeyb
 
 util\raread
 util\rawrite
-unixlike\trch
-util\xkeyb
-
-util\wcd
-
-devel\nasm
-devel\upx
-util\wcd
 util\edict
 util\fdtui
 
-; Network Stuff
 net\fdnet
 net\wget
 net\links
-
+net\mtcp
