@@ -70,6 +70,8 @@ util\xkeyb
 
 util\shareext
 util\wcd
-net\mtcp
-net\wget
 util\fdshield
+
+; Not Usefull with Networking
+; net\mtcp
+; net\wget
