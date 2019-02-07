@@ -11,11 +11,10 @@ $PKG_FDI$
 unixlike\grep
 unixlike\head
 unixlike\du
-util\sleep
+unixlike\sleep
 unixlike\tee
 unixlike\touch
-util\which
-util\wcd
+unixlike\which
 unixlike\less
 unixlike\trch
 
@@ -39,3 +38,5 @@ net\fdnet
 net\wget
 net\links
 net\mtcp
+
+util\wcd

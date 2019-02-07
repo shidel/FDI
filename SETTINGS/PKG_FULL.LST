@@ -12,10 +12,10 @@ unixlike\xgrep
 unixlike\nro
 unixlike\head
 unixlike\du
-util\sleep
+unixlike\sleep
 unixlike\tee
 unixlike\touch
-util\which
+unixlike\which
 
 archiver\tar
 archiver\gzip
