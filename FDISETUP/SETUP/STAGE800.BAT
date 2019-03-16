@@ -96,6 +96,9 @@ popd
 goto AbortBatch
 
 :DoneCheckWarning
+del %FDNPKG.CFG%>NUL
+set FDNPKG.CFG=
+if exist %DOSDIR%\BIN\FDNPKG.CFG set FDNPKG.CFG=%DOSDIR%\BIN\FDNPKG.CFG
 if not "%OSYS%" == "y" goto RebootWarning
 if not "%OBSS%" == "y" goto RebootWarning
 goto NoWarning
