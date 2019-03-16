@@ -42,13 +42,14 @@ vgotoxy /l sop
 vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 vecho /f %TFF% /e /n
 
-if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
-type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST
-FDINST remove FDISETUP >NUL
-if exist %FTARGET%\PACKAGES\FDISETUP.LST del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
+rem No Longer needed with new FDNPKG and mapdrive setting
+rem if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
+rem type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST
+rem FDINST remove FDISETUP >NUL
+rem if exist %FTARGET%\PACKAGES\FDISETUP.LST del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
 
-set _PL=y
-goto PkgNext
+rem set _PL=y
+rem goto PkgNext
 
 :TryAnyway
 FDINST remove %_PA% >NUL
