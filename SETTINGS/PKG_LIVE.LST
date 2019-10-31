@@ -19,7 +19,6 @@ unixlike\less
 unixlike\trch
 
 unixlike\md5sum
-util\crc32
 
 util\slowdown
 util\doslfn

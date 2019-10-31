@@ -87,8 +87,10 @@ if not exist %LANG%\SETLANG.BAT goto DefaultEnglish
 call %LANG%\SETLANG.BAT >NUL
 call FDICLS.BAT
 goto LanguageDone
+
 :DefaultEnglish
 if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
+
 :LanguageDone
 
 REM Draw the welcome screen.
