@@ -42,7 +42,7 @@ vgotoxy /l sop
 vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 vecho /f %TFF% /e /n
 
-rem No Longer needed with new FDNPKG and mapdrive setting
+rem No Longer needed with new FDNPKG and mapdrives setting
 rem if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
 rem type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST
 rem FDINST remove FDISETUP >NUL

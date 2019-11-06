@@ -31,17 +31,17 @@ REM Configure FDINST package manager.
 set FDNPKG.CFG=%TEMP%\FDNPBIN.CFG
 set _TI=0
 set _TC=
-:SetMapDrive
+:SetMapDrives
 if "%FDRIVE%" == "C:" goto MapDisabled
 echo %FDRIVE% | vstr /d /f : 1 | set /p _TC=
-if "%_TC%" == "" goto SetMapDrive
-set _TC=mapdrive c%_TC%
+if "%_TC%" == "" goto SetMapDrives
+set _TC=mapdrives c%_TC%
 goto MapEnabled
 :MapDisabled
-set _TC=#mapdrive cc
+set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
-type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrive %_TC% >%FDNPKG.CFG%
+type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives %_TC% >%FDNPKG.CFG%
 set DOSDIR=%FTARGET%
 
 REM Scan each installer in program file path
@@ -87,7 +87,7 @@ goto DoneCheckWarning
 :ReplaceConfig
 copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
 rem type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.CFG
-type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C:| vstr /n /s mapdrive #mapdrive>%DOSDIR%\BIN\FDNPKG.CFG
+type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C:| vstr /n /s mapdrives #mapdrives>%DOSDIR%\BIN\FDNPKG.CFG
 verrlvl 0
 goto DoneCheckWarning
 
