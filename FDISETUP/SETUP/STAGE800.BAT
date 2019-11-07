@@ -41,9 +41,9 @@ goto MapEnabled
 set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
-type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives %_TC% >%FDNPKG.CFG%
+type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%FDNPKG.CFG%
 set DOSDIR=%FTARGET%
-command.com
+vdelay %FDEL%
 REM Scan each installer in program file path
 set _TI=0
 set _TC=
