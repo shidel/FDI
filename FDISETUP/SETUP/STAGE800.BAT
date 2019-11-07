@@ -27,6 +27,7 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
+vcls
 REM Configure FDINST package manager.
 set FDNPKG.CFG=%TEMP%\FDNPBIN.CFG
 set _TI=0
@@ -43,7 +44,7 @@ set _TC=#mapdrives cc
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%FDNPKG.CFG%
 set DOSDIR=%FTARGET%
-vdelay %FDEL%
+command.com
 REM Scan each installer in program file path
 set _TI=0
 set _TC=
