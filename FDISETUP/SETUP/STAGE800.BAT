@@ -34,6 +34,7 @@ mkdir %FTARGET% >NUL
 if exist %FTARGET%\PACKAGES\NUL goto PkgLstDirExist
 mkdir %FTARGET%\PACKAGES >NUL
 :PkgLstDirExist
+vdelay %FDEL%
 
 REM Configure FDINST package manager.
 :GetFDINSTVersion
@@ -68,7 +69,8 @@ set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
-type %TEMP%\FDNPKG.TMP|vstr /n/s %%FDRIVE%% C:>%FDNPKG.CFG%
+type %TEMP%\FDNPKG.TMP |vstr /n/s %%FDRIVE%% C:>%FDNPKG.CFG%
+del  %TEMP%\FDNPKG.TMP >NUL
 
 if "%FDEBUG%" == "y" call FDBUG.BAT shell Ready. About to run install scripts.
 
