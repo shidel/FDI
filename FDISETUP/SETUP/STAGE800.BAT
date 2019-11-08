@@ -45,15 +45,14 @@ REM Override for pre-release versions of FDNPKG
 set FDNVER=v0.99.7
 
 set DOSDIR=%FTARGET%
-if not
 set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
 set _TI=0
-if "%FDNVER%" == "v0.99.6" goto MapDisabled
+if "%FDNVER%" == "v0.99.6" goto OldFDINST
 
 :NewFDNPKG
 set _TC=
 if "%FDRIVE%" == "C:" goto MapDisabled
-echo %FTARGET% | vstr /d /f : 2- | set /p _TC=
+echo %FTARGET% | vstr /d /f : 2| set /p _TC=
 if "%_TC%" == "" goto NewFDNPKG
 set DOSDIR=C:%_TC%
 
@@ -64,13 +63,18 @@ if "%_TC%" == "" goto SetMapDrives
 set _TC=mapdrives c%_TC%
 goto MapEnabled
 
+:OldFDINST
+
 :MapDisabled
 set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
-type %TEMP%\FDNPKG.TMP |vstr /n/s %%FDRIVE%% C:>%FDNPKG.CFG%
+type %TEMP%\FDNPKG.TMP |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
 del  %TEMP%\FDNPKG.TMP >NUL
+goto ReadyFDINST
+
+:ReadyFDINST
 
 if "%FDEBUG%" == "y" call FDBUG.BAT shell Ready. About to run install scripts.
 
