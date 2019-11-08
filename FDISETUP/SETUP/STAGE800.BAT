@@ -46,7 +46,6 @@ if "%FDRIVE%" == "C:" goto MapDisabled
 echo %FTARGET% | vstr /d /f : 2- | set /p _TC=
 if "%_TC%" == "" goto NewFDNPKG
 set DOSDIR=C:%_TC%
-goto MapEnabled
 
 :SetMapDrives
 set _TC=
