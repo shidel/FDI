@@ -34,7 +34,6 @@ mkdir %FTARGET% >NUL
 if exist %FTARGET%\PACKAGES\NUL goto PkgLstDirExist
 mkdir %FTARGET%\PACKAGES >NUL
 :PkgLstDirExist
-vdelay %FDEL%
 
 REM Configure FDINST package manager.
 :GetFDINSTVersion
