@@ -11,6 +11,10 @@ vprogres /f %TFP% 0
 
 if not exist %FTARGET%\NUL mkdir %FTARGET%
 if errorlevel 1 goto AbortDir
+if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
+if errorlevel 1 goto AbortDir
+if not exist %FTARGET%\PACKAGES\NUL mkdir %FTARGET%\PACKAGES >NUL
+if errorlevel 1 goto AbortDir
 
 REM Run through all binaries to be installed.
 set _PI=0
@@ -125,7 +129,6 @@ vecho /n /t %FLANG% IPACBM
 goto PkgSkip
 
 :Success
-if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPACDONE_FRAME
 vecho /n /t %FLANG% IPACDONE
