@@ -28,12 +28,8 @@ vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
 REM Insure FTARGET Packages List file directory exists.
-if exist %FTARGET%\NUL goto DosDirExist
-mkdir %FTARGET% >NUL
-:DosDirExist
-if exist %FTARGET%\PACKAGES\NUL goto PkgLstDirExist
-mkdir %FTARGET%\PACKAGES >NUL
-:PkgLstDirExist
+if not exist %FTARGET%\NUL mkdir %FTARGET%
+if not exist %FTARGET%\PACKAGES\NUL mkdir %FTARGET%\PACKAGES
 
 REM Configure FDINST package manager.
 :GetFDINSTVersion
