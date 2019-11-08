@@ -27,6 +27,11 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
+REM Insure FTARGET Packages List file directory exists.
+if exist %FTARGET%\PACKAGES\NUL goto PkgLstDirExist
+mkdir %FTARGET%\PACKAGES >NUL
+:PkgLstDirExist
+
 REM Configure FDINST package manager.
 :GetFDINSTVersion
 fdinst | vstr /n /l 0 | vstr /n /f " " 2 | set /p FDNVER=
@@ -36,7 +41,8 @@ REM Override for pre-release versions of FDNPKG
 set FDNVER=v0.99.7
 
 set DOSDIR=%FTARGET%
-set FDNPKG.CFG=%TEMP%\FDNPBIN.CFG
+if not
+set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
 set _TI=0
 if "%FDNVER%" == "v0.99.6" goto MapDisabled
 
@@ -58,7 +64,8 @@ goto MapEnabled
 set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
-type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%FDNPKG.CFG%
+type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
+type %TEMP%\FDNPKG.TMP|vstr /n/s %%FDRIVE%% C:>%FDNPKG.CFG%
 
 if "%FDEBUG%" == "y" call FDBUG.BAT shell Ready. About to run install scripts.
 
