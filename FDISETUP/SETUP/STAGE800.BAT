@@ -27,24 +27,42 @@ vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
 vecho /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
-if "%FDEBUG%" == "y" call FDBUG.BAT cls
 REM Configure FDINST package manager.
+:GetFDINSTVersion
+fdinst | vstr /n /l 0 | vstr /n /f " " 2 | set /p FDNVER=
+if "%FDNVER%" == "" goto GetFDINSTVersion
+
+REM Override for pre-release versions of FDNPKG
+set FDNVER=v0.99.7
+
+set DOSDIR=%FTARGET%
 set FDNPKG.CFG=%TEMP%\FDNPBIN.CFG
 set _TI=0
+if "%FDNVER%" == "v0.99.6" goto MapDisabled
+
+:NewFDNPKG
 set _TC=
-:SetMapDrives
 if "%FDRIVE%" == "C:" goto MapDisabled
+echo %FTARGET% | vstr /d /f : 2- | set /p _TC=
+if "%_TC%" == "" goto NewFDNPKG
+set DOSDIR=C:%_TC%
+goto MapEnabled
+
+:SetMapDrives
+set _TC=
 echo %FDRIVE% | vstr /d /f : 1 | set /p _TC=
 if "%_TC%" == "" goto SetMapDrives
 set _TC=mapdrives c%_TC%
 goto MapEnabled
+
 :MapDisabled
 set _TC=#mapdrives cc
 :MapEnabled
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%FDNPKG.CFG%
-set DOSDIR=%FTARGET%
+
 if "%FDEBUG%" == "y" call FDBUG.BAT shell Ready. About to run install scripts.
+
 REM Scan each installer in program file path
 set _TI=0
 set _TC=
@@ -134,3 +152,4 @@ set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
 set OLDFDN=
+set FDNVER=

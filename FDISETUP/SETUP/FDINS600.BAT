@@ -56,40 +56,44 @@ goto AbortPkg
 
 :PkgDone
 
-REM Links should no longer be adjusted in new version of FDNPKG
+if "%FDNVER%" == "v0.99.5" goto OldFDINST
+goto LinksDone
+
+:OldFDINST
+REM After FDNPKG v0.99.5 Links are no longer batch files. They are COMs.
 
 REM Adjust Links if needed.
-REM if "%FDRIVE%" == "C:" goto LinksDone
+if "%FDRIVE%" == "C:" goto LinksDone
 
-REM if not exist %FTARGET%\LINKS\NUL goto LinksDone
+if not exist %FTARGET%\LINKS\NUL goto LinksDone
 
-REM :LinksSticky
-REM dir /on /a /b /p- %FTARGET%\LINKS\*.BAT | vstr /b/l TOTAL | set /p _PM=
-REM if "%_PM%" == "" goto PkgSticky
-REM if "%_PM%" == "0" goto LinksDone
+:LinksSticky
+dir /on /a /b /p- %FTARGET%\LINKS\*.BAT | vstr /b/l TOTAL | set /p _PM=
+if "%_PM%" == "" goto PkgSticky
+if "%_PM%" == "0" goto LinksDone
 
-REM set _PI=0
-REM :LinksLoop
-REM dir /on /a /b /p- %FTARGET%\LINKS\*.BAT | vstr /b/l %_PI% | set /p _PA=
-REM if "%_PA%" == "" goto LinksLoop
-REM if not exist %FTARGET%\LINKS\%_PA% goto LinkSkip
+set _PI=0
+:LinksLoop
+dir /on /a /b /p- %FTARGET%\LINKS\*.BAT | vstr /b/l %_PI% | set /p _PA=
+if "%_PA%" == "" goto LinksLoop
+if not exist %FTARGET%\LINKS\%_PA% goto LinkSkip
 
-REM grep ^%FDRIVE% %FTARGET%\LINKS\%_PA% >NUL
-REM if errorlevel 1 goto LinkSkip
+grep ^%FDRIVE% %FTARGET%\LINKS\%_PA% >NUL
+if errorlevel 1 goto LinkSkip
 
-REM type %FTARGET%\LINKS\%_PA% | vstr /s %FDRIVE% C:>%TEMP%\LINK.TMP
-REM copy /y %TEMP%\LINK.TMP %FTARGET%\LINKS\%_PA% >NUL
-REM del %TEMP%\LINK.TMP >NUL
+type %FTARGET%\LINKS\%_PA% | vstr /s %FDRIVE% C:>%TEMP%\LINK.TMP
+copy /y %TEMP%\LINK.TMP %FTARGET%\LINKS\%_PA% >NUL
+del %TEMP%\LINK.TMP >NUL
 
-REM :LinkSkip
-REM set _PT=
-REM set /e _PT=vmath %_PI% + 1
-REM if "%_PT%" == "" goto LinkSkip
-REM set _PI=%_PT%
-REM set _PT=
-REM if not "%_PI%" == "%_PM%" goto LinksLoop
+:LinkSkip
+set _PT=
+set /e _PT=vmath %_PI% + 1
+if "%_PT%" == "" goto LinkSkip
+set _PI=%_PT%
+set _PT=
+if not "%_PI%" == "%_PM%" goto LinksLoop
 
-REM :LinksDone
+:LinksDone
 vgotoxy /l eop sor
 vprogres /f %TFP% 100
 vdelay %FDEL%
