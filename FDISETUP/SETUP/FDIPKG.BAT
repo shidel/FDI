@@ -18,7 +18,9 @@ if "%TEMPFILE%" == "" goto FoundPackage
 fdinst install %TEMPFILE% >nul
 :CheckSuccess
 if errorlevel 1 goto Failed
+
 rem No Longer needed with new FDNPKG and mapdrives setting
+
 rem :CheckWasSet
 rem set /e TEMPFILE=vfdutil /n %1
 rem if "%TEMPFILE%" == "" goto CheckWasSet
@@ -26,6 +28,7 @@ rem if not exist %FTARGET%\PACKAGES\%TEMPFILE%.LST goto Success
 rem type %FTARGET%\PACKAGES\%TEMPFILE%.LST |vstr /n /s "%FDRIVE%\" "C:\">%FTARGET%\PACKAGES\FDISETUP.LST
 rem copy /y %FTARGET%\PACKAGES\FDISETUP.LST %FTARGET%\PACKAGES\%TEMPFILE%.LST >NUL
 rem del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
+
 goto Success
 
 :OverrideA

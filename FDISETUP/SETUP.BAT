@@ -1,9 +1,12 @@
 @echo off
 
-REM FreeDOS 1.2+ Installer version 1.00.
+REM FreeDOS 1.3+ Installer
 REM Released Under GPL v2.0 License.
 REM Copyright 2016 Jerome Shidel.
 
+BREAK off
+
+if "%1" == "debug" set FDEBUG=y
 if "%1" == "RELOAD" goto SkipReload
 
 REM Quick and Simple DOSBox Check *********************************************
@@ -168,6 +171,8 @@ call FREEDOS\SETUP\FDITEMP.BAT QUITE
 REM Run Installer *************************************************************
 if "%1" == "RELOAD" shift
 CALL FREEDOS\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+cd \
+if not "%FDRIVE%" == "" %FDRIVE%
 cd \
 
 REM Restore Settings **********************************************************

@@ -42,6 +42,8 @@ vgotoxy /l sop
 vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 vecho /f %TFF% /e /n
 
+if "%FDEBUG%" == "y" call FDBUG.BAT shell
+
 rem No Longer needed with new FDNPKG and mapdrives setting
 rem if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
 rem type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST

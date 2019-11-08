@@ -9,7 +9,7 @@ set OS_VERSION=$VERSION$
 if "%1" == "VersionOnly" goto Done
 
 REM Debug Mode
-set FDEBUG=n
+if "%FDEBUG%" == "" set FDEBUG=n
 
 REM Formatted volume label
 set OVOL=$OVOL$
