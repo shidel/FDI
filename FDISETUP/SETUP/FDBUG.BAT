@@ -15,6 +15,7 @@ set | more
 
 :Pause
 vgotoxy /g eop sor
+if not "%2" == "" vecho %2 %3 %4 %5 %6 %7 %8 %9
 if "%FLANG%" == "" vecho /n "Press a key to continue... "
 if not "%FLANG%" == "" vecho /n /t %FLANG% PRESSKEY
 vpause /t 30 CTRL-C
@@ -27,6 +28,7 @@ goto Done
 
 :StartShell
 vgotoxy /g eop sor
+if not "%2" == "" vecho %2 %3 %4 %5 %6 %7 %8 %9
 if not "%COMSPEC%" == "" goto StartComspec
 COMMAND.COM
 goto Resume

@@ -1,6 +1,7 @@
 @echo off
 
 REM Install Packages.
+if "%FDEBUG%" == "y" call FDBUG.BAT shell Immediately before package installation
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
@@ -13,8 +14,6 @@ if errorlevel 1 goto AbortDir
 
 REM Run through all binaries to be installed.
 set _PI=0
-
-if "%FDEBUG%" == "y" call FDBUG.BAT shell
 
 REM For some reason, DOS sometimes fails to do this correctly on the first try.
 REM So, make sure it is ready before moving on.

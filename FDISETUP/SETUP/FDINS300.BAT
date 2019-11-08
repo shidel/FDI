@@ -2,6 +2,8 @@
 
 REM Remove old conflicting packages.
 
+if "%FDEBUG%" == "y" call FDBUG.BAT shell Immediately before package uninstall
+
 if not exist %FTARGET%\APPINFO\NUL goto Done
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
@@ -41,8 +43,6 @@ goto PkgSkip
 vgotoxy /l sop
 vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 vecho /f %TFF% /e /n
-
-if "%FDEBUG%" == "y" call FDBUG.BAT shell
 
 rem No Longer needed with new FDNPKG and mapdrives setting
 rem if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway

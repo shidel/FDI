@@ -44,7 +44,7 @@ set _TC=#mapdrives cc
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%FDNPKG.CFG%
 set DOSDIR=%FTARGET%
-if "%FDEBUG%" == "y" call FDBUG.BAT shell
+if "%FDEBUG%" == "y" call FDBUG.BAT shell Ready. About to run install scripts.
 REM Scan each installer in program file path
 set _TI=0
 set _TC=
