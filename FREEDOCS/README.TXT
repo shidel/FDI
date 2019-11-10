@@ -40,15 +40,10 @@ FD13-LegacyCD.zip
     Unless you have a computer that requires this type of bootable CD, we
     recommend using the LiveCD media.
 
-Two prototypes of LiveCDs are being provided with RC1. However, one will be
-discarded. Both types have some live FreeDOS packages at boot and support
-temporarily installing/removing more by using FDIMPLES. Also, both will
-automatically start networking support when used inside VirtualBox or vmWare.
-Otherwise, you will need to manually start it.
-
-So, let your voice be heard on which (if any) LiveCD you prefer.
-
 FD13-LiveCD.zip
 
-    * FD13LIVE.ISO - FreeDOS LiveCD along with support for a Plain and Full
-    installation.
+    * FD13LIVE.ISO - This media is similar to the LegacyCD. However, it is
+    designed for more modern hardware. It uses SYSLINUX and MEMDISK to boot
+    an emulated floppy disk. Along side the support for a Plain and Full
+    installation, this image contains a LiveCD portion for FreeDOS.
+
