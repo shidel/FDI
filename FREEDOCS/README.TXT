@@ -48,30 +48,7 @@ Otherwise, you will need to manually start it.
 
 So, let your voice be heard on which (if any) LiveCD you prefer.
 
-FD13-LiveCD1.zip
+FD13-LiveCD.zip
 
     * FD13LIVE.ISO - FreeDOS LiveCD along with support for a Plain and Full
-    installation. Requires 64MB of RAM (more recommended).
-
-    Pros: Lower RAM requirement and superior management. In fact, using less
-    than 64MB it is capable of bring up some portions of FreeDOS on a most
-    important first basis. The more RAM you've got -- the bigger your temporary
-    DOS drive will be. Uses less space on the LiveCD leaving more room for
-    additional packages in the future. Also, it's also kinda cool to watch boot.
-
-    Cons: Complex multi-stage startup process requires a little longer to boot.
-    Some systems may have issues activating the RAM drive under FreeDOS.
-
-FD13-LiveCD2.zip
-
-    * FD13LIVE.ISO - FreeDOS LiveCD along with support for a Plain and Full
-    installation. Requires 128MB of RAM.
-
-    Pros: Faster boot time. SysLinux & Memdisk handle creation of a RAM drive
-    and may have wider system support.
-
-    Cons: Fixed DOS drive size and a very hard RAM requirement. Don't meet the
-    requirement and the system will lockup on boot. Got gigabytes of RAM? Oh
-    well, it will mostly be unused. Pre-installed packages that generate COM
-    executable files in the %DOSDIR%\LINKS directory have issues. However,
-    they do install fine when running the FreeDOS live from the CD.
+    installation.
