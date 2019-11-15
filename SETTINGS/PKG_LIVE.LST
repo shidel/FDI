@@ -31,13 +31,14 @@ util\xkeyb
 util\raread
 util\rawrite
 util\edict
-util\fdtui
 
 net\fdnet
 net\wget
 net\mtcp
 
-net\links
-
 util\wcd
 util\aefdisk
+
+util\fdtui
+net\links
+
