@@ -4,7 +4,6 @@
 ; up a microscopic portion of FreeDOS that then can load the additional
 ; packages in the LIVE list.
 
-util\cwsdpmi
 base\devload
 base\fdapm
 util\fdnpkg
@@ -14,16 +13,13 @@ base\xcopy
 util\v8power
 
 ; not required but really should be there
-util\fdimples
-base\fc
-base\mem
-base\more
 base\format
-
-; nice but not needed
-base\ctmouse
-base\edit
-util\raread
-util\rawrite
+base\fdisk
+; base\ctmouse
+; util\cwsdpmi
+; util\fdimples
+; base\fc
+; base\mem
+; base\more
 
 

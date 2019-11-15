@@ -35,8 +35,9 @@ util\fdtui
 
 net\fdnet
 net\wget
-net\links
 net\mtcp
+
+net\links
 
 util\wcd
 util\aefdisk
