@@ -30,7 +30,7 @@ archiver\zip
 
 util\udvd2
 
-; These are not technically required. But, are extremely useful.
+; These are not technically required. But, can be useful.
 
 base\himemx
 base\jemm

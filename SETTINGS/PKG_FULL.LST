@@ -72,6 +72,132 @@ util\shareext
 util\wcd
 util\fdshield
 
-; Not Usefull with Networking
+; Not Usefull without Networking
 ; net\mtcp
 ; net\wget
+
+; Per Jim, All of Archivers, Base, Editors, Games, Unix-like and Utilities
+; Packages should be installed with FULL. These Packages are not referenced
+; earlier.
+games\boom
+games\btitanic
+games\dosdef
+games\eliza
+games\empong
+games\ev4de
+games\ewsnake
+games\flpybird
+games\fmines
+games\freedoom
+games\frotz
+games\gnuchess
+games\hangman
+games\ivan
+games\kraptor
+games\liquiwar
+games\magnetic
+games\mirmagic
+games\nethack
+games\nge_nibb
+games\noudar
+games\pakupaku
+games\qtetris
+games\snova
+games\sudoku86
+games\vertigo
+games\vitetris
+games\wing
+games\ww1
+games\zmiy
+
+archiver\7zdec
+archiver\arj
+archiver\cabext
+archiver\lpq1
+archiver\p7zip
+archiver\zoo
+
+base\samcfg
+
+edit\biew
+edit\blocek
+edit\doshexed
+edit\e3
+edit\elvis
+edit\fed
+edit\freemacs
+edit\mbedit
+edit\mined
+edit\ospedit
+edit\pico
+edit\setedit
+edit\tde
+edit\uhex
+edit\vim
+
+unixlike\cal
+unixlike\gnused
+unixlike\uptimec
+
+util\aefdisk
+util\ansimat
+util\b64
+util\bsum
+util\cdrom2ui
+util\clamav
+util\clamdb
+util\dialog
+util\dn2
+util\dog
+util\edict
+util\fdisrc
+util\fdshell
+util\fdtui
+util\finddisk
+util\flashrom
+util\gifsicle
+util\gnufonts
+util\hexcomp
+util\hip
+util\hiram
+util\localcfg
+util\lptdrv
+util\memteste
+util\ntfs
+util\ospimg
+util\pbox
+util\pdtree
+util\pgme
+util\pngcrush
+util\rcal
+util\search
+util\sqlite
+util\terminal
+util\testdisk
+util\unrtf
+util\utf8tocp
+util\wde
+util\whichfat
+util\wptail
+
+; Following are Online Repository Only Packages and are excluded from the
+; install media for various reasons
+
+; archiver\lha
+; archiver\unrar
+
+; devel\tppatch
+
+; games\kiloblas
+; games\lincrawl
+; games\psrinvad
+
+; unixlike\minibox
+; unixlike\tail
+; unixlike\uptime
+
+; util\4dos
+; util\blwcbc
+; util\paint2
+; util\start
+; util\zdir
