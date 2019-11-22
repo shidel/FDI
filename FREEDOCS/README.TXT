@@ -42,8 +42,10 @@ FD13-LegacyCD.zip
 
 FD13-LiveCD.zip
 
-    * FD13LIVE.ISO - This media is similar to the LegacyCD. However, it is
-    designed for more modern hardware. It uses SYSLINUX and MEMDISK to boot
-    an emulated floppy disk. Along side the support for a Plain and Full
-    installation, this image contains a LiveCD portion for FreeDOS.
+    * FD13LIVE.ISO - This media is similar to the LegacyCD. However instead
+    of relying on the BIOS floppy disk emulation, it uses SYSLINUX and MEMDISK
+    to boot an emulated floppy disk. Along side support to perform a Plain and
+    Full installation FreeDOS, this media is also able to run FreeDOS live from
+    RAM or CD (depending on computer system and hardware) without installation
+    to an internal hard disk drive.
 
