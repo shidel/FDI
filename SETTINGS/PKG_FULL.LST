@@ -79,6 +79,7 @@ util\fdshield
 ; Per Jim, All of Archivers, Base, Editors, Games, Unix-like and Utilities
 ; Packages should be installed with FULL. These Packages are not referenced
 ; earlier.
+games\bolitare
 games\boom
 games\btitanic
 games\dosdef
@@ -152,7 +153,10 @@ util\dog
 util\edict
 util\fdisrc
 util\fdshell
-util\fdtui
+
+; FDTUI Conflicts with FDSHELL
+; util\fdtui
+
 util\finddisk
 util\flashrom
 util\gifsicle
