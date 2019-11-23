@@ -107,7 +107,27 @@ if "%TEMP%" == "" set TEMP=%FTMP%
 goto done
 
 :IsQEMU
+if not "%FDRAMDRV%" == "" goto Assimilate
+:QEMU
+vinfo /dc:
+REM Error 15 - Not Present / Invalid Drive Letter
+if errorlevel 16 goto Failed
+if errorlevel 15 devload srdxms.sys >NUL
+vinfo /dc:
+REM Error 5 - Not Formated
+if errorlevel 6 goto Failed
+if not errorlevel 5 goto Failed
+if errorlevel 1 srdisk 100K>NUL
+if errorlevel 1 goto Failed
+vinfo /dc:
+if errorlevel 1 goto Failed
+vfdutil /q /u C:\TEST????.$$$
+if errorlevel 1 goto Failed
+set RAMDRV=C:
+goto SetTempPath
+
 :IsDOSBox
+if not "%FDRAMDRV%" == "" goto Assimilate
 :Failed
 set TEMP=
 set FTMP=
