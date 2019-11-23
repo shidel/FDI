@@ -120,7 +120,8 @@ if not errorlevel 5 goto Failed
 if errorlevel 1 srdisk 100K>NUL
 if errorlevel 1 goto Failed
 vinfo /dc:
-if errorlevel 1 goto Failed
+if errorlevel 3 goto Failed
+if not errorlevel 2 goto Failed
 vfdutil /q /u C:\TEST????.$$$
 if errorlevel 1 goto Failed
 set RAMDRV=C:
