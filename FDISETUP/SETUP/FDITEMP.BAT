@@ -114,6 +114,7 @@ REM Error 15 - Not Present / Invalid Drive Letter
 if errorlevel 16 goto Failed
 if not errorlevel 15 goto Failed
 devload srdxms.sys >NUL
+if errorlevel 1 goto Failed
 vinfo /dc:
 REM Error 5 - Not Formated
 if errorlevel 6 goto Failed
