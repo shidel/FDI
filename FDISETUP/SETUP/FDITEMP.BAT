@@ -122,7 +122,7 @@ if errorlevel 1 goto Failed
 vinfo /dc:
 if errorlevel 3 goto Failed
 if not errorlevel 2 goto Failed
-vfdutil /q /u C:\TEST????.$$$
+vfdutil /u C:\TEST????.$$$ >NUL
 if errorlevel 1 goto Failed
 set RAMDRV=C:
 goto SetTempPath
