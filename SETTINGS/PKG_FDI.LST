@@ -30,6 +30,9 @@ archiver\zip
 
 util\udvd2
 
+; Only wanted needed for QEMU
+util\srdisk
+
 ; These are not technically required. But, can be useful.
 
 base\himemx
