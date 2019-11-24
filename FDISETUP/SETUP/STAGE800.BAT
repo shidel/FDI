@@ -60,7 +60,7 @@ set _TC=#mapdrives cc
 :MapEnabled
 set _TI=0
 type %FINSP%\FDNPKG.CFG|vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
-type %TEMP%\FDNPKG.TMP |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
+type %TEMP%\FDNPKG.TMP | vstr /n /s %%OSRC%% %OSRC% |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
 del  %TEMP%\FDNPKG.TMP >NUL
 goto ReadyFDINST
 
