@@ -37,7 +37,6 @@ set FDNVER=v0.99.7
 
 set DOSDIR=%FTARGET%
 set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
-set _TI=0
 if "%FDNVER%" == "v0.99.6" goto OldFDINST
 
 :NewFDNPKG
@@ -59,6 +58,7 @@ goto MapEnabled
 :MapDisabled
 set _TC=#mapdrives cc
 :MapEnabled
+set _TI=0
 if "%OSRC%" == "y" SET set _TI=1
 type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
 type %TEMP%\FDNPKG.TMP |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
