@@ -59,8 +59,7 @@ goto MapEnabled
 set _TC=#mapdrives cc
 :MapEnabled
 set _TI=0
-if "%OSRC%" == "y" SET set _TI=1
-type %FINSP%\FDNPKG.CFG|vstr /n /s $SOURCES$ %_TI% |vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
+type %FINSP%\FDNPKG.CFG|vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
 type %TEMP%\FDNPKG.TMP |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
 del  %TEMP%\FDNPKG.TMP >NUL
 goto ReadyFDINST
@@ -110,9 +109,12 @@ verrlvl 0
 goto DoneCheckWarning
 
 :ReplaceConfig
+copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.DEF>NUL
+rem type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.CFG
+type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.TMP
+type %DOSDIR%\BIN\FDNPKG.TMP | vstr /n /s mapdrives #mapdrives>%DOSDIR%\BIN\FDNPKG.CFG
+del %DOSDIR%\BIN\FDNPKG.TMP >NUL
 copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
-rem type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.CFG
-type %FDNPKG.CFG% | vstr /n /s %%FDRIVE%% C:| vstr /n /s mapdrives #mapdrives>%DOSDIR%\BIN\FDNPKG.CFG
 verrlvl 0
 goto DoneCheckWarning
 

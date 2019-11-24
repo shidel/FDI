@@ -70,27 +70,27 @@ if errorlevel 1 goto OptBasic
 
 :OptBasic
 set OALL=n
-set OSRC=n
+set OSRC=0
 goto Done
 
 :OptBasicSrc
 set OALL=n
-set OSRC=y
+set OSRC=1
 goto Done
 
 :OptAll
 set OALL=y
-set OSRC=n
+set OSRC=0
 goto Done
 
 :OptAllSrc
 set OALL=y
-set OSRC=y
+set OSRC=1
 goto Done
 
 :OptDetailed
 set OALL=?
-set OSRC=n
+set OSRC=0
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
 %FDIM% /FDI
 if errorlevel 200 FDICTRLC.BAT %0
@@ -100,7 +100,7 @@ goto Done
 
 :OptDetailedSrc
 set OALL=?
-set OSRC=y
+set OSRC=1
 if exist %TEMP%\FDIMPLES.LST del %TEMP%\FDIMPLES.LST>nul
 %FDIM% /FDI
 if errorlevel 200 FDICTRLC.BAT %0
