@@ -109,12 +109,11 @@ verrlvl 0
 goto DoneCheckWarning
 
 :ReplaceConfig
-copy /y %FDINST%\BIN\FDNPKG.CFG %FDINST%\BIN\FDNPKG.DEF>NUL
-rem type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%FDINST%\BIN\FDNPKG.CFG
-type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%FDINST%\BIN\FDNPKG.TMP
-type %%FDINST%\BIN\FDNPKG.TMP | vstr /n /s mapdrives #mapdrives>%FDINST%\BIN\FDNPKG.CFG
-del %FDINST%\BIN\FDNPKG.TMP >NUL
-copy /y %FDINST%\BIN\FDNPKG.CFG %FDINST%\BIN\FDNPKG.BAK>NUL
+copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.DEF>NUL
+type %FINSP%\FDNPKG.CFG| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%FTARGET%\BIN\FDNPKG.TMP
+type %FTARGET%\BIN\FDNPKG.TMP | vstr /n /s mapdrives #mapdrives>%FTARGET%\BIN\FDNPKG.CFG
+del %FTARGET%\BIN\FDNPKG.TMP >NUL
+copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.BAK>NUL
 verrlvl 0
 goto DoneCheckWarning
 
@@ -125,7 +124,7 @@ goto AbortBatch
 :DoneCheckWarning
 del %FDNPKG.CFG%>NUL
 set FDNPKG.CFG=
-if exist %DOSDIR%\BIN\FDNPKG.CFG set FDNPKG.CFG=%DOSDIR%\BIN\FDNPKG.CFG
+if exist %FTARGET%\BIN\FDNPKG.CFG set FDNPKG.CFG=%FTARGET%\BIN\FDNPKG.CFG
 if not "%OSYS%" == "y" goto RebootWarning
 if not "%OBSS%" == "y" goto RebootWarning
 goto NoWarning
