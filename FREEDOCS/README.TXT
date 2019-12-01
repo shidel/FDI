@@ -1,4 +1,6 @@
-### FreeDOS 1.3-RC1 Installation media.
+### FreeDOS 1.3-RC2 Installation media.
+
+# What's in all those ZIP files?
 
 README.TXT
     The simple "before you choose and install" document.
