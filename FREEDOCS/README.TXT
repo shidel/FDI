@@ -1,6 +1,20 @@
-### FreeDOS 1.3-RC2 Installation media.
+###############################################################################
+FreeDOS 1.3-RC2 Installation media.
+###############################################################################
 
-# What's in all those ZIP files?
+-------------------------------------------------------------------------------
+Some general system requirements.
+-------------------------------------------------------------------------------
+
+    A FreeDOS FULL install with sources requires 450 MiB of free HD space.
+    Without sources, 250 MiB of free space will be needed.
+
+    A FreeDOS PLAIN install with sources requires 50 MiB of free HD space.
+    Without sources, 20 MiB of free space will be needed.
+
+-------------------------------------------------------------------------------
+What's in all those release ZIP files?
+-------------------------------------------------------------------------------
 
 README.TXT
     The simple "before you choose and install" document.
@@ -12,11 +26,15 @@ verify.txt
 
 FD13-Floppy.zip
 
-    * FD13FLOP.IMG - Basic FreeDOS installation boot floppy image.
+    * FD13FLOP.IMG - Basic FreeDOS installation boot floppy image for systems
+    that support a CD-ROM. But, the system cannot boot from either of CD-ROM
+    release media.
 
 FD13-LiteUSB.zip
 
-    * FD13LITE.IMG - Plain DOS system only! USB stick image.
+    * FD13LITE.IMG - Plain DOS system only! This USB stick image does not
+    contain all of the packages that are available in a FULL install. It only
+    contains the basic plain DOS set of packages.
 
     * FD13LITE.VMDK - An Virtual Machine Disk description file to simplify
     attaching the LiteUSB image to a virtual machine (like VirtualBox and
