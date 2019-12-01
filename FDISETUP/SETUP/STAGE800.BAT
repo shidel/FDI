@@ -109,12 +109,12 @@ verrlvl 0
 goto DoneCheckWarning
 
 :ReplaceConfig
-copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.DEF>NUL
-rem type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.CFG
-type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%DOSDIR%\BIN\FDNPKG.TMP
-type %DOSDIR%\BIN\FDNPKG.TMP | vstr /n /s mapdrives #mapdrives>%DOSDIR%\BIN\FDNPKG.CFG
-del %DOSDIR%\BIN\FDNPKG.TMP >NUL
-copy /y %DOSDIR%\BIN\FDNPKG.CFG %DOSDIR%\BIN\FDNPKG.BAK>NUL
+copy /y %FDINST%\BIN\FDNPKG.CFG %FDINST%\BIN\FDNPKG.DEF>NUL
+rem type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%FDINST%\BIN\FDNPKG.CFG
+type %FDNPKG.CFG%| vstr /n /s %%OSRC%% %OSRC% | vstr /n /s %%FDRIVE%% C: >%FDINST%\BIN\FDNPKG.TMP
+type %%FDINST%\BIN\FDNPKG.TMP | vstr /n /s mapdrives #mapdrives>%FDINST%\BIN\FDNPKG.CFG
+del %FDINST%\BIN\FDNPKG.TMP >NUL
+copy /y %FDINST%\BIN\FDNPKG.CFG %FDINST%\BIN\FDNPKG.BAK>NUL
 verrlvl 0
 goto DoneCheckWarning
 
