@@ -55,6 +55,10 @@ alias shutdown=fdapm poweroff
 
 rem alias cfg=edit %cfgfile%
 rem alias auto=edit %0
+
+if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
+if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
+
 goto SkipLanguageData
 
 ***** Language specific text data.
