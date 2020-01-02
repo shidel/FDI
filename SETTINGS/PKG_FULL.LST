@@ -6,6 +6,9 @@
 $PKG_BASE$
 $PKG_FDI$
 
+; Include custom release user assistance packages
+$PKG_ASSIST$
+
 ; Additional packages installed with FULL
 unixlike\grep
 unixlike\xgrep

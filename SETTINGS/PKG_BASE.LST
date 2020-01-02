@@ -1,6 +1,7 @@
 ; Package list for BASE only installation of FreeDOS.
 
 ; This is the BASE package set. It contains the packages used Plain DOS system.
+
 base\kernel
 base\command
 base\jemm
@@ -74,3 +75,6 @@ util\callver
 util\cwsdpmi
 util\shsufdrv
 
+; Include custom release user assistance packages
+
+$PKG_ASSIST$

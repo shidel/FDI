@@ -9,6 +9,7 @@ $PKG_BASE$
 $PKG_FDI$
 $PKG_FULL$
 $PKG_LIVE$
+$PKG_ASSIST$
 
 ; Extra packages that are not automatically installed.
 

@@ -7,6 +7,9 @@
 $PKG_BASE$
 $PKG_FDI$
 
+; Include custom release user assistance packages
+$PKG_ASSIST$
+
 ; These are additional packages that are intalled onto the LIVE CD media.
 unixlike\grep
 unixlike\head
