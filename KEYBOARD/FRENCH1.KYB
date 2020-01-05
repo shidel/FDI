@@ -9,4 +9,4 @@ NL=Frans
 EO=franca
 TR=Fransçzca
 
-CMD=mkeyb FR
+CMD=keyb FR,858
