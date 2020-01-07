@@ -208,3 +208,8 @@ util\wptail
 ; util\paint2
 ; util\start
 ; util\zdir
+
+; new additions and returned packages
+
+util\gcdrom
+util\uide
