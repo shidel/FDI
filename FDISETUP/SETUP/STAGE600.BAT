@@ -37,8 +37,6 @@ call FDIFAIL.BAT ERROR_MEDIA
 goto AbortBatch
 
 :MediaFound
-rem set _MI=
-rem set _MT=
 set _MA=
 
 verrlvl 0
