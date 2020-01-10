@@ -35,7 +35,7 @@ if not errorlevel 1 goto RepoCD
 set FMEDIA=%1:%PKGDIR%
 goto CheckFound
 
-REM www.ibiblio.org ALL_CD.ISO based Version & some FreeDOS 1.2 media *********
+REM www.ibiblio.org ALL_CD.ISO & some FreeDOS 1.2 media ***********************
 :RepoCD
 vfdutil /u %1:\BASE\FDI?????.$$$ >NUL
 if errorlevel 1 goto CheckDone
