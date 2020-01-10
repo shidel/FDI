@@ -12,40 +12,31 @@ if "%1" == "B" goto CheckDriveExists
 
 :CheckFiles
 vinfo /d %1:\
-if errorlevel 15 goto MaybeCD
+if errorlevel 15 goto InstallMedia
 
 if errorlevel 5 goto CheckDone
 
 REM FreeDOS 1.1 Version *******************************************************
-rem if not exist %1:\FREEDOS\PACKAGES\BASE\NUL goto CheckDone
+rem depriciated, no longer updated
+rem if not exist %1:\FREEDOS\PACKAGES\BASE\NUL goto InstallMedia
 rem set FMEDIA=%1:\FREEDOS\PACKAGES\BASE
 
-REM www.ibiblio.org ALL_CD.ISO based Version **********************************
-rem if not exist %1:\BASE\NUL goto CheckDone
-rem if not exist %1:\BASE\COMMAND.ZIP goto CheckDone
-rem if not exist %1:\BASE\INDEX.LST goto CheckDone
-
-:MaybeCD
+REM FreeDOS 1.2+ Version *******************************************************
+:InstallMedia
 vfdutil /u %1:%PKGDIR%\BASE\FDI?????.$$$ >NUL
 if errorlevel 1 goto RepoCDCheck
-vfdutil /u %1:%PKGDIR%\BASE\COMMAND.ZIP >NUL
-if not errorlevel 1 goto RepoCDCheck
-rem vfdutil /u %1:%PKGDIR%\BASE\KERNEL.ZIP >NUL
-rem if not errorlevel 1 goto RepoCDCheck
-rem vfdutil /u %1:%PKGDIR%\BASE\INDEX.LST >NUL
-rem if not errorlevel 1 goto RepoCDCheck
+vfdutil /u %1:%PKGDIR%\BASE\KERNEL.ZIP >NUL
+if not errorlevel 1 goto RepoCD
+
 set FMEDIA=%1:%PKGDIR%
 goto CheckFound
 
-:RepoCDCheck
+REM www.ibiblio.org ALL_CD.ISO based Version & some FreeDOS 1.2 media *********
+:RepoCD
 vfdutil /u %1:\BASE\FDI?????.$$$ >NUL
 if errorlevel 1 goto CheckDone
-vfdutil /u %1:\BASE\COMMAND.ZIP >NUL
+vfdutil /u %1:\BASE\KERNEL.ZIP >NUL
 if not errorlevel 1 goto CheckDone
-rem vfdutil /u %1:\BASE\KERNEL.ZIP >NUL
-rem if not errorlevel 1 goto CheckDone
-rem vfdutil /u %1:\BASE\INDEX.LST >NUL
-rem if not errorlevel 1 goto CheckDone
 
 set FMEDIA=%1:
 goto CheckFound

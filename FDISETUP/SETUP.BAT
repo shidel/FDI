@@ -193,6 +193,11 @@ echo Unable to run installer under the current operating system and/or its setti
 echo Please boot the installer from one of the media provided for the installer.
 goto Done
 
+REM Failed to find FreeCOM shell **********************************************
+:MissingFreeCOM
+echo Enable to locate FreeCOM shell. Unable to proceed without FreeCOM.
+goto Done
+
 REM Failed to perform shell reload ********************************************
 :FailReload
 echo An error occurred while executing the FreeCOM shell. Please try to run the
