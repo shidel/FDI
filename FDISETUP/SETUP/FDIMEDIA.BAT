@@ -26,7 +26,7 @@ REM FreeDOS 1.2+ Version *******************************************************
 
 REM Will succeed if drive and path exist
 vfdutil /u %1:%PKGDIR%\BASE\FDI?????.$$$ >NUL
-if errorlevel 1 goto RepoCDCheck
+if errorlevel 1 goto RepoCD
 
 REM Will fail if package file exists
 vfdutil /u %1:%PKGDIR%\BASE\KERNEL.ZIP >NUL
