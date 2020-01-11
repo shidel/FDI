@@ -25,14 +25,14 @@ REM FreeDOS 1.2+ Version *******************************************************
 :InstallMedia
 
 REM Will succeed if drive and path exist
-vfdutil /u %1:%PKGDIR%\BASE\FDI?????.$$$ >NUL
+vfdutil /u %1:\%PKGDIR%\BASE\FDI?????.$$$ >NUL
 if errorlevel 1 goto RepoCD
 
 REM Will fail if package file exists
-vfdutil /u %1:%PKGDIR%\BASE\KERNEL.ZIP >NUL
+vfdutil /u %1:\%PKGDIR%\BASE\KERNEL.ZIP >NUL
 if not errorlevel 1 goto RepoCD
 
-set FMEDIA=%1:%PKGDIR%
+set FMEDIA=%1:\%PKGDIR%
 goto CheckFound
 
 REM www.ibiblio.org ALL_CD.ISO & some FreeDOS 1.2 media ***********************

@@ -22,7 +22,7 @@ if "%_MA%" == "" goto IndirectBaseSource
 if exist %_MA%\BASE\KERNEL.ZIP goto IndirectFound
 
 REM Search all Drives C - Z
-for %%d in ( C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDIMEDIA.BAT %%d:
+for %%d in ( C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do call FDIMEDIA.BAT %%d
 
 if not "%FMEDIA%" == "" goto MediaFound
 goto MissingMedia
