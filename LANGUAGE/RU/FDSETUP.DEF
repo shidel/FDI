@@ -89,7 +89,7 @@ PREPARING="Подготовка к установке..."
 
 # STAGE900 - All Done reboot?
 COMPLETE_FRAME=/w60 /h10 /c
-COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE_OPTS=/w444444444444444444444444444444444444444444444 /h4 /c
 COMPLETE=/s- "Установка " /f %1 "%2" /f %3 " завершена."
 # REBOOT?, REBOOT, EXIT
 
