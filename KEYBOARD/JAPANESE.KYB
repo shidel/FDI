@@ -1,0 +1,11 @@
+; Optional Japanese Keyboard Layout Definition
+
+EN=Japanese
+ES=Japon‚s
+DE=Japanisch
+FR=Japonais
+NL=Japans
+EO=Japana
+TR=Japonca
+
+CMD=keyb JP,932,%DOSDIR%\BIN\KEYBOARD.SYS
