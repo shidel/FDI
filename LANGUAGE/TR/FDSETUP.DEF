@@ -1,7 +1,7 @@
 *******************************************************************************
-FreeDOS Installer Turkish Translation.
+FreeDOS 1.2 Installer Turkish Translation.
 Provided by: anonymous
-Contact Email:
+Contact Email: 
 Created/Modified: 11 November 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
@@ -13,196 +13,195 @@ LANG_NAME=Turkish
 # FDICLS - Title
 TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " - Kurulum"
 
-# STAGE300 - initial welcome screen message
-LANG_ASK="Tercih ettiginiz dil hangisidir?"
-LANG_EN=Ingilizce
-LANG_ES=Ispanyolca
-LANG_FR=Fransizca
+# STAGE300 - Initial welcome screen message
+LANG_ASK="Hangi dili tercih ediyorsunuz?"
+LANG_EN=İngilizce
+LANG_ES=İspanyolca
+LANG_FR=Fransızca
 LANG_DE=Almanca
 LANG_EO=Esperanto
-LANG_NL=Felemenk�e
-LANG_TR=T�rk�e
-LANG_RU=Rus�a
+LANG_NL=Felemenkçe
+LANG_TR=Türkçe
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c
-HELLO=/s- /f %1 "%2" /f %3 " kurulum programina hos geldiniz."
-HELLO_ADV=/s- /f %1 "%2" /f %3 " i�in gelismis kuruluma hos geldiniz."
-HELLO_WARN.1=/f%1 "%2" /f%3 tam bir isletim sistemidir. Onu bilgisayariniza /p
-HELLO_WARN.2=kurarsaniz, su anda mevcut olan isletin sisteminin (mesela /p
-HELLO_WARN.3=Windows) �zerine yazip eskisini silebilirsiniz. Eger yapmak /p
-HELLO_WARN.4=istediginiz bu degilse, l�tfen simdi durun.
+HELLO=/s- /f %1 "%2" /f %3 " kurulum programına hoş geldiniz."
+HELLO_ADV=/s- /f %1 "%2" /f %3 " için gelişmiş kuruluma hoş geldiniz."
+HELLO_WARN.1=/f%1 "%2" /f%3 tam bir işletim sistemidir. Kurulum işlemi, /p mevcut işletim sisteminizin (örneğin Windows) /p üzerine yazıp eskisini silebilir.
+HELLO_WARN.2=/c32 Eğer yapmak istediğiniz bu değilse, lütfen şimdi durun.
+HELLO_WARN.3=
+HELLO_WARN.4=
 HELLO_WARN.5=
 
-PROCEED?=/p/p "Devam etmek istiyor musunuz?"
-CONTINUE="  Evet  - Kuruluma devam et"
-EXIT="  Hayir - DOS'a d�n"
+PROCEED?=/p/p "Sürdürmek istiyor musunuz?"
+CONTINUE="  Evet - Kurulumu sürdür"
+EXIT="  Hayır - DOS'a dön"
 
 # STAGE400 - Partition screen specific
 NOPART_FRAME=/w60 /h10 /c
-NOPART_OPTS=/w42 /h4 /c
-NOPART=/s- "S�r�c� " /f  %1 %2 /f %3 " b�l�mlenmemis gibi g�r�n�yor."
-PART?="S�r�c�n�zde b�l�m olusturmak istiyor musunuz?"
-PART_YES="  Evet - %1 s�r�c�s�nde b�l�m olustur"
+NOPART_OPTS=/w40 /h4 /c
+NOPART=/s- "Sürücü " /f  %1 %2 /f %3 " bölümlenmemiş gibi görünüyor."
+PART?="Sürücünüzde bir bölüm oluşturmak istiyor musunuz?"
+PART_YES="  Evet - %1 sürücüsünde bölüm oluştur"
 # EXIT
 
 # STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
-PARTED_OPTS=/w42 /h4 /c
-PARTED=/s- "Yeni b�l�m semasinin etkinlesmesi i�in bilgisayarinizi" /p "yeniden baslatmaniz gerekmektedir."
-REBOOT?="simdi yeniden baslatmak istiyor musunuz?"
-REBOOT_YES="  Evet - L�tfen simdi yeniden baslat"
-# EXiT
-REBOOT="Bilgisayariniz simdi yeniden baslayacaktir"
-PARTING_FRAME=/w45 /h5 /c
-PARTING="Sabit diskte b�l�m olusturuluyor..."
+PARTED_OPTS=/w40 /h4 /c
+PARTED=/s- "Yeni bölüm şemasının etkinleşmesi için bilgisayarınızı yeniden" /p "başlatmanız gerekmektedir."
+REBOOT?="Şimdi yeniden başlatmak istiyor musunuz?"
+REBOOT_YES="  Evet - Lütfen şimdi yeniden başlat"
+# EXIT
+REBOOT="Bilgisayarınız şimdi yeniden başlayacaktır"
+PARTING_FRAME=/w34 /h5 /c
+PARTING="Sabit diskte bölüm oluşturuluyor..."
 
 # STAGE500 - Formating specific
-NOFORMAT_FRAME=/w65 /h10 /c
-NOFORMAT_OPTS=/w55 /h4 /c
-NOFORMATADV_FRAME=/w65 /h11 /c
-NOFORMATADV_OPTS=/w55 /h5 /c
-NOFORMAT=/s-  "S�r�c� " /f %1 %2 /f %3 " bi�imlendirilmemis g�r�n�yor."
-FORMAT?="S�r�c�n�z� bi�imlendirmek (formatlamak) istiyor musunuz?"
-FORMAT_YES="  Evet - L�tfen %1 s�r�c�s�n� sil ve bi�imlendir"
-FORMATADV_QUICK="  Evet -  %1 s�r�c�s�n� �abuk sil ve bi�imlendir"
-FORMATADV_SLOW="  Evet -  %1 s�r�c�s�n� tam sil ve bi�imlendir"
-# EXiT
-FORMATTING=/s- /fGray "S�r�c� bi�imlendiriliyor " /fWhite %1 /fGray ...
-PAUSE=/fLightGreen " Herhangi bir tusa basiniz... " /e
+NOFORMAT_FRAME=/w55 /h10 /c
+NOFORMAT_OPTS=/w45 /h4 /c
+NOFORMATADV_FRAME=/w55 /h11 /c
+NOFORMATADV_OPTS=/w45 /h5 /c
+NOFORMAT=/s-  "Sürücü " /f %1 %2 /f %3 " biçimlendirilmemiş görünüyor."
+FORMAT?="Sürücünüzü biçimlendirmek (formatlamak) istiyor musunuz?"
+FORMAT_YES="  Evet - Lütfen %1 sürücüsünü sil ve biçimlendir"
+FORMATADV_QUICK="  Evet -  %1 sürücüsünü çabuk sil ve biçimlendir"
+FORMATADV_SLOW="  Evet -  %1 sürücüsünü tam sil ve biçimlendir"
+# EXIT
+FORMATTING=/s- /fGray "Sürücü biçimlendiriliyor " /fWhite %1 /fGray ...
+PAUSE=/fLightGreen " Herhangi bir düğmeye basınız... " /e
 
-# STAGE600 - install preparation
+# STAGE600 - Install preparation
 GATHERING_FRAME=/w68 /h5 /c
-GATHERING="Kurulum i�in hazirlanmak amaciyla bazi bilgiler toplaniyor..."
+GATHERING="Kurulum hazırlığı için bazı bilgiler toplanıyor..."
 
-# STAGE800 - installing
-INSTALL_FRAME=/w64 /h10 /c
-INSTALL_OPTS=/w50 /h4 /c
-INSTALL=/s- "Artik sunu kurmaya haziriz: " /f %1 "%2" /f %3 .
-INSTALL?="simdi kurmak istiyor musunuz?"
-INSTALL_YES="  Evet - L�tfen sunu kur: %1"
-# EXiT
+# STAGE800 - Installing
+INSTALL_FRAME=/w62 /h10 /c
+INSTALL_OPTS=/w48 /h4 /c
+INSTALL=/s- "Kurulum için hazır: " /f %1 "%2" /f %3 .
+INSTALL?="Kurulumu sürdürmek istiyor musunuz?"
+INSTALL_YES="  Evet - %1 kurulsun."
+# EXIT
 PREPARING_FRAME=/w42 /h5 /c
-PREPARING="Kurulum i�in hazirlaniliyor..."
+PREPARING="Kurulum için hazırlanılıyor..."
 
 # STAGE900 - All Done reboot?
-COMPLETE_FRAME=/w65 /h10 /c
-COMPLETE_OPTS=/w44 /h4 /c
-COMPLETE=/s- "sunun kurulumu: " /f %1 "%2" /f %3 " artik tamamlanmistir."
-# REBOOT?, REBOOT, EXiT
+COMPLETE_FRAME=/w60 /h10 /c
+COMPLETE_OPTS=/w40 /h4 /c
+COMPLETE=/s- /f %1 "%2" /f %3 " kurulumu tamamlandı."
+# REBOOT?, REBOOT, EXIT
 
-# FDSETUP - installer Aborted
+# FDSETUP - Installer Aborted
 ABORTED=/fWhite /bRed " %1 kurulumu iptal edildi." /e /fGray
 
 # FDSETUP - Missing Stage Error
-STAGE_ERROR=/s- "Kurulumcunun %1 sayili etabi �alistirilamadi." /p "Kurulumcunun bozulmus olmasi m�mk�nd�r." /p "L�tfen onu tekrar indirin veya baska bir kurulum metodu deneyin."
+STAGE_ERROR=/s- "Yükleyicinin %1 numaralı aşaması çalıştırılamadı." /p "Yükleyici hatalı olabilir." /p "Lütfen yeniden indirin veya başka bir kurulum yöntemi deneyin."
 
 # FDICTRLC - Control-C specific
 CTRLC_FRAME=/w60 /h12 /c
 CTRLC_OPTS=/w44 /h6 /c
-CTRLC=/s- "su tusa bastiniz: " /f %1 "CTRL-C" /f %2 .
-CTRLC?="Kurulumu iptal etmek istediginizden emin misiniz?"
-CTRLCY="  Evet  - L�tfen DOS'a d�n"
-CTRLCN="  Hayir - Devam etmek istiyorum"
-CTRLCA="  Hayir - Gelismis Kipe ge�"
-CTRLCB="  Hayir - Temel Kipe ge�"
+CTRLC=/s- "Şu düğmeye bastınız: " /f %1 "CTRL-C" /f %2 .
+CTRLC?="Kurulumu iptal etmek istediğinizden emin misiniz?"
+CTRLCY="  Evet  - Lütfen DOS'a dön"
+CTRLCN="  Hayır - Sürdürmek istiyorum"
+CTRLCA="  Hayır - Gelişmiş Kipe geç"
+CTRLCB="  Hayır - Temel Kipe geç"
 
-# FDIFAIL - installation failure error message box
-FAIL_FRAME=/w72 /h11 /c
-FAIL_OPTS=/w50 /h4 /c
-FAILADV_FRAME=/w72 /h13 /c
-FAILADV_OPTS=/w50 /h6 /c
-FAILH="Tekrar baslatmak yardimci olabilir."
-FAIL?="Bilgisayari simdi tekrar baslatmak istiyor musunuz?"
-FAILY="  Evet  - L�tfen yeniden baslat"
-FAILN="  Hayir - DOS'a d�n"
-FAILI="  Hayir - G�rmezden gel. (tavsiye edilmez)"
-FAILR="Bilgisayar simdi yeniden baslayacaktir."
+# FDIFAIL - Installation failure error message box
+FAIL_FRAME=/w62 /h11 /c
+FAIL_OPTS=/w40 /h4 /c
+FAILADV_FRAME=/w62 /h13 /c
+FAILADV_OPTS=/w40 /h6 /c
+FAILH="Yeniden başlatmak yardımcı olabilir."
+FAIL?="Bilgisayarı şimdi yeniden başlatmak istiyor musunuz?"
+FAILY="  Evet  - Lütfen yeniden başlat"
+FAILN="  Hayır - DOS'a dön"
+FAILI="  Hayır - Yok say (tavsiye edilmez)"
+FAILR="Bilgisayarınız şimdi yeniden başlayacaktır."
 
 # FDNOTICE - Already installed notice.
-NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray zaten kuruludur.
-NOTICE.2=/r5/c32 Kurulumcuyu elle baslatmak i�in "'" /s- /fCyan SETUP.BAT /fGray "' yazabilirsiniz."
+NOTICE.1=/r5/c32 /fGreen %1 /fCyan %2 /fGray zaten kurulu.
+NOTICE.2=/r5/c32 Yükleyiciyi elle başlatmak için "'" /s- /fCyan SETUP.BAT /fGray "' yazabilirsiniz."
 
 # Failure messages
-ERROR_BACKZIP="%1 yedekleme arsivi olusturuluyor."
-ERROR_BACKUP="Yedeklemenin olusturulmasinda hata."
-ERROR_MKDOS="'%1' dizini olusturulamadi."
-ERROR_PACKAGE="'%1' paketi kurulamadi."
-ERROR_SOURCE="'%1' kaynagi kurulamadi."
-ERROR_READC="C: s�r�c�s�n�n okunmasinda bir problem var."
-ERROR_SHELL="Kurulum g�ncel kabugunuzda desteklenmemektedir."
-ERROR_MEDIA="Kurulum paketlerinin yeri bulunamiyor."
-ERROR_REMOS="Eski sistem dosyalarinin kaldirilmasinda bir sorun �ikti."
-ERROR_XSYS="Sistem dosyalarinin %1 konumuna aktarilmasi sirasinda hata."
-ERROR_CONFIG="Yeni yapilandirma dosyalarinin kopyalanmasinda bir sorun �ikti."
+ERROR_BACKZIP="%1 yedekleme arşivi oluşturuluyor."
+ERROR_BACKUP="Yedeklemenin oluşturulmasında hata."
+ERROR_MKDOS="'%1' dizini oluşturulamadı."
+ERROR_PACKAGE="'%1' paketi kurulamadı."
+ERROR_SOURCE="'%1' kaynağı kurulamadı."
+ERROR_READC="C: sürücüsünün okunmasında bir problem var."
+ERROR_SHELL="Kurulum güncel kabuğunuzda desteklenmemektedir."
+ERROR_MEDIA="Kurulum paketlerinin yeri bulunamıyor."
+ERROR_REMOS="Eski sistem dosyalarının kaldırılmasında bir sorun çıktı."
+ERROR_XSYS="Sistem dosyalarının %1 konumuna aktarılması sırasında hata."
+ERROR_CONFIG="Yeni yapılandırma dosyalarının kopyalanmasında bir sorun çıktı."
 
-REBOOT_PAUSE=/f%1/c32 Kurulum ortamini �ikartip sistemi tekrar baslatmak i�in bir tusa basin veya /p/e/c32 �ikmak i�in suna basin: /f%2 CTRL+C /f%1 /s- ...
-REBOOT_FRAME=/w70 /h9 /c
-REBOOT_WARN.1=MBR �ny�kleme kodunun g�ncellemesini zorlamadiginizi not /p etmenizi rica ederiz. Eger
-REBOOT_WARN.2=/c32 sisteminiz �ny�klemeyi basaramiyorsa /p /s- /f%1 "%2" /f%3 , /s+ l�tfen kurulum ortamini
-REBOOT_WARN.3=/c32 kullanarak onu tekrar /p baslatin ve su komutu �alistirin: "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+. Bu,
-REBOOT_WARN.4=/c32 MBR alanina /p yeni �ny�kleme kodu yazdiracaktir.
+REBOOT_PAUSE=/f%1/c32 Kurulum ortamını çıkartıp sistemi tekrar başlatmak için bir düğmeye basın veya /p/e/c32 çıkmak için şuna basın: /f%2 CTRL+C /f%1...
+REBOOT_FRAME=/w70 /h8 /c
+REBOOT_WARN.1=MBR önyükleme kodunun güncellemesini zorlamadığınızı not /p etmenizi rica ederiz. Eğer
+REBOOT_WARN.2=/c32 sisteminiz önyüklemeyi başaramıyorsa /s- /c32 /f%1 "%2" /f%3 , /s+ lütfen kurulum ortamını/p
+REBOOT_WARN.3=kullanarak onu tekrar başlatın ve şu komutu çalıştırın: "'" /s- /f%1 MBRZAP.BAT /f%3 "'" /s+. Bu,
+REBOOT_WARN.4=/c32 MBR alanına yeni /p önyükleme kodu yazdıracaktır.
 REBOOT_WARN.5=
 
 # AUTOEXEC.BAT messages
-AUTO_DONE=su baslangi� dosyalarinin islenmesi sona erdi: /fCyan %1 /a7 ve /fCyan %2 /a7
-AUTO_HELP=Komutlar ve gezinti hakkinda yardim i�in /fWhite %1 /fGray yaziniz.
-AUTO_WELCOME=/fGreen %1 /fCyan %2 /fGray isletim sistemine hos geldiniz ( /s- /fYellow "%3" /fGray )
+AUTO_DONE=Şu başlangıç dosyalarının işlenmesi sona erdi: /fCyan %1 /a7 ve /fCyan %2 /a7
+AUTO_HELP=Komutlar ve gezinti hakkında yardım için /fWhite %1 /fGray yazınız.
+AUTO_WELCOME=/fGreen %1 /fCyan %2 /fGray işletim sistemine hoş geldiniz ( /s- /fYellow "%3" /fGray )
 
 # FDASK000 - Select Keyboard Layout
 
 # FDASK100 - Reserved
-KBS_FRAME=/w55 /h17 /c
-KBS_OPTS=/w38 /h12 /c
-KBS?=L�tfen klavye d�zeninizi se�in.
-KBO.1=" ABD ingilizce (Varsayilan)" /p " ingiltere ingilizce" /p " ispanyolca" /p " Fransizca" /p " Almanca" /p
-KBO.2=" Hollanda " /p " T�rk�e"
-KBM=/p/p " Daha fazla klavye se�enegi..."
-KBL=" Daha az klavye se�enegi..."
+KBS_FRAME=/w55 /h16 /c
+KBS_OPTS=/w38 /h11 /c
+KBS?=Lütfen klavye düzeninizi seçin.
+KBO.1=" ABD İngilizce (Varsayılan)" /p " İngiltere İngilizce" /p " İspanyolca" /p " Fransızca" /p " Almanca" /p
+KBO.2=" Almanca (Alternatif Düzen) " /p " Hollanda "
+KBM=/p/p " Daha fazla klavye seçeneği..."
+KBL=" Daha az klavye seçeneği..."
 KBA_FRAME=/w58 /h13 /c
 
 # FDASK200 - Backup old OS
-BACKUP_FRAME=/w68 /h10 /c
+BACKUP_FRAME=/w65 /h10 /c
 BACKUP_OPTS=/w42 /h4 /c
-BACKUPADV_FRAME=/w68 /h11 /c
-BACKUPADV_OPTS=/w46 /h5 /c
-BACKUP=su s�r�c�de �nceki bir isletim sistemi tespit edilmistir: /f %1 %2 /f %3 /s- .
-BACKUP?=Kurulumdan �nce eski dosyalari yedeklemek istiyor musunuz?
-BACKUPY="  Evet  - L�tfen �nce yedekle"
-BACKUPZ="  Evet  - L�tfen zip arsivi olarak yedekle"
-BACKUPN="  Hayir - Yedeklemeden kuruluma ge�"
+BACKUPADV_FRAME=/w65 /h11 /c
+BACKUPADV_OPTS=/w42 /h5 /c
+BACKUP=Şu sürücüde önceki bir işletim sistemi tespit edilmiştir: /f %1 %2 /f %3 /s- .
+BACKUP?=Kurulumdan önce eski dosyaları yedeklemek istiyor musunuz?
+BACKUPY="  Evet  - Lütfen önce yedekle"
+BACKUPZ="  Evet  - Lütfen zip arşivi olarak yedekle"
+BACKUPN="  Hayır - Yedeklemeden kuruluma geç"
 
-# FDASK100 - Advanced mode
+# FSASK100 - Advanced mode
 TARGET_FRAME=/w50 /h7 /c
-TARGET?=Kurulumun hedef dizini degistirilsin mi?
+TARGET?=Kurulumun hedef dizini değiştirilsin mi?
 TARGET_ASK=/f %1 /b %2 /d %3 %4
 
 # FDASK300 - Advanced mode Replace system files
-REPLACE_FRAME=/w70 /h8 /c
-REPLACE_OPTS=/w46 /h4 /c
-REPLACE?=Sistemin yapilandirma dosyalarinin yerine yenileri konulsun mu?
-REPLACEY="  Evet  - Yeni varsayilan dosyalari aktar"
-REPLACEN="  Hayir - Eski dosyalari sakla"
+REPLACE_FRAME=/w55 /h8 /c
+REPLACE_OPTS=/w40 /h4 /c
+REPLACE?=Sistemin yapılandırma dosyalarının yerine yenileri konulsun mu?
+REPLACEY="  Evet  - Yeni varsayılan dosyaları aktar"
+REPLACEN="  Hayır - Eski dosyaları sakla"
 
 # FDASK400 - Advanced mode delete old OS files
-DELETE_FRAME=/w68 /h8 /c
+DELETE_FRAME=/w55 /h8 /c
 DELETE_OPTS=/w42 /h4 /c
-DELETE?=suradan t�m eski dosyalar kaldirilsin mi: /f %1 %2 /f %3 /s- ?
-DELETEY="  Evet  - Taze bir baslangi�"
-DELETEN="  Hayir - Darmadagin birak"
+DELETE?=Şuradaki tüm eski dosyalar kaldırılsın mı: /f %1 %2 /f %3 /s- ?
+DELETEY="  Evet  - Taze bir başlangıç"
+DELETEN="  Hayır - Darmadağın bırak"
 
 # FDASK500 - Advanced mode transfer system files
-XFER_FRAME=/w60 /h8 /c
+XFER_FRAME=/w55 /h8 /c
 XFER_OPTS=/w42 /h4 /c
-XFER?=Yeni sistem dosyalari su s�r�c�ye aktarilsin mi: /f %1 %2 /f %3 /s- ?
-XFERY="  Evet  - Sistem dosyalarini aktar"
-XFERN="  Hayir - Sistem dosyalarini aktarma"
+XFER?=Yeni sistem dosyaları şu sürücüye aktarılsın mı: /f %1 %2 /f %3 /s- ?
+XFERY="  Evet  - Sistem dosyalarını aktar"
+XFERN="  Hayır - Sistem dosyalarını aktarma"
 
-OBSS_FRAME=/w70 /h8 /c
+OBSS_FRAME=/w52 /h8 /c
 OBSS_OPTS=/w34 /h4 /c
-OBSS?=su s�r�c�de yeni baslatma kesimi kodu zorlansin mi: /f %1 %2 /f %3 (%4:%5)?
-OBSSY="  Evet  - MBR �zerine yaz"
-OBSSN="  Hayir - Yeni MBR'i zorlama"
+OBSS?=Şu sürücüde yeni başlatma kesimi kodu zorlansın mı: /f %1 %2 /f %3 (%4:%5)?
+OBSSY="  Evet  - MBR üzerine yaz"
+OBSSN="  Hayır - Yeni MBR'ı zorlama"
 
 # FDASK600 - Package group selection.
 PAC_FRAME=/w60 /h11 /c
@@ -215,55 +214,59 @@ PAC_FRAME_BD=/w60 /h11 /c
 PAC_OPTS_BD=/w42 /h7 /c
 PACS?=Hangi /f %1 %2 /f %3 paketlerini kurmak istiyorsunuz?
 PACBO="  Sadece temel paketleri"
-PACBS="  Sadece kaynaklariyla temel paketleri"
+PACBS="  Sadece kaynaklarıyla temel paketleri"
 PACAO="  Tam kurulum"
-PACAS="  Kaynaklariyla tam kurulum"
-PACDO_ADV="  Se�ilen ikili paketler"
-PACDS_ADV="  Se�ilen paketler, kaynaklariyla"
+PACAS="  Kaynaklarıyla tam kurulum"
+PACDO_ADV="  Seçilen ikili paketler"
+PACDS_ADV="  Seçilen paketler, kaynaklarıyla"
+
+# FDASK700 - Reserved
+
+# FDASK800 - Reserved
 
 # Debug mode pause
-PRESSKEY="Herhangi bir tusa basiniz..."
+PRESSKEY="Herhangi bir tuşa basınız..."
 
 # Backing up old OS
 IBACKUP_FRAME=/w60 /h7 /c
-IBACKUP=Yedekleme olusturuluyor
+IBACKUP=Yedekleme oluşturuluyor
 ITARGET=/s- "'" /f %1 "%2" /f %3 "'"
-IBACKUP_DONE=/f %1 Yedekleme islemi tamamlandi.
+IBACKUP_DONE=/f %1 Yedekleme işlemi tamamlandı.
 
 # Old Package removal
 IRMPACK_FRAME=/w60 /h7 /c
-IRMPACKS=Eski �akisan paketler kaldiriliyor.
-IRMPACKN=/s- "Eski '" /f %1 %2 /f %3 "' paketi kaldiriliyor."
+IRMPACKS=Eski çakışan paketler kaldırılıyor.
+IRMPACKN=/s- "Eski '" /f %1 %2 /f %3 "' paketi kaldırılıyor."
 
 # Remove old OS files
 IRMOS_FRAME=/w60 /h5 /c
-IRMOS=/s- "suradan eski dosyalar kaldiriliyor: '" /f %1 %2 /f %3 "'."
-IRMOS_DONE="Eski isletim sistemi dosyalari kaldirildi."
+IRMOS=/s- "Şuradan eski dosyalar kaldırılıyor: '" /f %1 %2 /f %3 "'."
+IRMOS_DONE="Eski işletim sistemi dosyaları kaldırıldı."
 
 # Remove old config files
 ICLEAN_FRAME=/w50 /h5 /c
-ICLEAN="Eski yapilandirma dosyalari temizleniyor."
-ICLEAN_DONE="Eski yapilandirma dosyalari kaldirildi."
+ICLEAN="Eski yapılandırma dosyaları temizleniyor."
+ICLEAN_DONE="Eski yapılandırma dosyaları kaldırıldı."
 
 # Transfer system files
-IXSYS_FRAME=/w62 /h5 /c
-IXSYS= /s- "Sistem �ny�kleme dosyalari su s�r�c�ye aktariliyor: " /f %1 %2 /f %3 .
-IXSYS_DONE="Sistem dosya aktarimi tamamlandi."
+IXSYS_FRAME=/w52 /h5 /c
+IXSYS= /s- "Sistem önyükleme dosyaları şu sürücüye aktarılıyor: " /f %1 %2 /f %3 .
+IXSYS_DONE="Sistem dosya aktarımı tamamlandı."
 
 # Package installation.
 IPAC_FRAME=/w60 /h7 /c
-IPACBM="Yazilim paketleri kuruluyor."
-IPACBI=/s- "su yazilim paketi kuruluyor: '" /f %1 %2 /f %3 "'"
+IPACBM="Yazılım paketleri kuruluyor."
+IPACBI=/s- "Şu yazılım paketi kuruluyor: '" /f %1 %2 /f %3 "'"
 IPACSM="Kaynak kodlar kuruluyor."
-IPACSI= /s- "su paket i�in kaynaklar kuruluyor: '" /f %1 %2 /f %3 "'"
+IPACSI= /s- "Şu paket için kaynaklar kuruluyor: '" /f %1 %2 /f %3 "'"
 IPACDONE_FRAME=/w54 /h5 /c
-IPACDONE="Yazilim paketlerinin kurulmasi tamamlandi."
+IPACDONE="Yazılım paketlerinin kurulması tamamlandı."
 
 # Config file installation
 ICONFIGS_FRAME=/w46 /h5 /c
-ICONFIGS="Yeni yapilandirma dosyalari kuruluyor."
-ICONFIGS_DONE="Yeni yapilandirma dosyalari kuruldu."
+ICONFIGS="Yeni yapılandırma dosyaları kuruluyor."
+ICONFIGS_DONE="Yeni yapılandırma dosyaları kuruldu."
 
 # Virtual machine not supported with this install media.
-NORUN.1=Maalesef bu kurulum metodu bu donanim platformunda desteklenmemektedir.
-NORUN.2=/p L�tfen baska bir kurulum metodu deneyin.
+NORUN.1=Ne yazık ki bu kurulum yöntemi bu donanım platformunda desteklenmemektedir.
+NORUN.2=/p Lütfen başka bir kurulum yöntemi deneyin.
