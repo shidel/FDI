@@ -1,8 +1,8 @@
 Begin3
-Title:          Welcome to FreeDOS
+Title:          Welcome to $PLATFORM$
 Version:        $VERSION$
 Entered-date:   $DATE$
-Description:    The "Welcome to FreeDOS $VERSION$" message that is displayed at system start up.
+Description:    The "Welcome to $PLATFORM$ $VERSION$" message that is displayed at system start up.
 Keywords:       welcome boot message autoexec config
 Author:         Jerome Shidel <jerome _AT_ shidel.net>
 Maintained-by:  Jerome Shidel <jerome _AT_ shidel.net>
