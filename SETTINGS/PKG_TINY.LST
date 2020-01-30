@@ -12,6 +12,8 @@ util\udvd2
 base\xcopy
 util\v8power
 
+util\gcdrom
+
 ; not required but really should be there
 base\format
 base\fdisk

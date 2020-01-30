@@ -154,7 +154,6 @@ util\dialog
 util\dn2
 util\dog
 util\edict
-util\fdisrc
 util\fdshell
 
 ; FDTUI Conflicts with FDSHELL
@@ -213,3 +212,7 @@ util\wptail
 
 util\gcdrom
 util\uide
+
+; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
+; util\fdisrc
+

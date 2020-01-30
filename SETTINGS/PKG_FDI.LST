@@ -29,6 +29,7 @@ archiver\zip
 ; Only required for CD install media
 
 util\udvd2
+util\gcdrom
 
 ; Only wanted / needed for QEMU RAM Disk
 util\srdisk
