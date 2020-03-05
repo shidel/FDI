@@ -216,3 +216,7 @@ devel\tinyasm
 util\gcdrom
 util\uide
 
+; The new FreeCOM beta
+base\freecom
+
+
