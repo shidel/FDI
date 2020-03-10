@@ -30,10 +30,10 @@ for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" ==
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:SETUP.BAT" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP" %%d:
 for %%d in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do if "%0" == "%%d:\SETUP.BAT" %%d:
-for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:setup" %%d:
-for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:setup.bat" %%d:
-for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup" %%d:
-for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y y ) do if "%0" == "%%d:\setup.bat" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y z ) do if "%0" == "%%d:setup" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y z ) do if "%0" == "%%d:setup.bat" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y z ) do if "%0" == "%%d:\setup" %%d:
+for %%d in ( a b c d e f g h i j k l m n o p q r s t u v w x y z ) do if "%0" == "%%d:\setup.bat" %%d:
 cd \
 
 :SkipDriveChange
