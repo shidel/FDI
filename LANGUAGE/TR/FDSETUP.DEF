@@ -1,7 +1,7 @@
 *******************************************************************************
 FreeDOS 1.2 Installer Turkish Translation.
 Provided by: anonymous
-Contact Email: 
+Contact Email:
 Created/Modified: 11 November 2016
 Released Under GPL v2.0 License.
 *******************************************************************************
@@ -22,6 +22,7 @@ LANG_DE=Almanca
 LANG_EO=Esperanto
 LANG_NL=Felemenkçe
 LANG_TR=Türkçe
+LANG_RU=Rus�a
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c
