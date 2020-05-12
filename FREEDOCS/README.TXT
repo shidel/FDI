@@ -69,3 +69,27 @@ FD13-LiveCD.zip
     from RAM or CD (depending on computer system and hardware) without
     installation to an internal hard disk drive.
 
+FD13-x86.ZIP
+
+    New with FreeDOS 1.3-RC3 is the Floppy Diskette Edition of FreeDOS. Compared
+    to the other media, this edition uses a completely different installer and
+    process. It is designed to be compatible with any hardware that can run
+    FreeDOS. Comprised of only the FreeDOS core programs, it installs those
+    packages based on hardware support. Only have a 286, then no need to install
+    the CD-Drivers that require a 386. Just got one hard drive and no CD or
+    Floppy? No problem. Just copy the contents of the floppies to some directory
+    and run it from there. Want to perform a headless install to a different
+    DOS directory, piece of cake with the command line options. The best way
+    to sum-up FD13-x86 is to say -- It is the power user installer.
+
+    * x86-BOOT.img - A 720 Kib 3.5" floppy boot disk with the FDI-x86 installer.
+
+    * x86-D??.img - Some 1.44 Mib 3.5" floppy diskette images that contain
+    the archived OS files.
+
+    Please note that to conserve space, the Floppy Diskette Edition does not
+    contain the sources for the included packages. You can obtain those sources
+    through the FreeDOS website (http://www.freedos.org) or from the other
+    release media, like USB or CD-ROM. The Floppy Diskette Edition does not
+    require any of those other media to perform an installation and will not
+    use them during installation.
