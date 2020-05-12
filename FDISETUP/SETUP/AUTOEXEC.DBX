@@ -1,58 +1,60 @@
 @ECHO OFF
 
-rem FreeDOS DOSBox specific AUTOEXEC.BAT file. You may wish to have your
-rem Z:\AUTOEXEC.BAT file check for and automatically launch this batch file
+rem FreeDOS specific $AUTOEXEC$ file for DOSBox. You may wish to have your
+rem Z:\$AUTOEXEC$ file check for and automatically launch this batch file
 rem at DOSBox startup.
 
-if "%1" == "FREEDOS" goto ShellLoaded
-$FDRIVE$
+if "%1" == "$OS_NAME$" goto ShellLoaded
+C:
 CD\
-if exist $FTARGET$\bin\command.com $FTARGET$\bin\command.com /e:2048 /k %0 FREEDOS
+if not exist $FTARGET$\bin\command.com goto END
+$FTARGET$\bin\command.com /e:2048 /k %0 $OS_NAME$
 goto END
 
 :ShellLoaded
-SET OLDPATH=%PATH%
-SET DOSDIR=$FTARGET$
-IF "%LANG%" == "" SET LANG=$FLANG$
-IF "%TZ%" == "" SET TZ=$TZ$
-SET PATH=%dosdir%\BIN
-IF EXIST %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
-SET PATH=%PATH%;Z:\
-IF NOT "%OLDPATH%" == "" PATH=%PATH%;%OLDPATH%
-SET OLDPATH=
+set DOSDIR=$FTARGET$
+set OLDPATH=%PATH%
+if "%LANG%" == "" set LANG=EN
+if "%TZ%" == "" set TZ=EDT
+set PATH=%dosdir%\BIN
+if EXIST %dosdir%\LINKS\NUL set PATH=%path%;%dosdir%\LINKS
+set PATH=%PATH%;Z:\
+if NOT "%OLDPATH%" == "" PATH=%PATH%;%OLDPATH%
+set OLDPATH=
 
-SET NLSPATH=%dosdir%\NLS
-SET HELPPATH=%dosdir%\HELP
-SET TEMP=%dosdir%\TEMP
-SET TMP=%TEMP%
+set NLSPATH=%dosdir%\NLS
+set HELPPATH=%dosdir%\HELP
+set TEMP=%dosdir%\TEMP
+set TMP=%TEMP%
+set BLASTER=A220 I5 D1 H5 P330
+set DIRCMD=/P /OGN /Y
+set COPYCMD=/-Y
+set OS_NAME=$OS_NAME$
+set OS_VERSION=$OS_VERSION$
+set autofile=C:\$AUTOEXEC$
+set cfgfile=C:\$CONFIG$
+alias cfg=edit %cfgfile%
+alias auto=edit %autofile%
+alias reboot=fdapm warmboot
+alias reset=fdisk /reboot
+alias halt=fdapm poweroff
+alias shutdown=fdapm poweroff
 
-SET BLASTER=A220 I5 D1 H5 P330
-SET DIRCMD=/P /OGN /Y
-SET COPYCMD=/-Y
-
-REM LH FDAPM APMDOS
-REM LH SHARE
-REM IF EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
 $LANG_SET$
-REM MOUSE
-REM CTMOUSE
 
-REM LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
-REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
+rem CTMOUSE
 
 MEM /C /N
+
 echo.
 
-SET AUTOFILE=%0
-SET CFGFILE=$FDRIVE$\FDCONFIG.SYS
-alias cfg=edit %cfgfile%
-alias auto=edit %0
+:DONE
 
-set OS_NAME=$OSNAME$
-set OS_VERSION=$OSVER$
-
+rem if "%config%"=="4" goto SKIP
 if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
+
+:SKIP
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
 
 :END

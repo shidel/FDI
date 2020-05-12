@@ -76,7 +76,7 @@ del %TEMP%\AUTOEXEC.BAT>NUL
 :SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 
-set FEXT=DEF
+set FEXT=086
 vinfo /m
 if errorlevel 1 set FEXT=186
 if errorlevel 2 set FEXT=286

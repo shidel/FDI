@@ -1,48 +1,68 @@
 @ECHO OFF
-SET DOSDIR=$FTARGET$
-SET LANG=$FLANG$
-SET TZ=$TZ$
-SET PATH=%dosdir%\BIN
-if exist %dosdir%\LINKS\NUL SET PATH=%path%;%dosdir%\LINKS
-SET NLSPATH=%dosdir%\NLS
-SET HELPPATH=%dosdir%\HELP
-SET TEMP=%dosdir%\TEMP
-SET TMP=%TEMP%
-SET BLASTER=A220 I5 D1 H5 P330
-SET DIRCMD=/P /OGN /Y
-SET COPYCMD=/-Y
+set DOSDIR=$FTARGET$
+set LANG=$FLANG$
+set TZ=$TZ$
+set PATH=%dosdir%\BIN
+if exist %dosdir%\LINKS\NUL set PATH=%path%;%dosdir%\LINKS
+set NLSPATH=%dosdir%\NLS
+set HELPPATH=%dosdir%\HELP
+set TEMP=%dosdir%\TEMP
+set TMP=%TEMP%
+set BLASTER=A220 I5 D1 H5 P330
+set DIRCMD=/P /OGN /Y
+set COPYCMD=/-Y
+set OS_NAME=$OS_NAME$
+set OS_VERSION=$OS_VERSION$
+set autofile=C:\$AUTOEXEC$
+set cfgfile=C:\$CONFIG$
+alias cfg=edit %cfgfile%
+alias auto=edit %autofile%
+alias reboot=fdapm warmboot
+alias reset=fdisk /reboot
+alias halt=fdapm poweroff
+alias shutdown=fdapm poweroff
 
-IF "%config%"=="4" GOTO END
-DEVLOAD /H /Q %dosdir%\BIN\UDVD2.SYS /D:FDCD0001
+if not exist %dosdir%\vinfo.com goto Only8086
+vinfo /m
+if errorlevel 3 goto Support386
+if errorlevel 2 goto Support286
+
+:Only8086
+if "%config%"=="2" goto END
+MEM /C /N
+goto FINAL
+
+:Support286
+if "%config%"=="3" goto END
+LH FDAPM APMDOS
+CTMOUSE
+MEM /C /N
+goto FINAL
+
+:Support386
+if "%config%"=="4" goto END
 
 LH FDAPM APMDOS
 rem LH SHARE
-rem IF EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
+rem if EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
+
 $LANG_SET$
-REM MOUSE
+
 CTMOUSE
 
 SHSUCDX /QQ /D3
 REM LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
+DEVLOAD /H /Q %dosdir%\BIN\UDVD2.SYS /D:FDCD0001
 REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
 
 MEM /C /N
 SHSUCDX /D
 
-:END
-SET AUTOFILE=%0
-SET CFGFILE=$FDRIVE$\FDCONFIG.SYS
-alias reboot=fdapm warmboot
-alias reset=fdisk /reboot
-alias halt=fdapm poweroff
-alias shutdown=fdapm poweroff
-alias cfg=edit %cfgfile%
-alias auto=edit %0
-
-set OS_NAME=$OSNAME$
-set OS_VERSION=$OSVER$
-
+:FINAL
 if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
+
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
+
+:END
