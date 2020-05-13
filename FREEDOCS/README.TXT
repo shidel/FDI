@@ -84,7 +84,7 @@ FD13-x86.ZIP
 
     * x86-BOOT.img - A 720 Kib 3.5" floppy boot disk with the FDI-x86 installer.
 
-    * x86-D??.img - Some 1.44 Mib 3.5" floppy diskette images that contain
+    * x86-DSK?.img - Some 1.44 Mib 3.5" floppy diskette images that contain
     the archived OS files.
 
     Please note that to conserve space, the Floppy Diskette Edition does not
