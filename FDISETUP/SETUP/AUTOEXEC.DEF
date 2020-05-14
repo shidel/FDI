@@ -22,7 +22,7 @@ alias reset=fdisk /reboot
 alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
 
-if not exist %dosdir%\vinfo.com goto Only8086
+if not exist %dosdir%\bin\vinfo.com goto Only8086
 vinfo /m
 if errorlevel 3 goto Support386
 if errorlevel 2 goto Support286
