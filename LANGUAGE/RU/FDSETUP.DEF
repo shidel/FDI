@@ -74,7 +74,7 @@ FORMATTING=/s- /fGray "Форматирование диска " /fWhite %1 /fGray ...
 PAUSE=/fLightGreen " Нажмите любую клавишу... " /e
 
 # STAGE600 - Install preparation
-GATHERING_FRAME=/w68 /h5 /c
+GATHERING_FRAME=/w54 /h5 /c
 GATHERING="Сбор информации, необходимой для установки..."
 
 # STAGE800 - Installing
