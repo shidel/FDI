@@ -22,7 +22,7 @@ LANG_DE=Almanca
 LANG_EO=Esperanto
 LANG_NL=Felemenkçe
 LANG_TR=Türkçe
-LANG_RU=Rus�a
+LANG_RU=Rusça
 
 HELLO_FRAME=/w70 /h15 /c
 HELLO_OPTS=/w43 /h4 /c
