@@ -32,6 +32,7 @@ vecho /n /t %FLANG% LANG_ASK
 vecho /n /e
 vgotoxy /l eop /g down down /l sop
 vecho /n /t %FLANG% LANG_LIST
+vgotoxy /l sop sol
 vchoice /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
@@ -73,7 +74,7 @@ goto ApplyLang
 call %LANG%\SETFONT.BAT LOAD >NUL
 :ApplyLang
 call FDILANG.BAT FDSETUP
-vgotoxy /x30 /y1
+vgotoxy /g /x30 /y1
 vecho /n /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
 vecho /e
 vgotoxy /g /x40 /y12
