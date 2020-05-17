@@ -74,13 +74,14 @@ $OS_PREFIX$-x86.ZIP
     New with $OS_NAME$ 1.3-RC3 is the Floppy Diskette Edition of $OS_NAME$. Compared
     to the other media, this edition uses a completely different installer and
     process. It is designed to be compatible with any hardware that can run
-    $OS_NAME$. Comprised of only a limited $OS_NAME$ set of core programs, it
-    installs those packages based on hardware support. Only have a 286, then no
-    need to install the CD-Drivers that require a 386. Just got one hard drive
-    and no CD or Floppy? No problem. Just copy the contents of the floppies to
-    some directory and run it from there. Want to perform a headless install to
-    a different DOS directory, piece of cake with the command line options. The
-    best way to sum-up $OS_PREFIX$-x86 is to say -- It is the power user installer.
+    $OS_NAME$ that has EGA or better graphics. Comprised of only a limited
+    $OS_NAME$ set of core programs, it installs those packages based on hardware
+    support. Only have a 286, then no need to install the CD-Drivers that
+    require a 386. Just got one hard drive and no CD or Floppy? No problem.
+    Just copy the contents of the floppies to some directory and run it from
+    there. Want to perform a headless install to a different DOS directory,
+    piece of cake with the command line options. The best way to sum-up
+    $OS_PREFIX$-x86 is to say -- It is the power user installer.
 
     * x86-BOOT.img - A 720 Kib 3.5" floppy boot disk with the x86 installer.
 
