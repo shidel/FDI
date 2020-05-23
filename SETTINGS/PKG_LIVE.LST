@@ -11,6 +11,14 @@ $PKG_FDI$
 $PKG_ASSIST$
 
 ; These are additional packages that are intalled onto the LIVE CD media.
+util\slowdown
+util\doslfn
+
+util\rawrite
+
+net\fdnet
+net\wget
+
 unixlike\grep
 unixlike\head
 unixlike\du
@@ -23,25 +31,18 @@ unixlike\trch
 
 unixlike\md5sum
 
-util\slowdown
-util\doslfn
+net\mtcp
+
+util\raread
+util\edict
+
+util\wcd
+util\aefdisk
 
 util\part
 util\xfdisk
 util\xdel
 util\xkeyb
 
-util\raread
-util\rawrite
-util\edict
-
-net\fdnet
-net\wget
-net\mtcp
-
-util\wcd
-util\aefdisk
-
 util\fdtui
 net\links
-

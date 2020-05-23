@@ -10,7 +10,7 @@ call FDICLS.BAT
 goto Welcome
 
 :NoTitleClear
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /k0 /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 :Welcome
 if "%_WCI%" == "" set _WCI=1
@@ -22,21 +22,21 @@ REM mkFDI.bat when the build creates the boot image. The languages order and
 REM count are determined by the order, number and name of the LANG_ variables
 REM stored the LANGUAGE\TEMPLATE\FDSETUP.DEF translation template file.
 
-vframe /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
-vgotoxy /l /y2
-vline hidden
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
+vgotoxy /k0 /l /y2
+vline /p0 /k0
 :LanguagePrompt
 set _XLNG=%LANG%
-vgotoxy /l sop /g up up /l sop
-vecho /n /t %FLANG% LANG_ASK
-vecho /n /e
-vgotoxy /l eop /g down down /l sop
-vecho /n /t %FLANG% LANG_LIST
-vgotoxy /l sop sol
-vchoice /a %TFC% Ctrl-C /p %_WCI%
+vgotoxy /k0 sop /g up up /l sop
+vecho /k0 /n /t %FLANG% LANG_ASK
+vecho /k0 /n /e
+vgotoxy /k0 eop /g down down /l sop
+vecho /k0 /n /t %FLANG% LANG_LIST
+vgotoxy /k0 sop sol
+vchoice /k0 /a %TFC% Ctrl-C /p %_WCI%
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 100 goto LanguageChange
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /k0 /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 goto LanguageSet
 
 REM Everything between the LanguageChange and DoChange Labels is replaced
@@ -75,8 +75,8 @@ call %LANG%\SETFONT.BAT LOAD >NUL
 :ApplyLang
 call FDILANG.BAT FDSETUP
 vgotoxy /g /x30 /y1
-vecho /n /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
-vecho /e
+vecho /k0 /n /t %FLANG% TITLE %TTF% "%OS_NAME%" %TTH% "%OS_VERSION%"
+vecho /k0 /e
 vgotoxy /g /x40 /y12
 goto LanguagePrompt
 
@@ -95,23 +95,23 @@ if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
 :LanguageDone
 
 REM Draw the welcome screen.
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
-vecho /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /k0 /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 goto Spacer
 :AdvancedMesssage
-vecho /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /k0 /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
 :Spacer
-vecho /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF%
-vecho /t %FLANG% PROCEED?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
-vecho /t %FLANG% CONTINUE
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C
+vecho /k0 /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /t %FLANG% PROCEED?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
+vecho /k0 /t %FLANG% CONTINUE
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 2 goto Done

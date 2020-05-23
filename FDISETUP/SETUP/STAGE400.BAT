@@ -13,6 +13,9 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
+vfdutil /u %FDRIVE%\TEMP????.??? >NUL
+if not errorlevel 1 goto Done
+
 if not "%TEMP%" == "" goto FDiskTest
 
 vinfo /d %FDRIVE%

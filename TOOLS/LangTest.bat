@@ -67,24 +67,24 @@ REM ***** STAGES
 
 :PICKLANG
 call %SELF% CLS PICKLANG FDSETUP
-vframe /b %TFB% /f %TFF% %TFS% textbox /w45 /h15 /c
-vgotoxy /l /y3
-vline hidden
-vgotoxy /l sop /g up up
-vecho /n /e
-vgotoxy /l sop
-vecho /n /t %FLANG% LANG_ASK
-vecho /n /e
-vgotoxy /l eop /g down down /l sop
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_EN
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_ES
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_FR
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_DE
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_EO
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_NL
-vecho /e /r4 /c 0x20 /t %FLANG% LANG_TR
-vecho /e /r4 /c 0x20 /n /t %FLANG% LANG_RU
-vchoice /a %TFC% Ctrl-C
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 /h15 /c
+vgotoxy /k0 /y3
+vline /p0 /k0
+vgotoxy /k0 /l sop /g up up
+vecho /k0 /n /e
+vgotoxy /k0 sop
+vecho /k0 /n /t %FLANG% LANG_ASK
+vecho /k0 /n /e
+vgotoxy /k0 /l eop /g down down /l sop
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_EN
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_ES
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_FR
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_DE
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_EO
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_NL
+vecho /k0 /e /r4 /c 0x20 /t %FLANG% LANG_TR
+vecho /k0 /e /r4 /c 0x20 /n /t %FLANG% LANG_RU
+vchoice /k0 /a %TFC% Ctrl-C
 if Errorlevel 200 goto Abort
 if "%FADV%" == "" goto %PART%
 

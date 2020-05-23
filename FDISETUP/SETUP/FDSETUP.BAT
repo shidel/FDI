@@ -145,12 +145,12 @@ set OSYS=y
 vcursor hide
 call FDILANG.BAT FDSETUP
 call FDICLS.BAT
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not exist FDASK100.BAT goto Error
 verrlvl 0
 call FDASK100.BAT
 if errorlevel 1 goto Aborted
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not "%HTARGET%" == "%FTARGET%" goto DiskTesting
 SET HTARGET=
 if not exist FDASK600.BAT goto Error
@@ -159,12 +159,12 @@ call FDASK600.BAT
 if errorlevel 1 goto Aborted
 if not "%OBSS%" == "y" vcls /g /a7
 if not "%OBSS%" == "y" goto CleanUp
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 if not exist FDINS700.BAT goto Error
 verrlvl 0
 call FDINS700.BAT
 if errorlevel 1 goto Aborted
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 goto PostInstall
 
 :NoInstallNeeded
@@ -192,8 +192,8 @@ REM Installer failed from missing stage file **********************************
 :Error
 call FDICLEAN.BAT
 :NoCleanupStage
-vcls /a 0x07
-vecho /t %FLANG% STAGE_ERROR %FSTAGE%
+vcls /g /a 0x07
+vecho /k0 /t %FLANG% STAGE_ERROR %FSTAGE%
 set FDRIVE=
 goto Finished
 
@@ -201,14 +201,14 @@ REM Installer failed to install or was aborted ********************************
 :Aborted
 call FDICLEAN.BAT
 :AbortedNoCleanup
-vcls /a 0x07
+vcls /g /a 0x07
 if "%FREBOOT%" == "y" goto DoReboot
 if "%OS_NAME%" == "" goto NoOSName
-vecho /t %FLANG% ABORTED "%OS_NAME% %OS_VERSION%"
-vecho
+vecho /k0 /t %FLANG% ABORTED "%OS_NAME% %OS_VERSION%"
+vecho /k0
 :NoOSName
-if not "%FERROR%" == "" vecho /fWhite "Error: " /fGray /n
-if not "%FERROR%" == "" vecho %FERROR%
+if not "%FERROR%" == "" vecho /k0 /fWhite "Error: " /fGray /n
+if not "%FERROR%" == "" vecho /k0 %FERROR%
 if not "%FERROR%" == "" vecho
 if exist FDERROR.BAT call FDERROR.BAT
 set FDRIVE=
@@ -239,7 +239,7 @@ goto DontDoAnything
 
 :DoReboot
 call FDICLEAN.BAT TEMPONLY
-vcls /a 0x07
+vcls /g /a 0x07
 
 if "%CACHED%" == "NO" goto NoFlush
 if "%TEMP%" == "" goto JustFlush
@@ -250,9 +250,9 @@ lbacache SYNC
 lbacache STOP
 :NoFlush
 
-vline hidden
+vline /p0 /k0 hidden
 vgotoxy /g eop sor
-vecho /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
+vecho /k0 /bRed /e /n /t %FLANG% REBOOT_PAUSE White Yellow
 
 REM POSTAL for vpause is an undocumented option. Generally, it should only
 REM be used in extremely rare cases. When specified, instead of returning to
@@ -274,7 +274,7 @@ goto CleanUp
 
 :DoExit
 set FREBOOT=
-vcls /a 0x07
+vcls /g /a 0x07
 if exist FDTHANK.BAT call FDTHANK.BAT
 rem set FLANG=
 if exist FDSWPENV.BAT call FDSWPENV.BAT
