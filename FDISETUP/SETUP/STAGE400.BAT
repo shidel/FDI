@@ -52,14 +52,14 @@ goto NoSuchDrive
 
 :NoSuchDrive
 :WrongTypeDrive
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOPART_FRAME
-vecho /t %FLANG% NOPART %TFH% %FDRIVE% %TFF%
-vecho
-vecho /t %FLANG% PART?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOPART_OPTS
-vecho /t %FLANG% PART_YES %FDRIVE%
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C /d 2
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOPART_FRAME
+vecho /k0 /t %FLANG% NOPART %TFH% %FDRIVE% %TFF%
+vecho /k0
+vecho /k0 /t %FLANG% PART?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% NOPART_OPTS
+vecho /k0 /t %FLANG% PART_YES %FDRIVE%
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
@@ -83,8 +83,8 @@ goto AfterPartitioned
 
 :AutoPartition
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
-vecho /n /t %FLANG% PARTING
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
+vecho /k0 /n /t %FLANG% PARTING
 vdelay %FDEL%
 
 verrlvl 0
@@ -113,20 +113,20 @@ if errorlevel 1 goto ManualPartition
 :AfterPartitioned
 call FDICLS.BAT
 
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
-vecho /t %FLANG% PARTED
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
+vecho /k0 /t %FLANG% PARTED
 vecho
-vecho /t %FLANG% REBOOT?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% PARTED_OPTS
-vecho /t %FLANG% REBOOT_YES
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C
+vecho /k0 /t %FLANG% REBOOT?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% PARTED_OPTS
+vecho /k0 /t %FLANG% REBOOT_YES
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterPartitioned
 if errorlevel 2 goto AbortBatch
 
 vcls /a0x07
-vecho /t %FLANG% REBOOT
+vecho /k0 /t %FLANG% REBOOT
 vecho
 fdapm warmboot
 set FREBOOT=y

@@ -8,8 +8,8 @@ goto AfterOption
 
 :DoOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
-vecho /n /t %FLANG% IRMOS %TFH% %FTARGET% %TFF%
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
+vecho /k0 /n /t %FLANG% IRMOS %TFH% %FTARGET% %TFF%
 vdelay %FDEL%
 
 cd %FDRIVE%\
@@ -36,9 +36,9 @@ if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
 
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
-vgotoxy /l sop
-vecho /n /e /t %FLANG% IRMOS_DONE
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IRMOS_FRAME
+vgotoxy /k0 sop
+vecho /k0 /n /e /t %FLANG% IRMOS_DONE
 vdelay %FDEL%
 
 goto AfterOption

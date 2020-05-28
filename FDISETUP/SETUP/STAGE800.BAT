@@ -6,14 +6,14 @@ set OLDDOS=%DOSDIR%
 set OLDFDN=%FDNPKG.CFG%
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME
-vecho /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
-vecho
-vecho /t %FLANG% INSTALL?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% INSTALL_OPTS
-vecho /t %FLANG% INSTALL_YES "%OS_NAME% %OS_VERSION%"
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C /d 2
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% INSTALL_FRAME
+vecho /k0 /t %FLANG% INSTALL %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /k0
+vecho /k0 /t %FLANG% INSTALL?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% INSTALL_OPTS
+vecho /k0 /t %FLANG% INSTALL_YES "%OS_NAME% %OS_VERSION%"
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
@@ -23,8 +23,8 @@ REM From here on, we will keep the language setting.
 set FCLANG=
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
-vecho /n /t %FLANG% PREPARING
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PREPARING_FRAME
+vecho /k0 /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
 REM Configure FDINST package manager.
@@ -134,15 +134,15 @@ if errorlevel 102 goto vmWarning
 if errorlevel 101 goto NoWarning
 :vmWarning
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
-vecho /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
-vecho /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REBOOT_FRAME
+vecho /k0 /n /t %FLANG% REBOOT_WARN.1 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% REBOOT_WARN.2 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% REBOOT_WARN.3 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% REBOOT_WARN.4 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /n /t %FLANG% REBOOT_WARN.5 %TFH% "%OS_NAME%" %TFF%
 vdelay 5000
 vgotoxy /g eop sor
-vecho /n /t %FLANG% PAUSE
+vecho /k0 /n /t %FLANG% PAUSE
 vpause /fLightCyan /t %FWAIT% CTRL-C
 :NoWarning
 verrlvl 0

@@ -33,8 +33,8 @@ set DMNU=2
 verrlvl 0
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
-vecho /n /t %FLANG% ICONFIGS
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
+vecho /k0 /n /t %FLANG% ICONFIGS
 vdelay %FDEL%
 
 REM Simple AUTOEXEC.BAT creation
@@ -114,9 +114,9 @@ verrlvl 0
 
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
-vgotoxy /l sop
-vecho /n /e /t %FLANG% ICONFIGS_DONE
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICONFIGS_FRAME
+vgotoxy /k0 sop
+vecho /k0 /n /e /t %FLANG% ICONFIGS_DONE
 vdelay %FDEL%
 
 goto AfterOption

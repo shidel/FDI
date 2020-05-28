@@ -3,18 +3,18 @@
 REM Control-C Handler
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
-vecho /t %FLANG% CTRLC %TCH% %TCF%
-vecho
-vecho /t %FLANG% CTRLC?
-vframe /b %TCB% /f %TCF% optionbox /t %FLANG% CTRLC_OPTS
-vecho /t %FLANG% CTRLCY
-vecho /t %FLANG% CTRLCN
-vecho
-if "%FADV%" == "" vecho /n /t %FLANG% CTRLCA
-if "%FADV%" == "y" vecho /n /t %FLANG% CTRLCB
+vframe /p0 /b %TCB% /f %TCF% %TCS% textbox /t %FLANG% CTRLC_FRAME
+vecho /k0 /t %FLANG% CTRLC %TCH% %TCF%
+vecho /k0
+vecho /k0 /t %FLANG% CTRLC?
+vframe /p0 /b %TCB% /f %TCF% optionbox /t %FLANG% CTRLC_OPTS
+vecho /k0 /t %FLANG% CTRLCY
+vecho /k0 /t %FLANG% CTRLCN
+vecho /k0
+if "%FADV%" == "" vecho /k0 /n /t %FLANG% CTRLCA
+if "%FADV%" == "y" vecho /k0 /n /t %FLANG% CTRLCB
 
-vchoice /a %TCC% /d 2 Ctrl-C
+vchoice /k0 /a %TCC% /d 2 Ctrl-C
 
 if errorlevel 200 goto AbortBatch
 if errorlevel 3 goto SwitchMode

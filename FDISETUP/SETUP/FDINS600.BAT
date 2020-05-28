@@ -4,10 +4,10 @@ REM Install Packages.
 if "%FDEBUG%" == "y" call FDBUG.BAT shell Immediately before package installation
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
-vecho /n /t %FLANG% IPACBM
-vgotoxy /l eop sor
-vprogres /f %TFP% 0
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /k0 /n /t %FLANG% IPACBM
+vgotoxy /k0 eop sor
+vprogres /k0 /f %TFP% 0
 
 if not exist %FTARGET%\NUL mkdir %FTARGET%
 if errorlevel 1 goto AbortDir
@@ -29,9 +29,9 @@ if "%_PM%" == "" goto PkgSticky
 type %FPKGS% | grep -iv ^; | vstr /b/l %_PI% | set /p _PA=
 if "%_PA%" == "" goto PkgLoop
 
-vgotoxy /l sop
-vecho /n /t %FLANG% IPACBI %TFH% %_PA% %TFF%
-vecho /f %TFF% /e /n
+vgotoxy /k0 sop
+vecho /k0 /n /t %FLANG% IPACBI %TFH% %_PA% %TFF%
+vecho /k0 /f %TFF% /e /n
 
 vfdutil /c/p %FTARGET%\
 verrlvl 0
@@ -40,8 +40,8 @@ if errorlevel 1 goto PkgError
 vfdutil /c/p %FINSP%\
 
 :PkgSkip
-vgotoxy /l eop sor
-vprogres /f %TFP% %_PI% of %_PM%
+vgotoxy /k0 eop sor
+vprogres /k0 /f %TFP% %_PI% of %_PM%
 
 :PkgIncSticky
 set _PT=
@@ -98,8 +98,8 @@ set _PT=
 if not "%_PI%" == "%_PM%" goto LinksLoop
 
 :LinksDone
-vgotoxy /l eop sor
-vprogres /f %TFP% 100
+vgotoxy /k0 eop sor
+vprogres /k0 /f %TFP% 100
 vdelay %FDEL%
 
 REM Restore Preserved Package Data and FreeDOS files if Present
@@ -124,14 +124,14 @@ set FERROR="Unable to install '%_PA%' package."
 call %FINSP%\FDIFAIL.BAT cc ERROR_PACKAGE %_PA%
 if errorlevel 1 goto Done
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
-vecho /n /t %FLANG% IPACBM
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPAC_FRAME
+vecho /k0 /n /t %FLANG% IPACBM
 goto PkgSkip
 
 :Success
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPACDONE_FRAME
-vecho /n /t %FLANG% IPACDONE
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IPACDONE_FRAME
+vecho /k0 /n /t %FLANG% IPACDONE
 vdelay %FDEL%
 verrlvl 0
 

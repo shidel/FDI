@@ -20,8 +20,8 @@ if exist %FDRIVE%\CONFIG.SYS attrib -R -S -H %FDRIVE%\CONFIG.SYS >NUL
 if exist %FDRIVE%\FDCONFIG.SYS attrib -R -S -H %FDRIVE%\FDCONFIG.SYS >NUL
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
-vecho /n /t %FLANG% ICLEAN
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
+vecho /k0 /n /t %FLANG% ICLEAN
 vdelay %FDEL%
 
 if exist %FDRIVE%\AUTOEXEC.BAT attrib -R -S -H %FDRIVE%\AUTOEXEC.BAT >NUL
@@ -43,9 +43,9 @@ verrlvl 0
 
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
-vgotoxy /l sop
-vecho /n /e /t %FLANG% ICLEAN_DONE
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% ICLEAN_FRAME
+vgotoxy /k0 sop
+vecho /k0 /n /e /t %FLANG% ICLEAN_DONE
 vdelay %FDEL%
 
 goto AfterOption

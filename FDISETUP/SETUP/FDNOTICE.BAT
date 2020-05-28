@@ -10,11 +10,11 @@ REM When the current version of the OS is already installed, this file will
 REM be called prior to exiting the batch file instead of automatically
 REM starting the install process.
 
-vecho /fDarkGray /x 0x2a /fGray
-vecho /n /fDarkGray '***' /fGray
-vecho /n /t %FLANG% NOTICE.1 "%OS_NAME%" "%OS_VERSION%"
+vecho /k0 /fDarkGray /x 0x2a /fGray
+vecho /k0 /n /fDarkGray '***' /fGray
+vecho /k0 /n /t %FLANG% NOTICE.1 "%OS_NAME%" "%OS_VERSION%"
 vgotoxy eor left left
-vecho /fDarkGray /x 0x2a /fGray /p /n /fDarkGray '***' /fGray
-vecho /n /t %FLANG% NOTICE.2
+vecho /k0 /fDarkGray /x 0x2a /fGray /p /n /fDarkGray '***' /fGray
+vecho /k0 /n /t %FLANG% NOTICE.2
 vgotoxy eor left left
-vecho /fDarkGray /x 0x2a /fGray /p /fDarkGray /x 0x2a /fGray /p
+vecho /k0 /fDarkGray /x 0x2a /fGray /p /fDarkGray /x 0x2a /fGray /p

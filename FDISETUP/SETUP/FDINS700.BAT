@@ -7,8 +7,8 @@ goto AfterOption
 
 :DoOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
-vecho /n /t %FLANG% IXSYS %TFH% %FDRIVE% %TFF%
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
+vecho /k0 /n /t %FLANG% IXSYS %TFH% %FDRIVE% %TFF%
 vdelay %FDEL%
 
 if exist %FDRIVE%\COMMAND.COM attrib -R -S -H %FDRIVE%\COMMAND.COM >NUL
@@ -70,9 +70,9 @@ goto AfterSYS
 verrlvl 0
 if not "%FVERB%" == "y" goto AfterOption
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
-vgotoxy /l sop
-vecho /n /e /t %FLANG% IXSYS_DONE
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% IXSYS_FRAME
+vgotoxy /k0 sop
+vecho /k0 /n /e /t %FLANG% IXSYS_DONE
 vdelay %FDEL%
 
 goto AfterOption

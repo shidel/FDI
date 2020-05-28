@@ -153,10 +153,10 @@ if "%2" == "HELP" goto ShowHelp
 goto NoHelpDisplay
 
 :ShowHelp
-vecho /p /fLightGreen FreeDOS /fLightCyan 1.3 /s- /fWhite + /fGray " Installer (" /fWhite FDI /fGray ") version 1.00."
-vecho Released Under GPL v2.0 License.
-vecho Copyright 2020 Jerome Shidel. /p
-vecho For advanced mode installation, use: /s- /fDarkGray ' "' /fWhite "SETUP adv" /fDarkGray '"' /fGray /p
+vecho /k0 /p /fLightGreen FreeDOS /fLightCyan 1.3 /s- /fWhite + /fGray " Installer (" /fWhite FDI /fGray ") version 1.00."
+vecho /k0 Released Under GPL v2.0 License.
+vecho /k0 Copyright 2020 Jerome Shidel. /p
+vecho /k0 For advanced mode installation, use: /s- /fDarkGray ' "' /fWhite "SETUP adv" /fDarkGray '"' /fGray /p
 goto Done
 
 :NoHelpDisplay

@@ -8,8 +8,8 @@ goto Done
 
 :AskAdvanced
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
-vecho /t %FLANG% TARGET?
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
+vecho /k0 /t %FLANG% TARGET?
 vecho
 :RepeatAsk
 vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% %FWAIT% %FTARGET% | set /p TTARGET=
@@ -22,8 +22,8 @@ if errorlevel 5 goto Accept
 if errorlevel 3 goto RepeatAsk
 
 :Accept
-vgotoxy /l sol
-vecho /n /e %TTARGET%
+vgotoxy /k0 sol
+vecho /k0 /n /e %TTARGET%
 set FTARGET=%TTARGET%
 set TTARGET=
 vfdutil /d %FTARGET% | set /p FDRIVE=

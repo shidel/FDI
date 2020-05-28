@@ -31,24 +31,24 @@ goto PromptUser
 
 :PromptUser
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% %PF%
-vecho /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
-vecho
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% %PO%
-vecho /t %FLANG% PACBO
-vecho /n /t %FLANG% PACBS
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% %PF%
+vecho /k0 /t %FLANG% PACS? %TFH% %OS_NAME% %TFF%
+vecho /k0
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% %PO%
+vecho /k0 /t %FLANG% PACBO
+vecho /k0 /n /t %FLANG% PACBS
 if not exist %FINSP%\FDPLFULL.LST goto HasNoAll
-vecho /p
-vecho /t %FLANG% PACAO
-vecho /n /t %FLANG% PACAS
+vecho /k0 /p
+vecho /k0 /t %FLANG% PACAO
+vecho /k0 /n /t %FLANG% PACAS
 :HasNoAll
 if "%FDIM%" == "" goto NotAdv
 if not "%FADV%" == "y" goto NotAdv
-vecho /p
-vecho /t %FLANG% PACDO_ADV
-vecho /n /t %FLANG% PACDS_ADV
+vecho /k0 /p
+vecho /k0 /t %FLANG% PACDO_ADV
+vecho /k0 /n /t %FLANG% PACDS_ADV
 :NotAdv
-vchoice /a %TFC% Ctrl-C /d 3
+vchoice /k0 /a %TFC% Ctrl-C /d 3
 
 if errorlevel 200 FDICTRLC.BAT %0
 

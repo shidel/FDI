@@ -10,13 +10,13 @@ goto AssumeYes
 
 :AskAdvanced
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
-vecho /t %FLANG% DELETE? %TFH% %FTARGET% %TFF%
-vecho
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% DELETE_OPTS
-vecho /t %FLANG% DELETEY
-vecho /n /t %FLANG% DELETEN
-vchoice /a %TFC% Ctrl-C /d 1
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% DELETE_FRAME
+vecho /k0 /t %FLANG% DELETE? %TFH% %FTARGET% %TFF%
+vecho /k0
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% DELETE_OPTS
+vecho /k0 /t %FLANG% DELETEY
+vecho /k0 /n /t %FLANG% DELETEN
+vchoice /k0 /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipOption

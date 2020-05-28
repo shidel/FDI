@@ -29,14 +29,14 @@ goto Done
 
 :NotFormatted
 if "%FADV%" == "y" goto AdvancedFormat
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
-vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
-vecho
-vecho /t %FLANG% FORMAT?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMAT_OPTS
-vecho /t %FLANG% FORMAT_YES %FDRIVE%
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C /d 2
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMAT_FRAME
+vecho /k0 /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
+vecho /k0
+vecho /k0 /t %FLANG% FORMAT?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMAT_OPTS
+vecho /k0 /t %FLANG% FORMAT_YES %FDRIVE%
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto AbortBatch
@@ -45,15 +45,15 @@ set FDIDFMT=QuickFormat
 goto DoFormat
 
 :AdvancedFormat
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMATADV_FRAME
-vecho /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
-vecho
-vecho /t %FLANG% FORMAT?
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMATADV_OPTS
-vecho /t %FLANG% FORMATADV_QUICK %FDRIVE%
-vecho /t %FLANG% FORMATADV_SLOW %FDRIVE%
-vecho /n /t %FLANG% EXIT
-vchoice /a %TFC% Ctrl-C /d 3
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% NOFORMATADV_FRAME
+vecho /k0 /t %FLANG% NOFORMAT %TFH% %FDRIVE% %TFF%
+vecho /k0
+vecho /k0 /t %FLANG% FORMAT?
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% NOFORMATADV_OPTS
+vecho /k0 /t %FLANG% FORMATADV_QUICK %FDRIVE%
+vecho /k0 /t %FLANG% FORMATADV_SLOW %FDRIVE%
+vecho /k0 /n /t %FLANG% EXIT
+vchoice /k0 /a %TFC% Ctrl-C /d 3
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 1 set FDIDFMT=QuickFormat
@@ -64,8 +64,8 @@ goto DoFormat
 :DoFormat
 vcls /f %TSF% /b %TSB% /y2 /h24
 vgotoxy down
-vecho /t %FLANG% FORMATTING %FDRIVE%
-vecho
+vecho /k0 /t %FLANG% FORMATTING %FDRIVE%
+vecho /k0
 if "%FCURSOR%" == "" vcursor small
 if not "%FCURSOR%" == "" vcursor %FCURSOR%
 goto %FDIDFMT%
@@ -87,7 +87,7 @@ set FDIDFMT=y
 
 vcursor hide
 vgotoxy eop sor
-vecho /n /t %FLANG% PAUSE
+vecho /k0 /n /t %FLANG% PAUSE
 vpause /fLightCyan /t %FWAIT% CTRL-C
 
 if errorlevel 200 FDICTRLC.BAT %0 AfterFormat

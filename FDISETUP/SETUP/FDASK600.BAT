@@ -74,13 +74,13 @@ goto AssumeYes
 
 :AdvancedMode
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME
-vecho /t %FLANG% OBSS? %TFH% %FDRIVE% %TFF% %OBPD% %OBPN%
-vecho
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% OBSS_OPTS
-vecho /t %FLANG% OBSSY
-vecho /n /t %FLANG% OBSSN
-vchoice /a %TFC% Ctrl-C /d %OBPC%
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME
+vecho /k0 /t %FLANG% OBSS? %TFH% %FDRIVE% %TFF% %OBPD% %OBPN%
+vecho  /k0
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% OBSS_OPTS
+vecho /k0 /t %FLANG% OBSSY
+vecho /k0 /n /t %FLANG% OBSSN
+vchoice /k0 /a %TFC% Ctrl-C /d %OBPC%
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipSysXfer

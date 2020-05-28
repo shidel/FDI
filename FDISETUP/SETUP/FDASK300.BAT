@@ -13,13 +13,13 @@ goto AssumeYes
 
 :AskAdvanced
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
-vecho /t %FLANG% REPLACE?
-vecho
-vframe /b %TFB% /f %TFF% optionbox /t %FLANG% REPLACE_OPTS
-vecho /t %FLANG% REPLACEY
-vecho /n /t %FLANG% REPLACEN
-vchoice /a %TFC% Ctrl-C /d 1
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% REPLACE_FRAME
+vecho /k0 /t %FLANG% REPLACE?
+vecho  /k0
+vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% REPLACE_OPTS
+vecho /k0 /t %FLANG% REPLACEY
+vecho /k0 /n /t %FLANG% REPLACEN
+vchoice /k0 /a %TFC% Ctrl-C /d 1
 
 if errorlevel 200 FDICTRLC.BAT %0
 if errorlevel 2 goto SkipOption

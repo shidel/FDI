@@ -3,8 +3,8 @@
 REM Locate Package Media
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
-vframe /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME
-vecho /n /t %FLANG% GATHERING
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% GATHERING_FRAME
+vecho /k0 /n /t %FLANG% GATHERING
 vdelay %FDEL%
 
 REM Locate installer packages media.
