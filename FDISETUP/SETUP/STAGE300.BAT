@@ -24,7 +24,7 @@ REM stored the LANGUAGE\TEMPLATE\FDSETUP.DEF translation template file.
 
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
 vgotoxy /k0 /l /y2
-vline /p0 /k0
+vline /p0 /k0 hidden
 :LanguagePrompt
 set _XLNG=%LANG%
 vgotoxy /k0 sop /g up up /l sop

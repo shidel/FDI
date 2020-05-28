@@ -7,12 +7,12 @@ set LANGFILE=%NLSPATH%\WELCOME.%LANG%
 if not exist %LANGFILE% set LANGFILE=%NLSPATH%\WELCOME.EN
 if not exist %LANGFILE% goto SIMPLEMSG
 
-vecho /g/p /t %LANGFILE% AUTO_DONE %cfgfile% %autofile%
+vecho /k0 /g/p /t %LANGFILE% AUTO_DONE %cfgfile% %autofile%
 if not exist %DOSDIR%\BIN\HELP.EXE goto NoHelp
-vecho /g/p /t %LANGFILE% AUTO_HELP HELP
+vecho /k0 /g/p /t %LANGFILE% AUTO_HELP HELP
 :NoHelp
-vecho /g/p /t %LANGFILE% AUTO_WELCOME %OS_NAME% %OS_VERSION% "$URL$"
-vecho /g
+vecho /k0 /g/p /t %LANGFILE% AUTO_WELCOME %OS_NAME% %OS_VERSION% "$URL$"
+vecho /k0 /g
 goto DONE
 
 :SIMPLEMSG
