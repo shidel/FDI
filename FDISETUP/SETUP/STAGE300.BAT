@@ -64,13 +64,10 @@ set LANG=EN
 
 :DoChange
 if  "%_XLNG%" == "" goto NoPrevLang
-if exist %_XLNG%\SETFONT.BAT call %_XLNG%\SETFONT.BAT UNLOAD >NUL
-:NoPrevLang
-if exist %LANG%\SETFONT.BAT goto UseSetFont
-rem if exist EN\SETFONT.BAT call EN\SETFONT.BAT LOAD >NUL
+if exist SETFONT.BAT goto UseSetFont
 goto ApplyLang
 :UseSetFont
-call %LANG%\SETFONT.BAT LOAD >NUL
+call SETFONT.BAT %LANG% >NUL
 :ApplyLang
 call FDILANG.BAT FDSETUP
 vgotoxy /g /x30 /y1
@@ -83,15 +80,9 @@ goto LanguagePrompt
 if "%FCLANG%" == "y" set FCLANG=n
 set _WCI=
 set _XLNG=
-if not exist %LANG%\SETLANG.BAT goto DefaultEnglish
+if exist SETLANG.BAT CALL SETFONT.BAT %LANG% >NUL
 call %LANG%\SETLANG.BAT >NUL
 call FDICLS.BAT
-goto LanguageDone
-
-:DefaultEnglish
-if exist EN\SETLANG.BAT call EN\SETLANG.BAT >NUL
-
-:LanguageDone
 
 REM Draw the welcome screen.
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
