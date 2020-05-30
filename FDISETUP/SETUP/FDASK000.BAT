@@ -22,11 +22,11 @@ if "%LANG%" == "RU" set KTT=8
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBS_FRAME
-vecho /t %FLANG% KBS?
+vecho /k0 /t %FLANG% KBS?
 vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% KBS_OPTS
-vecho /n /t %FLANG% KBO.1
-vecho /n /t %FLANG% KBO.2
-vecho /n /t %FLANG% KBM
+vecho /k0 /n /t %FLANG% KBO.1
+vecho /k0 /n /t %FLANG% KBO.2
+vecho /k0 /n /t %FLANG% KBM
 vchoice /k0 /a %TFC% Ctrl-C /d %KTT%
 
 if errorlevel 200 FDICTRLC.BAT %0
@@ -66,7 +66,7 @@ vmath %KBP% + 1 | set /p KTT=
 if "%KTT%" == "" goto TopCheck
 vgotoxy /k0 sop
 vinsert /k0
-vecho /n /e /c32 /t %LANG%\KEYBOARD.LST TITLE.%KTT%
+vecho /k0  /n /e /c32 /t %LANG%\KEYBOARD.LST TITLE.%KTT%
 goto KBPoll
 :AtTop
 set KBI=1
@@ -87,10 +87,10 @@ vgotoxy /k0 sop
 vdelete /k0
 vgotoxy /k0 eop sor
 if "%KTT%" == "%KBM%" goto ReturnOption
-vecho /n /e /c32 /t %LANG%\KEYBOARD.LST TITLE.%KTT%
+vecho /k0 /n /e /c32 /t %LANG%\KEYBOARD.LST TITLE.%KTT%
 goto KBPoll
 :ReturnOption
-vecho /n /t %FLANG% KBL
+vecho /k0 /n /t %FLANG% KBL
 goto KBPoll
 :AtBottom
 set KBI=9
@@ -122,15 +122,15 @@ set KBP=99
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% KBA_FRAME
 
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.100
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.101
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.102
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.103
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.104
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.105
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.106
-vecho  /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.107
-vecho / /k0n /c32 /t %LANG%\KEYBOARD.LST TITLE.108
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.100
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.101
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.102
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.103
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.104
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.105
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.106
+vecho /k0 /c32 /t %LANG%\KEYBOARD.LST TITLE.107
+vecho /k0 /n /c32 /t %LANG%\KEYBOARD.LST TITLE.108
 
 :KBPoll
 set KBT=
