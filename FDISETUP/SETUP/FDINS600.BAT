@@ -9,12 +9,12 @@ vecho /k0 /n /t %FLANG% IPACBM
 vgotoxy /k0 eop sor
 vprogres /k0 /f %TFP% 0
 
-if not exist %FTARGET%\NUL mkdir %FTARGET%
-if errorlevel 1 goto AbortDir
+if not exist %FTARGET%\NUL mkdir %FTARGET% >NUL
+if not exist %FTARGET%\NUL goto AbortDir
 if not exist %FTARGET%\TEMP\NUL mkdir %FTARGET%\TEMP >NUL
-if errorlevel 1 goto AbortDir
+if not exist %FTARGET%\TEMP\NUL goto AbortDir
 if not exist %FTARGET%\PACKAGES\NUL mkdir %FTARGET%\PACKAGES >NUL
-if errorlevel 1 goto AbortDir
+if not exist %FTARGET%\PACKAGES\NUL goto AbortDir
 
 REM Run through all binaries to be installed.
 set _PI=0
