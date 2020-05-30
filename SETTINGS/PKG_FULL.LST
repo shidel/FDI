@@ -26,6 +26,7 @@ archiver\bz2
 archiver\lzip
 archiver\lzma
 archiver\lzop
+archiver\slicer
 
 edit\msedit
 

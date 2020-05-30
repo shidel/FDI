@@ -35,6 +35,7 @@ net\mtcp
 
 util\raread
 util\edict
+util\rawrite
 
 util\wcd
 util\aefdisk
