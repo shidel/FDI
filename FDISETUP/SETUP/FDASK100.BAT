@@ -10,7 +10,7 @@ goto Done
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% TARGET_FRAME
 vecho /k0 /t %FLANG% TARGET?
-vecho
+vecho /p /c32 /n
 :RepeatAsk
 vask /c /t %FLANG% TARGET_ASK %TQF% %TQB% %FWAIT% %FTARGET% | set /p TTARGET=
 if errorlevel 200 FDICTRLC.BAT %0
