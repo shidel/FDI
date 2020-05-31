@@ -32,7 +32,7 @@ SHSURDRV /QQ /U >NUL
 if errorlevel 2 goto NotLoaded
 if not errorlevel 1 goto NoRamDrive
 :NotLoaded
-SHSURDRV /QQ /C /D:100K,A >NUL
+SHSURDRV /QQ /C /D:100K,D >NUL
 if errorlevel 27 goto NoRamDrive
 if errorlevel  1 set RAMDRV=A:
 if errorlevel  2 set RAMDRV=B:
