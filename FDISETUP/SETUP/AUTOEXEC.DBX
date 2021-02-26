@@ -42,16 +42,18 @@ alias shutdown=fdapm poweroff
 
 $LANG_SET$
 
-rem CTMOUSE
-
 MEM /C /N
 
 echo.
 
-:DONE
+:FINAL
+if not exist %dosdir%\bin\fdnet.bat goto NoNetwork
+call %dosdir%\bin\fdnet.bat start
+if errorlevel 1 goto NoNetwork
 
-rem if "%config%"=="4" goto SKIP
-if exist %dosdir%\bin\fdnet.bat call %dosdir%\bin\fdnet.bat start
+REM Custom networking stuff
+
+:NoNetwork
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 
 :SKIP
