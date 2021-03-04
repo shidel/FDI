@@ -32,13 +32,8 @@ rem $LH$ PCNTPK INT=0x60
 rem DHCP
 rem MOUSE
 
-rem DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
-
-SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
-
-rem MEM /C /N
-
-SHSUCDX /D
+echo.
+call CDROM.BAT
 
 rem $LH$ DOSLFN
 
