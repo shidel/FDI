@@ -4,15 +4,7 @@ vecho CD-ROM initialization.
 
 set CDOPTS=/D:FDCD0001
 
-set CDDRVR=UDVD2
-goto TryDriver
-:Not-UDVD2
-set CDDRVR=ELTORITO
-goto TryDriver
-:Not-ELTORITO
-set CDDRVR=GCDROM
-goto TryDriver
-:Not-GCDROM
+rem try un-supplied non-OSS drivers first, if present
 set CDDRVR=VIDE-CDD
 goto TryDriver
 :Not-VIDE-CDD
@@ -22,6 +14,17 @@ goto TryDriver
 set CDDRVR=GSCDROM
 goto TryDriver
 :Not-GSCDROM
+
+rem try supplied OSS drivers
+set CDDRVR=UDVD2
+goto TryDriver
+:Not-UDVD2
+set CDDRVR=ELTORITO
+goto TryDriver
+:Not-ELTORITO
+set CDDRVR=GCDROM
+goto TryDriver
+:Not-GCDROM
 set CDDRVR=UIDE
 goto TryDriver
 :Not-UIDE
