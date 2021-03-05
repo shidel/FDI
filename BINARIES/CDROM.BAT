@@ -1,6 +1,6 @@
 @ECHO OFF
 
-vecho CD-ROM initialization.
+vecho /g CD-ROM initialization.
 
 set CDOPTS=/D:FDCD0001
 
@@ -30,34 +30,34 @@ goto TryDriver
 :Not-UIDE
 
 :GiveUp
-vecho /p /fLightRed "unable to load an appropriate CD/DVD driver" /fGrey
+vecho /g /p /fLightRed "unable to load an appropriate CD/DVD driver" /fGrey
 set CDDRVR=
 vdelay /d 2000
 verrlvl 1
 goto End
 
 :Failed
-vecho , /fGrey error "#%ERRORLEVEL%" reported - /fLightRed failed /fGrey /n
+vecho /g , /fGrey error "#%ERRORLEVEL%" reported - /fLightRed failed /fGrey /n
 vdelay /d 1000
-vecho /fGrey
+vecho /g /fGrey
 goto Not-%CDDRVR%
 goto GiveUp
 
 :TryDriver
 if not exist %DOSDIR%\BIN\%CDDRVR%.SYS goto AltLocation
-vecho attempting to use the /fYellow "%CDDRVR%" /fGrey CD driver /n
+vecho /g attempting to use the /fYellow "%CDDRVR%" /fGrey CD driver /n
 DEVLOAD /H %DOSDIR%\BIN\%CDDRVR%.SYS %CDOPTS% >NUL
 if errorlevel 1 goto Failed
 goto TryExtender
 :AltLocation
 if not exist %CDDRVR%.SYS goto Not-%CDDRVR%
-vecho attempting to use the /fYellow "%CDDRVR%" /fGrey CD driver /n
+vecho /g attempting to use the /fYellow "%CDDRVR%" /fGrey CD driver /n
 DEVLOAD /H %CDDRVR%.SYS %CDOPTS% >NUL
 if errorlevel 1 goto Failed
 
 :TryExtender
-vecho , /fLightGreen success /fGrey
-vecho attempting to load /fYellow SHSUSCDX /fGrey CD extenstions /n
+vecho /g , /fLightGreen success /fGrey
+vecho /g attempting to load /fYellow SHSUSCDX /fGrey CD extenstions /n
 SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
 if errorlevel 27 goto Failed
 SHSUCDX /QQ /L:1
@@ -91,9 +91,9 @@ if errorlevel 24 set CDROM=X:
 if errorlevel 25 set CDROM=Y:
 if errorlevel 26 set CDROM=Z:
 
-vecho , /fLightGreen success /fGrey
-vecho successfully started the CD driver and extenstions /n
-vecho /c32 for drive /fLightGreen "%CDROM%" /fGrey
+vecho /g , /fLightGreen success /fGrey
+vecho /g successfully started the CD driver and extenstions /n
+vecho /g /c32 for drive /fLightGreen "%CDROM%" /fGrey
 vdelay /D 500
 
 :End
