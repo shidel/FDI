@@ -58,7 +58,7 @@ base\tree
 base\undelete
 base\unformat
 base\graphics
-base\welcome
+base\fdhelper
 
 ; Not actually part of BASE, but installed with it.
 

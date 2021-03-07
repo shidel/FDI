@@ -26,6 +26,8 @@ base\lbacache
 util\fdnpkg
 archiver\zip
 
+base\fdhelper
+
 ; Only required for CD install media
 
 util\udvd2
