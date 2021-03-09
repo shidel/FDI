@@ -34,7 +34,6 @@ base\fdapm
 base\find
 base\fdxms
 base\fdxms286
-base\help
 base\keyb
 base\keyb_lay
 base\label
@@ -59,6 +58,10 @@ base\undelete
 base\unformat
 base\graphics
 base\fdhelper
+
+; base\htmlhelp
+util\ambread
+base\ambhelp
 
 ; Not actually part of BASE, but installed with it.
 
