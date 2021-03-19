@@ -12,24 +12,24 @@ $PKG_ASSIST$
 
 ; These are additional packages that are intalled onto the LIVE CD media.
 util\slowdown
-util\doslfn
+drivers\doslfn
 
 util\rawrite
 
 net\fdnet
 net\wget
 
-unixlike\grep
-unixlike\head
-unixlike\du
-unixlike\sleep
-unixlike\tee
-unixlike\touch
-unixlike\which
-unixlike\less
-unixlike\trch
+unix\grep
+unix\head
+unix\du
+unix\sleep
+unix\tee
+unix\touch
+unix\which
+unix\less
+unix\trch
 
-unixlike\md5sum
+unix\md5sum
 
 net\mtcp
 
@@ -45,5 +45,5 @@ util\xfdisk
 util\xdel
 util\xkeyb
 
-util\fdtui
-net\links
+apps\fdtui
+net\lynx

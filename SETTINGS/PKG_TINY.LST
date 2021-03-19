@@ -8,11 +8,11 @@ base\devload
 base\fdapm
 util\fdnpkg
 base\shsucdx
-util\udvd2
+drivers\udvd2
 base\xcopy
 util\v8power
 
-util\gcdrom
+drivers\gcdrom
 
 ; not required but really should be there
 base\format

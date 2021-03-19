@@ -10,16 +10,16 @@ base\xcopy
 base\devload
 base\attrib
 base\shsucdx
-util\shsufdrv
+drivers\shsufdrv
 base\fdisk
 base\fdapm
 base\format
 base\fc
 
 util\v8power
-util\fdimples
+apps\fdimples
 
-unixlike\grep
+unix\grep
 
 base\lbacache
 
@@ -30,11 +30,11 @@ base\fdhelper
 
 ; Only required for CD install media
 
-util\udvd2
-util\gcdrom
+drivers\udvd2
+drivers\gcdrom
 
 ; Only wanted / needed for QEMU RAM Disk
-util\srdisk
+drivers\srdisk
 
 ; These are not technically required. But, can be useful.
 
@@ -43,4 +43,4 @@ base\jemm
 base\edit
 base\mem
 base\more
-util\doslfn
+drivers\doslfn

@@ -10,15 +10,15 @@ $PKG_FDI$
 $PKG_ASSIST$
 
 ; Additional packages installed with FULL
-unixlike\grep
-unixlike\xgrep
-unixlike\nro
-unixlike\head
-unixlike\du
-unixlike\sleep
-unixlike\tee
-unixlike\touch
-unixlike\which
+unix\grep
+unix\xgrep
+unix\nro
+unix\head
+unix\du
+unix\sleep
+unix\tee
+unix\touch
+unix\which
 
 archiver\tar
 archiver\gzip
@@ -33,31 +33,31 @@ edit\msedit
 util\bootfix
 util\pg
 util\bmp2png
-util\cdrcache
+drivers\cdrcache
 util\cpied
 util\daa2iso
 util\dos32a
 util\foxcalc
-unixlike\gnubc
-unixlike\less
+unix\gnubc
+unix\less
 util\localize
-unixlike\md5sum
+unix\md5sum
 util\part
-util\srdisk
-util\usbdos
+drivers\srdisk
+drivers\usbdos
 util\slowdown
 util\xfdisk
 util\zerofill
 util\xdel
 
-util\doslfn
+drivers\doslfn
 
 util\dosutil
 
-util\doszip
-util\dzemm
+apps\doszip
+# util\dzemm
 util\foxtype
-util\lfndos
+drivers\lfndos
 util\gnuchcp
 
 util\password
@@ -69,10 +69,10 @@ util\spool
 util\stamp
 util\switchar
 util\topspin
-unixlike\trch
+unix\trch
 util\xkeyb
 
-util\shareext
+drivers\shareext
 util\wcd
 util\fdshield
 
@@ -141,9 +141,9 @@ edit\tde
 edit\uhex
 edit\vim
 
-unixlike\cal
-unixlike\gnused
-unixlike\uptimec
+unix\cal
+unix\gnused
+unix\uptimec
 
 util\aefdisk
 util\ansimat
@@ -153,13 +153,13 @@ util\cdrom2ui
 util\clamav
 util\clamdb
 util\dialog
-util\dn2
+apps\dn2
 util\dog
 util\edict
-util\fdshell
+apps\fdshell
 
 ; FDTUI Conflicts with FDSHELL
-; util\fdtui
+; apps\fdtui
 
 util\finddisk
 util\flashrom
@@ -167,19 +167,19 @@ util\gifsicle
 util\gnufonts
 util\hexcomp
 util\hip
-util\hiram
+drivers\hiram
 util\localcfg
-util\lptdrv
+drivers\lptdrv
 util\memteste
-util\ntfs
+drivers\ntfs
 util\ospimg
 util\pbox
 util\pdtree
-util\pgme
+apps\pgme
 util\pngcrush
 util\rcal
 util\search
-util\sqlite
+apps\sqlite
 util\terminal
 util\testdisk
 util\unrtf
@@ -200,20 +200,20 @@ util\wptail
 ; games\lincrawl
 ; games\psrinvad
 
-; unixlike\minibox
-; unixlike\tail
-; unixlike\uptime
+; unix\minibox
+; unix\tail
+; unix\uptime
 
 ; util\4dos
 ; util\blwcbc
-; util\paint2
+; apps\paint2
 ; util\start
 ; util\zdir
 
 ; new additions and returned packages
 
-util\gcdrom
-util\uide
+drivers\gcdrom
+drivers\uide
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

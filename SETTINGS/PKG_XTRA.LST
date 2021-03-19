@@ -149,7 +149,7 @@ sound\opencp
 util\ansimat
 util\b64
 util\bsum
-unixlike\cal
+unix\cal
 util\cdrom2ui
 util\clamav
 util\clamdb
@@ -157,34 +157,34 @@ util\dialog
 util\dn2
 util\dog
 util\fdisrc
-util\fdshell
+apps\fdshell
 util\finddisk
 util\flashrom
 util\gifsicle
 util\gnufonts
-unixlike\gnused
+unix\gnused
 util\hexcomp
 util\hip
-util\hiram
+drivers\hiram
 util\localcfg
-util\lptdrv
+drivers\lptdrv
 util\memteste
-util\ntfs
+drivers\ntfs
 gui\opengem
 util\ospimg
 gui\ozonegui
 util\pbox
 util\pdtree
-util\pgme
+apps\pgme
 util\pngcrush
 util\rcal
 gui\seal
 util\search
-util\sqlite
+apps\sqlite
 util\terminal
 util\testdisk
 util\unrtf
-unixlike\uptimec
+unix\uptimec
 util\utf8tocp
 util\wcd
 util\wde
@@ -200,7 +200,7 @@ devel\i16newli
 devel\i16src
 net\etherdfs
 util\edict
-util\fdtui
+apps\fdtui
 util\aefdisk
 devel\i16lbi86
 games\dosdef
@@ -214,8 +214,8 @@ devel\dojs
 devel\msa
 devel\tinyasm
 
-util\gcdrom
-util\uide
+drivers\gcdrom
+drivers\uide
 
 ; The new FreeCOM beta
 base\freecom

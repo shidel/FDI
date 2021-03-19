@@ -67,16 +67,17 @@ base\ambhelp
 
 util\fdnpkg
 util\v8power
-util\fdimples
+apps\fdimples
 archiver\unzip
 
 ; Probably should always include these as well.
 
 archiver\zip
-util\udvd2
+drivers\udvd2
+drivers\gcdrom
 util\callver
 util\cwsdpmi
-util\shsufdrv
+drivers\shsufdrv
 
 ; Include custom release user assistance packages
 
