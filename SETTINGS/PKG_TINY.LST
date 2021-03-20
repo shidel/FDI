@@ -13,6 +13,8 @@ base\xcopy
 util\v8power
 
 drivers\gcdrom
+drivers\eltorito
+
 base\fdhelpers
 
 ; not required but really should be there
