@@ -58,6 +58,7 @@ base\undelete
 base\unformat
 base\graphics
 base\fdhelper
+base\welcome
 
 ; base\htmlhelp
 util\ambread
