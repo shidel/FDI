@@ -47,41 +47,41 @@ $OS_PREFIX$-FullUSB.zip
     "Plain DOS" or even the "Full Install".  These extras can be installed
     later using FDIMPLES or another package manager)
 
-    * $OS_PREFIX$FULL.VMDK - An Virtual Machine Disk description file to simplify
-    attaching the FullUSB image to a virtual machine (like VirtualBox and
-    vmWare) as a hard drive.
+    * $OS_PREFIX$FULL.VMDK - An Virtual Machine Disk description file to
+    simplify attaching the FullUSB image to a virtual machine (like VirtualBox
+    and vmWare) as a hard drive.
 
 $OS_PREFIX$-LegacyCD.zip
 
-    * $OS_PREFIX$LGCY.ISO - Contains all the packages as $OS_PREFIX$-FullUSB. However, it
-    is a bootable CD image designed for older hardware. It uses the classic
-    El Torito Boot CD-ROM format. Some modern computers and virtual machines
-    are known to have issues booting CDs that use this ancient specification.
-    Unless you have a computer that requires this type of bootable CD, we
-    recommend using the LiveCD media.
+    * $OS_PREFIX$LGCY.ISO - Contains all the packages as $OS_PREFIX$-FullUSB.
+    However, it is a bootable CD image designed for older hardware. It uses the
+    classic El Torito Boot CD-ROM format. Some modern computers and virtual
+    machines are known to have issues booting CDs that use this ancient
+    specification. Unless you have a computer that requires this type of
+    bootable CD, we recommend using the LiveCD media.
 
 $OS_PREFIX$-LiveCD.zip
 
-    * $OS_PREFIX$LIVE.ISO - This media is similar to the LegacyCD. However instead
-    of relying on the BIOS floppy disk emulation, it uses SYSLINUX and MEMDISK
-    to boot an emulated floppy disk. Along side support to perform a Plain and
-    Full installation of $OS_NAME$, this media is also able to run $OS_NAME$ live
-    from RAM or CD (depending on computer system and hardware) without
-    installation to an internal hard disk drive.
+    * $OS_PREFIX$LIVE.ISO - This media is similar to the LegacyCD. However,
+    instead of relying on the BIOS floppy disk emulation, it uses SYSLINUX and
+    MEMDISK to boot an emulated floppy disk. Along side support to perform a
+    Plain and Full installation of $OS_NAME$, this media is also able to run
+    $OS_NAME$ live from RAM or CD (depending on computer system and hardware)
+    without installation to an internal hard disk drive.
 
 $OS_PREFIX$-x86.ZIP
 
-    New with $OS_NAME$ 1.3-RC3 is the Floppy Diskette Edition of $OS_NAME$. Compared
+    New with $OS_NAME$ 1.3-RC3 is the Floppy Only Edition of $OS_NAME$. Compared
     to the other media, this edition uses a completely different installer and
     process. It is designed to be compatible with any hardware that can run
     $OS_NAME$ that has EGA or better graphics. Comprised of only a limited
-    $OS_NAME$ set of core programs, it installs those packages based on hardware
-    support. Only have a 286, then no need to install the CD-Drivers that
-    require a 386. Just got one hard drive and no CD or Floppy? No problem.
-    Just copy the contents of the floppies to some directory and run it from
-    there. Want to perform a headless install to a different DOS directory,
-    piece of cake with the command line options. The best way to sum-up
-    $OS_PREFIX$-x86 is to say -- It is the power user installer.
+    $OS_NAME$ set of core programs, it installs those packages based on
+    hardware support. Only have a 286, then no need to install the CD-Drivers
+    that require a 386. Just got one hard drive and no CD or Floppy? No
+    problem! Just copy the contents of the floppies to some directory and
+    run it from there. Want to perform a headless install to a different DOS
+    directory, piece of cake with the command line options. The best way to
+    sum-up $OS_PREFIX$-x86 is to say -- It is the power user installer.
 
     * x86-BOOT.img - A 720 Kib 3.5" floppy boot disk with the x86 installer.
 
@@ -94,3 +94,11 @@ $OS_PREFIX$-x86.ZIP
     release media, like USB or CD-ROM. The Floppy Diskette Edition does not
     require any of those other media to perform an installation and will not
     use them during installation.
+
+    * Please note, as of 1.3-RC4, the CPU level detection algorithms in
+    V*Power Tools for DOS need improved. Some real hardware systems, report
+    only 80186 level of support. This will effect the software installed by
+    the FDI-x86 edition. When launching the SETUP.BAT installer, you can
+    override CPU detection by adding an option (like 8086, 186, 286, 386, 486,
+    586, 686, EMU, QEMU, VBX, VMW or DBX) and force a CPU level.
+
