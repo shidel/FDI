@@ -13,6 +13,7 @@ base\xcopy
 util\v8power
 
 drivers\gcdrom
+base\fdhelpers
 
 ; not required but really should be there
 base\format

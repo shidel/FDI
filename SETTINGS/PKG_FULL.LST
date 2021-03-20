@@ -55,7 +55,7 @@ drivers\doslfn
 util\dosutil
 
 apps\doszip
-# util\dzemm
+; util\dzemm
 util\foxtype
 drivers\lfndos
 util\gnuchcp
