@@ -216,6 +216,7 @@ devel\tinyasm
 
 drivers\gcdrom
 drivers\uide
+drivers\eltorito
 
 ; The new FreeCOM beta
 base\freecom

@@ -15,7 +15,7 @@ util\v8power
 drivers\gcdrom
 drivers\eltorito
 
-base\fdhelpers
+base\fdhelper
 
 ; not required but really should be there
 base\format
