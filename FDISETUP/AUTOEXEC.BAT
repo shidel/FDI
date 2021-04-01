@@ -27,8 +27,6 @@ rem DISPLAY CON=(EGA),858,2)
 rem MODE CON CP PREP=((858) %dosdir%\CPI\EGA.CPX)
 rem KEYB US,858,%dosdir%\bin\keyboard.sys
 rem CHCP 858
-rem $LH$ PCNTPK INT=0x60
-rem DHCP
 rem MOUSE
 
 rem DOSLFN
