@@ -96,9 +96,11 @@ $OS_PREFIX$-x86.ZIP
     use them during installation.
 
     * Please note, as of 1.3-RC4, the CPU level detection algorithms in
-    V*Power Tools for DOS need improved. Some real hardware systems, report
+    V8Power Tools for DOS need improved. Some real hardware systems, report
     only 80186 level of support. This will effect the software installed by
-    the FDI-x86 edition. When launching the SETUP.BAT installer, you can
-    override CPU detection by adding an option (like 8086, 186, 286, 386, 486,
-    586, 686, EMU, QEMU, VBX, VMW or DBX) and force a CPU level.
+    the FDI-x86 edition. For the time being, the installer will assume that
+    the hardware has at least a 386 processer.  When launching the SETUP.BAT
+    installer, you can override CPU detection by adding an option (like 8086,
+    186, 286, 386, 486, 586, 686, EMU, QEMU, VBX, VMW or DBX) and force a
+    specific lovel of CPU that is supported.
 
