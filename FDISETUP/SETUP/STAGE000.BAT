@@ -23,7 +23,7 @@ set FDEL=2000
 REM Target path to install FreeDOS
 if not "%FINSD%" == "C:" set FDRIVE=C:
 if "%FINSD%" == "C:" set FDRIVE=D:
-set FTARGET=%FDRIVE%\$DOSDIR$
+set FTARGET=%FDRIVE%\$OS_DIR$
 
 REM Backup path to when archiving.
 set FBAK=%FDRIVE%\FDBACKUP
@@ -89,7 +89,7 @@ if not "%FINSD%" == "%FBOOTD%" goto NotSelf
 if not "%FDRIVE%" == "C:" set TDOS=C:
 if "%FDRIVE%" == "C:" set TDOS=D:
 set FDRIVE=%TDOS%
-set FTARGET=%FDRIVE%\$DOSDIR$
+set FTARGET=%FDRIVE%\$OS_DIR$
 
 :NotSelf
 set FBAK=%FDRIVE%\FDBACKUP
