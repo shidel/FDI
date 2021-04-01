@@ -3,8 +3,8 @@
 REM Configure the installer. **************************************************
 
 REM Set operating system TITLE and VERSION for installer, not cleared at exit.
-set OS_NAME=$PLATFORM$
-set OS_VERSION=$VERSION$
+set OS_NAME=$OS_NAME$
+set OS_VERSION=$OS_VERSION$
 
 if "%1" == "VersionOnly" goto Done
 
@@ -12,7 +12,7 @@ REM Debug Mode
 if "%FDEBUG%" == "" set FDEBUG=n
 
 REM Formatted volume label
-set OVOL=$OVOL$
+set OVOL=$OS_VOLUMN$
 
 REM Pause duration after Format and System file transfers. (seconds)
 set FWAIT=15
