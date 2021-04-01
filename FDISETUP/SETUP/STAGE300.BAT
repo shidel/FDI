@@ -22,7 +22,7 @@ REM mkFDI.bat when the build creates the boot image. The languages order and
 REM count are determined by the order, number and name of the LANG_ variables
 REM stored the LANGUAGE\TEMPLATE\FDSETUP.DEF translation template file.
 
-vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $HEIGHT$ /c
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $LANGHEIGHT$ /c
 vgotoxy /k0 /l /y2
 vline /p0 /k0 hidden
 :LanguagePrompt
