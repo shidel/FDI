@@ -22,7 +22,7 @@ REM mkFDI.bat when the build creates the boot image. The languages order and
 REM count are determined by the order, number and name of the LANG_ variables
 REM stored the LANGUAGE\TEMPLATE\FDSETUP.DEF translation template file.
 
-vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $LANGHEIGHT$ /c
+vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /w45 $LANG_SETHEIGHT$ /c
 vgotoxy /k0 /l /y2
 vline /p0 /k0 hidden
 :LanguagePrompt
@@ -42,25 +42,7 @@ REM Everything between the LanguageChange and DoChange Labels is replaced
 REM dynamically by the mkFDI.bat build utility.
 :LanguageChange
 
-REM This static version will be replaced automatically by the mkFDI utility.
-
-set _WCI=6
-set LANG=NL
-if errorlevel 106 goto DoChange
-set _WCI=5
-set LANG=EO
-if errorlevel 105 goto DoChange
-set _WCI=4
-set LANG=DE
-if errorlevel 104 goto DoChange
-set _WCI=3
-set LANG=FR
-if errorlevel 103 goto DoChange
-set _WCI=2
-set LANG=ES
-if errorlevel 102 goto DoChange
-set _WCI=1
-set LANG=EN
+$LANG_DOCHANGE$
 
 :DoChange
 if  "%_XLNG%" == "" goto NoPrevLang
