@@ -12,7 +12,7 @@ REM Debug Mode
 if "%FDEBUG%" == "" set FDEBUG=n
 
 REM Formatted volume label
-set OVOL=$OS_VOLUMN$
+set OVOL=$OS_VOLUME$
 
 REM Pause duration after Format and System file transfers. (seconds)
 set FWAIT=15
