@@ -13,7 +13,7 @@ base\xcopy
 util\v8power
 
 drivers\gcdrom
-drivers\eltorito
+; drivers\eltorito
 
 base\fdhelper
 

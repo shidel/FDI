@@ -214,7 +214,7 @@ util\wptail
 
 drivers\gcdrom
 drivers\uide
-drivers\eltorito
+; drivers\eltorito
 
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA

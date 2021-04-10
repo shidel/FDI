@@ -19,8 +19,10 @@ FDI has a fairly modest set of requirements.
 * 80386 or better CPU.
 * 640k RAM (under 4Mb is untested)
 
-_(Although V8Power Tools and FDI only requires an 8086, some other utilities
-that are currently required by FDI do not support CPUs lower than a 386.)_
+_(Although V8Power Tools and FDI only require an 8086 processor, some of the
+other utilities currently required by FDI do not support CPUs lower than a
+386 based system. For machines with a 286 or lower CPU, see the Floppy Only
+Edition of FreeDOS.)_
 
 ### FreeDOS installation methods
 

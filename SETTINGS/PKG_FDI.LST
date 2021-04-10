@@ -32,7 +32,7 @@ base\fdhelper
 
 drivers\udvd2
 drivers\gcdrom
-drivers\eltorito
+; drivers\eltorito
 
 ; Only wanted / needed for QEMU RAM Disk
 drivers\srdisk
