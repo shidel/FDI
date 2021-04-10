@@ -2,7 +2,7 @@
 
 REM FreeDOS 1.2+ Installer version 1.00.
 REM Released Under GPL v2.0 License.
-REM Copyright 2016 Jerome Shidel.
+REM Copyright 2016-2021 Jerome Shidel.
 
 set FCURSOR=small
 if "%TEMP%" == "" goto NoReadCursor

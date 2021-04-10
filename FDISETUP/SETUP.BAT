@@ -2,7 +2,7 @@
 
 REM FreeDOS 1.3+ Installer
 REM Released Under GPL v2.0 License.
-REM Copyright 2016 Jerome Shidel.
+REM Copyright 2016-2021 Jerome Shidel.
 
 BREAK off
 
