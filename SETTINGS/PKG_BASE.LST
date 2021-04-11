@@ -76,7 +76,6 @@ archiver\unzip
 archiver\zip
 drivers\udvd2
 drivers\gcdrom
-; drivers\eltorito
 util\callver
 util\cwsdpmi
 drivers\shsufdrv

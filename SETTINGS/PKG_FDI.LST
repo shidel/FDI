@@ -32,6 +32,8 @@ base\fdhelper
 
 drivers\udvd2
 drivers\gcdrom
+
+; El Torito driver is included through config options for CD boot media
 ; drivers\eltorito
 
 ; Only wanted / needed for QEMU RAM Disk

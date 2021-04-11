@@ -13,6 +13,8 @@ base\xcopy
 util\v8power
 
 drivers\gcdrom
+
+; El Torito driver is included through config options for CD boot media
 ; drivers\eltorito
 
 base\fdhelper

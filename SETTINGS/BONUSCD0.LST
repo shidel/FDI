@@ -1,27 +1,9 @@
-; Package list for EXTRA packages.
+; Package list for BONUS-CD0 packages.
 
-; This is the package list used for the packages included on larger install
-; media. Not every package is installed. Depending on the users selection,
-; only the packages in BASE or FULL are installed by the installer.
-
-; Include all package sets to make sure there packages are present.
-$PKG_BASE$
-$PKG_FDI$
-$PKG_FULL$
-$PKG_LIVE$
-$PKG_ASSIST$
-
-; Extra packages that are not automatically installed.
-
-; License for 'net\fdnet' is still under review
-; At present, it has been pulled for licensing confusion and conflicts
-; net\fdnet
-
-; License for 'emulator\meka' is still under review
-emulator\meka
-
-; Excluded, lacks a clear license.
-; util\paint2
+; This is the package list used for the packages that are only on the BONUS CD
+; Generally speaking... they are not on any of the install media nor installed
+; under BASE or FULL. However, some may be included here even if they are
+; included elsewhere.
 
 archiver\7zdec
 archiver\arj
@@ -219,7 +201,8 @@ drivers\gcdrom
 drivers\uide
 drivers\eltorito
 
-; The new FreeCOM beta
+; The new FreeCOM beta and older "stable" version
 base\freecom
+base\command
 
 

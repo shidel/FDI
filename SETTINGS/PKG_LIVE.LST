@@ -16,8 +16,11 @@ drivers\doslfn
 
 util\rawrite
 
-net\fdnet
-net\wget
+; License for 'net\fdnet' is still under review
+; At present, it has been pulled for licensing confusion and conflicts
+; net\fdnet
+
+; net\wget
 
 unix\grep
 unix\head
@@ -31,7 +34,7 @@ unix\trch
 
 unix\md5sum
 
-net\mtcp
+; net\mtcp
 
 util\raread
 util\edict
@@ -46,4 +49,4 @@ util\xdel
 util\xkeyb
 
 apps\fdtui
-net\lynx
+; net\lynx
