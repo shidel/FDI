@@ -13,6 +13,7 @@ drivers\udvd2
 base\xcopy
 util\v8power
 drivers\shsufdrv
+drivers\srdisk
 
 drivers\gcdrom
 
