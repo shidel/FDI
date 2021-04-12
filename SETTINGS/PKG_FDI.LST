@@ -23,8 +23,7 @@ unix\grep
 
 base\lbacache
 
-; util\fdnpkg
-util\fdinst
+util\fdnpkg
 archiver\zip
 
 base\fdhelper
