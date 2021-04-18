@@ -13,7 +13,7 @@ Some general system requirements.
     Without sources, 20 MiB of free space will be needed.
 
 -------------------------------------------------------------------------------
-What's in all those release ZIP files?
+What's in all those ZIP files?
 -------------------------------------------------------------------------------
 
 readme.txt
@@ -26,30 +26,9 @@ verify.txt
 
 $OS_PREFIX$-Floppy.zip
 
-    * FD13FLOP.IMG - Basic $OS_NAME$ installation boot floppy image for systems
+    * $OS_PREFIX$FLOP.IMG - Basic $OS_NAME$ installation boot floppy image for systems
     that support a CD-ROM. But, the system cannot boot from either of CD-ROM
     release media.
-
-$OS_PREFIX$-LiteUSB.zip
-
-    * FD13LITE.IMG - Plain DOS system only! This USB stick image does not
-    contain all of the packages that are available in a FULL install. It only
-    contains the basic plain DOS set of packages.
-
-    * FD13LITE.VMDK - An Virtual Machine Disk description file to simplify
-    attaching the LiteUSB image to a virtual machine (like VirtualBox and
-    vmWare) as a hard drive.
-
-$OS_PREFIX$-FullUSB.zip
-
-    *$OS_PREFIX$FULL.IMG - Plain DOS system and Full install USB stick image.
-    (Also, includes may extra packages that are not installed in the
-    "Plain DOS" or even the "Full Install".  These extras can be installed
-    later using FDIMPLES or another package manager)
-
-    * $OS_PREFIX$FULL.VMDK - An Virtual Machine Disk description file to
-    simplify attaching the FullUSB image to a virtual machine (like VirtualBox
-    and vmWare) as a hard drive.
 
 $OS_PREFIX$-LegacyCD.zip
 
@@ -69,24 +48,62 @@ $OS_PREFIX$-LiveCD.zip
     $OS_NAME$ live from RAM or CD (depending on computer system and hardware)
     without installation to an internal hard disk drive.
 
-$OS_PREFIX$-x86.ZIP
+$OS_PREFIX$-BonusCD.zip
 
-    New with $OS_NAME$ 1.3-RC3 is the Floppy Only Edition of $OS_NAME$. Compared
-    to the other media, this edition uses a completely different installer and
-    process. It is designed to be compatible with any hardware that can run
-    $OS_NAME$ that has EGA or better graphics. Comprised of only a limited
-    $OS_NAME$ set of core programs, it installs those packages based on
-    hardware support. Only have a 286, then no need to install the CD-Drivers
-    that require a 386. Just got one hard drive and no CD or Floppy? No
-    problem! Just copy the contents of the floppies to some directory and
-    run it from there. Want to perform a headless install to a different DOS
-    directory, piece of cake with the command line options. The best way to
-    sum-up $OS_PREFIX$-x86 is to say -- It is the power user installer.
+    *  $OS_PREFIX$BNS.ISO - This is a non-bootable CD image. It contains numerous
+    packages for $OS_NAME$ that are not installed with either BASE or FULL.
 
-    * x86-BOOT.img - A 720 Kib 3.5" floppy boot disk with the x86 installer.
+$OS_PREFIX$-LiteUSB.zip
 
-    * x86-DSK?.img - Some 1.44 Mib 3.5" floppy diskette images that contain
-    the archived OS files.
+    * $OS_PREFIX$LITE.IMG - A plain $OS_NAME$ system only! This USB stick image does
+    not contain all of the packages that are available in a FULL install. It
+    only contains the basic $OS_NAME$ set of packages.
+
+    * $OS_PREFIX$LITE.VMDK - An Virtual Machine Disk description file to simplify
+    attaching the LiteUSB image to a virtual machine (like VirtualBox or
+    vmWare) as a hard drive.
+
+$OS_PREFIX$-FullUSB.zip
+
+    *$OS_PREFIX$FULL.IMG - Plain DOS system and Full install USB stick image.
+
+    * $OS_PREFIX$FULL.VMDK - An Virtual Machine Disk description file to
+    simplify attaching the FullUSB image to a virtual machine (like VirtualBox
+    or vmWare) as a hard drive.
+
+$OS_NAME$ Floppy Only Edition
+
+    New as of $OS_NAME$ 1.3-RC3 is the Floppy Only Edition of $OS_NAME$.
+    Compared to the other media, this edition uses a completely different
+    installer and process. It is designed to be compatible with any hardware
+    that can run $OS_NAME$ that has EGA or better graphics.
+
+    Comprised of only a limited $OS_NAME$ set of core programs, it installs
+    those packages based on the level of supported hardware. Only have a 286,
+    then no need to install the CD-Drivers that require a 386. Just got one
+    hard drive and no CD or Floppy? No problem! Just copy the contents of the
+    floppies to some directory and run it from there. Want to perform a headless
+    install to a different DOS directory, piece of cake with the command line
+    options. The best way to sum-up $OS_PREFIX$-x86 is to say...
+
+        -- The Floppy Edition is the power user installer.
+
+    $OS_NAME$ $OS_VERSION$ has a few zip archives with pre-made floppy
+    diskette images.
+
+    * $OS_PREFIX$-FE720k.zip - 3.5" 720k diskette images
+
+    * $OS_PREFIX$-FE144m.zip - 3.5" 1.44mb diskette images
+
+    * $OS_PREFIX$-FE120m.zip - 5.25" 1.2mb diskette images
+
+    Inside those zip archives you'll find the image files for appropriate
+    diskette media.
+
+    * x86BOOT.img  - A floppy boot disk image with the x86 installer.
+
+    * x86DSK??.img - Several floppy diskette images that contain the archived
+    OS files. Depending on the diskette capacity, the number of files varies.
 
     Please note that to conserve space, the Floppy Diskette Edition does not
     contain the sources for the included packages. You can obtain those sources
