@@ -11,7 +11,6 @@ archiver\cabext
 archiver\lpq1
 archiver\p7zip
 archiver\zoo
-base\samcfg
 boot\romdsk
 boot\romos
 boot\syslnx
@@ -68,6 +67,7 @@ emulator\vice
 emulator\z26
 emulator\zboy
 emulator\zsnes
+emulator\frotz
 games\bolitare
 games\boom
 games\btitanic
@@ -76,7 +76,6 @@ games\empong
 games\ewsnake
 games\fmines
 games\freedoom
-games\frotz
 games\gnuchess
 games\hangman
 games\ivan
@@ -137,7 +136,7 @@ util\cdrom2ui
 util\clamav
 util\clamdb
 util\dialog
-util\dn2
+apps\dn2
 util\dog
 util\fdisrc
 apps\fdshell

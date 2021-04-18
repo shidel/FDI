@@ -17,9 +17,6 @@ $PKG_ASSIST$
 ; At present, it has been pulled for licensing confusion and conflicts
 ; net\fdnet
 
-; License for 'emulator\meka' is still under review
-emulator\meka
-
 ; Excluded, lacks a clear license.
 ; util\paint2
 
@@ -78,14 +75,7 @@ edit\setedit
 edit\tde
 edit\uhex
 edit\vim
-emulator\mines
-emulator\nosefart
-emulator\simcoupe
-emulator\sneese
-emulator\vice
-emulator\z26
-emulator\zboy
-emulator\zsnes
+
 games\bolitare
 games\boom
 games\btitanic

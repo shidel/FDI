@@ -51,6 +51,8 @@ util\zerofill
 util\xdel
 
 drivers\doslfn
+util\dosfsck
+
 
 util\dosutil
 
@@ -65,12 +67,13 @@ util\pcisleep
 util\raread
 util\rawrite
 util\setlock
-util\spool
+drivers\spool
 util\stamp
 util\switchar
 util\topspin
 unix\trch
-util\xkeyb
+
+drivers\xkeyb
 
 drivers\shareext
 util\wcd
@@ -94,7 +97,6 @@ games\ewsnake
 games\flpybird
 games\fmines
 games\freedoom
-games\frotz
 games\gnuchess
 games\hangman
 games\ivan

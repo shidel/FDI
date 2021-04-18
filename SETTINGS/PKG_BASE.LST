@@ -25,7 +25,6 @@ base\devload
 base\diskcomp
 base\diskcopy
 base\display
-base\dosfsck
 base\edit
 base\edlin
 base\exe2bin
