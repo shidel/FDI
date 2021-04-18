@@ -5,12 +5,13 @@ SET TZ=
 SET PATH=%dosdir%\BIN
 
 SET DIRCMD=/P /OGN /Y
+rem SET COPYCMD=/-Y
 
 rem SET TEMP=%dosdir%\TEMP
 rem SET TMP=%TEMP%
-rem SET NLSPATH=%dosdir%\NLS
-rem SET HELPPATH=%dosdir%\HELP
-rem SET COPYCMD=/-Y
+
+if exist %dosdir%\NLS\NUL set NLSPATH=%dosdir%\NLS
+if exist %dosdir%\HELP\NUL set HELPPATH=%dosdir%\HELP
 
 echo.
 call CDROM.BAT
@@ -41,11 +42,17 @@ AUTO_WELCOME=Welcome to the /fGreen %1 /fCyan %2 /fGray operating system ( /s- /
 :SkipLanguageData
 vecho /k0 /p Done processing startup files /fCyan FDCONFIG.SYS /a7 and /fCyan $AUTOEXEC$ /a7/p
 
-if exist SETUP.BAT CALL SETUP.BAT $BOOT$
+if exist SETUP.BAT goto RunSetup
+:DoneSetup
 
 if not exist %DOSDIR%\BIN\WELCOME.BAT goto V8Welcome
 call WELCOME.BAT
 goto Done
+
+:RunSetup
+vdelay 1500
+CALL SETUP.BAT $BOOT$
+goto DoneSetup
 
 :V8Welcome
 set LANGFILE=FREEDOS\SETUP\%LANG%\FDSETUP.DEF
