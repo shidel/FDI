@@ -11,11 +11,13 @@ if "%FADV%" == "y" goto BaseAdvOnly
 :BaseOnly
 set PF=PAC_FRAME_B
 set PO=PAC_OPTS_B
+set TFC=1
 goto PromptUser
 :BaseAdvOnly
 if "%FDIM%" == "" goto BaseOnly
 set PF=PAC_FRAME_BD
 set PO=PAC_OPTS_BD
+set TFC=1
 goto PromptUser
 :HasAllPacs
 if "%FDIM%" == "" goto AllOnly

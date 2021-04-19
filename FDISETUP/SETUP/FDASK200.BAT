@@ -1,5 +1,7 @@
 @echo off
 
+rem ask about backing up previous OS
+
 if "%FDIDFMT%" == "y" goto SkipBackup
 if exist %FDRIVE%\FDAUTO.BAT goto QueryBackup
 if exist %FDRIVE%\AUTOEXEC.BAT goto QueryBackup
