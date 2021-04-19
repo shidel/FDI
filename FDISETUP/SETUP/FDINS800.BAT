@@ -2,7 +2,7 @@
 
 REM Language specific adjustments
 
-if "%LANG%" == "EN" goto Done
+if "%LANG%" == "EN" goto NoCommand
 
 if not exist %FTARGET%\NLS\CMD-%LANG%.COM goto NoCommand
 
