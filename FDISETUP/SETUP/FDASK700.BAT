@@ -5,19 +5,19 @@ if exist ..\BIN\FDIMPLES.COM set FDIM=..\BIN\FDIMPLES.COM
 if exist ..\BIN\FDIMPLES.EXE set FDIM=..\BIN\FDIMPLES.EXE
 
 :Beginning
-
+set TPDC=3
 if exist %FINSP%\FDPLFULL.LST goto HasAllPacs
 if "%FADV%" == "y" goto BaseAdvOnly
 :BaseOnly
 set PF=PAC_FRAME_B
 set PO=PAC_OPTS_B
-set TFC=1
+set TPDC=1
 goto PromptUser
 :BaseAdvOnly
 if "%FDIM%" == "" goto BaseOnly
 set PF=PAC_FRAME_BD
 set PO=PAC_OPTS_BD
-set TFC=1
+set TPDC=1
 goto PromptUser
 :HasAllPacs
 if "%FDIM%" == "" goto AllOnly
@@ -50,7 +50,7 @@ vecho /k0 /p
 vecho /k0 /t %FLANG% PACDO_ADV
 vecho /k0 /n /t %FLANG% PACDS_ADV
 :NotAdv
-vchoice /k0 /a %TFC% Ctrl-C /d 3
+vchoice /k0 /a %TFC% Ctrl-C /d %TPDC%
 
 if errorlevel 200 FDICTRLC.BAT %0
 
@@ -114,4 +114,5 @@ goto Done
 set PF=
 set PO=
 set FDIM=
+set TPDC=
 verrlvl 0

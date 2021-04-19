@@ -87,6 +87,7 @@ set TQB=
 
 set PF=
 set PO=
+set TPDC=
 
 :SkipClear
 verrlvl 0
