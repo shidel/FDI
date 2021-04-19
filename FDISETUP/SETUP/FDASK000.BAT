@@ -37,8 +37,8 @@ if errorlevel 4 set FKB=4
 if errorlevel 5 set FKB=5
 if errorlevel 6 set FKB=6
 if errorlevel 7 set FKB=7
-if errorlevel 8 set FKB=8
-if errorlevel 9 goto KBAdv
+rem if errorlevel 8 set FKB=8
+if errorlevel 8 goto KBAdv
 goto Done
 
 :KBPolling
