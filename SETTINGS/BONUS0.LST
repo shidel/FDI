@@ -11,6 +11,11 @@ archiver\cabext
 archiver\lpq1
 archiver\p7zip
 archiver\zoo
+archiver\lzip
+archiver\lzma
+archiver\lzop
+archiver\slicer
+
 boot\romdsk
 boot\romos
 boot\syslnx
@@ -172,6 +177,23 @@ util\wcd
 util\wde
 util\whichfat
 util\wptail
+util\dzemm
+util\xfdisk
+util\daa2iso
+util\hip
+util\pdtree
+util\flashrom
+util\gifsicle
+util\pngcrush
+util\raread
+util\rawrite
+apps\sqlite
+util\unrtf
+util\aefdisk
+util\fdshield
+util\password
+
+
 
 ; New packages without translations
 devel\i16budoc
@@ -198,7 +220,7 @@ devel\tinyasm
 
 drivers\gcdrom
 drivers\uide
-drivers\eltorito
+; drivers\eltorito
 
 ; The new FreeCOM beta and older "stable" version
 base\freecom

@@ -14,8 +14,6 @@ $PKG_ASSIST$
 util\slowdown
 drivers\doslfn
 
-util\rawrite
-
 ; License for 'net\fdnet' is still under review
 ; At present, it has been pulled for licensing confusion and conflicts
 ; net\fdnet
@@ -30,9 +28,9 @@ unix\tee
 unix\touch
 unix\which
 unix\less
-unix\trch
+; unix\trch
 
-unix\md5sum
+; unix\md5sum
 
 ; net\mtcp
 
@@ -41,12 +39,30 @@ util\edict
 util\rawrite
 
 util\wcd
-util\aefdisk
+; util\aefdisk
 
-util\part
-util\xfdisk
-util\xdel
-util\xkeyb
+; util\part
+; util\xfdisk
+; util\xdel
+; util\xkeyb
 
-apps\fdtui
+; apps\fdtui
 ; net\lynx
+
+; high user requests in survey
+archiver\p7zip
+archiver\tar
+archiver\gzip
+archiver\bz2
+devel\upx
+; drivers\ntfs
+; drivers\usbdos
+; edit\vim
+; edit\e3
+games\flpybird
+util\bootfix
+util\flashrom
+util\pcisleep
+
+; was live before
+util\dosfsck

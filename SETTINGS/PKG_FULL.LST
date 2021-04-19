@@ -23,10 +23,6 @@ unix\which
 archiver\tar
 archiver\gzip
 archiver\bz2
-archiver\lzip
-archiver\lzma
-archiver\lzop
-archiver\slicer
 
 edit\msedit
 
@@ -35,7 +31,6 @@ util\pg
 util\bmp2png
 drivers\cdrcache
 util\cpied
-util\daa2iso
 util\dos32a
 util\foxcalc
 unix\gnubc
@@ -46,26 +41,20 @@ util\part
 drivers\srdisk
 drivers\usbdos
 util\slowdown
-util\xfdisk
 util\zerofill
 util\xdel
 
 drivers\doslfn
 util\dosfsck
 
-
 util\dosutil
 
 apps\doszip
-; util\dzemm
 util\foxtype
 drivers\lfndos
 util\gnuchcp
 
-util\password
 util\pcisleep
-util\raread
-util\rawrite
 util\setlock
 drivers\spool
 util\stamp
@@ -77,7 +66,6 @@ drivers\xkeyb
 
 drivers\shareext
 util\wcd
-util\fdshield
 
 ; Not Usefull without Networking
 ; net\mtcp
@@ -119,11 +107,7 @@ games\ww1
 games\zmiy
 
 archiver\7zdec
-archiver\arj
-archiver\cabext
-archiver\lpq1
 archiver\p7zip
-archiver\zoo
 
 base\samcfg
 
@@ -147,7 +131,6 @@ unix\cal
 unix\gnused
 unix\uptimec
 
-util\aefdisk
 util\ansimat
 util\b64
 util\bsum
@@ -164,53 +147,31 @@ apps\fdshell
 ; apps\fdtui
 
 util\finddisk
-util\flashrom
-util\gifsicle
 util\gnufonts
 util\hexcomp
-util\hip
 drivers\hiram
 util\localcfg
 drivers\lptdrv
 util\memteste
 drivers\ntfs
 util\ospimg
-util\pbox
-util\pdtree
 apps\pgme
-util\pngcrush
 util\rcal
 util\search
-apps\sqlite
 util\terminal
 util\testdisk
-util\unrtf
 util\utf8tocp
 util\wde
 util\whichfat
 util\wptail
 
-; Following are Online Repository Only Packages and are excluded from the
-; install media for various reasons
+sound\adplay
+sound\cdp
+sound\dosmid
+sound\mplayer
+sound\opencp
+sound\lame
 
-; archiver\lha
-; archiver\unrar
-
-; devel\tppatch
-
-; games\kiloblas
-; games\lincrawl
-; games\psrinvad
-
-; unix\minibox
-; unix\tail
-; unix\uptime
-
-; util\4dos
-; util\blwcbc
-; apps\paint2
-; util\start
-; util\zdir
 
 ; new additions and returned packages
 
