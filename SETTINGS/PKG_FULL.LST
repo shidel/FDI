@@ -105,6 +105,7 @@ games\vitetris
 games\wing
 games\ww1
 games\zmiy
+games\mistral
 
 archiver\7zdec
 archiver\p7zip
@@ -170,8 +171,6 @@ sound\cdp
 sound\dosmid
 sound\mplayer
 sound\opencp
-sound\lame
-
 
 ; new additions and returned packages
 

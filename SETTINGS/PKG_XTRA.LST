@@ -20,6 +20,8 @@ $PKG_ASSIST$
 ; Excluded, lacks a clear license.
 ; util\paint2
 
+base\htmlhelp
+
 archiver\7zdec
 archiver\arj
 archiver\cabext

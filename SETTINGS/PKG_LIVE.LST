@@ -60,6 +60,8 @@ devel\upx
 ; edit\vim
 ; edit\e3
 games\flpybird
+games\senet
+
 util\bootfix
 util\flashrom
 util\pcisleep

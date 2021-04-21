@@ -192,8 +192,13 @@ util\unrtf
 util\aefdisk
 util\fdshield
 util\password
+base\htmlhelp
 
-
+games\mistral
+drivers\uhdd
+sound\lame
+unix\minibox
+util\zdir
 
 ; New packages without translations
 devel\i16budoc
