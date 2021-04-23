@@ -112,9 +112,9 @@ goto DoneCheckWarning
 
 :ReplaceConfig
 copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.DEF>NUL
-type %FINSP%\..\BIN\FDNPKG.CFG| vstr /n/s "sources 0" "sources %OSRC%"" >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.1| vstr /n/s %%FDRIVE%% C: >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.2 | vstr /n/s mapdrives #mapdrives>%FTARGET%\BIN\FDNPKG.CFG
+type %FINSP%\..\BIN\FDNPKG.CFG | vstr /n/s "sources 0" "sources %OSRC%" >%FTARGET%\BIN\FDNPKG.1
+type %FTARGET%\BIN\FDNPKG.1 | vstr /n/s %%FDRIVE%% C: >%FTARGET%\BIN\FDNPKG.1
+type %FTARGET%\BIN\FDNPKG.2 | vstr /n/s mapdrives #mapdrives >%FTARGET%\BIN\FDNPKG.CFG
 del %FTARGET%\BIN\FDNPKG.1 >NUL
 del %FTARGET%\BIN\FDNPKG.2 >NUL
 copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.BAK>NUL
