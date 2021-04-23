@@ -59,9 +59,11 @@ goto MapEnabled
 set _TC=#mapdrives cc
 :MapEnabled
 set _TI=0
-type %FINSP%\FDNPKG.CFG|vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.TMP
-type %TEMP%\FDNPKG.TMP|vstr /n /s %%OSRC%% %OSRC% |vstr /n /s %%FDRIVE%% C: >%FDNPKG.CFG%
-del  %TEMP%\FDNPKG.TMP >NUL
+type %FINSP%\..\BIN\FDNPKG.CFG|vstr /n /s #mapdrives "%_TC%" >%TEMP%\FDNPKG.1
+type %TEMP%\FDNPKG.1|vstr /n/s "sources 0" "sources %OSRC%" >%TEMP%\FDNPKG.2
+type %TEMP%\FDNPKG.2|vstr /n/s %%DOSDRV%% C: >%FDNPKG.CFG%
+del  %TEMP%\FDNPKG.1 >NUL
+del  %TEMP%\FDNPKG.2 >NUL
 goto ReadyFDINST
 
 :ReadyFDINST
