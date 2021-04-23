@@ -27,6 +27,7 @@ verrlvl 0
 
 :TryRAMDrive
 if exist \FREEDOS\BIN\FDRAMDRV.BAT CALL \FREEDOS\BIN\FDRAMDRV.BAT
+set RAMDRV=%FDRAMDRV%
 if "%FDRAMDRV%" == "" goto NoRamDrive
 
 :SetTempPath
@@ -76,7 +77,7 @@ goto done
 :IsQEMU
 if not "%FDRAMDRV%" == "" goto Assimilate
 :QEMU
-CALL FDRAMDRV.BAT
+if exist \FREEDOS\BIN\FDRAMDRV.BAT CALL \FREEDOS\BIN\FDRAMDRV.BAT
 set RAMDRV=%FDRAMDRV%
 if "%FDRAMDRV%" == "" goto Failed
 goto SetTempPath
