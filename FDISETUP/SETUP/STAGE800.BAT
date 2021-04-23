@@ -106,7 +106,9 @@ set _TT=
 goto LoopingList
 
 :FinishedList
-if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
+rem no lnger needed, newer packages of FDNPKG are preset with good configs.
+rem we aren't going to change the install sources option from their defaults
+rem if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
 verrlvl 0
 goto DoneCheckWarning
 
