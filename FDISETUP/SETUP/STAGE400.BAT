@@ -13,6 +13,7 @@ vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 if not "%1" == "" goto %1
 
+if "%FDRAMDRV%" == "C:" goto FDiskTest
 vfdutil /u %FDRIVE%\TEMP????.??? >NUL
 if not errorlevel 1 goto Done
 
