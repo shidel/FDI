@@ -1,9 +1,9 @@
 ###############################################################################
-	 FreeDOS 1.3 Release Candidate 4 ("FreeDOS 1.3 RC4")
+		FreeDOS 1.3 Release Candidate 4 ("FreeDOS 1.3 RC4")
 ###############################################################################
 
 -------------------------------------------------------------------------------
-		     General system requirements:
+		General system requirements:
 -------------------------------------------------------------------------------
 
   * DOS-compatible system (Intel + BIOS, or UEFI with Legacy support)
@@ -18,35 +18,34 @@
 
 
 -------------------------------------------------------------------------------
-		    What's in all those zip files?
+		What's in all those zip files?
 -------------------------------------------------------------------------------
 
 FD13-LiveCD.zip
 
-  * FD13LIVE.ISO - The FreeDOS 1.3 RC4 installer. Most users should
-    install this version.
+  * FD13LIVE.ISO - The FreeDOS 1.3 RC4 installer.  Most users should
+    use this image to install FreeDOS.
 
-    You can also use the LiveCD to boot and run FreeDOS directly from
-    the CD-ROM (depending on your computer system and hardware)
-    without installation to your hard drive.
+    Depending on your computer system and hardware configuration, you
+    can also use the LiveCD to boot and run FreeDOS directly from the
+    CD-ROM without installation to your hard drive.
 
 FD13-LegacyCD.zip
 
   * FD13LGCY.ISO - A bootable CD image designed for older hardware. If
-    you cannot boot the LiveCD to install FreeDOS, try this version.
+    you cannot boot the LiveCD to install FreeDOS, try this disc image.
 
-    Uses the older El Torito boot CD format. Some newer computers and
-    virtual machines cannot use this older format. Unless you have a
-    computer that requires this type of bootable CD, we recommend
-    using the LiveCD instead.
+    This disc image uses the older El Torito boot CD format. Some newer
+    computers and virtual machines cannot use this older format. Unless
+    you have a computer that requires this type of bootable CD, we
+    recommend using the LiveCD instead.
 
 FD13-Floppy.zip
 
   * FD13FLOP.IMG - Basic FreeDOS installation boot floppy image. If
     your computer has a CD-ROM drive, but you cannot boot from the
-    install CD, then use this boot floppy image. Boot from this
-    floppy, insert the install CD, and the FreeDOS installer should do
-    the rest.
+    install CD. Use this diskette image to boot the system. Then
+    insert the install CD. The FreeDOS installer should do the rest.
 
 FD13-BonusCD.zip
 
@@ -63,11 +62,12 @@ FD13-LiteUSB.zip
 
   * FD13LITE.VMDK - A virtual machine disk file, compatible with a
     variety of virtual machine software including VirtualBox, VMware,
-    Parallels, QEMU and other systems.
+    and other systems.
 
     Using a VMDK file can simplify installing FreeDOS. Just attach the
     VMDK image to your virtual machine software as a hard drive, and
-    boot it.
+    boot it. (Please note that you will still need to create a virtual
+    hard disk to install FreeDOS)
 
 FD13-FullUSB.zip
 
@@ -105,9 +105,9 @@ any hardware that can run FreeDOS and has EGA or better graphics:
   * Want to perform a "headless" install to a different DOS directory?
     It's easy with the command line options.
 
-However, the Floppy-Only Edition uses a completely different installer
-than the CD-ROM or USB installers. The Floppy-Only Edition does not
-use any of those other media to install.
+The Floppy-Only Edition uses a completely different installer than
+the CD-ROM or USB installers. The Floppy-Only Edition does not use
+any of those other media to install.
 
 The Floppy-Only Edition contains a limited FreeDOS set of programs
 that are more useful on classic PC hardware.
@@ -115,7 +115,7 @@ that are more useful on classic PC hardware.
 The FreeDOS Floppy-Only Edition is distributed as several zip archives
 containing the pre-made floppy diskette images:
 
- 1. These zip archives contain image files for several common floppy
+    These zip archives contain image files for several common floppy
     diskette media:
 
     * FD13-FE720k.zip - 3.5" 720k diskette images
@@ -124,13 +124,14 @@ containing the pre-made floppy diskette images:
 
     * FD13-FE120m.zip - 5.25" 1.2mb diskette images
 
- 2. Or, install with one of these pre-made disk images:
+    Each of those zip archives contain a set of pre-made disk images:
 
     * x86BOOT.img - A floppy boot disk image with the x86 installer.
 
     * x86DSK??.img - Several floppy diskette images that contain the
-      core FreeDOS operating system files. The amount of files on each
-      floppy varies depending on the diskette capacity.
+      core FreeDOS operating system files. The number of floppy images
+      and amount of files on each varies depending on the diskette
+      capacity.
 
 To conserve space, the FreeDOS Floppy-Only Edition does not contain
 the source code for the FreeDOS packages. You can find the source code
@@ -139,17 +140,16 @@ the other release media, like the USB or CD-ROM installer.
 
 
 -------------------------------------------------------------------------------
-			    Support Note:
+		Support note regarding the Floppy-Edition
 -------------------------------------------------------------------------------
 
-As of FreeDOS 1.3 RC4, the CPU level detection algorithms in V8Power
-Tools for DOS (used in the installer) need to be improved. Some PC
-hardware systems may incorrectly report only 80186 support, when in
-fact they might be '286 or better. This will affect the software
+As of FreeDOS 1.3 RC4, the CPU level detection algorithms in V8Power Tools
+for DOS (used in the installer) need to be improved. Some systems may be
+incorrectly reported to the installer as only having an 80186 CPU. When in
+fact they might have a '286 or better processor. This will affect the software
 installed by the FreeDOS Floppy-Only Edition.
 
-For this release, the installer will assume that the hardware has a
-'386 CPU or better. When launching the SETUP.BAT installer, you can
-override CPU detection by adding an option (like 8086, 186, 286, 386,
-486, 586, 686, EMU, QEMU, VBX, VMW or DBX) to force a specific CPU
-level to support.
+For this release, the installer will assume that the hardware has a '386 CPU
+or better. When launching the SETUP.BAT installer, you can override CPU
+detection by adding an option (like 8086, 186, 286, 386, 486, 586, 686, EMU,
+QEMU, VBX, VMW or DBX) to force a specific CPU level to support.
