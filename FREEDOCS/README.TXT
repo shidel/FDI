@@ -8,7 +8,7 @@
 
   * DOS-compatible system (Intel + BIOS, or UEFI with Legacy support)
 
-  * At least 20MB free disk space:
+  * At least $REQ_BASE_MIN$ free disk space:
 
     $REQ_BASE_MIN$  Plain DOS system
     $REQ_BASE_MAX$  Plain DOS system, with sources
