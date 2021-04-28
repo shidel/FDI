@@ -1,123 +1,155 @@
 ###############################################################################
-$OS_NAME$ $OS_VERSION$ Installation media.
+	 FreeDOS 1.3 Release Candidate 4 ("FreeDOS 1.3 RC4")
 ###############################################################################
 
 -------------------------------------------------------------------------------
-Some general system requirements.
+		     General system requirements:
 -------------------------------------------------------------------------------
 
-    A $OS_NAME$ FULL install with sources requires 450 MiB of free HD space.
-    Without sources, 250 MiB of free space will be needed.
+  * DOS-compatible system (Intel + BIOS, or UEFI with Legacy support)
 
-    A $OS_NAME$ PLAIN install with sources requires 50 MiB of free HD space.
-    Without sources, 20 MiB of free space will be needed.
+  * At least 20MB free disk space:
+
+     20MB  Plain DOS system
+     50MB  Plain DOS system, with sources
+
+    450MB  Full installation including applications and games
+    250MB  Full installation with sources
+
 
 -------------------------------------------------------------------------------
-What's in all those ZIP files?
+		    What's in all those zip files?
 -------------------------------------------------------------------------------
 
-readme.txt
-    The simple "before you choose and install" document.
-    (All zip archives contain a copy of this README file.)
+FD13-LiveCD.zip
 
-verify.txt
-    Contains MD5, SHA256 and SHA512 hashes for all of the different release
-    files.
+  * FD13LIVE.ISO - The FreeDOS 1.3 RC4 installer. Most users should
+    install this version.
 
-$OS_PREFIX$-Floppy.zip
+    You can also use the LiveCD to boot and run FreeDOS directly from
+    the CD-ROM (depending on your computer system and hardware)
+    without installation to your hard drive.
 
-    * $OS_PREFIX$FLOP.IMG - Basic $OS_NAME$ installation boot floppy image for systems
-    that support a CD-ROM. But, the system cannot boot from either of CD-ROM
-    release media.
+FD13-LegacyCD.zip
 
-$OS_PREFIX$-LegacyCD.zip
+  * FD13LGCY.ISO - A bootable CD image designed for older hardware. If
+    you cannot boot the LiveCD to install FreeDOS, try this version.
 
-    * $OS_PREFIX$LGCY.ISO - Contains all the packages as $OS_PREFIX$-FullUSB.
-    However, it is a bootable CD image designed for older hardware. It uses the
-    classic El Torito Boot CD-ROM format. Some modern computers and virtual
-    machines are known to have issues booting CDs that use this ancient
-    specification. Unless you have a computer that requires this type of
-    bootable CD, we recommend using the LiveCD media.
+    Uses the older El Torito boot CD format. Some newer computers and
+    virtual machines cannot use this older format. Unless you have a
+    computer that requires this type of bootable CD, we recommend
+    using the LiveCD instead.
 
-$OS_PREFIX$-LiveCD.zip
+FD13-Floppy.zip
 
-    * $OS_PREFIX$LIVE.ISO - This media is similar to the LegacyCD. However,
-    instead of relying on the BIOS floppy disk emulation, it uses SYSLINUX and
-    MEMDISK to boot an emulated floppy disk. Along side support to perform a
-    Plain and Full installation of $OS_NAME$, this media is also able to run
-    $OS_NAME$ live from RAM or CD (depending on computer system and hardware)
-    without installation to an internal hard disk drive.
+  * FD13FLOP.IMG - Basic FreeDOS installation boot floppy image. If
+    your computer has a CD-ROM drive, but you cannot boot from the
+    install CD, then use this boot floppy image. Boot from this
+    floppy, insert the install CD, and the FreeDOS installer should do
+    the rest.
 
-$OS_PREFIX$-BonusCD.zip
+FD13-BonusCD.zip
 
-    *  $OS_PREFIX$BNS.ISO - This is a non-bootable CD image. It contains numerous
-    packages for $OS_NAME$ that are not installed with either BASE or FULL.
+  * FD13BNS.ISO - A non-bootable CD image that contains some FreeDOS
+    packages that are not installed as part of either the LiveCD or
+    the Legacy CD.
 
-$OS_PREFIX$-LiteUSB.zip
+FD13-LiteUSB.zip
 
-    * $OS_PREFIX$LITE.IMG - A plain $OS_NAME$ system only! This USB stick image does
-    not contain all of the packages that are available in a FULL install. It
-    only contains the basic $OS_NAME$ set of packages.
+  * FD13LITE.IMG - A minimal FreeDOS installer, as a USB fob drive
+    image. This does not contain all of the packages from either the
+    LiveCD or the LegacyCD, and instead only contains a basic set of
+    FreeDOS packages.
 
-    * $OS_PREFIX$LITE.VMDK - An Virtual Machine Disk description file to simplify
-    attaching the LiteUSB image to a virtual machine (like VirtualBox or
-    vmWare) as a hard drive.
+  * FD13LITE.VMDK - A virtual machine disk file, compatible with a
+    variety of virtual machine software including VirtualBox, VMware,
+    Parallels, QEMU and other systems.
 
-$OS_PREFIX$-FullUSB.zip
+    Using a VMDK file can simplify installing FreeDOS. Just attach the
+    VMDK image to your virtual machine software as a hard drive, and
+    boot it.
 
-    *$OS_PREFIX$FULL.IMG - Plain DOS system and Full install USB stick image.
+FD13-FullUSB.zip
 
-    * $OS_PREFIX$FULL.VMDK - An Virtual Machine Disk description file to
-    simplify attaching the FullUSB image to a virtual machine (like VirtualBox
-    or vmWare) as a hard drive.
+  * FD13FULL.IMG - Plain DOS system and Full install USB stick image.
 
-$OS_NAME$ Floppy Only Edition
+  * FD13FULL.VMDK - A virtual machine disk file, compatible with a
+    variety of virtual machine software. Just attach the VMDK image to
+    your virtual machine as a hard drive, and boot it.
 
-    New as of $OS_NAME$ 1.3-RC3 is the Floppy Only Edition of $OS_NAME$.
-    Compared to the other media, this edition uses a completely different
-    installer and process. It is designed to be compatible with any hardware
-    that can run $OS_NAME$ that has EGA or better graphics.
+VERIFY.TXT
 
-    Comprised of only a limited $OS_NAME$ set of core programs, it installs
-    those packages based on the level of supported hardware. Only have a 286,
-    then no need to install the CD-Drivers that require a 386. Just got one
-    hard drive and no CD or Floppy? No problem! Just copy the contents of the
-    floppies to some directory and run it from there. Want to perform a headless
-    install to a different DOS directory, piece of cake with the command line
-    options. The best way to sum-up $OS_PREFIX$-x86 is to say...
+  * Contains MD5, SHA256 and SHA512 hashes for all of the different
+    release files. You can verify your copy of FreeDOS with these.
 
-        -- The Floppy Edition is the power user installer.
+README.TXT
 
-    $OS_NAME$ $OS_VERSION$ has a few zip archives with pre-made floppy
-    diskette images.
+  * The "before you choose and install" document. (All of the zip
+    files listed above also have a copy of the README file.)
 
-    * $OS_PREFIX$-FE720k.zip - 3.5" 720k diskette images
 
-    * $OS_PREFIX$-FE144m.zip - 3.5" 1.44mb diskette images
+-------------------------------------------------------------------------------
+		FreeDOS Floppy-Only Edition (FD13-x86)
+-------------------------------------------------------------------------------
 
-    * $OS_PREFIX$-FE120m.zip - 5.25" 1.2mb diskette images
+FreeDOS 1.3 includes a Floppy-Only Edition! This edition should run on
+any hardware that can run FreeDOS and has EGA or better graphics:
 
-    Inside those zip archives you'll find the image files for appropriate
-    diskette media.
+  * Are you running a '286 or another classic system without a CD-ROM
+    drive?  Install from these floppies to install FreeDOS.
 
-    * x86BOOT.img  - A floppy boot disk image with the x86 installer.
+  * Do you have just one hard drive and no CD or floppy drive? Just
+    copy the contents of the floppies to a temporary directory and run
+    the installer from there.
 
-    * x86DSK??.img - Several floppy diskette images that contain the archived
-    OS files. Depending on the diskette capacity, the number of files varies.
+  * Want to perform a "headless" install to a different DOS directory?
+    It's easy with the command line options.
 
-    Please note that to conserve space, the Floppy Diskette Edition does not
-    contain the sources for the included packages. You can obtain those sources
-    through the $OS_NAME$ website ($URL$) or from the other
-    release media, like USB or CD-ROM. The Floppy Diskette Edition does not
-    require any of those other media to perform an installation and will not
-    use them during installation.
+However, the Floppy-Only Edition uses a completely different installer
+than the CD-ROM or USB installers. The Floppy-Only Edition does not
+use any of those other media to install.
 
-    * Please note, as of 1.3-RC4, the CPU level detection algorithms in
-    V8Power Tools for DOS need improved. Some real hardware systems, report
-    only 80186 level of support. This will effect the software installed by
-    the FDI-x86 edition. For the time being, the installer will assume that
-    the hardware has at least a 386 processer.  When launching the SETUP.BAT
-    installer, you can override CPU detection by adding an option (like 8086,
-    186, 286, 386, 486, 586, 686, EMU, QEMU, VBX, VMW or DBX) and force a
-    specific lovel of CPU that is supported.
+The Floppy-Only Edition contains a limited FreeDOS set of programs
+that are more useful on classic PC hardware.
 
+The FreeDOS Floppy-Only Edition is distributed as several zip archives
+containing the pre-made floppy diskette images:
+
+ 1. These zip archives contain image files for several common floppy
+    diskette media:
+
+    * FD13-FE720k.zip - 3.5" 720k diskette images
+
+    * FD13-FE144m.zip - 3.5" 1.44mb diskette images
+
+    * FD13-FE120m.zip - 5.25" 1.2mb diskette images
+
+ 2. Or, install with one of these pre-made disk images:
+
+    * x86BOOT.img - A floppy boot disk image with the x86 installer.
+
+    * x86DSK??.img - Several floppy diskette images that contain the
+      core FreeDOS operating system files. The amount of files on each
+      floppy varies depending on the diskette capacity.
+
+To conserve space, the FreeDOS Floppy-Only Edition does not contain
+the source code for the FreeDOS packages. You can find the source code
+via the FreeDOS website (https://www.freedos.org/download/) or from
+the other release media, like the USB or CD-ROM installer.
+
+
+-------------------------------------------------------------------------------
+			    Support Note:
+-------------------------------------------------------------------------------
+
+As of FreeDOS 1.3 RC4, the CPU level detection algorithms in V8Power
+Tools for DOS (used in the installer) need to be improved. Some PC
+hardware systems may incorrectly report only 80186 support, when in
+fact they might be '286 or better. This will affect the software
+installed by the FreeDOS Floppy-Only Edition.
+
+For this release, the installer will assume that the hardware has a
+'386 CPU or better. When launching the SETUP.BAT installer, you can
+override CPU detection by adding an option (like 8086, 186, 286, 386,
+486, 586, 686, EMU, QEMU, VBX, VMW or DBX) to force a specific CPU
+level to support.

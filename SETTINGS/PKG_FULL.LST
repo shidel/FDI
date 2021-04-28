@@ -171,6 +171,7 @@ sound\cdp
 sound\dosmid
 sound\mplayer
 sound\opencp
+base\htmlhelp
 
 ; new additions and returned packages
 
