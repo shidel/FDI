@@ -5,6 +5,7 @@ set RETRY=yes
 if "%1" == "REQUIRED" goto Required
 if "%TEMP%" == "" goto MakeTemp
 call \FREEDOS\SETUP\FDIDRIVE.BAT PRE %TEMP%
+if "%RESULT%" == "%FDRAMDRV%" goto UseRamDrive
 if "%RESULT%" == "%FINSD%" goto MakeTemp
 if "%RESULT%" == "%FBOOTD%" goto MakeTemp
 
@@ -21,12 +22,19 @@ vinfo /m
 if errorlevel 103 goto NotDOSBox
 if errorlevel 102 goto IsQEMU
 if errorlevel 101 goto IsDOSBox
+goto NotDOSBox
+
+:UseRamDrive
+verrlvl 0
+set RETRY=
+goto SkipCreateRD
 
 :NotDOSBox
 verrlvl 0
 
 :TryRAMDrive
 if exist \FREEDOS\BIN\FDRAMDRV.BAT CALL \FREEDOS\BIN\FDRAMDRV.BAT
+:SkipCreateRD
 set RAMDRV=%FDRAMDRV%
 if "%FDRAMDRV%" == "" goto NoRamDrive
 
