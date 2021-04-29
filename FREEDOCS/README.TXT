@@ -135,7 +135,7 @@ containing the pre-made floppy diskette images:
 
 To conserve space, the $OS_NAME$ Floppy-Only Edition does not contain
 the source code for the $OS_NAME$ packages. You can find the source code
-via the $OS_NAME$ website ($URL_DOWNLOAD$) or from
+via the $OS_NAME$ website ($OS_DOWNLOAD$) or from
 the other release media, like the USB or CD-ROM installer.
 
 
