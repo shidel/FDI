@@ -85,7 +85,7 @@ goto done
 :IsQEMU
 if not "%FDRAMDRV%" == "" goto Assimilate
 :QEMU
-if exist \FREEDOS\BIN\FDRAMDRV.BAT CALL \FREEDOS\BIN\FDRAMDRV.BAT
+if exist \FREEDOS\BIN\FDRAMDRV.BAT CALL \FREEDOS\BIN\FDRAMDRV.BAT LAST CHANCE
 set RAMDRV=%FDRAMDRV%
 if "%FDRAMDRV%" == "" goto Failed
 goto SetTempPath
