@@ -64,15 +64,9 @@ edit\setedit
 edit\tde
 edit\uhex
 edit\vim
-emulator\mines
-emulator\nosefart
-emulator\simcoupe
-emulator\sneese
-emulator\vice
-emulator\z26
-emulator\zboy
-emulator\zsnes
-emulator\frotz
+
+; emulators removed
+
 games\bolitare
 games\boom
 games\btitanic
