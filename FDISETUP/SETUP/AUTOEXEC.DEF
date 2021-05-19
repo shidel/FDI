@@ -22,53 +22,58 @@ alias reset=fdisk /reboot
 alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
 
+if "%config%"=="5" goto END
+
 if not exist %dosdir%\bin\vinfo.com goto Only8086
 vinfo /m
 if errorlevel 3 goto Support386
 if errorlevel 2 goto Support286
 
 :Only8086
-if "%config%"=="2" goto END
 MEM /C /N
 goto FINAL
 
 :Support286
-if "%config%"=="3" goto END
-LH FDAPM APMDOS
+FDAPM APMDOS
 CTMOUSE
 MEM /C /N
 goto FINAL
 
 :Support386
-if "%config%"=="4" goto END
+
+$LANG_SET$
+
+if "%config%"=="4" goto Support386Low
 
 LH FDAPM APMDOS
 rem LH SHARE
 rem if EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
+CTMOUSE
+goto InitCDROM
 
-$LANG_SET$
-
+:Support386Low
+FDAPM APMDOS
 CTMOUSE
 
-SHSUCDX /QQ /D3
-REM LH SHSUCDHD /QQ /F:FDBOOTCD.ISO
-DEVLOAD /H /Q %dosdir%\BIN\UDVD2.SYS /D:FDCD0001
-REM DEVLOAD /H /Q %dosdir%\BIN\UIDE.SYS /H /D:FDCD0001 /S5
-SHSUCDX /QQ /~ /D:?SHSU-CDR,D /D:?SHSU-CDH,D /D:?FDCD0001,D /D:?FDCD0002,D /D:?FDCD0003,D
-
+:InitCDROM
+if exist %dosdir%\bin\cdrom.bat TryCDROM
 MEM /C /N
-SHSUCDX /D
+goto FINAL
+
+:TryCDROM
+%dosdir%\bin\cdrom.bat
+MEM /C /N
+%dosdir%\bin\cdrom.bat /D
 
 :FINAL
 if not exist %dosdir%\bin\fdnet.bat goto NoNetwork
 call %dosdir%\bin\fdnet.bat start
 if errorlevel 1 goto NoNetwork
 
-REM Custom networking stuff
-
+REM Custom networking stuff once packet driver has loaded
 :NoNetwork
-if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 
+if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
 
 :END
