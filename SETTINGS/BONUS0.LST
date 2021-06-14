@@ -219,6 +219,7 @@ devel\tinyasm
 
 drivers\gcdrom
 drivers\uide
+drivers\rdisk
 ; drivers\eltorito
 
 ; The new FreeCOM beta and older "stable" version
