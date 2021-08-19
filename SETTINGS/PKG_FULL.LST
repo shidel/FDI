@@ -90,7 +90,6 @@ games\hangman
 games\ivan
 games\kraptor
 games\liquiwar
-games\magnetic
 games\mirmagic
 games\nethack
 games\nge_nibb
@@ -177,6 +176,7 @@ base\htmlhelp
 
 drivers\gcdrom
 drivers\uide
+util\pkgtools
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

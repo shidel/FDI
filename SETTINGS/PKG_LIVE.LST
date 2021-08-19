@@ -68,3 +68,7 @@ util\pcisleep
 
 ; was live before
 util\dosfsck
+
+; new
+util\pkgtools
+
