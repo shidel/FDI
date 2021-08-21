@@ -177,6 +177,7 @@ base\htmlhelp
 drivers\gcdrom
 drivers\uide
 util\pkgtools
+devel\kittenc
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

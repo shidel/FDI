@@ -116,6 +116,7 @@ util\aefdisk
 
 drivers\gcdrom
 drivers\uide
+devel\kittenc
 
 ; The new FreeCOM beta
 base\freecom
