@@ -54,16 +54,17 @@ if errorlevel 1 goto Failed
 if "%OBPD%" == "" goto AfterSys
 fdisk /MBR %OBPD% >NUL
 if errorlevel 1 goto Failed
-
-if "%OBPN%" == "" goto AfterSys
-fdisk /ACTIVATE:%OBPN% %OBPD% >NUL
-if errorlevel 1 goto Failed
-goto AfterSYS
+goto ActivatePart
 
 :NotForceBSS
 sys %FBOOTD% %FDRIVE% /BACKUPBS %FTARGET%\BOOT.BSS >NUL
 if errorlevel 1 goto Failed
+if "%OBPD%" == "" goto AfterSys
 
+:ActivatePart
+if "%OBPN%" == "" goto AfterSys
+fdisk /ACTIVATE:%OBPN% %OBPD% >NUL
+if errorlevel 1 goto Failed
 goto AfterSYS
 
 :AfterSYS

@@ -5,7 +5,7 @@ batch based installation kit based on the
 [V8Power Tools](http://up.lod.bz/V8Power) batch file enhancement utilities.
 
 If you do not want to use one of the
-[pre-built install images](http://up.lod.bz/FDI)
+[pre-built install images](https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/)
 and want to build a custom operating system release, please see
 the [FDI wiki](https://github.com/shidel/FDI/wiki)
 on [Github](https://github.com).
@@ -59,4 +59,11 @@ into [DOSBox](http://dosbox.com). It will perform the install and prepare an
 binaries and the FreeCOM shell. This does not cause the
 [FreeDOS](http://freedos.org) kernel to be used. So, technically this not a
 [FreeDOS](http://freedos.org) install. It really is just enhancing
-[DOSBox](http://dosbox.com) with the [FreeDOS](http://freedos.org) binaries.
+[DOSBox](http://dosbox.com) with the [FreeDOS](http://freedos.org) binaries and
+command shell.
+
+Note: For installation using floppy diskettes, the
+[FDI-x86](https://github.com/shidel/FDI-x86) is used instead of FDI. Although
+it is a completely different installer, it is referred to as an ADD-ON to FDI.
+This is because FDI-x86 needs the settings and configuration files that are
+part of FDI to be create install media.

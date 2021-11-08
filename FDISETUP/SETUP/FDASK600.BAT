@@ -1,6 +1,6 @@
 @echo off
 
-REM if advanced mode prompt for force MBR update if possible and not blank.
+REM maybe prompt for force MBR update if possible and not blank.
 
 vinfo /m
 if errorlevel 102 goto NotDOSBox
@@ -69,9 +69,15 @@ if not "%OBPC%" == "1" set OBPC=2
 :PromptUser
 if "%FADV%" == "y" goto AdvancedMode
 
-REM Could test OBPC=1, not OBPD= , not OBPN= then assume yes
+REM check that data was populated correctly
+if "%OBPD%" == "" goto PromptMBR
+if "%OBPN%" == "" goto PromptMBR
+
+vinfo /E %OBPN%
+if errorlevel 10 goto PromptMBR
 goto AssumeYes
 
+:PromptMBR
 :AdvancedMode
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME

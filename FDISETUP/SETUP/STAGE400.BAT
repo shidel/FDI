@@ -100,17 +100,6 @@ if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
 
-goto AfterPartitioned
-REM This is done later when we do System File Transfer
-
-if "%FDRIVE%" == "D:" fdisk /mbr 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /mbr 1>NUL
-if errorlevel 1 goto ManualPartition
-
-if "%FDRIVE%" == "D:" fdisk /activate:1 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /activate:1 1>NUL
-if errorlevel 1 goto ManualPartition
-
 :AfterPartitioned
 call FDICLS.BAT
 
