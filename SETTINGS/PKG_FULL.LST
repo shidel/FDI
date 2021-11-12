@@ -178,6 +178,10 @@ drivers\gcdrom
 drivers\uide
 util\pkgtools
 devel\kittenc
+apps\imgedit
+games\smiley
+util\pkginfo
+
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

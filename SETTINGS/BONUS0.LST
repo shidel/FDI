@@ -222,6 +222,13 @@ drivers\uide
 drivers\rdisk
 ; drivers\eltorito
 
+apps\imgedit
+games\smiley
+util\pkginfo
+util\listpci
+util\listvesa
+drivers\himemsx
+
 ; The new FreeCOM beta and older "stable" version
 base\freecom
 base\command

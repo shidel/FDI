@@ -16,7 +16,7 @@ drivers\doslfn
 
 ; License for 'net\fdnet' is still under review
 ; At present, it has been pulled for licensing confusion and conflicts
-; net\fdnet
+net\fdnet
 
 ; net\wget
 
@@ -35,8 +35,8 @@ unix\less
 ; net\mtcp
 
 util\raread
-util\edict
 util\rawrite
+util\edict
 
 util\wcd
 ; util\aefdisk
@@ -71,4 +71,6 @@ util\dosfsck
 
 ; new
 util\pkgtools
+util\listpci
+
 
