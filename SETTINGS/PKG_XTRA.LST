@@ -13,9 +13,8 @@ $PKG_ASSIST$
 
 ; Extra packages that are not automatically installed.
 
-; License for 'net\fdnet' is still under review
-; At present, it has been pulled for licensing confusion and conflicts
-; net\fdnet
+; The return an improvement of her FDNet Package :-)
+net\fdnet
 
 ; Excluded, lacks a clear license.
 ; util\paint2
@@ -117,8 +116,5 @@ util\aefdisk
 drivers\gcdrom
 drivers\uide
 devel\kittenc
-
-; The new FreeCOM beta
-base\freecom
 
 

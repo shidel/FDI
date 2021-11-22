@@ -5,6 +5,7 @@
 ; on the filesystem of the install media. (They are still in their associated
 ; packages.)
 
+BIN\FREECOM
 BIN\KERNL86.SYS
 BIN\KERNL386.SYS
 BIN\FDCOM.ICO

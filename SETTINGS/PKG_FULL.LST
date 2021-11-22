@@ -68,8 +68,9 @@ drivers\shareext
 util\wcd
 
 ; Not Usefull without Networking
-; net\mtcp
-; net\wget
+net\mtcp
+net\wget
+net\curl
 
 ; Per Jim, All of Archivers, Base, Editors, Games, Unix-like and Utilities
 ; Packages should be installed with FULL. These Packages are not referenced
@@ -181,7 +182,7 @@ devel\kittenc
 apps\imgedit
 games\smiley
 util\pkginfo
-
+util\tp5p5fix
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

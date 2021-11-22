@@ -14,8 +14,7 @@ $PKG_ASSIST$
 util\slowdown
 drivers\doslfn
 
-; License for 'net\fdnet' is still under review
-; At present, it has been pulled for licensing confusion and conflicts
+; The return an improvement of her FDNet Package :-)
 net\fdnet
 
 ; net\wget
