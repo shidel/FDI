@@ -34,7 +34,8 @@ boot\syslnx
 devel\bcc
 devel\fpc
 devel\nasm
-devel\ow
+devel\watcomc
+devel\watcomf
 devel\upx
 edit\biew
 edit\doshexed
