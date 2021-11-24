@@ -33,6 +33,7 @@ unix\less
 
 ; net\mtcp
 
+util\pkgtools
 util\raread
 util\rawrite
 util\edict

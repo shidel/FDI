@@ -228,7 +228,7 @@ drivers\rdisk
 
 apps\imgedit
 games\smiley
-util\pkginfo
+util\pkgtools
 util\listpci
 util\listvesa
 drivers\himemsx

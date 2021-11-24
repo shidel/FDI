@@ -181,7 +181,7 @@ util\pkgtools
 devel\kittenc
 apps\imgedit
 games\smiley
-util\pkginfo
+util\pkgtools
 util\tp5p5fix
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
