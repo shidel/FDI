@@ -46,7 +46,8 @@ devel\insight
 devel\jwasm
 devel\lua
 devel\nasm
-devel\ow
+devel\watcomc
+devel\watcomf
 devel\perl
 devel\regina
 devel\runtime
