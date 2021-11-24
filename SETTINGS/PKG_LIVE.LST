@@ -61,7 +61,6 @@ devel\upx
 ; edit\e3
 games\flpybird
 games\senet
-games\smiley
 
 util\bootfix
 util\flashrom
@@ -73,5 +72,6 @@ util\dosfsck
 ; new
 util\pkgtools
 util\listpci
+games\smiley
 
 
