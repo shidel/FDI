@@ -232,6 +232,5 @@ util\pkgtools
 util\listpci
 util\listvesa
 drivers\himemsx
-
-util\tp5p5fix
+util\tp7p5fix
 

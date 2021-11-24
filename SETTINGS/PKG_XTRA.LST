@@ -116,5 +116,6 @@ util\aefdisk
 drivers\gcdrom
 drivers\uide
 devel\kittenc
+util\tp7p5fix
 
 

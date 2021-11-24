@@ -73,5 +73,6 @@ util\dosfsck
 util\pkgtools
 util\listpci
 games\smiley
+util\tp7p5fix
 
 
