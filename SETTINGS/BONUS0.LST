@@ -5,9 +5,6 @@
 ; under BASE or FULL. However, some may be included here even if they are
 ; included elsewhere.
 
-base\freecom
-base\kernel
-
 archiver\7zdec
 archiver\arj
 archiver\cabext
@@ -205,17 +202,17 @@ devel\i16gcc
 devel\i16gcdoc
 devel\i16newli
 devel\i16src
+devel\i16lbi86
+devel\i16elklc
+devel\i16nlelk
 net\etherdfs
 util\edict
 apps\fdtui
 util\aefdisk
-devel\i16lbi86
 games\dosdef
 games\ev4de
 games\flpybird
 games\noudar
-devel\i16elklc
-devel\i16nlelk
 
 devel\dojs
 devel\msa
