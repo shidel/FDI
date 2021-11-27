@@ -5,10 +5,10 @@
 ; only the packages in BASE or FULL are installed by the installer.
 
 ; Include all package sets to make sure there packages are present.
-$PKG_BASE$
-$PKG_FDI$
-$PKG_FULL$
-$PKG_LIVE$
+; $PKG_BASE$
+; $PKG_FDI$
+; $PKG_FULL$
+; $PKG_LIVE$
 $PKG_ASSIST$
 
 ; Extra packages that are not automatically installed.
@@ -79,7 +79,6 @@ util\flashrom
 util\gnufonts
 unix\gnused
 util\hexcomp
-util\hip
 drivers\hiram
 util\localcfg
 drivers\lptdrv
