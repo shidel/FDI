@@ -59,6 +59,7 @@ edit\fed
 edit\freemacs
 edit\mbedit
 edit\mined
+edit\msedit
 edit\ospedit
 edit\pico
 edit\setedit
@@ -194,6 +195,7 @@ drivers\uhdd
 sound\lame
 unix\minibox
 util\zdir
+games\senet
 
 ; New packages without translations
 devel\i16budoc

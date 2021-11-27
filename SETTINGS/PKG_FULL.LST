@@ -68,6 +68,7 @@ drivers\shareext
 util\wcd
 
 ; Not Usefull without Networking
+net\fdnet
 net\mtcp
 net\wget
 net\curl
@@ -178,7 +179,6 @@ base\htmlhelp
 drivers\gcdrom
 drivers\uide
 util\pkgtools
-devel\kittenc
 apps\imgedit
 games\smiley
 util\pkgtools

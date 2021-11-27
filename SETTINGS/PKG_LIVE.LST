@@ -72,6 +72,7 @@ util\dosfsck
 ; new
 util\pkgtools
 util\listpci
+util\listvesa
 games\smiley
 util\tp7p5fix
 
