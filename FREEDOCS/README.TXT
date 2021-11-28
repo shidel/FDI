@@ -119,11 +119,11 @@ contains several pre-made floppy diskette images:
     These zip archives contain image files for several common floppy
     diskette media under separate directories:
 
-    * 720K - 3.5" 720k diskette images
+    * 720k - 3.5" 720k diskette images
 
-    * 144M - 3.5" 1.44mb diskette images
+    * 144m - 3.5" 1.44mb diskette images
 
-    * 120M - 5.25" 1.2mb diskette images
+    * 120m - 5.25" 1.2mb diskette images
 
     Each of those sets contain a number of pre-made disk images:
 
