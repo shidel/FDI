@@ -61,9 +61,9 @@ MEM /C /N
 goto FINAL
 
 :TryCDROM
-%dosdir%\bin\cdrom.bat
+call %dosdir%\bin\cdrom.bat
 MEM /C /N
-%dosdir%\bin\cdrom.bat display
+call %dosdir%\bin\cdrom.bat display
 
 :FINAL
 if not exist %dosdir%\bin\fdnet.bat goto NoNetwork
