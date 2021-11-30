@@ -56,7 +56,7 @@ FDAPM APMDOS
 CTMOUSE
 
 :InitCDROM
-if exist %dosdir%\bin\cdrom.bat TryCDROM
+if exist %dosdir%\bin\cdrom.bat goto TryCDROM
 MEM /C /N
 goto FINAL
 
