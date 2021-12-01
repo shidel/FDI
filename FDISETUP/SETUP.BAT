@@ -1,7 +1,7 @@
 @echo off
 
-REM FreeDOS 1.2+ Installer
-REM GNU General Public License, Version 1 or later
+REM FreeDOS 1.2+ Installer, version 2021-12-01
+rem GNU General Public License, (any version)
 REM Copyright 2016-2021 Jerome Shidel.
 
 BREAK off
