@@ -176,8 +176,9 @@ base\htmlhelp
 
 ; new additions and returned packages
 
-drivers\gcdrom
-drivers\uide
+; drivers\gcdrom
+; drivers\uide
+drivers\uhdd
 util\pkgtools
 apps\imgedit
 games\smiley

@@ -31,7 +31,7 @@ base\fdhelper
 ; Only required for CD install media
 
 drivers\udvd2
-drivers\gcdrom
+; drivers\gcdrom
 
 ; El Torito driver is included through config options for CD boot media
 ; drivers\eltorito

@@ -94,13 +94,13 @@ goto ManualPartition
 
 :AutoInfo
 verrlvl 1
-if "%FDRIVE%" == "C:" fdisk /info 1 | grep "C:" >NUL
-if "%FDRIVE%" == "D:" fdisk /info 2 | grep "D:" >NUL
-if errorlevel 1 goto ManualPartition
+if "%FDRIVE%" == "C:" fdisk /info 1 | grep -iv "fixed disk" | grep ":" >NUL
+if "%FDRIVE%" == "D:" fdisk /info 2 | grep -iv "fixed disk" | grep ":" >NUL
+if not errorlevel 1 goto ManualPartition
 
 verrlvl 1
-if "%FDRIVE%" == "C:" fdisk /auto 2>NUL
-if "%FDRIVE%" == "D:" fdisk /auto 2>NUL
+if "%FDRIVE%" == "C:" fdisk /auto 2 >NUL
+if "%FDRIVE%" == "D:" fdisk /auto 2 >NUL
 if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
