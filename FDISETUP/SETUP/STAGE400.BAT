@@ -88,18 +88,25 @@ vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
 vecho /k0 /n /t %FLANG% PARTING
 vdelay %FDEL%
 
-if "%FDRIVE%" == "C:" goto AutoInfo
-if "%FDRIVE%" == "D:" goto AutoInfo
+:AutoInfo
+if "%FDRIVE%" == "C:" goto AutoInfoC
+if "%FDRIVE%" == "D:" goto AutoInfoD
 goto ManualPartition
 
-:AutoInfo
-verrlvl 1
-if "%FDRIVE%" == "C:" fdisk /info 1 | grep -iv "fixed disk" | grep ":" >NUL
-if "%FDRIVE%" == "D:" fdisk /info 2 | grep -iv "fixed disk" | grep ":" >NUL
-if not errorlevel 1 goto ManualPartition
+:AutoInfoC
+set _FDDC=0
+fdisk /info 1 | grep ":" | vstr /b /l total | set /p _FDDC=
+goto AutoInfoCheck
+
+:AutoInfoD
+set _FDDC=0
+fdisk /info 2 | grep ":" | vstr /b /l total | set /p _FDDC=
+
+:AutoInfoCheck
+if not "%_FDDC%" == "1" goto ManualPartition
 
 verrlvl 1
-if "%FDRIVE%" == "C:" fdisk /auto 2 >NUL
+if "%FDRIVE%" == "C:" fdisk /auto 1 >NUL
 if "%FDRIVE%" == "D:" fdisk /auto 2 >NUL
 if errorlevel 1 goto ManualPartition
 
@@ -131,3 +138,4 @@ goto AbortBatch
 verrlvl 1
 
 :Done
+set _FDDC=
