@@ -100,6 +100,8 @@ if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
 
+vpause /t 10
+
 :AfterPartitioned
 call FDICLS.BAT
 
