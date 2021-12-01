@@ -230,6 +230,7 @@ set FDEBUG=
 set FWAIT=
 set FDEL=
 set FLANG=
+set CNTRY=
 
 if "%FREBOOT%" == "n" goto DoExit
 
