@@ -9,8 +9,6 @@ base\fdapm
 util\fdnpkg
 ; util\fdinst
 base\shsucdx
-drivers\uhdd
-drivers\udvd2
 base\xcopy
 util\v8power
 drivers\shsufdrv
@@ -18,7 +16,9 @@ drivers\srdisk
 base\himemx
 
 ; drivers\gcdrom
-; base\lbacache
+base\lbacache
+drivers\uhdd
+drivers\udvd2
 drivers\cdrcache
 
 ; El Torito driver is included through config options for CD boot media

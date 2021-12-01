@@ -16,6 +16,7 @@ drivers\doslfn
 
 ; The return an improvement of her FDNet Package :-)
 net\fdnet
+util\pkgtools
 
 ; net\wget
 
@@ -33,7 +34,6 @@ unix\less
 
 ; net\mtcp
 
-util\pkgtools
 util\raread
 util\rawrite
 util\edict
@@ -59,9 +59,6 @@ devel\upx
 ; drivers\usbdos
 ; edit\vim
 ; edit\e3
-games\flpybird
-games\senet
-
 util\bootfix
 util\flashrom
 util\pcisleep
@@ -70,10 +67,13 @@ util\pcisleep
 util\dosfsck
 
 ; new
-util\pkgtools
 util\listpci
 util\listvesa
-games\smiley
 util\tp7p5fix
+
+; some simple games
+games\senet
+games\smiley
+games\flpybird
 
 
