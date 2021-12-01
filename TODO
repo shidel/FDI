@@ -1,0 +1,11 @@
+Things planned for x86 installer .. Eventually.
+
+* Language selection when run at boot or when LANG is not set.
+* Install only XMSSWAP or KSWAP version of FreeCOM based on CPU, probably English + Language specific version
+
+Things that aren't actually the installer, but are improvements planned that effect it.
+
+* Add compression support to SLICER
+* Improve SLICER to skip archives that are not needed.
+* Fix issue with VINFO CPU detecting some processors at a lower level then reality. (thinks my 486 is a 186)
+* Add support for video cards older than EGA to V8Power Tools and FDIMPLES.
