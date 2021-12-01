@@ -64,6 +64,9 @@ set OBPC=
 fdisk /info %OBPD% | grep % | vstr /b /l total | set /p OBPC=
 if "%OBPC%" == "" goto FindCount
 
+rem OBPC = 0 for error, or number of partitions + 1, if 1 part set to yes
+rem otherwise set to no.
+if "%OBPC%" == "2" set OBPC=1
 if not "%OBPC%" == "1" set OBPC=2
 
 :PromptUser

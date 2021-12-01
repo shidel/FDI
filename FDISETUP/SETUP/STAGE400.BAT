@@ -88,19 +88,22 @@ vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
 vecho /k0 /n /t %FLANG% PARTING
 vdelay %FDEL%
 
-verrlvl 0
+if "%FDRIVE%" == "C:" goto AutoInfo
+if "%FDRIVE%" == "D:" goto AutoInfo
+goto ManualPartition
 
-if "%FDRIVE%" == "D:" fdisk /info 2 | grep %>NUL
-if not "%FDRIVE%" == "D:" fdisk /info 1 | grep %>NUL
-if not errorlevel 1 goto ManualPartition
+:AutoInfo
+verrlvl 1
+if "%FDRIVE%" == "C:" fdisk /info 1 | grep "C:" >NUL
+if "%FDRIVE%" == "D:" fdisk /info 2 | grep "D:" >NUL
+if errorlevel 1 goto ManualPartition
 
+verrlvl 1
+if "%FDRIVE%" == "C:" fdisk /auto 2>NUL
 if "%FDRIVE%" == "D:" fdisk /auto 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /auto 1>NUL
 if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
-
-vpause /t 10
 
 :AfterPartitioned
 call FDICLS.BAT
