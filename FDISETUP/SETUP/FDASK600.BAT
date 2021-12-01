@@ -78,6 +78,8 @@ if errorlevel 10 goto PromptMBR
 goto AssumeYes
 
 :PromptMBR
+set OBPC=1
+
 :AdvancedMode
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% OBSS_FRAME
