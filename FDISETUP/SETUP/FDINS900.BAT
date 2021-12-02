@@ -92,8 +92,9 @@ if errorlevel 103 set FEXT=VBX
 if errorlevel 104 set FEXT=VMW
 if errorlevel 200 set FEXT=EMU
 
-if "%FCCTY%" == "" set FCCTY=001
-if "%FCKEY%" == "" set FCKEY=858
+set FCCTY=001
+set FCKEY=858
+if exist %LANG%\COUNTRY.BAT call %LANG%\COUNTRY.BAT
 
 if not exist %FINSP%\CONFIG.%FEXT% set FEXT=DEF
 if not exist %FINSP%\CONFIG.%FEXT% goto SkipFDConfig

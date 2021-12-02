@@ -64,7 +64,6 @@ set _WCI=
 set _XLNG=
 if exist SETLANG.BAT CALL SETFONT.BAT %LANG% >NUL
 call %LANG%\SETLANG.BAT >NUL
-if exist %LANG%\COUNTRY.BAT call %LANG%\COUNTRY.BAT
 call FDICLS.BAT
 
 REM Draw the welcome screen.
