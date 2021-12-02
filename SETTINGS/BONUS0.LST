@@ -232,4 +232,6 @@ util\listpci
 util\listvesa
 drivers\himemsx
 util\tp7p5fix
+util\fdbanner
+
 

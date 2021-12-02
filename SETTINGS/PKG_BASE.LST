@@ -73,7 +73,7 @@ archiver\unzip
 
 archiver\zip
 drivers\udvd2
-drivers\gcdrom
+; drivers\gcdrom
 util\callver
 util\cwsdpmi
 drivers\shsufdrv
