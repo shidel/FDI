@@ -13,7 +13,7 @@ rem SET TMP=%TEMP%
 if exist %dosdir%\NLS\NUL set NLSPATH=%dosdir%\NLS
 if exist %dosdir%\HELP\NUL set HELPPATH=%dosdir%\HELP
 
-if not exist %dosdir%\bin\uhdd.sys NoUHDD
+if not exist %dosdir%\bin\uhdd.sys goto NoUHDD
 DEVLOAD /H %dosdir%\bin\uhdd.sys /s5 /h
 :NoUHDD
 
@@ -24,6 +24,7 @@ rem FDAPM APMDOS
 rem DOSLFN
 
 if not exist %dosdir%\bin\lbacache.com goto NoLBACache
+vecho /g
 rem LBACACHE.COM buf 20 flop
 :NoLBACache
 
