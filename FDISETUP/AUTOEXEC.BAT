@@ -13,12 +13,19 @@ rem SET TMP=%TEMP%
 if exist %dosdir%\NLS\NUL set NLSPATH=%dosdir%\NLS
 if exist %dosdir%\HELP\NUL set HELPPATH=%dosdir%\HELP
 
+if not exist %dosdir%\bin\uhdd.sys NoUHDD
+DEVLOAD /H %dosdir%\bin\uhdd.sys /s5 /h
+:NoUHDD
+
 echo.
 call CDROM.BAT
 
 rem FDAPM APMDOS
 rem DOSLFN
+
+if not exist %dosdir%\bin\lbacache.com goto NoLBACache
 rem LBACACHE.COM buf 20 flop
+:NoLBACache
 
 SET OS_NAME=$OS_NAME$
 SET OS_VERSION=$OS_VERSION$
