@@ -1,5 +1,7 @@
 Things planned for FDI installer .. Eventually.
 
+* Reorder the Config Menu to eliminate the need for a separate VirtualBox AutoExec.
+
 Things that aren't actually the installer, but are improvements planned that effect it.
 
 * Create VVIEW to read DOCs during install
