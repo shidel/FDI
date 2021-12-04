@@ -63,6 +63,7 @@ MEM /C /N
 goto FINAL
 
 :TryCDROM
+echo.
 call %dosdir%\bin\cdrom.bat
 MEM /C /N
 call %dosdir%\bin\cdrom.bat display
