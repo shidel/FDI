@@ -23,10 +23,17 @@ call CDROM.BAT
 rem FDAPM APMDOS
 rem DOSLFN
 
+goto SkipLBACache
 if not exist %dosdir%\bin\lbacache.com goto NoLBACache
 vecho /g
-rem LBACACHE.COM buf 20 flop
+verrlvl 1
+LBACACHE.COM buf 20 flop
+if errorlevel 1 goto NoLBACache
+if not exist %dosdir%\bin\tickle.com goto NoLBACache
+TICKLE.COM
 :NoLBACache
+
+:SkipLBACache
 
 SET OS_NAME=$OS_NAME$
 SET OS_VERSION=$OS_VERSION$
