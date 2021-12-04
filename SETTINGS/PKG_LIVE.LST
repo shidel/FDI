@@ -14,9 +14,9 @@ $PKG_ASSIST$
 util\slowdown
 drivers\doslfn
 
-; License for 'net\fdnet' is still under review
-; At present, it has been pulled for licensing confusion and conflicts
-; net\fdnet
+; The return an improvement of her FDNet Package :-)
+net\fdnet
+util\pkgtools
 
 ; net\wget
 
@@ -35,8 +35,8 @@ unix\less
 ; net\mtcp
 
 util\raread
-util\edict
 util\rawrite
+util\edict
 
 util\wcd
 ; util\aefdisk
@@ -59,12 +59,21 @@ devel\upx
 ; drivers\usbdos
 ; edit\vim
 ; edit\e3
-games\flpybird
-games\senet
-
 util\bootfix
 util\flashrom
 util\pcisleep
 
 ; was live before
 util\dosfsck
+
+; new
+util\listpci
+util\listvesa
+util\tp7p5fix
+
+; some simple games
+games\senet
+games\smiley
+games\flpybird
+
+

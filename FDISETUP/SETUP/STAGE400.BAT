@@ -88,28 +88,29 @@ vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTING_FRAME
 vecho /k0 /n /t %FLANG% PARTING
 vdelay %FDEL%
 
-verrlvl 0
+:AutoInfo
+if "%FDRIVE%" == "C:" goto AutoInfoC
+if "%FDRIVE%" == "D:" goto AutoInfoD
+goto ManualPartition
 
-if "%FDRIVE%" == "D:" fdisk /info 2 | grep %>NUL
-if not "%FDRIVE%" == "D:" fdisk /info 1 | grep %>NUL
-if not errorlevel 1 goto ManualPartition
+:AutoInfoC
+set _FDDC=0
+fdisk /info 1 | grep ":" | vstr /b /l total | set /p _FDDC=
+goto AutoInfoCheck
 
-if "%FDRIVE%" == "D:" fdisk /auto 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /auto 1>NUL
+:AutoInfoD
+set _FDDC=0
+fdisk /info 2 | grep ":" | vstr /b /l total | set /p _FDDC=
+
+:AutoInfoCheck
+if not "%_FDDC%" == "1" goto ManualPartition
+
+verrlvl 1
+if "%FDRIVE%" == "C:" fdisk /auto 1 >NUL
+if "%FDRIVE%" == "D:" fdisk /auto 2 >NUL
 if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
-
-goto AfterPartitioned
-REM This is done later when we do System File Transfer
-
-if "%FDRIVE%" == "D:" fdisk /mbr 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /mbr 1>NUL
-if errorlevel 1 goto ManualPartition
-
-if "%FDRIVE%" == "D:" fdisk /activate:1 2>NUL
-if not "%FDRIVE%" == "D:" fdisk /activate:1 1>NUL
-if errorlevel 1 goto ManualPartition
 
 :AfterPartitioned
 call FDICLS.BAT
@@ -137,3 +138,4 @@ goto AbortBatch
 verrlvl 1
 
 :Done
+set _FDDC=

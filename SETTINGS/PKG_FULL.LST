@@ -68,8 +68,10 @@ drivers\shareext
 util\wcd
 
 ; Not Usefull without Networking
-; net\mtcp
-; net\wget
+net\fdnet
+net\mtcp
+net\wget
+net\curl
 
 ; Per Jim, All of Archivers, Base, Editors, Games, Unix-like and Utilities
 ; Packages should be installed with FULL. These Packages are not referenced
@@ -90,7 +92,6 @@ games\hangman
 games\ivan
 games\kraptor
 games\liquiwar
-games\magnetic
 games\mirmagic
 games\nethack
 games\nge_nibb
@@ -175,8 +176,14 @@ base\htmlhelp
 
 ; new additions and returned packages
 
-drivers\gcdrom
-drivers\uide
+; drivers\gcdrom
+; drivers\uide
+drivers\uhdd
+util\pkgtools
+apps\imgedit
+games\smiley
+util\pkgtools
+util\tp7p5fix
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc

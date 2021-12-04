@@ -3,7 +3,7 @@
 ; These are the minimum packages required to run the FreeDOS Installer (FDI).
 ; They are present on the filesystem for all of the install media.
 
-base\command
+base\freecom
 base\kernel
 base\deltree
 base\xcopy
@@ -21,6 +21,9 @@ apps\fdimples
 
 unix\grep
 
+drivers\uhdd
+drivers\udvd2
+drivers\cdrcache
 base\lbacache
 
 util\fdnpkg
@@ -31,7 +34,7 @@ base\fdhelper
 ; Only required for CD install media
 
 drivers\udvd2
-drivers\gcdrom
+; drivers\gcdrom
 
 ; El Torito driver is included through config options for CD boot media
 ; drivers\eltorito

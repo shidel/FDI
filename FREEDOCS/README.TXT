@@ -23,6 +23,11 @@
 
 $OS_PREFIX$-LiveCD.zip
 
+  * $OS_PREFIX$BOOT.IMG - Basic $OS_NAME$ installation boot floppy image. If
+    your computer has a CD-ROM drive, but you cannot boot from the
+    install CD. Use this diskette image to boot the system. Then
+    insert the install CD. The $OS_NAME$ installer should do the rest.
+
   * $OS_PREFIX$LIVE.ISO - The $OS_TITLE_SHORT$ installer.  Most users should
     use this image to install $OS_NAME$.
 
@@ -32,6 +37,9 @@ $OS_PREFIX$-LiveCD.zip
 
 $OS_PREFIX$-LegacyCD.zip
 
+  * $OS_PREFIX$BOOT.IMG - This zip archive also contains a copy of the basic
+    CD-ROM installation boot floppy.
+
   * $OS_PREFIX$LGCY.ISO - A bootable CD image designed for older hardware. If
     you cannot boot the LiveCD to install $OS_NAME$, try this disc image.
 
@@ -39,13 +47,6 @@ $OS_PREFIX$-LegacyCD.zip
     computers and virtual machines cannot use this older format. Unless
     you have a computer that requires this type of bootable CD, we
     recommend using the LiveCD instead.
-
-$OS_PREFIX$-Floppy.zip
-
-  * $OS_PREFIX$FLOP.IMG - Basic $OS_NAME$ installation boot floppy image. If
-    your computer has a CD-ROM drive, but you cannot boot from the
-    install CD. Use this diskette image to boot the system. Then
-    insert the install CD. The $OS_NAME$ installer should do the rest.
 
 $OS_PREFIX$-BonusCD.zip
 
@@ -109,22 +110,22 @@ The Floppy-Only Edition uses a completely different installer than
 the CD-ROM or USB installers. The Floppy-Only Edition does not use
 any of those other media to install.
 
-The Floppy-Only Edition contains a limited $OS_NAME$ set of programs
+The Floppy-Only Edition contains a limited set of $OS_NAME$ programs
 that are more useful on classic PC hardware.
 
-The $OS_NAME$ Floppy-Only Edition is distributed as several zip archives
-containing the pre-made floppy diskette images:
+The $OS_NAME$ Floppy-Only Edition is distributed as single zip archive that
+contains several pre-made floppy diskette images:
 
     These zip archives contain image files for several common floppy
-    diskette media:
+    diskette media under separate directories:
 
-    * $OS_PREFIX$-$OS_FOEP$720k.zip - 3.5" 720k diskette images
+    * 720k - 3.5" 720k diskette images
 
-    * $OS_PREFIX$-$OS_FOEP$144m.zip - 3.5" 1.44mb diskette images
+    * 144m - 3.5" 1.44mb diskette images
 
-    * $OS_PREFIX$-$OS_FOEP$120m.zip - 5.25" 1.2mb diskette images
+    * 120m - 5.25" 1.2mb diskette images
 
-    Each of those zip archives contain a set of pre-made disk images:
+    Each of those sets contain a number of pre-made disk images:
 
     * x86BOOT.img - A floppy boot disk image with the x86 installer.
 

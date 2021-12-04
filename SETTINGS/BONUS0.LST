@@ -43,7 +43,8 @@ devel\insight
 devel\jwasm
 devel\lua
 devel\nasm
-devel\ow
+devel\watcomc
+devel\watcomf
 devel\perl
 devel\regina
 devel\runtime
@@ -58,6 +59,7 @@ edit\fed
 edit\freemacs
 edit\mbedit
 edit\mined
+edit\msedit
 edit\ospedit
 edit\pico
 edit\setedit
@@ -193,6 +195,7 @@ drivers\uhdd
 sound\lame
 unix\minibox
 util\zdir
+games\senet
 
 ; New packages without translations
 devel\i16budoc
@@ -201,17 +204,17 @@ devel\i16gcc
 devel\i16gcdoc
 devel\i16newli
 devel\i16src
+devel\i16lbi86
+devel\i16elklc
+devel\i16nlelk
 net\etherdfs
 util\edict
 apps\fdtui
 util\aefdisk
-devel\i16lbi86
 games\dosdef
 games\ev4de
 games\flpybird
 games\noudar
-devel\i16elklc
-devel\i16nlelk
 
 devel\dojs
 devel\msa
@@ -219,10 +222,16 @@ devel\tinyasm
 
 drivers\gcdrom
 drivers\uide
+drivers\rdisk
 ; drivers\eltorito
 
-; The new FreeCOM beta and older "stable" version
-base\freecom
-base\command
+apps\imgedit
+games\smiley
+util\pkgtools
+util\listpci
+util\listvesa
+drivers\himemsx
+util\tp7p5fix
+util\fdbanner
 
 

@@ -1,6 +1,6 @@
 @echo off
 
-REM if advanced mode prompt for force MBR update if possible and not blank.
+REM maybe prompt for force MBR update if possible and not blank.
 
 vinfo /m
 if errorlevel 102 goto NotDOSBox
@@ -64,13 +64,24 @@ set OBPC=
 fdisk /info %OBPD% | grep % | vstr /b /l total | set /p OBPC=
 if "%OBPC%" == "" goto FindCount
 
+rem OBPC = 0 for error, or number of partitions + 1, if 1 part set to yes
+rem otherwise set to no.
+if "%OBPC%" == "2" set OBPC=1
 if not "%OBPC%" == "1" set OBPC=2
 
 :PromptUser
 if "%FADV%" == "y" goto AdvancedMode
 
-REM Could test OBPC=1, not OBPD= , not OBPN= then assume yes
+REM check that data was populated correctly
+if "%OBPD%" == "" goto PromptMBR
+if "%OBPN%" == "" goto PromptMBR
+
+vinfo /E %OBPN%
+if errorlevel 10 goto PromptMBR
 goto AssumeYes
+
+:PromptMBR
+set OBPC=1
 
 :AdvancedMode
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24

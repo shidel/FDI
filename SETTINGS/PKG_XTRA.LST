@@ -5,17 +5,16 @@
 ; only the packages in BASE or FULL are installed by the installer.
 
 ; Include all package sets to make sure there packages are present.
-$PKG_BASE$
-$PKG_FDI$
-$PKG_FULL$
-$PKG_LIVE$
+; $PKG_BASE$
+; $PKG_FDI$
+; $PKG_FULL$
+; $PKG_LIVE$
 $PKG_ASSIST$
 
 ; Extra packages that are not automatically installed.
 
-; License for 'net\fdnet' is still under review
-; At present, it has been pulled for licensing confusion and conflicts
-; net\fdnet
+; The return an improvement of her FDNet Package :-)
+net\fdnet
 
 ; Excluded, lacks a clear license.
 ; util\paint2
@@ -29,21 +28,14 @@ archiver\lpq1
 archiver\p7zip
 archiver\zoo
 base\samcfg
-boot\romdsk
-boot\romos
 boot\syslnx
 devel\bcc
 devel\fpc
 devel\nasm
-devel\ow
+devel\watcomc
 devel\upx
-edit\biew
-edit\doshexed
 edit\fed
 edit\freemacs
-edit\mbedit
-edit\mined
-edit\tde
 edit\uhex
 edit\vim
 net\arachne
@@ -87,7 +79,6 @@ util\flashrom
 util\gnufonts
 unix\gnused
 util\hexcomp
-util\hip
 drivers\hiram
 util\localcfg
 drivers\lptdrv
@@ -96,7 +87,6 @@ drivers\ntfs
 util\ospimg
 util\pdtree
 apps\pgme
-util\pngcrush
 util\rcal
 util\search
 util\terminal
@@ -116,8 +106,9 @@ util\aefdisk
 
 drivers\gcdrom
 drivers\uide
-
-; The new FreeCOM beta
-base\freecom
+drivers\uhdd
+drivers\udvd2
+devel\kittenc
+util\tp7p5fix
 
 

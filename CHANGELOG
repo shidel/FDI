@@ -1,0 +1,19 @@
+# Change Log
+
+    The FDI change log only covers the FreeDOS Installer. It does not cover
+    any of the tools used by the installer or any of the programs installed
+    by FDI.
+
+## FDI 1.3-RC5
+
+	Updated FREEDOC readme to reflect changes with the release media.
+	Package List Modifications.
+    Loosened license statement to permit any GPL version for ALL installer files.
+    Added test for existing MBR code. When present, prompt to overwrite.
+    Removed some old unused code.
+    Added note to project README pointing to Floppy Edition (FDI-x86) installer.
+    People like change logs. So, I started one for FDI. :-)
+
+## FDI & FreeDOS 1.2
+
+Starting with FreeDOS v1.2, FDI is the official installer for FreeDOS.

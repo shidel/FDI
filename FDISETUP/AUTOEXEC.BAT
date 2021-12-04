@@ -13,12 +13,27 @@ rem SET TMP=%TEMP%
 if exist %dosdir%\NLS\NUL set NLSPATH=%dosdir%\NLS
 if exist %dosdir%\HELP\NUL set HELPPATH=%dosdir%\HELP
 
+if not exist %dosdir%\bin\uhdd.sys goto NoUHDD
+DEVLOAD /H %dosdir%\bin\uhdd.sys /s5 /h
+:NoUHDD
+
 echo.
 call CDROM.BAT
 
 rem FDAPM APMDOS
 rem DOSLFN
-rem LBACACHE.COM buf 20 flop
+
+goto SkipLBACache
+if not exist %dosdir%\bin\lbacache.com goto NoLBACache
+vecho /g
+verrlvl 1
+LBACACHE.COM buf 20 flop
+if errorlevel 1 goto NoLBACache
+if not exist %dosdir%\bin\tickle.com goto NoLBACache
+TICKLE.COM
+:NoLBACache
+
+:SkipLBACache
 
 SET OS_NAME=$OS_NAME$
 SET OS_VERSION=$OS_VERSION$

@@ -5,13 +5,12 @@
 ; on the filesystem of the install media. (They are still in their associated
 ; packages.)
 
+BIN\FREECOM
 BIN\KERNL86.SYS
 BIN\KERNL386.SYS
 BIN\FDCOM.ICO
 BIN\FDNPKG.EXE
 BIN\IDLEDPMS.COM
-BIN\TICKLE.COM
-BIN\UHDD.SYS
 BIN\_MORE.EXE
 BIN\CTMOUSE
 BIN\CC.COM
@@ -65,7 +64,6 @@ NLS\FC.*
 NLS\MEM.*
 NLS\MORE.*
 NLS\XCOPY.*
-; NLS\FDIMPLES.*
 
 BIN\HELP.BAT
 
