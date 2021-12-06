@@ -59,13 +59,23 @@ set OBPN=
 fdisk /info %OBPD% | grep -B 100 -i ^Contents | grep "^ %FDRIVE%" | vstr /b /f " " 3 | set /p OBPN=
 if "%OBPN%" == "" goto FindComplex
 
+REM FreeCOM 0.85a has a strange behaviour with sigle % on command line.
+REM see https://github.com/FDOS/freecom/issues/62 So this should be good.
 :FindCount
 set OBPC=
-fdisk /info %OBPD% | grep % | vstr /b /l total | set /p OBPC=
+fdisk /info %OBPD% | grep %% | vstr /b /l total | set /p OBPC=
 if "%OBPC%" == "" goto FindCount
+if "%OBPC%" == "0" goto FindCountAlt
+goto FindCountKnown
+:FindCountAlt
+set OBPC=
+fdisk /info %OBPD% | grep % | vstr /b /l total | set /p OBPC=
+if "%OBPC%" == "" goto FindCountAlt
+:FindCountKnown
 
 rem OBPC = 0 for error, or number of partitions + 1, if 1 part set to yes
 rem otherwise set to no.
+if "%OBPC%" == "1" set OBPC=0
 if "%OBPC%" == "2" set OBPC=1
 if not "%OBPC%" == "1" set OBPC=2
 
@@ -75,7 +85,16 @@ if "%FADV%" == "y" goto AdvancedMode
 REM check that data was populated correctly
 if "%OBPD%" == "" goto PromptMBR
 if "%OBPN%" == "" goto PromptMBR
+if not "%OBPC%" == "1" goto CheckEmptyMBR
 
+REM only 1 partition (yes) and running on VM them just overwrite
+vinfo /m
+if errorlevel 200 goto CheckEmptyMBR
+if not errorlevel 101 goto CheckEmptyMBR
+goto AssumeYes
+
+REM only 1 partition (yes) and it has no MBR then just overwrite
+:CheckEmptyMBR
 vinfo /E %OBPN%
 if errorlevel 10 goto PromptMBR
 goto AssumeYes
