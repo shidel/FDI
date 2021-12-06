@@ -45,8 +45,10 @@ if not exist %FINSP%\AUTOEXEC.%FEXT% goto SkipAutoExec
 
 type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
-if exist %LANG%\SETLANG.BAT type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF"|vstr /b/n>>%TEMP%\AUTOEXEC.BAT
+if not exist %LANG%\SETLANG.BAT goto NoSetLangBat
+type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF" | vstr /b/n>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
+:NoSetLangBat
 vstr >>%TEMP%\AUTOEXEC.BAT
 if not exist %LANG%\KEYBOARD.LST goto NoKeyboards
 type %LANG%\KEYBOARD.LST | grep -i "^VALUE.%FKB%=" | vstr /f = 2 | vstr /b/n>>%TEMP%\AUTOEXEC.BAT
