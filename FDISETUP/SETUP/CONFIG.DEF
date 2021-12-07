@@ -8,7 +8,7 @@ SET DOSDIR=$FTARGET$
 
 MENUDEFAULT=2,5
 MENU 1 - Load FreeDOS with JEMMEX, no EMS (most UMBs), max RAM free
-MENU 2 - Load FreeDOS with JEMMEX (less aggressive)
+MENU 2 - Load FreeDOS with JEMMEX (more compatible)
 MENU 3 - Load FreeDOS with JEMM386 (Expanded Memory)
 MENU 4 - Load FreeDOS low with some drivers (Safe Mode)
 MENU 5 - Load FreeDOS without drivers (Emergency Mode)

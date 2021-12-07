@@ -24,7 +24,7 @@ alias reset=fdisk /reboot
 alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
 
-if "%config%"=="3" goto END
+if "%config%"=="4" goto END
 
 if not exist %dosdir%\bin\vinfo.com goto Only8086
 vinfo /m
@@ -45,7 +45,7 @@ goto FINAL
 
 $LANG_SET$
 
-if "%config%"=="2" goto Support386Low
+if "%config%"=="3" goto Support386Low
 
 LH FDAPM APMDOS
 rem LH SHARE
