@@ -169,7 +169,12 @@ call FREEDOS\SETUP\FDITEMP.BAT QUITE
 
 REM Run Installer *************************************************************
 if "%1" == "RELOAD" shift
+if "%FDILANG%" == "" goto NoFDILANG
+if "%FDILANG%" == "ask" set FDILANG=
+set LANG=%FDILANG%
+:NoFDILANG
 CALL FREEDOS\SETUP\FDSETUP.BAT %1 %2 %3 %4 %5 %6 %7 %8 %9
+set FDILANG=%LANG%
 cd \
 if not "%FDRIVE%" == "" %FDRIVE%
 cd \
