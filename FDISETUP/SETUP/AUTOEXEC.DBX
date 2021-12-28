@@ -12,6 +12,7 @@ $FTARGET$\bin\command.com /e:2048 /k %0 $OS_NAME$
 goto END
 
 :ShellLoaded
+set DOSDRV=$FDRIVE$
 set DOSDIR=$FTARGET$
 set OLDPATH=%PATH%
 if "%LANG%" == "" set LANG=EN

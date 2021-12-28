@@ -1,6 +1,7 @@
 @ECHO OFF
 REM Standard AutoExec Batch File
 
+set DOSDRV=$FDRIVE$
 set DOSDIR=$FTARGET$
 set LANG=$FLANG$
 set TZ=$TZ$
