@@ -21,7 +21,7 @@ apps\fdimples
 
 unix\grep
 
-drivers\uhdd
+; drivers\uhdd
 drivers\udvd2
 drivers\cdrcache
 base\lbacache
