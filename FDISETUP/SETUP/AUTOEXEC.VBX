@@ -49,7 +49,14 @@ if "%config%"=="3" goto Support386Low
 
 LH FDAPM APMDOS
 rem LH SHARE
-rem if EXIST %DOSDIR%\BIN\DOSLFN.COM LH DOSLFN
+
+rem if EXIST %DOSDIR%\BIN\DOSLFN.COM goto UseLFN
+goto NoLFN
+:UseLFN
+LH %DOSDIR%\BIN\DOSLFN.COM
+set DIRCMD=%DIRCMD% /LFN
+:NoLFN
+
 CTMOUSE
 goto InitCDROM
 

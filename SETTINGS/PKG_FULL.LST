@@ -184,6 +184,8 @@ apps\imgedit
 games\smiley
 util\pkgtools
 util\tp7p5fix
+drivers\atapicdd
+
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc
