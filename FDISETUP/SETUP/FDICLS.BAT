@@ -2,7 +2,7 @@
 
 REM Clear entire screen (Minus title bar)
 
-vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 REM Draw the Title Bar
 vgotoxy /g /x1 /y1
