@@ -17,7 +17,7 @@ base\himemx
 
 ; drivers\gcdrom
 base\lbacache
-drivers\uhdd
+; drivers\uhdd
 drivers\udvd2
 drivers\cdrcache
 
