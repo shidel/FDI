@@ -22,8 +22,8 @@ if errorlevel 5 goto Accept
 if errorlevel 3 goto RepeatAsk
 
 :Accept
-vgotoxy /k0 sol
-vecho /k0 /n /e %TTARGET%
+rem vgotoxy /k0 sol
+rem vecho /k0 /n /e %TTARGET%
 set FTARGET=%TTARGET%
 set TTARGET=
 vfdutil /d %FTARGET% | set /p FDRIVE=
