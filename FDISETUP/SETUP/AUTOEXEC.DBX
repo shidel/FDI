@@ -53,8 +53,8 @@ call %dosdir%\bin\fdnet.bat start
 if errorlevel 1 goto NoNetwork
 
 REM Custom networking stuff
-
 :NoNetwork
+
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 
 :SKIP

@@ -66,24 +66,21 @@ FDAPM APMDOS
 CTMOUSE
 
 :InitCDROM
-if exist %dosdir%\bin\cdrom.bat goto TryCDROM
-MEM /C /N
-goto FINAL
-
-:TryCDROM
+if not exist %dosdir%\bin\cdrom.bat FINAL
 echo.
 call %dosdir%\bin\cdrom.bat
-MEM /C /N
-call %dosdir%\bin\cdrom.bat display
 
 :FINAL
+MEM /C /N
+echo.
 if not exist %dosdir%\bin\fdnet.bat goto NoNetwork
 call %dosdir%\bin\fdnet.bat start
 if errorlevel 1 goto NoNetwork
-
 REM Custom networking stuff once packet driver has loaded
+
 :NoNetwork
 
+if exist %dosdir%\bin\cdrom.bat call %dosdir%\bin\cdrom.bat display
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
 
