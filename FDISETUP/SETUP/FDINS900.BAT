@@ -59,7 +59,8 @@ if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
-rem if character at position 3 or 4 of FTARGET is <= CR then no path is provided
+rem if character at position 3 or 4 of FTARGET is less or equal to CR
+REM then no path is provided
 vinfo /k 4 %FTARGET%
 if errorlevel 14 goto Sticky
 vinfo /k 3 %FTARGET%
