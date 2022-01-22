@@ -59,10 +59,22 @@ if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 
+rem if character at position 3 or 4 of FTARGET is <= CR then no path is provided
+vinfo /k 4 %FTARGET%
+if errorlevel 14 goto Sticky
+vinfo /k 3 %FTARGET%
+if errorlevel 14 goto Sticky
+goto NoDDIR
+
 :Sticky
 echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
 if "%DDIR%" == "" goto Sticky
 set DDIR=C:\%DDIR%
+goto HaveDDIR
+:NoDDIR
+verrlvl 0
+set DDIR=C:\
+:HaveDDIR
 
 rem set LANG, DOSDIR and etc in AUTOEXEC.BAT
 CALL FDISET.BAT BEGIN %TEMP%\AUTOEXEC.BAT
