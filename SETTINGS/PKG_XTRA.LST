@@ -90,7 +90,7 @@ util\pdtree
 apps\pgme
 util\rcal
 util\search
-util\terminal
+net\terminal
 util\testdisk
 util\unrtf
 unix\uptimec

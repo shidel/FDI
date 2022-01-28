@@ -164,7 +164,7 @@ util\rcal
 gui\seal
 util\search
 apps\sqlite
-util\terminal
+net\terminal
 util\testdisk
 util\unrtf
 unix\uptimec

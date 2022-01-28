@@ -160,7 +160,7 @@ util\ospimg
 apps\pgme
 util\rcal
 util\search
-util\terminal
+net\terminal
 util\testdisk
 util\utf8tocp
 util\wde
