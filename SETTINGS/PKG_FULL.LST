@@ -78,7 +78,6 @@ net\curl
 ; earlier.
 games\bolitare
 games\boom
-games\btitanic
 games\dosdef
 games\eliza
 games\empong
@@ -96,15 +95,12 @@ games\mirmagic
 games\nethack
 games\nge_nibb
 games\noudar
-games\pakupaku
 games\qtetris
 games\senet
-games\snova
 games\sudoku86
 games\vertigo
 games\vitetris
 games\wing
-games\ww1
 games\zmiy
 games\mistral
 
@@ -178,13 +174,14 @@ base\htmlhelp
 
 ; drivers\gcdrom
 ; drivers\uide
+; drivers\atapicdd
+
 drivers\uhdd
 util\pkgtools
 apps\imgedit
 games\smiley
 util\pkgtools
 util\tp7p5fix
-drivers\atapicdd
 
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA

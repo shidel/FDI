@@ -71,7 +71,6 @@ edit\vim
 
 games\bolitare
 games\boom
-games\btitanic
 games\eliza
 games\empong
 games\ewsnake
@@ -85,14 +84,11 @@ games\liquiwar
 games\mirmagic
 games\nethack
 games\nge_nibb
-games\pakupaku
 games\qtetris
-games\snova
 games\sudoku86
 games\vertigo
 games\vitetris
 games\wing
-games\ww1
 games\zmiy
 net\arachne
 net\crynwr
@@ -233,5 +229,14 @@ util\listvesa
 drivers\himemsx
 util\tp7p5fix
 util\fdbanner
+
+; the following  packages have been completely removed from all locations
+; do due conflicting license information. This includes the install media,
+; official download repository and the GitLab archive.
+
+; games\pakupaku
+; games\btitanic
+; games\snova
+; games\ww1
 
 
