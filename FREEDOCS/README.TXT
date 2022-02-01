@@ -23,10 +23,12 @@
 
 $OS_PREFIX$-LiveCD.zip
 
-  * $OS_PREFIX$BOOT.IMG - Basic $OS_NAME$ installation boot floppy image. If
-    your computer has a CD-ROM drive, but you cannot boot from the
-    install CD. Use this diskette image to boot the system. Then
-    insert the install CD. The $OS_NAME$ installer should do the rest.
+  * $OS_PREFIX$BOOT.IMG - Basic $OS_NAME$ installation boot floppy image.
+    If your computer has a CD-ROM drive, but you cannot boot from the Live CD
+    or Legacy CD. Use this diskette image to boot the system. Then insert the
+    install CD. The $OS_NAME$ installer should do the rest. This diskette
+    image is for installation purposes only and does not provide a Live
+    Environment.
 
   * $OS_PREFIX$LIVE.ISO - The $OS_TITLE_SHORT$ installer.  Most users should
     use this image to install $OS_NAME$.

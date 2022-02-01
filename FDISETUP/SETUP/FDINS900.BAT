@@ -46,22 +46,36 @@ if not exist %FINSP%\AUTOEXEC.%FEXT% goto SkipAutoExec
 type %FINSP%\AUTOEXEC.%FEXT% |grep -B 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 if not exist %LANG%\SETLANG.BAT goto NoSetLangBat
+echo rem codepage settings >>%TEMP%\AUTOEXEC.BAT
 type %LANG%\SETLANG.BAT | grep -iv "@ECHO OFF" | vstr /b/n>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 :NoSetLangBat
-vstr >>%TEMP%\AUTOEXEC.BAT
 if not exist %LANG%\KEYBOARD.LST goto NoKeyboards
+echo rem keyboard settings >>%TEMP%\AUTOEXEC.BAT
 type %LANG%\KEYBOARD.LST | grep -i "^VALUE.%FKB%=" | vstr /f = 2 | vstr /b/n>>%TEMP%\AUTOEXEC.BAT
-vstr >>%TEMP%\AUTOEXEC.BAT
 :NoKeyboards
+echo. >>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
 type %FINSP%\AUTOEXEC.%FEXT% |grep -A 1000 -i \$LANG_SET\$|grep -iv \$LANG_SET\$>>%TEMP%\AUTOEXEC.BAT
 if errorlevel 1 goto Failed
+
+rem if character at position 3 or 4 of FTARGET is less or equal to CR
+REM then no path is provided
+vinfo /k 4 %FTARGET%
+if errorlevel 14 goto Sticky
+vinfo /k 3 %FTARGET%
+if errorlevel 14 goto Sticky
+goto NoDDIR
 
 :Sticky
 echo %FTARGET% | vstr /n/f \ 2- | set /p DDIR=
 if "%DDIR%" == "" goto Sticky
 set DDIR=C:\%DDIR%
+goto HaveDDIR
+:NoDDIR
+verrlvl 0
+set DDIR=C:\
+:HaveDDIR
 
 rem set LANG, DOSDIR and etc in AUTOEXEC.BAT
 CALL FDISET.BAT BEGIN %TEMP%\AUTOEXEC.BAT

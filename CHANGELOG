@@ -4,6 +4,11 @@
     any of the tools used by the installer or any of the programs installed
     by FDI.
 
+## FD 1.3-Final
+
+	Changed install media Boot configuration.
+	Updated package lists and settings.
+
 ## FDI 1.3-RC5
 
 	Updated FREEDOC readme to reflect changes with the release media.

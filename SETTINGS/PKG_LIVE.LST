@@ -71,7 +71,7 @@ util\listpci
 util\listvesa
 util\tp7p5fix
 
-; some simple games
+; a couple simple games that always work on all hardware platforms :-)
 games\senet
 games\smiley
 games\flpybird
