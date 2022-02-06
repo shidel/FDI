@@ -12,9 +12,10 @@ set DMNU=1
 REM DBX=DosBox, QEM=QEMU, VBX=VirtualBox, VMW=VMware, EMU=Other Emulated
 set FEXT=DEF
 vinfo /m
-if errorlevel 1 set FEXT=186
-if errorlevel 2 set FEXT=286
-if errorlevel 3 set FEXT=386
+rem if errorlevel 1 set FEXT=186
+rem if errorlevel 2 set FEXT=286
+rem if errorlevel 3
+set FEXT=386
 if errorlevel 4 set FEXT=486
 if errorlevel 5 set FEXT=586
 if errorlevel 6 set FEXT=686
@@ -94,11 +95,12 @@ del %TEMP%\AUTOEXEC.BAT>NUL
 :SkipAutoExec
 rem set LANG, DOSDIR and etc in FDCONFIG.SYS
 
-set FEXT=086
+rem set FEXT=086
 vinfo /m
-if errorlevel 1 set FEXT=186
-if errorlevel 2 set FEXT=286
-if errorlevel 3 set FEXT=386
+rem if errorlevel 1 set FEXT=186
+rem if errorlevel 2 set FEXT=286
+rem if errorlevel 3
+set FEXT=386
 if errorlevel 4 set FEXT=486
 if errorlevel 5 set FEXT=586
 if errorlevel 6 set FEXT=686
