@@ -12,10 +12,12 @@ set TTF=White
 set TTB=Red
 set TTH=Yellow
 
-REM Window Foreground, Background and Highlight Colors
+REM Window Foreground, Background, Highlight Warning color
+REM Progress Bar Colors, Choice attribute and Box Style
 set TFF=White
 set TFH=LightGreen
 set TFB=Red
+set TFX=Yellow
 set TFP=Yellow
 set TFS=double shadow
 set TFC=0x1e

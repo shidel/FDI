@@ -69,16 +69,16 @@ call FDICLS.BAT
 REM Draw the welcome screen.
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% HELLO_FRAME
 if "%FADV%" == "y" goto AdvancedMesssage
-vecho /k0 /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /k0 /t %FLANG% HELLO %TFH% "%OS_NAME% %OS_VERSION%" %TFF% %TFX%
 goto Spacer
 :AdvancedMesssage
-vecho /k0 /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF%
+vecho /k0 /t %FLANG% HELLO_ADV %TFH% "%OS_NAME% %OS_VERSION%" %TFF% %TFX%
 :Spacer
-vecho /k0 /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF%
-vecho /k0 /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF%
-vecho /k0 /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF%
-vecho /k0 /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF%
-vecho /k0 /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF%
+vecho /k0 /p /n /t %FLANG% HELLO_WARN.1 %TFH% "%OS_NAME%" %TFF% %TFX%
+vecho /k0 /n /t %FLANG% HELLO_WARN.2 %TFH% "%OS_NAME%" %TFF% %TFX%
+vecho /k0 /n /t %FLANG% HELLO_WARN.3 %TFH% "%OS_NAME%" %TFF% %TFX%
+vecho /k0 /n /t %FLANG% HELLO_WARN.4 %TFH% "%OS_NAME%" %TFF% %TFX%
+vecho /k0 /n /t %FLANG% HELLO_WARN.5 %TFH% "%OS_NAME%" %TFF% %TFX%
 vecho /k0 /t %FLANG% PROCEED?
 vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
 vecho /k0 /t %FLANG% CONTINUE
