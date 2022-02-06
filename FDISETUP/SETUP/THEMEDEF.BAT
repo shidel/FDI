@@ -16,7 +16,7 @@ REM Window Foreground, Background, Highlight Warning color
 REM Progress Bar Colors, Choice attribute and Box Style
 set TFF=Black
 set TFH=Blue
-set TFX=LightRed
+set TFX=Red
 set TFP=Blue
 set TFB=Gray
 set TFS=single shadow
