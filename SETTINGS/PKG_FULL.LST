@@ -182,6 +182,7 @@ apps\imgedit
 games\smiley
 util\pkgtools
 util\tp7p5fix
+games\blkdrop
 
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA

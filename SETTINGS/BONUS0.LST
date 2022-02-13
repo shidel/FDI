@@ -223,6 +223,7 @@ drivers\rdisk
 
 apps\imgedit
 games\smiley
+games\blkdrop
 util\pkgtools
 util\listpci
 util\listvesa
