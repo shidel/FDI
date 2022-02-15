@@ -62,6 +62,7 @@ devel\upx
 util\bootfix
 util\flashrom
 util\pcisleep
+util\md5sum
 
 ; was live before
 util\dosfsck
@@ -75,5 +76,6 @@ util\tp7p5fix
 games\senet
 games\blkdrop
 games\flpybird
+games\sayswho
 
 

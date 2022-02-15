@@ -183,6 +183,7 @@ games\smiley
 util\pkgtools
 util\tp7p5fix
 games\blkdrop
+games\sayswho
 
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
