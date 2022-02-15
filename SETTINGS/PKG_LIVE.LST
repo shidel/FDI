@@ -62,7 +62,7 @@ devel\upx
 util\bootfix
 util\flashrom
 util\pcisleep
-util\md5sum
+unix\md5sum
 
 ; was live before
 util\dosfsck
