@@ -133,8 +133,11 @@ util\ansimat
 util\b64
 util\bsum
 util\cdrom2ui
-util\clamav
-util\clamdb
+
+; ClamAV package appears to be broken. Install disabled
+; util\clamav
+; util\clamdb
+
 util\dialog
 apps\dn2
 util\dog
