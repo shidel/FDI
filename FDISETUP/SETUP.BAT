@@ -20,7 +20,16 @@ REM Change to drive of SETUP.BAT -- Probably **********************************
 set NOTEST=
 if "%1" == "boot" set NOTEST=y
 if "%1" == "cdrom" set NOTEST=y
-if "%1" == "floppy" set NOTEST=y
+if not "%1" == "floppy" goto NotFloppy
+set NOTEST=y
+if "%CDROM%" == "" goto NotFloppy
+if not exist %CDROM%\SETUP.BAT goto NotFloppy
+if not exist %CDROM%\freedos\setup\version.fdi goto NotFloppy
+pushd %CDROM% >NUL
+call SETUP.BAT cdrom
+popd >NUL
+goto Done
+:NotFloppy
 if "%1" == "legacy" set NOTEST=y
 if "%1" == "live" set NOTEST=y
 if "%1" == "usb" set NOTEST=y
