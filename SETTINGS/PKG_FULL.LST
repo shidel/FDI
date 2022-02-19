@@ -144,8 +144,7 @@ util\dog
 util\edict
 apps\fdshell
 
-; FDTUI Conflicts with FDSHELL
-; apps\fdtui
+apps\fdtui
 
 util\finddisk
 util\gnufonts
