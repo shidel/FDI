@@ -172,12 +172,6 @@ sound\mplayer
 sound\opencp
 base\htmlhelp
 
-; new additions and returned packages
-
-; drivers\gcdrom
-; drivers\uide
-; drivers\atapicdd
-
 drivers\uhdd
 util\pkgtools
 apps\imgedit
@@ -187,6 +181,13 @@ util\tp7p5fix
 games\blkdrop
 games\sayswho
 
+; new additions and returned packages
+
+; drivers\gcdrom
+; drivers\uide
+; drivers\atapicdd
+
+sound\sbpmixer
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc
