@@ -57,5 +57,5 @@ REM Custom networking stuff
 
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
-
+$OS_BOOT_WARNING$
 :END

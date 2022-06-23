@@ -83,5 +83,5 @@ REM Custom networking stuff once packet driver has loaded
 if exist %dosdir%\bin\fdassist.bat call %dosdir%\bin\fdassist.bat
 if exist %dosdir%\bin\cdrom.bat call %dosdir%\bin\cdrom.bat display
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
-
+$OS_BOOT_WARNING$
 :END

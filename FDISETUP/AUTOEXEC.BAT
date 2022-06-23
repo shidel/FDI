@@ -56,3 +56,4 @@ CALL SETUP.BAT $BOOT$
 :Done
 if exist %dosdir%\bin\cdrom.bat call %dosdir%\bin\cdrom.bat display
 if exist %dosdir%\bin\welcome.bat call %dosdir%\bin\welcome.bat
+$OS_BOOT_WARNING$
