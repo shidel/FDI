@@ -22,19 +22,19 @@ boot\syslnx
 devel\bcc
 devel\bwbasic
 devel\cpp2ccmt
-devel\djgpp
-devel\dj_bin
+; devel\djgpp
+; devel\dj_bin
 ; devel\dj_alego
-devel\dj_bison
-devel\dj_gdb
-devel\dj_faq
-devel\dj_flex
-devel\dj_gcc
-devel\dj_gpp
-devel\dj_make
-devel\dj_objc
-devel\dj_rhide
-devel\dj_txinf
+; devel\dj_bison
+; devel\dj_gdb
+; devel\dj_faq
+; devel\dj_flex
+; devel\dj_gcc
+; devel\dj_gpp
+; devel\dj_make
+; devel\dj_objc
+; devel\dj_rhide
+; devel\dj_txinf
 ; devel\dj_watcp
 ; devel\dj_zlib
 ; devel\dj_gcsrc
