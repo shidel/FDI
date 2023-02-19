@@ -166,7 +166,7 @@ util\whichfat
 util\wptail
 
 sound\adplay
-sound\cdp
+; sound\cdp	; freeware, not opensource
 sound\dosmid
 sound\mplayer
 sound\opencp

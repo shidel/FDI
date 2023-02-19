@@ -124,7 +124,7 @@ net\wattcp
 net\wget
 sound\adplay
 sound\bladeenc
-sound\cdp
+; sound\cdp	; freeware, not opensource
 sound\dosmid
 sound\lame
 sound\mplayer
@@ -155,13 +155,13 @@ util\memteste
 drivers\ntfs
 gui\opengem
 util\ospimg
-gui\ozonegui
+; gui\ozonegui
 util\pbox
 util\pdtree
 apps\pgme
 util\pngcrush
 util\rcal
-gui\seal
+; gui\seal
 util\search
 apps\sqlite
 net\terminal
