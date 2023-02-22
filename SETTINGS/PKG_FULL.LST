@@ -167,6 +167,7 @@ util\wptail
 
 sound\adplay
 ; sound\cdp	; freeware, not opensource
+sound\playcd
 sound\dosmid
 sound\mplayer
 sound\opencp
