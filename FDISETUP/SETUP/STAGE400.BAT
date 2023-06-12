@@ -7,6 +7,10 @@ vinfo /m
 if errorlevel 102 goto NotDOSBox
 if errorlevel 101 goto IsDOSBox
 :NotDOSBox
+
+set _FDPRI=/PRIO:2000
+if errorlevel 100 set _FDPRI=/PRI:100,100
+
 verrlvl 0
 
 vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
@@ -106,8 +110,8 @@ fdisk /info 2 | grep ":" | vstr /b /l total | set /p _FDDC=
 if not "%_FDDC%" == "1" goto ManualPartition
 
 verrlvl 1
-if "%FDRIVE%" == "C:" fdisk /auto 1 >NUL
-if "%FDRIVE%" == "D:" fdisk /auto 2 >NUL
+if "%FDRIVE%" == "C:" fdisk %_FDPRI% 1 >NUL
+if "%FDRIVE%" == "D:" fdisk %_FDPRI% 2 >NUL
 if errorlevel 1 goto ManualPartition
 
 vdelay %FDEL%
@@ -139,3 +143,4 @@ verrlvl 1
 
 :Done
 set _FDDC=
+set _FDPRI=
