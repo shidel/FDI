@@ -238,6 +238,8 @@ drivers\himemsx
 util\tp7p5fix
 util\fdbanner
 
+drivers\logger
+
 ; the following  packages have been completely removed from all locations
 ; do due conflicting license information. This includes the install media,
 ; official download repository and the GitLab archive.

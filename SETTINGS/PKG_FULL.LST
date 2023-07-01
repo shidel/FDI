@@ -188,6 +188,7 @@ games\sayswho
 ; drivers\uide
 ; drivers\atapicdd
 
+drivers\logger
 sound\sbpmixer
 
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA

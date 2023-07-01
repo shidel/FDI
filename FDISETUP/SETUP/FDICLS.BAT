@@ -2,6 +2,7 @@
 
 REM Clear entire screen (Minus title bar)
 
+vmode /p 0
 vcls /g /f %TSF% /b %TSB% /c %TSC% /y2 /h24
 
 REM Draw the Title Bar

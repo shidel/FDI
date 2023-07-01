@@ -72,6 +72,7 @@ util\listpci
 util\listvesa
 util\tp7p5fix
 sound\sbpmixer
+drivers\logger
 
 ; a couple simple games that always work on all hardware platforms :-)
 games\senet
