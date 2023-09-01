@@ -67,7 +67,7 @@ NLS\MORE.*
 NLS\XCOPY.*
 NLS\FDISK.*
 nls\fdisk.lng
-NLS\fdisk.lng
+NLS\fdisk.*
 
 BIN\HELP.BAT
 
