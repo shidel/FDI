@@ -19,7 +19,9 @@ net\fdnet
 ; Excluded, lacks a clear license.
 ; util\paint2
 
-base\htmlhelp
+; base\htmlhelp
+util\ambread
+base\ambhelp
 
 archiver\7zdec
 archiver\arj

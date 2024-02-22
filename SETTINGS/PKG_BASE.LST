@@ -58,9 +58,9 @@ base\unformat
 base\graphics
 base\fdhelper
 
-; base\htmlhelp
-util\ambread
-base\ambhelp
+base\htmlhelp
+; util\ambread
+; base\ambhelp
 
 ; Not actually part of BASE, but installed with it.
 

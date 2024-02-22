@@ -171,7 +171,9 @@ sound\playcd
 sound\dosmid
 sound\mplayer
 sound\opencp
-base\htmlhelp
+; base\htmlhelp
+util\ambread
+base\ambhelp
 
 drivers\uhdd
 util\pkgtools
