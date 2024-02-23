@@ -190,7 +190,9 @@ util\unrtf
 util\aefdisk
 util\fdshield
 util\password
-base\htmlhelp
+; base\htmlhelp
+util\ambread
+base\ambhelp
 
 games\mistral
 drivers\uhdd
