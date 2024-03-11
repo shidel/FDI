@@ -1,39 +1,15 @@
 @ECHO OFF
-REM - Updated AUTOEXEC file, for DOSBox Hybrid install
-
-REM FreeDOS specific $AUTOEXEC$ file for DOSBox in a Hybrid install. A Hybrid install
-REM uses the FreeDOS command line interpreter and the DOSBox kernel. This permits
-REM direct access to the HOST directories mounted drives in DOSBox without the need
-REM for networking or shutting down the DOS instance. You may wish to have your
-REM Z:\$AUTOEXEC$ file check for and automatically launch this batch file
-REM at DOSBox startup. Please note that many very low level programs that talk directly
-REM to hard disks (like defrag) will not function using a Hybrid Install. 
-
-REM - Load the command line interpreter or set up the DOS environment.
-if "%1" == "$OS_NAME$" goto ShellLoaded
-C:
-CD\
-if not exist $FTARGET$\bin\command.com goto END
-$FTARGET$\bin\command.com /e:2048 /k %0 $OS_NAME$
-goto END
-
-:ShellLoaded
+REM - Updated AUTOEXEC file, for 8086/88 and 186 hardware
 
 REM - set basic environment
 
 set DOSDRV=$FDRIVE$
 set DOSDIR=$FTARGET$
 
-REM - set the executable search path
-set OLDPATH=%PATH%
 path %DOSDIR%\BIN
 if not exist %DOSDIR%\LINKS\NUL goto NOLINKS
 path %PATH%;%DOSDIR%\LINKS
 :NOLINKS
-if "%OLDPATH%" == "" goto NOOLDPATH
-path $PATH%;%OLDPATH%
-:NOOLDPATH
-set OLDPATH=
 
 set NLSPATH=%DOSDIR%\NLS
 set HELPPATH=%DOSDIR%\HELP
@@ -44,12 +20,15 @@ set TMP=%TEMP%
 set LANG=$FLANG$
 set TZ=$TZ$
 
+REM Emergency Mode, no drivers should be loaded
+if "%CONFIG%"=="1" goto END
+
 REM - Internationalization settings
 
 REM nlsfunc %DOSDIR%\BIN\COUNTRY.SYS
 REM display CON=(EGA,858,2)
 REM mode CON CP PREP=((858) %DOSDIR%\CPI\EGA.CPX)
-REM keyb US,858,%DOSDIR%\BIN\KEYBOARD.SYS
+REM keyb - Not supported
 REM chcp 858
 REM mkeyb UK
 
@@ -67,17 +46,15 @@ set AUTOFILE=%0
 alias cfg=edit %CFGFILE%
 alias auto=edit %AUTOFILE%
 
-REM - Neither APM or MOUSE drivers are required
-REM lh fdapm APMDOS
-REM lh ctmouse
-REM lh share
+if not exist %DOSDIR%\BIN\DOSLFN.COM goto NOLFN
+lh %DOSDIR%\BIN\DOSLFN.CON
+REM - Add other stuff here once LFN is loaded..
+:NOLFN
 
-if not exist %DOSDIR%\BIN\FDNET.BAT goto NONET
-call %DOSDIR%\BIN\FDNET.BAT
-REM - if errorlevel 1 goto NONET
-REM - Add other stuff here once FDNET is loaded..
-:NONET
+REM - The CD extensions require a 386 or better
+REM - Networking support is unlikely on sub-386 hardware
 
+:CONFIGS
 REM - load other configs using external BAT files
 
 if not exist %DOSDIR%\BIN\FDASSIST.BAT goto NOASSIST
