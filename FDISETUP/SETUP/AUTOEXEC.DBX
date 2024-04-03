@@ -31,7 +31,7 @@ if not exist %DOSDIR%\LINKS\NUL goto NOLINKS
 path %PATH%;%DOSDIR%\LINKS
 :NOLINKS
 if "%OLDPATH%" == "" goto NOOLDPATH
-path $PATH%;%OLDPATH%
+path %PATH%;%OLDPATH%
 :NOOLDPATH
 set OLDPATH=
 
@@ -40,6 +40,7 @@ set HELPPATH=%DOSDIR%\HELP
 
 set TEMP=%DOSDIR%\TEMP
 set TMP=%TEMP%
+if not exist %TEMP%\NUL mkdir %TEMP%
 
 set LANG=$FLANG$
 set TZ=$TZ$
