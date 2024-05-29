@@ -202,6 +202,7 @@ util\zdir
 games\senet
 
 ; New packages without translations
+devel\i16env
 devel\i16budoc
 devel\i16butil
 devel\i16gcc
