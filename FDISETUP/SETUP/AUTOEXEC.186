@@ -47,7 +47,7 @@ alias cfg=edit %CFGFILE%
 alias auto=edit %AUTOFILE%
 
 if not exist %DOSDIR%\BIN\DOSLFN.COM goto NOLFN
-lh %DOSDIR%\BIN\DOSLFN.CON
+lh %DOSDIR%\BIN\DOSLFN.COM
 REM - Add other stuff here once LFN is loaded..
 :NOLFN
 
