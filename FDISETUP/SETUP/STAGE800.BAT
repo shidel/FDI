@@ -98,20 +98,6 @@ set _TT=
 goto LoopingList
 
 :FinishedList
-rem no lnger needed, newer packages of FDNPKG are preset with good configs.
-rem we aren't going to change the install sources option from their defaults
-rem if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
-verrlvl 0
-goto DoneCheckWarning
-
-:ReplaceConfig
-copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.DEF>NUL
-type %FINSP%\..\BIN\FDNPKG.CFG | vstr /n/s "sources 0" "sources %OSRC%" >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.1 | vstr /n/s %%FDRIVE%% C: >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.2 | vstr /n/s mapdrives #mapdrives >%FTARGET%\BIN\FDNPKG.CFG
-del %FTARGET%\BIN\FDNPKG.1 >NUL
-del %FTARGET%\BIN\FDNPKG.2 >NUL
-copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.BAK>NUL
 verrlvl 0
 goto DoneCheckWarning
 
