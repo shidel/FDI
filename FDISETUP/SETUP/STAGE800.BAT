@@ -28,16 +28,10 @@ vecho /k0 /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
 REM Configure FDINST package manager.
-:GetFDINSTVersion
-fdinst | vstr /n /l 0 | vstr /n /f " " 2 | set /p FDNVER=
-if "%FDNVER%" == "" goto GetFDINSTVersion
 
-REM Override for pre-release versions of FDNPKG
-set FDNVER=v0.99.7
 
 set DOSDIR=%FTARGET%
 set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
-if "%FDNVER%" == "v0.99.6" goto OldFDINST
 
 :NewFDNPKG
 set _TC=
@@ -53,7 +47,6 @@ if "%_TC%" == "" goto SetMapDrives
 set _TC=mapdrives c%_TC%
 goto MapEnabled
 
-:OldFDINST
 
 :MapDisabled
 set _TC=#mapdrives cc
@@ -64,7 +57,6 @@ type %TEMP%\FDNPKG.1|vstr /n/s "sources 0" "sources %OSRC%" >%TEMP%\FDNPKG.2
 type %TEMP%\FDNPKG.2|vstr /n/s %%DOSDRV%% C: >%FDNPKG.CFG%
 del  %TEMP%\FDNPKG.1 >NUL
 del  %TEMP%\FDNPKG.2 >NUL
-goto ReadyFDINST
 
 :ReadyFDINST
 
@@ -165,4 +157,3 @@ set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
 set OLDFDN=
-set FDNVER=
