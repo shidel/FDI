@@ -36,7 +36,11 @@ set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
 :NewFDNPKG
 set _TC=
 if "%FDRIVE%" == "C:" goto MapDisabled
-echo %FTARGET% | vstr /d /f : 2| set /p _TC=
+REM Cannot have space after ENV VAR in echo. Otherwise, there will be a space in the temp
+REM DOSDIR variable. This will cause FDINST to insert a space in the listing file on some
+REM entries. Which in turn will cause it to FAIL to remove those files if the package is
+REM uninstalled at a later time. 
+echo %FTARGET%| vstr /d /f : 2| set /p _TC=
 if "%_TC%" == "" goto NewFDNPKG
 set DOSDIR=C:%_TC%
 
