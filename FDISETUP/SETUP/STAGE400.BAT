@@ -117,6 +117,7 @@ if errorlevel 1 goto ManualPartition
 vdelay %FDEL%
 
 :AfterPartitioned
+vmode /p0
 call FDICLS.BAT
 
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
