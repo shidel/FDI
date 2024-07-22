@@ -17,7 +17,7 @@ archiver\lzop
 archiver\slicer
 
 boot\romdsk
-boot\romos
+; boot\romos
 boot\syslnx
 devel\bcc
 devel\bwbasic
