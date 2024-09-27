@@ -34,8 +34,8 @@ unix\less
 
 ; net\mtcp
 
-util\raread
-util\rawrite
+; util\raread
+; util\rawrite
 util\edict
 
 util\wcd
@@ -60,7 +60,7 @@ archiver\bz2
 ; edit\vim
 ; edit\e3
 util\bootfix
-util\flashrom
+; util\flashrom
 util\pcisleep
 unix\md5sum
 
@@ -68,8 +68,8 @@ unix\md5sum
 util\dosfsck
 
 ; new
-util\listpci
-util\listvesa
+; util\listpci
+; util\listvesa
 util\tp7p5fix
 sound\sbpmixer
 drivers\logger
