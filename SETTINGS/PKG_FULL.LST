@@ -196,7 +196,7 @@ sound\sbpmixer
 ; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
 ; util\fdisrc
 
-drivers\smemu
+drivers\sbemu
 drivers\vsbhda
 
 
