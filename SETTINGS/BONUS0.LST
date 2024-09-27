@@ -5,39 +5,13 @@
 ; under BASE or FULL. However, some may be included here even if they are
 ; included elsewhere.
 
-archiver\7zdec
-archiver\arj
-archiver\cabext
-archiver\lpq1
-archiver\p7zip
-archiver\zoo
-archiver\lzip
-archiver\lzma
-archiver\lzop
-archiver\slicer
-
 boot\romdsk
-; boot\romos
+boot\romos
 boot\syslnx
+
 devel\bcc
 devel\bwbasic
 devel\cpp2ccmt
-; devel\djgpp
-; devel\dj_bin
-; devel\dj_alego
-; devel\dj_bison
-; devel\dj_gdb
-; devel\dj_faq
-; devel\dj_flex
-; devel\dj_gcc
-; devel\dj_gpp
-; devel\dj_make
-; devel\dj_objc
-; devel\dj_rhide
-; devel\dj_txinf
-; devel\dj_watcp
-; devel\dj_zlib
-; devel\dj_gcsrc
 devel\euphoria
 devel\fasm
 devel\fbc_help
@@ -54,154 +28,9 @@ devel\regina
 devel\runtime
 devel\suppls
 devel\upx
-edit\biew
-edit\blocek
-edit\doshexed
-edit\e3
-edit\elvis
-edit\fed
-edit\freemacs
-edit\mbedit
-edit\mined
-edit\msedit
-edit\ospedit
-edit\pico
-edit\setedit
-edit\tde
-edit\uhex
-edit\vim
 
-; emulators removed
+devel\sqlite
 
-games\bolitare
-games\boom
-games\eliza
-games\empong
-games\ewsnake
-games\fmines
-games\freedoom
-games\gnuchess
-games\hangman
-games\ivan
-games\kraptor
-games\liquiwar
-games\mirmagic
-games\nethack
-games\nge_nibb
-games\qtetris
-games\sudoku86
-games\vertigo
-games\vitetris
-games\wing
-games\zmiy
-net\arachne
-net\crynwr
-net\lsppp
-net\curl
-net\dillo
-net\dwol
-net\e1000pkt
-net\e100pkt
-net\ethtools
-net\gopherus
-net\htget
-net\links
-net\lynx
-net\m2wat
-net\mskermit
-net\mtcp
-net\newsnuz
-net\ntool
-net\picosntp
-net\picotcp
-net\ping
-net\rsync
-net\ssh2dos
-net\sshdos
-net\vmsmount
-net\vncview
-net\wattcp
-net\wget
-sound\adplay
-sound\bladeenc
-; sound\cdp	; freeware, not opensource
-sound\playcd
-sound\sjgplay
-sound\dosmid
-sound\lame
-sound\mplayer
-sound\opencp
-util\ansimat
-util\b64
-util\bsum
-unix\cal
-util\cdrom2ui
-util\clamav
-util\clamdb
-util\dialog
-apps\dn2
-util\dog
-util\fdisrc
-apps\fdshell
-util\finddisk
-util\flashrom
-util\gifsicle
-util\gnufonts
-unix\gnused
-util\hexcomp
-util\hip
-drivers\hiram
-util\localcfg
-drivers\lptdrv
-util\memteste
-drivers\ntfs
-gui\opengem
-util\ospimg
-; gui\ozonegui
-util\pbox
-util\pdtree
-apps\pgme
-util\pngcrush
-util\rcal
-; gui\seal
-util\search
-apps\sqlite
-net\terminal
-util\testdisk
-util\unrtf
-unix\uptimec
-util\utf8tocp
-util\wcd
-util\wde
-util\whichfat
-util\wptail
-util\dzemm
-util\xfdisk
-util\daa2iso
-util\hip
-util\pdtree
-util\flashrom
-util\gifsicle
-util\pngcrush
-util\raread
-util\rawrite
-apps\sqlite
-util\unrtf
-util\aefdisk
-util\fdshield
-util\password
-; base\htmlhelp
-util\ambread
-base\ambhelp
-
-games\mistral
-drivers\uhdd
-sound\lame
-unix\minibox
-util\zdir
-games\senet
-
-; New packages without translations
 devel\i16env
 devel\i16budoc
 devel\i16butil
@@ -212,44 +41,26 @@ devel\i16src
 devel\i16lbi86
 devel\i16elklc
 devel\i16nlelk
-net\etherdfs
-util\edict
-apps\fdtui
-util\aefdisk
-games\dosdef
-games\ev4de
-games\flpybird
-games\noudar
-
 devel\dojs
 devel\msa
 devel\tinyasm
 
-drivers\gcdrom
-drivers\uide
-drivers\rdisk
-; drivers\eltorito
+; devel\djgpp
+; devel\dj_bin
+; devel\dj_alego
+; devel\dj_bison
+; devel\dj_gdb
+; devel\dj_faq
+; devel\dj_flex
+; devel\dj_gcc
+; devel\dj_gpp
+; devel\dj_make
+; devel\dj_objc
+; devel\dj_rhide
+; devel\dj_txinf
+; devel\dj_watcp
+; devel\dj_zlib
+; devel\dj_gcsrc
 
-apps\imgedit
-games\smiley
-games\blkdrop
-games\sayswho
-util\pkgtools
-util\listpci
-util\listvesa
-drivers\himemsx
-util\tp7p5fix
-util\fdbanner
-
-drivers\logger
-
-; the following  packages have been completely removed from all locations
-; do due conflicting license information. This includes the install media,
-; official download repository and the GitLab archive.
-
-; games\pakupaku
-; games\btitanic
-; games\snova
-; games\ww1
-
+gui\opengem
 

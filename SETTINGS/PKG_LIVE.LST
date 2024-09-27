@@ -54,7 +54,7 @@ archiver\p7zip
 archiver\tar
 archiver\gzip
 archiver\bz2
-devel\upx
+; devel\upx
 ; drivers\ntfs
 ; drivers\usbdos
 ; edit\vim
