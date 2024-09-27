@@ -199,5 +199,76 @@ sound\sbpmixer
 drivers\sbemu
 drivers\vsbhda
 
+; Packages added to FULL that were previously only Extra or on the BonusCD.
 
+archiver\arj
+archiver\cabext
+archiver\lpq1
+archiver\lzip
+archiver\lzma
+archiver\lzop
+archiver\slicer
+archiver\zoo
+
+drivers\eltorito
+drivers\gcdrom
+drivers\himemsx
+drivers\rdisk
+drivers\uide
+
+net\arachne
+net\crynwr
+net\dillo
+net\dwol
+net\e1000pkt
+net\e100pkt
+net\etherdfs
+net\ethtools
+net\gopherus
+net\htget
+net\links
+net\lsppp
+net\lynks
+net\m2wat
+net\mskermit
+net\newsnuz
+net\ntool
+net\picosntp
+net\picotcp
+net\ping
+net\rsync
+net\ssh2dos
+net\sshdos
+net\vmsmount
+net\vncview
+net\wattcp
+
+sound\bladenc
+sound\lame
+sound\sjplay
+
+unix\minibox
+
+util\aefdisk
+; util\clamav
+; util\clamdb
+util\daa2iso
+util\dzemm
+util\fdbanner
+; util\fdsrc
+util\fdshield
+util\flashrom
+util\gifsicle
+util\hip
+util\listpci
+util\lisvesa
+util\password
+util\pbox
+util\pdtree
+util\pngcrush
+util\raread
+util\rawrite
+util\unrtf
+util\xfdisk
+util\zdir
 
