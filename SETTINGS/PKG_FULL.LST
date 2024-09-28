@@ -261,7 +261,7 @@ util\flashrom
 util\gifsicle
 util\hip
 util\listpci
-util\lisvesa
+util\listvesa
 util\password
 util\pbox
 util\pdtree
