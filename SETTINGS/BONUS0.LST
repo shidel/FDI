@@ -45,6 +45,10 @@ devel\dojs
 devel\msa
 devel\tinyasm
 
+devel\kittenc
+; util\fdisrc
+; devel\fdisrc
+
 ; devel\djgpp
 ; devel\dj_bin
 ; devel\dj_alego
