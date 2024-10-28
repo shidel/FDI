@@ -18,8 +18,6 @@ drivers\doslfn
 net\fdnet
 util\pkgtools
 
-; net\wget
-
 unix\grep
 unix\head
 unix\du
@@ -28,49 +26,22 @@ unix\tee
 unix\touch
 unix\which
 unix\less
-; unix\trch
-
-; unix\md5sum
-
-; net\mtcp
-
-; util\raread
-; util\rawrite
-util\edict
 
 util\wcd
-; util\aefdisk
-
-; util\part
-; util\xfdisk
-; util\xdel
-; util\xkeyb
-
-; apps\fdtui
-; net\lynx
-
 ; high user requests in survey
 archiver\p7zip
 archiver\tar
 archiver\gzip
 archiver\bz2
-; devel\upx
-; drivers\ntfs
-; drivers\usbdos
-; edit\vim
-; edit\e3
-util\bootfix
-; util\flashrom
 util\pcisleep
 unix\md5sum
 
 ; was live before
-util\dosfsck
+disk\dosfsck
+tools\callver
+tools\cwsdpmi
 
 ; new
-; util\listpci
-; util\listvesa
-util\tp7p5fix
 sound\sbpmixer
 drivers\logger
 

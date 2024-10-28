@@ -5,8 +5,9 @@
 ; under BASE or FULL. However, some may be included here even if they are
 ; included elsewhere.
 
-boot\romdsk
-boot\romos
+; boot\romdsk	; contains binaries without sources
+; boot\romos	; contains binaries without sources
+
 boot\syslnx
 
 devel\bcc
@@ -44,10 +45,9 @@ devel\i16nlelk
 devel\dojs
 devel\msa
 devel\tinyasm
-
 devel\kittenc
-; util\fdisrc
-; devel\fdisrc
+
+devel\fdisrc
 
 ; devel\djgpp
 ; devel\dj_bin
@@ -68,3 +68,66 @@ devel\kittenc
 
 gui\opengem
 
+disk\aefdisk
+disk\dosfsck
+disk\edict
+disk\finddisk
+disk\ospimg
+disk\part
+disk\raread
+disk\rawrite
+disk\testdisk
+disk\wde
+disk\whichfat
+disk\xfdisk
+disk\zerofill
+
+util\ansimat
+util\b64
+util\bmp2png
+util\bootfix
+util\bsum
+util\cdrom2ui
+util\cpied
+util\cwsdpmi
+util\daa2iso
+util\dialog
+util\dog
+util\dos32a
+util\dzemm
+util\fdbanner
+util\fdshield
+util\flashrom
+util\foxcalc
+util\foxtype
+util\gifsicle
+util\gnuchcp
+util\gnufonts
+util\hexcomp
+util\hip
+util\listpci
+util\listvesa
+util\localcfg
+util\localize
+util\memteste
+util\password
+util\pbox
+util\pcisleep
+util\pdtree
+util\pg
+util\pkgtools
+util\pngcrush
+util\rcal
+util\search
+util\setlock
+util\slowdown
+util\stamp
+util\switchar
+util\topspin
+util\tp7p5fix
+util\unrtf
+util\utf8tocp
+util\wcd
+util\wptail
+util\xdel
+util\zdir

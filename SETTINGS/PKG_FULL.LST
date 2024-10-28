@@ -26,46 +26,21 @@ archiver\bz2
 
 edit\msedit
 
-util\bootfix
-util\pg
-util\bmp2png
 drivers\cdrcache
-util\cpied
-util\dos32a
-util\foxcalc
-unix\gnubc
 unix\less
-util\localize
 unix\md5sum
-util\part
 drivers\srdisk
 drivers\usbdos
-util\slowdown
-util\zerofill
-util\xdel
 
 drivers\doslfn
-util\dosfsck
-
-util\dosutil
 
 apps\doszip
-util\foxtype
 drivers\lfndos
-util\gnuchcp
-
-util\pcisleep
-util\setlock
 drivers\spool
-util\stamp
-util\switchar
-util\topspin
-unix\trch
 
 drivers\xkeyb
 
 drivers\shareext
-util\wcd
 
 ; Not Usefull without Networking
 net\fdnet
@@ -129,41 +104,16 @@ unix\cal
 unix\gnused
 unix\uptimec
 
-util\ansimat
-util\b64
-util\bsum
-util\cdrom2ui
-
-; ClamAV package appears to be broken. Install disabled
-; util\clamav
-; util\clamdb
-
-util\dialog
 apps\dn2
-util\dog
-util\edict
 apps\fdshell
 
 apps\fdtui
 
-util\finddisk
-util\gnufonts
-util\hexcomp
 drivers\hiram
-util\localcfg
 drivers\lptdrv
-util\memteste
 drivers\ntfs
-util\ospimg
 apps\pgme
-util\rcal
-util\search
 net\terminal
-util\testdisk
-util\utf8tocp
-util\wde
-util\whichfat
-util\wptail
 
 sound\adplay
 ; sound\cdp	; freeware, not opensource
@@ -172,23 +122,16 @@ sound\dosmid
 sound\mplayer
 sound\opencp
 ; base\htmlhelp
-util\ambread
+tools\ambread
 base\ambhelp
 
 drivers\uhdd
-util\pkgtools
 apps\imgedit
 games\smiley
-util\pkgtools
-util\tp7p5fix
 games\blkdrop
 games\sayswho
 
 ; new additions and returned packages
-
-; drivers\gcdrom
-; drivers\uide
-; drivers\atapicdd
 
 drivers\logger
 sound\sbpmixer
@@ -249,26 +192,5 @@ sound\sjgplay
 
 unix\minibox
 
-util\aefdisk
-; util\clamav
-; util\clamdb
-util\daa2iso
-util\dzemm
-util\fdbanner
-; util\fdsrc
-util\fdshield
-util\flashrom
-util\gifsicle
-util\hip
-util\listpci
-util\listvesa
-util\password
-util\pbox
-util\pdtree
-util\pngcrush
-util\raread
-util\rawrite
-util\unrtf
-util\xfdisk
-util\zdir
+tools\ambread
 

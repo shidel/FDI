@@ -6,18 +6,16 @@
 
 base\devload
 base\fdapm
-util\fdnpkg
+net\fdnpkg
 ; util\fdinst
 base\shsucdx
 base\xcopy
-util\v8power
+tools\v8power
 drivers\shsufdrv
 drivers\srdisk
 base\himemx
 
-; drivers\gcdrom
 base\lbacache
-; drivers\uhdd
 drivers\udvd2
 drivers\cdrcache
 
@@ -29,11 +27,12 @@ base\fdhelper
 ; not required but really should be there
 base\format
 base\fdisk
+base\more
+base\edit
+
 ; base\ctmouse
 ; util\cwsdpmi
 ; util\fdimples
 ; base\fc
 ; base\mem
-base\more
-base\edit
 

@@ -59,13 +59,11 @@ base\graphics
 base\fdhelper
 
 base\htmlhelp
-; util\ambread
-; base\ambhelp
 
 ; Not actually part of BASE, but installed with it.
 
-util\fdnpkg
-util\v8power
+net\fdnpkg
+tools\v8power
 apps\fdimples
 archiver\unzip
 
@@ -73,9 +71,8 @@ archiver\unzip
 
 archiver\zip
 drivers\udvd2
-; drivers\gcdrom
-util\callver
-util\cwsdpmi
+tools\callver
+tools\cwsdpmi
 drivers\shsufdrv
 
 ; Include custom release user assistance packages
