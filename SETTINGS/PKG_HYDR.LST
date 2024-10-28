@@ -29,10 +29,3 @@ base\format
 base\fdisk
 base\more
 base\edit
-
-; base\ctmouse
-; util\cwsdpmi
-; util\fdimples
-; base\fc
-; base\mem
-

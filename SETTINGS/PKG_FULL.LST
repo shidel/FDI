@@ -136,9 +136,6 @@ games\sayswho
 drivers\logger
 sound\sbpmixer
 
-; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
-; util\fdisrc
-
 drivers\sbemu
 drivers\vsbhda
 
@@ -193,4 +190,6 @@ sound\sjgplay
 unix\minibox
 
 tools\ambread
+tools\slowdown
+tools\pkgtools
 

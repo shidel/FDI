@@ -11,12 +11,12 @@ $PKG_FDI$
 $PKG_ASSIST$
 
 ; These are additional packages that are intalled onto the LIVE CD media.
-util\slowdown
+tools\slowdown
 drivers\doslfn
 
 ; The return an improvement of her FDNet Package :-)
 net\fdnet
-util\pkgtools
+tools\pkgtools
 
 unix\grep
 unix\head
@@ -27,19 +27,17 @@ unix\touch
 unix\which
 unix\less
 
-util\wcd
 ; high user requests in survey
 archiver\p7zip
 archiver\tar
 archiver\gzip
 archiver\bz2
-util\pcisleep
 unix\md5sum
 
 ; was live before
-disk\dosfsck
 tools\callver
 tools\cwsdpmi
+tools\slowdown
 
 ; new
 sound\sbpmixer

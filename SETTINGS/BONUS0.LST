@@ -89,7 +89,6 @@ util\bootfix
 util\bsum
 util\cdrom2ui
 util\cpied
-util\cwsdpmi
 util\daa2iso
 util\dialog
 util\dog
@@ -131,3 +130,4 @@ util\wcd
 util\wptail
 util\xdel
 util\zdir
+
