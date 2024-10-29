@@ -114,12 +114,10 @@ util\pbox
 util\pcisleep
 util\pdtree
 util\pg
-util\pkgtools
 util\pngcrush
 util\rcal
 util\search
 util\setlock
-util\slowdown
 util\stamp
 util\switchar
 util\topspin
