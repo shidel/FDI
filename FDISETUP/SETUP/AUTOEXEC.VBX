@@ -97,6 +97,7 @@ MEM /C /N
 
 REM - Display drive for CD-ROM
 if not exist %DOSDIR%\BIN\CDROM.BAT goto NOCDSTATUS
+echo.
 call %DOSDIR%\BIN\CDROM.BAT status
 :NOCDSTATUS
 
