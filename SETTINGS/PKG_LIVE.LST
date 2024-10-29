@@ -16,7 +16,6 @@ drivers\doslfn
 
 ; The return an improvement of her FDNet Package :-)
 net\fdnet
-tools\pkgtools
 
 unix\grep
 unix\head
@@ -38,9 +37,9 @@ unix\md5sum
 tools\callver
 tools\cwsdpmi
 tools\slowdown
+tools\pkgtools
 
 ; new
-sound\sbpmixer
 drivers\logger
 
 ; a couple simple games that always work on all hardware platforms :-)
