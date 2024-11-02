@@ -44,20 +44,6 @@ vgotoxy /l sop
 vecho /n /t %FLANG% IRMPACKN %TFH% %_PA% %TFF%
 vecho /f %TFF% /e /n
 
-if "%FDNVER%" == "v0.99.6" goto OldFDINST
-goto TryAnyway
-
-:OldFDINST
-REM No Longer needed with new FDNPKG and mapdrives setting
-if not exist %FTARGET%\PACKAGES\%_PA%.LST goto TryAnyway
-type %FTARGET%\PACKAGES\%_PA%.LST |vstr /n /s "C:\" "%FDRIVE%\" >%FTARGET%\PACKAGES\FDISETUP.LST
-FDINST remove FDISETUP >NUL
-if exist %FTARGET%\PACKAGES\FDISETUP.LST del %FTARGET%\PACKAGES\FDISETUP.LST >NUL
-
-set _PL=y
-goto PkgNext
-
-:TryAnyway
 FDINST remove %_PA% >NUL
 set _PL=y
 goto PkgNext

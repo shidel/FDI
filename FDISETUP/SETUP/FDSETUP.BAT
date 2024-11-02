@@ -24,7 +24,10 @@ if "%1" == "floppy" set FBOOTED=y
 if "%1" == "eltorito" set FBOOTED=LEGACY
 if "%1" == "legacy" set FBOOTED=LEGACY
 if "%1" == "live" set FBOOTED=CDROM
+
 if "%1" == "usb" set FBOOTED=y
+if "%1" == "full" set FBOOTED=y
+if "%1" == "lite" set FBOOTED=y
 
 if "%1" == "adv" set FADV=y
 if "%1" == "ADV" set FADV=y

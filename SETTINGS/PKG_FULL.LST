@@ -26,46 +26,21 @@ archiver\bz2
 
 edit\msedit
 
-util\bootfix
-util\pg
-util\bmp2png
 drivers\cdrcache
-util\cpied
-util\dos32a
-util\foxcalc
-unix\gnubc
 unix\less
-util\localize
 unix\md5sum
-util\part
 drivers\srdisk
 drivers\usbdos
-util\slowdown
-util\zerofill
-util\xdel
 
 drivers\doslfn
-util\dosfsck
-
-util\dosutil
 
 apps\doszip
-util\foxtype
 drivers\lfndos
-util\gnuchcp
-
-util\pcisleep
-util\setlock
 drivers\spool
-util\stamp
-util\switchar
-util\topspin
-unix\trch
 
 drivers\xkeyb
 
 drivers\shareext
-util\wcd
 
 ; Not Usefull without Networking
 net\fdnet
@@ -129,41 +104,16 @@ unix\cal
 unix\gnused
 unix\uptimec
 
-util\ansimat
-util\b64
-util\bsum
-util\cdrom2ui
-
-; ClamAV package appears to be broken. Install disabled
-; util\clamav
-; util\clamdb
-
-util\dialog
 apps\dn2
-util\dog
-util\edict
 apps\fdshell
 
 apps\fdtui
 
-util\finddisk
-util\gnufonts
-util\hexcomp
 drivers\hiram
-util\localcfg
 drivers\lptdrv
-util\memteste
 drivers\ntfs
-util\ospimg
 apps\pgme
-util\rcal
-util\search
 net\terminal
-util\testdisk
-util\utf8tocp
-util\wde
-util\whichfat
-util\wptail
 
 sound\adplay
 ; sound\cdp	; freeware, not opensource
@@ -171,26 +121,75 @@ sound\playcd
 sound\dosmid
 sound\mplayer
 sound\opencp
-base\htmlhelp
+; base\htmlhelp
+tools\ambread
+base\ambhelp
 
 drivers\uhdd
-util\pkgtools
 apps\imgedit
 games\smiley
-util\pkgtools
-util\tp7p5fix
 games\blkdrop
 games\sayswho
 
 ; new additions and returned packages
 
-; drivers\gcdrom
-; drivers\uide
-; drivers\atapicdd
-
 drivers\logger
 sound\sbpmixer
 
-; Not really useful unless making a FreeDOS release from scratch, moved to XTRA
-; util\fdisrc
+drivers\sbemu
+drivers\vsbhda
+
+; Packages added to FULL that were previously only Extra or on the BonusCD.
+
+archiver\arj
+archiver\cabext
+archiver\lpq1
+archiver\lzip
+archiver\lzma
+archiver\lzop
+archiver\slicer
+archiver\zoo
+
+drivers\eltorito
+drivers\gcdrom
+drivers\himemsx
+drivers\rdisk
+drivers\uide
+
+net\arachne
+net\crynwr
+net\dillo
+net\dwol
+net\e1000pkt
+net\e100pkt
+net\etherdfs
+net\ethtools
+net\gopherus
+net\htget
+net\links
+net\lsppp
+net\lynx
+net\m2wat
+net\mskermit
+net\newsnuz
+net\ntool
+net\picosntp
+net\picotcp
+net\ping
+net\rsync
+net\ssh2dos
+net\sshdos
+net\vmsmount
+net\vncview
+net\wattcp
+
+sound\bladeenc
+sound\lame
+sound\sjgplay
+
+unix\minibox
+
+tools\ambread
+tools\slowdown
+tools\pkgtools
 

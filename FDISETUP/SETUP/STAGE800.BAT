@@ -28,21 +28,19 @@ vecho /k0 /n /t %FLANG% PREPARING
 vdelay %FDEL%
 
 REM Configure FDINST package manager.
-:GetFDINSTVersion
-fdinst | vstr /n /l 0 | vstr /n /f " " 2 | set /p FDNVER=
-if "%FDNVER%" == "" goto GetFDINSTVersion
 
-REM Override for pre-release versions of FDNPKG
-set FDNVER=v0.99.7
 
 set DOSDIR=%FTARGET%
 set FDNPKG.CFG=%TEMP%\FDNPKG.CFG
-if "%FDNVER%" == "v0.99.6" goto OldFDINST
 
 :NewFDNPKG
 set _TC=
 if "%FDRIVE%" == "C:" goto MapDisabled
-echo %FTARGET% | vstr /d /f : 2| set /p _TC=
+REM Cannot have space after ENV VAR in echo. Otherwise, there will be a space in the temp
+REM DOSDIR variable. This will cause FDINST to insert a space in the listing file on some
+REM entries. Which in turn will cause it to FAIL to remove those files if the package is
+REM uninstalled at a later time. 
+echo %FTARGET%| vstr /d /f : 2| set /p _TC=
 if "%_TC%" == "" goto NewFDNPKG
 set DOSDIR=C:%_TC%
 
@@ -53,7 +51,6 @@ if "%_TC%" == "" goto SetMapDrives
 set _TC=mapdrives c%_TC%
 goto MapEnabled
 
-:OldFDINST
 
 :MapDisabled
 set _TC=#mapdrives cc
@@ -64,7 +61,6 @@ type %TEMP%\FDNPKG.1|vstr /n/s "sources 0" "sources %OSRC%" >%TEMP%\FDNPKG.2
 type %TEMP%\FDNPKG.2|vstr /n/s %%DOSDRV%% C: >%FDNPKG.CFG%
 del  %TEMP%\FDNPKG.1 >NUL
 del  %TEMP%\FDNPKG.2 >NUL
-goto ReadyFDINST
 
 :ReadyFDINST
 
@@ -106,20 +102,6 @@ set _TT=
 goto LoopingList
 
 :FinishedList
-rem no lnger needed, newer packages of FDNPKG are preset with good configs.
-rem we aren't going to change the install sources option from their defaults
-rem if exist %FTARGET%\BIN\FDNPKG.CFG goto ReplaceConfig
-verrlvl 0
-goto DoneCheckWarning
-
-:ReplaceConfig
-copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.DEF>NUL
-type %FINSP%\..\BIN\FDNPKG.CFG | vstr /n/s "sources 0" "sources %OSRC%" >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.1 | vstr /n/s %%FDRIVE%% C: >%FTARGET%\BIN\FDNPKG.1
-type %FTARGET%\BIN\FDNPKG.2 | vstr /n/s mapdrives #mapdrives >%FTARGET%\BIN\FDNPKG.CFG
-del %FTARGET%\BIN\FDNPKG.1 >NUL
-del %FTARGET%\BIN\FDNPKG.2 >NUL
-copy /y %FTARGET%\BIN\FDNPKG.CFG %FTARGET%\BIN\FDNPKG.BAK>NUL
 verrlvl 0
 goto DoneCheckWarning
 
@@ -165,4 +147,3 @@ set DOSDIR=%OLDDOS%
 set OLDDOS=
 set FDNPKG.CFG=%OLDFDN%
 set OLDFDN=
-set FDNVER=

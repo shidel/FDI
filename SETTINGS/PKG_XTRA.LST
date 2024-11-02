@@ -9,107 +9,110 @@
 ; $PKG_FDI$
 ; $PKG_FULL$
 ; $PKG_LIVE$
-$PKG_ASSIST$
+
+; $PKG_ASSIST$
 
 ; Extra packages that are not automatically installed.
 
-; The return an improvement of her FDNet Package :-)
-net\fdnet
+; The return and improvement of the FDNet Package :-)
+; net\fdnet
 
 ; Excluded, lacks a clear license.
-; util\paint2
+;; util\paint2
 
-base\htmlhelp
+; base\htmlhelp
+; util\ambread
+; base\ambhelp
 
-archiver\7zdec
-archiver\arj
-archiver\cabext
-archiver\lpq1
-archiver\p7zip
-archiver\zoo
-base\samcfg
-boot\syslnx
-devel\bcc
-devel\fpc
-devel\nasm
-devel\watcomc
-devel\upx
-edit\fed
-edit\freemacs
-edit\uhex
-edit\vim
-net\arachne
-net\crynwr
-net\lsppp
-net\curl
-net\dillo
-net\dwol
-net\e1000pkt
-net\e100pkt
-net\ethtools
-net\gopherus
-net\htget
-net\links
-net\lynx
-net\m2wat
-net\mskermit
-net\mtcp
-net\newsnuz
-net\ntool
-net\picosntp
-net\picotcp
-net\ping
-net\rsync
-net\ssh2dos
-net\sshdos
-net\vmsmount
-net\vncview
-net\wattcp
-net\wget
-sound\adplay
-; sound\cdp	; freeware, not opensource
-sound\dosmid
-sound\mplayer
-sound\opencp
-apps\dn2
-util\dog
-util\fdisrc
-apps\fdshell
-util\finddisk
-util\flashrom
-util\gnufonts
-unix\gnused
-util\hexcomp
-drivers\hiram
-util\localcfg
-drivers\lptdrv
-util\memteste
-drivers\ntfs
-util\ospimg
-util\pdtree
-apps\pgme
-util\rcal
-util\search
-net\terminal
-util\testdisk
-util\unrtf
-unix\uptimec
-util\utf8tocp
-util\wcd
-util\wde
-util\whichfat
-util\wptail
+; archiver\7zdec
+; archiver\arj
+; archiver\cabext
+; archiver\lpq1
+; archiver\p7zip
+; archiver\zoo
+; base\samcfg
+; boot\syslnx
+; devel\bcc
+; devel\fpc
+; devel\nasm
+; devel\watcomc
+; devel\upx
+; edit\fed
+; edit\freemacs
+; edit\uhex
+; edit\vim
+; net\arachne
+; net\crynwr
+; net\lsppp
+; net\curl
+; net\dillo
+; net\dwol
+; net\e1000pkt
+; net\e100pkt
+; net\ethtools
+; net\gopherus
+; net\htget
+; net\links
+; net\lynx
+; net\m2wat
+; net\mskermit
+; net\mtcp
+; net\newsnuz
+; net\ntool
+; net\picosntp
+; net\picotcp
+; net\ping
+; net\rsync
+; net\ssh2dos
+; net\sshdos
+; net\vmsmount
+; net\vncview
+; net\wattcp
+; net\wget
+; sound\adplay
+;; sound\cdp	; freeware, not opensource
+; sound\dosmid
+; sound\mplayer
+; sound\opencp
+; apps\dn2
+; util\dog
+; util\fdisrc
+; apps\fdshell
+; util\finddisk
+; util\flashrom
+; util\gnufonts
+; unix\gnused
+; util\hexcomp
+; drivers\hiram
+; util\localcfg
+; drivers\lptdrv
+; util\memteste
+; drivers\ntfs
+; util\ospimg
+; util\pdtree
+; apps\pgme
+; util\rcal
+; util\search
+; net\terminal
+; util\testdisk
+; util\unrtf
+; unix\uptimec
+; util\utf8tocp
+; util\wcd
+; util\wde
+; util\whichfat
+; util\wptail
 
-net\etherdfs
-util\edict
-apps\fdtui
-util\aefdisk
+; net\etherdfs
+; util\edict
+; apps\fdtui
+; util\aefdisk
 
-drivers\gcdrom
-drivers\uide
-drivers\uhdd
-drivers\udvd2
-devel\kittenc
-util\tp7p5fix
+; drivers\gcdrom
+; drivers\uide
+; drivers\uhdd
+; drivers\udvd2
+; devel\kittenc
+; util\tp7p5fix
 
-sound\sbpmixer
+; sound\sbpmixer

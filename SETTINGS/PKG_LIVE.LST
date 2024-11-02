@@ -11,14 +11,11 @@ $PKG_FDI$
 $PKG_ASSIST$
 
 ; These are additional packages that are intalled onto the LIVE CD media.
-util\slowdown
+tools\slowdown
 drivers\doslfn
 
 ; The return an improvement of her FDNet Package :-)
 net\fdnet
-util\pkgtools
-
-; net\wget
 
 unix\grep
 unix\head
@@ -28,56 +25,26 @@ unix\tee
 unix\touch
 unix\which
 unix\less
-; unix\trch
-
-; unix\md5sum
-
-; net\mtcp
-
-util\raread
-util\rawrite
-util\edict
-
-util\wcd
-; util\aefdisk
-
-; util\part
-; util\xfdisk
-; util\xdel
-; util\xkeyb
-
-; apps\fdtui
-; net\lynx
 
 ; high user requests in survey
 archiver\p7zip
 archiver\tar
 archiver\gzip
 archiver\bz2
-devel\upx
-; drivers\ntfs
-; drivers\usbdos
-; edit\vim
-; edit\e3
-util\bootfix
-util\flashrom
-util\pcisleep
 unix\md5sum
 
 ; was live before
-util\dosfsck
+tools\callver
+tools\cwsdpmi
+tools\slowdown
+tools\pkgtools
 
 ; new
-util\listpci
-util\listvesa
-util\tp7p5fix
-sound\sbpmixer
 drivers\logger
 
 ; a couple simple games that always work on all hardware platforms :-)
 games\senet
 games\blkdrop
 games\flpybird
-games\sayswho
 
 

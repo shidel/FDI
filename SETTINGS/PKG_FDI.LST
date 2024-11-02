@@ -16,17 +16,16 @@ base\fdapm
 base\format
 base\fc
 
-util\v8power
+tools\v8power
 apps\fdimples
 
 unix\grep
 
-; drivers\uhdd
 drivers\udvd2
 drivers\cdrcache
 base\lbacache
 
-util\fdnpkg
+net\fdnpkg
 archiver\zip
 
 base\fdhelper
@@ -34,10 +33,8 @@ base\fdhelper
 ; Only required for CD install media
 
 drivers\udvd2
-; drivers\gcdrom
 
 ; El Torito driver is included through config options for CD boot media
-; drivers\eltorito
 
 ; Only wanted / needed for QEMU RAM Disk
 drivers\srdisk

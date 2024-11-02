@@ -1,5 +1,5 @@
 @ECHO OFF
-REM - Updated AUTOEXEC file, for 386 or better hardware
+REM - Updated AUTOEXEC file, for 286 hardware
 
 REM - set basic environment
 
@@ -21,7 +21,7 @@ set LANG=$FLANG$
 set TZ=$TZ$
 
 REM Emergency Mode, no drivers should be loaded
-if "%CONFIG%"=="5" goto END
+if "%CONFIG%"=="3" goto END
 
 REM - Internationalization settings
 
@@ -46,7 +46,7 @@ set AUTOFILE=%0
 alias cfg=edit %CFGFILE%
 alias auto=edit %AUTOFILE%
 
-if "%CONFIG%"=="4" goto DOSLOW
+if "%CONFIG%"=="2" goto DOSLOW
 goto DOSHIGH
 
 :DOSLOW
@@ -64,16 +64,8 @@ lh %DOSDIR%\BIN\DOSLFN.COM
 REM - Add other stuff here once LFN is loaded..
 :NOLFN
 
-if not exist %DOSDIR%\BIN\CDROM.BAT goto NOCDROM
-call %DOSDIR%\BIN\CDROM.BAT
-REM - Add other stuff here once CDROM is loaded..
-:NOCDROM
-
-if not exist %DOSDIR%\BIN\FDNET.BAT goto NONET
-call %DOSDIR%\BIN\FDNET.BAT
-REM - if errorlevel 1 goto NONET
-REM - Add other stuff here once FDNET is loaded..
-:NONET
+REM - The CD extensions require a 386 or better
+REM - Networking support is unlikely on sub-386 hardware
 
 :CONFIGS
 REM - load other configs using external BAT files
@@ -94,12 +86,6 @@ alias halt=fdapm poweroff
 alias shutdown=fdapm poweroff
 
 MEM /C /N
-
-REM - Display drive for CD-ROM
-if not exist %DOSDIR%\BIN\CDROM.BAT goto NOCDSTATUS
-echo.
-call %DOSDIR%\BIN\CDROM.BAT status
-:NOCDSTATUS
 
 REM - Display "Welcome to FreeDOS"
 if not exist %DOSDIR%\BIN\WELCOME.BAT goto NOWELCOME
