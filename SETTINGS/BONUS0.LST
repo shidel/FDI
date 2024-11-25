@@ -21,6 +21,7 @@ devel\fpc
 devel\insight
 devel\jwasm
 devel\lua
+devel\ldebug
 devel\nasm
 devel\watcomc
 devel\watcomf
