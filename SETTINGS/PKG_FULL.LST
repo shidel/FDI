@@ -24,8 +24,6 @@ archiver\tar
 archiver\gzip
 archiver\bz2
 
-edit\msedit
-
 drivers\cdrcache
 unix\less
 unix\md5sum
@@ -48,9 +46,8 @@ net\mtcp
 net\wget
 net\curl
 
-; Per Jim, All of Archivers, Base, Editors, Games, Unix-like and Utilities
-; Packages should be installed with FULL. These Packages are not referenced
-; earlier.
+; Per Jim, If a group is on primary install media, all of that groups packages
+; should be installed with full. These Packages are not referenced earlier.
 games\bolitare
 games\boom
 games\dosdef
@@ -83,22 +80,6 @@ archiver\7zdec
 archiver\p7zip
 
 base\samcfg
-
-edit\biew
-edit\blocek
-edit\doshexed
-edit\e3
-edit\elvis
-edit\fed
-edit\freemacs
-edit\mbedit
-edit\mined
-edit\ospedit
-edit\pico
-edit\setedit
-edit\tde
-edit\uhex
-edit\vim
 
 unix\cal
 unix\gnused
