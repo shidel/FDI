@@ -66,7 +66,7 @@ net\fdnpkg
 tools\v8power
 apps\fdimples
 archiver\unzip
-tools\pkginfo
+tools\pkgtools
 
 ; Probably should always include these as well.
 
