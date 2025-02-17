@@ -88,7 +88,7 @@ unix\uptimec
 apps\dn2
 apps\fdshell
 
-apps\fdtui
+; apps\fdtui
 
 drivers\hiram
 drivers\lptdrv
