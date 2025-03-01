@@ -168,7 +168,7 @@ sound\bladeenc
 sound\lame
 sound\sjgplay
 
-unix\minibox
+; unix\minibox
 
 tools\ambread
 tools\slowdown
