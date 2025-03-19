@@ -27,7 +27,7 @@ unix\which
 unix\less
 
 ; high user requests in survey
-archiver\p7zip
+archiver\7zip
 archiver\tar
 archiver\gzip
 archiver\bz2

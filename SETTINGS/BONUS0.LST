@@ -9,6 +9,7 @@
 ; boot\romos	; contains binaries without sources
 
 boot\syslnx
+boot\bootfix
 
 devel\bcc
 devel\bwbasic
@@ -85,8 +86,7 @@ disk\zerofill
 
 util\ansimat
 util\b64
-util\bmp2png
-util\bootfix
+; util\bmp2png
 util\bsum
 util\cdrom2ui
 util\cpied
@@ -94,6 +94,7 @@ util\daa2iso
 util\dialog
 util\dog
 util\dos32a
+util\dosview
 util\dzemm
 util\fdbanner
 util\fdshield

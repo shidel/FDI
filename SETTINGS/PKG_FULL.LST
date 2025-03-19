@@ -76,7 +76,7 @@ games\wing
 games\zmiy
 games\mistral
 
-archiver\7zdec
+archiver\7zip
 archiver\p7zip
 
 base\samcfg
@@ -88,7 +88,7 @@ unix\uptimec
 apps\dn2
 apps\fdshell
 
-apps\fdtui
+; apps\fdtui
 
 drivers\hiram
 drivers\lptdrv
@@ -168,7 +168,7 @@ sound\bladeenc
 sound\lame
 sound\sjgplay
 
-unix\minibox
+; unix\minibox
 
 tools\ambread
 tools\slowdown
