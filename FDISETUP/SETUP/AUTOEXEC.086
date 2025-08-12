@@ -21,7 +21,7 @@ set LANG=$FLANG$
 set TZ=$TZ$
 
 REM Emergency Mode, no drivers should be loaded
-if "%CONFIG%"=="1" goto END
+if "%CONFIG%"=="2" goto END
 
 REM - Internationalization settings
 
@@ -33,7 +33,7 @@ REM chcp 858
 REM mkeyb UK
 
 $LANG_SET$
- 
+
 set OS_NAME=$OS_NAME$
 set OS_VERSION=$OS_VERSION$
 
