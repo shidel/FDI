@@ -174,3 +174,7 @@ tools\ambread
 tools\slowdown
 tools\pkgtools
 
+; Temporarily added to FULL for testing
+net\fdnpkg16
+
+
