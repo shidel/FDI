@@ -83,7 +83,7 @@ vecho /k0 /t %FLANG% PROCEED?
 vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% HELLO_OPTS
 vecho /k0 /t %FLANG% CONTINUE
 vecho /k0 /n /t %FLANG% EXIT
-vchoice /k0 /a %TFC% Ctrl-C
+vchoice /k0 /a %TFC% Ctrl-C /d 2
 
 if errorlevel 200 FDICTRLC.BAT %0 Welcome
 if errorlevel 2 goto Done
