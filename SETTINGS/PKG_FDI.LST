@@ -10,7 +10,7 @@ base\xcopy
 base\devload
 base\attrib
 base\shsucdx
-drivers\shsufdrv
+drivers\shsurdrv
 base\fdisk
 base\fdapm
 base\format

@@ -74,7 +74,7 @@ archiver\zip
 drivers\udvd2
 tools\callver
 tools\cwsdpmi
-drivers\shsufdrv
+drivers\shsurdrv
 
 ; Include custom release user assistance packages
 
