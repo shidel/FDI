@@ -67,6 +67,25 @@ NLS\MORE.*
 NLS\XCOPY.*
 NLS\FDISK.*
 
+; filter out unsupported AI translations
+NLS\*.CZ
+NLS\*.DK
+NLS\*.ET
+NLS\*.FI
+NLS\*.HU
+NLS\*.IS
+NLS\*.IT
+NLS\*.LT
+NLS\*.LV
+NLS\*.NO
+NLS\*.PB
+NLS\*.PL
+NLS\*.PT
+NLS\*.SK
+NLS\*.SL
+NLS\*.SR
+NLS\*.UK
+
 BIN\HELP.BAT
 
 BIN\AHCICD.DLL
