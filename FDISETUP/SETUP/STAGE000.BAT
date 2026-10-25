@@ -115,6 +115,7 @@ if %LANG% == FR set LANG=FR
 if %LANG% == DE set LANG=DE
 if %LANG% == NL set LANG=NL
 if %LANG% == TR set LANG=TR
+if %LANG% == PL set LANG=PL
 
 REM Langage not supported switch to english
 if not exist %LANG%\NUL set LANG=EN
