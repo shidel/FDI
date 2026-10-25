@@ -122,7 +122,7 @@ call FDICLS.BAT
 
 vframe /p0 /b %TFB% /f %TFF% %TFS% textbox /t %FLANG% PARTED_FRAME
 vecho /k0 /t %FLANG% PARTED
-vecho
+vecho /k0
 vecho /k0 /t %FLANG% REBOOT?
 vframe /p0 /b %TFB% /f %TFF% optionbox /t %FLANG% PARTED_OPTS
 vecho /k0 /t %FLANG% REBOOT_YES
